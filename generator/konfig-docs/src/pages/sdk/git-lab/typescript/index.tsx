@@ -17,7 +17,7 @@ export default function GitLabTypeScriptSdk() {
       companyKebabCase="git-lab"
       clientNameCamelCase="gitLab"
       homepage="gitlab.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-27T20:44:35.877Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gitlab/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -27,7 +27,7 @@ export default function GitLabTypeScriptSdk() {
       categories={["developer_tools","automation","collaboration","version_control","continuous_integration","continuous_delivery"]}
       methods={[
   {
-    "url": "/api/v4/groups/{id}/badges/{badge_id}",
+    "url": "/groups/{id}/badges/{badge_id}",
     "method": "removeFromGroup",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "badges",
@@ -52,7 +52,7 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/groups/{id}/badges/{badge_id}",
+    "url": "/groups/{id}/badges/{badge_id}",
     "method": "getGroupBadge",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "badges",
@@ -82,7 +82,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/groups/{id}/badges/{badge_id}",
+    "url": "/groups/{id}/badges/{badge_id}",
     "method": "updateGroupBadge",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "badges",
@@ -127,8 +127,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/groups/{id}/badges",
-    "method": "getList",
+    "url": "/groups/{id}/badges",
+    "method": "listViewableByAuthenticatedUser",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "badges",
     "typeScriptTag": "badges",
@@ -167,8 +167,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/groups/{id}/badges",
-    "method": "addBadgeToGroup",
+    "url": "/groups/{id}/badges",
+    "method": "addToGroup",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "badges",
     "typeScriptTag": "badges",
@@ -210,8 +210,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/groups/{id}/badges/render",
-    "method": "previewBadgeFromGroup",
+    "url": "/groups/{id}/badges/render",
+    "method": "previewFromGroup",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "badges",
     "typeScriptTag": "badges",
@@ -247,8 +247,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/groups/{id}/access_requests/{user_id}",
-    "method": "denyAccessToUser",
+    "url": "/groups/{id}/access_requests/{user_id}",
+    "method": "denyAccessRequest",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "access_requests",
     "typeScriptTag": "accessRequests",
@@ -272,8 +272,8 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/groups/{id}/access_requests/{user_id}/approve",
-    "method": "approveForUser",
+    "url": "/groups/{id}/access_requests/{user_id}/approve",
+    "method": "approveUserAccess",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "access_requests",
     "typeScriptTag": "accessRequests",
@@ -308,8 +308,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/groups/{id}/access_requests",
-    "method": "getList",
+    "url": "/groups/{id}/access_requests",
+    "method": "getListForGroup",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "access_requests",
     "typeScriptTag": "accessRequests",
@@ -343,8 +343,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/groups/{id}/access_requests",
-    "method": "requestAccessToGroup",
+    "url": "/groups/{id}/access_requests",
+    "method": "authenticateUserToGroup",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "access_requests",
     "typeScriptTag": "accessRequests",
@@ -366,8 +366,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/repository/merged_branches",
-    "method": "deleteMerged",
+    "url": "/projects/{id}/repository/merged_branches",
+    "method": "removeMergedBranches",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "branches",
     "typeScriptTag": "branches",
@@ -384,7 +384,7 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/projects/{id}/repository/branches/{branch}",
+    "url": "/projects/{id}/repository/branches/{branch}",
     "method": "deleteBranch",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "branches",
@@ -409,7 +409,7 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/projects/{id}/repository/branches/{branch}",
+    "url": "/projects/{id}/repository/branches/{branch}",
     "method": "getSingleBranch",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "branches",
@@ -439,8 +439,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/repository/branches/{branch}",
-    "method": "checkIfExists",
+    "url": "/projects/{id}/repository/branches/{branch}",
+    "method": "checkExistence",
     "httpMethod": HttpMethodsEnum.HEAD,
     "tag": "branches",
     "typeScriptTag": "branches",
@@ -464,8 +464,8 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/projects/{id}/repository/branches",
-    "method": "getAll",
+    "url": "/projects/{id}/repository/branches",
+    "method": "getProjectRepository",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "branches",
     "typeScriptTag": "branches",
@@ -519,7 +519,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/repository/branches",
+    "url": "/projects/{id}/repository/branches",
     "method": "createBranch",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "branches",
@@ -556,7 +556,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/repository/branches/{branch}/unprotect",
+    "url": "/projects/{id}/repository/branches/{branch}/unprotect",
     "method": "unprotectBranch",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "branches",
@@ -586,7 +586,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/repository/branches/{branch}/protect",
+    "url": "/projects/{id}/repository/branches/{branch}/protect",
     "method": "protectBranch",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "branches",
@@ -626,7 +626,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/badges/{badge_id}",
+    "url": "/projects/{id}/badges/{badge_id}",
     "method": "removeFromProject",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "badges",
@@ -651,7 +651,7 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/projects/{id}/badges/{badge_id}",
+    "url": "/projects/{id}/badges/{badge_id}",
     "method": "getProjectBadge",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "badges",
@@ -681,7 +681,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/badges/{badge_id}",
+    "url": "/projects/{id}/badges/{badge_id}",
     "method": "updateProjectBadge",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "badges",
@@ -726,7 +726,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/badges",
+    "url": "/projects/{id}/badges",
     "method": "listViewableByAuthenticatedUser",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "badges",
@@ -766,8 +766,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/badges",
-    "method": "addProjectBadge",
+    "url": "/projects/{id}/badges",
+    "method": "addToProject",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "badges",
     "typeScriptTag": "badges",
@@ -809,8 +809,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/badges/render",
-    "method": "renderPreviewFromProject",
+    "url": "/projects/{id}/badges/render",
+    "method": "previewFromProject",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "badges",
     "typeScriptTag": "badges",
@@ -846,8 +846,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/access_requests/{user_id}",
-    "method": "denyAccessToUser",
+    "url": "/projects/{id}/access_requests/{user_id}",
+    "method": "denyAccessRequest",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "access_requests",
     "typeScriptTag": "accessRequests",
@@ -871,8 +871,8 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/projects/{id}/access_requests/{user_id}/approve",
-    "method": "approveForUser",
+    "url": "/projects/{id}/access_requests/{user_id}/approve",
+    "method": "approveUserAccess",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "access_requests",
     "typeScriptTag": "accessRequests",
@@ -907,8 +907,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/access_requests",
-    "method": "getList",
+    "url": "/projects/{id}/access_requests",
+    "method": "listForProject",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "access_requests",
     "typeScriptTag": "accessRequests",
@@ -942,7 +942,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/access_requests",
+    "url": "/projects/{id}/access_requests",
     "method": "requestAccessToProject",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "access_requests",
@@ -965,7 +965,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}",
+    "url": "/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}",
     "method": "removeMetricImage",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "alert_management",
@@ -1002,8 +1002,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}",
-    "method": "updateMetricImage",
+    "url": "/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}",
+    "method": "updateMetricImageForAlert",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "alert_management",
     "typeScriptTag": "alertManagement",
@@ -1049,8 +1049,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images",
-    "method": "getMetricImagesForAlert",
+    "url": "/projects/{id}/alert_management_alerts/{alert_iid}/metric_images",
+    "method": "getMetricImages",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "alert_management",
     "typeScriptTag": "alertManagement",
@@ -1079,8 +1079,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images",
-    "method": "uploadMetricImage",
+    "url": "/projects/{id}/alert_management_alerts/{alert_iid}/metric_images",
+    "method": "uploadMetricImageForAlert",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "alert_management",
     "typeScriptTag": "alertManagement",
@@ -1128,8 +1128,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/authorize",
-    "method": "authorizeMetricImageUpload",
+    "url": "/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/authorize",
+    "method": "authorizeMetricImageFileUpload",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "alert_management",
     "typeScriptTag": "alertManagement",
@@ -1153,7 +1153,7 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/admin/batched_background_migrations/{id}",
+    "url": "/admin/batched_background_migrations/{id}",
     "method": "getMigration",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "batched_background_migrations",
@@ -1182,8 +1182,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/batched_background_migrations",
-    "method": "list",
+    "url": "/admin/batched_background_migrations",
+    "method": "listMigrations",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "batched_background_migrations",
     "typeScriptTag": "batchedBackgroundMigrations",
@@ -1204,7 +1204,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/batched_background_migrations/{id}/resume",
+    "url": "/admin/batched_background_migrations/{id}/resume",
     "method": "resumeMigration",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "batched_background_migrations",
@@ -1233,7 +1233,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/batched_background_migrations/{id}/pause",
+    "url": "/admin/batched_background_migrations/{id}/pause",
     "method": "pauseMigration",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "batched_background_migrations",
@@ -1262,7 +1262,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/ci/variables/{key}",
+    "url": "/admin/ci/variables/{key}",
     "method": "deleteInstanceVariable",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "ci_variables",
@@ -1285,8 +1285,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/ci/variables/{key}",
-    "method": "getSpecificInstanceVariable",
+    "url": "/admin/ci/variables/{key}",
+    "method": "getInstanceVariableDetails",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "ci_variables",
     "typeScriptTag": "ciVariables",
@@ -1308,7 +1308,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/ci/variables/{key}",
+    "url": "/admin/ci/variables/{key}",
     "method": "updateInstanceVariable",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "ci_variables",
@@ -1356,8 +1356,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/ci/variables",
-    "method": "listInstanceVariables",
+    "url": "/admin/ci/variables",
+    "method": "listAllInstanceVariables",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "ci_variables",
     "typeScriptTag": "ciVariables",
@@ -1384,8 +1384,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/ci/variables",
-    "method": "createNewInstanceVariable",
+    "url": "/admin/ci/variables",
+    "method": "createNewInstanceLevelVariable",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "ci_variables",
     "typeScriptTag": "ciVariables",
@@ -1438,7 +1438,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/databases/{database_name}/dictionary/tables/{table_name}",
+    "url": "/admin/databases/{database_name}/dictionary/tables/{table_name}",
     "method": "getDictionaryDetails",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "admin",
@@ -1468,7 +1468,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/clusters/{cluster_id}",
+    "url": "/admin/clusters/{cluster_id}",
     "method": "deleteInstanceCluster",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "clusters",
@@ -1491,8 +1491,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/clusters/{cluster_id}",
-    "method": "getSingleInstanceCluster",
+    "url": "/admin/clusters/{cluster_id}",
+    "method": "getSingleInstance",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "clusters",
     "typeScriptTag": "clusters",
@@ -1514,7 +1514,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/clusters/{cluster_id}",
+    "url": "/admin/clusters/{cluster_id}",
     "method": "updateInstanceCluster",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "clusters",
@@ -1593,8 +1593,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/clusters/add",
-    "method": "addExistingKubernetesInstanceCluster",
+    "url": "/admin/clusters/add",
+    "method": "addExistingInstance",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "clusters",
     "typeScriptTag": "clusters",
@@ -1689,7 +1689,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/clusters",
+    "url": "/admin/clusters",
     "method": "listInstanceClusters",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "clusters",
@@ -1704,7 +1704,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/admin/migrations/{timestamp}/mark",
+    "url": "/admin/migrations/{timestamp}/mark",
     "method": "markAsExecuted",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "migrations",
@@ -1728,8 +1728,8 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/applications/{id}",
-    "method": "deleteSpecificApplication",
+    "url": "/applications/{id}",
+    "method": "removeSpecificApplication",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "applications",
     "typeScriptTag": "applications",
@@ -1746,7 +1746,7 @@ export default function GitLabTypeScriptSdk() {
     "responses": []
   },
   {
-    "url": "/api/v4/applications",
+    "url": "/applications",
     "method": "listAllRegistered",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "applications",
@@ -1761,7 +1761,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/applications",
+    "url": "/applications",
     "method": "createNewApplication",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "applications",
@@ -1805,8 +1805,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/avatar",
-    "method": "getUrlForUser",
+    "url": "/avatar",
+    "method": "getUserAvatarUrl",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "avatar",
     "typeScriptTag": "avatar",
@@ -1833,7 +1833,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/broadcast_messages/{id}",
+    "url": "/broadcast_messages/{id}",
     "method": "deleteMessage",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "broadcast_messages",
@@ -1856,7 +1856,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/broadcast_messages/{id}",
+    "url": "/broadcast_messages/{id}",
     "method": "getSpecificMessage",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "broadcast_messages",
@@ -1879,8 +1879,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/broadcast_messages/{id}",
-    "method": "updateMessage",
+    "url": "/broadcast_messages/{id}",
+    "method": "updateMessageById",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "broadcast_messages",
     "typeScriptTag": "broadcastMessages",
@@ -1947,8 +1947,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/broadcast_messages",
-    "method": "listAll",
+    "url": "/broadcast_messages",
+    "method": "getAllMessages",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "broadcast_messages",
     "typeScriptTag": "broadcastMessages",
@@ -1975,7 +1975,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/broadcast_messages",
+    "url": "/broadcast_messages",
     "method": "createMessage",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "broadcast_messages",
@@ -2046,7 +2046,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/bulk_imports/{import_id}/entities/{entity_id}",
+    "url": "/bulk_imports/{import_id}/entities/{entity_id}",
     "method": "getEntityDetails",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "bulk_imports",
@@ -2076,7 +2076,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/bulk_imports/{import_id}/entities",
+    "url": "/bulk_imports/{import_id}/entities",
     "method": "listEntities",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "bulk_imports",
@@ -2116,7 +2116,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/bulk_imports/{import_id}",
+    "url": "/bulk_imports/{import_id}",
     "method": "getMigrationDetails",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "bulk_imports",
@@ -2139,7 +2139,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/bulk_imports/entities",
+    "url": "/bulk_imports/entities",
     "method": "listEntities",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "bulk_imports",
@@ -2178,7 +2178,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/bulk_imports",
+    "url": "/bulk_imports",
     "method": "listMigrations",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "bulk_imports",
@@ -2217,8 +2217,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/bulk_imports",
-    "method": "startNewMigration",
+    "url": "/bulk_imports",
+    "method": "startMigration",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "bulk_imports",
     "typeScriptTag": "bulkImports",
@@ -2283,7 +2283,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/application/appearance",
+    "url": "/application/appearance",
     "method": "getCurrentAppearance",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "application",
@@ -2298,7 +2298,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/application/appearance",
+    "url": "/application/appearance",
     "method": "modifyAppearance",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "application",
@@ -2394,7 +2394,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/application/plan_limits",
+    "url": "/application/plan_limits",
     "method": "getCurrentLimits",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "plan_limits",
@@ -2416,8 +2416,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/application/plan_limits",
-    "method": "modifyLimits",
+    "url": "/application/plan_limits",
+    "method": "modifyPlanLimits",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "plan_limits",
     "typeScriptTag": "planLimits",
@@ -2553,7 +2553,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/metadata",
+    "url": "/metadata",
     "method": "getInformation",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "metadata",
@@ -2568,8 +2568,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/version",
-    "method": "getVersionInformation",
+    "url": "/version",
+    "method": "getVersionInfo",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "metadata",
     "typeScriptTag": "metadata",
@@ -2583,7 +2583,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/jobs",
+    "url": "/projects/{id}/jobs",
     "method": "listForProject",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "jobs",
@@ -2612,8 +2612,8 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/jobs/{job_id}",
-    "method": "getSingleById",
+    "url": "/projects/{id}/jobs/{job_id}",
+    "method": "getById",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "jobs",
     "typeScriptTag": "jobs",
@@ -2642,7 +2642,7 @@ export default function GitLabTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v4/projects/{id}/jobs/{job_id}/play",
+    "url": "/projects/{id}/jobs/{job_id}/play",
     "method": "runManualJob",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "jobs",
@@ -2681,7 +2681,7 @@ export default function GitLabTypeScriptSdk() {
     }
       language="TypeScript"
       apiTitle="GitLab API"
-      apiBaseUrl="https://www.gitlab.com/api/"
+      apiBaseUrl="https://www.gitlab.com/api/v4"
       apiVersion="v4"
       endpoints={48}
       sdkMethods={73}

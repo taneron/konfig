@@ -17,7 +17,7 @@ export default function YouNeedABudgetTypeScriptSdk() {
       companyKebabCase="you-need-a-budget"
       clientNameCamelCase="ynab"
       homepage="api.youneedabudget.com"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T20:44:35.877Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/you-need-a-budget/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -1031,7 +1031,7 @@ export default function YouNeedABudgetTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Transactions",
     "typeScriptTag": "transactions",
-    "description": "List category transactions",
+    "description": "List category transactions, excluding any pending transactions",
     "parameters": [
       {
         "name": "budgetId",
@@ -1084,7 +1084,7 @@ export default function YouNeedABudgetTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Transactions",
     "typeScriptTag": "transactions",
-    "description": "List payee transactions",
+    "description": "List payee transactions, excluding any pending transactions",
     "parameters": [
       {
         "name": "budgetId",

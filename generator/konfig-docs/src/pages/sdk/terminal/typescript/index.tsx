@@ -17,7 +17,7 @@ export default function TerminalTypeScriptSdk() {
       companyKebabCase="terminal"
       clientNameCamelCase="terminal"
       homepage="withterminal.com"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T20:44:35.877Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -84,7 +84,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "tag",
         "schema": "string",
         "description": "Filter connections by tag",
-        "example": "sunt do est sit"
+        "example": "non mollit reprehenderit"
       },
       {
         "name": "updatedAfter",
@@ -142,7 +142,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "ipsum enim"
+        "example": "elit commodo in sunt"
       },
       {
         "name": "provider",
@@ -205,8 +205,8 @@ export default function TerminalTypeScriptSdk() {
         "schema": "array",
         "description": "",
         "example": [
-          "laboris s",
-          "commodo exercitation in"
+          "Excepteur Ut",
+          "deserunt incididunt eu"
         ]
       },
       {
@@ -218,13 +218,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "Excepteur enim irure"
+        "example": "pariatur dolor minim"
       },
       {
         "name": "status",
         "schema": "string",
         "description": "",
-        "example": "mollit sunt aliquip"
+        "example": "do"
       },
       {
         "name": "syncMode",
@@ -689,13 +689,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "startDate",
         "schema": "string",
         "description": "Only include daily logs from on or after a specific date",
-        "example": "1984-11-05"
+        "example": "1992-10-05"
       },
       {
         "name": "endDate",
         "schema": "string",
         "description": "Only include daily logs from on or before a specific date",
-        "example": "1984-11-05"
+        "example": "1992-10-05"
       },
       {
         "name": "modifiedAfter",
@@ -823,13 +823,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "lastReportedAfter",
         "schema": "string",
         "description": "Timestamp to start when the issue was last observed",
-        "example": "1957-08-03"
+        "example": "1999-09-28"
       },
       {
         "name": "lastReportedBefore",
         "schema": "string",
         "description": "Timestamp to end when the issue was last observed",
-        "example": "1957-08-03"
+        "example": "1999-09-28"
       },
       {
         "name": "expand",
@@ -847,7 +847,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "errorCode",
         "schema": "string",
         "description": "Filter issues to a specific error code",
-        "example": "unknown_device_type"
+        "example": "missing_permissions"
       },
       {
         "name": "status",

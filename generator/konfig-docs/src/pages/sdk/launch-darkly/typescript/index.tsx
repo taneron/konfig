@@ -17,7 +17,7 @@ export default function LaunchDarklyTypeScriptSdk() {
       companyKebabCase="launch-darkly"
       clientNameCamelCase="launchDarkly"
       homepage="launchdarkly.com"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T20:44:35.877Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/launchdarkly/favicon.png"
       contactUrl="https://support.launchdarkly.com"
       contactEmail="support@launchdarkly.com"
@@ -5226,6 +5226,26 @@ export default function LaunchDarklyTypeScriptSdk() {
         "required": false,
         "description": "",
         "example": "average"
+      },
+      {
+        "name": "analysisType",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "mean"
+      },
+      {
+        "name": "percentileValue",
+        "schema": "integer",
+        "required": false,
+        "description": "",
+        "example": 95
+      },
+      {
+        "name": "eventDefault",
+        "schema": "object",
+        "required": false,
+        "description": ""
       }
     ],
     "responses": [
@@ -15093,7 +15113,7 @@ export default function LaunchDarklyTypeScriptSdk() {
       endpoints={164}
       sdkMethods={257}
       schemas={448}
-      parameters={979}
+      parameters={982}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/launchdarkly/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/launchdarkly/openapi.yaml"
