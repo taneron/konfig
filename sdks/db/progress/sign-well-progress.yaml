@@ -1,0 +1,216 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v1/api_applications/{id}/:
+    delete: ApiApplication_deleteById
+    get: ApiApplication_getDetails
+  /api/v1/bulk_sends:
+    get: BulkSend_listBulkSendings
+    post: BulkSend_createValidationCsv
+  /api/v1/bulk_sends/csv_template:
+    get: BulkSend_getCsvTemplate
+  /api/v1/bulk_sends/validate_csv:
+    post: BulkSend_validateCsv
+  /api/v1/bulk_sends/{id}:
+    get: BulkSend_getInformation
+  /api/v1/bulk_sends/{id}/documents:
+    get: BulkSend_getDocuments
+  /api/v1/document_templates/:
+    post: Template_createNew
+  /api/v1/document_templates/documents/:
+    post: Document_createFromTemplate
+  /api/v1/document_templates/{id}/:
+    delete: Template_deleteDocumentTemplate
+    get: Template_getTemplateData
+    put: Template_updateExistingTemplate
+  /api/v1/documents/:
+    post: Document_createNewDocument
+  /api/v1/documents/{id}/:
+    delete: Document_deleteDocument
+    get: Document_getDocumentData
+  /api/v1/documents/{id}/completed_pdf/:
+    get: Document_getCompletedPdf
+  /api/v1/documents/{id}/remind:
+    post: Document_sendReminder
+  /api/v1/documents/{id}/send/:
+    post: Document_updateAndSend
+  /api/v1/hooks/:
+    get: Webhooks_getAll
+    post: Webhooks_registerCallbackUrl
+  /api/v1/hooks/{id}/:
+    delete: Webhooks_deleteCallbackUrl
+  /api/v1/me/:
+    get: Me_getAccountInfo
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/hooks:
+    post:
+      application/json: WebhooksRegisterCallbackUrlRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/api_applications/{id}:
+    delete:
+      '404':
+        application/json: ApiApplicationDeleteByIdResponse
+    get:
+      '200':
+        application/json: ApiApplicationGetDetailsResponse
+      '404':
+        application/json: ApiApplicationGetDetails404Response
+  /api/v1/bulk_sends:
+    get:
+      '200':
+        application/json: BulkSendListBulkSendingsResponse
+      '401':
+        application/json: BulkSendListBulkSendings401Response
+    post:
+      '201':
+        application/json: BulkSendCreateValidationCsvResponse
+      '401':
+        application/json: BulkSendCreateValidationCsv401Response
+      '422':
+        application/json: BulkSendCreateValidationCsv422Response
+  /api/v1/bulk_sends/csv_template:
+    get:
+      '200':
+        application/json: BulkSendGetCsvTemplate200Response
+        application/octet-stream: BulkSendGetCsvTemplateResponse
+      '401':
+        application/json: BulkSendGetCsvTemplate401Response
+      '404':
+        application/json: BulkSendGetCsvTemplate404Response
+  /api/v1/bulk_sends/validate_csv:
+    post:
+      '200':
+        application/json: BulkSendValidateCsvResponse
+      '401':
+        application/json: BulkSendValidateCsv401Response
+      '422':
+        application/json: BulkSendValidateCsv422Response
+  /api/v1/bulk_sends/{id}:
+    get:
+      '200':
+        application/json: BulkSendGetInformationResponse
+      '401':
+        application/json: BulkSendGetInformation401Response
+      '404':
+        application/json: BulkSendGetInformation404Response
+  /api/v1/bulk_sends/{id}/documents:
+    get:
+      '200':
+        application/json: BulkSendGetDocumentsResponse
+      '401':
+        application/json: BulkSendGetDocuments401Response
+      '404':
+        application/json: BulkSendGetDocuments404Response
+  /api/v1/document_templates:
+    post:
+      '201':
+        application/json: TemplateCreateNewResponse
+      '400':
+        application/json: TemplateCreateNew400Response
+      '422':
+        application/json: TemplateCreateNew422Response
+  /api/v1/document_templates/documents:
+    post:
+      '201':
+        application/json: DocumentCreateFromTemplateResponse
+      '400':
+        application/json: DocumentCreateFromTemplate400Response
+      '422':
+        application/json: DocumentCreateFromTemplate422Response
+  /api/v1/document_templates/{id}:
+    delete:
+      '404':
+        application/json: TemplateDeleteDocumentTemplateResponse
+    get:
+      '200':
+        application/json: TemplateGetTemplateDataResponse
+      '404':
+        application/json: TemplateGetTemplateData404Response
+    put:
+      '200':
+        application/json: TemplateUpdateExistingTemplateResponse
+      '400':
+        application/json: TemplateUpdateExistingTemplate400Response
+      '422':
+        application/json: TemplateUpdateExistingTemplate422Response
+  /api/v1/documents:
+    post:
+      '201':
+        application/json: DocumentCreateNewDocumentResponse
+      '400':
+        application/json: DocumentCreateNewDocument400Response
+      '422':
+        application/json: DocumentCreateNewDocument422Response
+  /api/v1/documents/{id}:
+    delete:
+      '404':
+        application/json: DocumentDeleteDocumentResponse
+    get:
+      '200':
+        application/json: DocumentGetDocumentDataResponse
+      '404':
+        application/json: DocumentGetDocumentData404Response
+  /api/v1/documents/{id}/completed_pdf:
+    get:
+      '200':
+        application/json: DocumentGetCompletedPdfResponse
+      '404':
+        application/json: DocumentGetCompletedPdf404Response
+  /api/v1/documents/{id}/remind:
+    post:
+      '201':
+        application/json: DocumentSendReminderResponse
+      '404':
+        application/json: DocumentSendReminder404Response
+      '422':
+        application/json: DocumentSendReminder422Response
+  /api/v1/documents/{id}/send:
+    post:
+      '201':
+        application/json: DocumentUpdateAndSendResponse
+      '422':
+        application/json: DocumentUpdateAndSend422Response
+  /api/v1/hooks:
+    get:
+      '200':
+        application/json: WebhooksGetAllResponse
+    post:
+      '201':
+        application/json: WebhooksRegisterCallbackUrlResponse
+      '400':
+        application/json: WebhooksRegisterCallbackUrl400Response
+  /api/v1/hooks/{id}:
+    delete:
+      '404':
+        application/json: WebhooksDeleteCallbackUrlResponse
+  /api/v1/me:
+    get:
+      '200':
+        application/json: MeGetAccountInfoResponse
+      '401':
+        application/json: MeGetAccountInfo401Response
+securityParameters:
+  api_application_id:
+    query: false
+  audit_page:
+    query: false
+  base64:
+    query: false
+  limit:
+    query: false
+  page:
+    query: false
+  template_ids[]:
+    query: false
+  url_only:
+    query: false
+  user_email:
+    query: false
+validServerUrls:
+  https://{defaultHost}:
+    url: https://{defaultHost}

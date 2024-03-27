@@ -525,6 +525,14 @@ const customRequests: Record<string, CustomRequest> = {
       return response.text();
     },
   },
+  "signwell.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.signwell.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "officient.io": {
     lambda: async () => {
       const url = "https://apidocs.officient.io/openapi";
