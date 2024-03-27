@@ -23,7 +23,7 @@ Founded in 2017, ConnexPay is a leading payments provider for travel agencies an
       companyKebabCase="connex-pay"
       clientNameCamelCase="connexPay"
       homepage="connexpay.com/"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T21:38:40.500Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/connexpay/favicon.png"
       contactUrl="https://docs.connexpay.com"
       // Missing contactEmail
@@ -792,7 +792,7 @@ Founded in 2017, ConnexPay is a leading payments provider for travel agencies an
         "name": "pageNumber",
         "schema": "integer",
         "required": true,
-        "description": "Int. Number of page of the results. Default is 1 (Page size default is 500).",
+        "description": "Int. Number of page of the results. Default is 1 (https://docs.connexpay.com/reference.",
         "example": 0,
         "default": null
       },
@@ -938,7 +938,7 @@ Founded in 2017, ConnexPay is a leading payments provider for travel agencies an
         "name": "pageNumber",
         "schema": "integer",
         "required": true,
-        "description": "Int. Number of page of the results. Default is 1 (Page size default is 500).",
+        "description": "Int. Number of page of the results. Default is 1 (https://docs.connexpay.com/reference.",
         "example": 0,
         "default": null
       },
@@ -1012,7 +1012,7 @@ Founded in 2017, ConnexPay is a leading payments provider for travel agencies an
         "name": "pageNumber",
         "schema": "integer",
         "required": true,
-        "description": "Int. Number of page of the results. Default is 1 (Page size default is 500).",
+        "description": "Int. Number of page of the results. Default is 1 (https://docs.connexpay.com/reference.",
         "example": 0,
         "default": null
       },
@@ -1098,7 +1098,7 @@ Founded in 2017, ConnexPay is a leading payments provider for travel agencies an
         "name": "pageNumber",
         "schema": "integer",
         "required": true,
-        "description": "Int. Number of page of the results. Default is 1 (Page size default is 500).",
+        "description": "Int. Number of page of the results. Default is 1 (https://docs.connexpay.com/reference.",
         "example": 0,
         "default": null
       },
@@ -3622,7 +3622,7 @@ Founded in 2017, ConnexPay is a leading payments provider for travel agencies an
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Replay",
     "typeScriptTag": "replay",
-    "description": "Purchase Event History (Replay Webhooks)",
+    "description": "Purchase Event History (https://docs.connexpay.com/reference",
     "parameters": [
       {
         "name": "SourceGuid",

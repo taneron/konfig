@@ -17,7 +17,7 @@ export default function AsanaTypeScriptSdk() {
       companyKebabCase="asana"
       clientNameCamelCase="asana"
       homepage="asana.com"
-      lastUpdated={new Date("2024-03-26T21:30:47.444Z")}
+      lastUpdated={new Date("2024-03-27T21:31:04.839Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/favicon.png"
       contactUrl="https://asana.com/support"
       // Missing contactEmail
@@ -10082,7 +10082,7 @@ export default function AsanaTypeScriptSdk() {
       {
         "name": "modifiedSince",
         "schema": "string",
-        "description": "Only return tasks that have been modified since the given time.\n\n*Note: A task is considered “modified” if any of its properties\nchange, or associations between it and other objects are modified\n(e.g.  a task being added to a project). A task is not considered\nmodified just because another object it is associated with (e.g. a\nsubtask) is modified. Actions that count as modifying the task\ninclude assigning, renaming, completing, and adding stories.*",
+        "description": "Only return tasks that have been modified since the given time.\n\n*Note: A task is considered “modified” if any of its properties\nchange, or associations between it and other objects are modified\n(https://developers.asana.com/reference/rest-api-reference. A task is not considered\nmodified just because another object it is associated with (https://developers.asana.com/reference/rest-api-reference is modified. Actions that count as modifying the task\ninclude assigning, renaming, completing, and adding stories.*",
         "example": "2012-02-22T02:06:58.158Z"
       },
       {
@@ -15043,7 +15043,7 @@ export default function AsanaTypeScriptSdk() {
       apiVersion="1.0"
       endpoints={137}
       sdkMethods={325}
-      schemas={437}
+      schemas={435}
       parameters={323}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/openapi.yaml"

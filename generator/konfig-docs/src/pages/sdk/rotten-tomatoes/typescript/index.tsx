@@ -18,7 +18,7 @@ export default function RottenTomatoesTypeScriptSdk() {
       companyKebabCase="rotten-tomatoes"
       clientNameCamelCase="rottenTomatoes"
       homepage="developer.fandango.com/rotten_tomatoes"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-27T21:31:04.839Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/rotten-tomatoes/favicon.png"
       contactUrl="https://github.com/mermade/mashery2openapi"
       contactEmail="mike.ralphson@gmail.com"
@@ -99,7 +99,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -144,7 +144,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -182,7 +182,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -227,7 +227,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -288,7 +288,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -333,7 +333,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -371,7 +371,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -416,7 +416,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -654,7 +654,7 @@ export default function RottenTomatoesTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": false,
-        "description": "Provides localized data for the selected country (ISO 3166-1 alpha-2) if available. Otherwise, returns US data.",
+        "description": "Provides localized data for the selected country (https://developer.fandango.com/ if available. Otherwise, returns US data.",
         "default": "us"
       }
     ],
@@ -722,7 +722,7 @@ export default function RottenTomatoesTypeScriptSdk() {
       sdkMethods={18}
       schemas={0}
       parameters={36}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/rotten-tomatoes/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/rotten-tomatoes/openapi.yaml"
       developerDocumentation="developer.fandango.com/"

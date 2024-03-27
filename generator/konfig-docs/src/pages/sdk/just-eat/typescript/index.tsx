@@ -17,7 +17,7 @@ export default function JustEatTypeScriptSdk() {
       companyKebabCase="just-eat"
       clientNameCamelCase="justEat"
       homepage="developers.just-eat.com/"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T21:31:04.839Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/favicon.png"
       contactUrl="https://developers.just-eat.com/"
       contactEmail="david.handley@justeattakeaway.com"
@@ -1159,7 +1159,7 @@ export default function JustEatTypeScriptSdk() {
         "name": "deliveryTime",
         "schema": "string",
         "required": true,
-        "description": "Delivery date/time when fees are required (ISO8601 format).",
+        "description": "Delivery date/time when fees are required (https://.",
         "example": "2019-09-05T12:43:48.431Z"
       },
       {
@@ -1173,7 +1173,7 @@ export default function JustEatTypeScriptSdk() {
         "name": "latlong",
         "schema": "array",
         "required": false,
-        "description": "Point to which delivery is required (latitude, longitude). Supply this where possible as support for zone-only based lookups will be removed in future.",
+        "description": "Point to which delivery is required (https://. Supply this where possible as support for zone-only based lookups will be removed in future.",
         "example": [
           51.3851513,
           -2.0841275
@@ -1237,7 +1237,7 @@ export default function JustEatTypeScriptSdk() {
         "name": "serviceType",
         "schema": "string",
         "required": false,
-        "description": "Retrieve restaurants based on the type of service they offer.\n\n- `any`: Retrieve restaurants offering any service type (default).\n- `delivery`: Retrieve restaurants that offer delivery.\n- `collection`: Retrieve restaurants that offer collection.\n",
+        "description": "Retrieve restaurants based on the type of service they offer.\n\n- `any`: Retrieve restaurants offering any service type (https://.\n- `delivery`: Retrieve restaurants that offer delivery.\n- `collection`: Retrieve restaurants that offer collection.\n",
         "default": "any"
       },
       {
@@ -1303,7 +1303,7 @@ export default function JustEatTypeScriptSdk() {
         "name": "serviceType",
         "schema": "string",
         "required": false,
-        "description": "Retrieve restaurants based on the type of service they offer.\n\n- `any`: Retrieve restaurants offering any service type (default).\n- `delivery`: Retrieve restaurants that offer delivery.\n- `collection`: Retrieve restaurants that offer collection.\n",
+        "description": "Retrieve restaurants based on the type of service they offer.\n\n- `any`: Retrieve restaurants offering any service type (https://.\n- `delivery`: Retrieve restaurants that offer delivery.\n- `collection`: Retrieve restaurants that offer collection.\n",
         "default": "any"
       },
       {
@@ -2669,7 +2669,7 @@ export default function JustEatTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "API Partner Management Gateway",
     "typeScriptTag": "apiPartnerManagementGateway",
-    "description": "Order ready for preparation (async)",
+    "description": "Order ready for preparation (https://",
     "parameters": [
       {
         "name": "xJetApplication",
@@ -2759,7 +2759,7 @@ export default function JustEatTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "API Partner Management Gateway",
     "typeScriptTag": "apiPartnerManagementGateway",
-    "description": "Order ready for preparation (sync)",
+    "description": "Order ready for preparation (https://",
     "parameters": [
       {
         "name": "xJetApplication",
@@ -3113,7 +3113,7 @@ export default function JustEatTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Manage Order Journey",
     "typeScriptTag": "manageOrderJourney",
-    "description": "Update current driver locations (bulk upload)",
+    "description": "Update current driver locations (https://",
     "parameters": [
       {
         "name": "xJetApplication",
@@ -3145,7 +3145,7 @@ export default function JustEatTypeScriptSdk() {
         "name": "brandSlug",
         "schema": "string",
         "required": true,
-        "description": "The owning brand in the brand slug format e.g. `je-uk-example` (contact delivery manager if unsure). This field may be removed in a future version.",
+        "description": "The owning brand in the brand slug format e.g. `je-uk-example` (https://. This field may be removed in a future version.",
         "example": "je-uk-example"
       },
       {
@@ -3201,7 +3201,7 @@ export default function JustEatTypeScriptSdk() {
         "name": "brandSlug",
         "schema": "string",
         "required": true,
-        "description": "The owning brand in the brand slug format e.g. `je-uk-example` (contact delivery manager if unsure). This field may be removed in a future version.",
+        "description": "The owning brand in the brand slug format e.g. `je-uk-example` (https://. This field may be removed in a future version.",
         "example": "je-uk-example"
       },
       {
@@ -3271,7 +3271,7 @@ export default function JustEatTypeScriptSdk() {
         "name": "brandSlug",
         "schema": "string",
         "required": true,
-        "description": "The owning brand in the brand slug format e.g. `je-uk-example` (contact delivery manager if unsure). This field may be removed in a future version.",
+        "description": "The owning brand in the brand slug format e.g. `je-uk-example` (https://. This field may be removed in a future version.",
         "example": "je-uk-example"
       },
       {

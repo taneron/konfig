@@ -17,7 +17,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       companyKebabCase="zoom"
       clientNameCamelCase="zoomMeeting"
       homepage="zoom.us/"
-      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
+      lastUpdated={new Date("2024-03-27T21:31:04.839Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/favicon.png"
       contactUrl="https://developer.zoom.us/"
       // Missing contactEmail
@@ -173,7 +173,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingUuid",
         "schema": "string",
         "required": true,
-        "description": "The meeting's universally unique identifier (UUID). Each meeting instance generates a UUID. For example, after a meeting ends, a new UUID is generated for the next meeting instance.\n\nIf the meeting UUID begins with a `/` character or contains a `//` character, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID when using the meeting UUID for other API calls.",
+        "description": "The meeting's universally unique identifier (https://. Each meeting instance generates a UUID. For example, after a meeting ends, a new UUID is generated for the next meeting instance.\n\nIf the meeting UUID begins with a `/` character or contains a `//` character, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID when using the meeting UUID for other API calls.",
         "example": "4444AAAiAAAAAiAiAiiAii=="
       }
     ],
@@ -204,7 +204,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingUuid",
         "schema": "string",
         "required": true,
-        "description": "The meeting's universally unique identifier (UUID). Each meeting instance generates a UUID. After a meeting ends, a new UUID is generated for the next meeting instance.\n\nIf the meeting UUID begins with a `/` character or contains a `//` character, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID when using the meeting UUID for other API calls.",
+        "description": "The meeting's universally unique identifier (https://. Each meeting instance generates a UUID. After a meeting ends, a new UUID is generated for the next meeting instance.\n\nIf the meeting UUID begins with a `/` character or contains a `//` character, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID when using the meeting UUID for other API calls.",
         "example": "4444AAAiAAAAAiAiAiiAii=="
       }
     ],
@@ -231,7 +231,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
+        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       },
       {
@@ -274,7 +274,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get a meeting's cloud recordings, provide the meeting ID or UUID. If providing the meeting ID instead of UUID, the response will be for the latest meeting instance. \n\nTo get a webinar's cloud recordings, provide the webinar's ID or UUID. If providing the webinar ID instead of UUID, the response will be for the latest webinar instance. \n\nIf a UUID starts with `/` or contains `//` (example: `/ajXp112QmuoKj4854875==`), **[double encode](https://developers.zoom.us) the UUID** before making an API request. ",
+        "description": "To get a meeting's cloud recordings, provide the meeting ID or UUID. If providing the meeting ID instead of UUID, the response will be for the latest meeting instance. \n\nTo get a webinar's cloud recordings, provide the webinar's ID or UUID. If providing the webinar ID instead of UUID, the response will be for the latest webinar instance. \n\nIf a UUID starts with `/` or contains `//` (https://, **[double encode](https://developers.zoom.us) the UUID** before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       },
       {
@@ -288,7 +288,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "ttl",
         "schema": "integer",
         "required": false,
-        "description": "The `download_access_token` Time to Live (TTL) value. This parameter is only valid if the `include_fields` query parameter contains the `download_access_token` value.",
+        "description": "The `download_access_token` Time to Live (https:// value. This parameter is only valid if the `include_fields` query parameter contains the `download_access_token` value.",
         "example": 1
       }
     ],
@@ -319,7 +319,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
+        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       },
       {
@@ -386,7 +386,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
+        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       },
       {
@@ -641,7 +641,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
+        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       }
     ],
@@ -668,7 +668,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
+        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       },
       {
@@ -745,7 +745,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "The meeting ID enables you to get cloud recording of a:\n- Meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\n- Webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **double encode** the UUID before making an API request. ",
+        "description": "The meeting ID enables you to get cloud recording of a:\n- Meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\n- Webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **double encode** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       }
     ],
@@ -772,7 +772,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **double encode** the UUID before making an API request. ",
+        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **double encode** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       },
       {
@@ -865,7 +865,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
+        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       },
       {
@@ -915,7 +915,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (example: &quot;/ajXp112QmuoKj4854875==&quot;), you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
+        "description": "To get Cloud Recordings of a meeting, provide the meeting ID or meeting UUID. If the meeting ID is provided instead of UUID,the response will be for the latest meeting instance. \n\nTo get Cloud Recordings of a webinar, provide the webinar ID or the webinar UUID. If the webinar ID is provided instead of UUID,the response will be for the latest webinar instance. \n\nIf a UUID starts with &quot;/&quot; or contains &quot;//&quot; (https://, you must **[double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)** the UUID before making an API request. ",
         "example": "atsXxhSEQWit9t+U02HXNQ=="
       },
       {
@@ -959,7 +959,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingUuid",
         "schema": "string",
         "required": true,
-        "description": "The meeting's universally unique identifier (UUID). Each meeting instance generates a UUID. For example, after a meeting ends, a new UUID is generated for the next meeting instance.\n\nIf the meeting UUID begins with a `/` character or contains a `//` character, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID when using the meeting UUID for other API calls.",
+        "description": "The meeting's universally unique identifier (https://. Each meeting instance generates a UUID. For example, after a meeting ends, a new UUID is generated for the next meeting instance.\n\nIf the meeting UUID begins with a `/` character or contains a `//` character, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID when using the meeting UUID for other API calls.",
         "example": "4444AAAiAAAAAiAiAiiAii=="
       },
       {
@@ -1105,7 +1105,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "isEnrolledInZdm",
         "schema": "boolean",
         "required": false,
-        "description": "Filter devices by enrollment of ZDM (Zoom Device Management).",
+        "description": "Filter devices by enrollment of ZDM (https://.",
         "example": true,
         "default": true
       },
@@ -1113,7 +1113,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "deviceType",
         "schema": "integer",
         "required": false,
-        "description": "Filter devices by device type.  \n  Device Type:  \n `-1` - All Zoom Room device(0,1,2,3,4,6).  \n `0` - Zoom Rooms Computer.  \n `1` - Zoom Rooms Controller.  \n `2` - Zoom Rooms Scheduling Display.  \n `3` - Zoom Rooms Control System.  \n `4` -  Zoom Rooms Whiteboard.  \n `5` - Zoom Phone Appliance.  \n `6` - Zoom Rooms Computer (with Controller).",
+        "description": "Filter devices by device type.  \n  Device Type:  \n `-1` - All Zoom Room device(https://.  \n `0` - Zoom Rooms Computer.  \n `1` - Zoom Rooms Controller.  \n `2` - Zoom Rooms Scheduling Display.  \n `3` - Zoom Rooms Control System.  \n `4` -  Zoom Rooms Whiteboard.  \n `5` - Zoom Phone Appliance.  \n `6` - Zoom Rooms Computer (https://.",
         "example": 0,
         "default": -1
       },
@@ -1425,7 +1425,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "zdmGroupId",
         "schema": "string",
         "required": true,
-        "description": "The Zoom Device Management (ZDM) group ID.",
+        "description": "The Zoom Device Management (https:// group ID.",
         "example": "ff49588c-92c4-4406-99e6-1942d8a61a7b"
       }
     ],
@@ -1807,14 +1807,14 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "The live meeting chat message's unique identifier (UUID), in base64-encoded format.",
+        "description": "The live meeting chat message's unique identifier (https://, in base64-encoded format.",
         "example": "MS17MDQ5NjE4QjYtRjk4Ny00REEwLUFBQUItMTg3QTY0RjU2MzhFfQ=="
       },
       {
         "name": "fileIds",
         "schema": "string",
         "required": false,
-        "description": "The live webinar chat file's universally unique identifier (UUID), in base64-encoded format. Separate multiple values with commas.",
+        "description": "The live webinar chat file's universally unique identifier (https://, in base64-encoded format. Separate multiple values with commas.",
         "example": "MS17RDk0QTY3QUQtQkFGQy04QTJFLTI2RUEtNkYxQjRBRTU1MTk5fQ==,MS17NDQ0OEU5MjMtM0JFOS1CMDA1LTQ0NDAtQjdGOTU0Rjk5MTkyfQ=="
       }
     ],
@@ -1852,7 +1852,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "The live meeting chat message's unique identifier (UUID), in base64-encoded format.",
+        "description": "The live meeting chat message's unique identifier (https://, in base64-encoded format.",
         "example": "MS17MDQ5NjE4QjYtRjk4Ny00REEwLUFBQUItMTg3QTY0RjU2MzhFfQ=="
       },
       {
@@ -2181,7 +2181,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `3161` <br>\n Your user account is not allowed meeting hosting and scheduling capabilities. <br>\n**Error Code:** `300` <br>\n The value that you entered in the `schedule_for` field is invalid. Enter a valid value and try again. <br>\n**Error Code:** `300` <br>\n Invalid `enforce_login_domains`. Separate multiple domains with semicolons. <br>\n**Error Code:** `3000` <br>\n Cannot access webinar info. <br>\n**Error Code:** `3000` <br>\n Instant meetings do not support the `schedule_for` parameter, and you can't schedule an instant meeting for another user. <br>\n**Error Code:** `3000` <br>\n Users in '{userId}' have been blocked from joining meetings and webinars. To unblock them, go to the **Settings** page in the Zoom web portal and update **Block users in specific domains from joining meetings and webinars**. <br>\n**Error Code:** `3000` <br>\n You cannot schedule a meeting for {userId} <br>\n**Error Code:** `3000` <br>\n Prescheduling is only available for scheduled meetings (type 2) and recurring meetings with no fixed time (type 3). <br>\n**Error Code:** `3000` <br>\n Unable to schedule for a user outside of your account for a meeting with continuous chat. <br>\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `3161` <br>\n Your user account is not allowed meeting hosting and scheduling capabilities. <br>\n**Error Code:** `300` <br>\n The value that you entered in the `schedule_for` field is invalid. Enter a valid value and try again. <br>\n**Error Code:** `300` <br>\n Invalid `enforce_login_domains`. Separate multiple domains with semicolons. <br>\n**Error Code:** `3000` <br>\n Cannot access webinar info. <br>\n**Error Code:** `3000` <br>\n Instant meetings do not support the `schedule_for` parameter, and you can't schedule an instant meeting for another user. <br>\n**Error Code:** `3000` <br>\n Users in '{userId}' have been blocked from joining meetings and webinars. To unblock them, go to the **Settings** page in the Zoom web portal and update **Block users in specific domains from joining meetings and webinars**. <br>\n**Error Code:** `3000` <br>\n You cannot schedule a meeting for {userId} <br>\n**Error Code:** `3000` <br>\n Prescheduling is only available for scheduled meetings (https:// and recurring meetings with no fixed time (https://. <br>\n**Error Code:** `3000` <br>\n Unable to schedule for a user outside of your account for a meeting with continuous chat. <br>\n"
       },
       {
         "statusCode": "404",
@@ -2237,7 +2237,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier of the meeting (Meeting Number).",
+        "description": "Unique identifier of the meeting (https://.",
         "example": "91498058927"
       },
       {
@@ -2265,7 +2265,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request\n\n**Error Code:** `3038` <br>\nMeeting is over, you can not register now. If you have any questions, please contact the Meeting host.<br><br>\n\n**Error Code:** `303` <br>\nThis API can only be used for scheduled meeting(meeting type: 2). Batch registration is not supported for other meeting types.\n\n**Error Code:** `3161` <br>\nMeeting hosting and scheduling capabilities are not allowed for your user account.\n\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request\n\n**Error Code:** `3038` <br>\nMeeting is over, you can not register now. If you have any questions, please contact the Meeting host.<br><br>\n\n**Error Code:** `303` <br>\nThis API can only be used for scheduled meeting(https://. Batch registration is not supported for other meeting types.\n\n**Error Code:** `3161` <br>\nMeeting hosting and scheduling capabilities are not allowed for your user account.\n\n"
       },
       {
         "statusCode": "404",
@@ -2587,7 +2587,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": false,
-        "description": "The meeting's universally unique ID (UUID). When you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "description": "The meeting's universally unique ID (https://. When you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
         "example": "aDYlohsHRtCd4ii1uC2+hA=="
       }
     ],
@@ -3506,7 +3506,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "undefined",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID before making an API request."
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID before making an API request."
       }
     ],
     "responses": [
@@ -3563,7 +3563,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
         "example": "MEETINGID"
       },
       {
@@ -3609,7 +3609,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
         "example": "MEETINGID"
       }
     ],
@@ -3636,7 +3636,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
         "example": "MEETINGID"
       }
     ],
@@ -3762,7 +3762,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "type",
         "schema": "string",
         "required": false,
-        "description": "The type of meeting. \n* `scheduled` - All valid previous (unexpired) meetings, live meetings, and upcoming scheduled meetings. \n* `live` - All the ongoing meetings. \n* `upcoming` - All upcoming meetings, including live meetings. \n* `upcoming_meetings` - All upcoming meetings, including live meetings. \n* `previous_meetings` - All the previous meetings.",
+        "description": "The type of meeting. \n* `scheduled` - All valid previous (https:// meetings, live meetings, and upcoming scheduled meetings. \n* `live` - All the ongoing meetings. \n* `upcoming` - All upcoming meetings, including live meetings. \n* `upcoming_meetings` - All upcoming meetings, including live meetings. \n* `previous_meetings` - All the previous meetings.",
         "example": "scheduled",
         "default": "scheduled"
       },
@@ -4186,7 +4186,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "undefined",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID before making an API request."
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID before making an API request."
       }
     ],
     "responses": [
@@ -4216,7 +4216,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
         "example": "MEETINGID"
       },
       {
@@ -4269,7 +4269,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "undefined",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID before making an API request."
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID before making an API request."
       }
     ],
     "responses": [
@@ -4299,7 +4299,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
         "example": "MEETINGID"
       }
     ],
@@ -4330,7 +4330,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "meetingId",
         "schema": "string",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "description": "The meeting's ID or universally unique ID (https://. \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
         "example": "MEETINGID"
       }
     ],
@@ -4688,7 +4688,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       }
     ],
@@ -4719,7 +4719,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       },
       {
@@ -4772,7 +4772,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       }
     ],
@@ -4803,7 +4803,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       }
     ],
@@ -4834,7 +4834,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       }
     ],
@@ -5719,14 +5719,14 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "The live webinar chat message's unique identifier (UUID), in base64-encoded format.",
+        "description": "The live webinar chat message's unique identifier (https://, in base64-encoded format.",
         "example": "MS17MDQ5NjE4QjYtRjk4Ny00REEwLUFBQUItMTg3QTY0RjU2MzhFfQ=="
       },
       {
         "name": "fileIds",
         "schema": "string",
         "required": false,
-        "description": "The live webinar chat file's universally unique identifier (UUID), in base64-encoded format. Separate multiple values with commas.",
+        "description": "The live webinar chat file's universally unique identifier (https://, in base64-encoded format. Separate multiple values with commas.",
         "example": "MS17RDk0QTY3QUQtQkFGQy04QTJFLTI2RUEtNkYxQjRBRTU1MTk5fQ==,MS17NDQ0OEU5MjMtM0JFOS1CMDA1LTQ0NDAtQjdGOTU0Rjk5MTkyfQ=="
       }
     ],
@@ -5757,7 +5757,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       },
       {
@@ -5837,7 +5837,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       },
       {
@@ -5883,7 +5883,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       }
     ],
@@ -5914,7 +5914,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (https://. \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       }
     ],
@@ -6036,7 +6036,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "type",
         "schema": "string",
         "required": false,
-        "description": "The type of webinar. \n* `scheduled` - All valid previous (unexpired) webinars, live webinars, and upcoming scheduled webinars. \n* `upcoming` - All upcoming webinars, including live webinars.",
+        "description": "The type of webinar. \n* `scheduled` - All valid previous (https:// webinars, live webinars, and upcoming scheduled webinars. \n* `upcoming` - All upcoming webinars, including live webinars.",
         "example": "scheduled",
         "default": "scheduled"
       },
@@ -6181,7 +6181,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "429",
-        "description": "**HTTP Status Code:** `429` <br>\n Too Many Requests  \n\n **Error Code:** `429` <br>\n A maximum of ({rateLimitNumber}) webinars can be created and updated for a single user in one day. <br>\n"
+        "description": "**HTTP Status Code:** `429` <br>\n Too Many Requests  \n\n **Error Code:** `429` <br>\n A maximum of (https:// webinars can be created and updated for a single user in one day. <br>\n"
       }
     ]
   },
@@ -6242,7 +6242,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID).",
+        "description": "The webinar's ID or universally unique ID (https://.",
         "example": "95204914252"
       },
       {
@@ -6423,7 +6423,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request \n\n **Error Code:** `200` <br>\n Webinar plan is missing. You must subscribe to the Webinar plan and enable webinars for the \"{0}\" user to perform this action. <br>\n**Error Code:** `300` <br>\n This API can only be used for scheduled webinars (type 5). Batch registration is not supported for other webinar types. <br>\n**Error Code:** `3038` <br>\n The webinar is over. You cannot register now. If you have any questions, contact the Webinar host. <br>\n**Error Code:** `3000` <br>\n Registration not enabled for this webinar: {0} <br>\n**Error Code:** `3000` <br>\n You have reached the limit for the number of attendees you can add. Contact Zoom Support for more information. <br>\n**Error Code:** `3000` <br>\n The Zoom REST API does not support paid registration. <br>\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request \n\n **Error Code:** `200` <br>\n Webinar plan is missing. You must subscribe to the Webinar plan and enable webinars for the \"{0}\" user to perform this action. <br>\n**Error Code:** `300` <br>\n This API can only be used for scheduled webinars (https://. Batch registration is not supported for other webinar types. <br>\n**Error Code:** `3038` <br>\n The webinar is over. You cannot register now. If you have any questions, contact the Webinar host. <br>\n**Error Code:** `3000` <br>\n Registration not enabled for this webinar: {0} <br>\n**Error Code:** `3000` <br>\n You have reached the limit for the number of attendees you can add. Contact Zoom Support for more information. <br>\n**Error Code:** `3000` <br>\n The Zoom REST API does not support paid registration. <br>\n"
       },
       {
         "statusCode": "404",
@@ -6492,7 +6492,7 @@ export default function ZoomMeetingTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "204",
-        "description": "**HTTP Status Code:** `204`   \n \n* No content. \n* Name tag(s) deleted."
+        "description": "**HTTP Status Code:** `204`   \n \n* No content. \n* Name tag(https:// deleted."
       },
       {
         "statusCode": "400",
@@ -6681,7 +6681,7 @@ export default function ZoomMeetingTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "204",
-        "description": "**HTTP Status Code:** `204`   \n \n* No content. \n* Virtual Background file(s) deleted."
+        "description": "**HTTP Status Code:** `204`   \n \n* No content. \n* Virtual Background file(https:// deleted."
       },
       {
         "statusCode": "400",
