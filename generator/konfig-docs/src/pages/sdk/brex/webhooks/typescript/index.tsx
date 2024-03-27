@@ -17,7 +17,7 @@ export default function BrexWebhooksTypeScriptSdk() {
       companyKebabCase="brex"
       clientNameCamelCase="brexWebhooks"
       homepage="brex.com"
-      lastUpdated={new Date("2024-03-24T21:42:09.454Z")}
+      lastUpdated={new Date("2024-03-27T05:04:33.815Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/webhooks/favicon.png"
       contactUrl="https://brex.com"
       contactEmail="developer-access@brex.com"
@@ -300,7 +300,7 @@ export default function BrexWebhooksTypeScriptSdk() {
       sdkMethods={6}
       schemas={28}
       parameters={11}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/webhooks/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/brex/webhooks/openapi.yaml"
       developerDocumentation="developer.brex.com/openapi/webhooks_api/"
