@@ -1,0 +1,282 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /admins:
+    get: Admins_getAll
+  /admins/activity_logs:
+    get: Admins_listActivityLogs
+  /admins/{id}:
+    get: Admins_getAdminById
+  /admins/{id}/away:
+    put: Admins_setAdminAway
+  /articles:
+    get: Articles_listAll
+    post: Articles_createNewArticle
+  /articles/{id}:
+    delete: Articles_deleteArticleById
+    get: Articles_getById
+    put: Articles_updateDetails
+  /companies:
+    get: Companies_getAllCompanies
+    post: Companies_createOrUpdateCompany
+  /companies/list:
+    post: Companies_listAll
+  /companies/scroll:
+    get: Companies_scrollAllCompanies
+  /companies/{id}:
+    delete: Companies_deleteCompanyById
+    get: Companies_getById
+    put: Companies_updateCompanyById
+  /companies/{id}/contacts:
+    get: Companies_listAttachedContacts
+  /companies/{id}/segments:
+    get: Companies_listAttachedSegments
+  /contacts:
+    get: Contacts_listAllContacts
+    post: Contacts_createNewContact
+  /contacts/merge:
+    post: Contacts_mergeLeadUser
+  /contacts/search:
+    post: Contacts_searchContacts
+  /contacts/{contact_id}/companies/{id}:
+    delete: Companies_detachContactFromCompany
+  /contacts/{contact_id}/segments:
+    get: Contacts_getSegmentsForContact
+  /contacts/{contact_id}/subscriptions:
+    get: Contacts_listContactSubscriptions
+    post: SubscriptionTypes_addSubscriptionToContact
+  /contacts/{contact_id}/subscriptions/{id}:
+    delete: SubscriptionTypes_removeFromContact
+  /contacts/{contact_id}/tags:
+    get: Contacts_getContactTags
+    post: Tags_addTagToContact
+  /contacts/{contact_id}/tags/{id}:
+    delete: Tags_removeFromContact
+  /contacts/{id}:
+    delete: Contacts_deleteContactById
+    get: Contacts_getById
+    put: Contacts_updateContact
+  /contacts/{id}/archive:
+    post: Contacts_archiveContact
+  /contacts/{id}/companies:
+    get: Contacts_listAttachedCompanies
+    post: Companies_attachContactTo
+  /contacts/{id}/notes:
+    get: Notes_listAll
+    post: Notes_addNoteToContact
+  /contacts/{id}/unarchive:
+    post: Contacts_unarchiveContact
+  /conversations:
+    get: Conversations_listAllConversations
+    post: Conversations_createInAppMessage
+  /conversations/redact:
+    post: Conversations_redactConversationPart
+  /conversations/search:
+    post: Conversations_searchConversations
+  /conversations/{conversation_id}/customers/{contact_id}:
+    delete: Conversations_detachContactFromGroup
+  /conversations/{conversation_id}/tags:
+    post: Tags_addTagToConversation
+  /conversations/{conversation_id}/tags/{id}:
+    delete: Tags_removeFromConversation
+  /conversations/{id}:
+    get: Conversations_getById
+    put: Conversations_updateConversation
+  /conversations/{id}/customers:
+    post: Conversations_attachContactToConversation
+  /conversations/{id}/parts:
+    post: Conversations_manageConversation
+  /conversations/{id}/reply:
+    post: Conversations_replyMessage
+  /conversations/{id}/run_assignment_rules:
+    post: Conversations_runAssignmentRules
+  /data_attributes:
+    get: DataAttributes_listAll
+    post: DataAttributes_createDataAttribute
+  /data_attributes/{id}:
+    put: DataAttributes_updateAttributeById
+  /download/content/data/{job_identifier}:
+    get: DataExport_downloadDataExport
+  /events:
+    get: DataEvents_listUserEvents
+    post: DataEvents_submitEvent
+  /events/summaries:
+    post: DataEvents_createEventSummaries
+  /export/cancel/{job_identifier}:
+    post: DataExport_cancelJob
+  /export/content/data:
+    post: DataExport_createContentExport
+  /export/content/data/{job_identifier}:
+    get: DataExport_statusByJobIdentifier
+  /help_center/collections:
+    get: HelpCenter_listAllCollections
+    post: HelpCenter_createCollection
+  /help_center/collections/{id}:
+    delete: HelpCenter_deleteCollection
+    get: HelpCenter_getCollection
+    put: HelpCenter_updateCollectionById
+  /help_center/help_centers:
+    get: HelpCenter_listAllHelpCenters
+  /help_center/help_centers/{id}:
+    get: HelpCenter_getDetails
+  /help_center/sections:
+    get: HelpCenter_listAllSections
+    post: HelpCenter_createSection
+  /help_center/sections/{id}:
+    delete: HelpCenter_deleteSection
+    get: HelpCenter_getSectionById
+    put: HelpCenter_updateSectionById
+  /me:
+    get: Admins_getAdminDetails
+  /messages:
+    post: Messages_createMessage
+  /news/news_items:
+    get: News_listAllNewsItems
+    post: News_createNewsItem
+  /news/news_items/{id}:
+    delete: News_deleteItem
+    get: News_getItem
+    put: News_updateNewsItem
+  /news/newsfeeds:
+    get: News_listAllNewsfeeds
+  /news/newsfeeds/{id}:
+    get: News_getNewsfeed
+  /news/newsfeeds/{id}/items:
+    get: News_listLiveItems
+  /notes/{id}:
+    get: Notes_getNoteDetails
+  /phone_call_redirects:
+    post: Switch_deflectPhoneCalls
+  /segments:
+    get: Segments_listAll
+  /segments/{id}:
+    get: Segments_getById
+  /subscription_types:
+    get: SubscriptionTypes_list
+  /tags:
+    get: Tags_getAllTags
+    post: Tags_createOrUpdateTag
+  /tags/{id}:
+    delete: Tags_deleteTagById
+    get: Tags_findSpecificTag
+  /teams:
+    get: Teams_getAll
+  /teams/{id}:
+    get: Teams_getDetails
+  /ticket_types:
+    get: TicketTypes_listAll
+    post: TicketTypes_createNewType
+  /ticket_types/{id}:
+    get: TicketTypes_getDetails
+    put: TicketTypes_updateTicketTypeById
+  /ticket_types/{ticket_type_id}/attributes:
+    post: TicketTypeAttributes_createNewAttribute
+  /ticket_types/{ticket_type_id}/attributes/{id}:
+    put: TicketTypeAttributes_updateExistingAttribute
+  /tickets:
+    post: Tickets_createNewTicket
+  /tickets/{id}:
+    get: Tickets_getTicketDetails
+    put: Tickets_updateTicketById
+  /tickets/{id}/reply:
+    post: Tickets_replyNote
+  /visitors:
+    get: Visitors_getWithUserId
+    put: Visitors_updateExistingVisitor
+  /visitors/convert:
+    post: Visitors_convertVisitorToContact
+  /visitors/{id}:
+    delete: Visitors_deleteVisitorById
+    get: Visitors_getById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /admins/{id}/away:
+    put:
+      application/json: AdminsSetAdminAwayRequest
+  /contacts:
+    post:
+      application/json: ContactsCreateNewContactRequest
+  /contacts/{contact_id}/subscriptions:
+    post:
+      application/json: SubscriptionTypesAddSubscriptionToContactRequest
+  /contacts/{contact_id}/tags:
+    post:
+      application/json: TagsAddTagToContactRequest
+  /contacts/{id}:
+    put:
+      application/json: ContactsUpdateContactRequest
+  /contacts/{id}/companies:
+    post:
+      application/json: CompaniesAttachContactToRequest
+  /contacts/{id}/notes:
+    post:
+      application/json: NotesAddNoteToContactRequest
+  /conversations/{conversation_id}/tags:
+    post:
+      application/json: TagsAddTagToConversationRequest
+  /conversations/{conversation_id}/tags/{id}:
+    delete:
+      application/json: TagsRemoveFromConversationRequest
+  /conversations/{id}/parts:
+    post:
+      application/json: ConversationsManageConversationRequest
+  /tags:
+    post:
+      application/json: TagsCreateOrUpdateTagRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /phone_call_redirects:
+    post:
+      '400':
+        application/json: SwitchDeflectPhoneCallsResponse
+      '422':
+        application/json: SwitchDeflectPhoneCalls422Response
+  /tickets/{id}:
+    put:
+      '404':
+        application/json: TicketsUpdateTicketByIdResponse
+securityParameters:
+  Intercom-Version:
+    header: false
+  company_id:
+    query: false
+  created_at_after:
+    query: false
+  created_at_before:
+    query: false
+  display_as:
+    query: false
+  filter:
+    query: false
+  include_archived:
+    query: false
+  include_count:
+    query: false
+  model:
+    query: false
+  name:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  scroll_param:
+    query: false
+  segment_id:
+    query: false
+  starting_after:
+    query: false
+  summary:
+    query: false
+  tag_id:
+    query: false
+  type:
+    query: false
+  user_id:
+    query: false
+validServerUrls: {}

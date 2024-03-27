@@ -513,6 +513,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://api.infusionsoft.com/info-service/crm/docs/rest/V1",
   },
+  "intercom.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/intercom/Intercom-OpenAPI/main/descriptions/2.9/api.intercom.io.yaml",
+  },
   "hubspot.com_CRM": {
     lambda: async () => {
       const indexUrl = "https://api.hubspot.com/api-catalog-public/v1/apis";
