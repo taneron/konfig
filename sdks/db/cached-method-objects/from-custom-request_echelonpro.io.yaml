@@ -1,0 +1,649 @@
+hash: 327fec72975bc60607ae20a2504ddb2b8e8e4664119b613fd879d8ffc6d857d8
+methodObjects:
+  - url: /payins/!availablePaymentOptions
+    method: getOptions
+    httpMethod: post
+    tag: Incoming payments
+    typeScriptTag: incomingPayments
+    description: Available payment options.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: idCustomer
+        schema: string
+        required: false
+        description: 'TODO: Add description of Id-Customer header'
+      - name: money
+        schema: object
+        required: true
+        description: ''
+      - name: segmentCode
+        schema: string
+        required: false
+        description: ''
+        example: VIP
+      - name: exchangedToCurrency
+        schema: string
+        required: false
+        description: ''
+        example: USD
+    responses:
+      - statusCode: '200'
+        description: >-
+          The list of possible payment options.
+
+          The list always contains at least one payment option.
+
+          If no available payment options are found, an HTTP 406 response is
+          returned with the error code.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /payouts/!availablePaymentOptions
+    method: getAvailablePaymentOptions
+    httpMethod: post
+    tag: Outgoing payments
+    typeScriptTag: outgoingPayments
+    description: Available payment options.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: idCustomer
+        schema: string
+        required: false
+        description: 'TODO: Add description of Id-Customer header'
+      - name: money
+        schema: object
+        required: true
+        description: ''
+      - name: segmentCode
+        schema: string
+        required: false
+        description: ''
+        example: VIP
+      - name: exchangedToCurrency
+        schema: string
+        required: false
+        description: ''
+        example: USD
+    responses:
+      - statusCode: '200'
+        description: >-
+          The list of possible payment options.
+
+          The list always contains at least one payment option.
+
+          If no available payment options are found, an HTTP 406 response is
+          returned with the error code.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /payins/{idPayin}
+    method: getDetails
+    httpMethod: get
+    tag: Incoming payments
+    typeScriptTag: incomingPayments
+    description: Incoming payment detail.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: idPayin
+        schema: string
+        required: true
+        description: >-
+          Unique Merchant Order ID provided by merchant. See [Request
+          IDs](general.html#request-ids).
+        example: IDPAYIN
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '410'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /payins/{idPayin}
+    method: createPaymentRequest
+    httpMethod: post
+    tag: Incoming payments
+    typeScriptTag: incomingPayments
+    description: Create payment.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: idCustomer
+        schema: string
+        required: false
+        description: 'TODO: Add description of Id-Customer header'
+      - name: idPayin
+        schema: string
+        required: true
+        description: >-
+          Unique Merchant Order ID provided by merchant. See [Request
+          IDs](general.html#request-ids).
+        example: IDPAYIN
+      - name: paymentRequested
+        schema: object
+        required: true
+        description: ''
+      - name: paymentMethod
+        schema: undefined
+        required: true
+        description: ''
+      - name: callbackUrl
+        schema: string
+        required: false
+        description: ''
+        example: https://example.com/order-status-change
+      - name: returnUrl
+        schema: string
+        required: true
+        description: ''
+        example: https://example.com?id=123
+      - name: customerIp
+        schema: string
+        required: false
+        description: ''
+        example: 172.16.254.1
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /payouts/{idPayout}
+    method: getDetail
+    httpMethod: get
+    tag: Outgoing payments
+    typeScriptTag: outgoingPayments
+    description: Outgoing payment detail.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: idPayout
+        schema: string
+        required: true
+        description: >-
+          Unique Merchant Order ID provided by merchant. See [Request
+          IDs](general.html#request-ids).
+        example: IDPAYOUT
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '410'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /payouts/{idPayout}
+    method: createRequest
+    httpMethod: post
+    tag: Outgoing payments
+    typeScriptTag: outgoingPayments
+    description: Create outgoing payment.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: idCustomer
+        schema: string
+        required: false
+        description: 'TODO: Add description of Id-Customer header'
+      - name: idPayout
+        schema: string
+        required: true
+        description: >-
+          Unique Merchant Order ID provided by merchant. See [Request
+          IDs](general.html#request-ids).
+        example: IDPAYOUT
+      - name: paymentRequested
+        schema: object
+        required: true
+        description: ''
+      - name: paymentMethod
+        schema: undefined
+        required: true
+        description: ''
+      - name: callbackUrl
+        schema: string
+        required: false
+        description: ''
+        example: https://example.com/order-status-change
+      - name: customerIp
+        schema: string
+        required: false
+        description: ''
+        example: 172.16.254.1
+    responses:
+      - statusCode: '201'
+        description: The outgoing payment has been accepted for processing.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /payins/{idPayin}/!setExternalReference
+    method: setExternalReference
+    httpMethod: post
+    tag: Incoming payments
+    typeScriptTag: incomingPayments
+    description: Set external reference for the payment.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: idPayin
+        schema: string
+        required: true
+        description: >-
+          Unique Merchant Order ID provided by merchant. See [Request
+          IDs](general.html#request-ids).
+        example: IDPAYIN
+      - name: reference
+        schema: string
+        required: true
+        description: ''
+        example: REFERENCE
+    responses:
+      - statusCode: '204'
+        description: External reference has been set.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '410'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /balances
+    method: getBalances
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: Account balance.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: currencyCodes
+        schema: string
+        required: false
+        description: ''
+        example: EUR,USD
+    responses:
+      - statusCode: '200'
+        description: The list of account balances by currency.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '410'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /payins/{idPayin}/accounts
+    method: accounts
+    httpMethod: get
+    tag: Incoming payments
+    typeScriptTag: incomingPayments
+    description: Incoming payment accounts details.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: idPayin
+        schema: string
+        required: true
+        description: >-
+          Unique Merchant Order ID provided by merchant. See [Request
+          IDs](general.html#request-ids).
+        example: IDPAYIN
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '410'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /merchant-info
+    method: getInfo
+    httpMethod: get
+    tag: Merchant info
+    typeScriptTag: merchantInfo
+    description: Merchant information.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: Merchant information.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '410'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /currencies
+    method: getCurrencies
+    httpMethod: get
+    tag: Payments
+    typeScriptTag: payments
+    description: Currencies.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: List of available currencies.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '410'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /segments
+    method: listSegments
+    httpMethod: get
+    tag: Payments
+    typeScriptTag: payments
+    description: Segments.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: List of available segments.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /payment-operators
+    method: getOperatorsList
+    httpMethod: get
+    tag: Payments
+    typeScriptTag: payments
+    description: Payment operators.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: List of available payment operators.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /payment-methods
+    method: listPaymentMethods
+    httpMethod: get
+    tag: Payments
+    typeScriptTag: payments
+    description: Payment methods.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: List of available payment methods.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /payment-options
+    method: getPaymentOptions
+    httpMethod: get
+    tag: Payments
+    typeScriptTag: payments
+    description: Payment options.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: paymentTypeCode
+        schema: string
+        required: false
+        description: ''
+      - name: paymentMethodCodes
+        schema: string
+        required: false
+        description: ''
+        example: OFFLINE,ONLINE
+      - name: currencyCodes
+        schema: string
+        required: false
+        description: ''
+        example: EUR,USD
+      - name: segmentCodes
+        schema: string
+        required: false
+        description: ''
+      - name: paymentOperatorCodes
+        schema: string
+        required: false
+        description: ''
+        example: IDR_003,IDR_004
+    responses:
+      - statusCode: '200'
+        description: List of (possibly) available payment options.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '410'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /auth-tokens
+    method: issueJwt
+    httpMethod: post
+    tag: Auth
+    typeScriptTag: auth
+    description: Authorization token.
+    parameters:
+      - name: xApiVersion
+        schema: integer
+        required: true
+        description: Required API version. See [Versioning](general.html#versioning)
+        example: 0
+      - name: merchantCode
+        schema: string
+        required: true
+        description: ''
+        example: YOUR_MERCHANT_ID
+      - name: secret
+        schema: string
+        required: true
+        description: ''
+        example: YOUR_MERCHANT_SECRET_KEY
+      - name: validitySecs
+        schema: integer
+        required: false
+        description: ''
+        example: 600
+      - name: operations
+        schema: array
+        required: false
+        description: ''
+      - name: money
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >-
+          Auth token for required operations. The Auth token payload can be
+          decoded at [JWT official webiste](https://jwt.io/).
+      - statusCode: '400'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '500'
+        description: ''
+numberOfSchemas: 155
+apiDescription: >-
+  Echelon solutions simplify your payment process, and offer a wide range of
+  features & services to help your business run smoothly.
+
+  With our cutting edge technology, global coverage, our alternative solutions -
+  we will connect your business with over 1 billion consumers across Asia.
+
+  Echelon offers you an All-In-One API integration, giving your clients access
+  to their preferred local payment method that's also available in their native
+  language.
+
+  Offering your business a wide range of services from payments, settlements
+  that are both local and international, international remittance and more,
+  Echelon is your one stop shop for all things payments.
+
+  We are here to bring you one step closer to expanding your business in East
+  and South Asia.

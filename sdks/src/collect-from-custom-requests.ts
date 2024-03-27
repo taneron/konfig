@@ -1792,6 +1792,10 @@ const customRequests: Record<string, CustomRequest> = {
       });
       return downloadOpenApiSpecFromMintlify({ urls });
     },
+  },
+  "echelonpro.io": {
+    type: "GET",
+    url: "https://developers.echelonpay.com/api/_static/openapi.yaml",
   }
 };
 

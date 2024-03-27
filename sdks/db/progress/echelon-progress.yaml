@@ -1,0 +1,90 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /auth-tokens:
+    post: Auth_issueJwt
+  /balances:
+    get: Accounts_getBalances
+  /currencies:
+    get: Payments_getCurrencies
+  /merchant-info:
+    get: MerchantInfo_getInfo
+  /payins/!availablePaymentOptions:
+    post: IncomingPayments_getOptions
+  /payins/{idPayin}:
+    get: IncomingPayments_getDetails
+    post: IncomingPayments_createPaymentRequest
+  /payment-methods:
+    get: Payments_listPaymentMethods
+  /payment-operators:
+    get: Payments_getOperatorsList
+  /payment-options:
+    get: Payments_getPaymentOptions
+  /payouts/!availablePaymentOptions:
+    post: OutgoingPayments_getAvailablePaymentOptions
+  /payouts/{idPayout}:
+    get: OutgoingPayments_getDetail
+    post: OutgoingPayments_createRequest
+  /segments:
+    get: Payments_listSegments
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /auth-tokens:
+    post:
+      '406':
+        application/json: AuthIssueJwtResponse
+  /balances:
+    get:
+      '406':
+        application/json: AccountsGetBalancesResponse
+  /payins/!availablePaymentOptions:
+    post:
+      '406':
+        application/json: IncomingPaymentsGetOptionsResponse
+  /payins/{idPayin}:
+    get:
+      '406':
+        application/json: IncomingPaymentsGetDetailsResponse
+    post:
+      '406':
+        application/json: IncomingPaymentsCreatePaymentRequestResponse
+  /payins/{idPayin}/accounts:
+    get:
+      '406':
+        application/json: PayinAccountsResponse
+  /payment-options:
+    get:
+      '406':
+        application/json: PaymentsGetPaymentOptionsResponse
+  /payouts/!availablePaymentOptions:
+    post:
+      '406':
+        application/json: OutgoingPaymentsGetAvailablePaymentOptionsResponse
+  /payouts/{idPayout}:
+    get:
+      '406':
+        application/json: OutgoingPaymentsGetDetailResponse
+    post:
+      '406':
+        application/json: OutgoingPaymentsCreateRequestResponse
+securityParameters:
+  Id-Customer:
+    header: false
+  X-API-Version:
+    header: false
+  currencyCodes:
+    query: false
+  paymentMethodCodes:
+    query: false
+  paymentOperatorCodes:
+    query: false
+  paymentTypeCode:
+    query: false
+  segmentCodes:
+    query: false
+validServerUrls: {}
