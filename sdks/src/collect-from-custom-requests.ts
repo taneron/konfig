@@ -936,6 +936,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/pingidentity/pingdirectory-go-client/HEAD/configurationapi/api/openapi.yaml",
   },
+  "proliant.com": {
+    type: "GET",
+    url: "https://www.readypayonline.com/CompanyAPI/swagger/docs/v1",
+  },
   "brex.com_Transactions": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
