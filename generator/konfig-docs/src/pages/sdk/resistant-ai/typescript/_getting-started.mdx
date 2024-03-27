@@ -1,0 +1,38 @@
+```typescript index.ts
+import { ResistantAi } from 'resistant-ai-typescript-sdk';
+
+const resistantAi = new ResistantAi({
+    /*
+     * The standard [client credentials](https://developer.okta.com/docs/guides/implement-grant-type/clientcreds/main/#about-the-client-credentials-grant) flow:
+     * 
+     * 1. Client makes a [request](https://developer.okta.com/docs/guides/implement-grant-type/clientcreds/main/#request-for-token) to authorization server using client credentials
+     * ```
+     * BASIC_AUTH=$(echo -n $CLIENT_ID:$CLIENT_SECRET | base64)
+     * curl --request POST \
+     *   --url 'https://eu.id.resistant.ai/oauth2/aus2un1hkrKhPjir4417/v1/token' \
+     *   --header 'accept: application/json' \
+     *   --header "authorization: Basic $BASIC_AUTH" \
+     *   --header 'content-type: application/x-www-form-urlencoded' \
+     *   --data 'grant_type=client_credentials&scope=submissions.read submissions.write'
+     * ```
+     * 2. If the credentials are valid, authorization server responds with an access token
+     * ```
+     * {
+     *   "access_token": "eyJhbG[...]1LQ",
+     *   "token_type": "Bearer",
+     *   "expires_in": 3600,
+     *   "scope": "submissions.read submissions.write"
+     * }
+     * ```
+     * 3. Client uses the access token to make subsequent API requests with Authorization header
+     * ```
+     * Authorization: Bearer eyJhbG[...]1LQ
+     * ```
+     * 
+     * Please note that Token URL is specific for a given environment. Correct URL is in the corresponding environment documentation.
+     * 
+     */
+    clientId: "CLIENT_ID",
+    clientSecret: "CLIENT_SECRET"
+})
+```

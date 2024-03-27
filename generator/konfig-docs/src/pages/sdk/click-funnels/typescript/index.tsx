@@ -17,7 +17,7 @@ export default function ClickFunnelsTypeScriptSdk() {
       companyKebabCase="click-funnels"
       clientNameCamelCase="clickFunnels"
       homepage="www.clickfunnels.com/"
-      lastUpdated={new Date("2024-03-27T22:36:36.651Z")}
+      lastUpdated={new Date("2024-03-27T22:43:23.113Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickfunnels/favicon.png"
       contactUrl="https://developers.myclickfunnels.com"
       // Missing contactEmail
