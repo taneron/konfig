@@ -1,0 +1,384 @@
+hash: b2e48b561adc46ccc4e0d3952417e2cd7dad26c1c8aa8816d3c30363212881b7
+methodObjects:
+  - url: /v2/submission
+    method: analyzeDocument
+    httpMethod: post
+    tag: Submission
+    typeScriptTag: submission
+    description: Create a submission
+    parameters:
+      - name: query_id
+        schema: string
+        description: ''
+      - name: pipeline_configuration
+        schema: string
+        description: ''
+      - name: enable_decision
+        schema: boolean
+        description: ''
+        default: false
+      - name: enable_submission_characteristics
+        schema: boolean
+        description: ''
+        default: false
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/characteristics
+    method: attachCharacteristics
+    httpMethod: put
+    tag: Submission
+    typeScriptTag: submission
+    description: Add submission characteristics
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+      - name: document_characteristics
+        schema: object
+        description: ''
+      - name: device_characteristics
+        schema: object
+        description: ''
+      - name: identity_characteristics
+        schema: object
+        description: ''
+      - name: transaction_characteristics
+        schema: object
+        description: ''
+      - name: submission_time
+        schema: string
+        description: ''
+      - name: customer_tenant_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Submission characteristics were submitted successfully
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/fraud
+    method: getResult
+    httpMethod: get
+    tag: Fraud
+    typeScriptTag: fraud
+    description: Fetch fraud result
+    parameters:
+      - name: withMetadata
+        schema: boolean
+        required: false
+        description: Enables indicator medatadata in the response object
+        default: false
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/content
+    method: getContentResult
+    httpMethod: get
+    tag: Submission
+    typeScriptTag: submission
+    description: Fetch content result
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/quality
+    method: resultFetch
+    httpMethod: get
+    tag: Quality
+    typeScriptTag: quality
+    description: Fetch quality result
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/decision
+    method: getResult
+    httpMethod: get
+    tag: Decision
+    typeScriptTag: decision
+    description: Fetch Adaptive Decision result
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+      - name: embed
+        schema: string
+        required: false
+        description: >-
+          Coma-separated list of `decision_inputs` that should include the full
+          data in its `data` attribute, e.g. `?embed=fraud`.
+        example: fraud
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '302'
+        description: >-
+          Response too large. The full response can be downloaded from the URL
+          returned in the `Location` header.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/classification
+    method: getClassificationPreview
+    httpMethod: get
+    tag: Submission
+    typeScriptTag: submission
+    description: Fetch document classification [preview]
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/report
+    method: getFraudAnalysis
+    httpMethod: get
+    tag: Report
+    typeScriptTag: report
+    description: Fetch report [preview]
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}
+    method: remove
+    httpMethod: delete
+    tag: Submission
+    typeScriptTag: submission
+    description: Delete submission
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+    responses:
+      - statusCode: '204'
+        description: Submission deleted.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/feedback
+    method: getFeedback
+    httpMethod: get
+    tag: Submission
+    typeScriptTag: submission
+    description: Get analysis feedback
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v2/submission/{submission_id}/feedback
+    method: addFeedback
+    httpMethod: put
+    tag: Submission
+    typeScriptTag: submission
+    description: Add analysis feedback
+    parameters:
+      - name: submissionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBMISSION_ID
+      - name: analysis_feedback
+        schema: string
+        required: true
+        description: ''
+        example: ANALYSIS_FEEDBACK
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+numberOfSchemas: 78
+apiDescription: >-
+
+  Resistant Documents provides this API to programmatically interact with its
+  document analysis engine.
+
+  Interaction with the API can be divided into three phases:
+
+
+  1. Creating document submission
+
+  2. Uploading a file for for analysis to an address returned from step 1.
+
+  3. Fetching analysis results
+
+
+  In the first step, the submission is created by posting to the 
+  `/v2/submission` endpoint. The response contains a `submission_id` uniquely
+  identifying the document to be analyzed throughout the entire interaction, and
+  is used to fetch analysis results later.
+
+
+  Submission response also returns `upload_url` containing a pre-signed URL.
+  This URL should be used to upload the actual document to be analyzed in the
+  second step. Please note the document has to be uploaded using HTTP `PUT`
+  method with `Content-Type` HTTP header set to `application/octet-stream`.
+
+
+  In the last step, client should repeatedly poll using the
+  `/v2/submission/{submission_id}/fraud` endpoint for analysis results. The best
+  practice is to use polling with an [exponential
+  back-off](https://en.wikipedia.org/wiki/Exponential_backoff) to reduce load on
+  the API.
+
+
+  # Authentication
+
+
+  <SecurityDefinitions />

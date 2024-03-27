@@ -1,0 +1,644 @@
+{
+  "securitySchemes": {
+    "OAuth2": {
+      "type": "oauth2",
+      "description": "The standard [client credentials](https://developer.okta.com/docs/guides/implement-grant-type/clientcreds/main/#about-the-client-credentials-grant) flow:\n\n1. Client makes a [request](https://developer.okta.com/docs/guides/implement-grant-type/clientcreds/main/#request-for-token) to authorization server using client credentials\n```\nBASIC_AUTH=$(echo -n $CLIENT_ID:$CLIENT_SECRET | base64)\ncurl --request POST \\\n  --url 'https://eu.id.resistant.ai/oauth2/aus2un1hkrKhPjir4417/v1/token' \\\n  --header 'accept: application/json' \\\n  --header \"authorization: Basic $BASIC_AUTH\" \\\n  --header 'content-type: application/x-www-form-urlencoded' \\\n  --data 'grant_type=client_credentials&scope=submissions.read submissions.write'\n```\n2. If the credentials are valid, authorization server responds with an access token\n```\n{\n  \"access_token\": \"eyJhbG[...]1LQ\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600,\n  \"scope\": \"submissions.read submissions.write\"\n}\n```\n3. Client uses the access token to make subsequent API requests with Authorization header\n```\nAuthorization: Bearer eyJhbG[...]1LQ\n```\n\nPlease note that Token URL is specific for a given environment. Correct URL is in the corresponding environment documentation.\n",
+      "flows": {
+        "clientCredentials": {
+          "tokenUrl": "https://eu.id.resistant.ai/oauth2/aus2un1hkrKhPjir4417/v1/token",
+          "scopes": {
+            "submissions.read": "Read analysis results for a submission",
+            "submissions.write": "Create a new submission"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://api.documents.resistant.ai",
+  "apiVersion": "2.0.0b",
+  "apiDescription": "\nResistant Documents provides this API to programmatically interact with its document analysis engine.\nInteraction with the API can be divided into three phases:\n\n1. Creating document submission\n2. Uploading a file for for analysis to an address returned from step 1.\n3. Fetching analysis results\n\nIn the first step, the submission is created by posting to the  `/v2/submission` endpoint. The response contains a `submission_id` uniquely identifying the document to be analyzed throughout the entire interaction, and is used to fetch analysis results later.\n\nSubmission response also returns `upload_url` containing a pre-signed URL. This URL should be used to upload the actual document to be analyzed in the second step. Please note the document has to be uploaded using HTTP `PUT` method with `Content-Type` HTTP header set to `application/octet-stream`.\n\nIn the last step, client should repeatedly poll using the `/v2/submission/{submission_id}/fraud` endpoint for analysis results. The best practice is to use polling with an [exponential back-off](https://en.wikipedia.org/wiki/Exponential_backoff) to reduce load on the API.\n\n# Authentication\n\n<SecurityDefinitions />",
+  "apiTitle": "Resistant Documents API",
+  "endpoints": 10,
+  "sdkMethods": 11,
+  "schemas": 78,
+  "parameters": 24,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "resistant.ai.yaml",
+  "difficultyScore": 56,
+  "difficulty": "Easy",
+  "company": "Resistant AI",
+  "sdkName": "resistant-ai-{language}-sdk",
+  "clientName": "ResistantAi",
+  "metaDescription": "Resistant AI protects lenders and other fintechs from document fraud. \n\nIf you are part of a fraud, risk, operations, or compliance team in the fintech/finance industry, you can now improve your risk and fraud controls, by detecting fraudulent documents automatically, and without replacing your existing systems.\n\nDetect and prevent document fraud in: \n• KYB / Merchant Onboarding\n• KYC / Customer Onboarding\n• Digital Lending / Mortgage Underwriting\n• Tenant Screening\n• And more.\n\nSome stats: \n• 500+ detectors\n• Less than 30 sec to get results\n• 90% of manual reviews eliminated\n• 80% of documents approved instantly\n• 99% accuracy in document verdicts\n• 50M+ documents analyzed\n\n100+ patents. 100+ customers, including Payoneer, Habito, Planet42, and ComplyAdvantage. Digital Crime Fighter of the Year. Twice Winner of ACAMS'PwC Hackathon. Backed by GV, Index Ventures, Credo Ventures, Seedcamp, and more.",
+  "apiStatusUrls": "inherit",
+  "homepage": "resistant.ai/",
+  "developerDocumentation": "documents.resistant.ai/docs/v2.html",
+  "categories": [
+    "ai",
+    "fintech",
+    "document_management",
+    "fraud_prevention",
+    "transaction_fraud",
+    "cybercrime",
+    "financial_fraud",
+    "financial_crime",
+    "document_forgery"
+  ],
+  "category": "AI Tools",
+  "methods": [
+    {
+      "url": "/v2/submission",
+      "method": "analyzeDocument",
+      "httpMethod": "post",
+      "tag": "Submission",
+      "typeScriptTag": "submission",
+      "description": "Create a submission",
+      "parameters": [
+        {
+          "name": "query_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "pipeline_configuration",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "enable_decision",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "enable_submission_characteristics",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/characteristics",
+      "method": "attachCharacteristics",
+      "httpMethod": "put",
+      "tag": "Submission",
+      "typeScriptTag": "submission",
+      "description": "Add submission characteristics",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        },
+        {
+          "name": "document_characteristics",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "device_characteristics",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "identity_characteristics",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "transaction_characteristics",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "submission_time",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "customer_tenant_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Submission characteristics were submitted successfully"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/fraud",
+      "method": "getResult",
+      "httpMethod": "get",
+      "tag": "Fraud",
+      "typeScriptTag": "fraud",
+      "description": "Fetch fraud result",
+      "parameters": [
+        {
+          "name": "withMetadata",
+          "schema": "boolean",
+          "required": false,
+          "description": "Enables indicator medatadata in the response object",
+          "default": false
+        },
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/content",
+      "method": "getContentResult",
+      "httpMethod": "get",
+      "tag": "Submission",
+      "typeScriptTag": "submission",
+      "description": "Fetch content result",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/quality",
+      "method": "resultFetch",
+      "httpMethod": "get",
+      "tag": "Quality",
+      "typeScriptTag": "quality",
+      "description": "Fetch quality result",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/decision",
+      "method": "getResult",
+      "httpMethod": "get",
+      "tag": "Decision",
+      "typeScriptTag": "decision",
+      "description": "Fetch Adaptive Decision result",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        },
+        {
+          "name": "embed",
+          "schema": "string",
+          "required": false,
+          "description": "Coma-separated list of `decision_inputs` that should include the full data in its `data` attribute, e.g. `?embed=fraud`.",
+          "example": "fraud"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "302",
+          "description": "Response too large. The full response can be downloaded from the URL returned in the `Location` header."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/classification",
+      "method": "getClassificationPreview",
+      "httpMethod": "get",
+      "tag": "Submission",
+      "typeScriptTag": "submission",
+      "description": "Fetch document classification [preview]",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/report",
+      "method": "getFraudAnalysis",
+      "httpMethod": "get",
+      "tag": "Report",
+      "typeScriptTag": "report",
+      "description": "Fetch report [preview]",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "409",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}",
+      "method": "remove",
+      "httpMethod": "delete",
+      "tag": "Submission",
+      "typeScriptTag": "submission",
+      "description": "Delete submission",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Submission deleted."
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "409",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/feedback",
+      "method": "getFeedback",
+      "httpMethod": "get",
+      "tag": "Submission",
+      "typeScriptTag": "submission",
+      "description": "Get analysis feedback",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/submission/{submission_id}/feedback",
+      "method": "addFeedback",
+      "httpMethod": "put",
+      "tag": "Submission",
+      "typeScriptTag": "submission",
+      "description": "Add analysis feedback",
+      "parameters": [
+        {
+          "name": "submissionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SUBMISSION_ID"
+        },
+        {
+          "name": "analysis_feedback",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ANALYSIS_FEEDBACK"
+        },
+        {
+          "name": "comment",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "415",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Resistant AI offers fraud protection for lenders and fintechs by detecting fraudulent documents in seconds. Trusted by 100+ customers with 99% accuracy. Award-winning and backed by top investors. Resistant AI's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resistant-ai/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resistant-ai/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/resistant-ai/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resistant-ai/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resistant-ai/favicon.png",
+  "clientNameCamelCase": "resistantAi",
+  "lastUpdated": "2024-03-27T22:44:50.741Z",
+  "typescriptSdkUsageCode": "import { ResistantAi } from 'resistant-ai-typescript-sdk';\n\nconst resistantAi = new ResistantAi({\n    /*\n     * The standard [client credentials](https://developer.okta.com/docs/guides/implement-grant-type/clientcreds/main/#about-the-client-credentials-grant) flow:\n     * \n     * 1. Client makes a [request](https://developer.okta.com/docs/guides/implement-grant-type/clientcreds/main/#request-for-token) to authorization server using client credentials\n     * ```\n     * BASIC_AUTH=$(echo -n $CLIENT_ID:$CLIENT_SECRET | base64)\n     * curl --request POST \\\n     *   --url 'https://eu.id.resistant.ai/oauth2/aus2un1hkrKhPjir4417/v1/token' \\\n     *   --header 'accept: application/json' \\\n     *   --header \"authorization: Basic $BASIC_AUTH\" \\\n     *   --header 'content-type: application/x-www-form-urlencoded' \\\n     *   --data 'grant_type=client_credentials&scope=submissions.read submissions.write'\n     * ```\n     * 2. If the credentials are valid, authorization server responds with an access token\n     * ```\n     * {\n     *   \"access_token\": \"eyJhbG[...]1LQ\",\n     *   \"token_type\": \"Bearer\",\n     *   \"expires_in\": 3600,\n     *   \"scope\": \"submissions.read submissions.write\"\n     * }\n     * ```\n     * 3. Client uses the access token to make subsequent API requests with Authorization header\n     * ```\n     * Authorization: Bearer eyJhbG[...]1LQ\n     * ```\n     * \n     * Please note that Token URL is specific for a given environment. Correct URL is in the corresponding environment documentation.\n     * \n     */\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\"\n})",
+  "typescriptSdkFirstRequestCode": "// Create a submission\nconst analyzeDocumentResponse = resistantAi.submission.analyzeDocument()",
+  "fixedSpecFileName": "resistant-ai-fixed-spec.yaml"
+}

@@ -1915,6 +1915,15 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "resistant.ai": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://documents.resistant.ai/docs/v2.html",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
