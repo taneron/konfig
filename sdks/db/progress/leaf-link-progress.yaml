@@ -1,0 +1,621 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /activity-entries/:
+    get: Activityentries_getAll
+    post: Activityentries_createEntry
+  /activity-entries/{id}/:
+    delete: Activityentries_deleteFlag
+    get: Activityentries_readById
+    patch: Activityentries_updateById
+  /batch-documents/:
+    get: Batchdocuments_listAllDocuments
+    post: Batchdocuments_uploadNewDocument
+  /batch-documents/{id}/:
+    delete: Batchdocuments_deleteDocument
+    get: Batchdocuments_getIndividualDocument
+  /batches/{id}/:
+    delete: Batches_deleteBatch
+    get: Batches_getBatch
+    patch: Batches_updateBatch
+  /buyer/orders/:
+    get: Buyerorders_listOrdersSent
+  /company-staff/:
+    get: Companystaff_listStaffMembers
+  /company-staff/{id}/:
+    get: Companystaff_getStaffMember
+  /contacts/{id}/:
+    patch: Contacts_updateById
+  /customer-status/:
+    get: Customerstatuses_listAllAvailableObjects
+    post: Customerstatuses_createNewStatus
+  /customer-statuses/{id}/:
+    delete: Customerstatuses_deleteById
+    get: Customerstatuses_getById
+    patch: Customerstatuses_updateById
+  /customer-tiers/:
+    get: Customertiers_listAllAvailableObjects
+  /customer-tiers/{id}/:
+    get: Customertiers_getById
+  /customers/{id}/:
+    patch: Customers_updateById
+  /inventory/items/:
+    get: Inventoryitems_listAllItems
+    post: Inventoryitems_createItem
+  /inventory/items/{id}/:
+    get: Inventoryitems_getById
+    patch: Inventoryitems_updateById
+  /license-types/:
+    get: Licensetypes_listAll
+  /license-types/{id}/:
+    get: Licensetypes_getById
+  /line-items/:
+    get: Lineitems_listAllActiveCompanies
+    post: Lineitems_createNewLineItem
+  /line-items/{id}/:
+    delete: Lineitems_deleteLineItem
+    get: Lineitems_getById
+    patch: Lineitems_updateLineItem
+  /order-event-logs/:
+    get: Ordereventlogs_listAllLogs
+  /order-event-logs/{id}/:
+    get: Ordereventlogs_getById
+  /order-payments/:
+    get: Orderpayments_listAllActiveCompanies
+    post: Orderpayments_createPayment
+  /order-payments/{id}/:
+    get: Orderpayments_getById
+  /order-sales-reps/:
+    get: Ordersalesreps_listAll
+    post: Ordersalesreps_createNewSalesRep
+  /order-sales-reps/{id}/:
+    delete: Ordersalesreps_removeById
+    get: Ordersalesreps_getById
+  /orders-received/:
+    get: Ordersreceived_listAllActiveCompanies
+    post: Ordersreceived_createOrderWithLineItems
+  /orders-received/{number}/:
+    delete: Ordersreceived_deleteDraftOrder
+    get: Ordersreceived_getOrder
+    patch: Ordersreceived_updateOrder
+  /orders-received/{number}/transition/{action}/:
+    post: Ordersreceived_transitionOrder
+  /product-batches/:
+    get: Productbatches_listAssignments
+    post: Productbatches_createAssignment
+  /product-batches/{id}/:
+    delete: Productbatches_deleteAssignment
+    get: Productbatches_getAssignment
+  /product-categories/:
+    get: Productcategories_listCategories
+  /product-categories/{id}/:
+    get: Productcategories_getCategory
+  /product-images/:
+    get: Productimages_listImages
+    post: Productimages_uploadNewImage
+  /product-images/{id}/:
+    delete: Productimages_deleteImage
+    get: Productimages_getImage
+  /product-lines/:
+    get: Productlines_list
+    post: Productlines_createNewProductLine
+  /product-lines/{id}/:
+    get: Productlines_getProductLine
+    patch: Productlines_updateProductLine
+  /product-subcategories/:
+    get: Productsubcategories_listSubcategories
+  /product-subcategories/{id}/:
+    get: Productsubcategories_getSubcategory
+  /products/{id}/:
+    patch: Products_updateProduct
+  /promocodes/{id}/:
+    delete: Promocodes_remove
+    get: Promocodes_getSpecificCode
+    patch: Promocodes_updateDateFields
+  /reports/{number}/:
+    get: Reports_getReportById
+  /retailer-inventory/:
+    get: Retailerinventory_listProducts
+    post: Retailerinventory_createProduct
+  /retailer-inventory/{id}/:
+    delete: Retailerinventory_deleteProduct
+    get: Retailerinventory_getProduct
+    patch: Retailerinventory_updateProduct
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /batch-documents:
+    post:
+      multipart/form-data: BatchdocumentsUploadNewDocumentRequest
+  /product-images:
+    post:
+      multipart/form-data: ProductimagesUploadNewImageRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /activity-entries:
+    get:
+      '200':
+        application/json: ActivityentriesGetAllResponse
+  /batch-documents:
+    get:
+      '200':
+        application/json: BatchdocumentsListAllDocumentsResponse
+  /batches:
+    get:
+      '200':
+        application/json: BatchesListResponse
+  /brands:
+    get:
+      '200':
+        application/json: BrandsListResponse
+  /buyer/orders:
+    get:
+      '200':
+        application/json: BuyerordersListOrdersSentResponse
+  /companies:
+    get:
+      '200':
+        application/json: CompaniesListResponse
+  /company-staff:
+    get:
+      '200':
+        application/json: CompanystaffListStaffMembersResponse
+  /contacts:
+    get:
+      '200':
+        application/json: ContactsListResponse
+  /customer-status:
+    get:
+      '200':
+        application/json: CustomerstatusesListAllAvailableObjectsResponse
+  /customer-tiers:
+    get:
+      '200':
+        application/json: CustomertiersListAllAvailableObjectsResponse
+  /customers:
+    get:
+      '200':
+        application/json: CustomersListResponse
+  /inventory/facilities:
+    get:
+      '200':
+        application/json: FacilitiesListResponse
+  /inventory/items:
+    get:
+      '200':
+        application/json: InventoryitemsListAllItemsResponse
+  /license-types:
+    get:
+      '200':
+        application/json: LicensetypesListAllResponse
+  /licenses:
+    get:
+      '200':
+        application/json: LicensesListResponse
+  /line-items:
+    get:
+      '200':
+        application/json: LineitemsListAllActiveCompaniesResponse
+  /order-event-logs:
+    get:
+      '200':
+        application/json: OrdereventlogsListAllLogsResponse
+  /order-payments:
+    get:
+      '200':
+        application/json: OrderpaymentsListAllActiveCompaniesResponse
+  /order-sales-reps:
+    get:
+      '200':
+        application/json: OrdersalesrepsListAllResponse
+  /orders-received:
+    get:
+      '200':
+        application/json: OrdersreceivedListAllActiveCompaniesResponse
+  /product-batches:
+    get:
+      '200':
+        application/json: ProductbatchesListAssignmentsResponse
+  /product-categories:
+    get:
+      '200':
+        application/json: ProductcategoriesListCategoriesResponse
+  /product-images:
+    get:
+      '200':
+        application/json: ProductimagesListImagesResponse
+  /product-lines:
+    get:
+      '200':
+        application/json: ProductlinesListResponse
+  /product-subcategories:
+    get:
+      '200':
+        application/json: ProductsubcategoriesListSubcategoriesResponse
+  /products:
+    get:
+      '200':
+        application/json: ProductsListResponse
+  /promocodes:
+    get:
+      '200':
+        application/json: PromocodesListResponse
+  /reports:
+    get:
+      '200':
+        application/json: ReportsListResponse
+  /retailer-inventory:
+    get:
+      '200':
+        application/json: RetailerinventoryListProductsResponse
+  /strains:
+    get:
+      '200':
+        application/json: StrainsListResponse
+securityParameters:
+  address:
+    query: false
+  address__in:
+    query: false
+  address__startswith:
+    query: false
+  archived:
+    query: false
+  author:
+    query: false
+  batch_date__gt:
+    query: false
+  batch_date__gte:
+    query: false
+  batch_date__lt:
+    query: false
+  batch_date__lte:
+    query: false
+  brand:
+    query: false
+  brand__in:
+    query: false
+  brand__startswith:
+    query: false
+  business_identifier:
+    query: false
+  business_identifier__in:
+    query: false
+  business_identifier__startswith:
+    query: false
+  business_license_name:
+    query: false
+  business_license_name__in:
+    query: false
+  business_license_name__startswith:
+    query: false
+  buyer:
+    query: false
+  by:
+    query: false
+  category:
+    query: false
+  cbd:
+    query: false
+  cbda:
+    query: false
+  cbg:
+    query: false
+  cbn:
+    query: false
+  classification:
+    query: false
+  code:
+    query: false
+  company:
+    query: false
+  company__in:
+    query: false
+  company__isnull:
+    query: false
+  company_slug:
+    query: false
+  connected_to_metrc:
+    query: false
+  contact:
+    query: false
+  created_on__gt:
+    query: false
+  created_on__gte:
+    query: false
+  created_on__lt:
+    query: false
+  created_on__lte:
+    query: false
+  customer:
+    query: false
+  date__gt:
+    query: false
+  date__gte:
+    query: false
+  date__lt:
+    query: false
+  date__lte:
+    query: false
+  dba:
+    query: false
+  dba__in:
+    query: false
+  dba__startswith:
+    query: false
+  delete:
+    query: false
+  delinquent:
+    query: false
+  discount_percent__gt:
+    query: false
+  discount_percent__gte:
+    query: false
+  discount_percent__lt:
+    query: false
+  discount_percent__lte:
+    query: false
+  display_name:
+    query: false
+  ein:
+    query: false
+  ein__in:
+    query: false
+  ein__startswith:
+    query: false
+  email:
+    query: false
+  email__in:
+    query: false
+  email__startswith:
+    query: false
+  entry:
+    query: false
+  entry__in:
+    query: false
+  entry__startswith:
+    query: false
+  expand:
+    query: false
+  ext_acct_id:
+    query: false
+  ext_acct_id__in:
+    query: false
+  ext_acct_id__isnull:
+    query: false
+  ext_acct_id__startswith:
+    query: false
+  external_id:
+    query: false
+  external_id__in:
+    query: false
+  external_id__startswith:
+    query: false
+  external_id_key:
+    query: false
+  external_id_seller:
+    query: false
+  external_id_seller__icontains:
+    query: false
+  external_id_values:
+    query: false
+  fields_add:
+    query: false
+  fields_exclude:
+    query: false
+  fields_include:
+    query: false
+  first_name:
+    query: false
+  first_name__in:
+    query: false
+  first_name__startswith:
+    query: false
+  has_children:
+    query: false
+  id:
+    query: false
+  id__in:
+    query: false
+  include_archived:
+    query: false
+  include_children:
+    query: false
+  is_active:
+    query: false
+  is_admin:
+    query: false
+  is_sample:
+    query: false
+  last_edit__gt:
+    query: false
+  last_edit__gte:
+    query: false
+  last_edit__lt:
+    query: false
+  last_edit__lte:
+    query: false
+  last_name:
+    query: false
+  last_name__in:
+    query: false
+  last_name__startswith:
+    query: false
+  leaflink_source:
+    query: false
+  license:
+    query: false
+  license__isnull:
+    query: false
+  license__type:
+    query: false
+  license_inactive:
+    query: false
+  license_number:
+    query: false
+  license_number__in:
+    query: false
+  license_number__startswith:
+    query: false
+  license_type:
+    query: false
+  limit:
+    query: false
+  listing_state:
+    query: false
+  manual:
+    query: false
+  modified__gt:
+    query: false
+  modified__gte:
+    query: false
+  modified__lt:
+    query: false
+  modified__lte:
+    query: false
+  name:
+    query: false
+  name__in:
+    query: false
+  name__startswith:
+    query: false
+  next_contact_date__gt:
+    query: false
+  next_contact_date__gte:
+    query: false
+  next_contact_date__lt:
+    query: false
+  next_contact_date__lte:
+    query: false
+  nickname:
+    query: false
+  nickname__in:
+    query: false
+  nickname__startswith:
+    query: false
+  number:
+    query: false
+  number__in:
+    query: false
+  offset:
+    query: false
+  old_license_number:
+    query: false
+  old_license_number__in:
+    query: false
+  old_license_number__startswith:
+    query: false
+  order:
+    query: false
+  order__created_on__gte:
+    query: false
+  order__created_on__lte:
+    query: false
+  order__customer__cities:
+    query: false
+  order__customer__managers:
+    query: false
+  order__customers:
+    query: false
+  order__modified__gte:
+    query: false
+  order__modified__lte:
+    query: false
+  order__service_zone:
+    query: false
+  order__ship_date__gte:
+    query: false
+  order__ship_date__lte:
+    query: false
+  order_id:
+    query: false
+  owner:
+    query: false
+  owner__slug:
+    query: false
+  paid:
+    query: false
+  parent:
+    query: false
+  parent__isnull:
+    query: false
+  parents:
+    query: false
+  partner:
+    query: false
+  payment_method:
+    query: false
+  payment_term:
+    query: false
+  phone:
+    query: false
+  phone__in:
+    query: false
+  phone__startswith:
+    query: false
+  price_schedule:
+    query: false
+  product:
+    query: false
+  product__name:
+    query: false
+  product_id:
+    query: false
+  product_line:
+    query: false
+  production_batch_number:
+    query: false
+  products:
+    query: false
+  s2s_connected:
+    query: false
+  sales_rep:
+    query: false
+  search:
+    query: false
+  seller:
+    query: false
+  seller__slug__iexact:
+    query: false
+  service_zone:
+    query: false
+  sku:
+    query: false
+  staff:
+    query: false
+  state:
+    query: false
+  status:
+    query: false
+  status__not:
+    query: false
+  strain_classification:
+    query: false
+  strains:
+    query: false
+  sub_category:
+    query: false
+  sub_category__isnull:
+    query: false
+  thc:
+    query: false
+  thca:
+    query: false
+  tier:
+    query: false
+  total_cannabinoids:
+    query: false
+  total_thc:
+    query: false
+  type:
+    query: false
+  user:
+    query: false
+  website:
+    query: false
+  website__in:
+    query: false
+  website__startswith:
+    query: false
+validServerUrls: {}

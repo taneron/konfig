@@ -1881,6 +1881,15 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "leaflink.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.leaflink.com/legacy/v2/api/ref/index.html",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
