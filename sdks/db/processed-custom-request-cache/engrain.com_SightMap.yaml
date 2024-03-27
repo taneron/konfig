@@ -1,0 +1,178 @@
+processed:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: API-Key
+      x-displayName: API Key
+      description: |
+        An API key sent via the `API-Key` header.
+        ```
+        curl -i -H "API-Key: 12345" https://api.sightmap.com/v1/assets
+        ```
+      in: header
+  apiBaseUrl: https://api.sightmap.com/v1
+  apiVersion: v1.20230828
+  apiDescription: >
+    # Introduction
+
+
+    The SightMap® API uses standard HTTP verbs to communicate and HTTP status
+
+    codes to indicate status and errors. All responses come in standard JSON.
+
+    The SightMap API is served over HTTPS to ensure data privacy; HTTP is not
+
+    supported.
+
+
+    # Versioning
+
+
+    Versions are communicated as `VERSION.RELEASE-DATE`, where `VERSION` denotes
+
+    the version number of the API and prefixed to all API request paths, such as
+
+    `/v1/assets`. `RELEASE-DATE` denotes backwards-compatible changes to the
+
+    API.
+
+
+    When any non-backwards compatible additions must be made to the API, the
+
+    version number will be incremented.
+
+
+    ## Backwards-compatible changes
+
+
+    We consider the following changes to be backwards-compatible:
+
+
+    - Adding new API resources.
+
+    - Adding new optional request parameters to existing API methods.
+
+    - Adding new properties to existing API responses.
+
+    - Changing the order of properties in existing API responses.
+
+    - Changing the length or format of object IDs or other opaque strings.
+
+    - You can safely assume object IDs we generate will never exceed 255
+      characters, but you should be able to handle IDs of up to that length. If
+      for example you’re using MySQL, you should store IDs in a `VARCHAR(255)
+      COLLATE utf8_bin` column (the `COLLATE` configuration ensures
+      case-sensitivity in lookups).
+
+    # Authentication
+
+
+    For requests which require Authentication, an API Key can be provided by
+
+    either the `api-key` query parameter or `API-Key` header. We recommend the
+
+    header over the query parameter as it avoids your API key from being stored
+
+    in browser history and most server logs. If neither query parameter or
+
+    header is provided, a `401` status code is returned with the following JSON:
+
+
+    ```
+
+    {
+      "message": "No API key found in request"
+    }
+
+    ```
+
+
+    If your API key cannot be validated, a `403` status code is returned with
+
+    the following JSON:
+
+
+    ```
+
+    {
+      "message": "Invalid authentication credentials"
+    }
+
+    ```
+
+
+    <SecurityDefinitions />
+
+
+    # Experimental features
+
+
+    We provide new API features via experimental flags. This allows users to
+    opt-in
+
+    for new functionality and provide feedback prior to a feature becoming
+    generally
+
+    available (GA). We believe in stability without stagnation. This ability
+    allows
+
+    our team to build and ship best-in-class APIs faster while upholding
+
+    backwards-compatibility on GA features.
+
+
+    Experimental features are subject to change while undergoing development and
+
+    feedback. Therefore, they are exempt from any backwards-compatibility
+    guarantees
+
+    until they reach GA. We do not expect nor recommend using experimental
+    features
+
+    in production environments unless a partnership has been established with
+    our
+
+    teams working closely together.
+
+
+    Flags are provided via the `Experimental-Flags` header. A comma-separated
+    list
+
+    is expected in order to pass multiple flags on a single request.
+
+
+    ```
+
+    curl -i https://api.sightmap.com/v1/assets \
+      -H "API-Key: 12345" \
+      -H "Experimental-Flags: flag-1,flag-2"
+    ```
+
+
+    # Errors
+
+
+    The SightMap API uses standard HTTP status codes to indicate the success or
+
+    failure of the API request. The body of the response will be JSON in the
+
+    following format:
+
+
+    ```
+
+    {
+      "message": "Not found"
+    }
+
+    ```
+  apiTitle: SightMap® REST API
+  endpoints: 52
+  sdkMethods: 138
+  schemas: 47
+  parameters: 215
+  contactUrl: https://developers.sightmap.com
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: engrain.com_SightMap.yaml
+  difficultyScore: 215.25

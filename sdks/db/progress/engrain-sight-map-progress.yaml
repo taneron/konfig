@@ -1,0 +1,473 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /accounts:
+    get: Accounts_listAccounts
+  /accounts/{account}:
+    get: Accounts_getSpecificAccount
+  /accounts/{account}/assets:
+    get: Accountsassets_listAllowedAssets
+    put: Accountsassets_assignAssetsToAccount
+  /accounts/{account}/assets/remove:
+    put: Accountsassets_unassignAssets
+  /accounts/{account}/embeds:
+    get: Accountsembeds_list
+  /accounts/{account}/embeds/{embed}:
+    get: Accountsembeds_viewEmbed
+  /assets:
+    get: Assets_getAllowedList
+    post: Assets_createAssetPermission
+  /assets/{asset}:
+    get: Assets_viewAsset
+    put: Assets_updateAsset
+  /assets/{asset}/multifamily/buildings:
+    get: Assetsbuildings_listBuildingsForAsset
+    post: Assetsbuildings_createBuilding
+  /assets/{asset}/multifamily/buildings/{building}:
+    get: Assetsbuildings_getSpecificBuilding
+    put: Assetsbuildings_updateBuilding
+  /assets/{asset}/multifamily/caches/build:
+    post: Assetscaches_buildCachesForAsset
+  /assets/{asset}/multifamily/filters:
+    get: Assetsfilters_listFilters
+    post: Assetsfilters_createNewFilter
+  /assets/{asset}/multifamily/filters/{filter}:
+    get: Assetsfilters_getSpecificFilter
+    put: Assetsfilters_updateFilter
+  /assets/{asset}/multifamily/filters/{filter}/options:
+    get: Assetsfilters_listOptions
+    post: Assetsfilters_createOption
+  /assets/{asset}/multifamily/filters/{filter}/options/{option}:
+    get: Assetsfilters_viewOption
+    put: Assetsfilters_updateOption
+  /assets/{asset}/multifamily/filters/{filter}/options/{option}/units:
+    get: Assetsfilters_listUnitsForOption
+    put: Assetsfilters_assignUnitsToOption
+  /assets/{asset}/multifamily/floor-plans:
+    get: Assetsfloorplans_listFloorPlans
+    post: Assetsfloorplans_createMultifamilyFloorPlan
+  /assets/{asset}/multifamily/floor-plans/{floor-plan}:
+    delete: Assetsfloorplans_deleteFloorPlan
+    get: Assetsfloorplans_viewSpecificFloorPlan
+    put: Assetsfloorplans_updateFloorPlan
+  /assets/{asset}/multifamily/floors:
+    get: Assetsfloors_getList
+    post: Assetsfloors_createFloorMultifamily
+  /assets/{asset}/multifamily/floors/{floor}:
+    get: Assetsfloors_viewFloor
+    put: Assetsfloors_updateFloorMultifamily
+  /assets/{asset}/multifamily/galleries:
+    get: Assetsgalleries_listGalleries
+  /assets/{asset}/multifamily/galleries/{gallery}:
+    get: Assetsgalleries_viewSpecificGallery
+  /assets/{asset}/multifamily/landing-pages:
+    get: Assetslandingpages_listLandingPages
+  /assets/{asset}/multifamily/landing-pages/{landing-page}:
+    get: Assetslandingpages_viewLandingPage
+  /assets/{asset}/multifamily/maps:
+    get: Assetsmaps_listUnitMaps
+    post: Assetsmaps_createUnitMap
+  /assets/{asset}/multifamily/maps/{map}:
+    get: Assetsmaps_viewUnitMap
+    put: Assetsmaps_updateUnitMap
+  /assets/{asset}/multifamily/maps/{map}/backgrounds:
+    get: Assetsmaps_listBackgrounds
+  /assets/{asset}/multifamily/maps/{map}/backgrounds/{background}:
+    get: Assetsmaps_getViewBackground
+  /assets/{asset}/multifamily/marker-descriptions:
+    get: Assetsmarkerdescriptions_listMarkerDescriptions
+  /assets/{asset}/multifamily/marker-descriptions/{marker-descriptions}:
+    get: Assetsmarkerdescriptions_viewSpecificMarkerDescription
+  /assets/{asset}/multifamily/outbound-links:
+    get: Assetsoutboundlinks_listOutboundLinks
+    post: Assetsoutboundlinks_createAssetOutboundLink
+  /assets/{asset}/multifamily/outbound-links/{outbound-link}:
+    get: Assetsoutboundlinks_viewAssetOutboundLink
+    put: Assetsoutboundlinks_updateLink
+  /assets/{asset}/multifamily/pricing:
+    get: Assetspricing_listPricingProcesses
+  /assets/{asset}/multifamily/pricing/{process}:
+    get: Assetspricing_viewPricingProcess
+  /assets/{asset}/multifamily/pricing/{process}/entries:
+    get: Assetspricing_listPricingEntries
+  /assets/{asset}/multifamily/pricing/{process}/units:
+    get: Assetspricing_listPricingUnits
+  /assets/{asset}/multifamily/pricing/{process}/units/{unit}:
+    get: Assetspricing_viewPricingUnit
+    put: Assetspricing_updatePricingUnit
+  /assets/{asset}/multifamily/references:
+    get: Assetsreferences_listReferencesForAsset
+    post: Assetsreferences_createAssetReference
+  /assets/{asset}/multifamily/references/{reference}:
+    get: Assetsreferences_viewReference
+    put: Assetsreferences_updateReference
+  /assets/{asset}/multifamily/units:
+    get: Assetsunits_listUnits
+    post: Assetsunits_createUnit
+  /assets/{asset}/multifamily/units/description-groups:
+    get: Assetsunitsdescriptions_listGroups
+    post: Assetsunitsdescriptions_createUnitDescriptionGroup
+  /assets/{asset}/multifamily/units/description-groups/{description-group}:
+    get: Assetsunitsdescriptions_viewGroup
+    put: Assetsunitsdescriptions_updateGroup
+  /assets/{asset}/multifamily/units/description-groups/{description-group}/descriptions:
+    get: Assetsunitsdescriptions_listUnitDescriptionGroups
+    post: Assetsunitsdescriptions_createUnitDescriptions
+    put: Assetsunitsdescriptions_updateDescriptions
+  /assets/{asset}/multifamily/units/description-groups/{description-group}/descriptions/{description}:
+    get: Assetsunitsdescriptions_viewSpecificDescription
+  /assets/{asset}/multifamily/units/description-groups/{description-group}/units:
+    get: Assetsunitsdescriptions_listAssignedUnits
+    put: Assetsunitsdescriptions_assignUnitsToDescriptionGroups
+  /assets/{asset}/multifamily/units/outbound-links:
+    get: Assetsunitsoutboundlinks_listOutboundLinks
+    post: Assetsunitsoutboundlinks_createUnitOutboundLink
+  /assets/{asset}/multifamily/units/outbound-links/{outbound-link}:
+    get: Assetsunitsoutboundlinks_viewSpecificLink
+    put: Assetsunitsoutboundlinks_updateUnitOutboundLink
+  /assets/{asset}/multifamily/units/outbound-links/{outbound-link}/urls:
+    get: Assetsunitsoutboundlinks_listUnitOutboundLinkUrls
+    put: Assetsunitsoutboundlinks_updateUrls
+  /assets/{asset}/multifamily/units/reference-groups:
+    get: Assetsunitsreferences_listGroups
+    post: Assetsunitsreferences_createUnitReferenceGroup
+  /assets/{asset}/multifamily/units/reference-groups/{reference-group}:
+    get: Assetsunitsreferences_viewSpecificUnitReferenceGroup
+    put: Assetsunitsreferences_updateUnitReferenceGroup
+  /assets/{asset}/multifamily/units/reference-groups/{reference-group}/references:
+    get: Assetsunitsreferences_listUnitReferences
+    put: Assetsunitsreferences_updateUnitReferences
+  /assets/{asset}/multifamily/units/{unit}:
+    delete: Assetsunits_deleteUnit
+    get: Assetsunits_getSpecificUnit
+    put: Assetsunits_updateMultifamilyUnit
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /accounts/{account}/assets:
+    put:
+      application/json: AccountsassetsAssignAssetsToAccountRequest
+  /accounts/{account}/assets/remove:
+    put:
+      application/json: AccountsassetsUnassignAssetsRequest
+  /assets:
+    post:
+      application/json: AssetsCreateAssetPermissionRequest
+  /assets/{asset}:
+    put:
+      application/json: AssetsUpdateAssetRequest
+  /assets/{asset}/multifamily/buildings:
+    post:
+      application/json: AssetsbuildingsCreateBuildingRequest
+  /assets/{asset}/multifamily/buildings/{building}:
+    put:
+      application/json: AssetsbuildingsUpdateBuildingRequest
+  /assets/{asset}/multifamily/filters:
+    post:
+      application/json: AssetsfiltersCreateNewFilterRequest
+  /assets/{asset}/multifamily/filters/{filter}:
+    put:
+      application/json: AssetsfiltersUpdateFilterRequest
+  /assets/{asset}/multifamily/filters/{filter}/options:
+    post:
+      application/json: AssetsfiltersCreateOptionRequest
+  /assets/{asset}/multifamily/filters/{filter}/options/{option}:
+    put:
+      application/json: AssetsfiltersUpdateOptionRequest
+  /assets/{asset}/multifamily/filters/{filter}/options/{option}/units:
+    put:
+      application/json: AssetsfiltersAssignUnitsToOptionRequest
+  /assets/{asset}/multifamily/floor-plans:
+    post:
+      application/json: AssetsfloorplansCreateMultifamilyFloorPlanRequest
+      multipart/form-data: AssetsfloorplansCreateMultifamilyFloorPlanRequest1
+  /assets/{asset}/multifamily/floor-plans/{floor-plan}:
+    put:
+      application/json: AssetsfloorplansUpdateFloorPlanRequest
+      multipart/form-data: AssetsfloorplansUpdateFloorPlanRequest1
+  /assets/{asset}/multifamily/floors:
+    post:
+      application/json: AssetsfloorsCreateFloorMultifamilyRequest
+  /assets/{asset}/multifamily/floors/{floor}:
+    put:
+      application/json: AssetsfloorsUpdateFloorMultifamilyRequest
+  /assets/{asset}/multifamily/maps:
+    post:
+      multipart/form-data: AssetsmapsCreateUnitMapRequest
+  /assets/{asset}/multifamily/maps/{map}:
+    put:
+      application/json: AssetsmapsUpdateUnitMapRequest
+      multipart/form-data: AssetsmapsUpdateUnitMapRequest1
+  /assets/{asset}/multifamily/outbound-links:
+    post:
+      application/json: AssetsoutboundlinksCreateAssetOutboundLinkRequest
+  /assets/{asset}/multifamily/outbound-links/{outbound-link}:
+    put:
+      application/json: AssetsoutboundlinksUpdateLinkRequest
+  /assets/{asset}/multifamily/pricing/{process}/units/{unit}:
+    put:
+      application/json: AssetspricingUpdatePricingUnitRequest
+  /assets/{asset}/multifamily/references:
+    post:
+      application/json: AssetsreferencesCreateAssetReferenceRequest
+  /assets/{asset}/multifamily/references/{reference}:
+    put:
+      application/json: AssetsreferencesUpdateReferenceRequest
+  /assets/{asset}/multifamily/units:
+    post:
+      application/json: AssetsunitsCreateUnitRequest
+      multipart/form-data: AssetsunitsCreateUnitRequest1
+  /assets/{asset}/multifamily/units/description-groups:
+    post:
+      application/json: AssetsunitsdescriptionsCreateUnitDescriptionGroupRequest
+  /assets/{asset}/multifamily/units/description-groups/{description-group}:
+    put:
+      application/json: AssetsunitsdescriptionsUpdateGroupRequest
+  /assets/{asset}/multifamily/units/description-groups/{description-group}/descriptions:
+    post:
+      application/json: AssetsunitsdescriptionsCreateUnitDescriptionsRequest
+    put:
+      application/json: AssetsunitsdescriptionsUpdateDescriptionsRequest
+  /assets/{asset}/multifamily/units/description-groups/{description-group}/units:
+    put:
+      application/json: AssetsunitsdescriptionsAssignUnitsToDescriptionGroupsRequest
+  /assets/{asset}/multifamily/units/outbound-links:
+    post:
+      application/json: AssetsunitsoutboundlinksCreateUnitOutboundLinkRequest
+  /assets/{asset}/multifamily/units/outbound-links/{outbound-link}:
+    put:
+      application/json: AssetsunitsoutboundlinksUpdateUnitOutboundLinkRequest
+  /assets/{asset}/multifamily/units/outbound-links/{outbound-link}/urls:
+    put:
+      application/json: AssetsunitsoutboundlinksUpdateUrlsRequest
+  /assets/{asset}/multifamily/units/reference-groups:
+    post:
+      application/json: AssetsunitsreferencesCreateUnitReferenceGroupRequest
+  /assets/{asset}/multifamily/units/reference-groups/{reference-group}:
+    put:
+      application/json: AssetsunitsreferencesUpdateUnitReferenceGroupRequest
+  /assets/{asset}/multifamily/units/reference-groups/{reference-group}/references:
+    put:
+      application/json: AssetsunitsreferencesUpdateUnitReferencesRequest
+  /assets/{asset}/multifamily/units/{unit}:
+    put:
+      application/json: AssetsunitsUpdateMultifamilyUnitRequest
+      multipart/form-data: AssetsunitsUpdateMultifamilyUnitRequest1
+responseDescriptions: {}
+responseSchemaNames:
+  /accounts:
+    get:
+      '200':
+        application/json: AccountsListAccountsResponse
+      '401':
+        application/json: AccountsListAccounts401Response
+      '403':
+        application/json: AccountsListAccounts403Response
+      '404':
+        application/json: AccountsListAccounts404Response
+      '429':
+        application/json: AccountsListAccounts429Response
+      '500':
+        application/json: AccountsListAccounts500Response
+  /accounts/{account}/assets:
+    get:
+      '200':
+        application/json: AccountsassetsListAllowedAssetsResponse
+    put:
+      '409':
+        application/json: AccountsassetsAssignAssetsToAccountResponse
+      '422':
+        application/json: AccountsassetsAssignAssetsToAccount422Response
+  /accounts/{account}/assets/remove:
+    put:
+      '409':
+        application/json: AccountsassetsUnassignAssetsResponse
+  /accounts/{account}/embeds:
+    get:
+      '200':
+        application/json: AccountsembedsListResponse
+  /assets:
+    get:
+      '200':
+        application/json: AssetsGetAllowedListResponse
+    post:
+      '409':
+        application/json: AssetsCreateAssetPermissionResponse
+  /assets/{asset}:
+    put:
+      '409':
+        application/json: AssetsUpdateAssetResponse
+  /assets/{asset}/multifamily/buildings:
+    get:
+      '200':
+        application/json: AssetsbuildingsListBuildingsForAssetResponse
+  /assets/{asset}/multifamily/filters:
+    get:
+      '200':
+        application/json: AssetsfiltersListFiltersResponse
+    post:
+      '201':
+        application/json: AssetsfiltersCreateNewFilterResponse
+  /assets/{asset}/multifamily/filters/{filter}:
+    get:
+      '200':
+        application/json: AssetsfiltersGetSpecificFilterResponse
+    put:
+      '200':
+        application/json: AssetsfiltersUpdateFilterResponse
+  /assets/{asset}/multifamily/filters/{filter}/options:
+    get:
+      '200':
+        application/json: AssetsfiltersListOptionsResponse
+    post:
+      '201':
+        application/json: AssetsfiltersCreateOptionResponse
+  /assets/{asset}/multifamily/filters/{filter}/options/{option}:
+    get:
+      '200':
+        application/json: AssetsfiltersViewOptionResponse
+    put:
+      '200':
+        application/json: AssetsfiltersUpdateOptionResponse
+  /assets/{asset}/multifamily/filters/{filter}/options/{option}/units:
+    get:
+      '200':
+        application/json: AssetsfiltersListUnitsForOptionResponse
+    put:
+      '200':
+        application/json: AssetsfiltersAssignUnitsToOptionResponse
+      '409':
+        application/json: AssetsfiltersAssignUnitsToOption409Response
+  /assets/{asset}/multifamily/floor-plans:
+    get:
+      '200':
+        application/json: AssetsfloorplansListFloorPlansResponse
+  /assets/{asset}/multifamily/floors:
+    get:
+      '200':
+        application/json: AssetsfloorsGetListResponse
+  /assets/{asset}/multifamily/galleries:
+    get:
+      '200':
+        application/json: AssetsgalleriesListGalleriesResponse
+  /assets/{asset}/multifamily/landing-pages:
+    get:
+      '200':
+        application/json: AssetslandingpagesListLandingPagesResponse
+  /assets/{asset}/multifamily/maps:
+    get:
+      '200':
+        application/json: AssetsmapsListUnitMapsResponse
+    post:
+      '415':
+        application/json: AssetsmapsCreateUnitMapResponse
+  /assets/{asset}/multifamily/maps/{map}/backgrounds:
+    get:
+      '200':
+        application/json: AssetsmapsListBackgroundsResponse
+  /assets/{asset}/multifamily/marker-descriptions:
+    get:
+      '200':
+        application/json: AssetsmarkerdescriptionsListMarkerDescriptionsResponse
+  /assets/{asset}/multifamily/outbound-links:
+    get:
+      '200':
+        application/json: AssetsoutboundlinksListOutboundLinksResponse
+  /assets/{asset}/multifamily/pricing:
+    get:
+      '200':
+        application/json: AssetspricingListPricingProcessesResponse
+  /assets/{asset}/multifamily/pricing/{process}/entries:
+    get:
+      '200':
+        application/json: AssetspricingListPricingEntriesResponse
+  /assets/{asset}/multifamily/pricing/{process}/units:
+    get:
+      '200':
+        application/json: AssetspricingListPricingUnitsResponse
+  /assets/{asset}/multifamily/references:
+    get:
+      '200':
+        application/json: AssetsreferencesListReferencesForAssetResponse
+  /assets/{asset}/multifamily/units:
+    get:
+      '200':
+        application/json: AssetsunitsListUnitsResponse
+  /assets/{asset}/multifamily/units/description-groups:
+    get:
+      '200':
+        application/json: AssetsunitsdescriptionsListGroupsResponse
+  /assets/{asset}/multifamily/units/description-groups/{description-group}/descriptions:
+    get:
+      '200':
+        application/json: AssetsunitsdescriptionsListUnitDescriptionGroupsResponse
+    post:
+      '201':
+        application/json: AssetsunitsdescriptionsCreateUnitDescriptionsResponse
+    put:
+      '200':
+        application/json: AssetsunitsdescriptionsUpdateDescriptionsResponse
+  /assets/{asset}/multifamily/units/description-groups/{description-group}/units:
+    get:
+      '200':
+        application/json: AssetsunitsdescriptionsListAssignedUnitsResponse
+    put:
+      '200':
+        application/json: AssetsunitsdescriptionsAssignUnitsToDescriptionGroupsResponse
+  /assets/{asset}/multifamily/units/outbound-links:
+    get:
+      '200':
+        application/json: AssetsunitsoutboundlinksListOutboundLinksResponse
+    post:
+      '201':
+        application/json: AssetsunitsoutboundlinksCreateUnitOutboundLinkResponse
+  /assets/{asset}/multifamily/units/outbound-links/{outbound-link}:
+    get:
+      '200':
+        application/json: AssetsunitsoutboundlinksViewSpecificLinkResponse
+    put:
+      '200':
+        application/json: AssetsunitsoutboundlinksUpdateUnitOutboundLinkResponse
+  /assets/{asset}/multifamily/units/outbound-links/{outbound-link}/urls:
+    get:
+      '200':
+        application/json: AssetsunitsoutboundlinksListUnitOutboundLinkUrlsResponse
+      '409':
+        application/json: AssetsunitsoutboundlinksListUnitOutboundLinkUrls409Response
+    put:
+      '409':
+        application/json: AssetsunitsoutboundlinksUpdateUrlsResponse
+  /assets/{asset}/multifamily/units/reference-groups:
+    get:
+      '200':
+        application/json: AssetsunitsreferencesListGroupsResponse
+    post:
+      '409':
+        application/json: AssetsunitsreferencesCreateUnitReferenceGroupResponse
+  /assets/{asset}/multifamily/units/reference-groups/{reference-group}/references:
+    get:
+      '200':
+        application/json: AssetsunitsreferencesListUnitReferencesResponse
+  /assets/{asset}/multifamily/units/{unit}:
+    delete:
+      '409':
+        application/json: AssetsunitsDeleteUnitResponse
+securityParameters:
+  Experimental-Flags:
+    header: false
+  asset:
+    query: false
+  flat-pricing:
+    query: false
+  page:
+    query: false
+  per-page:
+    query: false
+  tags:
+    query: false
+  unit:
+    query: false
+  unit-number:
+    query: false
+validServerUrls: {}

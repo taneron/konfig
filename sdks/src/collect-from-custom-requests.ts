@@ -1932,6 +1932,15 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "engrain.com_SightMap": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://api.sightmap.com/v1/openapi",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
