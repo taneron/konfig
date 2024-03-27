@@ -987,6 +987,27 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml",
   },
+  "oracle.com_HumanCapitalManagement": {
+    lambda: async () => {
+      const url =
+        "https://docs.oracle.com/en/cloud/saas/human-resources/24a/farws/openapi.json";
+      let rawSpecString = await fetch(url).then((res) => res.text());
+      rawSpecString = rawSpecString.replaceAll(
+        `"openapi":"3.0"`,
+        `"openapi":"3.0.0"`
+      );
+      return rawSpecString;
+    },
+    servers: [
+      {
+        url: "https://${server}/hcmRestApi/resources/11.13.18.05",
+        description: "HCM API",
+        variables: {
+          server: { default: "servername.fa.us2.oraclecloud.com" },
+        },
+      },
+    ],
+  },
   "hsbc.com_AccountInformationCE": {
     lambda: async ({ browser }) => {
       const url =

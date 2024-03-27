@@ -21,6 +21,7 @@ export async function aiGenerateOperationIdSuffix({
     .filter((id) => id !== undefined && id?.trim() !== '')
     .join(', ')
     .slice(0, -2)
+    .slice(0, 1000) // To stay within the OpenAI token limit
   const systemPrompt = `You are a generator of operation IDs for an OpenAPI specification. You generate operation IDs in json format: "{ prefix: ... , suffix: ...}"`
   const prompt = generatePrompt({
     prefix,
