@@ -41,6 +41,12 @@ operationIds:
     post: Documents_uploadConfidentialFile
   /docs/people/{id}/confidential/{docId}:
     delete: Documents_deleteEmployeeConfidentialDoc
+  /docs/people/{id}/custom/{folderId}:
+    post: Documents_uploadEmployeeCustomFolder
+  /docs/people/{id}/folders/{folderId}/upload:
+    post: Documents_uploadFileToFolder
+  /docs/people/{id}/folders/{folderId}/{docId}:
+    delete: Documents_deleteSpecificDocument
   /docs/people/{id}/shared:
     post: Documents_uploadToSharedFolder
   /docs/people/{id}/shared/upload:
@@ -165,6 +171,9 @@ requestSchemaNames:
   /docs/people/{id}/confidential/upload:
     post:
       multipart/form-data: DocumentsUploadConfidentialFileRequest
+  /docs/people/{id}/folders/{folderId}/upload:
+    post:
+      multipart/form-data: DocumentsUploadFileToFolderRequest
   /docs/people/{id}/shared/upload:
     post:
       multipart/form-data: DocumentsUploadToSharedFolderRequest

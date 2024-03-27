@@ -1,4 +1,4 @@
-hash: b311fcadfcc96ceb7572ca950dd517b4a29c0eef28c76c93e85bfc6be0ea4d83
+hash: f8a79ba40279159ca3057b53d55eb27fc63ed2a85a820cf2953126ee139ae2b3
 methodObjects:
   - url: /people/search
     method: searchEmployees
@@ -1221,6 +1221,35 @@ methodObjects:
     responses:
       - statusCode: default
         description: ''
+  - url: /docs/people/{id}/custom/{folderId}
+    method: uploadEmployeeCustomFolder
+    httpMethod: post
+    tag: Documents
+    typeScriptTag: documents
+    description: Upload a document to an employee's custom folder
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Employee ID.
+        example: ID
+      - name: folderId
+        schema: string
+        required: true
+        description: Folder ID.
+        example: FOLDERID
+      - name: tags
+        schema: array
+        description: ''
+      - name: documentName
+        schema: string
+        description: ''
+      - name: documentUrl
+        schema: string
+        description: ''
+    responses:
+      - statusCode: default
+        description: ''
   - url: /docs/people/{id}/shared/upload
     method: uploadToSharedFolder
     httpMethod: post
@@ -1253,6 +1282,31 @@ methodObjects:
         required: true
         description: employee id
         example: ID
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+    responses:
+      - statusCode: default
+        description: ''
+  - url: /docs/people/{id}/folders/{folderId}/upload
+    method: uploadFileToFolder
+    httpMethod: post
+    tag: Documents
+    typeScriptTag: documents
+    description: Upload a file to an employee's custom folder.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: employee id
+        example: ID
+      - name: folderId
+        schema: string
+        required: true
+        description: folder id
+        example: FOLDERID
       - name: file
         schema: string
         required: true
@@ -1298,6 +1352,31 @@ methodObjects:
         required: true
         description: Document ID.
         example: DOCID
+    responses:
+      - statusCode: default
+        description: ''
+  - url: /docs/people/{id}/folders/{folderId}/{docId}
+    method: deleteSpecificDocument
+    httpMethod: delete
+    tag: Documents
+    typeScriptTag: documents
+    description: Delete a specific document from an employee's custom folder.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Employee ID.
+        example: ID
+      - name: docId
+        schema: string
+        required: true
+        description: Document ID.
+        example: DOCID
+      - name: folderId
+        schema: string
+        required: true
+        description: Folder ID.
+        example: FOLDERID
     responses:
       - statusCode: default
         description: ''
@@ -1821,5 +1900,5 @@ methodObjects:
         description: ''
       - statusCode: default
         description: ''
-numberOfSchemas: 92
+numberOfSchemas: 93
 apiDescription: Access your employees data with the Bob API

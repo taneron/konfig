@@ -1759,6 +1759,44 @@ paths:
       security:
         - Basic: []
       x-codegen-request-body-name: document
+  /docs/people/{id}/custom/{folderId}:
+    post:
+      tags:
+        - Documents
+      summary: Upload a document to an employee's custom folder
+      parameters:
+        - name: id
+          in: path
+          description: Employee ID.
+          required: true
+          schema:
+            type: string
+        - name: folderId
+          in: path
+          description: Folder ID.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Document to upload.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocument'
+        required: true
+      responses:
+        '200':
+          description: Upload success.
+          content: {}
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Basic: []
+      x-codegen-request-body-name: document
   /docs/people/{id}/shared/upload:
     post:
       tags:
@@ -1831,6 +1869,48 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
         - Basic: []
+  /docs/people/{id}/folders/{folderId}/upload:
+    post:
+      tags:
+        - Documents
+      summary: Upload a file to an employee's custom folder.
+      parameters:
+        - name: id
+          in: path
+          description: employee id
+          required: true
+          schema:
+            type: string
+        - name: folderId
+          in: path
+          description: folder id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  description: The file to upload.
+                  format: binary
+        required: true
+      responses:
+        '200':
+          description: Uploaded document ID.
+          content: {}
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Basic: []
   /docs/people/{id}/shared/{docId}:
     delete:
       tags:
@@ -1876,6 +1956,42 @@ paths:
         - name: docId
           in: path
           description: Document ID.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Delete success.
+          content: {}
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Basic: []
+  /docs/people/{id}/folders/{folderId}/{docId}:
+    delete:
+      tags:
+        - Documents
+      summary: Delete a specific document from an employee's custom folder.
+      parameters:
+        - name: id
+          in: path
+          description: Employee ID.
+          required: true
+          schema:
+            type: string
+        - name: docId
+          in: path
+          description: Document ID.
+          required: true
+          schema:
+            type: string
+        - name: folderId
+          in: path
+          description: Folder ID.
           required: true
           schema:
             type: string

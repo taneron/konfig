@@ -1,0 +1,159 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /company/absence-periods:
+    get: Absences_getHourlyPeriods
+    post: Absences_addAbsencePeriodsData
+  /company/absence-periods/{id}:
+    delete: Absences_deletePeriodData
+  /company/attendances:
+    get: Attendances_getList
+    post: Attendances_createMultipleAttendances
+  /company/attendances/projects:
+    get: Projects_getAll
+    post: Projects_createProject
+  /company/attendances/projects/{id}:
+    delete: Projects_deleteProject
+    patch: Projects_updateData
+  /company/attendances/{id}:
+    delete: Attendances_deleteData
+    patch: Attendances_updateAttendanceData
+  /company/custom-reports/columns:
+    get: CustomReports_getColumnLabels
+  /company/custom-reports/reports:
+    get: CustomReports_getMetadata
+  /company/custom-reports/reports/{report_id}:
+    get: CustomReports_getData
+  /company/document-categories:
+    get: Documents_getCategories
+  /company/documents:
+    post: Documents_uploadForEmployees
+  /company/employees:
+    get: Employees_getList
+    post: Employees_createEmployee
+  /company/employees/attributes:
+    get: Employees_listAttributes
+  /company/employees/custom-attributes:
+    get: Employees_getCustomAttributes
+  /company/employees/{employee_id}:
+    get: Employees_showById
+    patch: Employees_updateEmployeeFields
+  /company/employees/{employee_id}/absences/balance:
+    get: Employees_getAbsenceBalance
+  /company/employees/{employee_id}/profile-picture/{width}:
+    get: Employees_showProfilePicture
+  /company/time-off-types:
+    get: Absences_listTimeOffTypes
+  /company/time-offs:
+    get: Absences_getAbsencePeriods
+    post: Absences_addAbsenceData
+  /company/time-offs/{id}:
+    delete: Absences_deleteAbsenceData
+    get: Absences_getAbsencePeriod
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /company/attendances/projects:
+    post:
+      application/json: ProjectsCreateProjectRequest
+  /company/attendances/projects/{id}:
+    patch:
+      application/json: ProjectsUpdateDataRequest
+  /company/employees:
+    post:
+      application/json: EmployeesCreateEmployeeRequest
+      application/x-www-form-urlencoded: EmployeesCreateEmployeeRequest1
+  /company/employees/{employee_id}:
+    patch:
+      application/json: EmployeesUpdateEmployeeFieldsRequest
+      application/x-www-form-urlencoded: EmployeesUpdateEmployeeFieldsRequest1
+responseDescriptions: {}
+responseSchemaNames:
+  /company/absence-periods:
+    post:
+      '201':
+        application/json: AbsencesAddAbsencePeriodsDataResponse
+  /company/attendances/projects:
+    get:
+      '200':
+        application/json: ProjectsGetAllResponse
+    post:
+      '200':
+        application/json: ProjectsCreateProjectResponse
+      '400':
+        application/json: ProjectsCreateProject400Response
+  /company/attendances/projects/{id}:
+    delete:
+      '404':
+        application/json: ProjectsDeleteProjectResponse
+    patch:
+      '200':
+        application/json: ProjectsUpdateDataResponse
+      '400':
+        application/json: ProjectsUpdateData400Response
+      '404':
+        application/json: ProjectsUpdateData404Response
+  /company/employees/attributes:
+    get:
+      '200':
+        application/json: EmployeesListAttributesResponse
+  /company/employees/{employee_id}/profile-picture/{width}:
+    get:
+      '200':
+        image/png: EmployeesShowProfilePictureResponse
+  /company/time-off-types:
+    get:
+      '200':
+        application/json: AbsencesListTimeOffTypesResponse
+  /company/time-offs:
+    post:
+      '200':
+        application/json: AbsencesAddAbsenceDataResponse
+securityParameters:
+  X-Personio-App-ID:
+    header: false
+  X-Personio-Partner-ID:
+    header: false
+  absence_periods[]:
+    query: false
+  absence_types[]:
+    query: false
+  attributes[]:
+    query: false
+  columns:
+    query: false
+  email:
+    query: false
+  employees[]:
+    query: false
+  end_date:
+    query: false
+  includePending:
+    query: false
+  limit:
+    query: false
+  locale:
+    query: false
+  offset:
+    query: false
+  page:
+    query: false
+  report_id:
+    query: false
+  report_ids:
+    query: false
+  skip_approval:
+    query: false
+  start_date:
+    query: false
+  status:
+    query: false
+  updated_from:
+    query: false
+  updated_since:
+    query: false
+  updated_to:
+    query: false
+validServerUrls: {}

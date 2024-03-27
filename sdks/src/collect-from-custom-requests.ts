@@ -928,6 +928,10 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "personio.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/personio/api-docs/master/personio-personnel-data-api-oa3.yaml",
+  },
   "brex.com_Transactions": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
@@ -1575,8 +1579,8 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "paypal.com_Checkout": {
     type: "GET",
-    url: "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/checkout_orders_v2.json"
-  }
+    url: "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/checkout_orders_v2.json",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

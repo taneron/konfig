@@ -14,16 +14,16 @@
   "apiVersion": "1.0.0",
   "apiDescription": "Access your employees data with the Bob API",
   "apiTitle": "Bob API",
-  "endpoints": 67,
-  "sdkMethods": 88,
-  "schemas": 92,
-  "parameters": 199,
+  "endpoints": 70,
+  "sdkMethods": 91,
+  "schemas": 93,
+  "parameters": 210,
   "originalCustomRequest": {
     "lambda": true
   },
   "customRequestSpecFilename": "hibob.com.yaml",
-  "difficultyScore": 180.25,
-  "difficulty": "Medium",
+  "difficultyScore": 186,
+  "difficulty": "Hard",
   "company": "HiBob",
   "sdkName": "hi-bob-{language}-sdk",
   "clientName": "HiBob",
@@ -1821,6 +1821,51 @@
       ]
     },
     {
+      "url": "/docs/people/{id}/custom/{folderId}",
+      "method": "uploadEmployeeCustomFolder",
+      "httpMethod": "post",
+      "tag": "Documents",
+      "typeScriptTag": "documents",
+      "description": "Upload a document to an employee's custom folder",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "Employee ID.",
+          "example": "ID"
+        },
+        {
+          "name": "folderId",
+          "schema": "string",
+          "required": true,
+          "description": "Folder ID.",
+          "example": "FOLDERID"
+        },
+        {
+          "name": "tags",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "documentName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "documentUrl",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
       "url": "/docs/people/{id}/shared/upload",
       "method": "uploadToSharedFolder",
       "httpMethod": "post",
@@ -1864,6 +1909,43 @@
           "required": true,
           "description": "employee id",
           "example": "ID"
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/docs/people/{id}/folders/{folderId}/upload",
+      "method": "uploadFileToFolder",
+      "httpMethod": "post",
+      "tag": "Documents",
+      "typeScriptTag": "documents",
+      "description": "Upload a file to an employee's custom folder.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "employee id",
+          "example": "ID"
+        },
+        {
+          "name": "folderId",
+          "schema": "string",
+          "required": true,
+          "description": "folder id",
+          "example": "FOLDERID"
         },
         {
           "name": "file",
@@ -1931,6 +2013,43 @@
           "required": true,
           "description": "Document ID.",
           "example": "DOCID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/docs/people/{id}/folders/{folderId}/{docId}",
+      "method": "deleteSpecificDocument",
+      "httpMethod": "delete",
+      "tag": "Documents",
+      "typeScriptTag": "documents",
+      "description": "Delete a specific document from an employee's custom folder.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "Employee ID.",
+          "example": "ID"
+        },
+        {
+          "name": "docId",
+          "schema": "string",
+          "required": true,
+          "description": "Document ID.",
+          "example": "DOCID"
+        },
+        {
+          "name": "folderId",
+          "schema": "string",
+          "required": true,
+          "description": "Folder ID.",
+          "example": "FOLDERID"
         }
       ],
       "responses": [
@@ -2700,7 +2819,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/favicon.png",
   "clientNameCamelCase": "hiBob",
-  "lastUpdated": "2024-03-26T06:56:00.998Z",
+  "lastUpdated": "2024-03-27T16:12:23.868Z",
   "typescriptSdkUsageCode": "import { HiBob } from 'hi-bob-typescript-sdk';\n\nconst hiBob = new HiBob({\n    bearer: \"AUTHORIZATION\",\n    username: \"USERNAME\",\n    password: \"PASSWORD\"\n})",
   "typescriptSdkFirstRequestCode": "// Search for employees\nconst searchEmployeesResponse = hiBob.people.searchEmployees({\n    fields: [\"root.id\",\"root.firstName\",\"root.surname\",\"root.email\",\"work.site\",\"work.department\"]\n})",
   "fixedSpecFileName": "hi-bob-fixed-spec.yaml"
