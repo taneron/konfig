@@ -1900,6 +1900,14 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "fountain.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.fountain.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "tripadd.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

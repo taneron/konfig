@@ -1,0 +1,384 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v2/openings/workflow_reassignment:
+    post: Openings_reassignToWorkflow
+  /api/v2/workflows:
+    get: Workflows_getAllWorkflows
+  /api/v2/workflows/{id}:
+    delete: Workflows_deleteWorkflow
+  /v2/applicants:
+    get: Applicants_listAll
+    post: Applicants_createNewApplicant
+  /v2/applicants/advance:
+    post: Applicants_bulkAdvanceMultiple
+  /v2/applicants/booked_slots:
+    post: Applicants_bulkInterviewSessions
+  /v2/applicants/transitions:
+    post: Applicants_bulkTransitionHistory
+  /v2/applicants/{id}:
+    delete: Applicants_deleteById
+    get: Applicants_getInfo
+    put: Applicants_updateInfo
+  /v2/applicants/{id}/advance:
+    put: Applicants_advanceApplicant
+  /v2/applicants/{id}/booked_slots:
+    get: Applicants_getInterviewSessions
+  /v2/applicants/{id}/labels:
+    get: Labels_listForApplicant
+  /v2/applicants/{id}/labels/{title}:
+    put: Labels_updateForApplicant
+  /v2/applicants/{id}/notes:
+    get: Notes_getApplicant
+    post: Notes_createApplicantNote
+  /v2/applicants/{id}/notes/{note_id}:
+    delete: Notes_deleteApplicantNote
+    put: Notes_updateApplicantNote
+  /v2/applicants/{id}/secure_documents:
+    get: Applicants_getSecureDocuments
+  /v2/applicants/{id}/secure_documents/link_upload:
+    post: Applicants_linkUpload
+  /v2/applicants/{id}/secure_documents/upload:
+    post: Applicants_uploadSecureDocumentToS3
+  /v2/applicants/{id}/transitions:
+    get: Applicants_getTransitionHistory
+  /v2/available_slots:
+    post: CalendarSlots_createNewAvailable
+  /v2/available_slots/{id}:
+    delete: CalendarSlots_destroyById
+  /v2/available_slots/{id}/confirm:
+    post: CalendarSlots_confirmBooking
+  /v2/booked_slots/{id}/cancel:
+    post: CalendarSlots_cancelSlot
+  /v2/data_keys:
+    get: DataKeys_list
+  /v2/exports:
+    get: ExportManagement_listCustomExports
+    post: ExportManagement_createCustomExport
+  /v2/exports/templates:
+    get: ExportManagement_listCustomTemplates
+  /v2/exports/{id}:
+    get: ExportManagement_downloadCustomExport
+  /v2/funnels:
+    get: OpeningsAndStages_listAll
+    post: OpeningsAndStages_createOpening
+  /v2/funnels/{funnel_id}/stages:
+    get: OpeningsAndStages_listOpeningStages
+  /v2/funnels/{id}:
+    delete: OpeningsAndStages_deleteOpening
+    get: OpeningsAndStages_getOpeningById
+    put: OpeningsAndStages_updateOpening
+  /v2/hiring_goals:
+    get: HiringGoals_listGoals
+    post: HiringGoals_createNewGoal
+  /v2/hiring_goals/{id}:
+    delete: HiringGoals_deleteGoal
+    put: HiringGoals_updateExistingGoal
+  /v2/location_groups:
+    get: LocationsAndLocationGroups_list
+    post: LocationsAndLocationGroups_createLocationGroup
+  /v2/location_groups/{id}:
+    delete: LocationsAndLocationGroups_deleteLocationGroup
+    get: LocationsAndLocationGroups_getLocationGroup
+    put: LocationsAndLocationGroups_updateLocationGroup
+  /v2/locations:
+    get: LocationsAndLocationGroups_listLocations
+    post: LocationsAndLocationGroups_createNewLocation
+  /v2/locations/{id}:
+    delete: LocationsAndLocationGroups_deleteLocation
+    get: LocationsAndLocationGroups_getLocationById
+    put: LocationsAndLocationGroups_updateLocation
+  /v2/option_banks/:
+    get: OptionBank_listAllBanks
+    post: OptionBank_createApplicantNotes
+  /v2/option_banks/{id}:
+    delete: OptionBank_deleteBank
+    get: OptionBank_getOptionBankById
+    put: OptionBank_replaceBank
+  /v2/option_banks/{id}/append:
+    put: OptionBank_appendOption
+  /v2/option_banks/{id}/remove:
+    delete: OptionBank_removeOption
+  /v2/positions:
+    get: Positions_listAll
+    post: Positions_createNewPosition
+  /v2/positions/{id}:
+    delete: Positions_deletePosition
+    get: Positions_getById
+    put: Positions_updateExistingPosition
+  /v2/sessions:
+    get: CalendarSlots_listBooked
+  /v2/shifts:
+    get: Shifts_listShifts
+  /v2/stages/{id}:
+    get: OpeningsAndStages_getStage
+  /v2/stages/{id}/available_slots:
+    get: CalendarSlots_getAvailableSlots
+  /v2/stages/{stage_id}/labels:
+    get: Labels_listInStage
+  /v2/timestamped_exports:
+    get: ExportManagement_listAllTimestampedExports
+    post: ExportManagement_createTimestampedExports
+  /v2/timestamped_exports/templates:
+    get: ExportManagement_listTimestampedExportTemplates
+  /v2/timestamped_exports/{id}:
+    get: ExportManagement_downloadTimestampedExport
+  /v2/user_activities/{id}:
+    get: Users_getActivities
+  /v2/users:
+    get: Users_listAccessedAll
+  /v2/workers:
+    get: PosthireWorkerManagement_listWorkers
+  /v2/workers/{id}:
+    get: PosthireWorkerManagement_getWorkerData
+    patch: PosthireWorkerManagement_updateWorker
+  /v2/workers/{id}/activate:
+    post: PosthireWorkerManagement_activateWorker
+  /v2/workers/{id}/deactivate:
+    post: PosthireWorkerManagement_deactivateWorker
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v2/openings/workflow_reassignment:
+    post:
+      application/json: OpeningsReassignToWorkflowRequest
+  /v2/applicants/advance:
+    post:
+      application/json: ApplicantsBulkAdvanceMultipleRequest
+  /v2/applicants/booked_slots:
+    post:
+      application/json: ApplicantsBulkInterviewSessionsRequest
+  /v2/applicants/transitions:
+    post:
+      application/json: ApplicantsBulkTransitionHistoryRequest
+  /v2/applicants/{id}:
+    put:
+      application/json: ApplicantsUpdateInfoRequest
+  /v2/applicants/{id}/advance:
+    put:
+      application/json: ApplicantsAdvanceApplicantRequest
+  /v2/applicants/{id}/secure_documents/link_upload:
+    post:
+      application/json: ApplicantsLinkUploadRequest
+  /v2/applicants/{id}/secure_documents/upload:
+    post:
+      application/json: ApplicantsUploadSecureDocumentToS3Request
+  /v2/available_slots:
+    post:
+      application/json: CalendarSlotsCreateNewAvailableRequest
+  /v2/funnels:
+    post:
+      application/json: OpeningsAndStagesCreateOpeningRequest
+  /v2/funnels/{id}:
+    put:
+      application/json: OpeningsAndStagesUpdateOpeningRequest
+  /v2/hiring_goals:
+    post:
+      application/json: HiringGoalsCreateNewGoalRequest
+  /v2/hiring_goals/{id}:
+    put:
+      application/json: HiringGoalsUpdateExistingGoalRequest
+  /v2/location_groups:
+    post:
+      application/json: LocationsAndLocationGroupsCreateLocationGroupRequest
+  /v2/location_groups/{id}:
+    put:
+      application/json: LocationsAndLocationGroupsUpdateLocationGroupRequest
+  /v2/positions:
+    post:
+      application/json: PositionsCreateNewPositionRequest
+  /v2/positions/{id}:
+    put:
+      application/json: PositionsUpdateExistingPositionRequest
+  /v2/workers/{id}:
+    patch:
+      application/json: PosthireWorkerManagementUpdateWorkerRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/applicants/{id}:
+    delete:
+      '204':
+        application/json: ApplicantsDeleteByIdResponse
+  /v2/applicants/{id}/notes/{note_id}:
+    delete:
+      '200':
+        application/json: NotesDeleteApplicantNoteResponse
+  /v2/available_slots:
+    post:
+      '201':
+        application/json: CalendarSlotsCreateNewAvailableResponse
+  /v2/available_slots/{id}:
+    delete:
+      '200':
+        application/json: CalendarSlotsDestroyByIdResponse
+  /v2/data_keys:
+    get:
+      '200':
+        application/json: DataKeysListResponse
+  /v2/funnels:
+    get:
+      '200':
+        application/json: OpeningsAndStagesListAllResponse
+  /v2/funnels/{funnel_id}/stages:
+    get:
+      '200':
+        application/json: OpeningsAndStagesListOpeningStagesResponse
+  /v2/hiring_goals:
+    get:
+      '200':
+        application/json: HiringGoalsListGoalsResponse
+  /v2/location_groups:
+    get:
+      '200':
+        application/json: LocationsAndLocationGroupsListResponse
+  /v2/locations:
+    get:
+      '200':
+        application/json: LocationsAndLocationGroupsListLocationsResponse
+  /v2/option_banks/{id}:
+    delete:
+      '204':
+        application/json: OptionBankDeleteBankResponse
+  /v2/option_banks/{id}/append:
+    put:
+      '200':
+        application/json: OptionBankAppendOptionResponse
+  /v2/option_banks/{id}/remove:
+    delete:
+      '200':
+        application/json: OptionBankRemoveOptionResponse
+  /v2/positions:
+    get:
+      '200':
+        application/json: PositionsListAllResponse
+  /v2/sessions:
+    get:
+      '200':
+        application/json: CalendarSlotsListBookedResponse
+  /v2/shifts:
+    get:
+      '200':
+        application/json: ShiftsListShiftsResponse
+  /v2/stages/{id}/available_slots:
+    get:
+      '200':
+        application/json: CalendarSlotsGetAvailableSlotsResponse
+  /v2/user_activities/{id}:
+    get:
+      '200':
+        application/json: UsersGetActivitiesResponse
+  /v2/users:
+    get:
+      '200':
+        application/json: UsersListAccessedAllResponse
+  /v2/workers:
+    get:
+      '200':
+        application/json: PosthireWorkerManagementListWorkersResponse
+  /v2/workers/{id}:
+    get:
+      '200':
+        application/json: PosthireWorkerManagementGetWorkerDataResponse
+    patch:
+      '200':
+        application/json: PosthireWorkerManagementUpdateWorkerResponse
+securityParameters:
+  active:
+    query: false
+  activity_type:
+    query: false
+  applicant_id:
+    query: false
+  brand_name:
+    query: false
+  completed:
+    query: false
+  completed_at:
+    query: false
+  created_at:
+    query: false
+  current:
+    query: false
+  cursor:
+    query: false
+  custom_data_field[key]:
+    query: false
+  custom_data_field[value]:
+    query: false
+  delete_all_siblings:
+    query: false
+  end_time:
+    query: false
+  funnel_id:
+    query: false
+  is_active:
+    query: false
+  labels:
+    query: false
+  last_transitioned_at:
+    query: false
+  location_address:
+    query: false
+  location_group_name:
+    query: false
+  location_id:
+    query: false
+  location_name:
+    query: false
+  open:
+    query: false
+  opening_id:
+    query: false
+  options:
+    query: false
+  page:
+    query: false
+  past:
+    query: false
+  per_page:
+    query: false
+  query:
+    query: false
+  shift_days[]:
+    query: false
+  shift_end_time:
+    query: false
+  shift_name:
+    query: false
+  shift_start_time:
+    query: false
+  sort_by:
+    query: false
+  sort_direction:
+    query: false
+  sourcing_purchase_type:
+    query: false
+  stage:
+    query: false
+  stage_id:
+    query: false
+  start_time:
+    query: false
+  status:
+    query: false
+  template_id:
+    query: false
+  time:
+    query: false
+  title:
+    query: false
+  updated_at:
+    query: false
+  updated_at_gt:
+    query: false
+  updated_at_lt:
+    query: false
+  user_openings:
+    query: false
+  with_unbooked:
+    query: false
+  workflow_id:
+    query: false
+validServerUrls: {}
