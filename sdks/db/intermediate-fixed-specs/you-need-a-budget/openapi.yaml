@@ -845,7 +845,7 @@ paths:
       tags:
         - Transactions
       summary: List transactions
-      description: Returns budget transactions
+      description: Returns budget transactions, excluding any pending transactions
       operationId: getTransactions
       parameters:
         - name: budget_id
@@ -1178,7 +1178,9 @@ paths:
       tags:
         - Transactions
       summary: List account transactions
-      description: Returns all transactions for a specified account
+      description: >-
+        Returns all transactions for a specified account, excluding any pending
+        transactions
       operationId: getTransactionsByAccount
       parameters:
         - name: budget_id
@@ -1245,7 +1247,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: List category transactions
+      summary: List category transactions, excluding any pending transactions
       description: Returns all transactions for a specified category
       operationId: getTransactionsByCategory
       parameters:
@@ -1313,7 +1315,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: List payee transactions
+      summary: List payee transactions, excluding any pending transactions
       description: Returns all transactions for a specified payee
       operationId: getTransactionsByPayee
       parameters:

@@ -1,6 +1,6 @@
-hash: 7e8f06a6332849bdfd6870161ffd5aa49fc1292ef3cd7c78d5d5acba38f1dbbf
+hash: 42490a562d8eef4c9cc37b948036f9879492b040fb602c1e3a782c96ed39174d
 methodObjects:
-  - url: /api/v4/groups/{id}/badges/{badge_id}
+  - url: /groups/{id}/badges/{badge_id}
     method: removeFromGroup
     httpMethod: delete
     tag: badges
@@ -20,7 +20,7 @@ methodObjects:
         description: The badge ID
         example: 0
     responses: []
-  - url: /api/v4/groups/{id}/badges/{badge_id}
+  - url: /groups/{id}/badges/{badge_id}
     method: getGroupBadge
     httpMethod: get
     tag: badges
@@ -42,7 +42,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Badge model
-  - url: /api/v4/groups/{id}/badges/{badge_id}
+  - url: /groups/{id}/badges/{badge_id}
     method: updateGroupBadge
     httpMethod: put
     tag: badges
@@ -73,8 +73,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Badge model
-  - url: /api/v4/groups/{id}/badges
-    method: getList
+  - url: /groups/{id}/badges
+    method: listViewableByAuthenticatedUser
     httpMethod: get
     tag: badges
     typeScriptTag: badges
@@ -101,8 +101,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/groups/{id}/badges
-    method: addBadgeToGroup
+  - url: /groups/{id}/badges
+    method: addToGroup
     httpMethod: post
     tag: badges
     typeScriptTag: badges
@@ -132,8 +132,8 @@ methodObjects:
     responses:
       - statusCode: '201'
         description: API_Entities_Badge model
-  - url: /api/v4/groups/{id}/badges/render
-    method: previewBadgeFromGroup
+  - url: /groups/{id}/badges/render
+    method: previewFromGroup
     httpMethod: get
     tag: badges
     typeScriptTag: badges
@@ -159,8 +159,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BasicBadgeDetails model
-  - url: /api/v4/groups/{id}/access_requests/{user_id}
-    method: denyAccessToUser
+  - url: /groups/{id}/access_requests/{user_id}
+    method: denyAccessRequest
     httpMethod: delete
     tag: access_requests
     typeScriptTag: accessRequests
@@ -179,8 +179,8 @@ methodObjects:
         description: The user ID of the access requester
         example: 0
     responses: []
-  - url: /api/v4/groups/{id}/access_requests/{user_id}/approve
-    method: approveForUser
+  - url: /groups/{id}/access_requests/{user_id}/approve
+    method: approveUserAccess
     httpMethod: put
     tag: access_requests
     typeScriptTag: accessRequests
@@ -205,8 +205,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_AccessRequester model
-  - url: /api/v4/groups/{id}/access_requests
-    method: getList
+  - url: /groups/{id}/access_requests
+    method: getListForGroup
     httpMethod: get
     tag: access_requests
     typeScriptTag: accessRequests
@@ -230,8 +230,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_AccessRequester model
-  - url: /api/v4/groups/{id}/access_requests
-    method: requestAccessToGroup
+  - url: /groups/{id}/access_requests
+    method: authenticateUserToGroup
     httpMethod: post
     tag: access_requests
     typeScriptTag: accessRequests
@@ -247,8 +247,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_AccessRequester model
-  - url: /api/v4/projects/{id}/repository/merged_branches
-    method: deleteMerged
+  - url: /projects/{id}/repository/merged_branches
+    method: removeMergedBranches
     httpMethod: delete
     tag: branches
     typeScriptTag: branches
@@ -260,7 +260,7 @@ methodObjects:
         description: The ID or URL-encoded path of the project
         example: ID
     responses: []
-  - url: /api/v4/projects/{id}/repository/branches/{branch}
+  - url: /projects/{id}/repository/branches/{branch}
     method: deleteBranch
     httpMethod: delete
     tag: branches
@@ -278,7 +278,7 @@ methodObjects:
         description: The name of the branch
         example: BRANCH
     responses: []
-  - url: /api/v4/projects/{id}/repository/branches/{branch}
+  - url: /projects/{id}/repository/branches/{branch}
     method: getSingleBranch
     httpMethod: get
     tag: branches
@@ -298,8 +298,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Branch model
-  - url: /api/v4/projects/{id}/repository/branches/{branch}
-    method: checkIfExists
+  - url: /projects/{id}/repository/branches/{branch}
+    method: checkExistence
     httpMethod: head
     tag: branches
     typeScriptTag: branches
@@ -316,8 +316,8 @@ methodObjects:
         description: The name of the branch
         example: BRANCH
     responses: []
-  - url: /api/v4/projects/{id}/repository/branches
-    method: getAll
+  - url: /projects/{id}/repository/branches
+    method: getProjectRepository
     httpMethod: get
     tag: branches
     typeScriptTag: branches
@@ -351,7 +351,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/projects/{id}/repository/branches
+  - url: /projects/{id}/repository/branches
     method: createBranch
     httpMethod: post
     tag: branches
@@ -376,7 +376,7 @@ methodObjects:
     responses:
       - statusCode: '201'
         description: API_Entities_Branch model
-  - url: /api/v4/projects/{id}/repository/branches/{branch}/unprotect
+  - url: /projects/{id}/repository/branches/{branch}/unprotect
     method: unprotectBranch
     httpMethod: put
     tag: branches
@@ -396,7 +396,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Branch model
-  - url: /api/v4/projects/{id}/repository/branches/{branch}/protect
+  - url: /projects/{id}/repository/branches/{branch}/protect
     method: protectBranch
     httpMethod: put
     tag: branches
@@ -422,7 +422,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Branch model
-  - url: /api/v4/projects/{id}/badges/{badge_id}
+  - url: /projects/{id}/badges/{badge_id}
     method: removeFromProject
     httpMethod: delete
     tag: badges
@@ -442,7 +442,7 @@ methodObjects:
         description: The badge ID
         example: 0
     responses: []
-  - url: /api/v4/projects/{id}/badges/{badge_id}
+  - url: /projects/{id}/badges/{badge_id}
     method: getProjectBadge
     httpMethod: get
     tag: badges
@@ -464,7 +464,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Badge model
-  - url: /api/v4/projects/{id}/badges/{badge_id}
+  - url: /projects/{id}/badges/{badge_id}
     method: updateProjectBadge
     httpMethod: put
     tag: badges
@@ -495,7 +495,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Badge model
-  - url: /api/v4/projects/{id}/badges
+  - url: /projects/{id}/badges
     method: listViewableByAuthenticatedUser
     httpMethod: get
     tag: badges
@@ -523,8 +523,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/projects/{id}/badges
-    method: addProjectBadge
+  - url: /projects/{id}/badges
+    method: addToProject
     httpMethod: post
     tag: badges
     typeScriptTag: badges
@@ -554,8 +554,8 @@ methodObjects:
     responses:
       - statusCode: '201'
         description: API_Entities_Badge model
-  - url: /api/v4/projects/{id}/badges/render
-    method: renderPreviewFromProject
+  - url: /projects/{id}/badges/render
+    method: previewFromProject
     httpMethod: get
     tag: badges
     typeScriptTag: badges
@@ -581,8 +581,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BasicBadgeDetails model
-  - url: /api/v4/projects/{id}/access_requests/{user_id}
-    method: denyAccessToUser
+  - url: /projects/{id}/access_requests/{user_id}
+    method: denyAccessRequest
     httpMethod: delete
     tag: access_requests
     typeScriptTag: accessRequests
@@ -601,8 +601,8 @@ methodObjects:
         description: The user ID of the access requester
         example: 0
     responses: []
-  - url: /api/v4/projects/{id}/access_requests/{user_id}/approve
-    method: approveForUser
+  - url: /projects/{id}/access_requests/{user_id}/approve
+    method: approveUserAccess
     httpMethod: put
     tag: access_requests
     typeScriptTag: accessRequests
@@ -627,8 +627,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_AccessRequester model
-  - url: /api/v4/projects/{id}/access_requests
-    method: getList
+  - url: /projects/{id}/access_requests
+    method: listForProject
     httpMethod: get
     tag: access_requests
     typeScriptTag: accessRequests
@@ -652,7 +652,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_AccessRequester model
-  - url: /api/v4/projects/{id}/access_requests
+  - url: /projects/{id}/access_requests
     method: requestAccessToProject
     httpMethod: post
     tag: access_requests
@@ -670,7 +670,7 @@ methodObjects:
       - statusCode: '200'
         description: API_Entities_AccessRequester model
   - url: >-
-      /api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}
+      /projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}
     method: removeMetricImage
     httpMethod: delete
     tag: alert_management
@@ -696,8 +696,8 @@ methodObjects:
       - statusCode: '204'
         description: API_Entities_MetricImage model
   - url: >-
-      /api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}
-    method: updateMetricImage
+      /projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}
+    method: updateMetricImageForAlert
     httpMethod: put
     tag: alert_management
     typeScriptTag: alertManagement
@@ -727,8 +727,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_MetricImage model
-  - url: /api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images
-    method: getMetricImagesForAlert
+  - url: /projects/{id}/alert_management_alerts/{alert_iid}/metric_images
+    method: getMetricImages
     httpMethod: get
     tag: alert_management
     typeScriptTag: alertManagement
@@ -747,8 +747,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images
-    method: uploadMetricImage
+  - url: /projects/{id}/alert_management_alerts/{alert_iid}/metric_images
+    method: uploadMetricImageForAlert
     httpMethod: post
     tag: alert_management
     typeScriptTag: alertManagement
@@ -780,9 +780,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_MetricImage model
-  - url: >-
-      /api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/authorize
-    method: authorizeMetricImageUpload
+  - url: /projects/{id}/alert_management_alerts/{alert_iid}/metric_images/authorize
+    method: authorizeMetricImageFileUpload
     httpMethod: post
     tag: alert_management
     typeScriptTag: alertManagement
@@ -799,7 +798,7 @@ methodObjects:
         description: The IID of the Alert
         example: 0
     responses: []
-  - url: /api/v4/admin/batched_background_migrations/{id}
+  - url: /admin/batched_background_migrations/{id}
     method: getMigration
     httpMethod: get
     tag: batched_background_migrations
@@ -818,8 +817,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BatchedBackgroundMigration model
-  - url: /api/v4/admin/batched_background_migrations
-    method: list
+  - url: /admin/batched_background_migrations
+    method: listMigrations
     httpMethod: get
     tag: batched_background_migrations
     typeScriptTag: batchedBackgroundMigrations
@@ -832,7 +831,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/admin/batched_background_migrations/{id}/resume
+  - url: /admin/batched_background_migrations/{id}/resume
     method: resumeMigration
     httpMethod: put
     tag: batched_background_migrations
@@ -851,7 +850,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BatchedBackgroundMigration model
-  - url: /api/v4/admin/batched_background_migrations/{id}/pause
+  - url: /admin/batched_background_migrations/{id}/pause
     method: pauseMigration
     httpMethod: put
     tag: batched_background_migrations
@@ -870,7 +869,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BatchedBackgroundMigration model
-  - url: /api/v4/admin/ci/variables/{key}
+  - url: /admin/ci/variables/{key}
     method: deleteInstanceVariable
     httpMethod: delete
     tag: ci_variables
@@ -885,8 +884,8 @@ methodObjects:
     responses:
       - statusCode: '204'
         description: API_Entities_Ci_Variable model
-  - url: /api/v4/admin/ci/variables/{key}
-    method: getSpecificInstanceVariable
+  - url: /admin/ci/variables/{key}
+    method: getInstanceVariableDetails
     httpMethod: get
     tag: ci_variables
     typeScriptTag: ciVariables
@@ -900,7 +899,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Ci_Variable model
-  - url: /api/v4/admin/ci/variables/{key}
+  - url: /admin/ci/variables/{key}
     method: updateInstanceVariable
     httpMethod: put
     tag: ci_variables
@@ -930,8 +929,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Ci_Variable model
-  - url: /api/v4/admin/ci/variables
-    method: listInstanceVariables
+  - url: /admin/ci/variables
+    method: listAllInstanceVariables
     httpMethod: get
     tag: ci_variables
     typeScriptTag: ciVariables
@@ -948,8 +947,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Ci_Variable model
-  - url: /api/v4/admin/ci/variables
-    method: createNewInstanceVariable
+  - url: /admin/ci/variables
+    method: createNewInstanceLevelVariable
     httpMethod: post
     tag: ci_variables
     typeScriptTag: ciVariables
@@ -984,7 +983,7 @@ methodObjects:
     responses:
       - statusCode: '201'
         description: API_Entities_Ci_Variable model
-  - url: /api/v4/admin/databases/{database_name}/dictionary/tables/{table_name}
+  - url: /admin/databases/{database_name}/dictionary/tables/{table_name}
     method: getDictionaryDetails
     httpMethod: get
     tag: admin
@@ -1004,7 +1003,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Dictionary_Table model
-  - url: /api/v4/admin/clusters/{cluster_id}
+  - url: /admin/clusters/{cluster_id}
     method: deleteInstanceCluster
     httpMethod: delete
     tag: clusters
@@ -1019,8 +1018,8 @@ methodObjects:
     responses:
       - statusCode: '204'
         description: API_Entities_Cluster model
-  - url: /api/v4/admin/clusters/{cluster_id}
-    method: getSingleInstanceCluster
+  - url: /admin/clusters/{cluster_id}
+    method: getSingleInstance
     httpMethod: get
     tag: clusters
     typeScriptTag: clusters
@@ -1034,7 +1033,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Cluster model
-  - url: /api/v4/admin/clusters/{cluster_id}
+  - url: /admin/clusters/{cluster_id}
     method: updateInstanceCluster
     httpMethod: put
     tag: clusters
@@ -1083,8 +1082,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Cluster model
-  - url: /api/v4/admin/clusters/add
-    method: addExistingKubernetesInstanceCluster
+  - url: /admin/clusters/add
+    method: addExistingInstance
     httpMethod: post
     tag: clusters
     typeScriptTag: clusters
@@ -1149,7 +1148,7 @@ methodObjects:
     responses:
       - statusCode: '201'
         description: API_Entities_Cluster model
-  - url: /api/v4/admin/clusters
+  - url: /admin/clusters
     method: listInstanceClusters
     httpMethod: get
     tag: clusters
@@ -1159,7 +1158,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/admin/migrations/{timestamp}/mark
+  - url: /admin/migrations/{timestamp}/mark
     method: markAsExecuted
     httpMethod: post
     tag: migrations
@@ -1176,8 +1175,8 @@ methodObjects:
         description: ''
         default: main
     responses: []
-  - url: /api/v4/applications/{id}
-    method: deleteSpecificApplication
+  - url: /applications/{id}
+    method: removeSpecificApplication
     httpMethod: delete
     tag: applications
     typeScriptTag: applications
@@ -1189,7 +1188,7 @@ methodObjects:
         description: The ID of the application (not the application_id)
         example: 0
     responses: []
-  - url: /api/v4/applications
+  - url: /applications
     method: listAllRegistered
     httpMethod: get
     tag: applications
@@ -1199,7 +1198,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/applications
+  - url: /applications
     method: createNewApplication
     httpMethod: post
     tag: applications
@@ -1229,8 +1228,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_ApplicationWithSecret model
-  - url: /api/v4/avatar
-    method: getUrlForUser
+  - url: /avatar
+    method: getUserAvatarUrl
     httpMethod: get
     tag: avatar
     typeScriptTag: avatar
@@ -1247,7 +1246,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Avatar model
-  - url: /api/v4/broadcast_messages/{id}
+  - url: /broadcast_messages/{id}
     method: deleteMessage
     httpMethod: delete
     tag: broadcast_messages
@@ -1262,7 +1261,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BroadcastMessage model
-  - url: /api/v4/broadcast_messages/{id}
+  - url: /broadcast_messages/{id}
     method: getSpecificMessage
     httpMethod: get
     tag: broadcast_messages
@@ -1277,8 +1276,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BroadcastMessage model
-  - url: /api/v4/broadcast_messages/{id}
-    method: updateMessage
+  - url: /broadcast_messages/{id}
+    method: updateMessageById
     httpMethod: put
     tag: broadcast_messages
     typeScriptTag: broadcastMessages
@@ -1319,8 +1318,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BroadcastMessage model
-  - url: /api/v4/broadcast_messages
-    method: listAll
+  - url: /broadcast_messages
+    method: getAllMessages
     httpMethod: get
     tag: broadcast_messages
     typeScriptTag: broadcastMessages
@@ -1337,7 +1336,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BroadcastMessage model
-  - url: /api/v4/broadcast_messages
+  - url: /broadcast_messages
     method: createMessage
     httpMethod: post
     tag: broadcast_messages
@@ -1384,7 +1383,7 @@ methodObjects:
     responses:
       - statusCode: '201'
         description: API_Entities_BroadcastMessage model
-  - url: /api/v4/bulk_imports/{import_id}/entities/{entity_id}
+  - url: /bulk_imports/{import_id}/entities/{entity_id}
     method: getEntityDetails
     httpMethod: get
     tag: bulk_imports
@@ -1404,7 +1403,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BulkImports model
-  - url: /api/v4/bulk_imports/{import_id}/entities
+  - url: /bulk_imports/{import_id}/entities
     method: listEntities
     httpMethod: get
     tag: bulk_imports
@@ -1430,7 +1429,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/bulk_imports/{import_id}
+  - url: /bulk_imports/{import_id}
     method: getMigrationDetails
     httpMethod: get
     tag: bulk_imports
@@ -1445,7 +1444,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BulkImport model
-  - url: /api/v4/bulk_imports/entities
+  - url: /bulk_imports/entities
     method: listEntities
     httpMethod: get
     tag: bulk_imports
@@ -1470,7 +1469,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/bulk_imports
+  - url: /bulk_imports
     method: listMigrations
     httpMethod: get
     tag: bulk_imports
@@ -1495,8 +1494,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/bulk_imports
-    method: startNewMigration
+  - url: /bulk_imports
+    method: startMigration
     httpMethod: post
     tag: bulk_imports
     typeScriptTag: bulkImports
@@ -1539,7 +1538,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_BulkImport model
-  - url: /api/v4/application/appearance
+  - url: /application/appearance
     method: getCurrentAppearance
     httpMethod: get
     tag: application
@@ -1549,7 +1548,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Appearance model
-  - url: /api/v4/application/appearance
+  - url: /application/appearance
     method: modifyAppearance
     httpMethod: put
     tag: application
@@ -1607,7 +1606,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Appearance model
-  - url: /api/v4/application/plan_limits
+  - url: /application/plan_limits
     method: getCurrentLimits
     httpMethod: get
     tag: plan_limits
@@ -1621,8 +1620,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_PlanLimit model
-  - url: /api/v4/application/plan_limits
-    method: modifyLimits
+  - url: /application/plan_limits
+    method: modifyPlanLimits
     httpMethod: put
     tag: plan_limits
     typeScriptTag: planLimits
@@ -1712,7 +1711,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_PlanLimit model
-  - url: /api/v4/metadata
+  - url: /metadata
     method: getInformation
     httpMethod: get
     tag: metadata
@@ -1722,8 +1721,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Metadata model
-  - url: /api/v4/version
-    method: getVersionInformation
+  - url: /version
+    method: getVersionInfo
     httpMethod: get
     tag: metadata
     typeScriptTag: metadata
@@ -1732,7 +1731,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Metadata model
-  - url: /api/v4/projects/{id}/jobs
+  - url: /projects/{id}/jobs
     method: listForProject
     httpMethod: get
     tag: jobs
@@ -1751,8 +1750,8 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-  - url: /api/v4/projects/{id}/jobs/{job_id}
-    method: getSingleById
+  - url: /projects/{id}/jobs/{job_id}
+    method: getById
     httpMethod: get
     tag: jobs
     typeScriptTag: jobs
@@ -1771,7 +1770,7 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: API_Entities_Job model
-  - url: /api/v4/projects/{id}/jobs/{job_id}/play
+  - url: /projects/{id}/jobs/{job_id}/play
     method: runManualJob
     httpMethod: post
     tag: jobs

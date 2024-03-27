@@ -501,6 +501,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://developers.pipedrive.com/docs/api/v1/openapi.yaml",
   },
+  "salesflare.com": {
+    type: "GET",
+    url: "https://api.salesflare.com/openapi.json",
+  },
   "pipelinersales.com": {
     type: "GET",
     url: "https://stoplight.io/api/v1/projects/pipeliner/api-docs/nodes/openapi.json?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
@@ -1796,7 +1800,7 @@ const customRequests: Record<string, CustomRequest> = {
   "echelonpro.io": {
     type: "GET",
     url: "https://developers.echelonpay.com/api/_static/openapi.yaml",
-  }
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

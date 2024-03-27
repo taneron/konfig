@@ -1,0 +1,497 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /accounts:
+    get: Accounts_listAccounts
+    post: Accounts_createAccount
+  /calls:
+    post: Calls_createCall
+  /campaigns/mergefields:
+    get: Workflows_getMergeFields
+  /contacts:
+    get: Contacts_listContacts
+    post: Contacts_createContact
+  /currencies:
+    get: RegionalSettings_listSupportedCurrencies
+  /customfields/types:
+    get: CustomFields_listTypes
+  /customfields/{itemClass}:
+    get: CustomFields_listTypeCustomFields
+    post: CustomFields_createFieldType
+  /customfields/{itemClass}/{customFieldApiField}/options:
+    get: CustomFields_listOptions
+  /customfields/{itemClass}/{id}:
+    delete: CustomFields_deleteCustomField
+    get: CustomFields_getDetails
+    put: CustomFields_updateField
+  /datasources/email:
+    get: EmailDataSources_list
+  /datasources/email/{id}:
+    put: EmailDataSources_updateDataSource
+  /filterfields/{entity}:
+    get: FilterFields_listForEntity
+  /groups:
+    get: Groups_list
+  /groups/{id}:
+    get: Groups_getById
+  /me:
+    get: Users_getCurrentUserDetails
+  /me/contacts:
+    get: Users_listContacts
+  /meetings:
+    post: Meetings_createMeeting
+  /messages:
+    post: InternalNotes_createNote
+  /opportunities:
+    get: Opportunities_list
+    post: Opportunities_createOpportunity
+  /opportunities/{id}:
+    delete: Opportunities_removeOpportunity
+    get: Opportunities_getDetails
+    put: Opportunities_updateOpportunity
+  /persons:
+    get: Persons_list
+  /pipelines:
+    get: Pipelines_list
+  /stages:
+    get: Pipelines_listStages
+  /tags:
+    get: Tags_list
+    post: Tags_createTag
+  /tasks:
+    get: Tasks_listTasks
+    post: Tasks_createTask
+  /tasks/{id}:
+    delete: Tasks_deleteTask
+    put: Tasks_updateTask
+  /users:
+    get: Users_list
+  /users/{id}:
+    get: Users_getUserDetails
+  /workflows:
+    get: Workflows_list
+    post: Workflows_createWorkflow
+  /workflows/{id}:
+    get: Workflows_getDetails
+    put: Workflows_updateWorkflow
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /accounts:
+    post:
+      application/json: AccountsCreateAccountRequest
+  /accounts/{account_id}:
+    put:
+      application/json: PutAccountsAccountIdRequest
+  /accounts/{account_id}/users:
+    post:
+      application/json: PostAccountsAccountIdUsersRequest
+  /calls:
+    post:
+      application/json: CallsCreateCallRequest
+  /contacts:
+    post:
+      application/json: ContactsCreateContactRequest
+  /contacts/{contact_id}:
+    put:
+      application/json: PutContactsContactIdRequest
+  /customfields/{itemClass}:
+    post:
+      application/json: CustomFieldsCreateFieldTypeRequest
+  /customfields/{itemClass}/{id}:
+    put:
+      application/json: CustomFieldsUpdateFieldRequest
+  /datasources/email/{id}:
+    put:
+      application/json: EmailDataSourcesUpdateDataSourceRequest
+  /meetings:
+    post:
+      application/json: MeetingsCreateMeetingRequest
+  /meetings/{meeting_id}:
+    put:
+      application/json: PutMeetingsMeetingIdRequest
+  /messages:
+    post:
+      application/json: InternalNotesCreateNoteRequest
+  /opportunities:
+    post:
+      application/json: OpportunitiesCreateOpportunityRequest
+  /opportunities/{id}:
+    put:
+      application/json: OpportunitiesUpdateOpportunityRequest
+  /tags:
+    post:
+      application/json: TagsCreateTagRequest
+  /tasks:
+    post:
+      application/json: TasksCreateTaskRequest
+  /tasks/{id}:
+    put:
+      application/json: TasksUpdateTaskRequest
+  /workflows:
+    post:
+      application/json: WorkflowsCreateWorkflowRequest
+  /workflows/{id}/audience/{record_id}:
+    put:
+      application/json: PutWorkflowsIdAudienceRecordIdRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /accounts:
+    get:
+      '200':
+        '*/*': AccountsListAccountsResponse
+    post:
+      default:
+        '*/*': AccountsCreateAccountResponse
+  /accounts/{account_id}:
+    delete:
+      default:
+        '*/*': DeleteAccountsAccountIdResponse
+    get:
+      default:
+        '*/*': GetAccountsAccountIdResponse
+    put:
+      default:
+        '*/*': PutAccountsAccountIdResponse
+  /accounts/{account_id}/contacts:
+    post:
+      default:
+        '*/*': PostAccountsAccountIdContactsResponse
+    put:
+      default:
+        '*/*': PutAccountsAccountIdContactsResponse
+  /accounts/{account_id}/messages:
+    get:
+      default:
+        '*/*': GetAccountsAccountIdMessagesResponse
+  /accounts/{account_id}/users:
+    post:
+      default:
+        '*/*': PostAccountsAccountIdUsersResponse
+    put:
+      default:
+        '*/*': PutAccountsAccountIdUsersResponse
+  /calls:
+    post:
+      default:
+        '*/*': CallsCreateCallResponse
+  /calls/{meeting_id}:
+    put:
+      default:
+        '*/*': PutCallsMeetingIdResponse
+  /campaigns/mergefields:
+    get:
+      '200':
+        '*/*': WorkflowsGetMergeFieldsResponse
+  /conferences/{conference_id}:
+    get:
+      default:
+        '*/*': GetConferencesConferenceIdResponse
+  /contacts:
+    get:
+      '200':
+        '*/*': ContactsListContactsResponse
+    post:
+      '200':
+        '*/*': ContactsCreateContactResponse
+  /contacts/{contact_id}:
+    delete:
+      default:
+        '*/*': DeleteContactsContactIdResponse
+    get:
+      default:
+        '*/*': GetContactsContactIdResponse
+    put:
+      default:
+        '*/*': PutContactsContactIdResponse
+  /currencies:
+    get:
+      '200':
+        '*/*': RegionalSettingsListSupportedCurrenciesResponse
+  /customfields/types:
+    get:
+      default:
+        '*/*': CustomFieldsListTypesResponse
+  /customfields/{itemClass}:
+    get:
+      default:
+        '*/*': CustomFieldsListTypeCustomFieldsResponse
+    post:
+      '200':
+        '*/*': CustomFieldsCreateFieldTypeResponse
+  /customfields/{itemClass}/{customFieldApiField}/options:
+    get:
+      default:
+        '*/*': CustomFieldsListOptionsResponse
+  /customfields/{itemClass}/{id}:
+    delete:
+      default:
+        '*/*': CustomFieldsDeleteCustomFieldResponse
+    get:
+      default:
+        '*/*': CustomFieldsGetDetailsResponse
+    put:
+      default:
+        '*/*': CustomFieldsUpdateFieldResponse
+  /datasources/email:
+    get:
+      '200':
+        '*/*': EmailDataSourcesListResponse
+  /datasources/email/{id}:
+    put:
+      default:
+        '*/*': EmailDataSourcesUpdateDataSourceResponse
+  /filterfields/{entity}:
+    get:
+      '200':
+        '*/*': FilterFieldsListForEntityResponse
+  /groups:
+    get:
+      default:
+        '*/*': GroupsListResponse
+  /groups/{id}:
+    get:
+      default:
+        '*/*': GroupsGetByIdResponse
+  /me:
+    get:
+      '200':
+        '*/*': UsersGetCurrentUserDetailsResponse
+  /me/contacts:
+    get:
+      '200':
+        '*/*': UsersListContactsResponse
+  /meetings:
+    post:
+      default:
+        '*/*': MeetingsCreateMeetingResponse
+  /meetings/{meeting_id}:
+    delete:
+      default:
+        '*/*': DeleteMeetingsMeetingIdResponse
+    get:
+      default:
+        '*/*': GetMeetingsMeetingIdResponse
+    put:
+      default:
+        '*/*': PutMeetingsMeetingIdResponse
+  /messages:
+    post:
+      default:
+        '*/*': InternalNotesCreateNoteResponse
+  /messages/{message_id}:
+    delete:
+      default:
+        '*/*': DeleteMessagesMessageIdResponse
+    put:
+      default:
+        '*/*': PutMessagesMessageIdResponse
+  /opportunities:
+    get:
+      '200':
+        '*/*': OpportunitiesListResponse
+    post:
+      '200':
+        '*/*': OpportunitiesCreateOpportunityResponse
+  /opportunities/{id}:
+    delete:
+      default:
+        '*/*': OpportunitiesRemoveOpportunityResponse
+    get:
+      '200':
+        '*/*': OpportunitiesGetDetailsResponse
+    put:
+      default:
+        '*/*': OpportunitiesUpdateOpportunityResponse
+  /persons:
+    get:
+      default:
+        '*/*': PersonsListResponse
+  /pipelines:
+    get:
+      '200':
+        '*/*': PipelinesListResponse
+  /stages:
+    get:
+      default:
+        '*/*': PipelinesListStagesResponse
+  /stages/{stage_id}:
+    get:
+      default:
+        '*/*': GetStagesStageIdResponse
+  /tags:
+    get:
+      '200':
+        '*/*': TagsListResponse
+    post:
+      '200':
+        '*/*': TagsCreateTagResponse
+  /tags/{tag_id}:
+    delete:
+      '200':
+        '*/*': DeleteTagsTagIdResponse
+    get:
+      default:
+        '*/*': GetTagsTagIdResponse
+    put:
+      '200':
+        '*/*': PutTagsTagIdResponse
+  /tags/{tag_id}/usage:
+    get:
+      default:
+        '*/*': GetTagsTagIdUsageResponse
+  /tasks:
+    get:
+      '200':
+        '*/*': TasksListTasksResponse
+    post:
+      '200':
+        '*/*': TasksCreateTaskResponse
+  /tasks/{id}:
+    delete:
+      '200':
+        '*/*': TasksDeleteTaskResponse
+    put:
+      '200':
+        '*/*': TasksUpdateTaskResponse
+  /users:
+    get:
+      default:
+        '*/*': UsersListResponse
+  /users/{id}:
+    get:
+      default:
+        '*/*': UsersGetUserDetailsResponse
+  /workflows:
+    get:
+      '200':
+        '*/*': WorkflowsListResponse
+    post:
+      '200':
+        '*/*': WorkflowsCreateWorkflowResponse
+  /workflows/{id}:
+    get:
+      '200':
+        '*/*': WorkflowsGetDetailsResponse
+    put:
+      '200':
+        '*/*': WorkflowsUpdateWorkflowResponse
+  /workflows/{id}/audience/{record_id}:
+    put:
+      '200':
+        '*/*': PutWorkflowsIdAudienceRecordIdResponse
+securityParameters:
+  account:
+    query: false
+  address.city:
+    query: false
+  address.country:
+    query: false
+  address.state_region:
+    query: false
+  after:
+    query: false
+  assignee:
+    query: false
+  assignee_group:
+    query: false
+  assignees:
+    query: false
+  before:
+    query: false
+  close_after:
+    query: false
+  close_before:
+    query: false
+  closed:
+    query: false
+  creation_after:
+    query: false
+  creation_before:
+    query: false
+  custom:
+    query: false
+  details:
+    query: false
+  domain:
+    query: false
+  done:
+    query: false
+  email:
+    query: false
+  force:
+    query: false
+  hotness:
+    query: false
+  id:
+    query: false
+  includeArchived:
+    query: false
+  includeDisabled:
+    query: false
+  includePipelineSpecificPredefinedFilterFields:
+    query: false
+  includeTeamDataSources:
+    query: false
+  limit:
+    query: false
+  max_size:
+    query: false
+  max_value:
+    query: false
+  min_size:
+    query: false
+  min_value:
+    query: false
+  modification_after:
+    query: false
+  modification_before:
+    query: false
+  name:
+    query: false
+  offset:
+    query: false
+  onlyEnabled:
+    query: false
+  order_by:
+    query: false
+  owner:
+    query: false
+  owner_group:
+    query: false
+  phone_number:
+    query: false
+  pipeline:
+    query: false
+  pipeline.id:
+    query: false
+  pipeline.name:
+    query: false
+  position.role:
+    query: false
+  q:
+    query: false
+  search:
+    query: false
+  searchString:
+    query: false
+  stage:
+    query: false
+  stage.name:
+    query: false
+  status:
+    query: false
+  tag:
+    query: false
+  tag.name:
+    query: false
+  team_member:
+    query: false
+  team_member_group:
+    query: false
+  type:
+    query: false
+  update_if_exists:
+    query: false
+validServerUrls: {}

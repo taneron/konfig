@@ -3,6 +3,33 @@ examples_2: {}
 examples_3: {}
 ignorePotentialIncorrectType: true
 operationIds:
+  /admin/batched_background_migrations:
+    get: Batchedbackgroundmigrations_listMigrations
+  /admin/batched_background_migrations/{id}:
+    get: Batchedbackgroundmigrations_getMigration
+  /admin/batched_background_migrations/{id}/pause:
+    put: Batchedbackgroundmigrations_pauseMigration
+  /admin/batched_background_migrations/{id}/resume:
+    put: Batchedbackgroundmigrations_resumeMigration
+  /admin/ci/variables:
+    get: Civariables_listAllInstanceVariables
+    post: Civariables_createNewInstanceLevelVariable
+  /admin/ci/variables/{key}:
+    delete: Civariables_deleteInstanceVariable
+    get: Civariables_getInstanceVariableDetails
+    put: Civariables_updateInstanceVariable
+  /admin/clusters:
+    get: Clusters_listInstanceClusters
+  /admin/clusters/add:
+    post: Clusters_addExistingInstance
+  /admin/clusters/{cluster_id}:
+    delete: Clusters_deleteInstanceCluster
+    get: Clusters_getSingleInstance
+    put: Clusters_updateInstanceCluster
+  /admin/databases/{database_name}/dictionary/tables/{table_name}:
+    get: Admin_getDictionaryDetails
+  /admin/migrations/{timestamp}/mark:
+    post: Migrations_markAsExecuted
   /api/v4/admin/batched_background_migrations:
     get: Batchedbackgroundmigrations_list
   /api/v4/admin/batched_background_migrations/{id}:
@@ -124,9 +151,124 @@ operationIds:
     delete: Branches_deleteMerged
   /api/v4/version:
     get: Metadata_getVersionInformation
+  /application/appearance:
+    get: Application_getCurrentAppearance
+    put: Application_modifyAppearance
+  /application/plan_limits:
+    get: Planlimits_getCurrentLimits
+    put: Planlimits_modifyPlanLimits
+  /applications:
+    get: Applications_listAllRegistered
+    post: Applications_createNewApplication
+  /applications/{id}:
+    delete: Applications_removeSpecificApplication
+  /avatar:
+    get: Avatar_getUserAvatarUrl
+  /broadcast_messages:
+    get: Broadcastmessages_getAllMessages
+    post: Broadcastmessages_createMessage
+  /broadcast_messages/{id}:
+    delete: Broadcastmessages_deleteMessage
+    get: Broadcastmessages_getSpecificMessage
+    put: Broadcastmessages_updateMessageById
+  /bulk_imports:
+    get: Bulkimports_listMigrations
+    post: Bulkimports_startMigration
+  /bulk_imports/entities:
+    get: Bulkimports_listEntities
+  /bulk_imports/{import_id}:
+    get: Bulkimports_getMigrationDetails
+  /bulk_imports/{import_id}/entities:
+    get: Bulkimports_listEntities
+  /bulk_imports/{import_id}/entities/{entity_id}:
+    get: Bulkimports_getEntityDetails
+  /groups/{id}/access_requests:
+    get: Accessrequests_getListForGroup
+    post: Accessrequests_authenticateUserToGroup
+  /groups/{id}/access_requests/{user_id}:
+    delete: Accessrequests_denyAccessRequest
+  /groups/{id}/access_requests/{user_id}/approve:
+    put: Accessrequests_approveUserAccess
+  /groups/{id}/badges:
+    get: Badges_listViewableByAuthenticatedUser
+    post: Badges_addToGroup
+  /groups/{id}/badges/render:
+    get: Badges_previewFromGroup
+  /groups/{id}/badges/{badge_id}:
+    delete: Badges_removeFromGroup
+    get: Badges_getGroupBadge
+    put: Badges_updateGroupBadge
+  /metadata:
+    get: Metadata_getInformation
+  /projects/{id}/access_requests:
+    get: Accessrequests_listForProject
+    post: Accessrequests_requestAccessToProject
+  /projects/{id}/access_requests/{user_id}:
+    delete: Accessrequests_denyAccessRequest
+  /projects/{id}/access_requests/{user_id}/approve:
+    put: Accessrequests_approveUserAccess
+  /projects/{id}/alert_management_alerts/{alert_iid}/metric_images:
+    get: Alertmanagement_getMetricImages
+    post: Alertmanagement_uploadMetricImageForAlert
+  /projects/{id}/alert_management_alerts/{alert_iid}/metric_images/authorize:
+    post: Alertmanagement_authorizeMetricImageFileUpload
+  /projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}:
+    delete: Alertmanagement_removeMetricImage
+    put: Alertmanagement_updateMetricImageForAlert
+  /projects/{id}/badges:
+    get: Badges_listViewableByAuthenticatedUser
+    post: Badges_addToProject
+  /projects/{id}/badges/render:
+    get: Badges_previewFromProject
+  /projects/{id}/badges/{badge_id}:
+    delete: Badges_removeFromProject
+    get: Badges_getProjectBadge
+    put: Badges_updateProjectBadge
+  /projects/{id}/jobs:
+    get: Jobs_listForProject
+  /projects/{id}/jobs/{job_id}:
+    get: Jobs_getById
+  /projects/{id}/jobs/{job_id}/play:
+    post: Jobs_runManualJob
+  /projects/{id}/repository/branches:
+    get: Branches_getProjectRepository
+    post: Branches_createBranch
+  /projects/{id}/repository/branches/{branch}:
+    delete: Branches_deleteBranch
+    get: Branches_getSingleBranch
+    head: Branches_checkExistence
+  /projects/{id}/repository/branches/{branch}/protect:
+    put: Branches_protectBranch
+  /projects/{id}/repository/branches/{branch}/unprotect:
+    put: Branches_unprotectBranch
+  /projects/{id}/repository/merged_branches:
+    delete: Branches_removeMergedBranches
+  /version:
+    get: Metadata_getVersionInfo
 operationTags: {}
 renameTags: {}
 requestSchemaNames:
+  /admin/batched_background_migrations/{id}/pause:
+    put:
+      application/json: BatchedbackgroundmigrationsPauseMigrationRequest
+  /admin/batched_background_migrations/{id}/resume:
+    put:
+      application/json: BatchedbackgroundmigrationsResumeMigrationRequest
+  /admin/ci/variables:
+    post:
+      application/json: CivariablesCreateNewInstanceLevelVariableRequest
+  /admin/ci/variables/{key}:
+    put:
+      application/json: CivariablesUpdateInstanceVariableRequest
+  /admin/clusters/add:
+    post:
+      application/json: ClustersAddExistingInstanceRequest
+  /admin/clusters/{cluster_id}:
+    put:
+      application/json: ClustersUpdateInstanceClusterRequest
+  /admin/migrations/{timestamp}/mark:
+    post:
+      application/json: MigrationsMarkAsExecutedRequest
   /api/v4/admin/batched_background_migrations/{id}/pause:
     put:
       application/json: BatchedbackgroundmigrationsPauseMigrationRequest
@@ -193,8 +335,61 @@ requestSchemaNames:
   /api/v4/projects/{id}/repository/branches/{branch}/protect:
     put:
       application/json: BranchesProtectBranchRequest
+  /application/appearance:
+    put:
+      multipart/form-data: ApplicationModifyAppearanceRequest
+  /application/plan_limits:
+    put:
+      application/json: PlanlimitsModifyPlanLimitsRequest
+  /applications:
+    post:
+      application/json: ApplicationsCreateNewApplicationRequest
+  /broadcast_messages:
+    post:
+      application/json: BroadcastmessagesCreateMessageRequest
+  /broadcast_messages/{id}:
+    put:
+      application/json: BroadcastmessagesUpdateMessageByIdRequest
+  /bulk_imports:
+    post:
+      application/x-www-form-urlencoded: BulkimportsStartMigrationRequest
+  /groups/{id}/access_requests/{user_id}/approve:
+    put:
+      application/json: AccessrequestsApproveUserAccessRequest
+  /groups/{id}/badges:
+    post:
+      application/json: BadgesAddToGroupRequest
+  /groups/{id}/badges/{badge_id}:
+    put:
+      application/json: BadgesUpdateGroupBadgeRequest
+  /projects/{id}/access_requests/{user_id}/approve:
+    put:
+      application/json: AccessrequestsApproveUserAccessRequest1
+  /projects/{id}/alert_management_alerts/{alert_iid}/metric_images:
+    post:
+      multipart/form-data: AlertmanagementUploadMetricImageForAlertRequest
+  /projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}:
+    put:
+      multipart/form-data: AlertmanagementUpdateMetricImageForAlertRequest
+  /projects/{id}/badges:
+    post:
+      application/json: BadgesAddToProjectRequest
+  /projects/{id}/badges/{badge_id}:
+    put:
+      application/json: BadgesUpdateProjectBadgeRequest
+  /projects/{id}/repository/branches/{branch}/protect:
+    put:
+      application/json: BranchesProtectBranchRequest
 responseDescriptions: {}
 responseSchemaNames:
+  /admin/batched_background_migrations:
+    get:
+      '200':
+        application/json: BatchedbackgroundmigrationsListMigrationsResponse
+  /admin/clusters:
+    get:
+      '200':
+        application/json: ClustersListInstanceClustersResponse
   /api/v4/admin/batched_background_migrations:
     get:
       '200':
@@ -239,6 +434,42 @@ responseSchemaNames:
     get:
       '200':
         application/json: BranchesGetAllResponse
+  /applications:
+    get:
+      '200':
+        application/json: ApplicationsListAllRegisteredResponse
+  /bulk_imports:
+    get:
+      '200':
+        application/json: BulkimportsListMigrationsResponse
+  /bulk_imports/entities:
+    get:
+      '200':
+        application/json: BulkimportsListEntities200Response
+  /bulk_imports/{import_id}/entities:
+    get:
+      '200':
+        application/json: BulkimportsListEntitiesResponse
+  /groups/{id}/badges:
+    get:
+      '200':
+        application/json: BadgesListViewableByAuthenticatedUserResponse
+  /projects/{id}/alert_management_alerts/{alert_iid}/metric_images:
+    get:
+      '200':
+        application/json: AlertmanagementGetMetricImagesResponse
+  /projects/{id}/badges:
+    get:
+      '200':
+        application/json: BadgesListViewableByAuthenticatedUser200Response
+  /projects/{id}/jobs:
+    get:
+      '200':
+        application/json: JobsListForProjectResponse
+  /projects/{id}/repository/branches:
+    get:
+      '200':
+        application/json: BranchesGetProjectRepositoryResponse
 securityParameters:
   branch:
     query: false

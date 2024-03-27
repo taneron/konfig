@@ -31606,14 +31606,14 @@ rawSpecString: |
               - user
           unitAggregationType:
             type: string
-            description: The method in which multiple unit event values are aggregated
+            description: The method by which multiple unit event values are aggregated
             example: average
             enum:
               - average
               - sum
           analysisType:
             type: string
-            description: The strategy for analyzing metric events
+            description: The method for analyzing metric events
             example: mean
             enum:
               - mean
@@ -31621,9 +31621,9 @@ rawSpecString: |
           percentileValue:
             type: integer
             description: >-
-              The percentile, an integer denoting the target percentile between 0
-              and 100. Only present when <code>analysisType</code> is
-              <code>percentile</code>.
+              The percentile for the analysis method. An integer denoting the
+              target percentile between 0 and 100. Required when
+              <code>analysisType</code> is <code>percentile</code>.
             example: 95
           eventDefault:
             $ref: '#/components/schemas/MetricEventDefaultRep'
@@ -31713,11 +31713,24 @@ rawSpecString: |
               - user
           unitAggregationType:
             type: string
-            description: The method in which multiple unit event values are aggregated
+            description: The method by which multiple unit event values are aggregated
             example: average
             enum:
               - average
               - sum
+          analysisType:
+            type: string
+            description: The method for analyzing metric events
+            example: mean
+          percentileValue:
+            type: integer
+            description: >-
+              The percentile for the analysis method. An integer denoting the
+              target percentile between 0 and 100. Required when
+              <code>analysisType</code> is <code>percentile</code>.
+            example: 95
+          eventDefault:
+            $ref: '#/components/schemas/MetricEventDefaultRep'
       MetricRep:
         type: object
         required:
@@ -31837,14 +31850,14 @@ rawSpecString: |
               - user
           unitAggregationType:
             type: string
-            description: The method in which multiple unit event values are aggregated
+            description: The method by which multiple unit event values are aggregated
             example: average
             enum:
               - average
               - sum
           analysisType:
             type: string
-            description: The strategy for analyzing metric events
+            description: The method for analyzing metric events
             example: mean
             enum:
               - mean
@@ -31852,9 +31865,9 @@ rawSpecString: |
           percentileValue:
             type: integer
             description: >-
-              The percentile, an integer denoting the target percentile between 0
-              and 100. Only present when <code>analysisType</code> is
-              <code>percentile</code>.
+              The percentile for the analysis method. An integer denoting the
+              target percentile between 0 and 100. Required when
+              <code>analysisType</code> is <code>percentile</code>.
             example: 95
           eventDefault:
             $ref: '#/components/schemas/MetricEventDefaultRep'
