@@ -1,0 +1,1990 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /permissionSets/{id}:
+    get:
+      '404':
+        application/json: {}
+  /permissionSets/{id}/assignments:
+    get:
+      '404':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /activities:
+    delete: Activities_deleteBulk
+    get: Activities_listUserActivities
+    post: Activities_addNewActivity
+  /activities/collection:
+    get: Activities_getAllActivities
+  /activities/{id}:
+    delete: Activities_markAsDeleted
+    get: Activities_getDetails
+    put: Activities_updateActivityDetails
+  /activityFields:
+    get: ActivityFields_getAll
+  /activityTypes:
+    delete: ActivityTypes_markAsDeletedBulk
+    get: ActivityTypes_listAllActivityTypes
+    post: ActivityTypes_addNewType
+  /activityTypes/{id}:
+    delete: ActivityTypes_markAsDeleted
+    put: ActivityTypes_updateType
+  /billing/subscriptions/addons:
+    get: Billing_getAddonsForSingleCompany
+  /callLogs:
+    get: CallLogs_getAllLogs
+    post: CallLogs_addNewLog
+  /callLogs/{id}:
+    delete: CallLogs_deleteLog
+    get: CallLogs_getDetails
+  /callLogs/{id}/recordings:
+    post: CallLogs_attachRecording
+  /channels:
+    post: Channels_createNewChannel
+  /channels/messages/receive:
+    post: Channels_receiveMessage
+  /channels/{channel-id}/conversations/{conversation-id}:
+    delete: Channels_deleteConversation
+  /channels/{id}:
+    delete: Channels_deleteChannelById
+  /currencies:
+    get: Currencies_getAllSupported
+  /dealFields:
+    delete: DealFields_deleteMultipleBulk
+    get: DealFields_getAllFields
+    post: DealFields_addNewField
+  /dealFields/{id}:
+    delete: DealFields_markAsDeleted
+    get: DealFields_getOneField
+    put: DealFields_updateField
+  /deals:
+    delete: Deals_deleteBulk
+    get: Deals_getAllDeals
+    post: Deals_createDeal
+  /deals/collection:
+    get: Deals_getAllDeals
+  /deals/search:
+    get: Deals_searchByTitleAndNotes
+  /deals/summary:
+    get: Deals_getSummary
+  /deals/timeline:
+    get: Deals_getTimelineData
+  /deals/{id}:
+    delete: Deals_markAsDeleted
+    get: Deals_getDetails
+    put: Deals_updateProperties
+  /deals/{id}/activities:
+    get: Deals_listActivities
+  /deals/{id}/duplicate:
+    post: Deals_duplicateDeal
+  /deals/{id}/files:
+    get: Deals_listDealFiles
+  /deals/{id}/flow:
+    get: Deals_listDealUpdates
+  /deals/{id}/followers:
+    get: Deals_listFollowers
+    post: Deals_addFollower
+  /deals/{id}/followers/{follower_id}:
+    delete: Deals_removeFollower
+  /deals/{id}/mailMessages:
+    get: Deals_listMailMessages
+  /deals/{id}/merge:
+    put: Deals_mergeDeals
+  /deals/{id}/participants:
+    get: Deals_listParticipants
+    post: Deals_addParticipant
+  /deals/{id}/participants/{deal_participant_id}:
+    delete: Deals_deleteParticipant
+  /deals/{id}/participantsChangelog:
+    get: Deals_listParticipantsChangelog
+  /deals/{id}/permittedUsers:
+    get: Deals_listPermittedUsers
+  /deals/{id}/persons:
+    get: Deals_listPersonsAssociated
+  /deals/{id}/products:
+    get: Deals_listDealProducts
+    post: Deals_addProductToDeal
+  /deals/{id}/products/{product_attachment_id}:
+    delete: Deals_deleteAttachedProduct
+    put: Deals_updateProductAttachment
+  /files:
+    get: Files_getAllFiles
+    post: Files_uploadAndAssociate
+  /files/remote:
+    post: Files_createRemoteFileAndLink
+  /files/remoteLink:
+    post: Files_linkRemoteFile
+  /files/{id}:
+    delete: Files_markAsDeleted
+    get: Files_getOneFile
+    put: Files_updateDetails
+  /files/{id}/download:
+    get: Files_downloadFile
+  /filters:
+    delete: Filters_deleteBulk
+    get: Filters_getAll
+    post: Filters_addNewFilter
+  /filters/helpers:
+    get: Filters_getHelpers
+  /filters/{id}:
+    delete: Filters_markAsDeleted
+    get: Filters_getDetails
+    put: Filters_updateFilter
+  /goals:
+    post: Goals_createReport
+  /goals/find:
+    get: Goals_getByCriteria
+  /goals/{id}:
+    delete: Goals_markAsDeleted
+    put: Goals_updateExistingGoal
+  /goals/{id}/results:
+    get: Goals_getResult
+  /itemSearch:
+    get: ItemSearch_searchMultipleItems
+  /itemSearch/field:
+    get: ItemSearch_byFieldValues
+  /leadLabels:
+    get: LeadLabels_getAll
+    post: LeadLabels_addNewLabel
+  /leadLabels/{id}:
+    delete: LeadLabels_deleteLabel
+    patch: LeadLabels_updateProperties
+  /leadSources:
+    get: LeadSources_getAll
+  /leads:
+    get: Leads_getAll
+    post: Leads_createLead
+  /leads/search:
+    get: Leads_searchLeads
+  /leads/{id}:
+    delete: Leads_deleteLead
+    get: Leads_getDetails
+    patch: Leads_updateLeadProperties
+  /leads/{id}/permittedUsers:
+    get: Leads_listPermittedUsers
+  /legacyTeams:
+    get: LegacyTeams_getAllTeams
+    post: LegacyTeams_addNewTeam
+  /legacyTeams/user/{id}:
+    get: LegacyTeams_getUserTeams
+  /legacyTeams/{id}:
+    get: LegacyTeams_getData
+    put: LegacyTeams_updateTeamObject
+  /legacyTeams/{id}/users:
+    delete: LegacyTeams_removeUsers
+    get: LegacyTeams_getAllUsers
+    post: LegacyTeams_addUsersToTeam
+  /mailbox/mailMessages/{id}:
+    get: Mailbox_getMailMessage
+  /mailbox/mailThreads:
+    get: Mailbox_getMailThreads
+  /mailbox/mailThreads/{id}:
+    delete: Mailbox_markThreadDeleted
+    get: Mailbox_getMailThread
+    put: Mailbox_updateMailThreadDetails
+  /mailbox/mailThreads/{id}/mailMessages:
+    get: Mailbox_getAllMailMessages
+  /meetings/userProviderLinks:
+    post: Meetings_linkUserProvider
+  /meetings/userProviderLinks/{id}:
+    delete: Meetings_removeUserProviderLink
+  /noteFields:
+    get: NoteFields_getAllNoteFields
+  /notes:
+    get: Notes_getAll
+    post: Notes_createNote
+  /notes/{id}:
+    delete: Notes_deleteNote
+    get: Notes_getDetails
+    put: Notes_updateNote
+  /notes/{id}/comments:
+    get: Notes_getAllComments
+    post: Notes_addNewComment
+  /notes/{id}/comments/{commentId}:
+    delete: Notes_deleteComment
+    get: Notes_getCommentDetails
+    put: Notes_updateComment
+  /oauth/authorize:
+    get: Oauth_requestAuthorization
+  /oauth/token:
+    post: Oauth_exchangeToken
+  /oauth/token/:
+    post: Oauth_refreshToken
+  /organizationFields:
+    delete: OrganizationFields_deleteMultipleBulk
+    get: OrganizationFields_getAllFields
+    post: OrganizationFields_addNewField
+  /organizationFields/{id}:
+    delete: OrganizationFields_markAsDeleted
+    get: OrganizationFields_getSpecificField
+    put: OrganizationFields_updateField
+  /organizationRelationships:
+    get: OrganizationRelationships_getAllRelationships
+    post: OrganizationRelationships_createNewRelationship
+  /organizationRelationships/{id}:
+    delete: OrganizationRelationships_deleteById
+    get: OrganizationRelationships_getById
+    put: OrganizationRelationships_updateAndReturn
+  /organizations:
+    delete: Organizations_deleteMultipleBulk
+    get: Organizations_getAll
+    post: Organizations_addNewOrganization
+  /organizations/collection:
+    get: Organizations_listAllOrganizations
+  /organizations/search:
+    get: Organizations_searchByCriteria
+  /organizations/{id}:
+    delete: Organizations_deleteMarkedOrganization
+    get: Organizations_getDetails
+    put: Organizations_updateProperties
+  /organizations/{id}/activities:
+    get: Organizations_listActivities
+  /organizations/{id}/deals:
+    get: Organizations_listDeals
+  /organizations/{id}/files:
+    get: Organizations_listAttachedFiles
+  /organizations/{id}/flow:
+    get: Organizations_listUpdatesAbout
+  /organizations/{id}/followers:
+    get: Organizations_listFollowers
+    post: Organizations_addFollower
+  /organizations/{id}/followers/{follower_id}:
+    delete: Organizations_deleteFollower
+  /organizations/{id}/mailMessages:
+    get: Organizations_listMailMessages
+  /organizations/{id}/merge:
+    put: Organizations_mergeTwo
+  /organizations/{id}/permittedUsers:
+    get: Organizations_listPermittedUsers
+  /organizations/{id}/persons:
+    get: Organizations_listPersons
+  /permissionSets:
+    get: PermissionSets_getAll
+  /permissionSets/{id}:
+    get: PermissionSets_getOne
+  /permissionSets/{id}/assignments:
+    get: PermissionSets_listAssignments
+  /personFields:
+    delete: PersonFields_deleteMultipleBulk
+    get: PersonFields_getAllFields
+    post: PersonFields_addNewField
+  /personFields/{id}:
+    delete: PersonFields_markAsDeleted
+    get: PersonFields_getSpecificField
+    put: PersonFields_updateField
+  /persons:
+    delete: Persons_deleteMultipleBulk
+    get: Persons_listAllPersons
+    post: Persons_createNewPerson
+  /persons/collection:
+    get: Persons_getAll
+  /persons/search:
+    get: Persons_searchByCriteria
+  /persons/{id}:
+    delete: Persons_markAsDeleted
+    get: Persons_getPersonDetails
+    put: Persons_updateProperties
+  /persons/{id}/activities:
+    get: Persons_listActivities
+  /persons/{id}/deals:
+    get: Persons_listDeals
+  /persons/{id}/files:
+    get: Persons_listPersonFiles
+  /persons/{id}/flow:
+    get: Persons_listUpdatesAbout
+  /persons/{id}/followers:
+    get: Persons_listFollowers
+    post: Persons_addFollower
+  /persons/{id}/followers/{follower_id}:
+    delete: Persons_deleteFollower
+  /persons/{id}/mailMessages:
+    get: Persons_listMailMessages
+  /persons/{id}/merge:
+    put: Persons_mergeTwo
+  /persons/{id}/permittedUsers:
+    get: Persons_listPermittedUsers
+  /persons/{id}/picture:
+    delete: Persons_deletePicture
+    post: Persons_addPicture
+  /persons/{id}/products:
+    get: Persons_listProducts
+  /pipelines:
+    get: Pipelines_getAll
+    post: Pipelines_createNewPipeline
+  /pipelines/{id}:
+    delete: Pipelines_deletePipeline
+    get: Pipelines_getOnePipelineSummary
+    put: Pipelines_updateProperties
+  /pipelines/{id}/conversion_statistics:
+    get: Pipelines_getConversionStatistics
+  /pipelines/{id}/deals:
+    get: Pipelines_listDeals
+  /pipelines/{id}/movement_statistics:
+    get: Pipelines_getMovementStatistics
+  /productFields:
+    delete: ProductFields_deleteMultipleBulk
+    get: ProductFields_getAllFields
+    post: ProductFields_addNewField
+  /productFields/{id}:
+    delete: ProductFields_markAsDeleted
+    get: ProductFields_getOneField
+    put: ProductFields_updateField
+  /products:
+    get: Products_getAllProducts
+    post: Products_createProduct
+  /products/search:
+    get: Products_searchByFields
+  /products/{id}:
+    delete: Products_markAsDeleted
+    get: Products_getDetails
+    put: Products_updateProductData
+  /products/{id}/deals:
+    get: Products_getDeals
+  /products/{id}/files:
+    get: Products_listProductFiles
+  /products/{id}/followers:
+    get: Products_listProductFollowers
+    post: Products_addFollower
+  /products/{id}/followers/{follower_id}:
+    delete: Products_deleteFollower
+  /products/{id}/permittedUsers:
+    get: Products_listPermittedUsers
+  /projectTemplates:
+    get: ProjectTemplates_getAllTemplates
+  /projectTemplates/{id}:
+    get: ProjectTemplates_getDetails
+  /projects:
+    get: Projects_getAllProjects
+    post: Projects_createProject
+  /projects/boards:
+    get: Projects_getAllBoards
+  /projects/boards/{id}:
+    get: ProjectTemplates_getBoardDetails
+  /projects/phases:
+    get: Projects_getPhases
+  /projects/phases/{id}:
+    get: ProjectTemplates_getPhaseDetails
+  /projects/{id}:
+    delete: Projects_markAsDeleted
+    get: Projects_getDetails
+    put: Projects_updateProject
+  /projects/{id}/activities:
+    get: Projects_getProjectActivities
+  /projects/{id}/archive:
+    post: Projects_archiveProject
+  /projects/{id}/groups:
+    get: Projects_getGroups
+  /projects/{id}/plan:
+    get: Projects_getProjectPlan
+  /projects/{id}/plan/activities/{activityId}:
+    put: Projects_updateProjectPlanActivity
+  /projects/{id}/plan/tasks/{taskId}:
+    put: Projects_updatePlanTask
+  /projects/{id}/tasks:
+    get: Projects_getProjectTasks
+  /recents:
+    get: Recents_getChangesAfter
+  /roles:
+    get: Roles_getAllRoles
+    post: Roles_createRole
+  /roles/{id}:
+    delete: Roles_markAsDeleted
+    get: Roles_getOneRole
+    put: Roles_updateRoleDetails
+  /roles/{id}/assignments:
+    delete: Roles_removeAssignment
+    get: Roles_listRoleAssignments
+    post: Roles_assignUser
+  /roles/{id}/pipelines:
+    get: Roles_listPipelineVisibility
+    put: Roles_updatePipelineVisibility
+  /roles/{id}/settings:
+    get: Roles_getRoleSettings
+    post: Roles_addOrUpdateSetting
+  /stages:
+    delete: Stages_deleteBulk
+    get: Stages_getAll
+    post: Stages_createNewStage
+  /stages/{id}:
+    delete: Stages_deleteStage
+    get: Stages_getOneStage
+    put: Stages_updateDetails
+  /stages/{id}/deals:
+    get: Stages_getStageDeals
+  /subscriptions/find/{dealId}:
+    get: Subscriptions_findByDealId
+  /subscriptions/installment:
+    post: Subscriptions_addInstallmentSubscription
+  /subscriptions/installment/{id}:
+    put: Subscriptions_updateInstallmentSubscription
+  /subscriptions/recurring:
+    post: Subscriptions_addRecurring
+  /subscriptions/recurring/{id}:
+    put: Subscriptions_updateRecurring
+  /subscriptions/recurring/{id}/cancel:
+    put: Subscriptions_cancelRecurringSubscription
+  /subscriptions/{id}:
+    delete: Subscriptions_deleteMarked
+    get: Subscriptions_getDetails
+  /subscriptions/{id}/payments:
+    get: Subscriptions_getPayments
+  /tasks:
+    get: Tasks_listAllTasks
+    post: Tasks_createTask
+  /tasks/{id}:
+    delete: Tasks_deleteTask
+    get: Tasks_getDetails
+    put: Tasks_updateTask
+  /userConnections:
+    get: UserConnections_getAllConnections
+  /userSettings:
+    get: UserSettings_listAuthorizedSettings
+  /users:
+    get: Users_getAll
+    post: Users_addNewUser
+  /users/find:
+    get: Users_findByName
+  /users/me:
+    get: Users_getCurrentUserData
+  /users/{id}:
+    get: Users_getUser
+    put: Users_updateDetails
+  /users/{id}/followers:
+    get: Users_listFollowers
+  /users/{id}/permissions:
+    get: Users_listPermissions
+  /users/{id}/roleAssignments:
+    get: Users_listRoleAssignments
+  /users/{id}/roleSettings:
+    get: Users_listRoleSettings
+  /webhooks:
+    get: Webhooks_getAll
+    post: Webhooks_createNewWebhook
+  /webhooks/{id}:
+    delete: Webhooks_deleteExistingWebhook
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /activities:
+    post:
+      application/json: ActivitiesAddNewActivityRequest
+  /activities/{id}:
+    put:
+      application/json: ActivitiesUpdateActivityDetailsRequest
+  /activityTypes:
+    post:
+      application/json: ActivityTypesAddNewTypeRequest
+  /activityTypes/{id}:
+    put:
+      application/json: ActivityTypesUpdateTypeRequest
+  /callLogs:
+    post:
+      application/json: CallLogsAddNewLogRequest
+  /callLogs/{id}/recordings:
+    post:
+      multipart/form-data: CallLogsAttachRecordingRequest
+  /channels:
+    post:
+      application/json: ChannelsCreateNewChannelRequest
+  /channels/messages/receive:
+    post:
+      application/json: ChannelsReceiveMessageRequest
+  /dealFields:
+    post:
+      application/json: DealFieldsAddNewFieldRequest
+  /dealFields/{id}:
+    put:
+      application/json: DealFieldsUpdateFieldRequest
+  /deals:
+    post:
+      application/json: DealsCreateDealRequest
+  /deals/{id}:
+    put:
+      application/json: DealsUpdatePropertiesRequest
+  /deals/{id}/followers:
+    post:
+      application/json: DealsAddFollowerRequest
+  /deals/{id}/merge:
+    put:
+      application/json: DealsMergeDealsRequest
+  /deals/{id}/participants:
+    post:
+      application/json: DealsAddParticipantRequest
+  /deals/{id}/products:
+    post:
+      application/json: DealsAddProductToDealRequest
+  /deals/{id}/products/{product_attachment_id}:
+    put:
+      application/json: DealsUpdateProductAttachmentRequest
+  /files:
+    post:
+      multipart/form-data: FilesUploadAndAssociateRequest
+  /files/remote:
+    post:
+      application/x-www-form-urlencoded: FilesCreateRemoteFileAndLinkRequest
+  /files/remoteLink:
+    post:
+      application/x-www-form-urlencoded: FilesLinkRemoteFileRequest
+  /files/{id}:
+    put:
+      application/x-www-form-urlencoded: FilesUpdateDetailsRequest
+  /filters:
+    post:
+      application/json: FiltersAddNewFilterRequest
+  /filters/{id}:
+    put:
+      application/json: FiltersUpdateFilterRequest
+  /goals:
+    post:
+      application/json: GoalsCreateReportRequest
+  /goals/{id}:
+    put:
+      application/json: GoalsUpdateExistingGoalRequest
+  /leadLabels:
+    post:
+      application/json: LeadLabelsAddNewLabelRequest
+  /leadLabels/{id}:
+    patch:
+      application/json: LeadLabelsUpdatePropertiesRequest
+  /leads:
+    post:
+      application/json: LeadsCreateLeadRequest
+  /leads/{id}:
+    patch:
+      application/json: LeadsUpdateLeadPropertiesRequest
+  /legacyTeams:
+    post:
+      application/json: LegacyTeamsAddNewTeamRequest
+  /legacyTeams/{id}:
+    put:
+      application/json: LegacyTeamsUpdateTeamObjectRequest
+  /legacyTeams/{id}/users:
+    delete:
+      application/json: LegacyTeamsRemoveUsersRequest
+    post:
+      application/json: LegacyTeamsAddUsersToTeamRequest
+  /mailbox/mailThreads/{id}:
+    put:
+      application/x-www-form-urlencoded: MailboxUpdateMailThreadDetailsRequest
+  /meetings/userProviderLinks:
+    post:
+      application/json: MeetingsLinkUserProviderRequest
+  /notes:
+    post:
+      application/json: NotesCreateNoteRequest
+  /notes/{id}:
+    put:
+      application/json: NotesUpdateNoteRequest
+  /notes/{id}/comments:
+    post:
+      application/json: NotesAddNewCommentRequest
+  /notes/{id}/comments/{commentId}:
+    put:
+      application/json: NotesUpdateCommentRequest
+  /oauth/token:
+    post:
+      application/x-www-form-urlencoded: OauthRefreshTokenRequest
+  /organizationFields:
+    post:
+      application/json: OrganizationFieldsAddNewFieldRequest
+  /organizationFields/{id}:
+    put:
+      application/json: OrganizationFieldsUpdateFieldRequest
+  /organizationRelationships:
+    post:
+      application/json: OrganizationRelationshipsCreateNewRelationshipRequest
+  /organizationRelationships/{id}:
+    put:
+      application/json: OrganizationRelationshipsUpdateAndReturnRequest
+  /organizations:
+    post:
+      application/json: OrganizationsAddNewOrganizationRequest
+  /organizations/{id}:
+    put:
+      application/json: OrganizationsUpdatePropertiesRequest
+  /organizations/{id}/followers:
+    post:
+      application/json: OrganizationsAddFollowerRequest
+  /organizations/{id}/merge:
+    put:
+      application/json: OrganizationsMergeTwoRequest
+  /personFields:
+    post:
+      application/json: PersonFieldsAddNewFieldRequest
+  /personFields/{id}:
+    put:
+      application/json: PersonFieldsUpdateFieldRequest
+  /persons:
+    post:
+      application/json: PersonsCreateNewPersonRequest
+  /persons/{id}:
+    put:
+      application/json: PersonsUpdatePropertiesRequest
+  /persons/{id}/followers:
+    post:
+      application/json: PersonsAddFollowerRequest
+  /persons/{id}/merge:
+    put:
+      application/json: PersonsMergeTwoRequest
+  /persons/{id}/picture:
+    post:
+      multipart/form-data: PersonsAddPictureRequest
+  /pipelines:
+    post:
+      application/json: PipelinesCreateNewPipelineRequest
+  /pipelines/{id}:
+    put:
+      application/json: PipelinesUpdatePropertiesRequest
+  /productFields:
+    post:
+      application/json: ProductFieldsAddNewFieldRequest
+  /productFields/{id}:
+    put:
+      application/json: ProductFieldsUpdateFieldRequest
+  /products:
+    post:
+      application/json: ProductsCreateProductRequest
+  /products/{id}:
+    put:
+      application/json: ProductsUpdateProductDataRequest
+  /products/{id}/followers:
+    post:
+      application/json: ProductsAddFollowerRequest
+  /projects:
+    post:
+      application/json: ProjectsCreateProjectRequest
+  /projects/{id}:
+    put:
+      application/json: ProjectsUpdateProjectRequest
+  /projects/{id}/plan/activities/{activityId}:
+    put:
+      application/json: ProjectsUpdateProjectPlanActivityRequest
+  /projects/{id}/plan/tasks/{taskId}:
+    put:
+      application/json: ProjectsUpdatePlanTaskRequest
+  /roles:
+    post:
+      application/json: RolesCreateRoleRequest
+  /roles/{id}:
+    put:
+      application/json: RolesUpdateRoleDetailsRequest
+  /roles/{id}/assignments:
+    delete:
+      application/json: RolesRemoveAssignmentRequest
+    post:
+      application/json: RolesAssignUserRequest
+  /roles/{id}/pipelines:
+    put:
+      application/json: RolesUpdatePipelineVisibilityRequest
+  /roles/{id}/settings:
+    post:
+      application/json: RolesAddOrUpdateSettingRequest
+  /stages:
+    post:
+      application/json: StagesCreateNewStageRequest
+  /stages/{id}:
+    put:
+      application/json: StagesUpdateDetailsRequest
+  /subscriptions/installment:
+    post:
+      application/json: SubscriptionsAddInstallmentSubscriptionRequest
+  /subscriptions/installment/{id}:
+    put:
+      application/json: SubscriptionsUpdateInstallmentSubscriptionRequest
+  /subscriptions/recurring:
+    post:
+      application/json: SubscriptionsAddRecurringRequest
+  /subscriptions/recurring/{id}:
+    put:
+      application/json: SubscriptionsUpdateRecurringRequest
+  /subscriptions/recurring/{id}/cancel:
+    put:
+      application/json: SubscriptionsCancelRecurringSubscriptionRequest
+  /tasks:
+    post:
+      application/json: TasksCreateTaskRequest
+  /tasks/{id}:
+    put:
+      application/json: TasksUpdateTaskRequest
+  /users:
+    post:
+      application/json: UsersAddNewUserRequest
+  /users/{id}:
+    put:
+      application/json: UsersUpdateDetailsRequest
+  /webhooks:
+    post:
+      application/json: WebhooksCreateNewWebhookRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /activities:
+    delete:
+      '200':
+        application/json: ActivitiesDeleteBulkResponse
+    get:
+      '200':
+        application/json: ActivitiesListUserActivitiesResponse
+    post:
+      '201':
+        application/json: ActivitiesAddNewActivityResponse
+  /activities/collection:
+    get:
+      '200':
+        application/json: ActivitiesGetAllActivitiesResponse
+      '403':
+        application/json: ActivitiesGetAllActivities403Response
+  /activities/{id}:
+    delete:
+      '200':
+        application/json: ActivitiesMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: ActivitiesGetDetailsResponse
+    put:
+      '200':
+        application/json: ActivitiesUpdateActivityDetailsResponse
+  /activityFields:
+    get:
+      '200':
+        application/json: ActivityFieldsGetAllResponse
+  /activityTypes:
+    delete:
+      '200':
+        application/json: ActivityTypesMarkAsDeletedBulkResponse
+    get:
+      '200':
+        application/json: ActivityTypesListAllActivityTypesResponse
+    post:
+      '200':
+        application/json: ActivityTypesAddNewTypeResponse
+  /activityTypes/{id}:
+    delete:
+      '200':
+        application/json: ActivityTypesMarkAsDeletedResponse
+    put:
+      '200':
+        application/json: ActivityTypesUpdateTypeResponse
+  /billing/subscriptions/addons:
+    get:
+      '200':
+        application/json: BillingGetAddonsForSingleCompanyResponse
+  /callLogs:
+    get:
+      '200':
+        application/json: CallLogsGetAllLogsResponse
+    post:
+      '200':
+        application/json: CallLogsAddNewLogResponse
+      '400':
+        application/json: CallLogsAddNewLog400Response
+      '403':
+        application/json: CallLogsAddNewLog403Response
+      '404':
+        application/json: CallLogsAddNewLog404Response
+      '500':
+        application/json: CallLogsAddNewLog500Response
+  /callLogs/{id}:
+    delete:
+      '200':
+        application/json: CallLogsDeleteLogResponse
+      '403':
+        application/json: CallLogsDeleteLog403Response
+      '404':
+        application/json: CallLogsDeleteLog404Response
+      '410':
+        application/json: CallLogsDeleteLog410Response
+      '500':
+        application/json: CallLogsDeleteLog500Response
+    get:
+      '200':
+        application/json: CallLogsGetDetailsResponse
+      '404':
+        application/json: CallLogsGetDetails404Response
+  /callLogs/{id}/recordings:
+    post:
+      '200':
+        application/json: CallLogsAttachRecordingResponse
+      '404':
+        application/json: CallLogsAttachRecording404Response
+      '409':
+        application/json: CallLogsAttachRecording409Response
+      '500':
+        application/json: CallLogsAttachRecording500Response
+  /channels:
+    post:
+      '200':
+        application/json: ChannelsCreateNewChannelResponse
+      '400':
+        application/json: ChannelsCreateNewChannel400Response
+      '403':
+        application/json: ChannelsCreateNewChannel403Response
+  /channels/messages/receive:
+    post:
+      '200':
+        application/json: ChannelsReceiveMessageResponse
+      '400':
+        application/json: ChannelsReceiveMessage400Response
+  /channels/{channel-id}/conversations/{conversation-id}:
+    delete:
+      '200':
+        application/json: ChannelsDeleteConversationResponse
+      '403':
+        application/json: ChannelsDeleteConversation403Response
+      '404':
+        application/json: ChannelsDeleteConversation404Response
+  /channels/{id}:
+    delete:
+      '200':
+        application/json: ChannelsDeleteChannelByIdResponse
+      '400':
+        application/json: ChannelsDeleteChannelById400Response
+  /currencies:
+    get:
+      '200':
+        application/json: CurrenciesGetAllSupportedResponse
+  /dealFields:
+    delete:
+      '200':
+        application/json: DealFieldsDeleteMultipleBulkResponse
+    get:
+      '200':
+        application/json: DealFieldsGetAllFieldsResponse
+    post:
+      '200':
+        application/json: DealFieldsAddNewFieldResponse
+  /dealFields/{id}:
+    delete:
+      '200':
+        application/json: DealFieldsMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: DealFieldsGetOneFieldResponse
+    put:
+      '200':
+        application/json: DealFieldsUpdateFieldResponse
+  /deals:
+    delete:
+      '200':
+        application/json: DealsDeleteBulkResponse
+    get:
+      '200':
+        application/json: DealsGetAllDealsResponse
+    post:
+      '201':
+        application/json: DealsCreateDealResponse
+  /deals/collection:
+    get:
+      '200':
+        application/json: DealsGetAllDeals200Response
+      '403':
+        application/json: DealsGetAllDeals403Response
+  /deals/search:
+    get:
+      '200':
+        application/json: DealsSearchByTitleAndNotesResponse
+  /deals/summary:
+    get:
+      '200':
+        application/json: DealsGetSummaryResponse
+  /deals/timeline:
+    get:
+      '200':
+        application/json: DealsGetTimelineDataResponse
+  /deals/{id}:
+    delete:
+      '200':
+        application/json: DealsMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: DealsGetDetailsResponse
+    put:
+      '200':
+        application/json: DealsUpdatePropertiesResponse
+  /deals/{id}/activities:
+    get:
+      '200':
+        application/json: DealsListActivitiesResponse
+  /deals/{id}/duplicate:
+    post:
+      '200':
+        application/json: DealsDuplicateDealResponse
+  /deals/{id}/files:
+    get:
+      '200':
+        application/json: DealsListDealFilesResponse
+  /deals/{id}/flow:
+    get:
+      '200':
+        application/json: DealsListDealUpdatesResponse
+  /deals/{id}/followers:
+    get:
+      '200':
+        application/json: DealsListFollowersResponse
+    post:
+      '200':
+        application/json: DealsAddFollowerResponse
+  /deals/{id}/followers/{follower_id}:
+    delete:
+      '200':
+        application/json: DealsRemoveFollowerResponse
+  /deals/{id}/mailMessages:
+    get:
+      '200':
+        application/json: DealsListMailMessagesResponse
+  /deals/{id}/merge:
+    put:
+      '200':
+        application/json: DealsMergeDealsResponse
+  /deals/{id}/participants:
+    get:
+      '200':
+        application/json: DealsListParticipantsResponse
+    post:
+      '200':
+        application/json: DealsAddParticipantResponse
+  /deals/{id}/participants/{deal_participant_id}:
+    delete:
+      '200':
+        application/json: DealsDeleteParticipantResponse
+  /deals/{id}/participantsChangelog:
+    get:
+      '200':
+        application/json: DealsListParticipantsChangelogResponse
+  /deals/{id}/permittedUsers:
+    get:
+      '200':
+        application/json: DealsListPermittedUsersResponse
+  /deals/{id}/persons:
+    get:
+      '200':
+        application/json: DealsListPersonsAssociatedResponse
+  /deals/{id}/products:
+    get:
+      '200':
+        application/json: DealsListDealProductsResponse
+    post:
+      '200':
+        application/json: DealsAddProductToDealResponse
+  /deals/{id}/products/{product_attachment_id}:
+    delete:
+      '200':
+        application/json: DealsDeleteAttachedProductResponse
+    put:
+      '200':
+        application/json: DealsUpdateProductAttachmentResponse
+  /files:
+    get:
+      '200':
+        application/json: FilesGetAllFilesResponse
+    post:
+      '200':
+        application/json: FilesUploadAndAssociateResponse
+  /files/remote:
+    post:
+      '200':
+        application/json: FilesCreateRemoteFileAndLinkResponse
+  /files/remoteLink:
+    post:
+      '200':
+        application/json: FilesLinkRemoteFileResponse
+  /files/{id}:
+    delete:
+      '200':
+        application/json: FilesMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: FilesGetOneFileResponse
+    put:
+      '200':
+        application/json: FilesUpdateDetailsResponse
+  /files/{id}/download:
+    get:
+      '200':
+        application/octet-stream: FilesDownloadFileResponse
+  /filters:
+    delete:
+      '200':
+        application/json: FiltersDeleteBulkResponse
+    get:
+      '200':
+        application/json: FiltersGetAllResponse
+    post:
+      '200':
+        application/json: FiltersAddNewFilterResponse
+  /filters/helpers:
+    get:
+      '200':
+        application/json: FiltersGetHelpersResponse
+  /filters/{id}:
+    delete:
+      '200':
+        application/json: FiltersMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: FiltersGetDetailsResponse
+    put:
+      '200':
+        application/json: FiltersUpdateFilterResponse
+  /goals:
+    post:
+      '200':
+        application/json: GoalsCreateReportResponse
+  /goals/find:
+    get:
+      '200':
+        application/json: GoalsGetByCriteriaResponse
+  /goals/{id}:
+    delete:
+      '200':
+        application/json: GoalsMarkAsDeletedResponse
+    put:
+      '200':
+        application/json: GoalsUpdateExistingGoalResponse
+  /goals/{id}/results:
+    get:
+      '200':
+        application/json: GoalsGetResultResponse
+  /itemSearch:
+    get:
+      '200':
+        application/json: ItemSearchSearchMultipleItemsResponse
+  /itemSearch/field:
+    get:
+      '200':
+        application/json: ItemSearchByFieldValuesResponse
+  /leadLabels:
+    get:
+      '200':
+        application/json: LeadLabelsGetAllResponse
+    post:
+      '200':
+        application/json: LeadLabelsAddNewLabelResponse
+  /leadLabels/{id}:
+    delete:
+      '200':
+        application/json: LeadLabelsDeleteLabelResponse
+      '404':
+        application/json: LeadLabelsDeleteLabel404Response
+    patch:
+      '200':
+        application/json: LeadLabelsUpdatePropertiesResponse
+      '404':
+        application/json: LeadLabelsUpdateProperties404Response
+  /leadSources:
+    get:
+      '200':
+        application/json: LeadSourcesGetAllResponse
+  /leads:
+    get:
+      '200':
+        application/json: LeadsGetAllResponse
+    post:
+      '201':
+        application/json: LeadsCreateLeadResponse
+  /leads/search:
+    get:
+      '200':
+        application/json: LeadsSearchLeadsResponse
+  /leads/{id}:
+    delete:
+      '200':
+        application/json: LeadsDeleteLeadResponse
+      '404':
+        application/json: LeadsDeleteLead404Response
+    get:
+      '200':
+        application/json: LeadsGetDetailsResponse
+      '404':
+        application/json: LeadsGetDetails404Response
+    patch:
+      '200':
+        application/json: LeadsUpdateLeadPropertiesResponse
+      '404':
+        application/json: LeadsUpdateLeadProperties404Response
+  /leads/{id}/permittedUsers:
+    get:
+      '200':
+        application/json: LeadsListPermittedUsersResponse
+  /legacyTeams:
+    get:
+      '200':
+        application/json: LegacyTeamsGetAllTeamsResponse
+    post:
+      '200':
+        application/json: LegacyTeamsAddNewTeamResponse
+      '403':
+        application/json: LegacyTeamsAddNewTeam403Response
+  /legacyTeams/user/{id}:
+    get:
+      '200':
+        application/json: LegacyTeamsGetUserTeamsResponse
+  /legacyTeams/{id}:
+    get:
+      '200':
+        application/json: LegacyTeamsGetDataResponse
+      '404':
+        application/json: LegacyTeamsGetData404Response
+    put:
+      '200':
+        application/json: LegacyTeamsUpdateTeamObjectResponse
+      '403':
+        application/json: LegacyTeamsUpdateTeamObject403Response
+      '404':
+        application/json: LegacyTeamsUpdateTeamObject404Response
+  /legacyTeams/{id}/users:
+    delete:
+      '200':
+        application/json: LegacyTeamsRemoveUsersResponse
+      '403':
+        application/json: LegacyTeamsRemoveUsers403Response
+      '404':
+        application/json: LegacyTeamsRemoveUsers404Response
+    get:
+      '200':
+        application/json: LegacyTeamsGetAllUsersResponse
+      '404':
+        application/json: LegacyTeamsGetAllUsers404Response
+    post:
+      '200':
+        application/json: LegacyTeamsAddUsersToTeamResponse
+      '403':
+        application/json: LegacyTeamsAddUsersToTeam403Response
+      '404':
+        application/json: LegacyTeamsAddUsersToTeam404Response
+  /mailbox/mailMessages/{id}:
+    get:
+      '200':
+        application/json: MailboxGetMailMessageResponse
+  /mailbox/mailThreads:
+    get:
+      '200':
+        application/json: MailboxGetMailThreadsResponse
+  /mailbox/mailThreads/{id}:
+    delete:
+      '200':
+        application/json: MailboxMarkThreadDeletedResponse
+    get:
+      '200':
+        application/json: MailboxGetMailThreadResponse
+    put:
+      '200':
+        application/json: MailboxUpdateMailThreadDetailsResponse
+  /mailbox/mailThreads/{id}/mailMessages:
+    get:
+      '200':
+        application/json: MailboxGetAllMailMessagesResponse
+  /meetings/userProviderLinks:
+    post:
+      '200':
+        application/json: MeetingsLinkUserProviderResponse
+      '401':
+        application/json: MeetingsLinkUserProvider401Response
+  /meetings/userProviderLinks/{id}:
+    delete:
+      '200':
+        application/json: MeetingsRemoveUserProviderLinkResponse
+      '401':
+        application/json: MeetingsRemoveUserProviderLink401Response
+      '403':
+        application/json: MeetingsRemoveUserProviderLink403Response
+  /noteFields:
+    get:
+      '200':
+        application/json: NoteFieldsGetAllNoteFieldsResponse
+  /notes:
+    get:
+      '200':
+        application/json: NotesGetAllResponse
+    post:
+      '200':
+        application/json: NotesCreateNoteResponse
+  /notes/{id}:
+    delete:
+      '200':
+        application/json: NotesDeleteNoteResponse
+    get:
+      '200':
+        application/json: NotesGetDetailsResponse
+    put:
+      '200':
+        application/json: NotesUpdateNoteResponse
+  /notes/{id}/comments:
+    get:
+      '200':
+        application/json: NotesGetAllCommentsResponse
+    post:
+      '200':
+        application/json: NotesAddNewCommentResponse
+  /notes/{id}/comments/{commentId}:
+    delete:
+      '200':
+        application/json: NotesDeleteCommentResponse
+    get:
+      '200':
+        application/json: NotesGetCommentDetailsResponse
+    put:
+      '200':
+        application/json: NotesUpdateCommentResponse
+  /oauth/token:
+    post:
+      '200':
+        application/json: OauthRefreshTokenResponse
+  /organizationFields:
+    delete:
+      '200':
+        application/json: OrganizationFieldsDeleteMultipleBulkResponse
+    get:
+      '200':
+        application/json: OrganizationFieldsGetAllFieldsResponse
+    post:
+      '200':
+        application/json: OrganizationFieldsAddNewFieldResponse
+  /organizationFields/{id}:
+    delete:
+      '200':
+        application/json: OrganizationFieldsMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: OrganizationFieldsGetSpecificFieldResponse
+    put:
+      '200':
+        application/json: OrganizationFieldsUpdateFieldResponse
+  /organizationRelationships:
+    get:
+      '200':
+        application/json: OrganizationRelationshipsGetAllRelationshipsResponse
+    post:
+      '200':
+        application/json: OrganizationRelationshipsCreateNewRelationshipResponse
+  /organizationRelationships/{id}:
+    delete:
+      '200':
+        application/json: OrganizationRelationshipsDeleteByIdResponse
+    get:
+      '200':
+        application/json: OrganizationRelationshipsGetByIdResponse
+    put:
+      '200':
+        application/json: OrganizationRelationshipsUpdateAndReturnResponse
+  /organizations:
+    delete:
+      '200':
+        application/json: OrganizationsDeleteMultipleBulkResponse
+    get:
+      '200':
+        application/json: OrganizationsGetAllResponse
+    post:
+      '201':
+        application/json: OrganizationsAddNewOrganizationResponse
+  /organizations/collection:
+    get:
+      '200':
+        application/json: OrganizationsListAllOrganizationsResponse
+      '403':
+        application/json: OrganizationsListAllOrganizations403Response
+  /organizations/search:
+    get:
+      '200':
+        application/json: OrganizationsSearchByCriteriaResponse
+  /organizations/{id}:
+    delete:
+      '200':
+        application/json: OrganizationsDeleteMarkedOrganizationResponse
+    get:
+      '200':
+        application/json: OrganizationsGetDetailsResponse
+    put:
+      '200':
+        application/json: OrganizationsUpdatePropertiesResponse
+  /organizations/{id}/activities:
+    get:
+      '200':
+        application/json: OrganizationsListActivitiesResponse
+  /organizations/{id}/deals:
+    get:
+      '200':
+        application/json: OrganizationsListDealsResponse
+  /organizations/{id}/files:
+    get:
+      '200':
+        application/json: OrganizationsListAttachedFilesResponse
+  /organizations/{id}/flow:
+    get:
+      '200':
+        application/json: OrganizationsListUpdatesAboutResponse
+  /organizations/{id}/followers:
+    get:
+      '200':
+        application/json: OrganizationsListFollowersResponse
+    post:
+      '200':
+        application/json: OrganizationsAddFollowerResponse
+  /organizations/{id}/followers/{follower_id}:
+    delete:
+      '200':
+        application/json: OrganizationsDeleteFollowerResponse
+  /organizations/{id}/mailMessages:
+    get:
+      '200':
+        application/json: OrganizationsListMailMessagesResponse
+  /organizations/{id}/merge:
+    put:
+      '200':
+        application/json: OrganizationsMergeTwoResponse
+  /organizations/{id}/permittedUsers:
+    get:
+      '200':
+        application/json: OrganizationsListPermittedUsersResponse
+  /organizations/{id}/persons:
+    get:
+      '200':
+        application/json: OrganizationsListPersonsResponse
+  /permissionSets:
+    get:
+      '200':
+        application/json: PermissionSetsGetAllResponse
+  /permissionSets/{id}:
+    get:
+      '200':
+        application/json: PermissionSetsGetOneResponse
+      '404':
+        application/json: PermissionSetsGetOne404Response
+  /permissionSets/{id}/assignments:
+    get:
+      '200':
+        application/json: PermissionSetsListAssignmentsResponse
+      '404':
+        application/json: PermissionSetsListAssignments404Response
+  /personFields:
+    delete:
+      '200':
+        application/json: PersonFieldsDeleteMultipleBulkResponse
+    get:
+      '200':
+        application/json: PersonFieldsGetAllFieldsResponse
+    post:
+      '200':
+        application/json: PersonFieldsAddNewFieldResponse
+  /personFields/{id}:
+    delete:
+      '200':
+        application/json: PersonFieldsMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: PersonFieldsGetSpecificFieldResponse
+    put:
+      '200':
+        application/json: PersonFieldsUpdateFieldResponse
+  /persons:
+    delete:
+      '200':
+        application/json: PersonsDeleteMultipleBulkResponse
+    get:
+      '200':
+        application/json: PersonsListAllPersonsResponse
+    post:
+      '201':
+        application/json: PersonsCreateNewPersonResponse
+  /persons/collection:
+    get:
+      '200':
+        application/json: PersonsGetAllResponse
+      '403':
+        application/json: PersonsGetAll403Response
+  /persons/search:
+    get:
+      '200':
+        application/json: PersonsSearchByCriteriaResponse
+  /persons/{id}:
+    delete:
+      '200':
+        application/json: PersonsMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: PersonsGetPersonDetailsResponse
+    put:
+      '200':
+        application/json: PersonsUpdatePropertiesResponse
+  /persons/{id}/activities:
+    get:
+      '200':
+        application/json: PersonsListActivitiesResponse
+  /persons/{id}/deals:
+    get:
+      '200':
+        application/json: PersonsListDealsResponse
+  /persons/{id}/files:
+    get:
+      '200':
+        application/json: PersonsListPersonFilesResponse
+  /persons/{id}/flow:
+    get:
+      '200':
+        application/json: PersonsListUpdatesAboutResponse
+  /persons/{id}/followers:
+    get:
+      '200':
+        application/json: PersonsListFollowersResponse
+    post:
+      '200':
+        application/json: PersonsAddFollowerResponse
+  /persons/{id}/followers/{follower_id}:
+    delete:
+      '200':
+        application/json: PersonsDeleteFollowerResponse
+  /persons/{id}/mailMessages:
+    get:
+      '200':
+        application/json: PersonsListMailMessagesResponse
+  /persons/{id}/merge:
+    put:
+      '200':
+        application/json: PersonsMergeTwoResponse
+  /persons/{id}/permittedUsers:
+    get:
+      '200':
+        application/json: PersonsListPermittedUsersResponse
+  /persons/{id}/picture:
+    delete:
+      '200':
+        application/json: PersonsDeletePictureResponse
+    post:
+      '200':
+        application/json: PersonsAddPictureResponse
+  /persons/{id}/products:
+    get:
+      '200':
+        application/json: PersonsListProductsResponse
+  /pipelines:
+    get:
+      '200':
+        application/json: PipelinesGetAllResponse
+    post:
+      '200':
+        application/json: PipelinesCreateNewPipelineResponse
+  /pipelines/{id}:
+    delete:
+      '200':
+        application/json: PipelinesDeletePipelineResponse
+    get:
+      '200':
+        application/json: PipelinesGetOnePipelineSummaryResponse
+    put:
+      '200':
+        application/json: PipelinesUpdatePropertiesResponse
+  /pipelines/{id}/conversion_statistics:
+    get:
+      '200':
+        application/json: PipelinesGetConversionStatisticsResponse
+  /pipelines/{id}/deals:
+    get:
+      '200':
+        application/json: PipelinesListDealsResponse
+  /pipelines/{id}/movement_statistics:
+    get:
+      '200':
+        application/json: PipelinesGetMovementStatisticsResponse
+  /productFields:
+    delete:
+      '200':
+        application/json: ProductFieldsDeleteMultipleBulkResponse
+    get:
+      '200':
+        application/json: ProductFieldsGetAllFieldsResponse
+    post:
+      '201':
+        application/json: ProductFieldsAddNewFieldResponse
+  /productFields/{id}:
+    delete:
+      '200':
+        application/json: ProductFieldsMarkAsDeletedResponse
+      '410':
+        application/json: ProductFieldsMarkAsDeleted410Response
+    get:
+      '200':
+        application/json: ProductFieldsGetOneFieldResponse
+      '410':
+        application/json: ProductFieldsGetOneField410Response
+    put:
+      '200':
+        application/json: ProductFieldsUpdateFieldResponse
+  /products:
+    get:
+      '200':
+        application/json: ProductsGetAllProductsResponse
+    post:
+      '201':
+        application/json: ProductsCreateProductResponse
+  /products/search:
+    get:
+      '200':
+        application/json: ProductsSearchByFieldsResponse
+  /products/{id}:
+    delete:
+      '200':
+        application/json: ProductsMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: ProductsGetDetailsResponse
+    put:
+      '200':
+        application/json: ProductsUpdateProductDataResponse
+  /products/{id}/deals:
+    get:
+      '200':
+        application/json: ProductsGetDealsResponse
+  /products/{id}/files:
+    get:
+      '200':
+        application/json: ProductsListProductFilesResponse
+  /products/{id}/followers:
+    get:
+      '200':
+        application/json: ProductsListProductFollowersResponse
+    post:
+      '201':
+        application/json: ProductsAddFollowerResponse
+  /products/{id}/followers/{follower_id}:
+    delete:
+      '200':
+        application/json: ProductsDeleteFollowerResponse
+  /products/{id}/permittedUsers:
+    get:
+      '200':
+        application/json: ProductsListPermittedUsersResponse
+  /projectTemplates:
+    get:
+      '200':
+        application/json: ProjectTemplatesGetAllTemplatesResponse
+  /projectTemplates/{id}:
+    get:
+      '200':
+        application/json: ProjectTemplatesGetDetailsResponse
+  /projects:
+    get:
+      '200':
+        application/json: ProjectsGetAllProjectsResponse
+    post:
+      '201':
+        application/json: ProjectsCreateProjectResponse
+  /projects/boards:
+    get:
+      '200':
+        application/json: ProjectsGetAllBoardsResponse
+  /projects/boards/{id}:
+    get:
+      '200':
+        application/json: ProjectTemplatesGetBoardDetailsResponse
+  /projects/phases:
+    get:
+      '200':
+        application/json: ProjectsGetPhasesResponse
+  /projects/phases/{id}:
+    get:
+      '200':
+        application/json: ProjectTemplatesGetPhaseDetailsResponse
+  /projects/{id}:
+    delete:
+      '200':
+        application/json: ProjectsMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: ProjectsGetDetailsResponse
+    put:
+      '200':
+        application/json: ProjectsUpdateProjectResponse
+  /projects/{id}/activities:
+    get:
+      '200':
+        application/json: ProjectsGetProjectActivitiesResponse
+  /projects/{id}/archive:
+    post:
+      '200':
+        application/json: ProjectsArchiveProjectResponse
+  /projects/{id}/groups:
+    get:
+      '200':
+        application/json: ProjectsGetGroupsResponse
+  /projects/{id}/plan:
+    get:
+      '200':
+        application/json: ProjectsGetProjectPlanResponse
+  /projects/{id}/plan/activities/{activityId}:
+    put:
+      '200':
+        application/json: ProjectsUpdateProjectPlanActivityResponse
+  /projects/{id}/plan/tasks/{taskId}:
+    put:
+      '200':
+        application/json: ProjectsUpdatePlanTaskResponse
+  /projects/{id}/tasks:
+    get:
+      '200':
+        application/json: ProjectsGetProjectTasksResponse
+  /recents:
+    get:
+      '200':
+        application/json: RecentsGetChangesAfterResponse
+  /roles:
+    get:
+      '200':
+        application/json: RolesGetAllRolesResponse
+    post:
+      '200':
+        application/json: RolesCreateRoleResponse
+  /roles/{id}:
+    delete:
+      '200':
+        application/json: RolesMarkAsDeletedResponse
+    get:
+      '200':
+        application/json: RolesGetOneRoleResponse
+    put:
+      '200':
+        application/json: RolesUpdateRoleDetailsResponse
+  /roles/{id}/assignments:
+    delete:
+      '200':
+        application/json: RolesRemoveAssignmentResponse
+    get:
+      '200':
+        application/json: RolesListRoleAssignmentsResponse
+    post:
+      '200':
+        application/json: RolesAssignUserResponse
+  /roles/{id}/pipelines:
+    get:
+      '200':
+        application/json: RolesListPipelineVisibilityResponse
+    put:
+      '200':
+        application/json: RolesUpdatePipelineVisibilityResponse
+  /roles/{id}/settings:
+    get:
+      '200':
+        application/json: RolesGetRoleSettingsResponse
+    post:
+      '200':
+        application/json: RolesAddOrUpdateSettingResponse
+  /stages:
+    delete:
+      '200':
+        application/json: StagesDeleteBulkResponse
+    get:
+      '200':
+        application/json: StagesGetAllResponse
+    post:
+      '200':
+        application/json: StagesCreateNewStageResponse
+  /stages/{id}:
+    delete:
+      '200':
+        application/json: StagesDeleteStageResponse
+    get:
+      '200':
+        application/json: StagesGetOneStageResponse
+    put:
+      '200':
+        application/json: StagesUpdateDetailsResponse
+  /stages/{id}/deals:
+    get:
+      '200':
+        application/json: StagesGetStageDealsResponse
+  /subscriptions/find/{dealId}:
+    get:
+      '200':
+        application/json: SubscriptionsFindByDealIdResponse
+  /subscriptions/installment:
+    post:
+      '200':
+        application/json: SubscriptionsAddInstallmentSubscriptionResponse
+  /subscriptions/installment/{id}:
+    put:
+      '200':
+        application/json: SubscriptionsUpdateInstallmentSubscriptionResponse
+  /subscriptions/recurring:
+    post:
+      '200':
+        application/json: SubscriptionsAddRecurringResponse
+  /subscriptions/recurring/{id}:
+    put:
+      '200':
+        application/json: SubscriptionsUpdateRecurringResponse
+  /subscriptions/recurring/{id}/cancel:
+    put:
+      '200':
+        application/json: SubscriptionsCancelRecurringSubscriptionResponse
+  /subscriptions/{id}:
+    delete:
+      '200':
+        application/json: SubscriptionsDeleteMarkedResponse
+    get:
+      '200':
+        application/json: SubscriptionsGetDetailsResponse
+  /subscriptions/{id}/payments:
+    get:
+      '200':
+        application/json: SubscriptionsGetPaymentsResponse
+  /tasks:
+    get:
+      '200':
+        application/json: TasksListAllTasksResponse
+    post:
+      '201':
+        application/json: TasksCreateTaskResponse
+  /tasks/{id}:
+    delete:
+      '200':
+        application/json: TasksDeleteTaskResponse
+    get:
+      '200':
+        application/json: TasksGetDetailsResponse
+    put:
+      '200':
+        application/json: TasksUpdateTaskResponse
+  /userConnections:
+    get:
+      '200':
+        application/json: UserConnectionsGetAllConnectionsResponse
+      '401':
+        application/json: UserConnectionsGetAllConnections401Response
+  /userSettings:
+    get:
+      '200':
+        application/json: UserSettingsListAuthorizedSettingsResponse
+      '401':
+        application/json: UserSettingsListAuthorizedSettings401Response
+  /users:
+    get:
+      '200':
+        application/json: UsersGetAllResponse
+    post:
+      '200':
+        application/json: UsersAddNewUserResponse
+      '403':
+        application/json: UsersAddNewUser403Response
+  /users/find:
+    get:
+      '200':
+        application/json: UsersFindByNameResponse
+  /users/me:
+    get:
+      '200':
+        application/json: UsersGetCurrentUserDataResponse
+      '401':
+        application/json: UsersGetCurrentUserData401Response
+  /users/{id}:
+    get:
+      '200':
+        application/json: UsersGetUserResponse
+      '404':
+        application/json: UsersGetUser404Response
+    put:
+      '200':
+        application/json: UsersUpdateDetailsResponse
+      '403':
+        application/json: UsersUpdateDetails403Response
+      '404':
+        application/json: UsersUpdateDetails404Response
+  /users/{id}/followers:
+    get:
+      '200':
+        application/json: UsersListFollowersResponse
+      '403':
+        application/json: UsersListFollowers403Response
+  /users/{id}/permissions:
+    get:
+      '200':
+        application/json: UsersListPermissionsResponse
+  /users/{id}/roleAssignments:
+    get:
+      '200':
+        application/json: UsersListRoleAssignmentsResponse
+  /users/{id}/roleSettings:
+    get:
+      '200':
+        application/json: UsersListRoleSettingsResponse
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhooksGetAllResponse
+      '401':
+        application/json: WebhooksGetAll401Response
+    post:
+      '201':
+        application/json: WebhooksCreateNewWebhookResponse
+      '400':
+        application/json: WebhooksCreateNewWebhook400Response
+      '401':
+        application/json: WebhooksCreateNewWebhook401Response
+  /webhooks/{id}:
+    delete:
+      '200':
+        application/json: WebhooksDeleteExistingWebhookResponse
+      '401':
+        application/json: WebhooksDeleteExistingWebhook401Response
+      '403':
+        application/json: WebhooksDeleteExistingWebhook403Response
+      '404':
+        application/json: WebhooksDeleteExistingWebhook404Response
+securityParameters:
+  all_changes:
+    query: false
+  amount:
+    query: false
+  app:
+    query: false
+  archived_status:
+    query: false
+  assignee.id:
+    query: false
+  assignee.type:
+    query: false
+  assignee_id:
+    query: false
+  board_id:
+    query: false
+  client_id:
+    query: false
+  cursor:
+    query: false
+  deal_id:
+    query: false
+  done:
+    query: false
+  end_date:
+    query: false
+  everyone:
+    query: false
+  exact_match:
+    query: false
+  exclude:
+    query: false
+  exclude_deals:
+    query: false
+  expected_outcome.currency_id:
+    query: false
+  expected_outcome.target:
+    query: false
+  expected_outcome.tracking_metric:
+    query: false
+  field_key:
+    query: false
+  field_type:
+    query: false
+  fields:
+    query: false
+  filter_id:
+    query: false
+  first_char:
+    query: false
+  folder:
+    query: false
+  get_summary:
+    query: false
+  ids:
+    query: false
+  include_archived:
+    query: false
+  include_body:
+    query: false
+  include_fields:
+    query: false
+  include_product_data:
+    query: false
+  interval:
+    query: false
+  is_active:
+    query: false
+  item_types:
+    query: false
+  items:
+    query: false
+  lead_id:
+    query: false
+  limit:
+    query: false
+  only_primary_association:
+    query: false
+  order_by:
+    query: false
+  org_id:
+    query: false
+  organization_id:
+    query: false
+  owned_by_you:
+    query: false
+  owner_id:
+    query: false
+  parent_task_id:
+    query: false
+  period.end:
+    query: false
+  period.start:
+    query: false
+  person_id:
+    query: false
+  phase_id:
+    query: false
+  pinned_to_deal_flag:
+    query: false
+  pinned_to_lead_flag:
+    query: false
+  pinned_to_organization_flag:
+    query: false
+  pinned_to_person_flag:
+    query: false
+  pipeline_id:
+    query: false
+  project_id:
+    query: false
+  redirect_uri:
+    query: false
+  return_item_ids:
+    query: false
+  search_by_email:
+    query: false
+  search_for_related_items:
+    query: false
+  since:
+    query: false
+  since_timestamp:
+    query: false
+  skip_users:
+    query: false
+  sort:
+    query: false
+  stage_id:
+    query: false
+  start:
+    query: false
+  start_date:
+    query: false
+  state:
+    query: false
+  status:
+    query: false
+  term:
+    query: false
+  title:
+    query: false
+  totals_convert_currency:
+    query: false
+  type:
+    query: false
+  type.name:
+    query: false
+  type.params.activity_type_id:
+    query: false
+  type.params.pipeline_id:
+    query: false
+  type.params.stage_id:
+    query: false
+  until:
+    query: false
+  user_id:
+    query: false
+  visible:
+    query: false
+validServerUrls: {}
