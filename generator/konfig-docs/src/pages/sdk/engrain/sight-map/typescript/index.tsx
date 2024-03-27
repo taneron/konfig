@@ -10,7 +10,7 @@ export default function EngrainSightMapTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="engrain-sight-map-typescript-sdk"
-      metaDescription={`Engrain is a recognized leader in next-generation interactive technology and data visualization software solutions for the multifamily, commercial, residential, storage, and retail real estate industries. The company is best known for its award-winning TouchTour® suite of products – including interactive sales kiosks, the TouchTour iPad application, and TouchTour Connect digital signage – which engage prospects and residents alike while empowering sales teams with actionable, real-time information. 
+      metaDescription={`Engrain is a recognized leader in next-generation interactive technology and data visualization software solutions for the multifamily, commercial, residential, storage, and retail real estate industries. The company is best known for its award-winning TouchTour® suite of products – including interactive sales kiosks, the TouchTour iPad application, and TouchTour Connect digital signage – which engage prospects and residents alike while empowering sales teams with actionable, real-time information.
 
 Through its innovative SightMap™ data visualization software platform, Engrain is poised to disrupt the real estate industry once again with a lightweight map format that displays unit-level data in a highly responsive and integrated way. SightMap can be embedded on virtually any website or application and is available on all Engrain's TouchTour products.  It is also available for license by individual companies as a powerful asset management tool, and third-party software providers for inclusion in marketing and operations dashboards, applications, analytics tools and websites via an SDK and Unit Map data API.`}
       company="Engrain"
@@ -19,7 +19,7 @@ Through its innovative SightMap™ data visualization software platform, Engrain
       companyKebabCase="engrain"
       clientNameCamelCase="engrainSightMap"
       homepage="www.engrain.com/sightmap"
-      lastUpdated={new Date("2024-03-27T22:54:19.755Z")}
+      lastUpdated={new Date("2024-03-27T23:11:26.311Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/engrain/sight-map/favicon.png"
       contactUrl="https://developers.sightmap.com"
       // Missing contactEmail

@@ -10,18 +10,18 @@ export default function ResistantAiTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="resistant-ai-typescript-sdk"
-      metaDescription={`Resistant AI protects lenders and other fintechs from document fraud. 
+      metaDescription={`Resistant AI protects lenders and other fintechs from document fraud.
 
 If you are part of a fraud, risk, operations, or compliance team in the fintech/finance industry, you can now improve your risk and fraud controls, by detecting fraudulent documents automatically, and without replacing your existing systems.
 
-Detect and prevent document fraud in: 
+Detect and prevent document fraud in:
 • KYB / Merchant Onboarding
 • KYC / Customer Onboarding
 • Digital Lending / Mortgage Underwriting
 • Tenant Screening
 • And more.
 
-Some stats: 
+Some stats:
 • 500+ detectors
 • Less than 30 sec to get results
 • 90% of manual reviews eliminated
@@ -36,7 +36,7 @@ Some stats:
       companyKebabCase="resistant-ai"
       clientNameCamelCase="resistantAi"
       homepage="resistant.ai/"
-      lastUpdated={new Date("2024-03-27T22:44:50.741Z")}
+      lastUpdated={new Date("2024-03-27T23:11:26.311Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resistant-ai/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

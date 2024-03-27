@@ -78,18 +78,18 @@ export default function ResistantAi() {
       homepage="resistant.ai/"
       companyKebabCase="resistant-ai"
       categories={allCategories}
-      metaDescription={`Resistant AI protects lenders and other fintechs from document fraud. 
+      metaDescription={`Resistant AI protects lenders and other fintechs from document fraud.
 
 If you are part of a fraud, risk, operations, or compliance team in the fintech/finance industry, you can now improve your risk and fraud controls, by detecting fraudulent documents automatically, and without replacing your existing systems.
 
-Detect and prevent document fraud in: 
+Detect and prevent document fraud in:
 • KYB / Merchant Onboarding
 • KYC / Customer Onboarding
 • Digital Lending / Mortgage Underwriting
 • Tenant Screening
 • And more.
 
-Some stats: 
+Some stats:
 • 500+ detectors
 • Less than 30 sec to get results
 • 90% of manual reviews eliminated
