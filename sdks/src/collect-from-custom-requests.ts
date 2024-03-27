@@ -1662,6 +1662,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://dac-static.atlassian.com/cloud/bitbucket/swagger.v3.json",
   },
+  "height.app": {
+    type: "GET",
+    url: "https://height-api.xyz/redocusaurus/default.yaml",
+  },
   "atlassian.com_Jira": {
     type: "GET",
     url: "https://dac-static.atlassian.com/cloud/jira/platform/swagger-v3.v3.json",
@@ -1851,7 +1855,7 @@ const customRequests: Record<string, CustomRequest> = {
         filename: "openapi.json",
       });
     },
-  }
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

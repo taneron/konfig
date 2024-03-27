@@ -1,0 +1,76 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /activities:
+    get: Activities_listMessages
+    post: Activities_createMessage
+  /fieldTemplates:
+    get: FieldTemplates_listAll
+  /fieldTemplates/:id/options:
+    post: FieldTemplates_createOption
+  /fieldTemplates/:id/options/:optionId:
+    put: FieldTemplates_updateOption
+  /groups:
+    get: Groups_getAllGroups
+  /lists:
+    get: Lists_getAll
+    post: Lists_createNewList
+  /lists/{id}:
+    put: Lists_updateListById
+  /securityLogEvents:
+    get: SecurityLogEvents_listAll
+  /taskForms/:id/answers:
+    post: TaskForms_createTaskFromForm
+  /taskForms/:urlKey:
+    get: TaskForms_getById
+  /tasks:
+    get: Tasks_search
+    patch: Tasks_updateMultiple
+    post: Tasks_createTask
+  /tasks/:id:
+    get: Tasks_getTaskById
+    patch: Tasks_updateTaskById
+  /tasks/move:
+    put: Tasks_moveTask
+  /users:
+    get: Users_getAllUsers
+  /users/:id:
+    get: Users_getUserById
+  /users/me:
+    get: Users_getCurrentUser
+  /workspace:
+    get: Workspace_get
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /lists:
+    get:
+      '200':
+        application/json: ListsGetAllResponse
+  /tasks:
+    patch:
+      '200':
+        application/json: TasksUpdateMultipleResponse
+securityParameters:
+  archived:
+    query: false
+  asBot:
+    query: false
+  draft:
+    query: false
+  filters:
+    query: false
+  include:
+    query: false
+  keyType:
+    query: false
+  notifyUsers:
+    query: false
+  realtime:
+    query: false
+  taskId:
+    query: false
+validServerUrls: {}

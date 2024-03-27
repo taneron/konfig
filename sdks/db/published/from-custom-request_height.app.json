@@ -1,0 +1,710 @@
+{
+  "securitySchemes": {
+    "apiKey": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "description": "The Height API uses API keys to authenticate requests. **You can view your API key in the Height settings under API**.\n ex: `api-key secret_1234`",
+      "in": "header"
+    }
+  },
+  "apiBaseUrl": "https://api.height.app",
+  "apiVersion": "1.0.0",
+  "apiDescription": "Unofficial Open API 3.1 specification for [Height App API](https://www.notion.so/API-documentation-643aea5bf01742de9232e5971cb4afda). This is not affiliated with Height team.\n\n---\n# Authentication\n\nThe Height API uses API keys to authenticate requests. **You can view your API key in the Height settings under API**.\n\nAuthentication to the API is performed via the `Authorization` header. All API requests should be made over HTTPs.\n\ni.e. Get your workspace.\n\n```bash\ncurl https://api.height.app/workspace \\\n  -H \"Authorization: api-key secret_1234\"\n```\n\nThird-party applications must connect to the Height API using [OAuth2](https://www.notion.so/API-documentation-643aea5bf01742de9232e5971cb4afda). \n\nSee [OAuth Apps on Height](https://www.notion.so/OAuth-Apps-on-Height-a8ebeab3f3f047e3857bd8ce60c2f640) for more information.\n\n# Object formats\n\nAll objects have a unique `id` ([UUID v4](https://en.m.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))) and a `model` attribute to distinguish the model type.\n\ne.g. a task object.\n\n```json\n{\n  \"id\": \"123e4567-e89b-12d3-a456-426655440000\",\n  \"model\": \"task\",\n  \"name\": \"Fix bug\",\n  \"index\": 1,\n  \"status\": \"backLog\",\n  [...]\n}\n```\n\n# Date formats\n\nEvery date uses the ISO format e.g.\n\n```js\n\"2019-11-07T17:00:00.000Z\"\n```\n\n# Real-time\n\nAny change that you make to the API will be pushed to every user in real-time: i.e. creating tasks or messages.\n\n# Rate limits\n\nTo keep incoming traffic under control and maintain a great experience for all our users, our API is behind a rate limiter. Users who send many requests in quick succession may see error responses that show up as status code 429.\n\nHeight allows up to 120 requests/min, but we have stricter limits on these endpoints:\n\n- `POST /activities`: 60 requests/min\n- `POST /tasks`: 60 requests/min",
+  "apiTitle": "Height APP API",
+  "endpoints": 17,
+  "sdkMethods": 22,
+  "schemas": 63,
+  "parameters": 52,
+  "contactEmail": "gil@beomjun.kr",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://height-api.xyz/redocusaurus/default.yaml"
+  },
+  "customRequestSpecFilename": "height.app.yaml",
+  "difficultyScore": 65.5,
+  "difficulty": "Easy",
+  "company": "Height",
+  "sdkName": "height-{language}-sdk",
+  "clientName": "Height",
+  "metaDescription": "Height is the autonomous project collaboration tool. With an embedded AI engine, Height handles the legwork of building products on autopilot. Offload soul-sucking chores like bug triage, backlog grooming, and documentation updates for good.",
+  "apiStatusUrls": "inherit",
+  "homepage": "height.app",
+  "developerDocumentation": "height-api.xyz/openapi/",
+  "categories": [
+    "automation",
+    "ai",
+    "project_collaboration"
+  ],
+  "category": "AI Tools",
+  "methods": [
+    {
+      "url": "/lists",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "Lists",
+      "typeScriptTag": "lists",
+      "description": "List all lists",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/lists",
+      "method": "createNewList",
+      "httpMethod": "post",
+      "tag": "Lists",
+      "typeScriptTag": "lists",
+      "description": "Create a list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Tasks belong to one list. To create tasks, it's necessary to know in which list you want to create them."
+        }
+      ]
+    },
+    {
+      "url": "/lists/{id}",
+      "method": "updateListById",
+      "httpMethod": "put",
+      "tag": "Lists",
+      "typeScriptTag": "lists",
+      "description": "Update a list",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The unique id of the list (https://height-api.xyz/openapi/",
+          "example": "ID"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "appearance",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "visualization",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "archivedAt",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Tasks belong to one list. To create tasks, it's necessary to know in which list you want to create them."
+        }
+      ]
+    },
+    {
+      "url": "/tasks",
+      "method": "search",
+      "httpMethod": "get",
+      "tag": "Tasks",
+      "typeScriptTag": "tasks",
+      "description": "Search tasks",
+      "parameters": [
+        {
+          "name": "filters",
+          "schema": "string",
+          "description": "JSON object with filters",
+          "example": "{\"status\":{\"values\":[\"backLog\",\"inProgress\"]},\"assigneeId\":{\"values\":[\"123e4567-e89b-12d3-a456-426655440000\"]},\"completed\":{\"values\":[false]},\"lastActivityAt\":{\"values\":[],\"gt\":{\"date\":\"2019-11-07T17:00:00.000Z\"}}}"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tasks",
+      "method": "updateMultiple",
+      "httpMethod": "patch",
+      "tag": "Tasks",
+      "typeScriptTag": "tasks",
+      "description": "Patch multiples tasks",
+      "parameters": [
+        {
+          "name": "patches",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tasks",
+      "method": "createTask",
+      "httpMethod": "post",
+      "tag": "Tasks",
+      "typeScriptTag": "tasks",
+      "description": "Create a task",
+      "parameters": [
+        {
+          "name": "realtime",
+          "schema": "boolean",
+          "description": "(https://height-api.xyz/openapi/ - use false when migrating tasks"
+        },
+        {
+          "name": "notifyUsers",
+          "schema": "boolean",
+          "description": "(https://height-api.xyz/openapi/ - use false when migrating tasks"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "listIds",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "assigneesIds",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "parentTaskId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "fields",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "orderIntent",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tasks/:id",
+      "method": "getTaskById",
+      "httpMethod": "get",
+      "tag": "Tasks",
+      "typeScriptTag": "tasks",
+      "description": "Get a task",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "task index (https://height-api.xyz/openapi/ or task id (https://height-api.xyz/openapi/",
+          "example": "ID"
+        },
+        {
+          "name": "include",
+          "schema": "string",
+          "description": "What you wish to include with the task."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tasks/:id",
+      "method": "updateTaskById",
+      "httpMethod": "patch",
+      "tag": "Tasks",
+      "typeScriptTag": "tasks",
+      "description": "Update a single task",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "task index (https://height-api.xyz/openapi/ or task id (https://height-api.xyz/openapi/",
+          "example": "ID"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "listIds",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "assigneesIds",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "parentTaskId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "fields",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tasks/move",
+      "method": "moveTask",
+      "httpMethod": "put",
+      "tag": "Tasks",
+      "typeScriptTag": "tasks",
+      "description": "Move tasks",
+      "parameters": [
+        {
+          "name": "taskIds",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "sourceId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SOURCEID"
+        },
+        {
+          "name": "orderIntent",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Successful operation"
+        }
+      ]
+    },
+    {
+      "url": "/activities",
+      "method": "listMessages",
+      "httpMethod": "get",
+      "tag": "Activities",
+      "typeScriptTag": "activities",
+      "description": "List activities and messages",
+      "parameters": [
+        {
+          "name": "taskId",
+          "schema": "string",
+          "description": "Either the task unique `id` (https://height-api.xyz/openapi/, or the task unique `index` (https://height-api.xyz/openapi/."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/activities",
+      "method": "createMessage",
+      "httpMethod": "post",
+      "tag": "Activities",
+      "typeScriptTag": "activities",
+      "description": "Post a message",
+      "parameters": [
+        {
+          "name": "taskId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TASKID"
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TYPE"
+        },
+        {
+          "name": "message",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MESSAGE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/fieldTemplates",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Field Templates",
+      "typeScriptTag": "fieldTemplates",
+      "description": "List all field templates",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/fieldTemplates/:id/options",
+      "method": "createOption",
+      "httpMethod": "post",
+      "tag": "Field Templates",
+      "typeScriptTag": "fieldTemplates",
+      "description": "Create an option for a field template",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "field template id (https://height-api.xyz/openapi/",
+          "example": "ID"
+        },
+        {
+          "name": "value",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VALUE"
+        },
+        {
+          "name": "hue",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/fieldTemplates/:id/options/:optionId",
+      "method": "updateOption",
+      "httpMethod": "put",
+      "tag": "Field Templates",
+      "typeScriptTag": "fieldTemplates",
+      "description": "Update or delete an option for a field template",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "optionId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "OPTIONID"
+        },
+        {
+          "name": "value",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VALUE"
+        },
+        {
+          "name": "hue",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "deleted",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/taskForms/:id/answers",
+      "method": "createTaskFromForm",
+      "httpMethod": "post",
+      "tag": "Task Forms",
+      "typeScriptTag": "taskForms",
+      "description": "Create a task from a public task form",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "task form id",
+          "example": "ID"
+        },
+        {
+          "name": "asBot",
+          "schema": "boolean",
+          "description": "Only allowed for public task forms, and required if not authenticated"
+        },
+        {
+          "name": "answers",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/taskForms/:urlKey",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Task Forms",
+      "typeScriptTag": "taskForms",
+      "description": "Get a task form",
+      "parameters": [
+        {
+          "name": "urlKey",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URLKEY"
+        },
+        {
+          "name": "keyType",
+          "schema": "string",
+          "description": "One of key or urlKey, defaulting to id"
+        },
+        {
+          "name": "include",
+          "schema": "array",
+          "description": "Array of task form includes"
+        },
+        {
+          "name": "archived",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "draft",
+          "schema": "boolean",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Uncertain typed. Height team did't provide schema for Task Form."
+        }
+      ]
+    },
+    {
+      "url": "/users",
+      "method": "getAllUsers",
+      "httpMethod": "get",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Get all users",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/users/:id",
+      "method": "getUserById",
+      "httpMethod": "get",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Get a user",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/users/me",
+      "method": "getCurrentUser",
+      "httpMethod": "get",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Get the current user",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/groups",
+      "method": "getAllGroups",
+      "httpMethod": "get",
+      "tag": "Groups",
+      "typeScriptTag": "groups",
+      "description": "Get all groups",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/securityLogEvents",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Security Log Events",
+      "typeScriptTag": "securityLogEvents",
+      "description": "List all security log event objects",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workspace",
+      "method": "get",
+      "httpMethod": "get",
+      "tag": "Workspace",
+      "typeScriptTag": "workspace",
+      "description": "Retrieve the workspace",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Height is the autonomous project collaboration tool. With an embedded AI engine, Height handles the legwork of building products on autopilot. Offload soul-sucking chores like bug triage, backlog grooming, and documentation updates for good. Height's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/height/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/height/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/height/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/height/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/height/favicon.png",
+  "clientNameCamelCase": "height",
+  "lastUpdated": "2024-03-27T21:49:20.389Z",
+  "typescriptSdkUsageCode": "import { Height } from 'height-typescript-sdk';\n\nconst height = new Height({\n    /*\n     * The Height API uses API keys to authenticate requests. **You can view your API key in the Height settings under API**.\n     *  ex: `api-key secret_1234`\n     */\n    apiKey: \"AUTHORIZATION\"\n})",
+  "typescriptSdkFirstRequestCode": "// List all lists\nconst getAllResponse = height.lists.getAll()",
+  "fixedSpecFileName": "height-fixed-spec.yaml"
+}
