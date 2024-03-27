@@ -1479,6 +1479,45 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  // "squareup.com": {
+  //   lambda: async () => {
+  //     const url =
+  //       "https://raw.githubusercontent.com/square/connect-api-specification/master/api.json";
+  //     const response = await fetch(url);
+  //     const json = await response.json();
+  //     recurseObject(json, ({ value }) => {
+  //       /*
+  //       {
+  //         "type": "object",
+  //         "additionalProperties": {
+  //           "$ref": "#/definitions/LocationCustomAttributeDeleteRequest"
+  //         },
+  //         "description": "The data used to update the `CustomAttribute` objects.\nThe keys must be unique and are used to map to the corresponding response."
+  //       }
+  //       */
+  //       /*
+  //       {
+  //       "type": "object",
+  //       "additionalProperties": {
+  //         "$ref": "#/definitions/LocationCustomAttributeDeleteResponse"
+  //       },
+  //       "description": "A map of responses that correspond to individual delete requests. Each response has the\nsame key as the corresponding request."
+  //       }
+  //       */
+  //       // find object that matches above and remove additionalProperties
+  //       if (typeof value !== "object") return;
+  //       if (value === null) return;
+  //       if (value.type !== "object") return;
+  //       if (!value.additionalProperties) return;
+  //       if (
+  //         typeof value.additionalProperties === "object" &&
+  //         "$ref" in value.additionalProperties
+  //       )
+  //         delete value.additionalProperties;
+  //     });
+  //     return JSON.stringify(json, null, 2);
+  //   },
+  // },
   "sesamehr.com": {
     type: "GET",
     url: "https://apidocs.sesametime.com/index.json",
