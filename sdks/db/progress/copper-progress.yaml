@@ -1,0 +1,548 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /:
+    post: Webhooks_uploadFileToS3
+  /account:
+    get: 1AccountAndUsers_getDetails
+  /activities:
+    post: 8Activities_createNewActivity
+  /activities/search:
+    post: 8Activities_listSearch
+  /activities/{delete_activity_id}:
+    delete: 8Activities_removeActivityRecord
+  /activities/{example_activity_id}:
+    get: 8Activities_getActivityById
+  /activity_types:
+    get: 8Activities_listActivityTypes
+  /companies:
+    post: 4Companies_createNewCompany
+  /companies/search:
+    post: 4Companies_listCompanySearch
+  /companies/{delete_company_id}:
+    delete: 4Companies_removeCompany
+  /companies/{example_company_id}:
+    get: 4Companies_getById
+    put: 4Companies_updateCompany
+  /companies/{example_company_id}/activities:
+    post: 4Companies_getCompanyActivities
+  /contact_types:
+    get: 4Companies_listContactTypes
+  /custom_activity_types:
+    get: CustomFields_listAllActivityTypes
+    post: CustomFields_createCustomActivityType
+  /custom_activity_types/{custom_activity_type_id}:
+    get: CustomFields_getActivityType
+    put: CustomFields_updateExistingActivityType
+  /custom_field_definitions:
+    get: CustomFields_listDefinitions
+    post: CustomFields_createFieldDefinition
+  /custom_field_definitions/{custom_field_definition_id}:
+    delete: CustomFields_deleteCustomFieldDefinition
+    get: CustomFields_getDefinition
+    put: CustomFields_updateExistingDefinition
+  /customer_sources:
+    get: 5Opportunities_listCustomerSources
+  /lead_statuses:
+    get: 2Leads_listLeadStatuses
+  /leads:
+    post: 2Leads_createNewLead
+  /leads/search:
+    post: 2Leads_listLeadsSearch
+  /leads/upsert:
+    put: 2Leads_upsertLead
+  /leads/{example_lead_id}:
+    delete: 2Leads_removeLead
+    get: 2Leads_getLeadById
+    put: 2Leads_updateLead
+  /leads/{example_lead_id}/activities:
+    post: 2Leads_getLeadActivities
+  /leads/{example_leadconvert_id}/convert:
+    post: 2Leads_convertLeadToPerson
+  /loss_reasons:
+    get: 5Opportunities_listLossReasons
+  /opportunities:
+    post: 5Opportunities_createNewOpportunity
+  /opportunities/search:
+    post: 5Opportunities_listByCriteria
+  /opportunities/{delete_opportunity_id}:
+    delete: 5Opportunities_removeOpportunityRecord
+  /opportunities/{example_opportunity_id}:
+    get: 5Opportunities_getOpportunityById
+    put: 5Opportunities_updateOpportunityFields
+  /people:
+    post: 3People_createNewPerson
+  /people/fetch_by_email:
+    post: 3People_getByEmail
+  /people/search:
+    post: 3People_listPeopleSearch
+  /people/{example_person_id}:
+    delete: 3People_removePerson
+    get: 3People_getById
+    put: 3People_updatePersonById
+  /people/{example_person_id}/activities:
+    post: 3People_getPersonActivities
+  /pipeline_stages:
+    get: 5Opportunities_listPipelineStages
+  /pipeline_stages/pipeline/{pipeline_id}:
+    get: 5Opportunities_listPipelineStages
+  /pipelines:
+    get: 5Opportunities_getPipelinesList
+  /projects:
+    post: 6Projects_createNewProject
+  /projects/search:
+    post: 6Projects_listProjectsSearch
+  /projects/{delete_project_id}:
+    delete: 6Projects_removeProjectRecord
+  /projects/{example_project_id}:
+    get: 6Projects_getById
+    put: 6Projects_updateProject
+  /related_links:
+    get: CustomFields_getConnections
+    post: CustomFields_createConnection
+  /related_links/{connection_id}:
+    delete: CustomFields_deleteConnection
+  /tasks:
+    post: 7Tasks_createNewTask
+  /tasks/search:
+    post: 7Tasks_listTasksSearch
+  /tasks/{delete_task_id}:
+    delete: 7Tasks_removeTaskRecord
+  /tasks/{example_task_id}:
+    get: 7Tasks_getTaskById
+    put: 7Tasks_updateTaskRecord
+  /users/search:
+    post: 1AccountAndUsers_searchUsers
+  /users/{example_user_id}:
+    get: 1AccountAndUsers_getUserById
+  /webhooks:
+    get: Webhooks_listSubscriptions
+    post: Webhooks_createSubscriptionEvent
+  /webhooks/{example_webhook_id}:
+    delete: Webhooks_unsubscribe
+  /webhooks{example_webhook_id}:
+    get: Webhooks_viewSubscriptionById
+  /{entity_name_in_plural}/search:
+    post: CustomFields_searchEntityByCustomField
+  /{entity_type}/{entity_id}/files:
+    get: FileUpload_listAttachedFiles
+    post: FileUpload_relateToEntity
+  /{entity_type}/{entity_id}/files/s3_signed_url:
+    get: FileUpload_getSignedS3Url
+  /{entity}/{entity_id}/files/{file_id}:
+    get: FileUpload_getFileMetadata
+  /{entity}/{entity_id}/related:
+    delete: RelatedItems_removeRelationship
+    post: RelatedItems_relateRecord
+  /{entity}/{entity_id}/related/:
+    get: RelatedItems_getAllRelated
+  /{entity}/{entity_id}/related/{related_entity_name}:
+    get: RelatedItems_viewAllRelated
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /:
+    post:
+      multipart/form-data: WebhooksUploadFileToS3Request
+  /activities:
+    post:
+      application/json: 8ActivitiesCreateNewActivityRequest
+  /activities/search:
+    post:
+      application/json: 8ActivitiesListSearchRequest
+  /companies:
+    post:
+      application/json: 4CompaniesCreateNewCompanyRequest
+  /companies/search:
+    post:
+      application/json: 4CompaniesListCompanySearchRequest
+  /companies/{example_company_id}:
+    put:
+      application/json: 4CompaniesUpdateCompanyRequest
+  /companies/{example_company_id}/activities:
+    post:
+      application/json: 4CompaniesGetCompanyActivitiesRequest
+  /custom_activity_types:
+    post:
+      application/json: CustomFieldsCreateCustomActivityTypeRequest
+  /custom_activity_types/{custom_activity_type_id}:
+    put:
+      application/json: CustomFieldsUpdateExistingActivityTypeRequest
+  /custom_field_definitions:
+    post:
+      application/json: CustomFieldsCreateFieldDefinitionRequest
+  /custom_field_definitions/{custom_field_definition_id}:
+    put:
+      application/json: CustomFieldsUpdateExistingDefinitionRequest
+  /leads:
+    post:
+      application/json: 2LeadsCreateNewLeadRequest
+  /leads/search:
+    post:
+      application/json: 2LeadsListLeadsSearchRequest
+  /leads/upsert:
+    put:
+      application/json: 2LeadsUpsertLeadRequest
+  /leads/{example_lead_id}:
+    put:
+      application/json: 2LeadsUpdateLeadRequest
+  /leads/{example_lead_id}/activities:
+    post:
+      application/json: 2LeadsGetLeadActivitiesRequest
+  /leads/{example_leadconvert_id}/convert:
+    post:
+      application/json: 2LeadsConvertLeadToPersonRequest
+  /opportunities:
+    post:
+      application/json: 5OpportunitiesCreateNewOpportunityRequest
+  /opportunities/search:
+    post:
+      application/json: 5OpportunitiesListByCriteriaRequest
+  /opportunities/{example_opportunity_id}:
+    put:
+      application/json: 5OpportunitiesUpdateOpportunityFieldsRequest
+  /people:
+    post:
+      application/json: 3PeopleCreateNewPersonRequest
+  /people/fetch_by_email:
+    post:
+      application/json: 3PeopleGetByEmailRequest
+  /people/search:
+    post:
+      application/json: 3PeopleListPeopleSearchRequest
+  /people/{example_person_id}:
+    put:
+      application/json: 3PeopleUpdatePersonByIdRequest
+  /people/{example_person_id}/activities:
+    post:
+      application/json: 3PeopleGetPersonActivitiesRequest
+  /projects:
+    post:
+      application/json: 6ProjectsCreateNewProjectRequest
+  /projects/search:
+    post:
+      application/json: 6ProjectsListProjectsSearchRequest
+  /projects/{example_project_id}:
+    put:
+      application/json: 6ProjectsUpdateProjectRequest
+  /related_links:
+    post:
+      application/json: CustomFieldsCreateConnectionRequest
+  /tasks:
+    post:
+      application/json: 7TasksCreateNewTaskRequest
+  /tasks/search:
+    post:
+      application/json: 7TasksListTasksSearchRequest
+  /tasks/{example_task_id}:
+    put:
+      application/json: 7TasksUpdateTaskRecordRequest
+  /users/search:
+    post:
+      application/json: 1AccountAndUsersSearchUsersRequest
+  /webhooks:
+    post:
+      application/json: WebhooksCreateSubscriptionEventRequest
+  /{entity_name_in_plural}/search:
+    post:
+      application/json: CustomFieldsSearchEntityByCustomFieldRequest
+  /{entity_type}/{entity_id}/files:
+    post:
+      application/json: FileUploadRelateToEntityRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /account:
+    get:
+      '200':
+        application/json: 1AccountAndUsersGetDetailsResponse
+  /activities:
+    post:
+      '200':
+        application/json: 8ActivitiesCreateNewActivityResponse
+  /activities/search:
+    post:
+      '200':
+        application/json: 8ActivitiesListSearchResponse
+  /activities/{delete_activity_id}:
+    delete:
+      '200':
+        application/json: 8ActivitiesRemoveActivityRecordResponse
+  /activities/{example_activity_id}:
+    get:
+      '200':
+        application/json: 8ActivitiesGetActivityByIdResponse
+  /activity_types:
+    get:
+      '200':
+        application/json: 8ActivitiesListActivityTypesResponse
+  /companies:
+    post:
+      '200':
+        application/json: 4CompaniesCreateNewCompanyResponse
+  /companies/search:
+    post:
+      '200':
+        application/json: 4CompaniesListCompanySearchResponse
+  /companies/{delete_company_id}:
+    delete:
+      '200':
+        application/json: 4CompaniesRemoveCompanyResponse
+  /companies/{example_company_id}:
+    get:
+      '200':
+        application/json: 4CompaniesGetByIdResponse
+    put:
+      '200':
+        application/json: 4CompaniesUpdateCompanyResponse
+  /companies/{example_company_id}/activities:
+    post:
+      '200':
+        application/json: 4CompaniesGetCompanyActivitiesResponse
+  /contact_types:
+    get:
+      '200':
+        application/json: 4CompaniesListContactTypesResponse
+  /custom_activity_types:
+    get:
+      '200':
+        application/json: CustomFieldsListAllActivityTypesResponse
+    post:
+      '200':
+        application/json: CustomFieldsCreateCustomActivityTypeResponse
+  /custom_activity_types/{custom_activity_type_id}:
+    get:
+      '200':
+        application/json: CustomFieldsGetActivityTypeResponse
+    put:
+      '200':
+        application/json: CustomFieldsUpdateExistingActivityTypeResponse
+  /custom_field_definitions:
+    get:
+      '200':
+        application/json: CustomFieldsListDefinitionsResponse
+    post:
+      '200':
+        application/json: CustomFieldsCreateFieldDefinitionResponse
+  /custom_field_definitions/{custom_field_definition_id}:
+    delete:
+      '200':
+        application/json: CustomFieldsDeleteCustomFieldDefinitionResponse
+    get:
+      '200':
+        application/json: CustomFieldsGetDefinitionResponse
+    put:
+      '200':
+        application/json: CustomFieldsUpdateExistingDefinitionResponse
+  /customer_sources:
+    get:
+      '200':
+        application/json: 5OpportunitiesListCustomerSourcesResponse
+  /lead_statuses:
+    get:
+      '200':
+        application/json: 2LeadsListLeadStatusesResponse
+  /leads:
+    post:
+      '200':
+        application/json: 2LeadsCreateNewLeadResponse
+  /leads/search:
+    post:
+      '200':
+        application/json: 2LeadsListLeadsSearchResponse
+  /leads/upsert:
+    put:
+      '200':
+        application/json: 2LeadsUpsertLeadResponse
+  /leads/{example_lead_id}:
+    delete:
+      '200':
+        application/json: 2LeadsRemoveLeadResponse
+    get:
+      '200':
+        application/json: 2LeadsGetLeadByIdResponse
+    put:
+      '200':
+        application/json: 2LeadsUpdateLeadResponse
+  /leads/{example_lead_id}/activities:
+    post:
+      '200':
+        application/json: 2LeadsGetLeadActivitiesResponse
+  /leads/{example_leadconvert_id}/convert:
+    post:
+      '200':
+        application/json: 2LeadsConvertLeadToPersonResponse
+  /loss_reasons:
+    get:
+      '200':
+        application/json: 5OpportunitiesListLossReasonsResponse
+  /opportunities:
+    post:
+      '200':
+        application/json: 5OpportunitiesCreateNewOpportunityResponse
+  /opportunities/search:
+    post:
+      '200':
+        application/json: 5OpportunitiesListByCriteriaResponse
+  /opportunities/{delete_opportunity_id}:
+    delete:
+      '200':
+        application/json: 5OpportunitiesRemoveOpportunityRecordResponse
+  /opportunities/{example_opportunity_id}:
+    get:
+      '200':
+        application/json: 5OpportunitiesGetOpportunityByIdResponse
+    put:
+      '200':
+        application/json: 5OpportunitiesUpdateOpportunityFieldsResponse
+  /people:
+    post:
+      '200':
+        application/json: 3PeopleCreateNewPersonResponse
+  /people/fetch_by_email:
+    post:
+      '200':
+        application/json: 3PeopleGetByEmailResponse
+  /people/search:
+    post:
+      '200':
+        application/json: 3PeopleListPeopleSearchResponse
+  /people/{example_person_id}:
+    delete:
+      '200':
+        application/json: 3PeopleRemovePersonResponse
+    put:
+      '200':
+        application/json: 3PeopleUpdatePersonByIdResponse
+  /people/{example_person_id}/activities:
+    post:
+      '200':
+        application/json: 3PeopleGetPersonActivitiesResponse
+  /pipeline_stages:
+    get:
+      '200':
+        application/json: 5OpportunitiesListPipelineStagesResponse
+  /pipeline_stages/pipeline/{pipeline_id}:
+    get:
+      '200':
+        application/json: 5OpportunitiesListPipelineStages200Response
+  /pipelines:
+    get:
+      '200':
+        application/json: 5OpportunitiesGetPipelinesListResponse
+  /projects:
+    post:
+      '200':
+        application/json: 6ProjectsCreateNewProjectResponse
+  /projects/search:
+    post:
+      '200':
+        application/json: 6ProjectsListProjectsSearchResponse
+  /projects/{delete_project_id}:
+    delete:
+      '200':
+        application/json: 6ProjectsRemoveProjectRecordResponse
+  /projects/{example_project_id}:
+    get:
+      '200':
+        application/json: 6ProjectsGetByIdResponse
+    put:
+      '200':
+        application/json: 6ProjectsUpdateProjectResponse
+  /related_links:
+    get:
+      '200':
+        application/json: CustomFieldsGetConnectionsResponse
+    post:
+      '200':
+        application/json: CustomFieldsCreateConnectionResponse
+  /related_links/{connection_id}:
+    delete:
+      '200':
+        application/json: CustomFieldsDeleteConnectionResponse
+  /tasks:
+    post:
+      '200':
+        application/json: 7TasksCreateNewTaskResponse
+  /tasks/search:
+    post:
+      '200':
+        application/json: 7TasksListTasksSearchResponse
+  /tasks/{delete_task_id}:
+    delete:
+      '200':
+        application/json: 7TasksRemoveTaskRecordResponse
+  /tasks/{example_task_id}:
+    get:
+      '200':
+        application/json: 7TasksGetTaskByIdResponse
+    put:
+      '200':
+        application/json: 7TasksUpdateTaskRecordResponse
+  /users/search:
+    post:
+      '200':
+        application/json: 1AccountAndUsersSearchUsersResponse
+  /users/{example_user_id}:
+    get:
+      '200':
+        application/json: 1AccountAndUsersGetUserByIdResponse
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhooksListSubscriptionsResponse
+    post:
+      '200':
+        application/json: WebhooksCreateSubscriptionEventResponse
+  /webhooks/{example_webhook_id}:
+    delete:
+      '200':
+        application/json: WebhooksUnsubscribeResponse
+  /webhooks{example_webhook_id}:
+    get:
+      '200':
+        application/json: WebhooksViewSubscriptionByIdResponse
+  /{entity_name_in_plural}/search:
+    post:
+      '200':
+        application/json: CustomFieldsSearchEntityByCustomFieldResponse
+  /{entity_type}/{entity_id}/files:
+    get:
+      '200':
+        application/json: FileUploadListAttachedFilesResponse
+    post:
+      '200':
+        application/json: FileUploadRelateToEntityResponse
+  /{entity_type}/{entity_id}/files/s3_signed_url:
+    get:
+      '200':
+        application/json: FileUploadGetSignedS3UrlResponse
+  /{entity}/{entity_id}/files/{file_id}:
+    get:
+      '200':
+        application/json: FileUploadGetFileMetadataResponse
+  /{entity}/{entity_id}/related:
+    get:
+      '200':
+        application/json: RelatedItemsGetAllRelatedResponse
+  /{entity}/{entity_id}/related/{related_entity_name}:
+    get:
+      '200':
+        application/json: RelatedItemsViewAllRelatedResponse
+securityParameters:
+  custom_field_definition_id:
+    query: false
+  source_id:
+    query: false
+  source_type:
+    query: false
+  x-pw-accesstoken:
+    header: false
+  x-pw-application:
+    header: false
+  x-pw-useremail:
+    header: false
+validServerUrls:
+  '{{base_url}}':
+    url: '{{base_url}}'
