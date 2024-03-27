@@ -1,0 +1,456 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /advertisement/generate-token:
+    post: AdvertisementsApi_generateToken
+  /advertisement/postings/{jobNumber}:
+    get: AdvertisementsApi_getAdvertsForRequisition
+  /agency:
+    get: ContractApi_listAgencies
+  /application:
+    get: ApplicationApi_listApplications
+  /application/available-statuses:
+    get: ApplicationApi_getStatuses
+  /application/status:
+    put: ApplicationApi_updateStatusById
+  /application/{applicationId}/update-application-context:
+    get: ApplicationApi_generateJwtToken
+  /assessment-provider/results-template/{systemName}:
+    get: AssessmentProviderApi_getResultsTemplate
+  /assessment-provider/submit-report:
+    post: AssessmentProviderApi_submitReport
+  /assessment-provider/submit-resource:
+    post: AssessmentProviderApi_submitResource
+  /assessment-provider/submit-results:
+    post: AssessmentProviderApi_submitResultsForm
+  /assessment-provider/submit-status:
+    post: AssessmentProviderApi_updateAssessmentStatus
+  /campaign/type:
+    put: CampaignApi_assignCampaignTypesToCandidates
+  /candidate:
+    get: CandidateApi_listCandidates
+    post: CandidateApi_createCandidateRecord
+  /candidate/application/score:
+    put: CandidateApi_updateApplicationScore
+  /candidate/archive/mark:
+    patch: CandidateApi_markForArchiving
+  /candidate/archive/unmark:
+    patch: CandidateApi_unmarkFromArchiving
+  /candidate/attachment/{documentId}:
+    get: CandidateApi_downloadAttachment
+  /candidate/consent:
+    get: CandidateApi_getConsents
+  /candidate/document/{documentId}:
+    get: CandidateApi_downloadDocument
+  /candidate/email-document/attachment/{attachmentId}:
+    get: CandidateApi_getCompleteEmailDocument
+  /candidate/email-document/{documentId}:
+    get: CandidateApi_getEmailDocumentDetails
+  /candidate/form-document/{documentId}:
+    get: CandidateApi_getDocumentAnswers
+  /candidate/structured-document/{documentId}:
+    get: CandidateApi_getDocumentAnswerById
+  /candidate/summary/{templateType}:
+    get: CandidateApi_getSummaryStructure
+  /candidate/{candidateId}:
+    delete: CandidateApi_removeById
+  /candidate/{candidateId}/consent:
+    put: CandidateApi_updateConsent
+  /candidate/{candidateId}/linktojob:
+    put: CandidateApi_linkToJob
+  /candidate/{candidateId}/referral/{referralId}:
+    put: CandidateApi_updateReferralInfo
+  /candidate/{candidateId}/summary:
+    get: CandidateApi_getSummaryById
+    put: CandidateApi_updateSummary
+  /candidate/{candidateId}/summary/definition:
+    get: CandidateApi_getEmptySummaryDefinition
+  /candidate/{id}/tag:
+    post: CandidateApi_addTagToCandidate
+  /candidate/{id}/tag/{tagId}:
+    delete: CandidateApi_removeTag
+  /candidate/{id}/upload/document:
+    post: CandidateApi_uploadDocument
+  /candidatepool:
+    get: CandidatePools_getList
+    post: CandidatePools_createNewShared
+  /candidatepool/{poolId}:
+    put: CandidatePools_updateExistingPool
+  /contract:
+    get: ContractApi_listContracts
+    post: ContractApi_createNewContract
+  /contract/rateset:
+    get: ContractApi_listRateSets
+  /contract/{contractId}:
+    delete: ContractApi_deleteContractExtension
+  /contract/{contractId}/extension:
+    patch: ContractApi_createExtension
+    post: ContractApi_createExtension
+  /contract/{contractId}/update:
+    patch: ContractApi_updateContractUsingPatch
+    post: ContractApi_updateContractEntireStructure
+  /contract/{extensionId}/extension/update:
+    patch: ContractApi_updateExtensionUsingPatch
+    post: ContractApi_updateExtension
+  /department:
+    get: DepartmentApi_getList
+    post: DepartmentApi_createNewDepartment
+  /department/{departmentId}:
+    delete: DepartmentApi_deleteDepartmentById
+    put: DepartmentApi_updateDepartment
+  /department/{departmentId}/activate:
+    put: DepartmentApi_activateDepartmentById
+  /department/{departmentId}/contractorcontract/config:
+    get: ContractApi_getTemporaryContractConfig
+  /department/{departmentId}/deactivate:
+    put: DepartmentApi_deactivateDepartment
+  /department/{departmentId}/job-template/config:
+    get: PersonalJobTemplateApi_getConfiguration
+  /department/{departmentId}/move:
+    put: DepartmentApi_moveDepartmentToNewParent
+  /department/{departmentId}/permanentcontract/config:
+    get: ContractApi_getPermanentContractConfig
+  /department/{userId}/job-template:
+    put: PersonalJobTemplateApi_assignOrUpdateJobTemplate
+  /internal-message:
+    get: InternalMessageApi_getMessageList
+    post: InternalMessageApi_sendNewMessage
+  /internal-message/archive:
+    post: InternalMessageApi_archiveMessageById
+  /interview/location:
+    get: InterviewLocationApi_getList
+    post: InterviewLocationApi_createNewLocation
+  /interview/location/timezones:
+    get: InterviewLocationApi_listTimezones
+  /interview/location/{id}:
+    delete: InterviewLocationApi_deleteById
+    put: InterviewLocationApi_updateById
+  /location:
+    get: LocationApi_listLocations
+    post: LocationApi_createLocation
+  /location/{id}:
+    delete: LocationApi_removeById
+    put: LocationApi_updateLocationRequest
+  /lov:
+    get: LovApi_getStandardFields
+  /lov/configurable:
+    post: LovApiConfigurableLov_createConfigurableFieldWithEntries
+  /lov/configurable/{lovId}:
+    patch: LovApiConfigurableLov_updateField
+  /lov/configurable/{lovId}/deactivate:
+    put: LovApiConfigurableLov_deactivateConfigField
+  /lov/configurable/{lovId}/entry:
+    delete: LovApiConfigurableLov_deleteEntry
+  /lov/configurable/{lovId}/properties:
+    patch: LovApiConfigurableLov_updateProperties
+  /lov/configurable/{parentId}/entry:
+    patch: LovApiConfigurableLov_updateEntries
+    post: LovApiConfigurableLov_createEntry
+  /lov/free-form-field:
+    post: LovApiFreeFormFieldLov_createNewLovWithEntries
+  /lov/free-form-field/{lovId}:
+    patch: LovApiFreeFormFieldLov_updateEntry
+  /lov/free-form-field/{lovId}/deactivate:
+    put: LovApiFreeFormFieldLov_deactivateField
+  /lov/free-form-field/{lovId}/entry:
+    delete: LovApiFreeFormFieldLov_deleteEntry
+  /lov/free-form-field/{lovId}/properties:
+    patch: LovApiFreeFormFieldLov_updateProperties
+  /lov/free-form-field/{parentId}/entry:
+    patch: LovApiFreeFormFieldLov_updateEntries
+    post: LovApiFreeFormFieldLov_createNewEntry
+  /lov/standard-fields:
+    patch: LovApiStandardFields_updateEntry
+    post: LovApiStandardFields_createNewEntry
+  /lov/standard-fields/deactivate:
+    put: LovApiStandardFields_deactivateEntry
+  /lov/user-data:
+    post: LovApiUserData_createNewField
+  /lov/user-data/{lovId}:
+    delete: LovApiUserData_deleteEntireField
+    patch: LovApiUserData_updateUserDataLov
+  /lov/user-data/{lovId}/entry:
+    delete: LovApiUserData_deleteEntry
+  /lov/user-data/{parentId}/entry:
+    patch: LovApiUserData_updateUserEntries
+    post: LovApiUserData_createNewEntry
+  /passwordRule:
+    get: PasswordRuleApi_listPasswordRules
+  /position:
+    get: PositionApi_listPositions
+    post: PositionApi_createPositionRequest
+  /position/structure/{departmentId}:
+    get: PositionApi_getStructureForDepartment
+  /position/{openingId}:
+    patch: PositionApi_updateData
+  /position/{positionId}/attachDocument:
+    post: PositionApi_attachDocument
+  /position/{positionId}/copy:
+    post: PositionApi_copyPosition
+  /publishedadvert:
+    get: PublishedAdvertApi_listPostingTargets
+  /publishedadvert/activechannel:
+    get: PublishedAdvertApi_listActiveChannels
+  /publishedadvert/attachment/{documentId}:
+    get: PublishedAdvertApi_downloadAdvertAttachment
+  /publishedadvert/criteria:
+    get: PublishedAdvertApi_getCriteria
+  /publishedadvert/multiPoster/updateStatus:
+    put: PublishedAdvertApi_submitJobStatusUpdate
+  /publishedadvert/preview:
+    get: PublishedAdvertApi_getAdvertByToken
+  /publishedadvert/sorting-columns:
+    get: PublishedAdvertApi_getColumnNames
+  /publishedadvert/unpost:
+    put: PublishedAdvertApi_unpostAdverts
+  /publishedadvert/{publishedAdvertId}/updateJobDescriptionUrl:
+    put: PublishedAdvertApi_setJobDescriptionUrl
+  /queues:
+    get: QueuesApi_getQueueList
+  /queues/application/{queueName}/oldest-element:
+    get: QueuesApiApplication_getOldestElement
+  /queues/application/{queueName}/{elementId}:
+    get: QueuesApiApplication_getElementById
+  /queues/archived-candidate/{queueName}/oldest-element:
+    get: QueuesApiArchivedCandidate_getOldestElement
+  /queues/archived-candidate/{queueName}/{elementId}:
+    get: QueuesApiArchivedCandidate_getElementById
+  /queues/candidate/{queueName}/oldest-element:
+    get: QueuesApiCandidates_getOldestElement
+  /queues/candidate/{queueName}/{elementId}:
+    get: QueuesApiCandidates_getElement
+  /queues/contract/{queueName}/oldest-element:
+    get: QueuesApiContract_getOldestElement
+  /queues/contract/{queueName}/{elementId}:
+    get: QueuesApiContract_getElementById
+  /queues/element/oldest-element:
+    delete: QueuesApi_removeOldestElement
+  /queues/element/{idInQueue}:
+    delete: QueuesApi_removeElementById
+  /queues/export:
+    get: QueuesApi_exportQueueSettings
+  /queues/externalsystemrequest/{queueName}/oldest-element:
+    get: QueuesApiExternalSystemRequest_getOldestElement
+  /queues/externalsystemrequest/{queueName}/{elementId}:
+    get: QueuesApiExternalSystemRequest_getElementById
+  /queues/import:
+    post: QueuesApi_importQueueSettings
+  /queues/position/{queueName}/oldest-element:
+    get: QueuesApiPositionRequisitions_getOldestElement
+  /queues/position/{queueName}/{elementId}:
+    get: QueuesApiPositionRequisitions_getElementById
+  /queues/posting-target/{queueName}/oldest-element:
+    get: QueuesApiPostingAdverts_getOldestElement
+  /queues/posting-target/{queueName}/{elementId}:
+    get: QueuesApiPostingAdverts_getElement
+  /queues/selectionstep/{queueName}/oldest-element:
+    get: QueuesApiSelectionStep_getOldestElement
+  /queues/selectionstep/{queueName}/{elementId}:
+    get: QueuesApiSelectionStep_getElementById
+  /queues/timesheet/{queueName}/oldest-element:
+    get: QueuesApiTimesheets_getOldestElement
+  /queues/timesheet/{queueName}/{elementId}:
+    get: QueuesApiTimesheets_getElementById
+  /queues/user/{queueName}/oldest-element:
+    get: QueuesApiUsers_getOldestElement
+  /queues/user/{queueName}/{elementId}:
+    get: QueuesApiUsers_getElementById
+  /queues/{queueName}:
+    delete: QueuesApi_deleteQueue
+  /role:
+    get: RoleApi_listRoles
+  /role/{roleId}/tags:
+    delete: RoleApi_removeTags
+    put: RoleApi_addRoleTags
+  /searchagent:
+    get: SearchAgentApi_getList
+    post: SearchAgentApi_createAgent
+  /searchagent/{token}:
+    delete: SearchAgentApi_removeById
+    put: SearchAgentApi_updateAgent
+  /selection-process/application/{applicationId}/completePrescreening:
+    put: SelectionProcessApi_completePrescreening
+  /selection-process/proceed:
+    put: SelectionProcessApi_proceedCandidate
+  /selection-process/reject:
+    post: SelectionProcessApi_rejectCandidate
+  /selection-process/rejection-reasons:
+    get: SelectionProcessApi_getRejectionReasons
+  /selection-process/selection-tasks:
+    get: SelectionProcessApi_getSelectionTasks
+  /selection-process/step/{stepId}/document:
+    post: SelectionProcessApi_uploadAttachmentToStep
+  /selection-process/step/{stepId}/documents:
+    get: SelectionProcessApi_getStepDocuments
+  /selection-process/step/{stepId}/status:
+    put: SelectionProcessApi_updateStepStatus
+  /timesheet:
+    get: TimesheetApi_getList
+  /timesheet/adjustment-reasons:
+    get: TimesheetApi_getAdjustmentReasonsList
+  /timesheet/{timesheetId}/approve:
+    post: TimesheetApi_approveTimesheet
+  /timesheet/{timesheetId}/reject:
+    post: TimesheetApi_rejectTimesheet
+  /timesheet/{timesheetId}/submit:
+    post: TimesheetApi_submitTimesheet
+  /user:
+    get: UserApi_getUserList
+    post: UserApi_createUser
+  /user/{userId}:
+    delete: UserApi_removeById
+    patch: UserApi_updateBasicData
+  /user/{userId}/activate:
+    put: UserApi_activateUser
+  /user/{userId}/assignDashboard:
+    post: UserApi_assignDashboardToUser
+  /user/{userId}/assignNamedAccessRoles:
+    put: UserApi_assignNamedAccessRoles
+  /user/{userId}/availableDashboards:
+    get: UserApi_listAvailableDashboards
+  /user/{userId}/availableThemes:
+    get: UserApi_getUserAvailableThemes
+  /user/{userId}/changePassword:
+    put: UserApi_updatePassword
+  /user/{userId}/copyRolesFromAnotherProfile:
+    put: UserApi_copyRolesToTargetUser
+  /user/{userId}/deactivate:
+    put: UserApi_deactivateUser
+  /user/{userId}/documentSecurity:
+    delete: UserApi_removeDocumentSecurity
+    put: UserApi_configureDocumentSecurity
+  /user/{userId}/eventNotification:
+    put: UserApi_configureEventNotification
+  /user/{userId}/mailGateway:
+    put: UserApi_configureMailGateway
+  /user/{userId}/roles:
+    delete: UserApi_removeRoles
+    put: UserApi_updateUserRoles
+  /user/{userId}/roles/bulk:
+    delete: UserApi_removeUserRolesBulk
+  /user/{userId}/userData:
+    put: UserApi_updateUserData
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /advertisement/generate-token:
+    post:
+      '200':
+        application/json: AdvertisementsApiGenerateTokenResponse
+  /lov/configurable:
+    post:
+      '200':
+        application/json: LovApiConfigurableLovCreateConfigurableFieldWithEntriesResponse
+  /lov/configurable/{lovId}:
+    patch:
+      '200':
+        application/json: LovApiConfigurableLovUpdateFieldResponse
+  /lov/configurable/{lovId}/deactivate:
+    put:
+      '200':
+        application/json: LovApiConfigurableLovDeactivateConfigFieldResponse
+  /lov/configurable/{lovId}/entry:
+    delete:
+      '200':
+        '*/*': LovApiConfigurableLovDeleteEntryResponse
+  /lov/configurable/{lovId}/properties:
+    patch:
+      '200':
+        application/json: LovApiConfigurableLovUpdatePropertiesResponse
+  /lov/configurable/{parentId}/entry:
+    patch:
+      '200':
+        application/json: LovApiConfigurableLovUpdateEntriesResponse
+    post:
+      '200':
+        application/json: LovApiConfigurableLovCreateEntryResponse
+  /lov/free-form-field:
+    post:
+      '200':
+        application/json: LovApiFreeFormFieldLovCreateNewLovWithEntriesResponse
+  /lov/free-form-field/{lovId}:
+    patch:
+      '200':
+        application/json: LovApiFreeFormFieldLovUpdateEntryResponse
+  /lov/free-form-field/{lovId}/deactivate:
+    put:
+      '200':
+        application/json: LovApiFreeFormFieldLovDeactivateFieldResponse
+  /lov/free-form-field/{lovId}/entry:
+    delete:
+      '200':
+        '*/*': LovApiFreeFormFieldLovDeleteEntryResponse
+  /lov/free-form-field/{lovId}/properties:
+    patch:
+      '200':
+        application/json: LovApiFreeFormFieldLovUpdatePropertiesResponse
+  /lov/free-form-field/{parentId}/entry:
+    patch:
+      '200':
+        application/json: LovApiFreeFormFieldLovUpdateEntriesResponse
+    post:
+      '200':
+        application/json: LovApiFreeFormFieldLovCreateNewEntryResponse
+  /lov/standard-fields:
+    post:
+      '200':
+        application/json: LovApiStandardFieldsCreateNewEntryResponse
+  /lov/user-data:
+    post:
+      '200':
+        application/json: LovApiUserDataCreateNewFieldResponse
+  /lov/user-data/{lovId}:
+    delete:
+      '200':
+        '*/*': LovApiUserDataDeleteEntireFieldResponse
+    patch:
+      '200':
+        application/json: LovApiUserDataUpdateUserDataLovResponse
+  /lov/user-data/{lovId}/entry:
+    delete:
+      '200':
+        '*/*': LovApiUserDataDeleteEntryResponse
+  /lov/user-data/{parentId}/entry:
+    patch:
+      '200':
+        application/json: LovApiUserDataUpdateUserEntriesResponse
+    post:
+      '200':
+        application/json: LovApiUserDataCreateNewEntryResponse
+securityParameters:
+  departmentId:
+    query: false
+  entriesIds:
+    query: false
+  internalMessageIds:
+    query: false
+  langCode:
+    query: false
+  language:
+    query: false
+  localizedValueLangCode:
+    query: false
+  query:
+    query: false
+  queueName:
+    query: false
+  recruitmentContext:
+    query: false
+  showBaseValue:
+    query: false
+  showCandidateData:
+    query: false
+  showLocalizedValue:
+    query: false
+  showLocalizedValues:
+    query: false
+  stream:
+    query: false
+  token:
+    query: false
+  userType:
+    query: false
+validServerUrls: {}

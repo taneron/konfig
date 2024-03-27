@@ -1758,6 +1758,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://developer.zendesk.com/zendesk/oas.yaml",
   },
+  "cornerstoneondemand.com": {
+    type: "GET",
+    url: "https://developer.lumesse-talenthub.com/rest-api-developers-guide/1.21.33/rest-api/swagger/swagger.json",
+  },
   "ashbyhq.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
