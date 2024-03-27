@@ -1,0 +1,3166 @@
+hash: aab5d9c1d72a9de52c8a8579de03cd3b43287e7f7c48e340331e423b3dff479a
+methodObjects:
+  - url: /core/v3/info
+    method: getTokenInfo
+    httpMethod: get
+    tag: Security
+    typeScriptTag: security
+    description: Show Token Info
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/companies/{id}
+    method: updateById
+    httpMethod: put
+    tag: Company
+    typeScriptTag: company
+    description: Update a company
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Company ID
+        example: ID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: notificationEmail
+        schema: string
+        required: true
+        description: ''
+        example: NOTIFICATIONEMAIL
+      - name: language
+        schema: string
+        required: true
+        description: ''
+        example: es-ES
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employees
+    method: list
+    httpMethod: get
+    tag: Employees
+    typeScriptTag: employees
+    description: List employees
+    parameters:
+      - name: code
+        schema: integer
+        description: Find Employee by code
+      - name: dni
+        schema: string
+        description: Find Employee by dni
+      - name: email
+        schema: string
+        description: Find Employee by email
+      - name: departmentIds
+        schema: array
+        description: Find Employee by department Ids
+      - name: officeIds
+        schema: array
+        description: Find Employee by office Ids
+      - name: limit
+        schema: integer
+        description: Limit employees
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+      - name: status
+        schema: string
+        description: <b>Supported operators:</b> in
+        example: active
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employees
+    method: createNewEmployee
+    httpMethod: post
+    tag: Employees
+    typeScriptTag: employees
+    description: Create an employee
+    parameters:
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: companyId
+        schema: string
+        required: true
+        description: ''
+        example: COMPANYID
+      - name: firstName
+        schema: string
+        required: true
+        description: ''
+        example: FIRSTNAME
+      - name: lastName
+        schema: string
+        required: true
+        description: ''
+        example: LASTNAME
+      - name: invitation
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: status
+        schema: string
+        required: true
+        description: ''
+        example: STATUS
+      - name: gender
+        schema: string
+        required: false
+        description: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: contractId
+        schema: string
+        required: false
+        description: ''
+      - name: code
+        schema: integer
+        required: false
+        description: ''
+      - name: pin
+        schema: integer
+        required: false
+        description: ''
+      - name: nid
+        schema: string
+        required: false
+        description: ''
+      - name: identityNumberType
+        schema: string
+        required: false
+        description: ''
+      - name: ssn
+        schema: string
+        required: false
+        description: ''
+      - name: phone
+        schema: string
+        required: false
+        description: ''
+      - name: dateOfBirth
+        schema: string
+        required: false
+        description: ''
+      - name: customFields
+        schema: array
+        required: false
+        description: ''
+      - name: nationality
+        schema: string
+        required: false
+        description: ''
+      - name: maritalStatus
+        schema: string
+        required: false
+        description: ''
+      - name: address
+        schema: string
+        required: false
+        description: ''
+      - name: postalCode
+        schema: string
+        required: false
+        description: ''
+      - name: emergencyPhone
+        schema: string
+        required: false
+        description: ''
+      - name: childrenCount
+        schema: integer
+        required: false
+        description: ''
+      - name: disability
+        schema: integer
+        required: false
+        description: ''
+      - name: personalEmail
+        schema: string
+        required: false
+        description: ''
+      - name: city
+        schema: string
+        required: false
+        description: ''
+      - name: province
+        schema: string
+        required: false
+        description: ''
+      - name: country
+        schema: string
+        required: false
+        description: ''
+      - name: salaryRange
+        schema: string
+        required: false
+        description: ''
+      - name: studyLevel
+        schema: string
+        required: false
+        description: ''
+      - name: professionalCategoryCode
+        schema: string
+        required: false
+        description: ''
+      - name: professionalCategoryDescription
+        schema: string
+        required: false
+        description: ''
+      - name: bic
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employees/{id}
+    method: removeById
+    httpMethod: delete
+    tag: Employees
+    typeScriptTag: employees
+    description: Delete an employee
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Employee ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employees/{id}
+    method: getById
+    httpMethod: get
+    tag: Employees
+    typeScriptTag: employees
+    description: Get an employee
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Employee ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employees/{id}
+    method: updateById
+    httpMethod: put
+    tag: Employees
+    typeScriptTag: employees
+    description: Update an employee
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Employee ID
+        example: ID
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: firstName
+        schema: string
+        required: true
+        description: ''
+        example: FIRSTNAME
+      - name: lastName
+        schema: string
+        required: true
+        description: ''
+        example: LASTNAME
+      - name: status
+        schema: string
+        required: true
+        description: ''
+        example: STATUS
+      - name: gender
+        schema: string
+        required: false
+        description: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: contractId
+        schema: string
+        required: false
+        description: ''
+      - name: code
+        schema: integer
+        required: false
+        description: ''
+      - name: pin
+        schema: integer
+        required: false
+        description: ''
+      - name: nid
+        schema: string
+        required: false
+        description: ''
+      - name: identityNumberType
+        schema: string
+        required: false
+        description: ''
+      - name: ssn
+        schema: string
+        required: false
+        description: ''
+      - name: phone
+        schema: string
+        required: false
+        description: ''
+      - name: dateOfBirth
+        schema: string
+        required: false
+        description: ''
+      - name: customFields
+        schema: array
+        required: false
+        description: ''
+      - name: nationality
+        schema: string
+        required: false
+        description: ''
+      - name: maritalStatus
+        schema: string
+        required: false
+        description: ''
+      - name: address
+        schema: string
+        required: false
+        description: ''
+      - name: postalCode
+        schema: string
+        required: false
+        description: ''
+      - name: emergencyPhone
+        schema: string
+        required: false
+        description: ''
+      - name: childrenCount
+        schema: integer
+        required: false
+        description: ''
+      - name: disability
+        schema: integer
+        required: false
+        description: ''
+      - name: personalEmail
+        schema: string
+        required: false
+        description: ''
+      - name: city
+        schema: string
+        required: false
+        description: ''
+      - name: province
+        schema: string
+        required: false
+        description: ''
+      - name: country
+        schema: string
+        required: false
+        description: ''
+      - name: salaryRange
+        schema: string
+        required: false
+        description: ''
+      - name: studyLevel
+        schema: string
+        required: false
+        description: ''
+      - name: professionalCategoryCode
+        schema: string
+        required: false
+        description: ''
+      - name: professionalCategoryDescription
+        schema: string
+        required: false
+        description: ''
+      - name: bic
+        schema: string
+        required: false
+        description: ''
+      - name: accountNumber
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-managers
+    method: list
+    httpMethod: get
+    tag: Employee Managers
+    typeScriptTag: employeeManagers
+    description: List employee managers
+    parameters:
+      - name: employeeId
+        schema: string
+        description: Find employee managers by employeeId
+      - name: managerId
+        schema: string
+        description: Find employee managers by managerId
+      - name: permission
+        schema: string
+        required: false
+        description: <b>Supported operators:</b> in
+        example: check
+      - name: limit
+        schema: integer
+        description: Limit departments
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-managers
+    method: assign
+    httpMethod: post
+    tag: Employee Managers
+    typeScriptTag: employeeManagers
+    description: Assign an employee manager
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: managerId
+        schema: string
+        required: true
+        description: ''
+        example: MANAGERID
+      - name: permission
+        schema: string
+        required: true
+        description: ''
+        example: PERMISSION
+      - name: order
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-managers/{id}
+    method: removeById
+    httpMethod: delete
+    tag: Employee Managers
+    typeScriptTag: employeeManagers
+    description: Delete an employee manager
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Employee manager ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/roles
+    method: getAll
+    httpMethod: get
+    tag: Roles
+    typeScriptTag: roles
+    description: List Roles
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit departments
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/roles/assignation/{employeeId}
+    method: listByEmployee
+    httpMethod: get
+    tag: Employee Assignations Roles
+    typeScriptTag: employeeAssignationsRoles
+    description: List Assignations Roles by Employee
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: Employee Id
+        example: EMPLOYEEID
+      - name: limit
+        schema: integer
+        description: Limit departments
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/roles/assignation
+    method: unassignRole
+    httpMethod: delete
+    tag: Employee Assignations Roles
+    typeScriptTag: employeeAssignationsRoles
+    description: Unassign Role
+    parameters:
+      - name: assignationId
+        schema: string
+        required: true
+        description: ''
+        example: ASSIGNATIONID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/roles/assignation
+    method: assignRole
+    httpMethod: post
+    tag: Employee Assignations Roles
+    typeScriptTag: employeeAssignationsRoles
+    description: Assign Role
+    parameters:
+      - name: roleId
+        schema: string
+        required: true
+        description: ''
+        example: ROLEID
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: entityAffectedId
+        schema: string
+        required: true
+        description: ''
+        example: ENTITYAFFECTEDID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/departments
+    method: list
+    httpMethod: get
+    tag: Departments
+    typeScriptTag: departments
+    description: List departments
+    parameters:
+      - name: name
+        schema: string
+        description: Find Department by name
+      - name: limit
+        schema: integer
+        description: Limit departments
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/departments
+    method: createNewDepartment
+    httpMethod: post
+    tag: Departments
+    typeScriptTag: departments
+    description: Create a department
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ''
+        example: COMPANYID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/departments/{id}
+    method: removeById
+    httpMethod: delete
+    tag: Departments
+    typeScriptTag: departments
+    description: Delete a department
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Department ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/departments/{id}
+    method: updateById
+    httpMethod: put
+    tag: Departments
+    typeScriptTag: departments
+    description: Update a department
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Department ID
+        example: ID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-department-assignations
+    method: unassign
+    httpMethod: delete
+    tag: Employee Department Assignations
+    typeScriptTag: employeeDepartmentAssignations
+    description: Unassign employee from department
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: departmentId
+        schema: string
+        required: true
+        description: ''
+        example: DEPARTMENTID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-department-assignations
+    method: list
+    httpMethod: get
+    tag: Employee Department Assignations
+    typeScriptTag: employeeDepartmentAssignations
+    description: List employee department assignation
+    parameters:
+      - name: employeeId
+        schema: string
+        description: Find Assignation by employeeId
+      - name: departmentId
+        schema: string
+        description: Find Assignation by departmentId
+      - name: limit
+        schema: integer
+        description: Limit assignations
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-department-assignations
+    method: assignDepartmentToEmployee
+    httpMethod: post
+    tag: Employee Department Assignations
+    typeScriptTag: employeeDepartmentAssignations
+    description: Assign an employee to a department
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: departmentId
+        schema: string
+        required: true
+        description: ''
+        example: DEPARTMENTID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/offices
+    method: getAll
+    httpMethod: get
+    tag: Offices
+    typeScriptTag: offices
+    description: List offices
+    parameters:
+      - name: name
+        schema: string
+        description: Find office by name
+      - name: limit
+        schema: integer
+        description: Limit offices
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/offices
+    method: createOffice
+    httpMethod: post
+    tag: Offices
+    typeScriptTag: offices
+    description: Create a office
+    parameters:
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: companyId
+        schema: string
+        required: true
+        description: ''
+        example: COMPANYID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: address
+        schema: string
+        required: false
+        description: ''
+      - name: coordinates
+        schema: object
+        required: false
+        description: ''
+      - name: radio
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/offices/{id}
+    method: removeById
+    httpMethod: delete
+    tag: Offices
+    typeScriptTag: offices
+    description: Delete an office
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Office ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/offices/{id}
+    method: updateById
+    httpMethod: put
+    tag: Offices
+    typeScriptTag: offices
+    description: Update an office
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Office ID
+        example: ID
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: address
+        schema: string
+        required: false
+        description: ''
+      - name: coordinates
+        schema: object
+        required: false
+        description: ''
+      - name: radio
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-office-assignations
+    method: unassignEmployee
+    httpMethod: delete
+    tag: Employee Office Assignations
+    typeScriptTag: employeeOfficeAssignations
+    description: Unassign employee from office
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: officeId
+        schema: string
+        required: true
+        description: ''
+        example: OFFICEID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-office-assignations
+    method: listAssignations
+    httpMethod: get
+    tag: Employee Office Assignations
+    typeScriptTag: employeeOfficeAssignations
+    description: List employee office assignation
+    parameters:
+      - name: employeeId
+        schema: string
+        description: Find Assignation by employeeId
+      - name: officeId
+        schema: string
+        description: Find Assignation by officeId
+      - name: limit
+        schema: integer
+        description: Limit assignations
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/employee-office-assignations
+    method: assignEmployeeToOffice
+    httpMethod: post
+    tag: Employee Office Assignations
+    typeScriptTag: employeeOfficeAssignations
+    description: Assign an employee to an office
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: officeId
+        schema: string
+        required: true
+        description: ''
+        example: OFFICEID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/custom-fields
+    method: list
+    httpMethod: get
+    tag: Custom Fields
+    typeScriptTag: customFields
+    description: List custom fields
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit custom fields
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/custom-fields
+    method: createField
+    httpMethod: post
+    tag: Custom Fields
+    typeScriptTag: customFields
+    description: Create a custom field
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ''
+        example: COMPANYID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: slug
+        schema: string
+        required: false
+        description: ''
+        example: cf_preferred_os
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/custom-fields/{id}
+    method: deleteField
+    httpMethod: delete
+    tag: Custom Fields
+    typeScriptTag: customFields
+    description: Delete a custom field
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Custom field ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /core/v3/custom-fields/{id}
+    method: updateFieldById
+    httpMethod: put
+    tag: Custom Fields
+    typeScriptTag: customFields
+    description: Update a custom field
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Custom field ID
+        example: ID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: slug
+        schema: string
+        required: false
+        description: ''
+        example: cf_preferred_os
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/work-entries/clock-in
+    method: startNewEntry
+    httpMethod: post
+    tag: Work Entries
+    typeScriptTag: workEntries
+    description: Starts a new work entry right now
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: workEntryIn
+        schema: undefined
+        required: false
+        description: ''
+      - name: workCheckTypeId
+        schema: string
+        required: false
+        description: ''
+      - name: workBreakId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/work-entries/clock-out
+    method: endLastEntry
+    httpMethod: post
+    tag: Work Entries
+    typeScriptTag: workEntries
+    description: Ends the last work entry
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: workEntryOut
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/work-entries
+    method: list
+    httpMethod: get
+    tag: Work Entries
+    typeScriptTag: workEntries
+    description: List Company Work Entries
+    parameters:
+      - name: employeeId
+        schema: string
+        description: The id of the employee
+      - name: from
+        schema: string
+        description: Y-m-d
+      - name: to
+        schema: string
+        description: Y-m-d
+      - name: updatedAt[gte]
+        schema: string
+        description: UpdatedAt greater or equal
+        example: '2020-01-01T10:00:00+01:00'
+      - name: updatedAt[lte]
+        schema: string
+        description: UpdatedAt lesser or equal
+        example: '2020-01-01T10:00:00+01:00'
+      - name: onlyReturn
+        schema: string
+        description: Return specific users
+        default: not_deleted
+      - name: limit
+        schema: integer
+        description: Limit work entries
+        default: 20
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/work-entries
+    method: createNewEntry
+    httpMethod: post
+    tag: Work Entries
+    typeScriptTag: workEntries
+    description: Create Work Entry
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: workEntryType
+        schema: string
+        required: true
+        description: ''
+        example: WORKENTRYTYPE
+      - name: workBreakId
+        schema: string
+        required: false
+        description: ''
+      - name: workCheckTypeId
+        schema: string
+        required: false
+        description: ''
+      - name: workEntryIn
+        schema: undefined
+        required: true
+        description: ''
+      - name: workEntryOut
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/work-entries/{id}
+    method: deleteById
+    httpMethod: delete
+    tag: Work Entries
+    typeScriptTag: workEntries
+    description: Delete Work Entry
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Work Entry ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/work-entries/{id}
+    method: updateWorkEntry
+    httpMethod: put
+    tag: Work Entries
+    typeScriptTag: workEntries
+    description: Update Work Entry
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Work Entry ID
+        example: ID
+      - name: workEntryType
+        schema: string
+        required: true
+        description: ''
+        example: WORKENTRYTYPE
+      - name: workEntryIn
+        schema: undefined
+        required: true
+        description: ''
+      - name: workEntryOut
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/check-types
+    method: listTypes
+    httpMethod: get
+    tag: Check Types
+    typeScriptTag: checkTypes
+    description: List Check Types
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/work-breaks
+    method: list
+    httpMethod: get
+    tag: Work Breaks
+    typeScriptTag: workBreaks
+    description: List Work Breaks
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/check-validation
+    method: listByEmployeesAndStatus
+    httpMethod: get
+    tag: Check Validation
+    typeScriptTag: checkValidation
+    description: List Check Validation By Employees and Status
+    parameters:
+      - name: employeeIds[in]
+        schema: array
+        description: EmployeeIds to query
+      - name: status
+        schema: string
+        description: Allowed Status
+        example: unsent - sent - accepted - rejected
+      - name: from
+        schema: string
+        description: Request a date from
+        example: '2021-01-01'
+      - name: to
+        schema: string
+        description: Request a date to
+        example: '2021-12-31'
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/reports/worked-hours
+    method: listWorkedHoursByEmployee
+    httpMethod: get
+    tag: Statistics
+    typeScriptTag: statistics
+    description: List Worked Hours By Employee
+    parameters:
+      - name: employeeIds[in]
+        schema: array
+        description: Array of employee ids
+      - name: withChecks
+        schema: boolean
+        required: false
+        description: true or false
+      - name: from
+        schema: string
+        required: true
+        description: Y-m-d
+        example: FROM
+      - name: to
+        schema: string
+        required: true
+        description: Y-m-d
+        example: TO
+      - name: limit
+        schema: integer
+        description: Limit employees
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/reports/worked-hours-by-week-day
+    method: listWorkedHoursByWeekDay
+    httpMethod: get
+    tag: Statistics
+    typeScriptTag: statistics
+    description: List Worked Hours By Employee and Week Day
+    parameters:
+      - name: employeeIds[in]
+        schema: array
+        description: Array of employee ids
+      - name: from
+        schema: string
+        required: true
+        description: Y-m-d
+        example: FROM
+      - name: to
+        schema: string
+        required: true
+        description: Y-m-d
+        example: TO
+      - name: limit
+        schema: integer
+        description: Limit employees
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/reports/worked-night-hours
+    method: listWorkedNightHours
+    httpMethod: get
+    tag: Statistics
+    typeScriptTag: statistics
+    description: List Worked Hours By Employee In Night Hours
+    parameters:
+      - name: employeeIds[in]
+        schema: array
+        description: Array of employee ids
+      - name: withChecks
+        schema: boolean
+        required: false
+        description: true or false
+      - name: from
+        schema: string
+        required: true
+        description: Y-m-d
+        example: FROM
+      - name: to
+        schema: string
+        required: true
+        description: Y-m-d
+        example: TO
+      - name: limit
+        schema: integer
+        description: Limit employees
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/reports/worked-absence-days
+    method: listWorkedAbsenceDaysByEmployee
+    httpMethod: get
+    tag: Statistics
+    typeScriptTag: statistics
+    description: List Worked Absence Days By Employee
+    parameters:
+      - name: employeeIds[in]
+        schema: array
+        description: Array of employee ids
+      - name: from
+        schema: string
+        required: true
+        description: Y-m-d
+        example: FROM
+      - name: to
+        schema: string
+        required: true
+        description: Y-m-d
+        example: TO
+      - name: limit
+        schema: integer
+        description: Limit employees
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-configurations
+    method: listConfigurations
+    httpMethod: get
+    tag: Vacation Configurations
+    typeScriptTag: vacationConfigurations
+    description: List Vacation Configurations
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-calendars
+    method: listCalendars
+    httpMethod: get
+    tag: Vacation Calendars
+    typeScriptTag: vacationCalendars
+    description: List Vacation Calendars
+    parameters:
+      - name: employeeId
+        schema: string
+        description: Employee ID
+      - name: year[in]
+        schema: array
+        description: Year calendar
+        example: '2022'
+      - name: limit
+        schema: integer
+        description: Limit results
+        default: 20
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-calendars
+    method: createNewCalendar
+    httpMethod: post
+    tag: Vacation Calendars
+    typeScriptTag: vacationCalendars
+    description: Create Vacation Calendar
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: vacationConfigurationId
+        schema: string
+        required: true
+        description: ''
+        example: VACATIONCONFIGURATIONID
+      - name: year
+        schema: integer
+        required: true
+        description: ''
+        example: 2021
+      - name: daysOff
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-calendars/{id}
+    method: updateCalendar
+    httpMethod: put
+    tag: Vacation Calendars
+    typeScriptTag: vacationCalendars
+    description: Update Vacation Calendar
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Calendar ID
+        example: ID
+      - name: daysOff
+        schema: array
+        description: ''
+      - name: maxDaysOff
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-day-off
+    method: list
+    httpMethod: get
+    tag: Vacation Day Off
+    typeScriptTag: vacationDayOff
+    description: List Vacation Day Off
+    parameters:
+      - name: employeeIds
+        schema: array
+        required: false
+        description: The id of the employees
+      - name: from
+        schema: string
+        required: false
+        description: First day of search period
+      - name: to
+        schema: string
+        required: false
+        description: Last day of search period
+      - name: page
+        schema: integer
+        required: false
+        description: Request a specific page
+      - name: limit
+        schema: integer
+        required: false
+        description: Limit vacation requests
+      - name: orderBy
+        schema: string
+        required: false
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-day-off-requests
+    method: list
+    httpMethod: get
+    tag: Vacation Day Off Requests
+    typeScriptTag: vacationDayOffRequests
+    description: List Vacation Day Off Requests
+    parameters:
+      - name: employeeId
+        schema: string
+        required: false
+        description: The id of the employee
+      - name: absencesValidator
+        schema: string
+        required: false
+        description: The id of the manager
+      - name: fromDayOff
+        schema: string
+        required: false
+        description: First day of search period
+      - name: toDayOff
+        schema: string
+        required: false
+        description: Last day of search period
+      - name: status
+        schema: string
+        required: false
+        description: Request status
+      - name: page
+        schema: integer
+        required: false
+        description: Request a specific page
+      - name: limit
+        schema: integer
+        required: false
+        description: Limit vacation requests
+      - name: orderBy
+        schema: string
+        required: false
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-day-off-requests
+    method: createRequest
+    httpMethod: post
+    tag: Vacation Day Off Requests
+    typeScriptTag: vacationDayOffRequests
+    description: Create Vacation Day Off Request
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: calendarId
+        schema: string
+        required: true
+        description: ''
+        example: CALENDARID
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: daysOff
+        schema: array
+        required: true
+        description: ''
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-day-off-requests/{id}/accept
+    method: acceptRequest
+    httpMethod: post
+    tag: Vacation Day Off Requests
+    typeScriptTag: vacationDayOffRequests
+    description: Accept Vacation Day Off Request
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Day Off Request Id
+        example: ID
+      - name: managerId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-day-off-requests/{id}/reject
+    method: rejectRequest
+    httpMethod: post
+    tag: Vacation Day Off Requests
+    typeScriptTag: vacationDayOffRequests
+    description: Reject Vacation Day Off Request
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Day Off Request Id
+        example: ID
+      - name: resolutionComment
+        schema: string
+        description: ''
+        example: No problem!
+      - name: managerId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/vacation-day-off-requests/{id}
+    method: deleteById
+    httpMethod: delete
+    tag: Vacation Day Off Requests
+    typeScriptTag: vacationDayOffRequests
+    description: Delete Vacation Day Off Request
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Day Off Request Id
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-types
+    method: list
+    httpMethod: get
+    tag: Absence Types
+    typeScriptTag: absenceTypes
+    description: List Absence Types
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-calendars
+    method: list
+    httpMethod: get
+    tag: Absence Calendars
+    typeScriptTag: absenceCalendars
+    description: List Absence Calendars
+    parameters:
+      - name: employeeId
+        schema: string
+        description: Employee ID
+      - name: type
+        schema: string
+        description: Absence Type ID
+      - name: year[in]
+        schema: array
+        description: Year calendar
+        example: '2022'
+      - name: limit
+        schema: integer
+        description: Limit results
+        default: 20
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-calendars
+    method: createCalendar
+    httpMethod: post
+    tag: Absence Calendars
+    typeScriptTag: absenceCalendars
+    description: Create Absence Calendar
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: absenceTypeId
+        schema: string
+        required: true
+        description: ''
+        example: ABSENCETYPEID
+      - name: year
+        schema: integer
+        required: true
+        description: ''
+        example: 2023
+      - name: daysOff
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-calendars/{id}
+    method: updateById
+    httpMethod: put
+    tag: Absence Calendars
+    typeScriptTag: absenceCalendars
+    description: Update Absence Calendar
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Calendar ID
+        example: ID
+      - name: daysOff
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-day-off
+    method: list
+    httpMethod: get
+    tag: Absence Day Off
+    typeScriptTag: absenceDayOff
+    description: List Absence Day Off
+    parameters:
+      - name: employeeIds
+        schema: array
+        description: The id of the employees
+      - name: from
+        schema: string
+        description: First day of search period
+      - name: to
+        schema: string
+        description: Last day of search period
+      - name: limit
+        schema: integer
+        description: Limit day offs
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-day-off-requests
+    method: listDayOffRequests
+    httpMethod: get
+    tag: Absence Day Off Requests
+    typeScriptTag: absenceDayOffRequests
+    description: List Absence Day Off Requests
+    parameters:
+      - name: employeeId
+        schema: string
+        description: The id of the employee
+      - name: absencesValidator
+        schema: string
+        required: false
+        description: The id of the manager
+      - name: fromDayOff
+        schema: string
+        description: First day of search period
+      - name: toDayOff
+        schema: string
+        description: Last day of search period
+      - name: status
+        schema: string
+        description: Request status
+      - name: limit
+        schema: integer
+        description: Limit day offs
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-day-off-requests
+    method: createDayOffRequest
+    httpMethod: post
+    tag: Absence Day Off Requests
+    typeScriptTag: absenceDayOffRequests
+    description: Create Absence Day Off Request
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: absenceTypeId
+        schema: string
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: daysOff
+        schema: array
+        required: true
+        description: ''
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-day-off-requests/{id}/accept
+    method: acceptRequest
+    httpMethod: post
+    tag: Absence Day Off Requests
+    typeScriptTag: absenceDayOffRequests
+    description: Accept Absence Day Off Request
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Day Off Request Id
+        example: ID
+      - name: managerId
+        schema: string
+        description: ''
+      - name: resolutionComment
+        schema: string
+        description: ''
+        example: No problem!
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-day-off-requests/{id}/reject
+    method: rejectRequest
+    httpMethod: post
+    tag: Absence Day Off Requests
+    typeScriptTag: absenceDayOffRequests
+    description: Reject Absence Day Off Request
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Day Off Request Id
+        example: ID
+      - name: resolutionComment
+        schema: string
+        description: ''
+        example: No problem!
+      - name: managerId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/absence-day-off-requests/{id}
+    method: deleteRequestById
+    httpMethod: delete
+    tag: Absence Day Off Requests
+    typeScriptTag: absenceDayOffRequests
+    description: Delete Absence Day Off Request
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Day Off Request Id
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holiday-calendar
+    method: listCalendar
+    httpMethod: get
+    tag: Holiday Calendars
+    typeScriptTag: holidayCalendars
+    description: List Holidays Calendar
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit results
+        default: 20
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: name[contains]
+        schema: string
+        description: Filter by name
+        example: Some name
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holiday-calendar
+    method: createNewCalendar
+    httpMethod: post
+    tag: Holiday Calendars
+    typeScriptTag: holidayCalendars
+    description: Create Holidays Calendar
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: Zona Valencia
+      - name: daysOff
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holiday-calendar/{holidayCalendarId}
+    method: removeById
+    httpMethod: delete
+    tag: Holiday Calendars
+    typeScriptTag: holidayCalendars
+    description: Delete Holidays Calendar
+    parameters:
+      - name: holidayCalendarId
+        schema: string
+        required: true
+        description: Holiday Calendar Id
+        example: HOLIDAYCALENDARID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holiday-calendar/{holidayCalendarId}
+    method: getById
+    httpMethod: get
+    tag: Holiday Calendars
+    typeScriptTag: holidayCalendars
+    description: List Holiday Calendar
+    parameters:
+      - name: holidayCalendarId
+        schema: string
+        required: true
+        description: Holiday Calendar Id
+        example: HOLIDAYCALENDARID
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holiday-calendar/{holidayCalendarId}
+    method: updateById
+    httpMethod: put
+    tag: Holiday Calendars
+    typeScriptTag: holidayCalendars
+    description: Update Holidays Calendar
+    parameters:
+      - name: holidayCalendarId
+        schema: string
+        required: true
+        description: Holiday Calendar Id
+        example: HOLIDAYCALENDARID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: Zona Valencia
+      - name: daysOff
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holidays
+    method: list
+    httpMethod: get
+    tag: Holidays
+    typeScriptTag: holidays
+    description: List Holidays
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: Employee ID
+        example: EMPLOYEEID
+      - name: year
+        schema: integer
+        required: true
+        description: ''
+        example: 2021
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holidays/{holidayCalendarId}/employees
+    method: unassignHolidayCalendarToEmployee
+    httpMethod: delete
+    tag: Holidays
+    typeScriptTag: holidays
+    description: Unassign Holiday Calendar To Employee
+    parameters:
+      - name: holidayCalendarId
+        schema: string
+        required: true
+        description: Holiday Calendar Id
+        example: HOLIDAYCALENDARID
+      - name: employees
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holidays/{holidayCalendarId}/employees
+    method: getByHolidayCalendarEmployees
+    httpMethod: get
+    tag: Holidays
+    typeScriptTag: holidays
+    description: Get Employees By Holiday Calendar
+    parameters:
+      - name: holidayCalendarId
+        schema: string
+        required: true
+        description: Holiday Calendar Id
+        example: HOLIDAYCALENDARID
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/holidays/{holidayCalendarId}/employees
+    method: assignToEmployee
+    httpMethod: post
+    tag: Holidays
+    typeScriptTag: holidays
+    description: Assign Holiday Calendar To Employee
+    parameters:
+      - name: holidayCalendarId
+        schema: string
+        required: true
+        description: Holiday Calendar Id
+        example: HOLIDAYCALENDARID
+      - name: employees
+        schema: array
+        required: false
+        description: ''
+      - name: startDate
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/schedule-templates
+    method: list
+    httpMethod: get
+    tag: ScheduleTemplates
+    typeScriptTag: scheduleTemplates
+    description: List schedule templates
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/employees/{employeeId}/schedule-templates
+    method: listTemplates
+    httpMethod: get
+    tag: Employee Schedule Templates
+    typeScriptTag: employeeScheduleTemplates
+    description: List employee schedule template
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: Employee ID
+        example: EMPLOYEEID
+      - name: from
+        schema: string
+        description: ''
+      - name: to
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/entity-schedule-templates
+    method: createEmployeeScheduleTemplate
+    httpMethod: post
+    tag: Employee Schedule Templates
+    typeScriptTag: employeeScheduleTemplates
+    description: Create employee schedule template
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: scheduleTemplateId
+        schema: string
+        required: true
+        description: ''
+        example: SCHEDULETEMPLATEID
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+        example: STARTDATE
+      - name: endDate
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/entity-schedule-templates/{entityScheduleTemplateId}
+    method: unassign
+    httpMethod: delete
+    tag: Employee Schedule Templates
+    typeScriptTag: employeeScheduleTemplates
+    description: Delete employee schedule template
+    parameters:
+      - name: entityScheduleTemplateId
+        schema: string
+        required: true
+        description: Employee schedule template UUID
+        example: ENTITYSCHEDULETEMPLATEID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/agreements
+    method: list
+    httpMethod: get
+    tag: Agreements
+    typeScriptTag: agreements
+    description: List agreements
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/agreements
+    method: createNewAgreement
+    httpMethod: post
+    tag: Agreements
+    typeScriptTag: agreements
+    description: Create an agreement
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: code
+        schema: string
+        required: true
+        description: ''
+        example: CODE
+      - name: color
+        schema: string
+        required: true
+        description: ''
+        example: COLOR
+      - name: annualHours
+        schema: number
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/agreements/{agreementId}
+    method: deleteAgreement
+    httpMethod: delete
+    tag: Agreements
+    typeScriptTag: agreements
+    description: Delete agreement
+    parameters:
+      - name: agreementId
+        schema: string
+        required: true
+        description: Agreement UUID
+        example: AGREEMENTID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/agreements/{agreementId}
+    method: getAgreement
+    httpMethod: get
+    tag: Agreements
+    typeScriptTag: agreements
+    description: Get agreement
+    parameters:
+      - name: agreementId
+        schema: string
+        required: true
+        description: Agreement UUID
+        example: AGREEMENTID
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/agreements/{agreementId}
+    method: updateAgreement
+    httpMethod: put
+    tag: Agreements
+    typeScriptTag: agreements
+    description: Update an agreement
+    parameters:
+      - name: agreementId
+        schema: string
+        required: true
+        description: Agreement UUID
+        example: AGREEMENTID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: code
+        schema: string
+        required: true
+        description: ''
+        example: CODE
+      - name: color
+        schema: string
+        required: true
+        description: ''
+        example: COLOR
+      - name: annualHours
+        schema: number
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/agreement-employees
+    method: assignEmployee
+    httpMethod: post
+    tag: Employee Agreements
+    typeScriptTag: employeeAgreements
+    description: Create employee agreement
+    parameters:
+      - name: agreementId
+        schema: string
+        required: true
+        description: ''
+        example: AGREEMENTID
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+        example: STARTDATE
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /schedule/v1/agreement-employees/{agreementEmployeeId}
+    method: unassignEmployee
+    httpMethod: delete
+    tag: Employee Agreements
+    typeScriptTag: employeeAgreements
+    description: Delete employee agreement
+    parameters:
+      - name: agreementEmployeeId
+        schema: string
+        required: true
+        description: Employee agreement UUID
+        example: AGREEMENTEMPLOYEEID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/contracts/{employeeId}
+    method: getByEmployeeId
+    httpMethod: get
+    tag: Contracts
+    typeScriptTag: contracts
+    description: Get contracts by employee
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: Employee ID
+        example: EMPLOYEEID
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/contracts
+    method: createNewContract
+    httpMethod: post
+    tag: Contracts
+    typeScriptTag: contracts
+    description: Create a contract
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: startAt
+        schema: string
+        required: true
+        description: ''
+        example: STARTAT
+      - name: endAt
+        schema: string
+        required: false
+        description: ''
+      - name: code
+        schema: string
+        required: true
+        description: ''
+        example: CODE
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/contracts/{contractId}
+    method: deleteContract
+    httpMethod: delete
+    tag: Contracts
+    typeScriptTag: contracts
+    description: Delete a contract
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: Contract ID
+        example: CONTRACTID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/contracts/{contractId}
+    method: updateContract
+    httpMethod: put
+    tag: Contracts
+    typeScriptTag: contracts
+    description: Update a contract
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: Contract ID
+        example: CONTRACTID
+      - name: startAt
+        schema: string
+        required: true
+        description: ''
+        example: STARTAT
+      - name: endAt
+        schema: string
+        required: false
+        description: ''
+      - name: code
+        schema: string
+        required: true
+        description: ''
+        example: CODE
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/contracts/{employeeId}/current-contract
+    method: getCurrentContractByEmployeeId
+    httpMethod: get
+    tag: Contracts
+    typeScriptTag: contracts
+    description: Get current contract by employeeId
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: Employee ID
+        example: EMPLOYEEID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/contribution-groups
+    method: listContributionGroups
+    httpMethod: get
+    tag: Salaries
+    typeScriptTag: salaries
+    description: List Contribution Groups
+    parameters:
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/salaries
+    method: list
+    httpMethod: get
+    tag: Salaries
+    typeScriptTag: salaries
+    description: List Salaries
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: Employee ID
+        example: EMPLOYEEID
+      - name: salaryId
+        schema: string
+        description: Salary ID
+      - name: payPeriod
+        schema: string
+        description: Pay Period
+      - name: grossSalary
+        schema: integer
+        description: Gross Salary
+      - name: payments
+        schema: integer
+        description: Payments
+      - name: contributionGroup
+        schema: string
+        description: Contribution Group
+      - name: startDate
+        schema: string
+        description: Start Date
+      - name: endDate
+        schema: string
+        description: End Date
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/salaries
+    method: createSalary
+    httpMethod: post
+    tag: Salaries
+    typeScriptTag: salaries
+    description: Create Salary
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: payPeriod
+        schema: string
+        required: true
+        description: ''
+        example: PAYPERIOD
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+        example: EUR
+      - name: grossSalary
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: payments
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contributionGroupId
+        schema: string
+        required: true
+        description: ''
+        example: CONTRIBUTIONGROUPID
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+        example: STARTDATE
+      - name: endDate
+        schema: string
+        required: false
+        description: ''
+      - name: comments
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/salaries/{salaryId}
+    method: deleteSalary
+    httpMethod: delete
+    tag: Salaries
+    typeScriptTag: salaries
+    description: Delete a salary
+    parameters:
+      - name: salaryId
+        schema: string
+        required: true
+        description: Salary ID
+        example: SALARYID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contract/v1/salaries/{salaryId}
+    method: updateSalary
+    httpMethod: put
+    tag: Salaries
+    typeScriptTag: salaries
+    description: Update a salary
+    parameters:
+      - name: salaryId
+        schema: string
+        required: true
+        description: Salary ID
+        example: SALARYID
+      - name: endDate
+        schema: string
+        description: ''
+      - name: comments
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/time-entries/start
+    method: startEntry
+    httpMethod: post
+    tag: Time Entries
+    typeScriptTag: timeEntries
+    description: Time Entry In
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: projectId
+        schema: string
+        required: false
+        description: ''
+      - name: tagIds
+        schema: array
+        required: false
+        description: ''
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+      - name: coordinates
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/time-entries/stop
+    method: stopTimeEntryOut
+    httpMethod: post
+    tag: Time Entries
+    typeScriptTag: timeEntries
+    description: Time Entry Out
+    parameters:
+      - name: coordinates
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/time-entries
+    method: list
+    httpMethod: get
+    tag: Time Entries
+    typeScriptTag: timeEntries
+    description: List Time Entries
+    parameters:
+      - name: employeeId
+        schema: string
+        description: ''
+      - name: from
+        schema: string
+        description: ''
+      - name: to
+        schema: string
+        description: ''
+      - name: employeeStatus
+        schema: string
+        description: ''
+        default: active
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/time-entries
+    method: createNewEntry
+    httpMethod: post
+    tag: Time Entries
+    typeScriptTag: timeEntries
+    description: Create Time Entry
+    parameters:
+      - name: employeeId
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEEID
+      - name: projectId
+        schema: string
+        required: false
+        description: ''
+      - name: tagIds
+        schema: array
+        required: false
+        description: ''
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+      - name: timeEntryIn
+        schema: undefined
+        required: true
+        description: ''
+      - name: timeEntryOut
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/time-entries/{id}
+    method: deleteById
+    httpMethod: delete
+    tag: Time Entries
+    typeScriptTag: timeEntries
+    description: Delete a Time Entry
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Time Entry ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/time-entries/{id}
+    method: updateEntry
+    httpMethod: put
+    tag: Time Entries
+    typeScriptTag: timeEntries
+    description: Update Time Entry
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Time Entry ID
+        example: ID
+      - name: projectId
+        schema: string
+        required: false
+        description: ''
+      - name: tagIds
+        schema: array
+        required: false
+        description: ''
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+      - name: timeEntryIn
+        schema: undefined
+        required: true
+        description: ''
+      - name: timeEntryOut
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/customers
+    method: list
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: List customers
+    parameters:
+      - name: limit
+        schema: integer
+        description: ''
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/customers
+    method: createNewCustomer
+    httpMethod: post
+    tag: Customers
+    typeScriptTag: customers
+    description: Create a customer
+    parameters:
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: companyId
+        schema: string
+        required: true
+        description: ''
+        example: COMPANYID
+      - name: customerName
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMERNAME
+      - name: firstName
+        schema: string
+        required: false
+        description: ''
+      - name: lastName
+        schema: string
+        required: false
+        description: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: phone
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/customers/{id}
+    method: removeById
+    httpMethod: delete
+    tag: Customers
+    typeScriptTag: customers
+    description: Delete a customer
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Customer ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/customers/{id}
+    method: updateCustomer
+    httpMethod: put
+    tag: Customers
+    typeScriptTag: customers
+    description: Update a customer
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Customer ID
+        example: ID
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: customerName
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMERNAME
+      - name: firstName
+        schema: string
+        required: false
+        description: ''
+      - name: lastName
+        schema: string
+        required: false
+        description: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: phone
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/projects
+    method: list
+    httpMethod: get
+    tag: Projects
+    typeScriptTag: projects
+    description: List projects
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Company ID
+        example: ID
+      - name: page
+        schema: integer
+        description: Request a specific page
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: orderBy
+        schema: string
+        description: field1 asc, field2 desc
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/projects
+    method: createProject
+    httpMethod: post
+    tag: Projects
+    typeScriptTag: projects
+    description: Create a project
+    parameters:
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: companyId
+        schema: string
+        required: true
+        description: ''
+        example: COMPANYID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: parentProjectId
+        schema: string
+        required: false
+        description: ''
+      - name: customerId
+        schema: string
+        required: false
+        description: ''
+      - name: price
+        schema: number
+        required: false
+        description: ''
+      - name: startDate
+        schema: string
+        required: false
+        description: ''
+      - name: endDate
+        schema: string
+        required: false
+        description: ''
+      - name: managerId
+        schema: string
+        required: false
+        description: ''
+      - name: status
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/projects/{id}
+    method: removeById
+    httpMethod: delete
+    tag: Projects
+    typeScriptTag: projects
+    description: Delete a project
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Project ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /project/v1/projects/{id}
+    method: updateProjectById
+    httpMethod: put
+    tag: Projects
+    typeScriptTag: projects
+    description: Update a project
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Project ID
+        example: ID
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: parentProjectId
+        schema: string
+        required: false
+        description: ''
+      - name: customerId
+        schema: string
+        required: false
+        description: ''
+      - name: price
+        schema: number
+        required: false
+        description: ''
+      - name: startDate
+        schema: string
+        required: false
+        description: ''
+      - name: endDate
+        schema: string
+        required: false
+        description: ''
+      - name: managerId
+        schema: string
+        required: false
+        description: ''
+      - name: status
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /document/v1/directories
+    method: listDirectories
+    httpMethod: get
+    tag: Documents
+    typeScriptTag: documents
+    description: List company directories
+    parameters:
+      - name: employeeId
+        schema: string
+        description: Filter directories by employee id
+      - name: parentDirectoryType
+        schema: string
+        description: Parent directory type
+      - name: limit
+        schema: integer
+        description: Limit results
+      - name: page
+        schema: integer
+        description: Request a specific page
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /document/v1/directories/{directoryId}/documents
+    method: uploadNewDocument
+    httpMethod: post
+    tag: Documents
+    typeScriptTag: documents
+    description: Upload document
+    parameters:
+      - name: directoryId
+        schema: string
+        required: true
+        description: Directory UUID
+        example: DIRECTORYID
+      - name: document
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT
+      - name: originalDate
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /recruitment/v1/vacancies
+    method: listVacancies
+    httpMethod: get
+    tag: Recruitment
+    typeScriptTag: recruitment
+    description: Get vacancies list
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /recruitment/v1/vacancies/{id}
+    method: getVacancy
+    httpMethod: get
+    tag: Recruitment
+    typeScriptTag: recruitment
+    description: Get a vacancy
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Vacancy ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /recruitment/v1/candidates
+    method: createCandidate
+    httpMethod: post
+    tag: Recruitment
+    typeScriptTag: recruitment
+    description: Create a candidate
+    parameters:
+      - name: firstName
+        schema: string
+        required: true
+        description: ''
+        example: FIRSTNAME
+      - name: lastName
+        schema: string
+        required: true
+        description: ''
+        example: LASTNAME
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: phone
+        schema: string
+        required: true
+        description: ''
+        example: PHONE
+      - name: linkedinURL
+        schema: string
+        required: false
+        description: ''
+      - name: desiredSalary
+        schema: string
+        required: false
+        description: ''
+      - name: startWorkDate
+        schema: string
+        required: false
+        description: ''
+      - name: web
+        schema: string
+        required: false
+        description: ''
+      - name: location
+        schema: string
+        required: false
+        description: ''
+      - name: vacancyId
+        schema: string
+        required: true
+        description: ''
+        example: VACANCYID
+      - name: statusId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /recruitment/v1/candidates/{id}
+    method: getCandidateById
+    httpMethod: get
+    tag: Recruitment
+    typeScriptTag: recruitment
+    description: Get a candidate
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Candidate ID
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /recruitment/v1/candidates/{id}
+    method: uploadCandidateDocument
+    httpMethod: post
+    tag: Recruitment
+    typeScriptTag: recruitment
+    description: Upload candidate document
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Candidate ID
+        example: ID
+      - name: document
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /recruitment/v1/candidates/{id}
+    method: updateCandidate
+    httpMethod: put
+    tag: Recruitment
+    typeScriptTag: recruitment
+    description: Update a candidate
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Candidate ID
+        example: ID
+      - name: firstName
+        schema: string
+        required: true
+        description: ''
+        example: FIRSTNAME
+      - name: lastName
+        schema: string
+        required: true
+        description: ''
+        example: LASTNAME
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: phone
+        schema: string
+        required: true
+        description: ''
+        example: PHONE
+      - name: linkedinURL
+        schema: string
+        required: false
+        description: ''
+      - name: desiredSalary
+        schema: string
+        required: false
+        description: ''
+      - name: startWorkDate
+        schema: string
+        required: false
+        description: ''
+      - name: web
+        schema: string
+        required: false
+        description: ''
+      - name: location
+        schema: string
+        required: false
+        description: ''
+      - name: vacancyId
+        schema: string
+        required: true
+        description: ''
+        example: VACANCYID
+      - name: statusId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /recruitment/v1/candidate-status/{vacancyId}
+    method: getCandidateStatusList
+    httpMethod: get
+    tag: Recruitment
+    typeScriptTag: recruitment
+    description: Get candidate status list
+    parameters:
+      - name: vacancyId
+        schema: string
+        required: true
+        description: Vacancy ID
+        example: VACANCYID
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 173
+apiDescription: ''

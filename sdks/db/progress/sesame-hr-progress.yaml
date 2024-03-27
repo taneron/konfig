@@ -1,0 +1,879 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /contract/v1/contracts:
+    post: Contracts_createNewContract
+  /contract/v1/contracts/{contractId}:
+    delete: Contracts_deleteContract
+    put: Contracts_updateContract
+  /contract/v1/contracts/{employeeId}:
+    get: Contracts_getByEmployeeId
+  /contract/v1/contracts/{employeeId}/current-contract:
+    get: Contracts_getCurrentContractByEmployeeId
+  /contract/v1/contribution-groups:
+    get: Salaries_listContributionGroups
+  /contract/v1/salaries:
+    get: Salaries_list
+    post: Salaries_createSalary
+  /contract/v1/salaries/{salaryId}:
+    delete: Salaries_deleteSalary
+    put: Salaries_updateSalary
+  /core/v3/companies/{id}:
+    put: Company_updateById
+  /core/v3/custom-fields:
+    get: CustomFields_list
+    post: CustomFields_createField
+  /core/v3/custom-fields/{id}:
+    delete: CustomFields_deleteField
+    put: CustomFields_updateFieldById
+  /core/v3/departments:
+    get: Departments_list
+    post: Departments_createNewDepartment
+  /core/v3/departments/{id}:
+    delete: Departments_removeById
+    put: Departments_updateById
+  /core/v3/employee-department-assignations:
+    delete: EmployeeDepartmentAssignations_unassign
+    get: EmployeeDepartmentAssignations_list
+    post: EmployeeDepartmentAssignations_assignDepartmentToEmployee
+  /core/v3/employee-managers:
+    get: EmployeeManagers_list
+    post: EmployeeManagers_assign
+  /core/v3/employee-managers/{id}:
+    delete: EmployeeManagers_removeById
+  /core/v3/employee-office-assignations:
+    delete: EmployeeOfficeAssignations_unassignEmployee
+    get: EmployeeOfficeAssignations_listAssignations
+    post: EmployeeOfficeAssignations_assignEmployeeToOffice
+  /core/v3/employees:
+    get: Employees_list
+    post: Employees_createNewEmployee
+  /core/v3/employees/{id}:
+    delete: Employees_removeById
+    get: Employees_getById
+    put: Employees_updateById
+  /core/v3/info:
+    get: Security_getTokenInfo
+  /core/v3/offices:
+    get: Offices_getAll
+    post: Offices_createOffice
+  /core/v3/offices/{id}:
+    delete: Offices_removeById
+    put: Offices_updateById
+  /core/v3/roles:
+    get: Roles_getAll
+  /core/v3/roles/assignation:
+    delete: EmployeeAssignationsRoles_unassignRole
+    post: EmployeeAssignationsRoles_assignRole
+  /core/v3/roles/assignation/{employeeId}:
+    get: EmployeeAssignationsRoles_listByEmployee
+  /document/v1/directories:
+    get: Documents_listDirectories
+  /document/v1/directories/{directoryId}/documents:
+    post: Documents_uploadNewDocument
+  /project/v1/customers:
+    get: Customers_list
+    post: Customers_createNewCustomer
+  /project/v1/customers/{id}:
+    delete: Customers_removeById
+    put: Customers_updateCustomer
+  /project/v1/projects:
+    get: Projects_list
+    post: Projects_createProject
+  /project/v1/projects/{id}:
+    delete: Projects_removeById
+    put: Projects_updateProjectById
+  /project/v1/time-entries:
+    get: TimeEntries_list
+    post: TimeEntries_createNewEntry
+  /project/v1/time-entries/start:
+    post: TimeEntries_startEntry
+  /project/v1/time-entries/stop:
+    post: TimeEntries_stopTimeEntryOut
+  /project/v1/time-entries/{id}:
+    delete: TimeEntries_deleteById
+    put: TimeEntries_updateEntry
+  /recruitment/v1/candidate-status/{vacancyId}:
+    get: Recruitment_getCandidateStatusList
+  /recruitment/v1/candidates:
+    post: Recruitment_createCandidate
+  /recruitment/v1/candidates/{id}:
+    get: Recruitment_getCandidateById
+    post: Recruitment_uploadCandidateDocument
+    put: Recruitment_updateCandidate
+  /recruitment/v1/vacancies:
+    get: Recruitment_listVacancies
+  /recruitment/v1/vacancies/{id}:
+    get: Recruitment_getVacancy
+  /schedule/v1/absence-calendars:
+    get: AbsenceCalendars_list
+    post: AbsenceCalendars_createCalendar
+  /schedule/v1/absence-calendars/{id}:
+    put: AbsenceCalendars_updateById
+  /schedule/v1/absence-day-off:
+    get: AbsenceDayOff_list
+  /schedule/v1/absence-day-off-requests:
+    get: AbsenceDayOffRequests_listDayOffRequests
+    post: AbsenceDayOffRequests_createDayOffRequest
+  /schedule/v1/absence-day-off-requests/{id}:
+    delete: AbsenceDayOffRequests_deleteRequestById
+  /schedule/v1/absence-day-off-requests/{id}/accept:
+    post: AbsenceDayOffRequests_acceptRequest
+  /schedule/v1/absence-day-off-requests/{id}/reject:
+    post: AbsenceDayOffRequests_rejectRequest
+  /schedule/v1/absence-types:
+    get: AbsenceTypes_list
+  /schedule/v1/agreement-employees:
+    post: EmployeeAgreements_assignEmployee
+  /schedule/v1/agreement-employees/{agreementEmployeeId}:
+    delete: EmployeeAgreements_unassignEmployee
+  /schedule/v1/agreements:
+    get: Agreements_list
+    post: Agreements_createNewAgreement
+  /schedule/v1/agreements/{agreementId}:
+    delete: Agreements_deleteAgreement
+    get: Agreements_getAgreement
+    put: Agreements_updateAgreement
+  /schedule/v1/check-types:
+    get: CheckTypes_listTypes
+  /schedule/v1/check-validation:
+    get: CheckValidation_listByEmployeesAndStatus
+  /schedule/v1/employees/{employeeId}/schedule-templates:
+    get: EmployeeScheduleTemplates_listTemplates
+  /schedule/v1/entity-schedule-templates:
+    post: EmployeeScheduleTemplates_createEmployeeScheduleTemplate
+  /schedule/v1/entity-schedule-templates/{entityScheduleTemplateId}:
+    delete: EmployeeScheduleTemplates_unassign
+  /schedule/v1/holiday-calendar:
+    get: HolidayCalendars_listCalendar
+    post: HolidayCalendars_createNewCalendar
+  /schedule/v1/holiday-calendar/{holidayCalendarId}:
+    delete: HolidayCalendars_removeById
+    get: HolidayCalendars_getById
+    put: HolidayCalendars_updateById
+  /schedule/v1/holidays:
+    get: Holidays_list
+  /schedule/v1/holidays/{holidayCalendarId}/employees:
+    delete: Holidays_unassignHolidayCalendarToEmployee
+    get: Holidays_getByHolidayCalendarEmployees
+    post: Holidays_assignToEmployee
+  /schedule/v1/reports/worked-absence-days:
+    get: Statistics_listWorkedAbsenceDaysByEmployee
+  /schedule/v1/reports/worked-hours:
+    get: Statistics_listWorkedHoursByEmployee
+  /schedule/v1/reports/worked-hours-by-week-day:
+    get: Statistics_listWorkedHoursByWeekDay
+  /schedule/v1/reports/worked-night-hours:
+    get: Statistics_listWorkedNightHours
+  /schedule/v1/schedule-templates:
+    get: ScheduleTemplates_list
+  /schedule/v1/vacation-calendars:
+    get: VacationCalendars_listCalendars
+    post: VacationCalendars_createNewCalendar
+  /schedule/v1/vacation-calendars/{id}:
+    put: VacationCalendars_updateCalendar
+  /schedule/v1/vacation-configurations:
+    get: VacationConfigurations_listConfigurations
+  /schedule/v1/vacation-day-off:
+    get: VacationDayOff_list
+  /schedule/v1/vacation-day-off-requests:
+    get: VacationDayOffRequests_list
+    post: VacationDayOffRequests_createRequest
+  /schedule/v1/vacation-day-off-requests/{id}:
+    delete: VacationDayOffRequests_deleteById
+  /schedule/v1/vacation-day-off-requests/{id}/accept:
+    post: VacationDayOffRequests_acceptRequest
+  /schedule/v1/vacation-day-off-requests/{id}/reject:
+    post: VacationDayOffRequests_rejectRequest
+  /schedule/v1/work-breaks:
+    get: WorkBreaks_list
+  /schedule/v1/work-entries:
+    get: WorkEntries_list
+    post: WorkEntries_createNewEntry
+  /schedule/v1/work-entries/clock-in:
+    post: WorkEntries_startNewEntry
+  /schedule/v1/work-entries/clock-out:
+    post: WorkEntries_endLastEntry
+  /schedule/v1/work-entries/{id}:
+    delete: WorkEntries_deleteById
+    put: WorkEntries_updateWorkEntry
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /contract/v1/contracts:
+    post:
+      application/json: ContractsCreateNewContractRequest
+  /contract/v1/contracts/{contractId}:
+    put:
+      application/json: ContractsUpdateContractRequest
+  /contract/v1/salaries:
+    post:
+      application/json: SalariesCreateSalaryRequest
+  /contract/v1/salaries/{salaryId}:
+    put:
+      application/json: SalariesUpdateSalaryRequest
+  /core/v3/companies/{id}:
+    put:
+      application/json: CompanyUpdateByIdRequest
+  /core/v3/custom-fields:
+    post:
+      application/json: CustomFieldsCreateFieldRequest
+  /core/v3/custom-fields/{id}:
+    put:
+      application/json: CustomFieldsUpdateFieldByIdRequest
+  /core/v3/departments:
+    post:
+      application/json: DepartmentsCreateNewDepartmentRequest
+  /core/v3/departments/{id}:
+    put:
+      application/json: DepartmentsUpdateByIdRequest
+  /core/v3/employee-department-assignations:
+    delete:
+      application/json: EmployeeDepartmentAssignationsUnassignRequest
+    post:
+      application/json: EmployeeDepartmentAssignationsAssignDepartmentToEmployeeRequest
+  /core/v3/employee-managers:
+    post:
+      application/json: EmployeeManagersAssignRequest
+  /core/v3/employee-office-assignations:
+    delete:
+      application/json: EmployeeOfficeAssignationsUnassignEmployeeRequest
+    post:
+      application/json: EmployeeOfficeAssignationsAssignEmployeeToOfficeRequest
+  /core/v3/employees:
+    post:
+      application/json: EmployeesCreateNewEmployeeRequest
+  /core/v3/employees/{id}:
+    put:
+      application/json: EmployeesUpdateByIdRequest
+  /core/v3/offices:
+    post:
+      application/json: OfficesCreateOfficeRequest
+  /core/v3/offices/{id}:
+    put:
+      application/json: OfficesUpdateByIdRequest
+  /core/v3/roles/assignation:
+    delete:
+      application/json: EmployeeAssignationsRolesUnassignRoleRequest
+    post:
+      application/json: EmployeeAssignationsRolesAssignRoleRequest
+  /document/v1/directories/{directoryId}/documents:
+    post:
+      multipart/form-data: DocumentsUploadNewDocumentRequest
+  /project/v1/customers:
+    post:
+      application/json: CustomersCreateNewCustomerRequest
+  /project/v1/customers/{id}:
+    put:
+      application/json: CustomersUpdateCustomerRequest
+  /project/v1/projects:
+    post:
+      application/json: ProjectsCreateProjectRequest
+  /project/v1/projects/{id}:
+    put:
+      application/json: ProjectsUpdateProjectByIdRequest
+  /project/v1/time-entries:
+    post:
+      application/json: TimeEntriesCreateNewEntryRequest
+  /project/v1/time-entries/start:
+    post:
+      application/json: TimeEntriesStartEntryRequest
+  /project/v1/time-entries/stop:
+    post:
+      application/json: TimeEntriesStopTimeEntryOutRequest
+  /project/v1/time-entries/{id}:
+    put:
+      application/json: TimeEntriesUpdateEntryRequest
+  /recruitment/v1/candidates:
+    post:
+      application/json: RecruitmentCreateCandidateRequest
+  /recruitment/v1/candidates/{id}:
+    post:
+      multipart/form-data: RecruitmentUploadCandidateDocumentRequest
+    put:
+      application/json: RecruitmentUpdateCandidateRequest
+  /schedule/v1/absence-calendars:
+    post:
+      application/json: AbsenceCalendarsCreateCalendarRequest
+  /schedule/v1/absence-calendars/{id}:
+    put:
+      application/json: AbsenceCalendarsUpdateByIdRequest
+  /schedule/v1/absence-day-off-requests:
+    post:
+      application/json: AbsenceDayOffRequestsCreateDayOffRequestRequest
+  /schedule/v1/absence-day-off-requests/{id}/accept:
+    post:
+      application/json: AbsenceDayOffRequestsAcceptRequestRequest
+  /schedule/v1/absence-day-off-requests/{id}/reject:
+    post:
+      application/json: AbsenceDayOffRequestsRejectRequestRequest
+  /schedule/v1/agreement-employees:
+    post:
+      application/json: EmployeeAgreementsAssignEmployeeRequest
+  /schedule/v1/agreements:
+    post:
+      application/json: AgreementsCreateNewAgreementRequest
+  /schedule/v1/agreements/{agreementId}:
+    put:
+      application/json: AgreementsUpdateAgreementRequest
+  /schedule/v1/entity-schedule-templates:
+    post:
+      application/json: EmployeeScheduleTemplatesCreateEmployeeScheduleTemplateRequest
+  /schedule/v1/holiday-calendar:
+    post:
+      application/json: HolidayCalendarsCreateNewCalendarRequest
+  /schedule/v1/holiday-calendar/{holidayCalendarId}:
+    put:
+      application/json: HolidayCalendarsUpdateByIdRequest
+  /schedule/v1/holidays/{holidayCalendarId}/employees:
+    delete:
+      application/json: HolidaysUnassignHolidayCalendarToEmployeeRequest
+    post:
+      application/json: HolidaysAssignToEmployeeRequest
+  /schedule/v1/vacation-calendars:
+    post:
+      application/json: VacationCalendarsCreateNewCalendarRequest
+  /schedule/v1/vacation-calendars/{id}:
+    put:
+      application/json: VacationCalendarsUpdateCalendarRequest
+  /schedule/v1/vacation-day-off-requests:
+    post:
+      application/json: VacationDayOffRequestsCreateRequestRequest
+  /schedule/v1/vacation-day-off-requests/{id}/accept:
+    post:
+      application/json: VacationDayOffRequestsAcceptRequestRequest
+  /schedule/v1/vacation-day-off-requests/{id}/reject:
+    post:
+      application/json: VacationDayOffRequestsRejectRequestRequest
+  /schedule/v1/work-entries:
+    post:
+      application/json: WorkEntriesCreateNewEntryRequest
+  /schedule/v1/work-entries/clock-in:
+    post:
+      application/json: WorkEntriesStartNewEntryRequest
+  /schedule/v1/work-entries/clock-out:
+    post:
+      application/json: WorkEntriesEndLastEntryRequest
+  /schedule/v1/work-entries/{id}:
+    put:
+      application/json: WorkEntriesUpdateWorkEntryRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /contract/v1/contracts:
+    post:
+      '200':
+        application/json: ContractsCreateNewContractResponse
+  /contract/v1/contracts/{contractId}:
+    delete:
+      '200':
+        application/json: ContractsDeleteContractResponse
+    put:
+      '200':
+        application/json: ContractsUpdateContractResponse
+  /contract/v1/contracts/{employeeId}:
+    get:
+      '200':
+        application/json: ContractsGetByEmployeeIdResponse
+  /contract/v1/contracts/{employeeId}/current-contract:
+    get:
+      '200':
+        application/json: ContractsGetCurrentContractByEmployeeIdResponse
+  /contract/v1/contribution-groups:
+    get:
+      '200':
+        application/json: SalariesListContributionGroupsResponse
+  /contract/v1/salaries:
+    get:
+      '200':
+        application/json: SalariesListResponse
+    post:
+      '200':
+        application/json: SalariesCreateSalaryResponse
+  /contract/v1/salaries/{salaryId}:
+    delete:
+      '200':
+        application/json: SalariesDeleteSalaryResponse
+    put:
+      '200':
+        application/json: SalariesUpdateSalaryResponse
+  /core/v3/companies/{id}:
+    put:
+      '200':
+        application/json: CompanyUpdateByIdResponse
+  /core/v3/custom-fields:
+    get:
+      '200':
+        application/json: CustomFieldsListResponse
+    post:
+      '200':
+        application/json: CustomFieldsCreateFieldResponse
+  /core/v3/custom-fields/{id}:
+    delete:
+      '200':
+        application/json: CustomFieldsDeleteFieldResponse
+    put:
+      '200':
+        application/json: CustomFieldsUpdateFieldByIdResponse
+  /core/v3/departments:
+    get:
+      '200':
+        application/json: DepartmentsListResponse
+    post:
+      '200':
+        application/json: DepartmentsCreateNewDepartmentResponse
+  /core/v3/departments/{id}:
+    delete:
+      '200':
+        application/json: DepartmentsRemoveByIdResponse
+    put:
+      '200':
+        application/json: DepartmentsUpdateByIdResponse
+  /core/v3/employee-department-assignations:
+    delete:
+      '200':
+        application/json: EmployeeDepartmentAssignationsUnassignResponse
+    get:
+      '200':
+        application/json: EmployeeDepartmentAssignationsListResponse
+    post:
+      '200':
+        application/json: EmployeeDepartmentAssignationsAssignDepartmentToEmployeeResponse
+  /core/v3/employee-managers:
+    get:
+      '200':
+        application/json: EmployeeManagersListResponse
+    post:
+      '200':
+        application/json: EmployeeManagersAssignResponse
+  /core/v3/employee-managers/{id}:
+    delete:
+      '200':
+        application/json: EmployeeManagersRemoveByIdResponse
+  /core/v3/employee-office-assignations:
+    delete:
+      '200':
+        application/json: EmployeeOfficeAssignationsUnassignEmployeeResponse
+    get:
+      '200':
+        application/json: EmployeeOfficeAssignationsListAssignationsResponse
+    post:
+      '200':
+        application/json: EmployeeOfficeAssignationsAssignEmployeeToOfficeResponse
+  /core/v3/employees:
+    get:
+      '200':
+        application/json: EmployeesListResponse
+    post:
+      '200':
+        application/json: EmployeesCreateNewEmployeeResponse
+  /core/v3/employees/{id}:
+    delete:
+      '200':
+        application/json: EmployeesRemoveByIdResponse
+    get:
+      '200':
+        application/json: EmployeesGetByIdResponse
+    put:
+      '200':
+        application/json: EmployeesUpdateByIdResponse
+  /core/v3/info:
+    get:
+      '200':
+        application/json: SecurityGetTokenInfoResponse
+  /core/v3/offices:
+    get:
+      '200':
+        application/json: OfficesGetAllResponse
+    post:
+      '200':
+        application/json: OfficesCreateOfficeResponse
+  /core/v3/offices/{id}:
+    delete:
+      '200':
+        application/json: OfficesRemoveByIdResponse
+    put:
+      '200':
+        application/json: OfficesUpdateByIdResponse
+  /core/v3/roles:
+    get:
+      '200':
+        application/json: RolesGetAllResponse
+  /core/v3/roles/assignation:
+    delete:
+      '200':
+        application/json: EmployeeAssignationsRolesUnassignRoleResponse
+    post:
+      '200':
+        application/json: EmployeeAssignationsRolesAssignRoleResponse
+  /core/v3/roles/assignation/{employeeId}:
+    get:
+      '200':
+        application/json: EmployeeAssignationsRolesListByEmployeeResponse
+  /document/v1/directories:
+    get:
+      '200':
+        application/json: DocumentsListDirectoriesResponse
+  /document/v1/directories/{directoryId}/documents:
+    post:
+      '200':
+        application/json: DocumentsUploadNewDocumentResponse
+  /project/v1/customers:
+    get:
+      '200':
+        application/json: CustomersListResponse
+    post:
+      '200':
+        application/json: CustomersCreateNewCustomerResponse
+  /project/v1/customers/{id}:
+    delete:
+      '200':
+        application/json: CustomersRemoveByIdResponse
+    put:
+      '200':
+        application/json: CustomersUpdateCustomerResponse
+  /project/v1/projects:
+    get:
+      '200':
+        application/json: ProjectsListResponse
+    post:
+      '200':
+        application/json: ProjectsCreateProjectResponse
+  /project/v1/projects/{id}:
+    delete:
+      '200':
+        application/json: ProjectsRemoveByIdResponse
+    put:
+      '200':
+        application/json: ProjectsUpdateProjectByIdResponse
+  /project/v1/time-entries:
+    get:
+      '200':
+        application/json: TimeEntriesListResponse
+    post:
+      '200':
+        application/json: TimeEntriesCreateNewEntryResponse
+  /project/v1/time-entries/start:
+    post:
+      '200':
+        application/json: TimeEntriesStartEntryResponse
+  /project/v1/time-entries/stop:
+    post:
+      '200':
+        application/json: TimeEntriesStopTimeEntryOutResponse
+  /project/v1/time-entries/{id}:
+    delete:
+      '200':
+        application/json: TimeEntriesDeleteByIdResponse
+    put:
+      '200':
+        application/json: TimeEntriesUpdateEntryResponse
+  /recruitment/v1/candidate-status/{vacancyId}:
+    get:
+      '200':
+        application/json: RecruitmentGetCandidateStatusListResponse
+  /recruitment/v1/candidates:
+    post:
+      '200':
+        application/json: RecruitmentCreateCandidateResponse
+  /recruitment/v1/candidates/{id}:
+    get:
+      '200':
+        application/json: RecruitmentGetCandidateByIdResponse
+    post:
+      '200':
+        application/json: RecruitmentUploadCandidateDocumentResponse
+    put:
+      '200':
+        application/json: RecruitmentUpdateCandidateResponse
+  /recruitment/v1/vacancies:
+    get:
+      '200':
+        application/json: RecruitmentListVacanciesResponse
+  /recruitment/v1/vacancies/{id}:
+    get:
+      '200':
+        application/json: RecruitmentGetVacancyResponse
+  /schedule/v1/absence-calendars:
+    get:
+      '200':
+        application/json: AbsenceCalendarsListResponse
+    post:
+      '200':
+        application/json: AbsenceCalendarsCreateCalendarResponse
+  /schedule/v1/absence-calendars/{id}:
+    put:
+      '200':
+        application/json: AbsenceCalendarsUpdateByIdResponse
+  /schedule/v1/absence-day-off:
+    get:
+      '200':
+        application/json: AbsenceDayOffListResponse
+  /schedule/v1/absence-day-off-requests:
+    get:
+      '200':
+        application/json: AbsenceDayOffRequestsListDayOffRequestsResponse
+    post:
+      '200':
+        application/json: AbsenceDayOffRequestsCreateDayOffRequestResponse
+  /schedule/v1/absence-day-off-requests/{id}:
+    delete:
+      '200':
+        application/json: AbsenceDayOffRequestsDeleteRequestByIdResponse
+  /schedule/v1/absence-day-off-requests/{id}/accept:
+    post:
+      '200':
+        application/json: AbsenceDayOffRequestsAcceptRequestResponse
+  /schedule/v1/absence-day-off-requests/{id}/reject:
+    post:
+      '200':
+        application/json: AbsenceDayOffRequestsRejectRequestResponse
+  /schedule/v1/absence-types:
+    get:
+      '200':
+        application/json: AbsenceTypesListResponse
+  /schedule/v1/agreement-employees:
+    post:
+      '200':
+        application/json: EmployeeAgreementsAssignEmployeeResponse
+  /schedule/v1/agreement-employees/{agreementEmployeeId}:
+    delete:
+      '200':
+        application/json: EmployeeAgreementsUnassignEmployeeResponse
+  /schedule/v1/agreements:
+    get:
+      '200':
+        application/json: AgreementsListResponse
+    post:
+      '200':
+        application/json: AgreementsCreateNewAgreementResponse
+  /schedule/v1/agreements/{agreementId}:
+    delete:
+      '200':
+        application/json: AgreementsDeleteAgreementResponse
+    get:
+      '200':
+        application/json: AgreementsGetAgreementResponse
+    put:
+      '200':
+        application/json: AgreementsUpdateAgreementResponse
+  /schedule/v1/check-types:
+    get:
+      '200':
+        application/json: CheckTypesListTypesResponse
+  /schedule/v1/check-validation:
+    get:
+      '200':
+        application/json: CheckValidationListByEmployeesAndStatusResponse
+  /schedule/v1/employees/{employeeId}/schedule-templates:
+    get:
+      '200':
+        application/json: EmployeeScheduleTemplatesListTemplatesResponse
+  /schedule/v1/entity-schedule-templates:
+    post:
+      '200':
+        application/json: EmployeeScheduleTemplatesCreateEmployeeScheduleTemplateResponse
+  /schedule/v1/entity-schedule-templates/{entityScheduleTemplateId}:
+    delete:
+      '200':
+        application/json: EmployeeScheduleTemplatesUnassignResponse
+  /schedule/v1/holiday-calendar:
+    get:
+      '200':
+        application/json: HolidayCalendarsListCalendarResponse
+    post:
+      '200':
+        application/json: HolidayCalendarsCreateNewCalendarResponse
+  /schedule/v1/holiday-calendar/{holidayCalendarId}:
+    delete:
+      '200':
+        application/json: HolidayCalendarsRemoveByIdResponse
+    get:
+      '200':
+        application/json: HolidayCalendarsGetByIdResponse
+    put:
+      '200':
+        application/json: HolidayCalendarsUpdateByIdResponse
+  /schedule/v1/holidays:
+    get:
+      '200':
+        application/json: HolidaysListResponse
+  /schedule/v1/holidays/{holidayCalendarId}/employees:
+    delete:
+      '200':
+        application/json: HolidaysUnassignHolidayCalendarToEmployeeResponse
+    get:
+      '200':
+        application/json: HolidaysGetByHolidayCalendarEmployeesResponse
+    post:
+      '200':
+        application/json: HolidaysAssignToEmployeeResponse
+  /schedule/v1/reports/worked-absence-days:
+    get:
+      '200':
+        application/json: StatisticsListWorkedAbsenceDaysByEmployeeResponse
+  /schedule/v1/reports/worked-hours:
+    get:
+      '200':
+        application/json: StatisticsListWorkedHoursByEmployeeResponse
+  /schedule/v1/reports/worked-hours-by-week-day:
+    get:
+      '200':
+        application/json: StatisticsListWorkedHoursByWeekDayResponse
+  /schedule/v1/reports/worked-night-hours:
+    get:
+      '200':
+        application/json: StatisticsListWorkedNightHoursResponse
+  /schedule/v1/schedule-templates:
+    get:
+      '200':
+        application/json: ScheduleTemplatesListResponse
+  /schedule/v1/vacation-calendars:
+    get:
+      '200':
+        application/json: VacationCalendarsListCalendarsResponse
+    post:
+      '200':
+        application/json: VacationCalendarsCreateNewCalendarResponse
+  /schedule/v1/vacation-calendars/{id}:
+    put:
+      '200':
+        application/json: VacationCalendarsUpdateCalendarResponse
+  /schedule/v1/vacation-configurations:
+    get:
+      '200':
+        application/json: VacationConfigurationsListConfigurationsResponse
+  /schedule/v1/vacation-day-off:
+    get:
+      '200':
+        application/json: VacationDayOffListResponse
+  /schedule/v1/vacation-day-off-requests:
+    get:
+      '200':
+        application/json: VacationDayOffRequestsListResponse
+    post:
+      '200':
+        application/json: VacationDayOffRequestsCreateRequestResponse
+  /schedule/v1/vacation-day-off-requests/{id}:
+    delete:
+      '200':
+        application/json: VacationDayOffRequestsDeleteByIdResponse
+  /schedule/v1/vacation-day-off-requests/{id}/accept:
+    post:
+      '200':
+        application/json: VacationDayOffRequestsAcceptRequestResponse
+  /schedule/v1/vacation-day-off-requests/{id}/reject:
+    post:
+      '200':
+        application/json: VacationDayOffRequestsRejectRequestResponse
+  /schedule/v1/work-breaks:
+    get:
+      '200':
+        application/json: WorkBreaksListResponse
+  /schedule/v1/work-entries:
+    get:
+      '200':
+        application/json: WorkEntriesListResponse
+    post:
+      '200':
+        application/json: WorkEntriesCreateNewEntryResponse
+  /schedule/v1/work-entries/clock-in:
+    post:
+      '200':
+        application/json: WorkEntriesStartNewEntryResponse
+  /schedule/v1/work-entries/clock-out:
+    post:
+      '200':
+        application/json: WorkEntriesEndLastEntryResponse
+  /schedule/v1/work-entries/{id}:
+    delete:
+      '200':
+        application/json: WorkEntriesDeleteByIdResponse
+    put:
+      '200':
+        application/json: WorkEntriesUpdateWorkEntryResponse
+securityParameters:
+  absencesValidator:
+    query: false
+  code:
+    query: false
+  contributionGroup:
+    query: false
+  departmentId:
+    query: false
+  departmentIds:
+    query: false
+  dni:
+    query: false
+  email:
+    query: false
+  employeeId:
+    query: false
+  employeeIds:
+    query: false
+  employeeIds[in]:
+    query: false
+  employeeStatus:
+    query: false
+  endDate:
+    query: false
+  from:
+    query: false
+  fromDayOff:
+    query: false
+  grossSalary:
+    query: false
+  id:
+    query: false
+  limit:
+    query: false
+  managerId:
+    query: false
+  name:
+    query: false
+  name[contains]:
+    query: false
+  officeId:
+    query: false
+  officeIds:
+    query: false
+  onlyReturn:
+    query: false
+  orderBy:
+    query: false
+  page:
+    query: false
+  parentDirectoryType:
+    query: false
+  payPeriod:
+    query: false
+  payments:
+    query: false
+  permission:
+    query: false
+  salaryId:
+    query: false
+  startDate:
+    query: false
+  status:
+    query: false
+  to:
+    query: false
+  toDayOff:
+    query: false
+  type:
+    query: false
+  updatedAt[gte]:
+    query: false
+  updatedAt[lte]:
+    query: false
+  withChecks:
+    query: false
+  year:
+    query: false
+  year[in]:
+    query: false
+validServerUrls:
+  https://api-{region}.sesametime.com:
+    url: https://api-{region}.sesametime.com

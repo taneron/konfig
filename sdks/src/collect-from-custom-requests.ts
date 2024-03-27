@@ -1479,6 +1479,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "sesamehr.com": {
+    type: "GET",
+    url: "https://apidocs.sesametime.com/index.json",
+  },
   "7shifts.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
