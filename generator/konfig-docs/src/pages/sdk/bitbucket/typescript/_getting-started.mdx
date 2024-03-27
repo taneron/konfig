@@ -1,0 +1,15 @@
+```typescript index.ts
+import { Bitbucket } from 'bitbucket-typescript-sdk';
+
+const bitbucket = new Bitbucket({
+    // Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
+    username: "USERNAME",
+    password: "PASSWORD",
+    // OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
+    clientId: "CLIENT_ID",
+    clientSecret: "CLIENT_SECRET",
+    redirectUri: "REDIRECT_URI",
+    // API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
+    apiKey: "AUTHORIZATION"
+})
+```
