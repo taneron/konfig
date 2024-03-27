@@ -49,6 +49,102 @@ const sdks = [
     "link": "/sdk/pay-pal/checkout/java/",
     "developerDocumentation": "developer.paypal.com/",
     "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paypal/checkout/openapi.yaml"
+  },
+  {
+    "name": "Invoicing",
+    "numberOfMethods": 20,
+    "categories": [
+      "payments",
+      "financial_technology",
+      "fintech",
+      "online_payments",
+      "financial_services"
+    ],
+    "index": "invoicing/typescript",
+    "language": "TypeScript",
+    "link": "/sdk/pay-pal/invoicing/typescript/",
+    "developerDocumentation": "developer.paypal.com/",
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paypal/invoicing/openapi.yaml"
+  },
+  {
+    "name": "Invoicing",
+    "numberOfMethods": 20,
+    "categories": [
+      "payments",
+      "financial_technology",
+      "fintech",
+      "online_payments",
+      "financial_services"
+    ],
+    "index": "invoicing/python",
+    "language": "Python",
+    "link": "/sdk/pay-pal/invoicing/python/",
+    "developerDocumentation": "developer.paypal.com/",
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paypal/invoicing/openapi.yaml"
+  },
+  {
+    "name": "Invoicing",
+    "numberOfMethods": 20,
+    "categories": [
+      "payments",
+      "financial_technology",
+      "fintech",
+      "online_payments",
+      "financial_services"
+    ],
+    "index": "invoicing/java",
+    "language": "Java",
+    "link": "/sdk/pay-pal/invoicing/java/",
+    "developerDocumentation": "developer.paypal.com/",
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paypal/invoicing/openapi.yaml"
+  },
+  {
+    "name": "Payment",
+    "numberOfMethods": 7,
+    "categories": [
+      "payments",
+      "financial_technology",
+      "fintech",
+      "online_payments",
+      "financial_services"
+    ],
+    "index": "payment/typescript",
+    "language": "TypeScript",
+    "link": "/sdk/pay-pal/payment/typescript/",
+    "developerDocumentation": "developer.paypal.com/",
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paypal/payment/openapi.yaml"
+  },
+  {
+    "name": "Payment",
+    "numberOfMethods": 7,
+    "categories": [
+      "payments",
+      "financial_technology",
+      "fintech",
+      "online_payments",
+      "financial_services"
+    ],
+    "index": "payment/python",
+    "language": "Python",
+    "link": "/sdk/pay-pal/payment/python/",
+    "developerDocumentation": "developer.paypal.com/",
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paypal/payment/openapi.yaml"
+  },
+  {
+    "name": "Payment",
+    "numberOfMethods": 7,
+    "categories": [
+      "payments",
+      "financial_technology",
+      "fintech",
+      "online_payments",
+      "financial_services"
+    ],
+    "index": "payment/java",
+    "language": "Java",
+    "link": "/sdk/pay-pal/payment/java/",
+    "developerDocumentation": "developer.paypal.com/",
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paypal/payment/openapi.yaml"
   }
 ];
 
