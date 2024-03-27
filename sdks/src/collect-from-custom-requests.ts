@@ -1868,6 +1868,15 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "tripadd.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://api.tripadd.com/docs/",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
