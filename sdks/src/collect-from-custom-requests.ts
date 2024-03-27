@@ -1422,6 +1422,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "dropbox.com_Sign": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/hellosign/hellosign-openapi/main/openapi.yaml",
+  },
   "2c2p.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

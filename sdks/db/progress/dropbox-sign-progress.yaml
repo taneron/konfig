@@ -1,0 +1,172 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /signature_request/cancel/{signature_request_id}:
+    post:
+      '200':
+        application/json: {}
+  /signature_request/remove/{signature_request_id}:
+    post:
+      '200':
+        application/json: {}
+  /template/delete/{template_id}:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /account:
+    get: Account_propertiesGet
+    put: Account_updateProperties
+  /account/create:
+    post: Account_createNew
+  /account/verify:
+    post: Account_verifyEmailExists
+  /api_app:
+    post: ApiApp_createNew
+  /api_app/list:
+    get: ApiApp_listApps
+  /api_app/{client_id}:
+    delete: ApiApp_delete
+    get: ApiApp_infoRetrieval
+    put: ApiApp_updateExisting
+  /bulk_send_job/list:
+    get: BulkSendJob_getList
+  /bulk_send_job/{bulk_send_job_id}:
+    get: BulkSendJob_getStatusById
+  /embedded/edit_url/{template_id}:
+    post: Embedded_templateEditUrl
+  /embedded/sign_url/{signature_id}:
+    get: Embedded_getSignUrl
+  /oauth/token:
+    post: OAuth_exchangeCodeForToken
+  /oauth/token?refresh:
+    post: OAuth_tokenRefreshPost
+  /report/create:
+    post: Report_generateEmailLink
+  /signature_request/bulk_create_embedded_with_template:
+    post: SignatureRequest_bulkCreateEmbeddedWithTemplate
+  /signature_request/bulk_send_with_template:
+    post: SignatureRequest_bulkSendWithTemplate
+  /signature_request/cancel/{signature_request_id}:
+    post: SignatureRequest_cancelIncomplete
+  /signature_request/create_embedded:
+    post: SignatureRequest_createEmbedded
+  /signature_request/create_embedded_with_template:
+    post: SignatureRequest_createEmbeddedWithTemplate
+  /signature_request/files/{signature_request_id}:
+    get: SignatureRequest_downloadFiles
+  /signature_request/files_as_data_uri/{signature_request_id}:
+    get: SignatureRequest_downloadFilesAsDataUri
+  /signature_request/files_as_file_url/{signature_request_id}:
+    get: SignatureRequest_downloadAsFileUrl
+  /signature_request/list:
+    get: SignatureRequest_getList
+  /signature_request/release_hold/{signature_request_id}:
+    post: SignatureRequest_releaseHold
+  /signature_request/remind/{signature_request_id}:
+    post: SignatureRequest_sendReminder
+  /signature_request/remove/{signature_request_id}:
+    post: SignatureRequest_removeAccess
+  /signature_request/send:
+    post: SignatureRequest_createAndSend
+  /signature_request/send_with_template:
+    post: SignatureRequest_createAndSendWithTemplate
+  /signature_request/update/{signature_request_id}:
+    post: SignatureRequest_updateSignerDetails
+  /signature_request/{signature_request_id}:
+    get: SignatureRequest_getStatus
+  /team:
+    get: Team_getInfo
+    put: Team_updateName
+  /team/add_member:
+    put: Team_addMember
+  /team/create:
+    post: Team_createNewTeam
+  /team/destroy:
+    delete: Team_deleteTeam
+  /team/info:
+    get: Team_getInfo
+  /team/invites:
+    get: Team_listInvites
+  /team/members/{team_id}:
+    get: Team_listMembers
+  /team/remove_member:
+    post: Team_removeMember
+  /team/sub_teams/{team_id}:
+    get: Team_listSubTeams
+  /template/add_user/{template_id}:
+    post: Template_addUserToTemplate
+  /template/create:
+    post: Template_createTemplate
+  /template/create_embedded_draft:
+    post: Template_createEmbeddedDraft
+  /template/delete/{template_id}:
+    post: Template_completelyDelete
+  /template/files/{template_id}:
+    get: Template_getFiles
+  /template/files_as_data_uri/{template_id}:
+    get: Template_getDataUri
+  /template/files_as_file_url/{template_id}:
+    get: Template_getFilesAsUrl
+  /template/list:
+    get: Template_list
+  /template/remove_user/{template_id}:
+    post: Template_removeUser
+  /template/update_files/{template_id}:
+    post: Template_updateFiles
+  /template/{template_id}:
+    get: Template_getById
+  /unclaimed_draft/create:
+    post: UnclaimedDraft_createNewDraft
+  /unclaimed_draft/create_embedded:
+    post: UnclaimedDraft_createEmbedded
+  /unclaimed_draft/create_embedded_with_template:
+    post: UnclaimedDraft_createEmbeddedWithTemplate
+  /unclaimed_draft/edit_and_resend/{signature_request_id}:
+    post: UnclaimedDraft_editResend
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /signature_request/cancel/{signature_request_id}:
+    post:
+      '200':
+        application/json: SignatureRequestCancelIncompleteResponse
+  /signature_request/files/{signature_request_id}:
+    get:
+      '200':
+        application/pdf: SignatureRequestDownloadFilesResponse
+        application/zip: SignatureRequestDownloadFiles200Response
+  /signature_request/remove/{signature_request_id}:
+    post:
+      '200':
+        application/json: SignatureRequestRemoveAccessResponse
+  /template/delete/{template_id}:
+    post:
+      '200':
+        application/json: TemplateCompletelyDeleteResponse
+  /template/files/{template_id}:
+    get:
+      '200':
+        application/pdf: TemplateGetFilesResponse
+        application/zip: TemplateGetFiles200Response
+securityParameters:
+  account_id:
+    query: false
+  email_address:
+    query: false
+  file_type:
+    query: false
+  force_download:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  query:
+    query: false
+  team_id:
+    query: false
+validServerUrls: {}
