@@ -1,0 +1,2613 @@
+{
+  "securitySchemes": {
+    "BasicAuth": {
+      "type": "http",
+      "scheme": "basic",
+      "description": "Use HTTP Basic Auth to authenticate with our API. You must send your API key with every request. \nPut your API key as the basic auth username and leave the password blank.\n"
+    },
+    "WebhookSignature": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Ashby-Signature",
+      "description": "[Optional] If you provide a secret token when configuring your webhook, this will be used to create a digest of the JSON payload sent with each webhook request.\nThe digest will be included in the request under the `Ashby-Signature` http header.\n\nIt will look like this:\n`Ashby-Signature: sha256=f3124911d2956f10aa3a49c43a88bdf13bba846e94f0ae2bd7c034f90239bd04`\n\nThe part before the = indicates the algorithm that was used to compute the hash digest.\n"
+    }
+  },
+  "apiBaseUrl": "https://api.ashbyhq.com",
+  "apiVersion": "1.0.0",
+  "apiDescription": "The public API for accessing resources in your Ashby instance.",
+  "apiTitle": "Ashby API",
+  "endpoints": 89,
+  "sdkMethods": 89,
+  "schemas": 175,
+  "parameters": 188,
+  "contactUrl": "https://app.ashbyhq.com/support",
+  "contactEmail": "support@ashbyhq.com",
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "ashbyhq.com.yaml",
+  "difficultyScore": 136,
+  "difficulty": "Medium",
+  "company": "Ashby",
+  "sdkName": "ashby-{language}-sdk",
+  "clientName": "Ashby",
+  "metaDescription": "Ashby is a California-based SaaS platform that provides solutions such as recruitment management and data analytics for enterprises.",
+  "apiStatusUrls": "inherit",
+  "homepage": "ashbyhq.com",
+  "developerDocumentation": "developers.ashbyhq.com/reference",
+  "categories": [
+    "recruitment"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/apiKey.info",
+      "method": "getInfo",
+      "httpMethod": "post",
+      "tag": "API Key",
+      "typeScriptTag": "apiKey",
+      "description": "apiKey.info",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/application.change_source",
+      "method": "changeSource",
+      "httpMethod": "post",
+      "tag": "Application",
+      "typeScriptTag": "application",
+      "description": "application.changeSource",
+      "parameters": [
+        {
+          "name": "applicationId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "sourceId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/application.change_stage",
+      "method": "changeStage",
+      "httpMethod": "post",
+      "tag": "Application",
+      "typeScriptTag": "application",
+      "description": "application.changeStage",
+      "parameters": [
+        {
+          "name": "applicationId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "interviewStageId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "archiveReasonId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/application.create",
+      "method": "considerCandidate",
+      "httpMethod": "post",
+      "tag": "Application",
+      "typeScriptTag": "application",
+      "description": "application.create",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "jobId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "interviewPlanId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "interviewStageId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "sourceId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "creditedToUserId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/application.info",
+      "method": "getDetails",
+      "httpMethod": "post",
+      "tag": "Application",
+      "typeScriptTag": "application",
+      "description": "application.info",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/application.list",
+      "method": "getAllSchedules",
+      "httpMethod": "post",
+      "tag": "Application",
+      "typeScriptTag": "application",
+      "description": "application.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/applicationFeedback.list",
+      "method": "listAll",
+      "httpMethod": "post",
+      "tag": "Application Feedback",
+      "typeScriptTag": "applicationFeedback",
+      "description": "applicationFeedback.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/applicationFeedback.submit",
+      "method": "submitFeedback",
+      "httpMethod": "post",
+      "tag": "Application Feedback",
+      "typeScriptTag": "applicationFeedback",
+      "description": "applicationFeedback.submit",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/applicationForm.submit",
+      "method": "submitForm",
+      "httpMethod": "post",
+      "tag": "Application Form",
+      "typeScriptTag": "applicationForm",
+      "description": "applicationForm.submit",
+      "parameters": [
+        {
+          "name": "jobPostingId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "applicationForm",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "utmData",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "<file  key>",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/archiveReason.list",
+      "method": "list",
+      "httpMethod": "post",
+      "tag": "Archive Reason",
+      "typeScriptTag": "archiveReason",
+      "description": "archiveReason.list",
+      "parameters": [
+        {
+          "name": "includeArchived",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/assessment.addCompletedToCandidate",
+      "method": "addCompletedToCandidate",
+      "httpMethod": "post",
+      "tag": "Assessment",
+      "typeScriptTag": "assessment",
+      "description": "assessment.addCompletedToCandidate",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "partnerId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "assessment",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "timestamp",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/assessment.start",
+      "method": "partnerStart",
+      "httpMethod": "post",
+      "tag": "Assessment",
+      "typeScriptTag": "assessment",
+      "description": "assessment.start (Implemented by Partner)",
+      "parameters": [
+        {
+          "name": "assessment_type_id",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "candidate",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "application",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "job",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "409",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/assessment.list",
+      "method": "listPartnerSupport",
+      "httpMethod": "post",
+      "tag": "Assessment",
+      "typeScriptTag": "assessment",
+      "description": "assessment.list (Implemented by Partner)",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/assessment.update",
+      "method": "updateStatus",
+      "httpMethod": "post",
+      "tag": "Assessment",
+      "typeScriptTag": "assessment",
+      "description": "assessment.update",
+      "parameters": [
+        {
+          "name": "assessment_id",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "assessment_status",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "assessment_profile_url",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "timestamp",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1665680638489
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/assessment.cancel",
+      "method": "cancelPartnerAssessment",
+      "httpMethod": "post",
+      "tag": "Assessment",
+      "typeScriptTag": "assessment",
+      "description": "assessment.cancel (Implemented by Partner)",
+      "parameters": [
+        {
+          "name": "assessment_id",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.addTag",
+      "method": "addTag",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.addTag",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "5b591aed-88e3-4395-b9c6-7d529f93354a"
+        },
+        {
+          "name": "tagId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "38430ede-5bd2-41fc-b474-87591cb98cbc"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/canidate.anonymize",
+      "method": "anonymizeCandidate",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.anonymize",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.create",
+      "method": "createNewCandidate",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.create",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Adam Hart"
+        },
+        {
+          "name": "email",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "phoneNumber",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "linkedInUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "https://linkedin.com/in/user"
+        },
+        {
+          "name": "githubUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "https://github.com/user"
+        },
+        {
+          "name": "website",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "https://twitter.com/user"
+        },
+        {
+          "name": "alternateEmailAddresses",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "example": [
+            "test.email@ashbyhq.com"
+          ]
+        },
+        {
+          "name": "sourceId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "creditedToUserId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.createNote",
+      "method": "createNote",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.createNote",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e"
+        },
+        {
+          "name": "note",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "sendNotifications",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.info",
+      "method": "getById",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.info",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.list",
+      "method": "listAll",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.list",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "description": "",
+          "example": "G8"
+        },
+        {
+          "name": "syncToken",
+          "schema": "string",
+          "description": "",
+          "example": "jYnEBmjzR"
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "description": "",
+          "example": 25
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.listNotes",
+      "method": "getAllNotes",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.listNotes",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.search",
+      "method": "searchByEmailAndName",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.search",
+      "parameters": [
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.update",
+      "method": "updateExistingCandidate",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.update",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Adam Hart"
+        },
+        {
+          "name": "email",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "phoneNumber",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "linkedInUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "https://linkedin.com/in/user"
+        },
+        {
+          "name": "githubUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "https://github.com/user"
+        },
+        {
+          "name": "websiteUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "https://twitter.com/user"
+        },
+        {
+          "name": "alternateEmail",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "test.email@ashbyhq.com"
+        },
+        {
+          "name": "socialLinks",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "sourceId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "creditedToUserId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.uploadFile",
+      "method": "attachFile",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.uploadFile",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidate.uploadResume",
+      "method": "uploadResumeData",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "candidate.uploadResume",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "resume",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "RESUME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidateTag.create",
+      "method": "createNewTag",
+      "httpMethod": "post",
+      "tag": "Candidate Tag",
+      "typeScriptTag": "candidateTag",
+      "description": "candidateTag.create",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Strong candidate"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/candidateTag.list",
+      "method": "listAll",
+      "httpMethod": "post",
+      "tag": "Candidate Tag",
+      "typeScriptTag": "candidateTag",
+      "description": "candidateTag.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customField.create",
+      "method": "createNewField",
+      "httpMethod": "post",
+      "tag": "Custom Field",
+      "typeScriptTag": "customField",
+      "description": "customField.create",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TITLE"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "fieldType",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FIELDTYPE"
+        },
+        {
+          "name": "objectType",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "OBJECTTYPE"
+        },
+        {
+          "name": "selectableValues",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "isDateOnlyField",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "isExposableToCandidate",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customField.list",
+      "method": "getAll",
+      "httpMethod": "post",
+      "tag": "Custom Field",
+      "typeScriptTag": "customField",
+      "description": "customField.list",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "description": "",
+          "example": "G8"
+        },
+        {
+          "name": "syncToken",
+          "schema": "string",
+          "description": "",
+          "example": "jYnEBmjzR"
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "description": "",
+          "example": 25
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customField.setValue",
+      "method": "setValue",
+      "httpMethod": "post",
+      "tag": "Custom Field",
+      "typeScriptTag": "customField",
+      "description": "customField.setValue",
+      "parameters": [
+        {
+          "name": "objectId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "objectType",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "OBJECTTYPE"
+        },
+        {
+          "name": "fieldId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "fieldValue",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/department.create",
+      "method": "createNewDepartment",
+      "httpMethod": "post",
+      "tag": "Department & Team",
+      "typeScriptTag": "department &Team",
+      "description": "department.create",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Engineering"
+        },
+        {
+          "name": "parentId",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "1be42b8e-cafd-4beb-8121-f4981eb20f42"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/department.info",
+      "method": "getById",
+      "httpMethod": "post",
+      "tag": "Department",
+      "typeScriptTag": "department",
+      "description": "department.info",
+      "parameters": [
+        {
+          "name": "departmentId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/department.list",
+      "method": "getAllDepartments",
+      "httpMethod": "post",
+      "tag": "Department",
+      "typeScriptTag": "department",
+      "description": "department.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/file.info",
+      "method": "getUrlCandidate",
+      "httpMethod": "post",
+      "tag": "File",
+      "typeScriptTag": "file",
+      "description": "file.info",
+      "parameters": [
+        {
+          "name": "fileHandle",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "eyJoYW5kbGUiOnsidHlwZSI6IkNhbmRpZGF0ZUZpbGUiLCJmaWxlSWQiOiIxNTk1ZTRmYy04MTQwLTQ1NGUtYTI1ZC04NTNiOTQ3ZWNmYzgiLCJvd25lcklkIjoiYmY5NGZlNmMtMjU3MS00NzQ1LWE1OWEtNTA5MjE3ODI3MDVlIn0sInNpZ25hdHVyZSI6IkFqclpjT0VlTXUwdWxLZlRCS05iMWRkbDdHcjVIWFVmZzNrS0NPL1dWWjg9IiwidmVyc2lvbiI6IjEilQ\n"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/feedbackFormDefinition.info",
+      "method": "getById",
+      "httpMethod": "post",
+      "tag": "Feedback Form Definition",
+      "typeScriptTag": "feedbackFormDefinition",
+      "description": "feedbackFormDefinition.info",
+      "parameters": [
+        {
+          "name": "feedbackFormDefinitionId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/feedbackFormDefinition.list",
+      "method": "listAll",
+      "httpMethod": "post",
+      "tag": "Feedback Form Definition",
+      "typeScriptTag": "feedbackFormDefinition",
+      "description": "feedbackFormDefinition.list",
+      "parameters": [
+        {
+          "name": "includeArchived",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "cursor",
+          "schema": "string",
+          "description": "",
+          "example": "G8"
+        },
+        {
+          "name": "syncToken",
+          "schema": "string",
+          "description": "",
+          "example": "jYnEBmjzR"
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "description": "",
+          "example": 25
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/hiringTeam.addMember",
+      "method": "addMember",
+      "httpMethod": "post",
+      "tag": "Hiring Team",
+      "typeScriptTag": "hiringTeam",
+      "description": "hiringTeam.addMember",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/hiringTeamRole.list",
+      "method": "listRoles",
+      "httpMethod": "post",
+      "tag": "Hiring Team Role",
+      "typeScriptTag": "hiringTeamRole",
+      "description": "hiringTeamRole.list",
+      "parameters": [
+        {
+          "name": "namesOnly",
+          "schema": "boolean",
+          "description": "",
+          "default": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interview.info",
+      "method": "getById",
+      "httpMethod": "post",
+      "tag": "Interview",
+      "typeScriptTag": "interview",
+      "description": "interview.info",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interview.list",
+      "method": "getAll",
+      "httpMethod": "post",
+      "tag": "Interview",
+      "typeScriptTag": "interview",
+      "description": "interview.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interviewEvent.list",
+      "method": "listAssociatedEvents",
+      "httpMethod": "post",
+      "tag": "Interview Event",
+      "typeScriptTag": "interviewEvent",
+      "description": "interviewEvent.list",
+      "parameters": [
+        {
+          "name": "interviewScheduleId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interviewPlan.list",
+      "method": "getAll",
+      "httpMethod": "post",
+      "tag": "Interview Plan",
+      "typeScriptTag": "interviewPlan",
+      "description": "interviewPlan.list",
+      "parameters": [
+        {
+          "name": "includeArchived",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interviewSchedule.cancel",
+      "method": "cancelById",
+      "httpMethod": "post",
+      "tag": "Interview Schedule",
+      "typeScriptTag": "interviewSchedule",
+      "description": "interviewSchedule.cancel",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "allowReschedule",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interviewSchedule.create",
+      "method": "createScheduledInterview",
+      "httpMethod": "post",
+      "tag": "Interview Schedule",
+      "typeScriptTag": "interviewSchedule",
+      "description": "interviewSchedule.create",
+      "parameters": [
+        {
+          "name": "applicationId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "interviewEvents",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interviewSchedule.list",
+      "method": "getAllSchedules",
+      "httpMethod": "post",
+      "tag": "Interview Schedule",
+      "typeScriptTag": "interviewSchedule",
+      "description": "interviewSchedule.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interviewSchedule.update",
+      "method": "updateEvent",
+      "httpMethod": "post",
+      "tag": "Interview Schedule",
+      "typeScriptTag": "interviewSchedule",
+      "description": "interviewSchedule.update",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interviewStage.list",
+      "method": "listAllInOrder",
+      "httpMethod": "post",
+      "tag": "Interview Stage",
+      "typeScriptTag": "interviewStage",
+      "description": "interviewStage.list",
+      "parameters": [
+        {
+          "name": "interviewPlanId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/interviewStage.info",
+      "method": "getById",
+      "httpMethod": "post",
+      "tag": "Interview Stage",
+      "typeScriptTag": "interviewStage",
+      "description": "interviewStage.info",
+      "parameters": [
+        {
+          "name": "interviewStageId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/job.create",
+      "method": "newCreate",
+      "httpMethod": "post",
+      "tag": "Job",
+      "typeScriptTag": "job",
+      "description": "job.create",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Software Engineer"
+        },
+        {
+          "name": "teamId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "locationId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "defaultInterviewPlanId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/job.info",
+      "method": "getById",
+      "httpMethod": "post",
+      "tag": "Job",
+      "typeScriptTag": "job",
+      "description": "job.info",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "expand",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/job.list",
+      "method": "getList",
+      "httpMethod": "post",
+      "tag": "Job",
+      "typeScriptTag": "job",
+      "description": "job.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/job.setStatus",
+      "method": "setStatusById",
+      "httpMethod": "post",
+      "tag": "Job",
+      "typeScriptTag": "job",
+      "description": "job.setStatus",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/job.update",
+      "method": "updateExisting",
+      "httpMethod": "post",
+      "tag": "Job",
+      "typeScriptTag": "job",
+      "description": "job.update",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Software Engineer"
+        },
+        {
+          "name": "jobId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "teamId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "locationId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "defaultInterviewPlanId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "customRequisitionId",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/job.search",
+      "method": "searchByTitle",
+      "httpMethod": "post",
+      "tag": "Job",
+      "typeScriptTag": "job",
+      "description": "job.search",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Software Engineer"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/jobInterviewPlan.info",
+      "method": "getInfo",
+      "httpMethod": "post",
+      "tag": "Job Interview Plan",
+      "typeScriptTag": "jobInterviewPlan",
+      "description": "jobInterviewPlan.info",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/jobPosting.info",
+      "method": "getIndividual",
+      "httpMethod": "post",
+      "tag": "Job Posting",
+      "typeScriptTag": "jobPosting",
+      "description": "jobPosting.info",
+      "parameters": [
+        {
+          "name": "jobPostingId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/jobPosting.list",
+      "method": "getAllPublished",
+      "httpMethod": "post",
+      "tag": "Job Posting",
+      "typeScriptTag": "jobPosting",
+      "description": "jobPosting.list",
+      "parameters": [
+        {
+          "name": "location",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "department",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "listedOnly",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/jobPosting.update",
+      "method": "updateExisting",
+      "httpMethod": "post",
+      "tag": "Job Posting",
+      "typeScriptTag": "jobPosting",
+      "description": "jobPosting.update",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Software Engineer"
+        },
+        {
+          "name": "description",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "jobPostingId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/location.create",
+      "method": "createHierarchy",
+      "httpMethod": "post",
+      "tag": "Location",
+      "typeScriptTag": "location",
+      "description": "location.create",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TYPE"
+        },
+        {
+          "name": "address",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "parentLocationId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "isRemote",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/location.info",
+      "method": "detailsById",
+      "httpMethod": "post",
+      "tag": "Location",
+      "typeScriptTag": "location",
+      "description": "location.info",
+      "parameters": [
+        {
+          "name": "locationId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/location.list",
+      "method": "getList",
+      "httpMethod": "post",
+      "tag": "Location",
+      "typeScriptTag": "location",
+      "description": "location.list",
+      "parameters": [
+        {
+          "name": "includeArchived",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/offer.create",
+      "method": "createNew",
+      "httpMethod": "post",
+      "tag": "Offer",
+      "typeScriptTag": "offer",
+      "description": "offer.create",
+      "parameters": [
+        {
+          "name": "offerProcessId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "offerFormId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "offerForm",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/offer.info",
+      "method": "getDetailsById",
+      "httpMethod": "post",
+      "tag": "Offer",
+      "typeScriptTag": "offer",
+      "description": "offer.info",
+      "parameters": [
+        {
+          "name": "offerId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/offer.list",
+      "method": "getList",
+      "httpMethod": "post",
+      "tag": "Offer",
+      "typeScriptTag": "offer",
+      "description": "offer.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/offer.start",
+      "method": "startCreationInstance",
+      "httpMethod": "post",
+      "tag": "Offer",
+      "typeScriptTag": "offer",
+      "description": "offer.start",
+      "parameters": [
+        {
+          "name": "offerProcessId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/offerProcess.start",
+      "method": "startProcessForCandidate",
+      "httpMethod": "post",
+      "tag": "Offer Process",
+      "typeScriptTag": "offerProcess",
+      "description": "offerProcess.start",
+      "parameters": [
+        {
+          "name": "applicationId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.info",
+      "method": "getByUuid",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.info",
+      "parameters": [
+        {
+          "name": "openingId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "OPENINGID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.list",
+      "method": "getList",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.list",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "syncToken",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.search",
+      "method": "searchByIdentifier",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.search",
+      "parameters": [
+        {
+          "name": "identifier",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "IDENTIFIER"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.create",
+      "method": "createInstance",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.create",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "identifier",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "teamId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "locationIds",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "jobIds",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "targetHireDate",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "targetStartDate",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "isBackfill",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "employmentType",
+          "schema": "string",
+          "description": "",
+          "default": "FullTime"
+        },
+        {
+          "name": "openingState",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.addJob",
+      "method": "addJobAction",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.addJob",
+      "parameters": [
+        {
+          "name": "openingId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "OPENINGID"
+        },
+        {
+          "name": "jobId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOBID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.removeJob",
+      "method": "removeJob",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.removeJob",
+      "parameters": [
+        {
+          "name": "openingId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "OPENINGID"
+        },
+        {
+          "name": "jobId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOBID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.setOpeningState",
+      "method": "setState",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.setOpeningState",
+      "parameters": [
+        {
+          "name": "openingId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "openingState",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "closeReasonId",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.setArchived",
+      "method": "setArchived",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.setArchived",
+      "parameters": [
+        {
+          "name": "openingId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "archive",
+          "schema": "boolean",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/opening.update",
+      "method": "updateOpening",
+      "httpMethod": "post",
+      "tag": "Openings",
+      "typeScriptTag": "openings",
+      "description": "opening.update",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "openingId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "identifier",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "teamId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "targetHireDate",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "targetStartDate",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "isBackfill",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "employmentType",
+          "schema": "string",
+          "description": "",
+          "default": "FullTime"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/referral.create",
+      "method": "createNew",
+      "httpMethod": "post",
+      "tag": "Referral",
+      "typeScriptTag": "referral",
+      "description": "referral.create",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "creditedToUserId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "fieldSubmissions",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "createdAt",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/referralForm.info",
+      "method": "getDefaultForm",
+      "httpMethod": "post",
+      "tag": "Referral Form",
+      "typeScriptTag": "referralForm",
+      "description": "referralForm.info",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/source.list",
+      "method": "getAll",
+      "httpMethod": "post",
+      "tag": "Source",
+      "typeScriptTag": "source",
+      "description": "source.list",
+      "parameters": [
+        {
+          "name": "includeArchived",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/surveyFormDefinition.info",
+      "method": "getDetailsById",
+      "httpMethod": "post",
+      "tag": "Survey Form Definition",
+      "typeScriptTag": "surveyFormDefinition",
+      "description": "surveyFormDefinition.info",
+      "parameters": [
+        {
+          "name": "surveyFormDefinitionId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/surveyFormDefinition.list",
+      "method": "getAll",
+      "httpMethod": "post",
+      "tag": "Survey Form Definition",
+      "typeScriptTag": "surveyFormDefinition",
+      "description": "surveyFormDefinition.list",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "description": "",
+          "example": "G8"
+        },
+        {
+          "name": "syncToken",
+          "schema": "string",
+          "description": "",
+          "example": "jYnEBmjzR"
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "description": "",
+          "example": 25
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/surveyRequest.create",
+      "method": "generateUrl",
+      "httpMethod": "post",
+      "tag": "Survey Request",
+      "typeScriptTag": "surveyRequest",
+      "description": "surveyRequest.create",
+      "parameters": [
+        {
+          "name": "candidateId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "applicationId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "surveyFormDefinitionId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/surveySubmission.list",
+      "method": "listBySurveyType",
+      "httpMethod": "post",
+      "tag": "Survey Submission",
+      "typeScriptTag": "surveySubmission",
+      "description": "surveySubmission.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user.info",
+      "method": "getById",
+      "httpMethod": "post",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "user.info",
+      "parameters": [
+        {
+          "name": "userId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user.list",
+      "method": "getAshbyUsers",
+      "httpMethod": "post",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "user.list",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user.search",
+      "method": "searchByEmail",
+      "httpMethod": "post",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "user.search",
+      "parameters": [
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "test@ashbyhq.com"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/webhook.create",
+      "method": "createSetting",
+      "httpMethod": "post",
+      "tag": "Webhook",
+      "typeScriptTag": "webhook",
+      "description": "webhook.create",
+      "parameters": [
+        {
+          "name": "webhookType",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "WEBHOOKTYPE"
+        },
+        {
+          "name": "requestUrl",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REQUESTURL"
+        },
+        {
+          "name": "secretToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SECRETTOKEN"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/webhook.update",
+      "method": "updateSetting",
+      "httpMethod": "post",
+      "tag": "Webhook",
+      "typeScriptTag": "webhook",
+      "description": "webhook.update",
+      "parameters": [
+        {
+          "name": "webhookId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "enabled",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "requestUrl",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "secretToken",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/webhook.delete",
+      "method": "removeSetting",
+      "httpMethod": "post",
+      "tag": "Webhook",
+      "typeScriptTag": "webhook",
+      "description": "webhook.delete",
+      "parameters": [
+        {
+          "name": "webhookId",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Ashby is a California-based SaaS platform that provides solutions such as recruitment management and data analytics for enterprises. Ashby's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ashby/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ashby/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/ashby/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ashby/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ashby/favicon.png",
+  "clientNameCamelCase": "ashby",
+  "lastUpdated": "2024-03-27T22:56:02.537Z",
+  "typescriptSdkUsageCode": "import { Ashby } from 'ashby-typescript-sdk';\n\nconst ashby = new Ashby({\n    /*\n     * Use HTTP Basic Auth to authenticate with our API. You must send your API key with every request. \n     * Put your API key as the basic auth username and leave the password blank.\n     * \n     */\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n    /*\n     * [Optional] If you provide a secret token when configuring your webhook, this will be used to create a digest of the JSON payload sent with each webhook request.\n     * The digest will be included in the request under the `Ashby-Signature` http header.\n     * \n     * It will look like this:\n     * `Ashby-Signature: sha256=f3124911d2956f10aa3a49c43a88bdf13bba846e94f0ae2bd7c034f90239bd04`\n     * \n     * The part before the = indicates the algorithm that was used to compute the hash digest.\n     * \n     */\n    webhookSignature: \"ASHBY_SIGNATURE\"\n})",
+  "typescriptSdkFirstRequestCode": "// apiKey.info\nconst getInfoResponse = ashby.apiKey.getInfo()",
+  "fixedSpecFileName": "ashby-fixed-spec.yaml"
+}

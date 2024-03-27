@@ -1758,6 +1758,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://developer.zendesk.com/zendesk/oas.yaml",
   },
+  "ashbyhq.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.ashbyhq.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "teamwork.com": {
     type: "GET",
     url: "https://contento-assets.s3.eu-west-1.amazonaws.com/oas/teamwork_docs/projects/reference/projects-api-v3.oas2.yml",

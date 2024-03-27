@@ -1,0 +1,803 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /apiKey.info:
+    post: ApiKey_getInfo
+  /application.change_source:
+    post: Application_changeSource
+  /application.change_stage:
+    post: Application_changeStage
+  /application.create:
+    post: Application_considerCandidate
+  /application.info:
+    post: Application_getDetails
+  /application.list:
+    post: Application_getAllSchedules
+  /applicationFeedback.list:
+    post: ApplicationFeedback_listAll
+  /applicationFeedback.submit:
+    post: ApplicationFeedback_submitFeedback
+  /applicationForm.submit:
+    post: ApplicationForm_submitForm
+  /archiveReason.list:
+    post: ArchiveReason_list
+  /assessment.addCompletedToCandidate:
+    post: Assessment_addCompletedToCandidate
+  /assessment.cancel:
+    post: Assessment_cancelPartnerAssessment
+  /assessment.list:
+    post: Assessment_listPartnerSupport
+  /assessment.start:
+    post: Assessment_partnerStart
+  /assessment.update:
+    post: Assessment_updateStatus
+  /candidate.addTag:
+    post: Candidate_addTag
+  /candidate.create:
+    post: Candidate_createNewCandidate
+  /candidate.createNote:
+    post: Candidate_createNote
+  /candidate.info:
+    post: Candidate_getById
+  /candidate.list:
+    post: Candidate_listAll
+  /candidate.listNotes:
+    post: Candidate_getAllNotes
+  /candidate.search:
+    post: Candidate_searchByEmailAndName
+  /candidate.update:
+    post: Candidate_updateExistingCandidate
+  /candidate.uploadFile:
+    post: Candidate_attachFile
+  /candidate.uploadResume:
+    post: Candidate_uploadResumeData
+  /candidateTag.create:
+    post: CandidateTag_createNewTag
+  /candidateTag.list:
+    post: CandidateTag_listAll
+  /canidate.anonymize:
+    post: Candidate_anonymizeCandidate
+  /customField.create:
+    post: CustomField_createNewField
+  /customField.list:
+    post: CustomField_getAll
+  /customField.setValue:
+    post: CustomField_setValue
+  /department.create:
+    post: DepartmentTeam_createNewDepartment
+  /department.info:
+    post: Department_getById
+  /department.list:
+    post: Department_getAllDepartments
+  /feedbackFormDefinition.info:
+    post: FeedbackFormDefinition_getById
+  /feedbackFormDefinition.list:
+    post: FeedbackFormDefinition_listAll
+  /file.info:
+    post: File_getUrlCandidate
+  /hiringTeam.addMember:
+    post: HiringTeam_addMember
+  /hiringTeamRole.list:
+    post: HiringTeamRole_listRoles
+  /interview.info:
+    post: Interview_getById
+  /interview.list:
+    post: Interview_getAll
+  /interviewEvent.list:
+    post: InterviewEvent_listAssociatedEvents
+  /interviewPlan.list:
+    post: InterviewPlan_getAll
+  /interviewSchedule.cancel:
+    post: InterviewSchedule_cancelById
+  /interviewSchedule.create:
+    post: InterviewSchedule_createScheduledInterview
+  /interviewSchedule.list:
+    post: InterviewSchedule_getAllSchedules
+  /interviewSchedule.update:
+    post: InterviewSchedule_updateEvent
+  /interviewStage.info:
+    post: InterviewStage_getById
+  /interviewStage.list:
+    post: InterviewStage_listAllInOrder
+  /job.create:
+    post: Job_newCreate
+  /job.info:
+    post: Job_getById
+  /job.list:
+    post: Job_getList
+  /job.search:
+    post: Job_searchByTitle
+  /job.setStatus:
+    post: Job_setStatusById
+  /job.update:
+    post: Job_updateExisting
+  /jobInterviewPlan.info:
+    post: JobInterviewPlan_getInfo
+  /jobPosting.info:
+    post: JobPosting_getIndividual
+  /jobPosting.list:
+    post: JobPosting_getAllPublished
+  /jobPosting.update:
+    post: JobPosting_updateExisting
+  /location.create:
+    post: Location_createHierarchy
+  /location.info:
+    post: Location_detailsById
+  /location.list:
+    post: Location_getList
+  /offer.create:
+    post: Offer_createNew
+  /offer.info:
+    post: Offer_getDetailsById
+  /offer.list:
+    post: Offer_getList
+  /offer.start:
+    post: Offer_startCreationInstance
+  /offerProcess.start:
+    post: OfferProcess_startProcessForCandidate
+  /opening.addJob:
+    post: Openings_addJobAction
+  /opening.create:
+    post: Openings_createInstance
+  /opening.info:
+    post: Openings_getByUuid
+  /opening.list:
+    post: Openings_getList
+  /opening.removeJob:
+    post: Openings_removeJob
+  /opening.search:
+    post: Openings_searchByIdentifier
+  /opening.setArchived:
+    post: Openings_setArchived
+  /opening.setOpeningState:
+    post: Openings_setState
+  /opening.update:
+    post: Openings_updateOpening
+  /referral.create:
+    post: Referral_createNew
+  /referralForm.info:
+    post: ReferralForm_getDefaultForm
+  /source.list:
+    post: Source_getAll
+  /surveyFormDefinition.info:
+    post: SurveyFormDefinition_getDetailsById
+  /surveyFormDefinition.list:
+    post: SurveyFormDefinition_getAll
+  /surveyRequest.create:
+    post: SurveyRequest_generateUrl
+  /surveySubmission.list:
+    post: SurveySubmission_listBySurveyType
+  /user.info:
+    post: User_getById
+  /user.list:
+    post: User_getAshbyUsers
+  /user.search:
+    post: User_searchByEmail
+  /webhook.create:
+    post: Webhook_createSetting
+  /webhook.delete:
+    post: Webhook_removeSetting
+  /webhook.update:
+    post: Webhook_updateSetting
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /apiKey.info:
+    post:
+      application/json: ApiKeyGetInfoRequest
+  /application.change_source:
+    post:
+      application/json: ApplicationChangeSourceRequest
+  /application.change_stage:
+    post:
+      application/json: ApplicationChangeStageRequest
+  /application.create:
+    post:
+      application/json: ApplicationConsiderCandidateRequest
+  /application.info:
+    post:
+      application/json: ApplicationGetDetailsRequest
+  /application.list:
+    post:
+      application/json: ApplicationGetAllSchedulesRequest
+  /applicationFeedback.list:
+    post:
+      application/json: ApplicationFeedbackListAllRequest
+  /applicationFeedback.submit:
+    post:
+      application/json: ApplicationFeedbackSubmitFeedbackRequest
+  /applicationForm.submit:
+    post:
+      multipart/form-data: ApplicationFormSubmitFormRequest
+  /archiveReason.list:
+    post:
+      application/json: ArchiveReasonListRequest
+  /assessment.addCompletedToCandidate:
+    post:
+      application/json: AssessmentAddCompletedToCandidateRequest
+  /assessment.cancel:
+    post:
+      application/json: AssessmentCancelPartnerAssessmentRequest
+  /assessment.start:
+    post:
+      application/json: AssessmentPartnerStartRequest
+  /assessment.update:
+    post:
+      application/json: AssessmentUpdateStatusRequest
+  /candidate.addTag:
+    post:
+      application/json: CandidateAddTagRequest
+  /candidate.create:
+    post:
+      application/json: CandidateCreateNewCandidateRequest
+  /candidate.createNote:
+    post:
+      application/json: CandidateCreateNoteRequest
+  /candidate.info:
+    post:
+      application/json: CandidateGetByIdRequest
+  /candidate.list:
+    post:
+      application/json: CandidateListAllRequest
+  /candidate.listNotes:
+    post:
+      application/json: CandidateGetAllNotesRequest
+  /candidate.search:
+    post:
+      application/json: CandidateSearchByEmailAndNameRequest
+  /candidate.update:
+    post:
+      application/json: CandidateUpdateExistingCandidateRequest
+  /candidate.uploadFile:
+    post:
+      multipart/form-data: CandidateAttachFileRequest
+  /candidate.uploadResume:
+    post:
+      multipart/form-data: CandidateUploadResumeDataRequest
+  /candidateTag.create:
+    post:
+      application/json: CandidateTagCreateNewTagRequest
+  /candidateTag.list:
+    post:
+      application/json: CandidateTagListAllRequest
+  /canidate.anonymize:
+    post:
+      application/json: CandidateAnonymizeCandidateRequest
+  /customField.create:
+    post:
+      application/json: CustomFieldCreateNewFieldRequest
+  /customField.setValue:
+    post:
+      application/json: CustomFieldSetValueRequest
+  /department.create:
+    post:
+      application/json: DepartmentTeamCreateNewDepartmentRequest
+  /department.info:
+    post:
+      application/json: DepartmentGetByIdRequest
+  /department.list:
+    post:
+      application/json: DepartmentGetAllDepartmentsRequest
+  /feedbackFormDefinition.info:
+    post:
+      application/json: FeedbackFormDefinitionGetByIdRequest
+  /feedbackFormDefinition.list:
+    post:
+      application/json: FeedbackFormDefinitionListAllRequest
+  /file.info:
+    post:
+      application/json: FileGetUrlCandidateRequest
+  /hiringTeam.addMember:
+    post:
+      application/json: HiringTeamAddMemberRequest
+  /hiringTeamRole.list:
+    post:
+      application/json: HiringTeamRoleListRolesRequest
+  /interview.info:
+    post:
+      application/json: InterviewGetByIdRequest
+  /interview.list:
+    post:
+      application/json: InterviewGetAllRequest
+  /interviewEvent.list:
+    post:
+      application/json: InterviewEventListAssociatedEventsRequest
+  /interviewPlan.list:
+    post:
+      application/json: InterviewPlanGetAllRequest
+  /interviewSchedule.cancel:
+    post:
+      application/json: InterviewScheduleCancelByIdRequest
+  /interviewSchedule.create:
+    post:
+      application/json: InterviewScheduleCreateScheduledInterviewRequest
+  /interviewSchedule.list:
+    post:
+      application/json: InterviewScheduleGetAllSchedulesRequest
+  /interviewSchedule.update:
+    post:
+      application/json: InterviewScheduleUpdateEventRequest
+  /interviewStage.info:
+    post:
+      application/json: InterviewStageGetByIdRequest
+  /interviewStage.list:
+    post:
+      application/json: InterviewStageListAllInOrderRequest
+  /job.create:
+    post:
+      application/json: JobNewCreateRequest
+  /job.info:
+    post:
+      application/json: JobGetByIdRequest
+  /job.list:
+    post:
+      application/json: JobGetListRequest
+  /job.search:
+    post:
+      application/json: JobSearchByTitleRequest
+  /job.setStatus:
+    post:
+      application/json: JobSetStatusByIdRequest
+  /job.update:
+    post:
+      application/json: JobUpdateExistingRequest
+  /jobInterviewPlan.info:
+    post:
+      application/json: JobInterviewPlanGetInfoRequest
+  /jobPosting.info:
+    post:
+      application/json: JobPostingGetIndividualRequest
+  /jobPosting.list:
+    post:
+      application/json: JobPostingGetAllPublishedRequest
+  /jobPosting.update:
+    post:
+      application/json: JobPostingUpdateExistingRequest
+  /location.create:
+    post:
+      application/json: LocationCreateHierarchyRequest
+  /location.info:
+    post:
+      application/json: LocationDetailsByIdRequest
+  /location.list:
+    post:
+      application/json: LocationGetListRequest
+  /offer.create:
+    post:
+      application/json: OfferCreateNewRequest
+  /offer.info:
+    post:
+      application/json: OfferGetDetailsByIdRequest
+  /offer.list:
+    post:
+      application/json: OfferGetListRequest
+  /offer.start:
+    post:
+      application/json: OfferStartCreationInstanceRequest
+  /offerProcess.start:
+    post:
+      application/json: OfferProcessStartProcessForCandidateRequest
+  /opening.addJob:
+    post:
+      application/json: OpeningsAddJobActionRequest
+  /opening.create:
+    post:
+      application/json: OpeningsCreateInstanceRequest
+  /opening.info:
+    post:
+      application/json: OpeningsGetByUuidRequest
+  /opening.list:
+    post:
+      application/json: OpeningsGetListRequest
+  /opening.removeJob:
+    post:
+      application/json: OpeningsRemoveJobRequest
+  /opening.search:
+    post:
+      application/json: OpeningsSearchByIdentifierRequest
+  /opening.setArchived:
+    post:
+      application/json: OpeningsSetArchivedRequest
+  /opening.setOpeningState:
+    post:
+      application/json: OpeningsSetStateRequest
+  /opening.update:
+    post:
+      application/json: OpeningsUpdateOpeningRequest
+  /referral.create:
+    post:
+      application/json: ReferralCreateNewRequest
+  /source.list:
+    post:
+      application/json: SourceGetAllRequest
+  /surveyFormDefinition.info:
+    post:
+      application/json: SurveyFormDefinitionGetDetailsByIdRequest
+  /surveyRequest.create:
+    post:
+      application/json: SurveyRequestGenerateUrlRequest
+  /surveySubmission.list:
+    post:
+      application/json: SurveySubmissionListBySurveyTypeRequest
+  /user.info:
+    post:
+      application/json: UserGetByIdRequest
+  /user.list:
+    post:
+      application/json: UserGetAshbyUsersRequest
+  /user.search:
+    post:
+      application/json: UserSearchByEmailRequest
+  /webhook.create:
+    post:
+      application/json: WebhookCreateSettingRequest
+  /webhook.delete:
+    post:
+      application/json: WebhookRemoveSettingRequest
+  /webhook.update:
+    post:
+      application/json: WebhookUpdateSettingRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /apiKey.info:
+    post:
+      '200':
+        application/json: ApiKeyGetInfoResponse
+  /application.change_source:
+    post:
+      '200':
+        application/json: ApplicationChangeSourceResponse
+  /application.change_stage:
+    post:
+      '200':
+        application/json: ApplicationChangeStageResponse
+  /application.create:
+    post:
+      '200':
+        application/json: ApplicationConsiderCandidateResponse
+  /application.info:
+    post:
+      '200':
+        application/json: ApplicationGetDetailsResponse
+  /application.list:
+    post:
+      '200':
+        application/json: ApplicationGetAllSchedulesResponse
+  /applicationFeedback.list:
+    post:
+      '200':
+        application/json: ApplicationFeedbackListAllResponse
+  /applicationFeedback.submit:
+    post:
+      '200':
+        application/json: ApplicationFeedbackSubmitFeedbackResponse
+  /applicationForm.submit:
+    post:
+      '200':
+        application/json: ApplicationFormSubmitFormResponse
+  /archiveReason.list:
+    post:
+      '200':
+        application/json: ArchiveReasonListResponse
+  /assessment.addCompletedToCandidate:
+    post:
+      '200':
+        application/json: AssessmentAddCompletedToCandidateResponse
+  /assessment.cancel:
+    post:
+      '200':
+        application/json: AssessmentCancelPartnerAssessmentResponse
+  /assessment.list:
+    post:
+      '200':
+        application/json: AssessmentListPartnerSupportResponse
+  /assessment.start:
+    post:
+      '200':
+        application/json: AssessmentPartnerStartResponse
+      '409':
+        application/json: AssessmentPartnerStart409Response
+  /assessment.update:
+    post:
+      '200':
+        application/json: AssessmentUpdateStatusResponse
+  /candidate.addTag:
+    post:
+      '200':
+        application/json: CandidateAddTagResponse
+  /candidate.create:
+    post:
+      '200':
+        application/json: CandidateCreateNewCandidateResponse
+  /candidate.createNote:
+    post:
+      '200':
+        application/json: CandidateCreateNoteResponse
+  /candidate.info:
+    post:
+      '200':
+        application/json: CandidateGetByIdResponse
+  /candidate.list:
+    post:
+      '200':
+        application/json: CandidateListAllResponse
+  /candidate.listNotes:
+    post:
+      '200':
+        application/json: CandidateGetAllNotesResponse
+  /candidate.search:
+    post:
+      '200':
+        application/json: CandidateSearchByEmailAndNameResponse
+  /candidate.update:
+    post:
+      '200':
+        application/json: CandidateUpdateExistingCandidateResponse
+  /candidate.uploadFile:
+    post:
+      '200':
+        application/json: CandidateAttachFileResponse
+  /candidate.uploadResume:
+    post:
+      '200':
+        application/json: CandidateUploadResumeDataResponse
+  /candidateTag.create:
+    post:
+      '200':
+        application/json: CandidateTagCreateNewTagResponse
+  /candidateTag.list:
+    post:
+      '200':
+        application/json: CandidateTagListAllResponse
+  /canidate.anonymize:
+    post:
+      '200':
+        application/json: CandidateAnonymizeCandidateResponse
+  /customField.create:
+    post:
+      '200':
+        application/json: CustomFieldCreateNewFieldResponse
+  /customField.list:
+    post:
+      '200':
+        application/json: CustomFieldGetAllResponse
+  /customField.setValue:
+    post:
+      '200':
+        application/json: CustomFieldSetValueResponse
+  /department.create:
+    post:
+      '200':
+        application/json: DepartmentTeamCreateNewDepartmentResponse
+  /department.info:
+    post:
+      '200':
+        application/json: DepartmentGetByIdResponse
+  /department.list:
+    post:
+      '200':
+        application/json: DepartmentGetAllDepartmentsResponse
+  /feedbackFormDefinition.info:
+    post:
+      '200':
+        application/json: FeedbackFormDefinitionGetByIdResponse
+  /feedbackFormDefinition.list:
+    post:
+      '200':
+        application/json: FeedbackFormDefinitionListAllResponse
+  /file.info:
+    post:
+      '200':
+        application/json: FileGetUrlCandidateResponse
+  /hiringTeam.addMember:
+    post:
+      '200':
+        application/json: HiringTeamAddMemberResponse
+  /hiringTeamRole.list:
+    post:
+      '200':
+        application/json: HiringTeamRoleListRolesResponse
+  /interview.info:
+    post:
+      '200':
+        application/json: InterviewGetByIdResponse
+  /interview.list:
+    post:
+      '200':
+        application/json: InterviewGetAllResponse
+  /interviewEvent.list:
+    post:
+      '200':
+        application/json: InterviewEventListAssociatedEventsResponse
+  /interviewPlan.list:
+    post:
+      '200':
+        application/json: InterviewPlanGetAllResponse
+  /interviewSchedule.cancel:
+    post:
+      '200':
+        application/json: InterviewScheduleCancelByIdResponse
+  /interviewSchedule.create:
+    post:
+      '200':
+        application/json: InterviewScheduleCreateScheduledInterviewResponse
+  /interviewSchedule.list:
+    post:
+      '200':
+        application/json: InterviewScheduleGetAllSchedulesResponse
+  /interviewSchedule.update:
+    post:
+      '200':
+        application/json: InterviewScheduleUpdateEventResponse
+  /interviewStage.info:
+    post:
+      '200':
+        application/json: InterviewStageGetByIdResponse
+  /interviewStage.list:
+    post:
+      '200':
+        application/json: InterviewStageListAllInOrderResponse
+  /job.create:
+    post:
+      '200':
+        application/json: JobNewCreateResponse
+  /job.info:
+    post:
+      '200':
+        application/json: JobGetByIdResponse
+  /job.list:
+    post:
+      '200':
+        application/json: JobGetListResponse
+  /job.search:
+    post:
+      '200':
+        application/json: JobSearchByTitleResponse
+  /job.setStatus:
+    post:
+      '200':
+        application/json: JobSetStatusByIdResponse
+  /job.update:
+    post:
+      '200':
+        application/json: JobUpdateExistingResponse
+  /jobInterviewPlan.info:
+    post:
+      '200':
+        application/json: JobInterviewPlanGetInfoResponse
+  /jobPosting.info:
+    post:
+      '200':
+        application/json: JobPostingGetIndividualResponse
+  /jobPosting.list:
+    post:
+      '200':
+        application/json: JobPostingGetAllPublishedResponse
+  /jobPosting.update:
+    post:
+      '200':
+        application/json: JobPostingUpdateExistingResponse
+  /location.create:
+    post:
+      '200':
+        application/json: LocationCreateHierarchyResponse
+  /location.info:
+    post:
+      '200':
+        application/json: LocationDetailsByIdResponse
+  /location.list:
+    post:
+      '200':
+        application/json: LocationGetListResponse
+  /offer.create:
+    post:
+      '200':
+        application/json: OfferCreateNewResponse
+  /offer.info:
+    post:
+      '200':
+        application/json: OfferGetDetailsByIdResponse
+  /offer.list:
+    post:
+      '200':
+        application/json: OfferGetListResponse
+  /offer.start:
+    post:
+      '200':
+        application/json: OfferStartCreationInstanceResponse
+  /offerProcess.start:
+    post:
+      '200':
+        application/json: OfferProcessStartProcessForCandidateResponse
+  /opening.addJob:
+    post:
+      '200':
+        application/json: OpeningsAddJobActionResponse
+  /opening.create:
+    post:
+      '200':
+        application/json: OpeningsCreateInstanceResponse
+  /opening.info:
+    post:
+      '200':
+        application/json: OpeningsGetByUuidResponse
+  /opening.list:
+    post:
+      '200':
+        application/json: OpeningsGetListResponse
+  /opening.removeJob:
+    post:
+      '200':
+        application/json: OpeningsRemoveJobResponse
+  /opening.search:
+    post:
+      '200':
+        application/json: OpeningsSearchByIdentifierResponse
+  /opening.setArchived:
+    post:
+      '200':
+        application/json: OpeningsSetArchivedResponse
+  /opening.setOpeningState:
+    post:
+      '200':
+        application/json: OpeningsSetStateResponse
+  /opening.update:
+    post:
+      '200':
+        application/json: OpeningsUpdateOpeningResponse
+  /referral.create:
+    post:
+      '200':
+        application/json: ReferralCreateNewResponse
+  /referralForm.info:
+    post:
+      '200':
+        application/json: ReferralFormGetDefaultFormResponse
+  /source.list:
+    post:
+      '200':
+        application/json: SourceGetAllResponse
+  /surveyFormDefinition.info:
+    post:
+      '200':
+        application/json: SurveyFormDefinitionGetDetailsByIdResponse
+  /surveyFormDefinition.list:
+    post:
+      '200':
+        application/json: SurveyFormDefinitionGetAllResponse
+  /surveyRequest.create:
+    post:
+      '200':
+        application/json: SurveyRequestGenerateUrlResponse
+  /surveySubmission.list:
+    post:
+      '200':
+        application/json: SurveySubmissionListBySurveyTypeResponse
+  /user.info:
+    post:
+      '200':
+        application/json: UserGetByIdResponse
+  /user.list:
+    post:
+      '200':
+        application/json: UserGetAshbyUsersResponse
+  /user.search:
+    post:
+      '200':
+        application/json: UserSearchByEmailResponse
+  /webhook.create:
+    post:
+      '200':
+        application/json: WebhookCreateSettingResponse
+  /webhook.delete:
+    post:
+      '200':
+        application/json: WebhookRemoveSettingResponse
+  /webhook.update:
+    post:
+      '200':
+        application/json: WebhookUpdateSettingResponse
+securityParameters: {}
+validServerUrls: {}
