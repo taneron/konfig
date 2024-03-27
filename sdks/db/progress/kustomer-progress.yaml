@@ -1,0 +1,675 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /chat/queues/metrics/{ids}:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /apps:
+    get: Apps_getInstalledApps
+  /apps/available:
+    get: Apps_listAvailableApps
+  /apps/available/{appVersion}:
+    get: Apps_getAvailableApps
+  /apps/{appVersion}:
+    get: Apps_getInstalledByVersion
+  /attachments:
+    post: Attachments_createAttachmentDocument
+  /attachments/{id}:
+    get: Attachments_getByIds
+    put: Attachments_updateOrUpsert
+  /audit-logs:
+    get: AuditLogs_queryEvents
+  /auth/customer/settings:
+    get: AuthSettings_getCustomerSettings
+  /auth/roles:
+    get: RoleGroups_getAvailableRoles
+  /auth/settings:
+    get: AuthSettings_get
+    put: AuthSettings_updateOrganizationAuth
+  /auth/tokens:
+    get: AuthTokens_list
+    post: AuthTokens_createToken
+  /auth/tokens/current:
+    delete: AuthTokens_deleteCurrent
+    get: AuthTokens_getCurrentAuthTokenData
+  /auth/tokens/{id}:
+    delete: AuthTokens_deleteById
+    get: AuthTokens_getById
+  /brands:
+    get: Brands_list
+    post: Brands_createBrandResource
+  /brands/default:
+    get: Brands_getDefaultBrand
+  /brands/{id}:
+    get: Brands_getById
+    patch: Brands_updateBrandResource
+  /cards:
+    get: Cards_getAllInstalled
+  /cards/available:
+    post: Cards_addCustomAvailableCard
+  /cards/available/{id}/install:
+    post: Cards_installById
+  /cards/{id}:
+    delete: Cards_deleteById
+    get: Cards_getById
+    put: Cards_updateAttributesById
+  /chat/queues/metrics/{ids}:
+    get: Metrics_getQueueWaitTimes
+  /chat/settings:
+    get: ChatSettings_getDisplayOptions
+    patch: ChatSettings_updateDisplayOptions
+  /companies:
+    get: Companies_getAll
+    post: Companies_createNewCompany
+  /companies/bulk:
+    post: CompaniesBulk_createBulkCompanies
+    put: CompaniesBulk_batchUpdate
+  /companies/{id}:
+    get: Companies_getById
+    put: Companies_updateAttributes
+  /companies/{id}/klasses/{name}:
+    get: Companies_getKObjectsByCompanyIdAndKlassName
+  /conversations:
+    get: Conversations_getPaginatedList
+    post: Conversations_createNewConversation
+  /conversations/bulk:
+    post: ConversationsBulk_createMultiple
+    put: ConversationsBulk_batchUpdate
+  /conversations/externalId={externalId}:
+    get: Conversations_getByExternalId
+  /conversations/times/{ids}:
+    get: ConversationsTime_getByUniqueIds
+  /conversations/{id}:
+    delete: Conversations_deleteById
+    get: Conversations_getById
+    patch: Conversations_updateAttributesById
+    put: Conversations_updateById
+  /conversations/{id}/attachments:
+    get: Conversations_getAttachments
+  /conversations/{id}/events:
+    get: Conversations_getEventsById
+  /conversations/{id}/forwards:
+    get: ConversationsForwards_getAllByConversationId
+    post: ConversationsForwards_createForward
+  /conversations/{id}/messages:
+    get: ConversationsMessages_getByConversation
+    post: ConversationsMessages_createNewMessage
+  /conversations/{id}/notes:
+    get: ConversationsNotes_getByConversationId
+    post: NotesConversations_createNoteWithinConversation
+  /conversations/{id}/tags:
+    delete: ConversationsTags_removeTags
+    post: ConversationsTags_appendTagsToConversation
+  /conversations/{id}/times:
+    get: ConversationsTime_listByConversation
+  /customers:
+    get: Customers_getAllCustomers
+    post: Customers_createNewCustomerRecord
+  /customers/bulk:
+    delete: CustomersBulk_deleteMultiple
+    post: CustomersBulk_createBulkCustomers
+    put: CustomersBulk_bulkUpdateCustomers
+  /customers/email={email}:
+    get: Customers_getByEmail
+  /customers/externalId={externalId}:
+    get: Customers_getByExternalId
+  /customers/merges:
+    post: CustomersMerges_createMergeRule
+  /customers/merges/{id}:
+    get: CustomersMerges_getById
+  /customers/phone={phone}:
+    get: Customers_getByPhone
+  /customers/search:
+    post: Search_customerCriteria
+  /customers/searches:
+    get: SearchFilters_getAllSaved
+    post: SearchFilters_createSavedSearch
+  /customers/searches/folders:
+    post: SearchFiltersFolders_createFolder
+  /customers/searches/folders/{id}:
+    delete: SearchFilters_deleteById
+    put: SearchFiltersFolders_updateById
+  /customers/searches/pinned:
+    get: SearchFiltersPinned_getAll
+    post: SearchFiltersPinned_updatePinnedSearch
+  /customers/searches/pinned/{id}:
+    delete: SearchFiltersPinned_deleteById
+  /customers/searches/positions:
+    get: SearchFilters_getSearchPositions
+    put: SearchFilters_updateSearchPositions
+  /customers/searches/schema:
+    get: SearchFilters_getSchemaForSearches
+  /customers/searches/{id}:
+    delete: SearchFilters_deleteById
+    get: SearchFilters_getById
+    put: SearchFilters_updateById
+  /customers/{customerId}/events/{id}:
+    get: CustomersEvents_getSingleEvent
+  /customers/{customerId}/sessions/{sessionId}/events:
+    get: CustomersEvents_getAllBySession
+  /customers/{id}:
+    delete: Customers_deleteRecord
+    get: Customers_getById
+    patch: Customers_updateAttributes
+    put: Customers_updateCustomerById
+  /customers/{id}/conversations:
+    get: CustomersConversations_getList
+    post: CustomersConversations_createEmptyConversation
+  /customers/{id}/drafts:
+    get: CustomersDrafts_list
+    post: CustomersDrafts_createDraft
+  /customers/{id}/events:
+    get: CustomersEvents_getSingleEvent
+  /customers/{id}/klasses/{name}:
+    get: CustomersKObjects_findByKlass
+    post: CustomersKObjects_createKObject
+  /customers/{id}/merges:
+    get: CustomersMerges_getByCustomerId
+  /customers/{id}/messages:
+    get: CustomersMessages_getByCustomerId
+    post: CustomersMessages_createMessageByCustomerId
+  /customers/{id}/notes:
+    get: CustomersNotes_getByCustomerId
+  /customers/{id}/sessions:
+    get: CustomersEvents_getCustomerSessions
+  /customers/{id}/unmasking-windows:
+    delete: CustomersUnmaskingWindows_deleteByCustomerId
+    post: CustomersUnmaskingWindows_createWindowByCustomerId
+  /drafts/{id}:
+    delete: Drafts_deleteDraft
+    put: Drafts_updateById
+  /drafts/{id}/attachments:
+    get: DraftsAttachments_getAll
+    post: DraftsAttachments_createAttachment
+  /drafts/{id}/attachments/{attachmentId}:
+    delete: DraftsAttachments_deleteResource
+    get: DraftsAttachments_getAttachment
+  /forwards/{id}:
+    get: Drafts_getById
+    put: Drafts_updateDraftForward
+  /forwards/{id}/attachments:
+    get: ForwardsAttachments_getAll
+    post: ForwardsAttachments_createAttachment
+  /forwards/{id}/attachments/{attachmentId}:
+    delete: ForwardsAttachments_deleteResource
+    get: ForwardsAttachments_getPreSignedUrl
+  /hooks/email:
+    get: HooksEmailHooks_getExistingEntries
+    post: HooksEmailHooks_createEmailHook
+  /hooks/email/{id}:
+    get: HooksEmailHooks_getEmailHookById
+    patch: HooksEmailHooks_updateEmailHook
+  /hooks/email/{id}/transactions:
+    get: HooksEmailHooks_getTransactions
+  /hooks/form:
+    get: HooksFormHooks_getAllEntries
+    post: HooksFormHooks_createNewEndpoint
+  /hooks/form/{hash}:
+    post: HooksFormHooks_createTransaction
+  /hooks/form/{id}:
+    get: HooksFormHooks_getById
+    patch: HooksFormHooks_updateForm
+  /hooks/form/{id}/transactions:
+    get: HooksFormHooks_getTransactions
+  /hooks/form/{org}/{hash}:
+    post: HooksFormHooks_createFormHookOrgTransaction
+  /hooks/web:
+    get: HooksWebHooks_getData
+    post: HooksWebHooks_create
+  /hooks/web/{hash}:
+    post: HooksWebHooks_createTransaction
+  /hooks/web/{id}:
+    get: HooksWebHooks_getById
+    patch: HooksWebHooks_updateWebHook
+  /hooks/web/{id}/transactions:
+    get: HooksWebHooks_getTransactions
+  /klasses:
+    get: Klasses_getAll
+    post: Klasses_createNewKlass
+  /klasses/{id}:
+    delete: Klasses_deleteById
+    get: Klasses_getById
+    put: Klasses_updateById
+  /klasses/{name}:
+    get: KObjectsCustomObjects_getByKlassName
+    post: KObjectsCustomObjects_createNewKObject
+  /klasses/{name}/bulk:
+    delete: KObjectsCustomObjectsBulk_deleteMultiple
+    post: KObjectsCustomObjectsBulk_createInBulk
+    put: KObjectsCustomObjectsBulk_updateBatch
+  /klasses/{name}/externalId={externalId}:
+    get: KObjectsCustomObjects_getByExternalId
+  /klasses/{name}/{id}:
+    delete: KObjectsCustomObjects_deleteById
+    get: KObjectsCustomObjects_getById
+    put: KObjectsCustomObjects_updateById
+  /kviews:
+    get: KViewsKlassViews_getAll
+  /kviews/{resource}:
+    get: KViewsKlassViews_getByResource
+  /kviews/{resource}/{context}/order:
+    put: KViewsKlassViews_updateOrder
+  /kviews/{resource}/{id}:
+    put: KViewsKlassViews_updateKViewById
+  /media:
+    post: Media_uploadDocument
+  /media/{id}:
+    get: Media_getById
+    put: Media_updateById
+  /messages:
+    get: Messages_getAll
+    post: Messages_addInstanceToConversation
+  /messages/bulk:
+    post: MessagesBulk_createBatch
+    put: MessagesBulk_updateBatch
+  /messages/externalid=:externalId:
+    get: Messages_getMessageByExternalId
+  /messages/{id}:
+    get: Messages_getMessageById
+    patch: Messages_updateAttributesById
+    put: Messages_updateById
+  /messages/{id}/redactions:
+    post: Messages_redactMessage
+  /messages/{message_id}/attachments/{id}:
+    get: Attachments_getMessageAttachment
+  /metadata/{resource}:
+    get: CustomAttributes_getMetadata
+    put: CustomAttributes_updateAttributeMetadata
+  /notes:
+    get: Notes_getAll
+    post: Notes_createNote
+  /notes/bulk:
+    post: NotesBulk_createBatch
+    put: NotesBulk_batchUpdate
+  /notes/{id}:
+    delete: Notes_deleteById
+    get: Notes_getById
+    patch: Notes_updateAttributesById
+    put: Notes_updateById
+  /notifications:
+    delete: Notifications_deleteAllInApp
+    get: Notifications_getAllUserInApp
+    put: Notifications_updateAllUserInApp
+  /notifications/logs/settings:
+    get: NotificationsLogs_getSettings
+    put: NotificationsLogs_updateSettings
+  /notifications/users/current/settings:
+    get: NotificationsSettings_getCurrentUserSettings
+    put: NotificationsSettings_updateCurrentUser
+  /outbound-webhooks:
+    get: OutboundWebHooks_list
+    post: OutboundWebHooks_createWebHook
+  /outbound-webhooks/events:
+    get: OutboundWebHooks_listEvents
+  /outbound-webhooks/transactions:
+    get: OutboundWebHooksTransactions_listMostRecentDeliveryAttempts
+  /outbound-webhooks/{id}:
+    delete: OutboundWebHooks_deleteById
+    get: OutboundWebHooks_getById
+    patch: OutboundWebHooks_updateById
+  /outbound-webhooks/{webhookId}/transactions:
+    get: OutboundWebHooksTransactions_listDeliveryAttempts
+  /outboundAccounts:
+    get: Drafts_getOutboundAccounts
+  /p/auth/settings:
+    get: AuthSettings_getPublicSettings
+  /p/v3/kb/articles:
+    get: ArticlesPublic_get
+  /p/v3/kb/articles/search:
+    get: ArticlesPublic_search
+  /p/v3/kb/categories:
+    get: CategoriesPublic_getAllCategories
+  /p/v3/kb/categories/{id}:
+    get: CategoriesPublic_getById
+  /p/v3/kb/forms/{id}:
+    get: Forms_getById
+  /p/v3/kb/themes/{id}:
+    get: Themes_getById
+  /p/v3/kb/themes/{id}/files:
+    get: ThemesThemeFiles_get
+  /role-groups:
+    get: RoleGroups_getAllRoleGroups
+    post: RoleGroups_createCustomRoleGroup
+  /role-groups/{id}:
+    delete: RoleGroups_deleteRoleGroupById
+    get: RoleGroups_getById
+    put: RoleGroups_updateRoleGroup
+  /routing/conversations/{id}/work-items:
+    get: WorkItems_getByConversation
+  /routing/queue-rules:
+    get: QueueRules_getList
+    post: QueueRules_createNewRule
+  /routing/queue-rules-criteria:
+    get: QueueRules_getCriteria
+  /routing/queue-rules/order:
+    put: QueueRules_updateOrder
+  /routing/queue-rules/{id}:
+    delete: QueueRules_deleteRuleById
+    get: QueueRules_getById
+    put: QueueRules_updateRuleById
+  /routing/queues:
+    get: Queues_listQueues
+    post: Queues_createNewQueue
+  /routing/queues/{id}:
+    get: Queues_getById
+    put: Queues_updateById
+  /routing/queues/{id}/work-items:
+    get: WorkItems_getQueueWorkItems
+  /routing/queues/{id}/work-items/next:
+    get: WorkItems_getNextInQueue
+  /routing/queues/{id}/work-sessions:
+    get: WorkSessions_listByQueueId
+  /routing/settings:
+    get: TeamRoutingSettings_getAll
+  /routing/settings/{id}:
+    get: TeamRoutingSettings_getById
+    put: TeamRoutingSettings_updateById
+  /routing/statuses:
+    get: RoutingUserStatuses_list
+    post: RoutingUserStatuses_createNewStatus
+  /routing/statuses/{id}:
+    get: RoutingUserStatuses_getById
+    put: RoutingUserStatuses_updateBasedOnId
+  /routing/users/current/settings:
+    get: TeamRoutingSettings_getCurrentUserSettings
+  /routing/users/{id}/work-sessions:
+    get: WorkSessions_getByUserId
+  /routing/users/{id}/work-sessions/current:
+    get: WorkSessionsCurrent_getUserWorkSession
+  /routing/work-items:
+    get: WorkItems_getList
+    post: WorkItems_createNewWorkItem
+  /routing/work-items/{id}:
+    get: WorkItems_getById
+    put: WorkItems_updateById
+  /routing/work-sessions:
+    get: WorkSessions_listFilteredWorkSessions
+  /routing/work-sessions/current:
+    get: WorkSessionsCurrent_get
+    put: WorkSessionsCurrent_updateSession
+  /routing/work-sessions/current/work-items:
+    get: WorkSessionsCurrent_getWorkItems
+  /routing/work-sessions/{id}:
+    get: WorkSessionsBySessionId_getById
+    put: WorkSessionsBySessionId_updateById
+  /routing/work-sessions/{id}/work-items:
+    get: WorkSessionsBySessionId_listWorkItems
+  /satisfaction:
+    get: Satisfaction_getSatisfactionForms
+  /schedules:
+    get: BusinessSchedules_getAll
+    post: BusinessSchedules_createSchedule
+  /schedules/default:
+    get: BusinessSchedules_getDefault
+  /schedules/{id}:
+    delete: BusinessSchedules_deleteById
+    get: BusinessSchedules_getById
+    put: BusinessSchedules_updateById
+  /settings:
+    get: Settings_getSearchSettings
+  /settings/{app}/{category}/{name}:
+    get: Settings_getSingleSetting
+    put: Settings_updateSingleSetting
+  /shortcuts:
+    get: Shortcuts_getAllStartingWithText
+    post: Shortcuts_createNewShortcut
+  /shortcuts/categories:
+    get: ShortcutsCatgories_getAll
+    post: ShortcutsCatgories_createNewCategory
+  /shortcuts/categories/{id}:
+    delete: ShortcutsCatgories_deleteById
+    get: ShortcutsCatgories_getById
+    put: ShortcutsCatgories_updateById
+  /shortcuts/{id}:
+    delete: Shortcuts_deleteById
+    get: Shortcuts_getById
+    put: Shortcuts_updateById
+  /slas/{id}:
+    get: SlAs_getById
+  /snippets:
+    get: Snippets_getAll
+    post: Snippets_createDocument
+  /snippets/{id}:
+    get: Snippets_getById
+    patch: Snippets_updateRequestedSnippet
+    put: Snippets_updateRequestedSnippet
+  /snoozes:
+    get: Snoozes_getAllSnoozes
+    post: Snoozes_createSnooze
+  /snoozes/{id}:
+    delete: Snoozes_deleteById
+    get: Snoozes_getById
+    put: Snoozes_updateById
+  /spam/senders:
+    get: Spam_getSenders
+    put: Spam_upsertSender
+  /spam/senders/{id}:
+    delete: Spam_deleteSender
+  /teams:
+    get: Teams_getAll
+    post: Teams_createTeam
+  /teams/{id}:
+    delete: TeamsById_deleteTeamById
+    get: TeamsById_getTeamById
+    patch: Teams_updateAttributesById
+    put: TeamsById_updateDocumentById
+  /teams/{id}/members:
+    delete: Teams_removeMember
+    post: Teams_addMember
+  /tracking/event:
+    post: TrackingEvents_createEvent
+  /tracking/identity:
+    post: TrackingEvents_identifyUser
+  /tracking/identityEvent:
+    post: TrackingEvents_identifyAndTrackEvent
+  /users:
+    get: Users_getFilteredUsers
+    post: Users_createNewUserAndSendInvitation
+  /users/current:
+    get: Users_getCurrentUser
+    put: Users_updateCurrentUser
+  /users/current/settings:
+    get: Settings_getCurrentUserSettings
+  /users/current/settings/{app}/{category}/{name}:
+    get: SettingsSpecificUser_getUserSetting
+    put: SettingsSpecificUser_updateUserSetting
+  /users/passwordreset:
+    post: Users_resetPasswordRequest
+  /users/{ids}:
+    get: UsersById_getMultipleByIds
+  /users/{id}:
+    get: UsersById_getById
+    put: UsersById_updateUserById
+  /users/{id}/settings:
+    get: Settings_getUserSettings
+  /users/{id}/settings/{app}/{category}/{name}:
+    get: SettingsSpecificUser_search
+    put: SettingsSpecificUser_updateSpecificUserSetting
+  /users/{id}/teams:
+    get: Teams_getUserTeams
+  /v1/kb/articles:
+    get: Articles_getAll
+    post: Articles_createNewArticle
+  /v1/kb/articles/search:
+    get: Articles_searchResults
+  /v1/kb/articles/{id}:
+    get: Articles_getById
+    put: Articles_updateArticleById
+  /v1/kb/articles/{id}/routes:
+    get: Routes_getByArticleId
+  /v1/kb/articles/{id}/schedules:
+    post: ArticlesSchedules_createSchedule
+  /v1/kb/articles/{id}/schedules/{type}/{lang}:
+    delete: ArticlesSchedules_deleteSchedule
+    put: Articles_updateSchedule
+  /v1/kb/articles/{id}/versions/{lang}:
+    delete: ArticlesVersioningAndLanguages_deleteLanguageVersions
+    get: ArticlesVersioningAndLanguages_getAllVersionsByLanguage
+    post: ArticlesVersioningAndLanguages_createVersionForGivenArticleInGivenLanguage
+  /v1/kb/articles/{id}/versions/{lang}/draft:
+    delete: ArticlesVersioningAndLanguages_deleteDraftVersion
+    put: ArticlesVersioningAndLanguages_updateDraftVersion
+  /v1/kb/articles/{id}/versions/{lang}/latest:
+    put: ArticlesVersioningAndLanguages_updateLatestPublishedVersion
+  /v1/kb/categories:
+    get: Categories_getAll
+    post: Categories_createNewCategory
+  /v1/kb/categories/{id}:
+    get: Categories_getById
+    put: Categories_updateRequestedCategory
+  /v1/kb/categories/{id}/routes:
+    get: Routes_byCategoryId
+    post: Routes_createCategoryRoute
+  /v1/kb/forms:
+    get: Forms_getAll
+    post: Forms_createNewFormDocument
+  /v1/kb/forms/{id}:
+    delete: Forms_deleteRequestedForm
+    get: Forms_getById
+    put: Forms_updateRequestedForm
+  /v1/kb/internal/categories:
+    get: Categories_getAllInternal
+    post: CategoriesInternal_createNewCategory
+  /v1/kb/internal/categories/{id}:
+    get: CategoriesInternal_getById
+  /v1/kb/knowledge-bases:
+    post: KnowledgeBases_createNewKnowledgeBase
+  /v1/kb/knowledge-bases/{id}:
+    get: KnowledgeBases_getById
+    patch: KnowledgeBases_updateById
+  /v1/kb/knowledge-bases/{id}/domain:
+    post: KnowledgeBasesCustomDomains_createDomain
+  /v1/kb/knowledge-bases/{id}/domain/{domainId}:
+    delete: KnowledgeBasesCustomDomains_deleteDomain
+    put: KnowledgeBasesCustomDomains_updateDomainCertificate
+  /v1/kb/knowledge-bases/{id}/domains:
+    get: KnowledgeBasesCustomDomains_get
+  /v1/kb/knowledge-bases/{id}/domains/{domainId}:
+    get: KnowledgeBasesCustomDomains_getById
+  /v1/kb/route:
+    get: Routes_getRouteByUrl
+  /v1/kb/routes:
+    get: Routes_getAllRoutes
+    post: Routes_createRouteAlias
+  /v1/kb/routes/{id}:
+    delete: Routes_deleteById
+    get: Routes_getById
+    put: Routes_updateRequestedRoute
+  /v1/kb/versions/{id}:
+    get: ArticlesVersioningAndLanguages_getVersionById
+  /v3/kb/tags:
+    get: TagsKnowledgeBase_getAll
+    post: TagsKnowledgeBase_createNewTag
+  /v3/kb/tags/{id}:
+    get: TagsKnowledgeBase_getById
+    patch: TagsKnowledgeBase_updateById
+  /v3/kb/templates:
+    get: Templates_getKnowledgeBase
+  /v3/kb/templates/{id}:
+    get: Templates_getById
+  /v3/kb/themes:
+    get: Themes_getAll
+    post: Themes_createKnowledgeBaseTheme
+  /v3/kb/themes/active:
+    get: Themes_getActiveTheme
+  /v3/kb/themes/{id}:
+    get: Themes_getById
+  /v3/kb/themes/{id}/revisions:
+    get: ThemesDraftsAndRevisions_getById
+  /v3/kb/themes/{themeId}/revisions:
+    get: ThemesDraftsAndRevisions_getRevisions
+  /v3/kb/themes/{themeId}/revisions/draft:
+    delete: ThemesDraftsAndRevisions_deleteDraft
+    post: ThemesDraftsAndRevisions_createDraftRevision
+    put: ThemesDraftsAndRevisions_updateDraftRevision
+  /v3/kb/themes/{themeId}/revisions/{revisionId}/files:
+    get: ThemesThemeFiles_getByRevision
+    post: Themes_createThemeFile
+  /v3/kb/themes/{themeId}/revisions/{revisionId}/files/{id}:
+    delete: ThemesThemeFiles_deleteFile
+    get: ThemesThemeFiles_getByRevisionId
+    put: ThemesThemeFiles_updateBasedOnRevision
+  /workflow-variables/{id}:
+    delete: WorkflowVariables_deleteById
+    get: WorkflowVariables_getById
+    put: WorkflowVariables_updateBasedOnId
+  /workflows:
+    get: Workflows_getAll
+    post: Workflows_createNewWorkflow
+  /workflows/{id}:
+    get: Workflows_getById
+    put: Workflows_updateBasedOnId
+  /workflows/{id}/processes:
+    get: WorkflowProcessesErrors_getByWorkflowId
+  /workflows/{id}/variables:
+    get: WorkflowVariables_getAllVariables
+    post: WorkflowVariables_createForWorkflow
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /brands:
+    post:
+      application/json: BrandsCreateBrandResourceRequest
+  /brands/{id}:
+    patch:
+      application/json: BrandsUpdateBrandResourceRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /chat/queues/metrics/{ids}:
+    get:
+      '200':
+        application/json: MetricsGetQueueWaitTimesResponse
+  /customers/{id}/unmasking-windows:
+    post:
+      '201':
+        application/json: CustomersUnmaskingWindowsCreateWindowByCustomerIdResponse
+securityParameters:
+  active:
+    query: false
+  createdAtFrom:
+    query: false
+  createdAtTo:
+    query: false
+  deleted:
+    query: false
+  email:
+    query: false
+  externalId:
+    query: false
+  filter:
+    query: false
+  fromDate:
+    query: false
+  ids:
+    query: false
+  include:
+    query: false
+  name:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  pending:
+    query: false
+  replace:
+    query: false
+  sort:
+    query: false
+  status:
+    query: false
+  statusType:
+    query: false
+  url:
+    query: false
+  user:
+    query: false
+  userType:
+    query: false
+  versions:
+    query: false
+validServerUrls: {}

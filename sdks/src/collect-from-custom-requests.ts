@@ -517,6 +517,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/intercom/Intercom-OpenAPI/main/descriptions/2.9/api.intercom.io.yaml",
   },
+  "kustomer.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.kustomer.com/kustomer-api-docs/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "ironcladapp.com": {
     type: "GET",
     url: "https://raw.githubusercontent.com/Ironclad/openapi/main/openapi/openapi.json",
