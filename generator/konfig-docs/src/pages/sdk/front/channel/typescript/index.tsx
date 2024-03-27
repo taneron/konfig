@@ -19,7 +19,7 @@ With Front, teams can centralize messages across channels, route them to the rig
       companyKebabCase="front"
       clientNameCamelCase="frontChannel"
       homepage="front.com"
-      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/front/channel/favicon.png"
       contactUrl="https://community.front.com"
       // Missing contactEmail

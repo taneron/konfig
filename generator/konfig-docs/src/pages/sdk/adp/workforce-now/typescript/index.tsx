@@ -17,7 +17,7 @@ export default function AdpWorkforceNowTypeScriptSdk() {
       companyKebabCase="adp"
       clientNameCamelCase="adpWorkforceNow"
       homepage="adp.com"
-      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adp/workforce-now/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

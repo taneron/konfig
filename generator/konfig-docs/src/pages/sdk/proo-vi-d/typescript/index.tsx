@@ -17,7 +17,7 @@ export default function ProoViDTypeScriptSdk() {
       companyKebabCase="proo-vi-d"
       clientNameCamelCase="prooViD"
       homepage="www.proovid.com/"
-      lastUpdated={new Date("2024-03-25T23:38:15.229Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/proovid/favicon.png"
       contactUrl="http://www.proovid.com"
       contactEmail="info@proovid.com"

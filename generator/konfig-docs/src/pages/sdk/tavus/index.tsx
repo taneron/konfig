@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Tavus",
-    "numberOfMethods": 10,
+    "numberOfMethods": 8,
     "categories": [
       "video",
       "ai",
@@ -18,7 +18,7 @@ const sdks = [
   },
   {
     "name": "Tavus",
-    "numberOfMethods": 10,
+    "numberOfMethods": 8,
     "categories": [
       "video",
       "ai",
@@ -32,7 +32,7 @@ const sdks = [
   },
   {
     "name": "Tavus",
-    "numberOfMethods": 10,
+    "numberOfMethods": 8,
     "categories": [
       "video",
       "ai",

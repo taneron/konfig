@@ -21,7 +21,7 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
       companyKebabCase="1-password"
       clientNameCamelCase="onePasswordPartnership"
       homepage="1password.com"
-      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/partnership/favicon.png"
       contactUrl="https://www.1password.partners/English/"
       contactEmail="partners@1password.com"

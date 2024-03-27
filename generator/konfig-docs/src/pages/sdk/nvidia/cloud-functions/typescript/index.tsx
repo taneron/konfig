@@ -17,7 +17,7 @@ export default function NvidiaCloudFunctionsTypeScriptSdk() {
       companyKebabCase="nvidia"
       clientNameCamelCase="nvidiaCloudFunctions"
       homepage="www.nvidia.com/en-us/ai/"
-      lastUpdated={new Date("2024-03-21T17:22:57.081Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nvidia/cloud-functions/favicon.png"
       contactUrl="https://www.nvidia.com/"
       // Missing contactEmail

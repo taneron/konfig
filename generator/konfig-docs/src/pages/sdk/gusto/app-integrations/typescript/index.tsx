@@ -19,7 +19,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
       companyKebabCase="gusto"
       clientNameCamelCase="gustoAppIntegrations"
       homepage="gusto.com"
-      lastUpdated={new Date("2024-03-26T00:57:19.559Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/favicon.png"
       // Missing contactUrl
       contactEmail="developer@gusto.com"

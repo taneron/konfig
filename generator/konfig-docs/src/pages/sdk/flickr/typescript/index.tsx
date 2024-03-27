@@ -17,7 +17,7 @@ export default function FlickrTypeScriptSdk() {
       companyKebabCase="flickr"
       clientNameCamelCase="flickr"
       homepage="flickr.com"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/flickr/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

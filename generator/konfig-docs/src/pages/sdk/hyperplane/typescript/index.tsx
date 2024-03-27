@@ -20,7 +20,7 @@ Our data platform uses first-party data for hyper-personalization and machine in
       companyKebabCase="hyperplane"
       clientNameCamelCase="hyperplane"
       homepage="hyperplane.ai"
-      lastUpdated={new Date("2024-03-24T21:42:09.454Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hyperplane/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

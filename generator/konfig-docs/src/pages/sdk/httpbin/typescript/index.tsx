@@ -17,7 +17,7 @@ export default function HttpbinTypeScriptSdk() {
       companyKebabCase="httpbin"
       clientNameCamelCase="httpbin"
       homepage="httpbin.org"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/httpbin/favicon.png"
       contactUrl="https://kennethreitz.org"
       contactEmail="me@kennethreitz.org"

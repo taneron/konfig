@@ -17,7 +17,7 @@ export default function TavusTypeScriptSdk() {
       companyKebabCase="tavus"
       clientNameCamelCase="tavus"
       homepage="www.tavus.io/"
-      lastUpdated={new Date("2024-03-25T20:42:11.924Z")}
+      lastUpdated={new Date("2024-03-26T22:36:48.020Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -131,21 +131,6 @@ export default function TavusTypeScriptSdk() {
   },
   {
     "url": "/v2/videos",
-    "method": "getAll",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Videos",
-    "typeScriptTag": "videos",
-    "description": "List Videos",
-    "parameters": [],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/v2/videos",
     "method": "createVideoFromReplicaAndScript",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Videos",
@@ -209,21 +194,6 @@ export default function TavusTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v2/videos/{video_id}",
-    "method": "getByVideoId",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Videos",
-    "typeScriptTag": "videos",
-    "description": "Get Video",
-    "parameters": [],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      }
-    ]
-  },
-  {
     "url": "/v2/videos/{video_id}/name",
     "method": "updateName",
     "httpMethod": HttpMethodsEnum.PATCH,
@@ -253,8 +223,8 @@ export default function TavusTypeScriptSdk() {
       apiBaseUrl="https://tavusapi.com"
       apiVersion="1.0.0"
       endpoints={6}
-      sdkMethods={14}
-      schemas={10}
+      sdkMethods={12}
+      schemas={8}
       parameters={10}
       difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/openapi.yaml"

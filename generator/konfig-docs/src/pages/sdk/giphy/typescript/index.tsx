@@ -17,7 +17,7 @@ export default function GiphyTypeScriptSdk() {
       companyKebabCase="giphy"
       clientNameCamelCase="giphy"
       homepage="giphy.com"
-      lastUpdated={new Date("2024-03-25T23:06:14.544Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/giphy/favicon.png"
       // Missing contactUrl
       contactEmail="support@giphy.com"

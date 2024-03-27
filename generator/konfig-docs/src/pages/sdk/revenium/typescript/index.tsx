@@ -19,7 +19,7 @@ What is Revenium? Revenium is a pioneering and indispensable element in the peri
       companyKebabCase="revenium"
       clientNameCamelCase="revenium"
       homepage="www.revenium.io/"
-      lastUpdated={new Date("2024-03-25T20:51:20.847Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/revenium/favicon.png"
       contactUrl="https://revenium.io"
       contactEmail="info@revenium.io"

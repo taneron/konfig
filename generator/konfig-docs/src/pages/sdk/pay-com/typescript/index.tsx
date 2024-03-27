@@ -22,7 +22,7 @@ The company was launched in 2020 and is currently expanding with 5 global office
       companyKebabCase="pay-com"
       clientNameCamelCase="payCom"
       homepage="pay.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/pay-com/favicon.png"
       contactUrl="https://pay.com"
       contactEmail="support@pay.com"

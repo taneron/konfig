@@ -17,7 +17,7 @@ export default function Sdk2C2PTypeScriptSdk() {
       companyKebabCase="2-c-2-p"
       clientNameCamelCase="twoCTwoP"
       homepage="2c2p.com/"
-      lastUpdated={new Date("2024-03-19T00:07:10.571Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/2-c-2-p/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

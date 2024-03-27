@@ -19,7 +19,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
       companyKebabCase="lucca"
       clientNameCamelCase="luccaDirectory"
       homepage="lucca-hr.com"
-      lastUpdated={new Date("2024-03-26T19:55:14.920Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/directory/favicon.png"
       contactUrl="https://www.lucca.fr"
       contactEmail="developers@lucca.fr"

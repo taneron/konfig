@@ -1,0 +1,113 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /oauth2/token:
+    post: Authentication_createAccessToken
+  /v1/company:
+    get: Company_detailsRetrieve
+  /v1/departments:
+    get: Departments_getAll
+  /v1/engagements:
+    get: Engagements_getAll
+  /v1/engagements/{id}:
+    get: Engagements_getById
+  /v1/expenses:
+    get: Expenses_getAllEngagements
+  /v1/expenses/:
+    post: Expenses_createOperationKey
+  /v1/expenses/{id}:
+    get: Expenses_getById
+  /v1/expenses/{id}/approve:
+    post: Expenses_approveExpense
+  /v1/expenses/{id}/decline:
+    post: Expenses_declineExpense
+  /v1/meta/operations/{operation_key}:
+    get: Operations_getByOperationKey
+  /v1/payroll:
+    get: Payroll_getAllPayrolls
+  /v1/payroll/{id}:
+    get: Payroll_getById
+  /v1/time_off/entitlements:
+    get: TimeOff_getEntitlements
+  /v1/time_off/requests:
+    get: TimeOff_getAllRequests
+  /v1/time_off/requests/{id}:
+    get: TimeOff_getRequest
+  /v1/time_off/requests/{id}/approve:
+    post: TimeOff_approveRequest
+  /v1/time_off/requests/{id}/reject:
+    post: TimeOff_rejectRequest
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /oauth2/token:
+    post:
+      application/x-www-form-urlencoded: AuthenticationCreateAccessTokenRequest
+  /v1/expenses:
+    post:
+      application/json: ExpensesCreateOperationKeyRequest
+  /v1/expenses/{id}/decline:
+    post:
+      application/json: ExpensesDeclineExpenseRequest
+  /v1/time_off/requests/{id}/reject:
+    post:
+      application/json: TimeOffRejectRequestRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/company:
+    get:
+      '200':
+        application/json: CompanyDetailsRetrieveResponse
+  /v1/departments:
+    get:
+      '200':
+        application/json: DepartmentsGetAllResponse
+  /v1/engagements:
+    get:
+      '200':
+        application/json: EngagementsGetAllResponse
+  /v1/engagements/{id}:
+    get:
+      '200':
+        application/json: EngagementsGetByIdResponse
+  /v1/expenses/{id}:
+    get:
+      '200':
+        application/json: ExpensesGetByIdResponse
+  /v1/meta/operations/{operation_key}:
+    get:
+      '200':
+        application/json: OperationsGetByOperationKeyResponse
+  /v1/payroll:
+    get:
+      '200':
+        application/json: PayrollGetAllPayrollsResponse
+  /v1/payroll/{id}:
+    get:
+      '200':
+        application/json: PayrollGetByIdResponse
+  /v1/time_off/entitlements:
+    get:
+      '200':
+        application/json: TimeOffGetEntitlementsResponse
+  /v1/time_off/requests:
+    get:
+      '200':
+        application/json: TimeOffGetAllRequestsResponse
+  /v1/time_off/requests/{id}:
+    get:
+      '200':
+        application/json: TimeOffGetRequestResponse
+securityParameters:
+  from:
+    query: false
+  include_records:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  to:
+    query: false
+validServerUrls: {}

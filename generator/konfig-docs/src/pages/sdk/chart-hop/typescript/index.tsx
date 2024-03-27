@@ -17,7 +17,7 @@ export default function ChartHopTypeScriptSdk() {
       companyKebabCase="chart-hop"
       clientNameCamelCase="chartHop"
       homepage="charthop.com"
-      lastUpdated={new Date("2024-03-25T23:06:14.544Z")}
+      lastUpdated={new Date("2024-03-26T23:22:05.022Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/charthop/favicon.png"
       contactUrl="https://www.charthop.com"
       contactEmail="support@charthop.com"
@@ -993,6 +993,58 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/app/org/{orgId}/install/{appUserId}/code",
+    "method": "getOauth2AuthorizationCode",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "app",
+    "typeScriptTag": "app",
+    "description": "Retrieve an Oauth2 authorization code for this app, which can be exchanged for an access token",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "appUserId",
+        "schema": "string",
+        "required": true,
+        "description": "App user id",
+        "example": "APPUSERID"
+      },
+      {
+        "name": "scope",
+        "schema": "string",
+        "required": false,
+        "description": "Scopes"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
     "url": "/v1/app/org/{orgId}/install/{appUserId}/token",
     "method": "getTokenForApp",
     "httpMethod": HttpMethodsEnum.GET,
@@ -1066,58 +1118,6 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "",
         "example": "SCOPE"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "204",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/app/org/{orgId}/install/{appUserId}/code",
-    "method": "getOauth2AuthorizationCode",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "app",
-    "typeScriptTag": "app",
-    "description": "Retrieve an Oauth2 authorization code for this app, which can be exchanged for an access token",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "appUserId",
-        "schema": "string",
-        "required": true,
-        "description": "App user id",
-        "example": "APPUSERID"
-      },
-      {
-        "name": "scope",
-        "schema": "string",
-        "required": false,
-        "description": "Scopes"
       }
     ],
     "responses": [
@@ -1373,6 +1373,37 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/app/name/{appName}",
+    "method": "getByName",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "app",
+    "typeScriptTag": "app",
+    "description": "Return a particular app by name",
+    "parameters": [
+      {
+        "name": "appName",
+        "schema": "string",
+        "required": true,
+        "description": "App name",
+        "example": "APPNAME"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
     "url": "/v1/app/org/{orgId}",
     "method": "getActiveAppsByOrg",
     "httpMethod": HttpMethodsEnum.GET,
@@ -1426,52 +1457,6 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "400",
         "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/app/org/{orgId}/install/{appUserId}/run",
-    "method": "runInstalledApp",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "app",
-    "typeScriptTag": "app",
-    "description": "Run an installed app",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "appUserId",
-        "schema": "string",
-        "required": true,
-        "description": "App user id",
-        "example": "APPUSERID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "204",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
       },
       {
         "statusCode": "404",
@@ -1673,37 +1658,6 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "403",
         "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/app/name/{appName}",
-    "method": "getByName",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "app",
-    "typeScriptTag": "app",
-    "description": "Return a particular app by name",
-    "parameters": [
-      {
-        "name": "appName",
-        "schema": "string",
-        "required": true,
-        "description": "App name",
-        "example": "APPNAME"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
       },
       {
         "statusCode": "404",
@@ -2023,6 +1977,52 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/app/org/{orgId}/install/{appUserId}/run",
+    "method": "runInstalledApp",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "app",
+    "typeScriptTag": "app",
+    "description": "Run an installed app",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "appUserId",
+        "schema": "string",
+        "required": true,
+        "description": "App user id",
+        "example": "APPUSERID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
     "url": "/v1/app/org/{orgId}/install/{appUserId}/installdata/{installDataName}",
     "method": "getTokenForApp",
     "httpMethod": HttpMethodsEnum.GET,
@@ -2209,155 +2209,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/approval-chain",
-    "method": "getApprovalChains",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "approval",
-    "typeScriptTag": "approval",
-    "description": "Return approval chains",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "entityType",
-        "schema": "string",
-        "required": false,
-        "description": "The type of entity"
-      },
-      {
-        "name": "entityId",
-        "schema": "string",
-        "required": false,
-        "description": "the id of the entity"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of results to return"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/approval-chain",
-    "method": "createChain",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "approval",
-    "typeScriptTag": "approval",
-    "description": "Create an approval chain",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "createDefaultStages",
-        "schema": "boolean",
-        "required": false,
-        "description": "Create default stages"
-      },
-      {
-        "name": "entityId",
-        "schema": "string",
-        "required": false,
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "entityType",
-        "schema": "string",
-        "required": false,
-        "description": "",
-        "example": "SCENARIO"
-      },
-      {
-        "name": "name",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "Comp Review 06/15/2022"
-      },
-      {
-        "name": "isPreview",
-        "schema": "boolean",
-        "required": true,
-        "description": "",
-        "example": true
-      },
-      {
-        "name": "fallbackApproverJobId",
-        "schema": "string",
-        "required": false,
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "fallbackApproverJobError",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "approvalNotifierUserIds",
-        "schema": "array",
-        "required": true,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "202",
-        "description": "snapshot currently building"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}",
     "method": "deleteChainById",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -2508,227 +2359,6 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "403",
         "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}",
-    "method": "deleteRequestApproval",
-    "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "approval",
-    "typeScriptTag": "approval",
-    "description": "Delete an approval request",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "approvalChainId",
-        "schema": "string",
-        "required": true,
-        "description": "Approval chain id",
-        "example": "APPROVALCHAINID"
-      },
-      {
-        "name": "approvalRequestId",
-        "schema": "string",
-        "required": true,
-        "description": "Approval request id",
-        "example": "APPROVALREQUESTID"
-      },
-      {
-        "name": "message",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "202",
-        "description": "snapshot currently building"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}",
-    "method": "requestApprovalRequest",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "approval",
-    "typeScriptTag": "approval",
-    "description": "Return an approval request",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "approvalChainId",
-        "schema": "string",
-        "required": true,
-        "description": "Approval chain id",
-        "example": "APPROVALCHAINID"
-      },
-      {
-        "name": "approvalRequestId",
-        "schema": "string",
-        "required": true,
-        "description": "Approval request id",
-        "example": "APPROVALREQUESTID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}",
-    "method": "updateExistingRequest",
-    "httpMethod": HttpMethodsEnum.PATCH,
-    "tag": "approval",
-    "typeScriptTag": "approval",
-    "description": "Update an existing approval request",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "approvalChainId",
-        "schema": "string",
-        "required": true,
-        "description": "Approval chain id",
-        "example": "APPROVALCHAINID"
-      },
-      {
-        "name": "approvalRequestId",
-        "schema": "string",
-        "required": true,
-        "description": "approval request id",
-        "example": "APPROVALREQUESTID"
-      },
-      {
-        "name": "previewJobId",
-        "schema": "string",
-        "required": false,
-        "description": "preview-as job id"
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "STATUS"
-      },
-      {
-        "name": "message",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}/request/entity/comp-review",
-    "method": "getCompReviewResponsesForChain",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "approval",
-    "typeScriptTag": "approval",
-    "description": "Return all approval request comp review responses for an approval chain",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "approvalChainId",
-        "schema": "string",
-        "required": true,
-        "description": "Approval chain id",
-        "example": "APPROVALCHAINID"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of results to return"
-      },
-      {
-        "name": "entityIds",
-        "schema": "array",
-        "required": false,
-        "description": "entity ids to filter on"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
       },
       {
         "statusCode": "404",
@@ -3062,6 +2692,376 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "400",
         "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}",
+    "method": "deleteRequestApproval",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "approval",
+    "typeScriptTag": "approval",
+    "description": "Delete an approval request",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "approvalChainId",
+        "schema": "string",
+        "required": true,
+        "description": "Approval chain id",
+        "example": "APPROVALCHAINID"
+      },
+      {
+        "name": "approvalRequestId",
+        "schema": "string",
+        "required": true,
+        "description": "Approval request id",
+        "example": "APPROVALREQUESTID"
+      },
+      {
+        "name": "message",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "202",
+        "description": "snapshot currently building"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}",
+    "method": "requestApprovalRequest",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "approval",
+    "typeScriptTag": "approval",
+    "description": "Return an approval request",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "approvalChainId",
+        "schema": "string",
+        "required": true,
+        "description": "Approval chain id",
+        "example": "APPROVALCHAINID"
+      },
+      {
+        "name": "approvalRequestId",
+        "schema": "string",
+        "required": true,
+        "description": "Approval request id",
+        "example": "APPROVALREQUESTID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}",
+    "method": "updateExistingRequest",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "approval",
+    "typeScriptTag": "approval",
+    "description": "Update an existing approval request",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "approvalChainId",
+        "schema": "string",
+        "required": true,
+        "description": "Approval chain id",
+        "example": "APPROVALCHAINID"
+      },
+      {
+        "name": "approvalRequestId",
+        "schema": "string",
+        "required": true,
+        "description": "approval request id",
+        "example": "APPROVALREQUESTID"
+      },
+      {
+        "name": "previewJobId",
+        "schema": "string",
+        "required": false,
+        "description": "preview-as job id"
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "STATUS"
+      },
+      {
+        "name": "message",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/approval-chain/{approvalChainId}/request/entity/comp-review",
+    "method": "getCompReviewResponsesForChain",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "approval",
+    "typeScriptTag": "approval",
+    "description": "Return all approval request comp review responses for an approval chain",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "approvalChainId",
+        "schema": "string",
+        "required": true,
+        "description": "Approval chain id",
+        "example": "APPROVALCHAINID"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of results to return"
+      },
+      {
+        "name": "entityIds",
+        "schema": "array",
+        "required": false,
+        "description": "entity ids to filter on"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/approval-chain",
+    "method": "getApprovalChains",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "approval",
+    "typeScriptTag": "approval",
+    "description": "Return approval chains",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "entityType",
+        "schema": "string",
+        "required": false,
+        "description": "The type of entity"
+      },
+      {
+        "name": "entityId",
+        "schema": "string",
+        "required": false,
+        "description": "the id of the entity"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of results to return"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/approval-chain",
+    "method": "createChain",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "approval",
+    "typeScriptTag": "approval",
+    "description": "Create an approval chain",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "createDefaultStages",
+        "schema": "boolean",
+        "required": false,
+        "description": "Create default stages"
+      },
+      {
+        "name": "entityId",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "entityType",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "SCENARIO"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "Comp Review 06/15/2022"
+      },
+      {
+        "name": "isPreview",
+        "schema": "boolean",
+        "required": true,
+        "description": "",
+        "example": true
+      },
+      {
+        "name": "fallbackApproverJobId",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "fallbackApproverJobError",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "approvalNotifierUserIds",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "202",
+        "description": "snapshot currently building"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
       },
       {
         "statusCode": "401",
@@ -3430,6 +3430,45 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/org/{orgId}/assessment/bulk/delete",
+    "method": "bulkDelete",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "assessment",
+    "typeScriptTag": "assessment",
+    "description": "Delete a set of assessments",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
     "url": "/v1/org/{orgId}/assessment/bulk/duplicate",
     "method": "bulkDuplicateAssessments",
     "httpMethod": HttpMethodsEnum.POST,
@@ -3495,45 +3534,6 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "",
         "example": "TYPE"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/assessment/bulk/delete",
-    "method": "bulkDelete",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "assessment",
-    "typeScriptTag": "assessment",
-    "description": "Delete a set of assessments",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
       }
     ],
     "responses": [
@@ -4123,12 +4123,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/customer/{customerId}/billing/cancel",
-    "method": "cancelSubscriptionForCustomer",
-    "httpMethod": HttpMethodsEnum.POST,
+    "url": "/v1/customer/{customerId}/billing",
+    "method": "customerBillingInfo",
+    "httpMethod": HttpMethodsEnum.GET,
     "tag": "billing",
     "typeScriptTag": "billing",
-    "description": "Cancel a subscription for a customer",
+    "description": "Return billing information for a customer",
     "parameters": [
       {
         "name": "customerId",
@@ -4136,26 +4136,12 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Customer id",
         "example": "CUSTOMERID"
-      },
-      {
-        "name": "otherComments",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "OTHERCOMMENTS"
-      },
-      {
-        "name": "reason",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "REASON"
       }
     ],
     "responses": [
       {
         "statusCode": "200",
-        "description": "OK"
+        "description": ""
       },
       {
         "statusCode": "400",
@@ -4222,12 +4208,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/customer/{customerId}/billing",
-    "method": "customerBillingInfo",
-    "httpMethod": HttpMethodsEnum.GET,
+    "url": "/v1/customer/{customerId}/billing/cancel",
+    "method": "cancelSubscriptionForCustomer",
+    "httpMethod": HttpMethodsEnum.POST,
     "tag": "billing",
     "typeScriptTag": "billing",
-    "description": "Return billing information for a customer",
+    "description": "Cancel a subscription for a customer",
     "parameters": [
       {
         "name": "customerId",
@@ -4235,12 +4221,26 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Customer id",
         "example": "CUSTOMERID"
+      },
+      {
+        "name": "otherComments",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "OTHERCOMMENTS"
+      },
+      {
+        "name": "reason",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "REASON"
       }
     ],
     "responses": [
       {
         "statusCode": "200",
-        "description": ""
+        "description": "OK"
       },
       {
         "statusCode": "400",
@@ -4253,245 +4253,6 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "403",
         "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/budget-pool/{id}/guidelines",
-    "method": "getGuidelinesForBudgetPool",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "budget-pool",
-    "typeScriptTag": "budgetPool",
-    "description": "Get the guidelines associated with a budget pool",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "id",
-        "schema": "string",
-        "required": true,
-        "description": "ID of the desired budget pool",
-        "example": "ID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/budget-pool/{id}/calculate",
-    "method": "calculateGuideline",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "budget-pool",
-    "typeScriptTag": "budgetPool",
-    "description": "",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug",
-        "example": "ORGID"
-      },
-      {
-        "name": "id",
-        "schema": "string",
-        "required": true,
-        "description": "ID of the desired budget pool",
-        "example": "ID"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": false,
-        "description": "ID of the scenario the budget will be calculated against"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/budget-pool",
-    "method": "getAllForOrg",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "budget-pool",
-    "typeScriptTag": "budgetPool",
-    "description": "Get all budget pools for an org",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "compReviewId",
-        "schema": "string",
-        "required": false,
-        "description": "Comp Review Id to filter on"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/budget-pool",
-    "method": "createNewPool",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "budget-pool",
-    "typeScriptTag": "budgetPool",
-    "description": "Create a new budget pool",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug",
-        "example": "ORGID"
-      },
-      {
-        "name": "compReviewId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "label",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "Merit"
-      },
-      {
-        "name": "participantsExpr",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "appliedField",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "base"
-      },
-      {
-        "name": "sourceField",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "base"
-      },
-      {
-        "name": "basisType",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "BASISTYPE"
-      },
-      {
-        "name": "fixedAmount",
-        "schema": "object",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "fixedValue",
-        "schema": "number",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "basisFieldMatrix",
-        "schema": "object",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "fixedBudgetMap",
-        "schema": "object",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "basisExpr",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "defaultCurrency",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
       },
       {
         "statusCode": "404",
@@ -4710,6 +4471,245 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "200",
         "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/budget-pool",
+    "method": "getAllForOrg",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "budget-pool",
+    "typeScriptTag": "budgetPool",
+    "description": "Get all budget pools for an org",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "compReviewId",
+        "schema": "string",
+        "required": false,
+        "description": "Comp Review Id to filter on"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/budget-pool",
+    "method": "createNewPool",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "budget-pool",
+    "typeScriptTag": "budgetPool",
+    "description": "Create a new budget pool",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug",
+        "example": "ORGID"
+      },
+      {
+        "name": "compReviewId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "label",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "Merit"
+      },
+      {
+        "name": "participantsExpr",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "appliedField",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "base"
+      },
+      {
+        "name": "sourceField",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "base"
+      },
+      {
+        "name": "basisType",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "BASISTYPE"
+      },
+      {
+        "name": "fixedAmount",
+        "schema": "object",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "fixedValue",
+        "schema": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "basisFieldMatrix",
+        "schema": "object",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "fixedBudgetMap",
+        "schema": "object",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "basisExpr",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "defaultCurrency",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/budget-pool/{id}/guidelines",
+    "method": "getGuidelinesForBudgetPool",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "budget-pool",
+    "typeScriptTag": "budgetPool",
+    "description": "Get the guidelines associated with a budget pool",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "ID of the desired budget pool",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/budget-pool/{id}/calculate",
+    "method": "calculateGuideline",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "budget-pool",
+    "typeScriptTag": "budgetPool",
+    "description": "",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug",
+        "example": "ORGID"
+      },
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "ID of the desired budget pool",
+        "example": "ID"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": false,
+        "description": "ID of the scenario the budget will be calculated against"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
       },
       {
         "statusCode": "400",
@@ -5061,42 +5061,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/category-sort/upsert",
-    "method": "createOrUpdateSortOrder",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "category-sort",
-    "typeScriptTag": "categorySort",
-    "description": "Create or update category sort order for a given org and return the sort data",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "categoryIds",
-        "schema": "array",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "categoryIds cannot be empty"
-      },
-      {
-        "statusCode": "403",
-        "description": "Permission denied"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/category-sort",
     "method": "deleteSortOrder",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -5242,6 +5206,42 @@ export default function ChartHopTypeScriptSdk() {
     "url": "/v1/org/{orgId}/category-sort",
     "method": "createOrUpdateSort",
     "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "category-sort",
+    "typeScriptTag": "categorySort",
+    "description": "Create or update category sort order for a given org and return the sort data",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "categoryIds",
+        "schema": "array",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "categoryIds cannot be empty"
+      },
+      {
+        "statusCode": "403",
+        "description": "Permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/category-sort/upsert",
+    "method": "createOrUpdateSortOrder",
+    "httpMethod": HttpMethodsEnum.POST,
     "tag": "category-sort",
     "typeScriptTag": "categorySort",
     "description": "Create or update category sort order for a given org and return the sort data",
@@ -5583,6 +5583,185 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/org/{orgId}/change",
+    "method": "getRecentChanges",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "change",
+    "typeScriptTag": "change",
+    "description": "Return recent changes across an org, or for a particular person or job",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": false,
+        "description": "Scenario id"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": false,
+        "description": "Date to start from"
+      },
+      {
+        "name": "endDate",
+        "schema": "string",
+        "required": false,
+        "description": "Date to get changes through (inclusive)"
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "required": false,
+        "description": "Types of change to filter by"
+      },
+      {
+        "name": "fields",
+        "schema": "string",
+        "required": false,
+        "description": "Return changes that modify these fields"
+      },
+      {
+        "name": "personId",
+        "schema": "string",
+        "required": false,
+        "description": "Person id to filter by"
+      },
+      {
+        "name": "jobId",
+        "schema": "string",
+        "required": false,
+        "description": "Job id to filter by"
+      },
+      {
+        "name": "includeBackfill",
+        "schema": "boolean",
+        "required": false,
+        "description": "Find and include first backfill if it exists"
+      },
+      {
+        "name": "refs",
+        "schema": "string",
+        "required": false,
+        "description": "References to filter by"
+      },
+      {
+        "name": "q",
+        "schema": "string",
+        "required": false,
+        "description": "Query to filter against"
+      },
+      {
+        "name": "from",
+        "schema": "string",
+        "required": false,
+        "description": "Change id to start paginating from"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of results to return"
+      },
+      {
+        "name": "open",
+        "schema": "string",
+        "required": false,
+        "description": "Whether the role is open or not"
+      },
+      {
+        "name": "desc",
+        "schema": "boolean",
+        "required": false,
+        "description": "Descending (default false)"
+      },
+      {
+        "name": "scenarioOnly",
+        "schema": "boolean",
+        "required": false,
+        "description": "Scenario only (exclude primary changes)"
+      },
+      {
+        "name": "parentOnly",
+        "schema": "boolean",
+        "required": false,
+        "description": "Parent changes only (exclude child changes)"
+      },
+      {
+        "name": "includeGrantSchedule",
+        "schema": "boolean",
+        "required": false,
+        "description": "Whether to include full grant schedule when returning equity updates"
+      },
+      {
+        "name": "excludeAtsRecruitingFields",
+        "schema": "boolean",
+        "required": false,
+        "description": "Whether to exclude ats recruiting fields. Only applies when fieldEntityTypeString is passed"
+      },
+      {
+        "name": "includeStruck",
+        "schema": "boolean",
+        "required": false,
+        "description": "Deprecated parameter for backwards-compatibility (use statuses) - whether to include STRUCK and PROPOSED changes, or just ACTIVE changes"
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "required": false,
+        "description": "Statuses to filter by"
+      },
+      {
+        "name": "stripUpdates",
+        "schema": "boolean",
+        "required": false,
+        "description": "Whether to strip returned update changes of update types that were not explicitly requested"
+      },
+      {
+        "name": "format",
+        "schema": "string",
+        "required": false,
+        "description": "Data format to use; default is json, can also use json-extended or json-readable"
+      },
+      {
+        "name": "fieldEntityTypes",
+        "schema": "string",
+        "required": false,
+        "description": "Only return changes which set fields with these entity types"
+      },
+      {
+        "name": "returnAccess",
+        "schema": "string",
+        "required": false,
+        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
     "url": "/v1/org/{orgId}/change/{changeId}",
     "method": "deletePreviousChange",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -5763,185 +5942,6 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "400",
         "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/change",
-    "method": "getRecentChanges",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "change",
-    "typeScriptTag": "change",
-    "description": "Return recent changes across an org, or for a particular person or job",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": false,
-        "description": "Scenario id"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": false,
-        "description": "Date to start from"
-      },
-      {
-        "name": "endDate",
-        "schema": "string",
-        "required": false,
-        "description": "Date to get changes through (inclusive)"
-      },
-      {
-        "name": "type",
-        "schema": "string",
-        "required": false,
-        "description": "Types of change to filter by"
-      },
-      {
-        "name": "fields",
-        "schema": "string",
-        "required": false,
-        "description": "Return changes that modify these fields"
-      },
-      {
-        "name": "personId",
-        "schema": "string",
-        "required": false,
-        "description": "Person id to filter by"
-      },
-      {
-        "name": "jobId",
-        "schema": "string",
-        "required": false,
-        "description": "Job id to filter by"
-      },
-      {
-        "name": "includeBackfill",
-        "schema": "boolean",
-        "required": false,
-        "description": "Find and include first backfill if it exists"
-      },
-      {
-        "name": "refs",
-        "schema": "string",
-        "required": false,
-        "description": "References to filter by"
-      },
-      {
-        "name": "q",
-        "schema": "string",
-        "required": false,
-        "description": "Query to filter against"
-      },
-      {
-        "name": "from",
-        "schema": "string",
-        "required": false,
-        "description": "Change id to start paginating from"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of results to return"
-      },
-      {
-        "name": "open",
-        "schema": "string",
-        "required": false,
-        "description": "Whether the role is open or not"
-      },
-      {
-        "name": "desc",
-        "schema": "boolean",
-        "required": false,
-        "description": "Descending (default false)"
-      },
-      {
-        "name": "scenarioOnly",
-        "schema": "boolean",
-        "required": false,
-        "description": "Scenario only (exclude primary changes)"
-      },
-      {
-        "name": "parentOnly",
-        "schema": "boolean",
-        "required": false,
-        "description": "Parent changes only (exclude child changes)"
-      },
-      {
-        "name": "includeGrantSchedule",
-        "schema": "boolean",
-        "required": false,
-        "description": "Whether to include full grant schedule when returning equity updates"
-      },
-      {
-        "name": "excludeAtsRecruitingFields",
-        "schema": "boolean",
-        "required": false,
-        "description": "Whether to exclude ats recruiting fields. Only applies when fieldEntityTypeString is passed"
-      },
-      {
-        "name": "includeStruck",
-        "schema": "boolean",
-        "required": false,
-        "description": "Deprecated parameter for backwards-compatibility (use statuses) - whether to include STRUCK and PROPOSED changes, or just ACTIVE changes"
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "required": false,
-        "description": "Statuses to filter by"
-      },
-      {
-        "name": "stripUpdates",
-        "schema": "boolean",
-        "required": false,
-        "description": "Whether to strip returned update changes of update types that were not explicitly requested"
-      },
-      {
-        "name": "format",
-        "schema": "string",
-        "required": false,
-        "description": "Data format to use; default is json, can also use json-extended or json-readable"
-      },
-      {
-        "name": "fieldEntityTypes",
-        "schema": "string",
-        "required": false,
-        "description": "Only return changes which set fields with these entity types"
-      },
-      {
-        "name": "returnAccess",
-        "schema": "string",
-        "required": false,
-        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
       },
       {
         "statusCode": "404",
@@ -6508,6 +6508,72 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/org/{orgId}/comment",
+    "method": "createNewComment",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "comment",
+    "typeScriptTag": "comment",
+    "description": "Post a comment",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "parentEntityId",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "entityId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "entityType",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ENTITYTYPE"
+      },
+      {
+        "name": "content",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "org not found"
+      }
+    ]
+  },
+  {
     "url": "/v1/org/{orgId}/comment/{commentId}",
     "method": "removeById",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -6592,78 +6658,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/comment",
-    "method": "createNewComment",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "comment",
-    "typeScriptTag": "comment",
-    "description": "Post a comment",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "parentEntityId",
-        "schema": "string",
-        "required": false,
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "entityId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "entityType",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "ENTITYTYPE"
-      },
-      {
-        "name": "content",
-        "schema": "object",
-        "required": true,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "org not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/comment/entity/{entityId}",
-    "method": "getByEntityId",
+    "url": "/v1/org/{orgId}/comment/scenario/{scenarioId}",
+    "method": "listCommentsOnScenarioAndChanges",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "comment",
     "typeScriptTag": "comment",
-    "description": "Return comments on a particular entity paginated",
+    "description": "Return comments on a scenario and the changes within, paginated",
     "parameters": [
       {
         "name": "orgId",
@@ -6673,11 +6673,11 @@ export default function ChartHopTypeScriptSdk() {
         "example": "ORGID"
       },
       {
-        "name": "entityId",
+        "name": "scenarioId",
         "schema": "string",
         "required": true,
-        "description": "Entity id",
-        "example": "ENTITYID"
+        "description": "Scenario id",
+        "example": "SCENARIOID"
       },
       {
         "name": "from",
@@ -6696,6 +6696,12 @@ export default function ChartHopTypeScriptSdk() {
         "schema": "boolean",
         "required": false,
         "description": "Descending (default false)"
+      },
+      {
+        "name": "includeChangeComments",
+        "schema": "boolean",
+        "required": false,
+        "description": "Whether to also include comments on changes within the scenario (default false)"
       }
     ],
     "responses": [
@@ -6796,12 +6802,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/comment/scenario/{scenarioId}",
-    "method": "listCommentsOnScenarioAndChanges",
+    "url": "/v1/org/{orgId}/comment/entity/{entityId}",
+    "method": "getByEntityId",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "comment",
     "typeScriptTag": "comment",
-    "description": "Return comments on a scenario and the changes within, paginated",
+    "description": "Return comments on a particular entity paginated",
     "parameters": [
       {
         "name": "orgId",
@@ -6811,11 +6817,11 @@ export default function ChartHopTypeScriptSdk() {
         "example": "ORGID"
       },
       {
-        "name": "scenarioId",
+        "name": "entityId",
         "schema": "string",
         "required": true,
-        "description": "Scenario id",
-        "example": "SCENARIOID"
+        "description": "Entity id",
+        "example": "ENTITYID"
       },
       {
         "name": "from",
@@ -6834,12 +6840,6 @@ export default function ChartHopTypeScriptSdk() {
         "schema": "boolean",
         "required": false,
         "description": "Descending (default false)"
-      },
-      {
-        "name": "includeChangeComments",
-        "schema": "boolean",
-        "required": false,
-        "description": "Whether to also include comments on changes within the scenario (default false)"
       }
     ],
     "responses": [
@@ -7443,12 +7443,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/comp-review/{compReviewId}/duplicate",
-    "method": "duplicateCompReview",
+    "url": "/v1/org/{orgId}/comp-review/{compReviewId}/generate",
+    "method": "generateCompReview",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "comp-review",
     "typeScriptTag": "compReview",
-    "description": "Duplicate a comp review",
+    "description": "Generate a compensation review",
     "parameters": [
       {
         "name": "orgId",
@@ -7463,163 +7463,13 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Comp review id",
         "example": "COMPREVIEWID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
       },
       {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/comp-review/{compReviewId}",
-    "method": "deleteCompReview",
-    "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "comp-review",
-    "typeScriptTag": "compReview",
-    "description": "Delete a comp review",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
+        "name": "isPreview",
+        "schema": "boolean",
         "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "compReviewId",
-        "schema": "string",
-        "required": true,
-        "description": "Comp review id",
-        "example": "COMPREVIEWID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/comp-review/{compReviewId}",
-    "method": "findCompReviewById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "comp-review",
-    "typeScriptTag": "compReview",
-    "description": "Return a particular comp review by ID",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "compReviewId",
-        "schema": "string",
-        "required": true,
-        "description": "Comp review id",
-        "example": "COMPREVIEWID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/comp-review/{compReviewId}",
-    "method": "updateCompReview",
-    "httpMethod": HttpMethodsEnum.PATCH,
-    "tag": "comp-review",
-    "typeScriptTag": "compReview",
-    "description": "Update a comp review",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "compReviewId",
-        "schema": "string",
-        "required": true,
-        "description": "Review id",
-        "example": "COMPREVIEWID"
-      },
-      {
-        "name": "label",
-        "schema": "string",
         "description": "",
-        "example": "Comp review H2 2022"
-      },
-      {
-        "name": "config",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "shareAccess",
-        "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "reviewerCount",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "submittedCount",
-        "schema": "integer",
-        "description": ""
+        "example": true
       }
     ],
     "responses": [
@@ -7864,210 +7714,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/comp-review",
-    "method": "findCompReviews",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "comp-review",
-    "typeScriptTag": "compReview",
-    "description": "Find comp reviews in the organization",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "from",
-        "schema": "string",
-        "required": false,
-        "description": "Comp review ID to start paginating from"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of results to return"
-      },
-      {
-        "name": "returnAccess",
-        "schema": "string",
-        "required": false,
-        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/comp-review",
-    "method": "createCompReview",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "comp-review",
-    "typeScriptTag": "compReview",
-    "description": "Create a comp review",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "label",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "Comp review H2 2022"
-      },
-      {
-        "name": "config",
-        "schema": "object",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "shareAccess",
-        "schema": "array",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/comp-review/{compReviewId}/metadata",
-    "method": "getMetadataById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "comp-review",
-    "typeScriptTag": "compReview",
-    "description": "Return metadata for a particular comp review by ID",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "compReviewId",
-        "schema": "string",
-        "required": true,
-        "description": "Comp review id",
-        "example": "COMPREVIEWID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/comp-review/{compReviewId}/generate",
-    "method": "generateCompReview",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "comp-review",
-    "typeScriptTag": "compReview",
-    "description": "Generate a compensation review",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "compReviewId",
-        "schema": "string",
-        "required": true,
-        "description": "Comp review id",
-        "example": "COMPREVIEWID"
-      },
-      {
-        "name": "isPreview",
-        "schema": "boolean",
-        "required": true,
-        "description": "",
-        "example": true
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/comp-review/{compReviewId}/in-cycle/changes",
     "method": "getChangesInCycle",
     "httpMethod": HttpMethodsEnum.GET,
@@ -8233,6 +7879,318 @@ export default function ChartHopTypeScriptSdk() {
         "schema": "string",
         "required": false,
         "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/comp-review",
+    "method": "findCompReviews",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "comp-review",
+    "typeScriptTag": "compReview",
+    "description": "Find comp reviews in the organization",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "from",
+        "schema": "string",
+        "required": false,
+        "description": "Comp review ID to start paginating from"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of results to return"
+      },
+      {
+        "name": "returnAccess",
+        "schema": "string",
+        "required": false,
+        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/comp-review",
+    "method": "createCompReview",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "comp-review",
+    "typeScriptTag": "compReview",
+    "description": "Create a comp review",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "label",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "Comp review H2 2022"
+      },
+      {
+        "name": "config",
+        "schema": "object",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "shareAccess",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/comp-review/{compReviewId}",
+    "method": "deleteCompReview",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "comp-review",
+    "typeScriptTag": "compReview",
+    "description": "Delete a comp review",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "compReviewId",
+        "schema": "string",
+        "required": true,
+        "description": "Comp review id",
+        "example": "COMPREVIEWID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/comp-review/{compReviewId}",
+    "method": "findCompReviewById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "comp-review",
+    "typeScriptTag": "compReview",
+    "description": "Return a particular comp review by ID",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "compReviewId",
+        "schema": "string",
+        "required": true,
+        "description": "Comp review id",
+        "example": "COMPREVIEWID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/comp-review/{compReviewId}",
+    "method": "updateCompReview",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "comp-review",
+    "typeScriptTag": "compReview",
+    "description": "Update a comp review",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "compReviewId",
+        "schema": "string",
+        "required": true,
+        "description": "Review id",
+        "example": "COMPREVIEWID"
+      },
+      {
+        "name": "label",
+        "schema": "string",
+        "description": "",
+        "example": "Comp review H2 2022"
+      },
+      {
+        "name": "config",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "shareAccess",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "reviewerCount",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "submittedCount",
+        "schema": "integer",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/comp-review/{compReviewId}/metadata",
+    "method": "getMetadataById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "comp-review",
+    "typeScriptTag": "compReview",
+    "description": "Return metadata for a particular comp review by ID",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "compReviewId",
+        "schema": "string",
+        "required": true,
+        "description": "Comp review id",
+        "example": "COMPREVIEWID"
       }
     ],
     "responses": [
@@ -8757,12 +8715,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/content/{contentId}",
-    "method": "removeById",
-    "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "content",
-    "typeScriptTag": "content",
-    "description": "Delete a content",
+    "url": "/v1/org/{orgId}/comp-review/{compReviewId}/duplicate",
+    "method": "duplicateCompReview",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "comp-review",
+    "typeScriptTag": "compReview",
+    "description": "Duplicate a comp review",
     "parameters": [
       {
         "name": "orgId",
@@ -8772,165 +8730,21 @@ export default function ChartHopTypeScriptSdk() {
         "example": "ORGID"
       },
       {
-        "name": "contentId",
+        "name": "compReviewId",
         "schema": "string",
         "required": true,
-        "description": "Content id",
-        "example": "CONTENTID"
+        "description": "Comp review id",
+        "example": "COMPREVIEWID"
       }
     ],
     "responses": [
       {
         "statusCode": "200",
-        "description": "OK"
+        "description": ""
       },
       {
         "statusCode": "400",
         "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/content/{contentId}",
-    "method": "getById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "content",
-    "typeScriptTag": "content",
-    "description": "Return a particular content by id",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "contentId",
-        "schema": "string",
-        "required": true,
-        "description": "Content id",
-        "example": "CONTENTID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/content/{contentId}",
-    "method": "updatePieceById",
-    "httpMethod": HttpMethodsEnum.PATCH,
-    "tag": "content",
-    "typeScriptTag": "content",
-    "description": "Update an existing piece of content",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "contentId",
-        "schema": "string",
-        "required": true,
-        "description": "Content id",
-        "example": "CONTENTID"
-      },
-      {
-        "name": "title",
-        "schema": "string",
-        "description": "",
-        "example": "Benefits Policies"
-      },
-      {
-        "name": "parentContentId",
-        "schema": "string",
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "path",
-        "schema": "string",
-        "description": "",
-        "example": "employee-info/benefits-policies"
-      },
-      {
-        "name": "blocks",
-        "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "imagePath",
-        "schema": "string",
-        "description": "",
-        "example": "path/to/image.jpg"
-      },
-      {
-        "name": "emoji",
-        "schema": "string",
-        "description": "",
-        "example": "💥"
-      },
-      {
-        "name": "coverImagePath",
-        "schema": "string",
-        "description": "",
-        "example": "path/to/image.jpg"
-      },
-      {
-        "name": "sensitive",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "shareAccess",
-        "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
       },
       {
         "statusCode": "403",
@@ -9271,6 +9085,192 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "400",
         "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/content/{contentId}",
+    "method": "removeById",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "content",
+    "typeScriptTag": "content",
+    "description": "Delete a content",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "contentId",
+        "schema": "string",
+        "required": true,
+        "description": "Content id",
+        "example": "CONTENTID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/content/{contentId}",
+    "method": "getById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "content",
+    "typeScriptTag": "content",
+    "description": "Return a particular content by id",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "contentId",
+        "schema": "string",
+        "required": true,
+        "description": "Content id",
+        "example": "CONTENTID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/content/{contentId}",
+    "method": "updatePieceById",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "content",
+    "typeScriptTag": "content",
+    "description": "Update an existing piece of content",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "contentId",
+        "schema": "string",
+        "required": true,
+        "description": "Content id",
+        "example": "CONTENTID"
+      },
+      {
+        "name": "title",
+        "schema": "string",
+        "description": "",
+        "example": "Benefits Policies"
+      },
+      {
+        "name": "parentContentId",
+        "schema": "string",
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "path",
+        "schema": "string",
+        "description": "",
+        "example": "employee-info/benefits-policies"
+      },
+      {
+        "name": "blocks",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "imagePath",
+        "schema": "string",
+        "description": "",
+        "example": "path/to/image.jpg"
+      },
+      {
+        "name": "emoji",
+        "schema": "string",
+        "description": "",
+        "example": "💥"
+      },
+      {
+        "name": "coverImagePath",
+        "schema": "string",
+        "description": "",
+        "example": "path/to/image.jpg"
+      },
+      {
+        "name": "sensitive",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "shareAccess",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
       },
       {
         "statusCode": "404",
@@ -10559,12 +10559,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/exchange-rate/{date}/history",
-    "method": "orgCustomExchangeRatesHistory",
+    "url": "/v1/org/{orgId}/exchange-rate/{date}/global",
+    "method": "getGlobalByDate",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "exchange-rate",
     "typeScriptTag": "exchangeRate",
-    "description": "Return org custom exchange rates",
+    "description": "Return the global exchange rates based on USD for a particular date",
     "parameters": [
       {
         "name": "orgId",
@@ -10579,24 +10579,6 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Date to use",
         "example": "DATE"
-      },
-      {
-        "name": "currency",
-        "schema": "string",
-        "required": false,
-        "description": "Currency to search for"
-      },
-      {
-        "name": "fromDate",
-        "schema": "string",
-        "required": false,
-        "description": "Start date for search"
-      },
-      {
-        "name": "toDate",
-        "schema": "string",
-        "required": false,
-        "description": "End date for search"
       }
     ],
     "responses": [
@@ -10619,12 +10601,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/exchange-rate/{date}/custom/bulkupdate",
-    "method": "bulkUpdateCustomRates",
-    "httpMethod": HttpMethodsEnum.POST,
+    "url": "/v1/org/{orgId}/exchange-rate/{date}/custom",
+    "method": "getCustomExchangeRates",
+    "httpMethod": HttpMethodsEnum.GET,
     "tag": "exchange-rate",
     "typeScriptTag": "exchangeRate",
-    "description": "Bulk update custom currency rates in org custom exchange rates",
+    "description": "Return org custom exchange rates",
     "parameters": [
       {
         "name": "orgId",
@@ -10639,18 +10621,12 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Date to use",
         "example": "DATE"
-      },
-      {
-        "name": "addRates",
-        "schema": "boolean",
-        "required": false,
-        "description": "Boolean to determine whether to add or remove rates from update"
       }
     ],
     "responses": [
       {
         "statusCode": "200",
-        "description": "OK"
+        "description": ""
       },
       {
         "statusCode": "400",
@@ -10809,50 +10785,8 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/exchange-rate/{date}/global",
-    "method": "getGlobalByDate",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "exchange-rate",
-    "typeScriptTag": "exchangeRate",
-    "description": "Return the global exchange rates based on USD for a particular date",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": true,
-        "description": "Date to use",
-        "example": "DATE"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/exchange-rate/{date}/custom",
-    "method": "getCustomExchangeRates",
+    "url": "/v1/org/{orgId}/exchange-rate/{date}/history",
+    "method": "orgCustomExchangeRatesHistory",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "exchange-rate",
     "typeScriptTag": "exchangeRate",
@@ -10871,6 +10805,24 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Date to use",
         "example": "DATE"
+      },
+      {
+        "name": "currency",
+        "schema": "string",
+        "required": false,
+        "description": "Currency to search for"
+      },
+      {
+        "name": "fromDate",
+        "schema": "string",
+        "required": false,
+        "description": "Start date for search"
+      },
+      {
+        "name": "toDate",
+        "schema": "string",
+        "required": false,
+        "description": "End date for search"
       }
     ],
     "responses": [
@@ -10893,96 +10845,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/export/powerpoint/report/{reportId}",
-    "method": "reportToPowerpoint",
+    "url": "/v1/org/{orgId}/exchange-rate/{date}/custom/bulkupdate",
+    "method": "bulkUpdateCustomRates",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "export",
-    "typeScriptTag": "export",
-    "description": "Export report to Powerpoint",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "reportId",
-        "schema": "string",
-        "required": true,
-        "description": "report id",
-        "example": "REPORTID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid parameters"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/export/csv/scenario/{scenarioId}/comments",
-    "method": "csvScenarioComments",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "export",
-    "typeScriptTag": "export",
-    "description": "Export a csv log of a scenario comments",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": true,
-        "description": "Scenario id",
-        "example": "SCENARIOID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid parameters"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/export/powerpoint/org",
-    "method": "orgChartToPowerpoint",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "export",
-    "typeScriptTag": "export",
-    "description": "Export org chart to Powerpoint",
+    "tag": "exchange-rate",
+    "typeScriptTag": "exchangeRate",
+    "description": "Bulk update custom currency rates in org custom exchange rates",
     "parameters": [
       {
         "name": "orgId",
@@ -10994,9 +10862,50 @@ export default function ChartHopTypeScriptSdk() {
       {
         "name": "date",
         "schema": "string",
+        "required": true,
+        "description": "Date to use",
+        "example": "DATE"
+      },
+      {
+        "name": "addRates",
+        "schema": "boolean",
         "required": false,
-        "description": "date to export the data from",
-        "example": "2016-12-25"
+        "description": "Boolean to determine whether to add or remove rates from update"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/export/csv/snapshot",
+    "method": "rosterToCsvSnapshot",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "export",
+    "typeScriptTag": "export",
+    "description": "Export a snapshot of a current roster to CSV format",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
       }
     ],
     "responses": [
@@ -11173,6 +11082,132 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/org/{orgId}/export/csv/scenario/{scenarioId}/comments",
+    "method": "csvScenarioComments",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "export",
+    "typeScriptTag": "export",
+    "description": "Export a csv log of a scenario comments",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": true,
+        "description": "Scenario id",
+        "example": "SCENARIOID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid parameters"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/export/powerpoint/org",
+    "method": "orgChartToPowerpoint",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "export",
+    "typeScriptTag": "export",
+    "description": "Export org chart to Powerpoint",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": false,
+        "description": "date to export the data from",
+        "example": "2016-12-25"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid parameters"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/export/powerpoint/report/{reportId}",
+    "method": "reportToPowerpoint",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "export",
+    "typeScriptTag": "export",
+    "description": "Export report to Powerpoint",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "reportId",
+        "schema": "string",
+        "required": true,
+        "description": "report id",
+        "example": "REPORTID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid parameters"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
     "url": "/v1/org/{orgId}/export/pdf/review/{assessmentId}",
     "method": "pdfReview",
     "httpMethod": HttpMethodsEnum.POST,
@@ -11290,41 +11325,6 @@ export default function ChartHopTypeScriptSdk() {
     "tag": "export",
     "typeScriptTag": "export",
     "description": "Export a CSV of custom fields",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid parameters"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/export/csv/snapshot",
-    "method": "rosterToCsvSnapshot",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "export",
-    "typeScriptTag": "export",
-    "description": "Export a snapshot of a current roster to CSV format",
     "parameters": [
       {
         "name": "orgId",
@@ -11756,12 +11756,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/field/{fieldId}",
-    "method": "removeById",
-    "httpMethod": HttpMethodsEnum.DELETE,
+    "url": "/v1/org/{orgId}/field/status",
+    "method": "updateStatusForExistingFields",
+    "httpMethod": HttpMethodsEnum.POST,
     "tag": "field",
     "typeScriptTag": "field",
-    "description": "Delete a field",
+    "description": "Update status for existing fields",
     "parameters": [
       {
         "name": "orgId",
@@ -11771,229 +11771,22 @@ export default function ChartHopTypeScriptSdk() {
         "example": "ORGID"
       },
       {
-        "name": "fieldId",
+        "name": "updateStatus",
         "schema": "string",
         "required": true,
-        "description": "Field id",
-        "example": "FIELDID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/field/{fieldId}",
-    "method": "getById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "field",
-    "typeScriptTag": "field",
-    "description": "Return a particular field by id",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "fieldId",
-        "schema": "string",
-        "required": true,
-        "description": "Field id",
-        "example": "FIELDID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/field/{fieldId}",
-    "method": "updateExistingField",
-    "httpMethod": HttpMethodsEnum.PATCH,
-    "tag": "field",
-    "typeScriptTag": "field",
-    "description": "Update an existing field",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "fieldId",
-        "schema": "string",
-        "required": true,
-        "description": "Field id",
-        "example": "FIELDID"
-      },
-      {
-        "name": "description",
-        "schema": "string",
         "description": "",
-        "example": "This field tracks the most recent performance rating for an individual."
+        "example": "UPDATESTATUS"
       },
       {
-        "name": "name",
-        "schema": "string",
-        "description": "",
-        "example": "summary"
-      },
-      {
-        "name": "label",
-        "schema": "string",
-        "description": "",
-        "example": "Job Summary"
-      },
-      {
-        "name": "question",
-        "schema": "string",
-        "description": "",
-        "example": "What do you think of this placeholder question?"
-      },
-      {
-        "name": "inUse",
-        "schema": "boolean",
-        "description": ""
-      },
-      {
-        "name": "expr",
-        "schema": "string",
-        "description": "",
-        "example": "(base + variable) / 12"
-      },
-      {
-        "name": "exprType",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "type",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "plural",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "values",
+        "name": "fieldIds",
         "schema": "array",
+        "required": true,
         "description": ""
       },
       {
-        "name": "defaultValue",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "options",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "sensitive",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "hideExpr",
-        "schema": "boolean",
-        "description": ""
-      },
-      {
-        "name": "expireDays",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "tableRef",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "isUnique",
-        "schema": "boolean",
-        "description": ""
-      },
-      {
-        "name": "isRequired",
-        "schema": "boolean",
-        "description": ""
-      },
-      {
-        "name": "isEffectiveDated",
-        "schema": "boolean",
-        "description": ""
-      },
-      {
-        "name": "dataFetchTypes",
+        "name": "reservedFieldNames",
         "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "aliases",
-        "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "calc",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "categoryId",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "classification",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "places",
-        "schema": "integer",
+        "required": true,
         "description": ""
       }
     ],
@@ -12292,80 +12085,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/field/delete",
-    "method": "remove",
-    "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "field",
-    "typeScriptTag": "field",
-    "description": "Delete fields",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/field/built-in",
-    "method": "getBuiltInFields",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "field",
-    "typeScriptTag": "field",
-    "description": "Get built-in fields",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/field/category/{categoryId}",
     "method": "getFieldsInCategory",
     "httpMethod": HttpMethodsEnum.GET,
@@ -12443,12 +12162,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/field/status",
-    "method": "updateStatusForExistingFields",
-    "httpMethod": HttpMethodsEnum.POST,
+    "url": "/v1/org/{orgId}/field/{fieldId}",
+    "method": "removeById",
+    "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "field",
     "typeScriptTag": "field",
-    "description": "Update status for existing fields",
+    "description": "Delete a field",
     "parameters": [
       {
         "name": "orgId",
@@ -12458,22 +12177,229 @@ export default function ChartHopTypeScriptSdk() {
         "example": "ORGID"
       },
       {
-        "name": "updateStatus",
+        "name": "fieldId",
         "schema": "string",
         "required": true,
-        "description": "",
-        "example": "UPDATESTATUS"
+        "description": "Field id",
+        "example": "FIELDID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
       },
       {
-        "name": "fieldIds",
-        "schema": "array",
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/field/{fieldId}",
+    "method": "getById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "field",
+    "typeScriptTag": "field",
+    "description": "Return a particular field by id",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
         "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "fieldId",
+        "schema": "string",
+        "required": true,
+        "description": "Field id",
+        "example": "FIELDID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
         "description": ""
       },
       {
-        "name": "reservedFieldNames",
-        "schema": "array",
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/field/{fieldId}",
+    "method": "updateExistingField",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "field",
+    "typeScriptTag": "field",
+    "description": "Update an existing field",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
         "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "fieldId",
+        "schema": "string",
+        "required": true,
+        "description": "Field id",
+        "example": "FIELDID"
+      },
+      {
+        "name": "description",
+        "schema": "string",
+        "description": "",
+        "example": "This field tracks the most recent performance rating for an individual."
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "description": "",
+        "example": "summary"
+      },
+      {
+        "name": "label",
+        "schema": "string",
+        "description": "",
+        "example": "Job Summary"
+      },
+      {
+        "name": "question",
+        "schema": "string",
+        "description": "",
+        "example": "What do you think of this placeholder question?"
+      },
+      {
+        "name": "inUse",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "expr",
+        "schema": "string",
+        "description": "",
+        "example": "(base + variable) / 12"
+      },
+      {
+        "name": "exprType",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "plural",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "values",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "options",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "sensitive",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "hideExpr",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "expireDays",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "tableRef",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "isUnique",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "isRequired",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "isEffectiveDated",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "dataFetchTypes",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "aliases",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "calc",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "categoryId",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "classification",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "places",
+        "schema": "integer",
         "description": ""
       }
     ],
@@ -12493,6 +12419,80 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "403",
         "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/field/delete",
+    "method": "remove",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "field",
+    "typeScriptTag": "field",
+    "description": "Delete fields",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/field/built-in",
+    "method": "getBuiltInFields",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "field",
+    "typeScriptTag": "field",
+    "description": "Get built-in fields",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
       },
       {
         "statusCode": "404",
@@ -12746,6 +12746,135 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "404",
         "description": "File not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/form/{formId}/remind",
+    "method": "sendReminderNotification",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "form",
+    "typeScriptTag": "form",
+    "description": "Sends reminder for a form with existing tasks, sending emails/chat notifications to people being requested",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "formId",
+        "schema": "string",
+        "required": true,
+        "description": "Form id",
+        "example": "FORMID"
+      },
+      {
+        "name": "assessmentId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "targetFilter",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "submitFilter",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "message",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "preview",
+        "schema": "boolean",
+        "required": true,
+        "description": "",
+        "example": true
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "org not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/form/status",
+    "method": "updateFormStatus",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "form",
+    "typeScriptTag": "form",
+    "description": "Update status for existing forms",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "updateStatus",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "UPDATESTATUS"
+      },
+      {
+        "name": "formIds",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
       }
     ]
   },
@@ -13825,12 +13954,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/form/{formId}/remind",
-    "method": "sendReminderNotification",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "form",
-    "typeScriptTag": "form",
-    "description": "Sends reminder for a form with existing tasks, sending emails/chat notifications to people being requested",
+    "url": "/v1/org/{orgId}/form-response",
+    "method": "getByForm",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "form-response",
+    "typeScriptTag": "formResponse",
+    "description": "Return form responses by form",
     "parameters": [
       {
         "name": "orgId",
@@ -13842,92 +13971,50 @@ export default function ChartHopTypeScriptSdk() {
       {
         "name": "formId",
         "schema": "string",
-        "required": true,
-        "description": "Form id",
-        "example": "FORMID"
+        "required": false,
+        "description": "Form id to filter by"
       },
       {
         "name": "assessmentId",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "Assessment id to filter by"
       },
       {
-        "name": "targetFilter",
+        "name": "submitPersonId",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "Person id to filter by (person who submitted the form)"
       },
       {
-        "name": "submitFilter",
+        "name": "targetId",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "Target id to filter by"
       },
       {
-        "name": "message",
+        "name": "from",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "FormResponse id to start paginating from"
       },
       {
-        "name": "preview",
-        "schema": "boolean",
-        "required": true,
-        "description": "",
-        "example": true
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of results to return"
       },
       {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "org not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/form/status",
-    "method": "updateFormStatus",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "form",
-    "typeScriptTag": "form",
-    "description": "Update status for existing forms",
-    "parameters": [
-      {
-        "name": "orgId",
+        "name": "returnAccess",
         "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
+        "required": false,
+        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
       },
       {
-        "name": "updateStatus",
+        "name": "format",
         "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "UPDATESTATUS"
-      },
-      {
-        "name": "formIds",
-        "schema": "array",
-        "required": true,
-        "description": ""
+        "required": false,
+        "description": "Data format to use; default is json, can also use json-extended or json-readable"
       }
     ],
     "responses": [
@@ -13937,15 +14024,76 @@ export default function ChartHopTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "invalid data"
+        "description": "bad request"
       },
       {
         "statusCode": "401",
         "description": "not authorized"
       },
       {
-        "statusCode": "403",
-        "description": "permission denied"
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/form-response/count",
+    "method": "getFormResponseCount",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "form-response",
+    "typeScriptTag": "formResponse",
+    "description": "Return the total count of form responses by form",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "formId",
+        "schema": "string",
+        "required": false,
+        "description": "Form id to filter by"
+      },
+      {
+        "name": "assessmentId",
+        "schema": "string",
+        "required": false,
+        "description": "Assessment id to filter by"
+      },
+      {
+        "name": "submitPersonId",
+        "schema": "string",
+        "required": false,
+        "description": "Person id to filter by (person who submitted the form)"
+      },
+      {
+        "name": "targetId",
+        "schema": "string",
+        "required": false,
+        "description": "Target id to filter by"
+      },
+      {
+        "name": "questionId",
+        "schema": "string",
+        "required": false,
+        "description": "Question id to filter by"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
       },
       {
         "statusCode": "404",
@@ -14141,183 +14289,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/form-response",
-    "method": "getByForm",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "form-response",
-    "typeScriptTag": "formResponse",
-    "description": "Return form responses by form",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "formId",
-        "schema": "string",
-        "required": false,
-        "description": "Form id to filter by"
-      },
-      {
-        "name": "assessmentId",
-        "schema": "string",
-        "required": false,
-        "description": "Assessment id to filter by"
-      },
-      {
-        "name": "submitPersonId",
-        "schema": "string",
-        "required": false,
-        "description": "Person id to filter by (person who submitted the form)"
-      },
-      {
-        "name": "targetId",
-        "schema": "string",
-        "required": false,
-        "description": "Target id to filter by"
-      },
-      {
-        "name": "from",
-        "schema": "string",
-        "required": false,
-        "description": "FormResponse id to start paginating from"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of results to return"
-      },
-      {
-        "name": "returnAccess",
-        "schema": "string",
-        "required": false,
-        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
-      },
-      {
-        "name": "format",
-        "schema": "string",
-        "required": false,
-        "description": "Data format to use; default is json, can also use json-extended or json-readable"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/form-response/count",
-    "method": "getFormResponseCount",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "form-response",
-    "typeScriptTag": "formResponse",
-    "description": "Return the total count of form responses by form",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "formId",
-        "schema": "string",
-        "required": false,
-        "description": "Form id to filter by"
-      },
-      {
-        "name": "assessmentId",
-        "schema": "string",
-        "required": false,
-        "description": "Assessment id to filter by"
-      },
-      {
-        "name": "submitPersonId",
-        "schema": "string",
-        "required": false,
-        "description": "Person id to filter by (person who submitted the form)"
-      },
-      {
-        "name": "targetId",
-        "schema": "string",
-        "required": false,
-        "description": "Target id to filter by"
-      },
-      {
-        "name": "questionId",
-        "schema": "string",
-        "required": false,
-        "description": "Question id to filter by"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/media",
-    "method": "uploadNewMedia",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "media",
-    "typeScriptTag": "media",
-    "description": "Upload a new piece of media",
-    "parameters": [
-      {
-        "name": "file",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "Invalid type or bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "Not authorized"
-      }
-    ]
-  },
-  {
     "url": "/v1/media/{mediaId}",
     "method": "getMetadata",
     "httpMethod": HttpMethodsEnum.GET,
@@ -14349,6 +14320,35 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "404",
         "description": "Media not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/media",
+    "method": "uploadNewMedia",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "media",
+    "typeScriptTag": "media",
+    "description": "Upload a new piece of media",
+    "parameters": [
+      {
+        "name": "file",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "Invalid type or bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "Not authorized"
       }
     ]
   },
@@ -15552,42 +15552,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/media",
-    "method": "uploadNewPiece",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "media",
-    "typeScriptTag": "media",
-    "description": "Upload a new piece of media",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "file",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "Invalid type or bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "Not authorized"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/media/{mediaId}",
     "method": "getMetadata",
     "httpMethod": HttpMethodsEnum.GET,
@@ -15630,12 +15594,12 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/message/{messageId}",
-    "method": "getMessageById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "message",
-    "typeScriptTag": "message",
-    "description": "Return a particular message by id",
+    "url": "/v1/org/{orgId}/media",
+    "method": "uploadNewPiece",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "media",
+    "typeScriptTag": "media",
+    "description": "Upload a new piece of media",
     "parameters": [
       {
         "name": "orgId",
@@ -15645,72 +15609,23 @@ export default function ChartHopTypeScriptSdk() {
         "example": "ORGID"
       },
       {
-        "name": "messageId",
+        "name": "file",
         "schema": "string",
-        "required": true,
-        "description": "Message id",
-        "example": "MESSAGEID"
+        "description": ""
       }
     ],
     "responses": [
       {
-        "statusCode": "200",
+        "statusCode": "201",
         "description": ""
       },
       {
-        "statusCode": "401",
-        "description": "unauthorized"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/message/me",
-    "method": "getAllForUser",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "message",
-    "typeScriptTag": "message",
-    "description": "Return all messages for a particular user",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "type",
-        "schema": "string",
-        "required": false,
-        "description": "Message \"type\" (WEB, CHAT, or EMAIL)"
-      },
-      {
-        "name": "unreadOnly",
-        "schema": "boolean",
-        "required": false,
-        "description": "Message \"status\" (read or unread)"
-      },
-      {
-        "name": "from",
-        "schema": "string",
-        "required": false,
-        "description": "MessageId to start paginating from"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "Limit"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
+        "statusCode": "400",
+        "description": "Invalid type or bad request"
       },
       {
         "statusCode": "401",
-        "description": "unauthorized"
+        "description": "Not authorized"
       }
     ]
   },
@@ -15822,40 +15737,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/message/me/{messageKey}",
-    "method": "getMessageByKey",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "message",
-    "typeScriptTag": "message",
-    "description": "Return a particular message by key",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "messageKey",
-        "schema": "string",
-        "required": true,
-        "description": "Message key",
-        "example": "MESSAGEKEY"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": "unauthorized"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/message/{messageId}/read",
     "method": "setReadStatus",
     "httpMethod": HttpMethodsEnum.POST,
@@ -15932,6 +15813,125 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/org/{orgId}/message/me/{messageKey}",
+    "method": "getMessageByKey",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "message",
+    "typeScriptTag": "message",
+    "description": "Return a particular message by key",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "messageKey",
+        "schema": "string",
+        "required": true,
+        "description": "Message key",
+        "example": "MESSAGEKEY"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": "unauthorized"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/message/{messageId}",
+    "method": "getMessageById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "message",
+    "typeScriptTag": "message",
+    "description": "Return a particular message by id",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "messageId",
+        "schema": "string",
+        "required": true,
+        "description": "Message id",
+        "example": "MESSAGEID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": "unauthorized"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/message/me",
+    "method": "getAllForUser",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "message",
+    "typeScriptTag": "message",
+    "description": "Return all messages for a particular user",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "required": false,
+        "description": "Message \"type\" (WEB, CHAT, or EMAIL)"
+      },
+      {
+        "name": "unreadOnly",
+        "schema": "boolean",
+        "required": false,
+        "description": "Message \"status\" (read or unread)"
+      },
+      {
+        "name": "from",
+        "schema": "string",
+        "required": false,
+        "description": "MessageId to start paginating from"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "Limit"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": "unauthorized"
+      }
+    ]
+  },
+  {
     "url": "/v1/org/{orgId}/metric",
     "method": "recordDailyMetric",
     "httpMethod": HttpMethodsEnum.POST,
@@ -15971,6 +15971,140 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "200",
         "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/multiplier",
+    "method": "findCompBandMultipliersInOrg",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "multiplier",
+    "typeScriptTag": "multiplier",
+    "description": "Find comp band multipliers in the organization",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": false,
+        "description": "Date to search as of"
+      },
+      {
+        "name": "from",
+        "schema": "string",
+        "required": false,
+        "description": "Multiplier id to start paginating from"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of results to return"
+      },
+      {
+        "name": "includeDeleted",
+        "schema": "boolean",
+        "required": false,
+        "description": "Include deleted multipliers"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/multiplier",
+    "method": "createNewMultiplier",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "multiplier",
+    "typeScriptTag": "multiplier",
+    "description": "Create a multiplier",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": false,
+        "description": "Effective date of multiplier creation"
+      },
+      {
+        "name": "label",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "Non-technical"
+      },
+      {
+        "name": "code",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "schema": "number",
+        "required": true,
+        "description": "",
+        "example": 0.75
+      },
+      {
+        "name": "expr",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "department!=\"Engineering\""
+      },
+      {
+        "name": "category",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "Location"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "202",
+        "description": "snapshot currently building"
       },
       {
         "statusCode": "400",
@@ -16136,140 +16270,6 @@ export default function ChartHopTypeScriptSdk() {
       {
         "name": "category",
         "schema": "string",
-        "description": "",
-        "example": "Location"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "202",
-        "description": "snapshot currently building"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/multiplier",
-    "method": "findCompBandMultipliersInOrg",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "multiplier",
-    "typeScriptTag": "multiplier",
-    "description": "Find comp band multipliers in the organization",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": false,
-        "description": "Date to search as of"
-      },
-      {
-        "name": "from",
-        "schema": "string",
-        "required": false,
-        "description": "Multiplier id to start paginating from"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of results to return"
-      },
-      {
-        "name": "includeDeleted",
-        "schema": "boolean",
-        "required": false,
-        "description": "Include deleted multipliers"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/multiplier",
-    "method": "createNewMultiplier",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "multiplier",
-    "typeScriptTag": "multiplier",
-    "description": "Create a multiplier",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": false,
-        "description": "Effective date of multiplier creation"
-      },
-      {
-        "name": "label",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "Non-technical"
-      },
-      {
-        "name": "code",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "value",
-        "schema": "number",
-        "required": true,
-        "description": "",
-        "example": 0.75
-      },
-      {
-        "name": "expr",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "department!=\"Engineering\""
-      },
-      {
-        "name": "category",
-        "schema": "string",
-        "required": false,
         "description": "",
         "example": "Location"
       }
@@ -16574,58 +16574,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/oauth/token/view",
-    "method": "returnViewToken",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "oauth",
-    "typeScriptTag": "oauth",
-    "description": "Return a view-as token",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "ORGID"
-      },
-      {
-        "name": "personId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "userId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "roleId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "scope",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "SCOPE"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid credentials"
-      }
-    ]
-  },
-  {
     "url": "/oauth/token/sso/{type}",
     "method": "generateBearerTokenFromSso",
     "httpMethod": HttpMethodsEnum.POST,
@@ -16683,6 +16631,58 @@ export default function ChartHopTypeScriptSdk() {
         "schema": "string",
         "required": false,
         "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid credentials"
+      }
+    ]
+  },
+  {
+    "url": "/oauth/token/view",
+    "method": "returnViewToken",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "oauth",
+    "typeScriptTag": "oauth",
+    "description": "Return a view-as token",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ORGID"
+      },
+      {
+        "name": "personId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "userId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "roleId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "scope",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "SCOPE"
       }
     ],
     "responses": [
@@ -17010,6 +17010,598 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/org/{orgId}",
+    "method": "getById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Return a particular org by id",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}",
+    "method": "updateExistingOrg",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Update an existing org",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "customerId",
+        "schema": "string",
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "description": "",
+        "example": "Acme Corp"
+      },
+      {
+        "name": "slug",
+        "schema": "string",
+        "description": "",
+        "example": "acme-corp"
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "description": "",
+        "example": "PRIVATE"
+      },
+      {
+        "name": "industry",
+        "schema": "string",
+        "description": "",
+        "example": "Software and Internet"
+      },
+      {
+        "name": "estEmployees",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "estRevenue",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "foundedYear",
+        "schema": "integer",
+        "description": "",
+        "example": 1998
+      },
+      {
+        "name": "address",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "phone",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "email",
+        "schema": "string",
+        "description": "",
+        "example": "bob@example.com"
+      },
+      {
+        "name": "url",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "domains",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "imagePath",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "currencies",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "stock",
+        "schema": "string",
+        "description": "",
+        "example": "GOOG"
+      },
+      {
+        "name": "timezone",
+        "schema": "string",
+        "description": "",
+        "example": "America/New_York"
+      },
+      {
+        "name": "appTime",
+        "schema": "string",
+        "description": "",
+        "example": "09:00"
+      },
+      {
+        "name": "zone",
+        "schema": "integer",
+        "description": "",
+        "example": 2
+      },
+      {
+        "name": "fiscalStart",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "startDate",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "sensitiveFields",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "options",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "internalOptions",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "onboardSteps",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "onboarding",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "selfServeImporting",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "headCount",
+        "schema": "integer",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/data-user-person-count",
+    "method": "getDataUserPersonCount",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Gets the count of joined users, invited users, and org members who are not yet invited",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/data-user-person",
+    "method": "getDataUserPersonById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Gets a user or person by id. If both are provided, userId takes precedence",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "userId",
+        "schema": "string",
+        "required": false,
+        "description": "userId"
+      },
+      {
+        "name": "personId",
+        "schema": "string",
+        "required": false,
+        "description": "personId"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/data-users-persons",
+    "method": "getDataUsersPersons",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Gets a list of org users (joined or invited) and org members (not yet invited)",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "limit"
+      },
+      {
+        "name": "offset",
+        "schema": "integer",
+        "required": false,
+        "description": "offset"
+      },
+      {
+        "name": "sort",
+        "schema": "string",
+        "required": false,
+        "description": "Sort by",
+        "example": "name, email, role, expr, invite, active"
+      },
+      {
+        "name": "role",
+        "schema": "string",
+        "required": false,
+        "description": "Filter by user role label",
+        "example": "Owner, Technical Owner, Employee, etc..."
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "required": false,
+        "description": "Filter by status",
+        "example": "joined, invited, not-invited"
+      },
+      {
+        "name": "returnAccess",
+        "schema": "string",
+        "required": false,
+        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/change-head",
+    "method": "createNewJobPlaceholder",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Create a new org head in the history, by creating an empty job placeholder above the current head",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/welcome-email",
+    "method": "getWelcomeEmailSettings",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Gets the custom setting or default for the welcome email's subject, body, cta button label",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": "Permission denied"
+      },
+      {
+        "statusCode": "500",
+        "description": "Service error"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/test-email",
+    "method": "sendTestEmailToOneself",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Send a test welcome email to oneself",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "welcomeEmailSubject",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "welcomeEmailButtonLabel",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "welcomeEmailBody",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/agreement",
+    "method": "consentTermsOfService",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Consent on Terms of Service agreement",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "action",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ACTION"
+      },
+      {
+        "name": "legalDocId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "LEGALDOCID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/access",
+    "method": "getUserAccess",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Return information on current user's access",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "default",
+        "description": "successful operation"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/app-install-code/validate",
+    "method": "validateAppInstallAuthorizationCode",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Validate authorization code",
+    "parameters": [
+      {
+        "name": "authorizationCode",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "AUTHORIZATIONCODE"
+      },
+      {
+        "name": "issueAccessToken",
+        "schema": "boolean",
+        "required": true,
+        "description": "",
+        "example": true
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
     "url": "/v1/org",
     "method": "listVisibleOrgs",
     "httpMethod": HttpMethodsEnum.GET,
@@ -17298,637 +17890,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}",
-    "method": "getById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Return a particular org by id",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}",
-    "method": "updateExistingOrg",
-    "httpMethod": HttpMethodsEnum.PATCH,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Update an existing org",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "customerId",
-        "schema": "string",
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "name",
-        "schema": "string",
-        "description": "",
-        "example": "Acme Corp"
-      },
-      {
-        "name": "slug",
-        "schema": "string",
-        "description": "",
-        "example": "acme-corp"
-      },
-      {
-        "name": "type",
-        "schema": "string",
-        "description": "",
-        "example": "PRIVATE"
-      },
-      {
-        "name": "industry",
-        "schema": "string",
-        "description": "",
-        "example": "Software and Internet"
-      },
-      {
-        "name": "estEmployees",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "estRevenue",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "foundedYear",
-        "schema": "integer",
-        "description": "",
-        "example": 1998
-      },
-      {
-        "name": "address",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "phone",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "email",
-        "schema": "string",
-        "description": "",
-        "example": "bob@example.com"
-      },
-      {
-        "name": "url",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "domains",
-        "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "imagePath",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "currencies",
-        "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "stock",
-        "schema": "string",
-        "description": "",
-        "example": "GOOG"
-      },
-      {
-        "name": "timezone",
-        "schema": "string",
-        "description": "",
-        "example": "America/New_York"
-      },
-      {
-        "name": "appTime",
-        "schema": "string",
-        "description": "",
-        "example": "09:00"
-      },
-      {
-        "name": "zone",
-        "schema": "integer",
-        "description": "",
-        "example": 2
-      },
-      {
-        "name": "fiscalStart",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "startDate",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "sensitiveFields",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "options",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "internalOptions",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "onboardSteps",
-        "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "onboarding",
-        "schema": "boolean",
-        "description": ""
-      },
-      {
-        "name": "selfServeImporting",
-        "schema": "boolean",
-        "description": ""
-      },
-      {
-        "name": "headCount",
-        "schema": "integer",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/data-users-persons",
-    "method": "getDataUsersPersons",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Gets a list of org users (joined or invited) and org members (not yet invited)",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "limit"
-      },
-      {
-        "name": "offset",
-        "schema": "integer",
-        "required": false,
-        "description": "offset"
-      },
-      {
-        "name": "sort",
-        "schema": "string",
-        "required": false,
-        "description": "Sort by",
-        "example": "name, email, role, expr, invite, active"
-      },
-      {
-        "name": "role",
-        "schema": "string",
-        "required": false,
-        "description": "Filter by user role label",
-        "example": "Owner, Technical Owner, Employee, etc..."
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "required": false,
-        "description": "Filter by status",
-        "example": "joined, invited, not-invited"
-      },
-      {
-        "name": "returnAccess",
-        "schema": "string",
-        "required": false,
-        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/change-head",
-    "method": "createNewJobPlaceholder",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Create a new org head in the history, by creating an empty job placeholder above the current head",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/welcome-email",
-    "method": "getWelcomeEmailSettings",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Gets the custom setting or default for the welcome email's subject, body, cta button label",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "403",
-        "description": "Permission denied"
-      },
-      {
-        "statusCode": "500",
-        "description": "Service error"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/test-email",
-    "method": "sendTestEmailToOneself",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Send a test welcome email to oneself",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "welcomeEmailSubject",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "welcomeEmailButtonLabel",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "welcomeEmailBody",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/agreement",
-    "method": "consentTermsOfService",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Consent on Terms of Service agreement",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "action",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "ACTION"
-      },
-      {
-        "name": "legalDocId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "LEGALDOCID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/access",
-    "method": "getUserAccess",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Return information on current user's access",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "default",
-        "description": "successful operation"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/data-user-person-count",
-    "method": "getDataUserPersonCount",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Gets the count of joined users, invited users, and org members who are not yet invited",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/data-user-person",
-    "method": "getDataUserPersonById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Gets a user or person by id. If both are provided, userId takes precedence",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "userId",
-        "schema": "string",
-        "required": false,
-        "description": "userId"
-      },
-      {
-        "name": "personId",
-        "schema": "string",
-        "required": false,
-        "description": "personId"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{org}/app-install-code",
-    "method": "getOauth2AuthorizationCode",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Retrieve an Oauth2 authorization code to install an app at this org",
-    "parameters": [
-      {
-        "name": "org",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORG"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/app-install-code/validate",
-    "method": "validateAppInstallAuthorizationCode",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "org",
-    "typeScriptTag": "org",
-    "description": "Validate authorization code",
-    "parameters": [
-      {
-        "name": "authorizationCode",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "AUTHORIZATIONCODE"
-      },
-      {
-        "name": "issueAccessToken",
-        "schema": "boolean",
-        "required": true,
-        "description": "",
-        "example": true
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
     "url": "/org/{slug}",
     "method": "getValidationBySlug",
     "httpMethod": HttpMethodsEnum.GET,
@@ -17983,6 +17944,45 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "400",
         "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{org}/app-install-code",
+    "method": "getOauth2AuthorizationCode",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "org",
+    "typeScriptTag": "org",
+    "description": "Retrieve an Oauth2 authorization code to install an app at this org",
+    "parameters": [
+      {
+        "name": "org",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORG"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
       },
       {
         "statusCode": "404",
@@ -18518,90 +18518,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/process/{processId}/increment",
-    "method": "incrementProcessStep",
-    "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "process",
-    "typeScriptTag": "process",
-    "description": "Increment the step of an asynchronous process",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "processId",
-        "schema": "string",
-        "required": true,
-        "description": "process id",
-        "example": "PROCESSID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/process/{processId}/resume",
-    "method": "resumeProcessWithUserId",
-    "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "process",
-    "typeScriptTag": "process",
-    "description": "Resume an asynchronous process",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "processId",
-        "schema": "string",
-        "required": true,
-        "description": "process id",
-        "example": "PROCESSID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/process",
     "method": "getPreviouslyRunProcesses",
     "httpMethod": HttpMethodsEnum.GET,
@@ -18843,206 +18759,6 @@ export default function ChartHopTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/process/self-serve",
-    "method": "createPendingProcess",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "process",
-    "typeScriptTag": "process",
-    "description": "Creates a new process in the pending state",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "type",
-        "schema": "string",
-        "required": false,
-        "description": "Process type"
-      },
-      {
-        "name": "maxRows",
-        "schema": "integer",
-        "required": false,
-        "description": "Max rows allowed in an imported spreadsheet file"
-      },
-      {
-        "name": "minColumns",
-        "schema": "integer",
-        "required": false,
-        "description": "Min columns required in an imported spreadsheet file"
-      },
-      {
-        "name": "isSync",
-        "schema": "boolean",
-        "required": false,
-        "description": "Whether the created process is sync flow or manual flow"
-      },
-      {
-        "name": "file",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "state",
-        "schema": "object",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/process/{processId}/state",
-    "method": "updateProcessState",
-    "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "process",
-    "typeScriptTag": "process",
-    "description": "Update process state",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "processId",
-        "schema": "string",
-        "required": true,
-        "description": "process id",
-        "example": "PROCESSID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/process/{processId}/resumeWithFile",
-    "method": "resumeWithFile",
-    "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "process",
-    "typeScriptTag": "process",
-    "description": "Resume an asynchronous process",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "processId",
-        "schema": "string",
-        "required": true,
-        "description": "process id",
-        "example": "PROCESSID"
-      },
-      {
-        "name": "file",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/process/{processId}/events",
-    "method": "getEventsByProcessId",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "process",
-    "typeScriptTag": "process",
-    "description": "Get events associated to a particular process",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "processId",
-        "schema": "string",
-        "required": true,
-        "description": "process id",
-        "example": "PROCESSID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
         "description": ""
       },
       {
@@ -19504,6 +19220,290 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "201",
         "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/process/self-serve",
+    "method": "createPendingProcess",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "process",
+    "typeScriptTag": "process",
+    "description": "Creates a new process in the pending state",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "required": false,
+        "description": "Process type"
+      },
+      {
+        "name": "maxRows",
+        "schema": "integer",
+        "required": false,
+        "description": "Max rows allowed in an imported spreadsheet file"
+      },
+      {
+        "name": "minColumns",
+        "schema": "integer",
+        "required": false,
+        "description": "Min columns required in an imported spreadsheet file"
+      },
+      {
+        "name": "isSync",
+        "schema": "boolean",
+        "required": false,
+        "description": "Whether the created process is sync flow or manual flow"
+      },
+      {
+        "name": "file",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "state",
+        "schema": "object",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/process/{processId}/state",
+    "method": "updateProcessState",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "process",
+    "typeScriptTag": "process",
+    "description": "Update process state",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "processId",
+        "schema": "string",
+        "required": true,
+        "description": "process id",
+        "example": "PROCESSID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/process/{processId}/resumeWithFile",
+    "method": "resumeWithFile",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "process",
+    "typeScriptTag": "process",
+    "description": "Resume an asynchronous process",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "processId",
+        "schema": "string",
+        "required": true,
+        "description": "process id",
+        "example": "PROCESSID"
+      },
+      {
+        "name": "file",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/process/{processId}/events",
+    "method": "getEventsByProcessId",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "process",
+    "typeScriptTag": "process",
+    "description": "Get events associated to a particular process",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "processId",
+        "schema": "string",
+        "required": true,
+        "description": "process id",
+        "example": "PROCESSID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/process/{processId}/increment",
+    "method": "incrementProcessStep",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "process",
+    "typeScriptTag": "process",
+    "description": "Increment the step of an asynchronous process",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "processId",
+        "schema": "string",
+        "required": true,
+        "description": "process id",
+        "example": "PROCESSID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/process/{processId}/resume",
+    "method": "resumeProcessWithUserId",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "process",
+    "typeScriptTag": "process",
+    "description": "Resume an asynchronous process",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "processId",
+        "schema": "string",
+        "required": true,
+        "description": "process id",
+        "example": "PROCESSID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
       },
       {
         "statusCode": "400",
@@ -20174,6 +20174,97 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/org/{orgId}/query",
+    "method": "queryTokens",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "query",
+    "typeScriptTag": "query",
+    "description": "Get a list of query tokens",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug",
+        "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "202",
+        "description": "snapshot currently building"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/query",
+    "method": "liveQueryToken",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "query",
+    "typeScriptTag": "query",
+    "description": "Create a live query token",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "TYPE"
+      },
+      {
+        "name": "params",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "202",
+        "description": "snapshot currently building"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
     "url": "/v1/org/{orgId}/query/{queryToken}",
     "method": "expireLiveQuery",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -20251,97 +20342,6 @@ export default function ChartHopTypeScriptSdk() {
       }
     ],
     "responses": [
-      {
-        "statusCode": "202",
-        "description": "snapshot currently building"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/query",
-    "method": "queryTokens",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "query",
-    "typeScriptTag": "query",
-    "description": "Get a list of query tokens",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "202",
-        "description": "snapshot currently building"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/query",
-    "method": "liveQueryToken",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "query",
-    "typeScriptTag": "query",
-    "description": "Create a live query token",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "type",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "TYPE"
-      },
-      {
-        "name": "params",
-        "schema": "object",
-        "required": true,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
       {
         "statusCode": "202",
         "description": "snapshot currently building"
@@ -20658,140 +20658,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/report/{reportId}/chart",
-    "method": "getAll",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "reportChart",
-    "typeScriptTag": "reportChart",
-    "description": "Return all of the charts for a particular report",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "reportId",
-        "schema": "string",
-        "required": true,
-        "description": "Report id",
-        "example": "REPORTID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/report/{reportId}/chart",
-    "method": "createNewChart",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "reportChart",
-    "typeScriptTag": "reportChart",
-    "description": "Create a new chart in a report",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "reportId",
-        "schema": "string",
-        "required": true,
-        "description": "Report id",
-        "example": "REPORTID"
-      },
-      {
-        "name": "label",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "Headcount Report"
-      },
-      {
-        "name": "type",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "TYPE"
-      },
-      {
-        "name": "filter",
-        "schema": "string",
-        "required": false,
-        "description": "",
-        "example": "department='Engineering'"
-      },
-      {
-        "name": "filterOverride",
-        "schema": "boolean",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "query",
-        "schema": "object",
-        "required": true,
-        "description": ""
-      },
-      {
-        "name": "sort",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
-      },
-      {
-        "name": "isAdvancedQueryMode",
-        "schema": "boolean",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "org not found"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/report/chart/{chartId}",
     "method": "removeById",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -20992,6 +20858,140 @@ export default function ChartHopTypeScriptSdk() {
         "schema": "string",
         "required": false,
         "description": "New label"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "org not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/report/{reportId}/chart",
+    "method": "getAll",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "reportChart",
+    "typeScriptTag": "reportChart",
+    "description": "Return all of the charts for a particular report",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "reportId",
+        "schema": "string",
+        "required": true,
+        "description": "Report id",
+        "example": "REPORTID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/report/{reportId}/chart",
+    "method": "createNewChart",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "reportChart",
+    "typeScriptTag": "reportChart",
+    "description": "Create a new chart in a report",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "reportId",
+        "schema": "string",
+        "required": true,
+        "description": "Report id",
+        "example": "REPORTID"
+      },
+      {
+        "name": "label",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "Headcount Report"
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "TYPE"
+      },
+      {
+        "name": "filter",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "department='Engineering'"
+      },
+      {
+        "name": "filterOverride",
+        "schema": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "query",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "sort",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      },
+      {
+        "name": "isAdvancedQueryMode",
+        "schema": "boolean",
+        "required": false,
+        "description": ""
       }
     ],
     "responses": [
@@ -21361,41 +21361,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/report/count",
-    "method": "getCountOfReportsInOrganization",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "report",
-    "typeScriptTag": "report",
-    "description": "Return count of reports in an organization",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/report/{reportId}",
     "method": "removeById",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -21721,6 +21686,41 @@ export default function ChartHopTypeScriptSdk() {
         "schema": "string",
         "required": false,
         "description": "Change grouping id to query (null for primary)"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/report/count",
+    "method": "getCountOfReportsInOrganization",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "report",
+    "typeScriptTag": "report",
+    "description": "Return count of reports in an organization",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
       }
     ],
     "responses": [
@@ -22240,8 +22240,8 @@ export default function ChartHopTypeScriptSdk() {
     ],
     "responses": [
       {
-        "statusCode": "200",
-        "description": "OK"
+        "statusCode": "204",
+        "description": ""
       },
       {
         "statusCode": "400",
@@ -22484,6 +22484,178 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Org identifier (either id or slug)",
         "example": "ORGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/scenario/{scenarioId}/dates",
+    "method": "adjustDates",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "scenario",
+    "typeScriptTag": "scenario",
+    "description": "Adjust the dates of the changes in a scenario",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": true,
+        "description": "Scenario id",
+        "example": "SCENARIOID"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "days",
+        "schema": "integer",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/scenario/{scenarioId}/merge",
+    "method": "mergeIntoPrimaryTimeline",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "scenario",
+    "typeScriptTag": "scenario",
+    "description": "Merge a scenario into the primary timeline",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": true,
+        "description": "Scenario id to merge",
+        "example": "SCENARIOID"
+      },
+      {
+        "name": "skipErrors",
+        "schema": "boolean",
+        "required": false,
+        "description": "If passed, will skip any changes that fail validation"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/scenario/{scenarioId}/combine",
+    "method": "combineScenarios",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "scenario",
+    "typeScriptTag": "scenario",
+    "description": "Combine multiple scenarios into another scenario",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": true,
+        "description": "Scenario id to combine the other scenarios into",
+        "example": "SCENARIOID"
+      },
+      {
+        "name": "scenarioIds",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "copyOnly",
+        "schema": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "useScenarioDateForChanges",
+        "schema": "boolean",
+        "required": false,
+        "description": ""
       }
     ],
     "responses": [
@@ -22902,178 +23074,6 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "404",
         "description": "org not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/scenario/{scenarioId}/dates",
-    "method": "adjustDates",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "scenario",
-    "typeScriptTag": "scenario",
-    "description": "Adjust the dates of the changes in a scenario",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": true,
-        "description": "Scenario id",
-        "example": "SCENARIOID"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "days",
-        "schema": "integer",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/scenario/{scenarioId}/merge",
-    "method": "mergeIntoPrimaryTimeline",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "scenario",
-    "typeScriptTag": "scenario",
-    "description": "Merge a scenario into the primary timeline",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": true,
-        "description": "Scenario id to merge",
-        "example": "SCENARIOID"
-      },
-      {
-        "name": "skipErrors",
-        "schema": "boolean",
-        "required": false,
-        "description": "If passed, will skip any changes that fail validation"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/scenario/{scenarioId}/combine",
-    "method": "combineScenarios",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "scenario",
-    "typeScriptTag": "scenario",
-    "description": "Combine multiple scenarios into another scenario",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": true,
-        "description": "Scenario id to combine the other scenarios into",
-        "example": "SCENARIOID"
-      },
-      {
-        "name": "scenarioIds",
-        "schema": "array",
-        "required": true,
-        "description": ""
-      },
-      {
-        "name": "copyOnly",
-        "schema": "boolean",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "useScenarioDateForChanges",
-        "schema": "boolean",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
       }
     ]
   },
@@ -23498,36 +23498,20 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/stripe/setup-intent",
-    "method": "createSetupIntentSecret",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "stripe",
-    "typeScriptTag": "stripe",
-    "description": "Creates a Stripe setupIntent object and returns the secret for that object",
-    "parameters": [],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/stripe/plan",
-    "method": "getAllPlans",
+    "url": "/v1/stripe/product/{productId}",
+    "method": "getProductById",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "stripe",
     "typeScriptTag": "stripe",
-    "description": "Return all billing plans directly from Stripe (staff only)",
-    "parameters": [],
+    "description": "Return a particular product by its Stripe id",
+    "parameters": [
+      {
+        "name": "productId",
+        "schema": "string",
+        "required": false,
+        "description": "Stripe product id"
+      }
+    ],
     "responses": [
       {
         "statusCode": "200",
@@ -23566,20 +23550,13 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/stripe/product/{productId}",
-    "method": "getProductById",
-    "httpMethod": HttpMethodsEnum.GET,
+    "url": "/v1/stripe/setup-intent",
+    "method": "createSetupIntentSecret",
+    "httpMethod": HttpMethodsEnum.POST,
     "tag": "stripe",
     "typeScriptTag": "stripe",
-    "description": "Return a particular product by its Stripe id",
-    "parameters": [
-      {
-        "name": "productId",
-        "schema": "string",
-        "required": false,
-        "description": "Stripe product id"
-      }
-    ],
+    "description": "Creates a Stripe setupIntent object and returns the secret for that object",
+    "parameters": [],
     "responses": [
       {
         "statusCode": "200",
@@ -23602,6 +23579,29 @@ export default function ChartHopTypeScriptSdk() {
     "tag": "stripe",
     "typeScriptTag": "stripe",
     "description": "Return all products directly from Stripe (staff only)",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/stripe/plan",
+    "method": "getAllPlans",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "stripe",
+    "typeScriptTag": "stripe",
+    "description": "Return all billing plans directly from Stripe (staff only)",
     "parameters": [],
     "responses": [
       {
@@ -23824,6 +23824,48 @@ export default function ChartHopTypeScriptSdk() {
         "name": "file",
         "schema": "string",
         "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "202",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "invalid manifest data"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/table/{tableId}/export",
+    "method": "exportDataToCsv",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "table",
+    "typeScriptTag": "table",
+    "description": "Export table data to CSV file",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "tableId",
+        "schema": "string",
+        "required": true,
+        "description": "Table id or unique name to update",
+        "example": "TABLEID"
       }
     ],
     "responses": [
@@ -24399,48 +24441,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/table/{tableId}/export",
-    "method": "exportDataToCsv",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "table",
-    "typeScriptTag": "table",
-    "description": "Export table data to CSV file",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "tableId",
-        "schema": "string",
-        "required": true,
-        "description": "Table id or unique name to update",
-        "example": "TABLEID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "202",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "invalid manifest data"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/task-config",
     "method": "getAllConfigs",
     "httpMethod": HttpMethodsEnum.GET,
@@ -24706,6 +24706,36 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Task id",
         "example": "TASKID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "default",
+        "description": "unauthorized"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/task/summary/{assessmentId}",
+    "method": "getAssessmentTasksSummary",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "task",
+    "typeScriptTag": "task",
+    "description": "Return the tasks for a given assessment",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "assessmentId",
+        "schema": "string",
+        "required": true,
+        "description": "Assessment id",
+        "example": "ASSESSMENTID"
       }
     ],
     "responses": [
@@ -25078,36 +25108,6 @@ export default function ChartHopTypeScriptSdk() {
         "required": true,
         "description": "Form id",
         "example": "FORMID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "default",
-        "description": "unauthorized"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/task/summary/{assessmentId}",
-    "method": "getAssessmentTasksSummary",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "task",
-    "typeScriptTag": "task",
-    "description": "Return the tasks for a given assessment",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "assessmentId",
-        "schema": "string",
-        "required": true,
-        "description": "Assessment id",
-        "example": "ASSESSMENTID"
       }
     ],
     "responses": [
@@ -26100,178 +26100,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/org/{orgId}/timeoff",
-    "method": "getTimeOff",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "timeoff",
-    "typeScriptTag": "timeoff",
-    "description": "Retrieve time off",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "personId",
-        "schema": "string",
-        "required": false,
-        "description": "Person id to filter by"
-      },
-      {
-        "name": "fromDate",
-        "schema": "string",
-        "required": false,
-        "description": "From date, inclusive"
-      },
-      {
-        "name": "untilDate",
-        "schema": "string",
-        "required": false,
-        "description": "Until date, exclusive"
-      },
-      {
-        "name": "from",
-        "schema": "string",
-        "required": false,
-        "description": "Time off id to start paginating from"
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of results to return"
-      },
-      {
-        "name": "returnAccess",
-        "schema": "string",
-        "required": false,
-        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      },
-      {
-        "statusCode": "500",
-        "description": "Not Implemented"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/timeoff",
-    "method": "createEntry",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "timeoff",
-    "typeScriptTag": "timeoff",
-    "description": "Create a timeOff",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "personId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "externalId",
-        "schema": "string",
-        "required": false,
-        "description": "",
-        "example": "588f7ee98f138b19220041a7"
-      },
-      {
-        "name": "startDate",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "STARTDATE"
-      },
-      {
-        "name": "endDate",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "ENDDATE"
-      },
-      {
-        "name": "days",
-        "schema": "number",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "hours",
-        "schema": "number",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "typeDescription",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "note",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "approval",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      },
-      {
-        "statusCode": "500",
-        "description": "Not Implemented"
-      }
-    ]
-  },
-  {
     "url": "/v1/org/{orgId}/timeoff/{timeOffId}",
     "method": "removeEntry",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -26451,6 +26279,229 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/org/{orgId}/timeoff",
+    "method": "getTimeOff",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "timeoff",
+    "typeScriptTag": "timeoff",
+    "description": "Retrieve time off",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "personId",
+        "schema": "string",
+        "required": false,
+        "description": "Person id to filter by"
+      },
+      {
+        "name": "fromDate",
+        "schema": "string",
+        "required": false,
+        "description": "From date, inclusive"
+      },
+      {
+        "name": "untilDate",
+        "schema": "string",
+        "required": false,
+        "description": "Until date, exclusive"
+      },
+      {
+        "name": "from",
+        "schema": "string",
+        "required": false,
+        "description": "Time off id to start paginating from"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of results to return"
+      },
+      {
+        "name": "returnAccess",
+        "schema": "string",
+        "required": false,
+        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      },
+      {
+        "statusCode": "500",
+        "description": "Not Implemented"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/timeoff",
+    "method": "createEntry",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "timeoff",
+    "typeScriptTag": "timeoff",
+    "description": "Create a timeOff",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "personId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "externalId",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "588f7ee98f138b19220041a7"
+      },
+      {
+        "name": "startDate",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "STARTDATE"
+      },
+      {
+        "name": "endDate",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ENDDATE"
+      },
+      {
+        "name": "days",
+        "schema": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "hours",
+        "schema": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "typeDescription",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "note",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "approval",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      },
+      {
+        "statusCode": "500",
+        "description": "Not Implemented"
+      }
+    ]
+  },
+  {
+    "url": "/v1/org/{orgId}/timeoff/{timeOffId}/reject",
+    "method": "rejectTimeOffRequest",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "timeoff",
+    "typeScriptTag": "timeoff",
+    "description": "Reject a pending time off request",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "timeOffId",
+        "schema": "string",
+        "required": true,
+        "description": "TimeOff id",
+        "example": "TIMEOFFID"
+      },
+      {
+        "name": "message",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      },
+      {
+        "statusCode": "500",
+        "description": "Not Implemented"
+      }
+    ]
+  },
+  {
     "url": "/v1/org/{orgId}/timeoff/request",
     "method": "submitTimeOffRequest",
     "httpMethod": HttpMethodsEnum.POST,
@@ -26528,57 +26579,6 @@ export default function ChartHopTypeScriptSdk() {
     "tag": "timeoff",
     "typeScriptTag": "timeoff",
     "description": "Approve a pending time off request",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "timeOffId",
-        "schema": "string",
-        "required": true,
-        "description": "TimeOff id",
-        "example": "TIMEOFFID"
-      },
-      {
-        "name": "message",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      },
-      {
-        "statusCode": "500",
-        "description": "Not Implemented"
-      }
-    ]
-  },
-  {
-    "url": "/v1/org/{orgId}/timeoff/{timeOffId}/reject",
-    "method": "rejectTimeOffRequest",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "timeoff",
-    "typeScriptTag": "timeoff",
-    "description": "Reject a pending time off request",
     "parameters": [
       {
         "name": "orgId",
@@ -27224,6 +27224,75 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v1/webauthn/verify",
+    "method": "checkExistingKey",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "webauthn",
+    "typeScriptTag": "webauthn",
+    "description": "Check for an existing physical key for this user",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
+    "url": "/v1/webauthn/verify",
+    "method": "verifyPhysicalKeyForUser",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "webauthn",
+    "typeScriptTag": "webauthn",
+    "description": "Check for an existing physical key for this user",
+    "parameters": [
+      {
+        "name": "requestId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "REQUESTID"
+      },
+      {
+        "name": "credentialResponse",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "CREDENTIALRESPONSE"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "permission denied"
+      }
+    ]
+  },
+  {
     "url": "/v1/webauthn/register",
     "method": "verifyPhysicalKeyForUser",
     "httpMethod": HttpMethodsEnum.GET,
@@ -27324,125 +27393,6 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "403",
         "description": "permission denied"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v1/webauthn/verify",
-    "method": "checkExistingKey",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "webauthn",
-    "typeScriptTag": "webauthn",
-    "description": "Check for an existing physical key for this user",
-    "parameters": [],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v1/webauthn/verify",
-    "method": "verifyPhysicalKeyForUser",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "webauthn",
-    "typeScriptTag": "webauthn",
-    "description": "Check for an existing physical key for this user",
-    "parameters": [
-      {
-        "name": "requestId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "REQUESTID"
-      },
-      {
-        "name": "credentialResponse",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "CREDENTIALRESPONSE"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "permission denied"
-      }
-    ]
-  },
-  {
-    "url": "/v2/org/{orgId}/change/{changeId}",
-    "method": "getById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "change",
-    "typeScriptTag": "change",
-    "description": "Return a particular change by id",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "changeId",
-        "schema": "string",
-        "required": true,
-        "description": "Change id",
-        "example": "CHANGEID"
-      },
-      {
-        "name": "fields",
-        "schema": "string",
-        "required": false,
-        "description": "Fields to retrieve, comma-separated"
-      },
-      {
-        "name": "format",
-        "schema": "string",
-        "required": false,
-        "description": "Data format to use; default is json, can also use json-extended or json-readable"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
       },
       {
         "statusCode": "404",
@@ -27574,6 +27524,56 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "401",
         "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v2/org/{orgId}/change/{changeId}",
+    "method": "getById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "change",
+    "typeScriptTag": "change",
+    "description": "Return a particular change by id",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "changeId",
+        "schema": "string",
+        "required": true,
+        "description": "Change id",
+        "example": "CHANGEID"
+      },
+      {
+        "name": "fields",
+        "schema": "string",
+        "required": false,
+        "description": "Fields to retrieve, comma-separated"
+      },
+      {
+        "name": "format",
+        "schema": "string",
+        "required": false,
+        "description": "Data format to use; default is json, can also use json-extended or json-readable"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
       },
       {
         "statusCode": "404",
@@ -27957,6 +27957,117 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
+    "url": "/v2/org/{orgId}/group/orphaned",
+    "method": "findOrphanedGroups",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "group",
+    "typeScriptTag": "group",
+    "description": "Find groups in the organization that have no child groups",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "start",
+        "schema": "string",
+        "required": false,
+        "description": "group id to use as the starting point"
+      },
+      {
+        "name": "groupLimit",
+        "schema": "integer",
+        "required": false,
+        "description": "limit number of groups"
+      },
+      {
+        "name": "jobLimit",
+        "schema": "integer",
+        "required": false,
+        "description": "limit number of jobs"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": false,
+        "description": "scenario id to query"
+      },
+      {
+        "name": "jobFilter",
+        "schema": "string",
+        "required": false,
+        "description": "query string to filter jobs by"
+      },
+      {
+        "name": "groupFilter",
+        "schema": "string",
+        "required": false,
+        "description": "query string to filter group by"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": false,
+        "description": "date to search as of"
+      },
+      {
+        "name": "groupFields",
+        "schema": "string",
+        "required": false,
+        "description": "group fields to return"
+      },
+      {
+        "name": "jobFields",
+        "schema": "string",
+        "required": false,
+        "description": "job/person fields to return"
+      },
+      {
+        "name": "positionFields",
+        "schema": "string",
+        "required": false,
+        "description": "position fields to return"
+      },
+      {
+        "name": "kind",
+        "schema": "string",
+        "required": false,
+        "description": "kind of group to query (legacy/tracked)"
+      },
+      {
+        "name": "format",
+        "schema": "string",
+        "required": false,
+        "description": "Data format to use; default is json, can also use json-extended or json-readable"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      },
+      {
+        "statusCode": "501",
+        "description": "not implemented"
+      }
+    ]
+  },
+  {
     "url": "/v2/org/{orgId}/group/count",
     "method": "getOrganizedGroupCounts",
     "httpMethod": HttpMethodsEnum.GET,
@@ -28153,117 +28264,6 @@ export default function ChartHopTypeScriptSdk() {
       },
       {
         "name": "groupApproxLimit",
-        "schema": "integer",
-        "required": false,
-        "description": "limit number of groups"
-      },
-      {
-        "name": "jobLimit",
-        "schema": "integer",
-        "required": false,
-        "description": "limit number of jobs"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": false,
-        "description": "scenario id to query"
-      },
-      {
-        "name": "jobFilter",
-        "schema": "string",
-        "required": false,
-        "description": "query string to filter jobs by"
-      },
-      {
-        "name": "groupFilter",
-        "schema": "string",
-        "required": false,
-        "description": "query string to filter group by"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": false,
-        "description": "date to search as of"
-      },
-      {
-        "name": "groupFields",
-        "schema": "string",
-        "required": false,
-        "description": "group fields to return"
-      },
-      {
-        "name": "jobFields",
-        "schema": "string",
-        "required": false,
-        "description": "job/person fields to return"
-      },
-      {
-        "name": "positionFields",
-        "schema": "string",
-        "required": false,
-        "description": "position fields to return"
-      },
-      {
-        "name": "kind",
-        "schema": "string",
-        "required": false,
-        "description": "kind of group to query (legacy/tracked)"
-      },
-      {
-        "name": "format",
-        "schema": "string",
-        "required": false,
-        "description": "Data format to use; default is json, can also use json-extended or json-readable"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      },
-      {
-        "statusCode": "501",
-        "description": "not implemented"
-      }
-    ]
-  },
-  {
-    "url": "/v2/org/{orgId}/group/orphaned",
-    "method": "findOrphanedGroups",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "group",
-    "typeScriptTag": "group",
-    "description": "Find groups in the organization that have no child groups",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "start",
-        "schema": "string",
-        "required": false,
-        "description": "group id to use as the starting point"
-      },
-      {
-        "name": "groupLimit",
         "schema": "integer",
         "required": false,
         "description": "limit number of groups"
@@ -28636,148 +28636,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v2/org/{orgId}/job/graph",
-    "method": "getRegionJobsGraph",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "job",
-    "typeScriptTag": "job",
-    "description": "Retrieve jobs from a region of the job graph",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "start",
-        "schema": "string",
-        "required": false,
-        "description": "Job id to use as the starting point for the search"
-      },
-      {
-        "name": "depth",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of levels down to search"
-      },
-      {
-        "name": "approxLimit",
-        "schema": "integer",
-        "required": false,
-        "description": "Number of results to return, approximately"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": false,
-        "description": "Scenario id to query"
-      },
-      {
-        "name": "q",
-        "schema": "string",
-        "required": false,
-        "description": "Query string to filter by"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": false,
-        "description": "Date to search as of"
-      },
-      {
-        "name": "fields",
-        "schema": "string",
-        "required": false,
-        "description": "Fields to retrieve, comma-separated"
-      },
-      {
-        "name": "format",
-        "schema": "string",
-        "required": false,
-        "description": "Data format to use; default is json, can also use json-extended or json-readable"
-      },
-      {
-        "name": "returnAccess",
-        "schema": "string",
-        "required": false,
-        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
-    "url": "/v2/org/{orgId}/job/graph-counts",
-    "method": "getSiblingsAndDirectsMap",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "job",
-    "typeScriptTag": "job",
-    "description": "Returns a map of jobId to their sibling and direct counts and the corresponding ids",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": false,
-        "description": "Scenario id to query"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": false,
-        "description": "Date to search as of"
-      },
-      {
-        "name": "q",
-        "schema": "string",
-        "required": false,
-        "description": "Query string to filter by"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "202",
-        "description": "snapshot currently building"
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "401",
-        "description": "not authorized"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
     "url": "/v2/org/{orgId}/job",
     "method": "findInOrganization",
     "httpMethod": HttpMethodsEnum.GET,
@@ -28914,6 +28772,148 @@ export default function ChartHopTypeScriptSdk() {
         "schema": "string",
         "required": false,
         "description": "Effective date of job creation"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "202",
+        "description": "snapshot currently building"
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v2/org/{orgId}/job/graph",
+    "method": "getRegionJobsGraph",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "job",
+    "typeScriptTag": "job",
+    "description": "Retrieve jobs from a region of the job graph",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "start",
+        "schema": "string",
+        "required": false,
+        "description": "Job id to use as the starting point for the search"
+      },
+      {
+        "name": "depth",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of levels down to search"
+      },
+      {
+        "name": "approxLimit",
+        "schema": "integer",
+        "required": false,
+        "description": "Number of results to return, approximately"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": false,
+        "description": "Scenario id to query"
+      },
+      {
+        "name": "q",
+        "schema": "string",
+        "required": false,
+        "description": "Query string to filter by"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": false,
+        "description": "Date to search as of"
+      },
+      {
+        "name": "fields",
+        "schema": "string",
+        "required": false,
+        "description": "Fields to retrieve, comma-separated"
+      },
+      {
+        "name": "format",
+        "schema": "string",
+        "required": false,
+        "description": "Data format to use; default is json, can also use json-extended or json-readable"
+      },
+      {
+        "name": "returnAccess",
+        "schema": "string",
+        "required": false,
+        "description": "Return access information -- pass a list of actions to check, for example: create,update,delete"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v2/org/{orgId}/job/graph-counts",
+    "method": "getSiblingsAndDirectsMap",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "job",
+    "typeScriptTag": "job",
+    "description": "Returns a map of jobId to their sibling and direct counts and the corresponding ids",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": false,
+        "description": "Scenario id to query"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": false,
+        "description": "Date to search as of"
+      },
+      {
+        "name": "q",
+        "schema": "string",
+        "required": false,
+        "description": "Query string to filter by"
       }
     ],
     "responses": [
@@ -29571,68 +29571,6 @@ export default function ChartHopTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v2/org/{orgId}/position/{positionId}/history",
-    "method": "getHistoryById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "position",
-    "typeScriptTag": "position",
-    "description": "Return the history of a particular position by id",
-    "parameters": [
-      {
-        "name": "orgId",
-        "schema": "string",
-        "required": true,
-        "description": "Org identifier (either id or slug)",
-        "example": "ORGID"
-      },
-      {
-        "name": "positionId",
-        "schema": "string",
-        "required": true,
-        "description": "Position identifier",
-        "example": "POSITIONID"
-      },
-      {
-        "name": "scenarioId",
-        "schema": "string",
-        "required": false,
-        "description": "Scenario id to query"
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": false,
-        "description": "Date"
-      },
-      {
-        "name": "fields",
-        "schema": "string",
-        "required": false,
-        "description": "Fields to retrieve, comma-separated"
-      },
-      {
-        "name": "format",
-        "schema": "string",
-        "required": false,
-        "description": "Data format to use; default is json, can also use json-extended or json-readable"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "bad request"
-      },
-      {
-        "statusCode": "404",
-        "description": "not found"
-      }
-    ]
-  },
-  {
     "url": "/v2/org/{orgId}/position",
     "method": "list",
     "httpMethod": HttpMethodsEnum.GET,
@@ -29755,6 +29693,68 @@ export default function ChartHopTypeScriptSdk() {
       {
         "statusCode": "401",
         "description": "not authorized"
+      },
+      {
+        "statusCode": "404",
+        "description": "not found"
+      }
+    ]
+  },
+  {
+    "url": "/v2/org/{orgId}/position/{positionId}/history",
+    "method": "getHistoryById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "position",
+    "typeScriptTag": "position",
+    "description": "Return the history of a particular position by id",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "Org identifier (either id or slug)",
+        "example": "ORGID"
+      },
+      {
+        "name": "positionId",
+        "schema": "string",
+        "required": true,
+        "description": "Position identifier",
+        "example": "POSITIONID"
+      },
+      {
+        "name": "scenarioId",
+        "schema": "string",
+        "required": false,
+        "description": "Scenario id to query"
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": false,
+        "description": "Date"
+      },
+      {
+        "name": "fields",
+        "schema": "string",
+        "required": false,
+        "description": "Fields to retrieve, comma-separated"
+      },
+      {
+        "name": "format",
+        "schema": "string",
+        "required": false,
+        "description": "Data format to use; default is json, can also use json-extended or json-readable"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "bad request"
       },
       {
         "statusCode": "404",

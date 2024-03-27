@@ -19,7 +19,7 @@ In 2023, we've made significant strides in advancing AI generation tools grounde
       companyKebabCase="jina-ai"
       clientNameCamelCase="jinaAi"
       homepage="jina.ai"
-      lastUpdated={new Date("2024-03-26T08:05:47.803Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/jina-ai/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

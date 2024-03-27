@@ -17,7 +17,7 @@ export default function BreezyHrTypeScriptSdk() {
       companyKebabCase="breezy-hr"
       clientNameCamelCase="breezyHr"
       homepage="breezy.hr"
-      lastUpdated={new Date("2024-03-26T00:42:28.369Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/breezy-hr/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

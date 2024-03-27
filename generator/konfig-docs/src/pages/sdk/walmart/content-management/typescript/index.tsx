@@ -17,7 +17,7 @@ export default function WalmartContentManagementTypeScriptSdk() {
       companyKebabCase="walmart"
       clientNameCamelCase="walmart"
       homepage="developer.walmart.com/"
-      lastUpdated={new Date("2024-03-25T22:13:04.183Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/walmart/content-management/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

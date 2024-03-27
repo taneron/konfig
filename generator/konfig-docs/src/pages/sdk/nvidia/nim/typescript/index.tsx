@@ -17,7 +17,7 @@ export default function NvidiaNimTypeScriptSdk() {
       companyKebabCase="nvidia"
       clientNameCamelCase="nvidiaNim"
       homepage="www.nvidia.com/en-us/ai/"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nvidia/nim/favicon.png"
       contactUrl="https://help.nvidia.com/"
       contactEmail="earth2-support@exchange.nvidia.com"

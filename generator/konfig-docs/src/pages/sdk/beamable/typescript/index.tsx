@@ -17,7 +17,7 @@ export default function BeamableTypeScriptSdk() {
       companyKebabCase="beamable"
       clientNameCamelCase="beamable"
       homepage="beamable.com"
-      lastUpdated={new Date("2024-03-25T21:48:38.473Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/beamable/favicon.png"
       contactUrl="https://api.beamable.com"
       contactEmail="support@beamable.com"

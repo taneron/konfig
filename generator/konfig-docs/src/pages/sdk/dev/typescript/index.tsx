@@ -17,7 +17,7 @@ export default function DevTypeScriptSdk() {
       companyKebabCase="dev"
       clientNameCamelCase="dev"
       homepage="dev.to"
-      lastUpdated={new Date("2024-03-26T19:20:53.107Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Pulze.ai",
-    "numberOfMethods": 13,
+    "numberOfMethods": 3,
     "categories": [
       "ai",
       "developer_tools",
@@ -18,7 +18,7 @@ const sdks = [
   },
   {
     "name": "Pulze.ai",
-    "numberOfMethods": 13,
+    "numberOfMethods": 3,
     "categories": [
       "ai",
       "developer_tools",
@@ -32,7 +32,7 @@ const sdks = [
   },
   {
     "name": "Pulze.ai",
-    "numberOfMethods": 13,
+    "numberOfMethods": 3,
     "categories": [
       "ai",
       "developer_tools",

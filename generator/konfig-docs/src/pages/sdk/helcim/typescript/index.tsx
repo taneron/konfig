@@ -19,7 +19,7 @@ It's the fair & transparent pricing structures that help Helcim build long-term 
       companyKebabCase="helcim"
       clientNameCamelCase="helcim"
       homepage="www.helcim.com/"
-      lastUpdated={new Date("2024-03-24T21:42:09.454Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/helcim/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

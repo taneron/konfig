@@ -17,7 +17,7 @@ export default function SlopeTypeScriptSdk() {
       companyKebabCase="slope"
       clientNameCamelCase="slope"
       homepage="slopepay.com"
-      lastUpdated={new Date("2024-03-26T06:48:26.212Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/slope/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

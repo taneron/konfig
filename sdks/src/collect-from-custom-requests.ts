@@ -988,6 +988,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml",
   },
+  "oysterhr.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.oysterhr.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   // "oracle.com_HumanCapitalManagement": {
   //   doNotCollect: true,
   //   lambda: async () => {

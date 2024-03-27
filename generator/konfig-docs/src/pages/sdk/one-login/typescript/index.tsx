@@ -17,7 +17,7 @@ export default function OneLoginTypeScriptSdk() {
       companyKebabCase="one-login"
       clientNameCamelCase="oneLogin"
       homepage="onelogin.com"
-      lastUpdated={new Date("2024-03-26T21:30:47.444Z")}
+      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onelogin/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
