@@ -21,7 +21,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
       companyKebabCase="pay-pal"
       clientNameCamelCase="payPalCheckout"
       homepage="www.paypal.com/"
-      lastUpdated={new Date("2024-03-27T16:12:23.868Z")}
+      lastUpdated={new Date("2024-03-27T17:05:13.364Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paypal/checkout/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -319,7 +319,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
         "name": "payPalAuthAssertion",
         "schema": "string",
         "required": false,
-        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"/api/rest/requests/#paypal-auth-assertion\">PayPal-Auth-Assertion</a>."
+        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"https://developer.paypal.com/>PayPal-Auth-Assertion</a>."
       },
       {
         "name": "payment_source",
@@ -404,7 +404,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
         "name": "payPalAuthAssertion",
         "schema": "string",
         "required": false,
-        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"/api/rest/requests/#paypal-auth-assertion\">PayPal-Auth-Assertion</a>."
+        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"https://developer.paypal.com/>PayPal-Auth-Assertion</a>."
       },
       {
         "name": "payment_source",
@@ -470,7 +470,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
         "name": "payPalAuthAssertion",
         "schema": "string",
         "required": false,
-        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"/api/rest/requests/#paypal-auth-assertion\">PayPal-Auth-Assertion</a>."
+        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"https://developer.paypal.com/>PayPal-Auth-Assertion</a>."
       }
     ],
     "responses": [

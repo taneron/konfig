@@ -490,17 +490,19 @@ async function main() {
     } else {
       const developerDocumentation = publishData.developerDocumentation ?? "";
       const developerDocumentationUrl = `https://${developerDocumentation}`;
+      // only used for getMethodObjects to avoid embedding relative links in pSEO pages
       const specStringWithoutRelativeLinks = removeRelativeLinks({
         specString: fixedSpecString,
         developerDocumentation: developerDocumentationUrl,
       });
-
       const oas = await parseSpec(specStringWithoutRelativeLinks);
       methods = getMethodObjects(oas);
-      fs.writeFileSync(openapiExamplesFilePath, yaml.dump(oas.spec));
-      numberOfSchemas = getNumberOfSchemas(oas);
+
+      const originalOas = await parseSpec(fixedSpecString);
+      fs.writeFileSync(openapiExamplesFilePath, yaml.dump(originalOas.spec));
+      numberOfSchemas = getNumberOfSchemas(originalOas);
       apiDescription =
-        publishData.apiDescription ?? oas.spec.info?.description ?? "";
+        publishData.apiDescription ?? originalOas.spec.info?.description ?? "";
       saveMethodObjectsCache({
         spec,
         cache: {
