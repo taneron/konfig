@@ -497,6 +497,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://api.na1.insightly.com/v3.1/swagger/docs/v3.1",
   },
+  "keap.com": {
+    type: "GET",
+    url: "https://api.infusionsoft.com/info-service/crm/docs/rest/V1",
+  },
   "hubspot.com_CRM": {
     lambda: async () => {
       const indexUrl = "https://api.hubspot.com/api-catalog-public/v1/apis";

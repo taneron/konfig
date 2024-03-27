@@ -1,0 +1,1721 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/account/profile:
+    get: AccountInfo_getProfileInfo
+    put: AccountInfo_updateProfileInfo
+  /v1/affiliates:
+    get: Affiliate_listAll
+    post: Affiliate_createSingleAffiliate
+  /v1/affiliates/commissions:
+    get: Affiliate_getCommissions
+  /v1/affiliates/model:
+    get: Affiliate_getModel
+  /v1/affiliates/programs:
+    get: Affiliate_listCommissionPrograms
+  /v1/affiliates/redirectlinks:
+    get: Affiliate_getRedirects
+  /v1/affiliates/summaries:
+    get: Affiliate_listSummaries
+  /v1/affiliates/{affiliateId}/clawbacks:
+    get: Affiliate_listClawbacks
+  /v1/affiliates/{affiliateId}/payments:
+    get: Affiliate_listPayments
+  /v1/affiliates/{id}:
+    get: Affiliate_getSingleAffiliate
+  /v1/appointments:
+    get: Appointment_listAllAppointments
+    post: Appointment_createNew
+  /v1/appointments/model:
+    get: Appointment_getModel
+  /v1/appointments/model/customFields:
+    post: Appointment_addCustomField
+  /v1/appointments/{appointmentId}:
+    delete: Appointment_remove
+    get: Appointment_getById
+    patch: Appointment_updateValues
+    put: Appointment_replaceValues
+  /v1/campaigns:
+    get: Campaign_getAllCampaigns
+  /v1/campaigns/goals/{integration}/{callName}:
+    post: Campaign_achieveGoal
+  /v1/campaigns/{campaignId}:
+    get: Campaign_getSingle
+  /v1/campaigns/{campaignId}/sequences/{sequenceId}/contacts:
+    delete: Campaign_removeMultipleFromSequence
+    post: Campaign_addMultipleToSequence
+  /v1/campaigns/{campaignId}/sequences/{sequenceId}/contacts/{contactId}:
+    delete: Campaign_removeContactFromSequence
+    post: Campaign_addToSequence
+  /v1/companies:
+    get: Company_getAll
+    post: Company_createOrUpdateWithOptInReason
+  /v1/companies/model:
+    get: Company_getModel
+  /v1/companies/{companyId}:
+    get: Company_getSingleCompany
+    patch: Company_updateWithOptInReason
+  /v1/contacts:
+    get: Contact_getAll
+    post: Contact_createOrUpdateWithOptInReason
+    put: Contact_createOrUpdate
+  /v1/contacts/model:
+    get: Contact_getModel
+  /v1/contacts/model/customFields:
+    post: Contact_addCustomField
+  /v1/contacts/{contactId}:
+    delete: Contact_deleteContact
+    patch: Contact_updateWithOptInReason
+  /v1/contacts/{contactId}/creditCards:
+    get: Contact_getCreditCards
+    post: Contact_addCreditCard
+  /v1/contacts/{contactId}/emails:
+    get: Contact_listEmails
+    post: Contact_createEmailRecord
+  /v1/contacts/{contactId}/tags:
+    delete: Contact_removeTags
+    get: Contact_getTags
+    post: Contact_applyTags
+  /v1/contacts/{contactId}/tags/{tagId}:
+    delete: Contact_removeAppliedTag
+  /v1/contacts/{contactId}/utm:
+    post: Contact_insertUtmFor
+  /v1/contacts/{id}:
+    get: Contact_getSingle
+  /v1/emailAddresses/{email}:
+    put: EmailAddress_replaceEmail
+  /v1/emails:
+    get: Email_getList
+    post: Email_recordCreation
+  /v1/emails/queue:
+    post: Email_sendToContacts
+  /v1/emails/sync:
+    post: Email_createRecords
+  /v1/emails/unsync:
+    post: Email_batchUnsync
+  /v1/emails/{id}:
+    delete: Email_deleteRecord
+    get: Email_getSingle
+  /v1/files:
+    get: File_getAll
+    post: File_uploadBase64Encoded
+  /v1/files/{fileId}:
+    delete: File_removeById
+    get: File_getData
+    put: File_replaceBase64EncodedFile
+  /v1/hooks:
+    get: RestHooks_listStoredHookSubscriptions
+    post: RestHooks_createHookSubscription
+  /v1/hooks/event_keys:
+    get: RestHooks_listEventTypes
+  /v1/hooks/{key}:
+    delete: RestHooks_deleteHookSubscription
+    get: RestHooks_getHookSubscription
+    put: RestHooks_modifySubscription
+  /v1/hooks/{key}/delayedVerify:
+    post: RestHooks_delayedVerifySubscription
+  /v1/hooks/{key}/verify:
+    post: RestHooks_verifyHookSubscription
+  /v1/locales/countries:
+    get: Locale_listCountries
+  /v1/locales/countries/{countryCode}/provinces:
+    get: Locale_listCountryProvinces
+  /v1/locales/defaultOptions:
+    get: Locale_listDropdownDefaultOptions
+  /v1/merchants:
+    get: Merchant_getAllAccounts
+  /v1/notes:
+    get: Note_listAllNotes
+    post: Note_createNewNote
+  /v1/notes/model:
+    get: Note_getModel
+  /v1/notes/model/customFields:
+    post: Note_addCustomField
+  /v1/notes/{noteId}:
+    delete: Note_deleteNote
+    get: Note_getSingleNote
+    patch: Note_updateNoteValues
+    put: Note_replaceAllValues
+  /v1/oauth/connect/userinfo:
+    get: UserInfo_getInfo
+  /v1/opportunities:
+    get: Opportunity_listAll
+    post: Opportunity_createNewOpportunity
+    put: Opportunity_replaceValues
+  /v1/opportunities/model:
+    get: Opportunity_getModel
+  /v1/opportunities/{opportunityId}:
+    get: Opportunity_getSingleOpportunity
+    patch: Opportunity_updateValues
+  /v1/opportunity/stage_pipeline:
+    get: Opportunity_listStagePipeline
+  /v1/orders:
+    get: ECommerce_getOrderList
+    post: ECommerce_createOrder
+  /v1/orders/model:
+    get: ECommerce_getOrderModel
+  /v1/orders/{orderId}:
+    delete: ECommerce_deleteOrderWithoutPayment
+    get: ECommerce_getOrder
+  /v1/orders/{orderId}/items:
+    post: ECommerce_createOrderItem
+  /v1/orders/{orderId}/items/{orderItemId}:
+    delete: ECommerce_deleteOrderItem
+  /v1/orders/{orderId}/paymentPlan:
+    put: ECommerce_replacePayPlan
+  /v1/orders/{orderId}/payments:
+    get: ECommerce_getOrderPayments
+    post: ECommerce_createPaymentRecord
+  /v1/orders/{orderId}/transactions:
+    get: ECommerce_getOrderTransactions
+  /v1/products:
+    get: Product_getAllProducts
+    post: Product_createNewProduct
+  /v1/products/sync:
+    get: Product_getSyncedProducts
+  /v1/products/{productId}:
+    delete: Product_deleteSubscription
+    get: Product_getById
+    patch: Product_updateValues
+  /v1/products/{productId}/image:
+    delete: Product_deleteImage
+    post: Product_uploadImage
+  /v1/products/{productId}/subscriptions:
+    post: Product_subscribeNew
+  /v1/products/{productId}/subscriptions/{subscriptionId}:
+    delete: Product_deleteSubscription
+    get: Product_subscriptionRetrieve
+  /v1/setting/application/configuration:
+    get: Setting_getConfiguration
+  /v1/setting/application/enabled:
+    get: Setting_getApplicationStatus
+  /v1/setting/contact/optionTypes:
+    get: Setting_listContactTypes
+  /v1/subscriptions:
+    get: ECommerce_listSubscriptions
+    post: ECommerce_createSubscription
+  /v1/subscriptions/model:
+    get: ECommerce_getSubscriptionModel
+  /v1/tags:
+    get: Tags_list
+    post: Tags_createNewTag
+  /v1/tags/categories:
+    post: Tags_createCategory
+  /v1/tags/{id}:
+    get: Tags_getTag
+  /v1/tags/{tagId}/companies:
+    get: Tags_listCompanies
+  /v1/tags/{tagId}/contacts:
+    delete: Tags_removeFromContacts
+    get: Tags_listTaggedContacts
+    post: Tags_applyToContacts
+  /v1/tags/{tagId}/contacts/{contactId}:
+    delete: Tags_removeFromContact
+  /v1/tasks:
+    get: Task_getAll
+    post: Task_createNewTask
+  /v1/tasks/model:
+    get: Task_getModel
+  /v1/tasks/model/customFields:
+    post: Task_addCustomField
+  /v1/tasks/search:
+    get: Task_getByCriteria
+  /v1/tasks/{taskId}:
+    delete: Task_removeTask
+    get: Task_getSingleTask
+    patch: Task_updateByValues
+    put: Task_replaceTaskValues
+  /v1/transactions:
+    get: ECommerce_listTransactions
+  /v1/transactions/{transactionId}:
+    get: ECommerce_getTransaction
+  /v1/users:
+    get: Users_getAll
+    post: Users_createNewUser
+  /v1/users/{userId}/signature:
+    get: Users_getEmailSignature
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/account/profile:
+    put:
+      application/json: AccountInfoUpdateProfileInfoRequest
+  /v1/affiliates:
+    post:
+      application/json: AffiliateCreateSingleAffiliateRequest
+  /v1/appointments:
+    post:
+      application/json: AppointmentCreateNewRequest
+  /v1/appointments/model/customFields:
+    post:
+      application/json: AppointmentAddCustomFieldRequest
+  /v1/appointments/{appointmentId}:
+    patch:
+      application/json: AppointmentUpdateValuesRequest
+    put:
+      application/json: AppointmentReplaceValuesRequest
+  /v1/campaigns/goals/{integration}/{callName}:
+    post:
+      application/json: CampaignAchieveGoalRequest
+  /v1/campaigns/{campaignId}/sequences/{sequenceId}/contacts:
+    delete:
+      application/json: CampaignRemoveMultipleFromSequenceRequest
+    post:
+      application/json: CampaignAddMultipleToSequenceRequest
+  /v1/companies:
+    post:
+      application/json: CompanyCreateOrUpdateWithOptInReasonRequest
+  /v1/companies/{companyId}:
+    patch:
+      application/json: CompanyUpdateWithOptInReasonRequest
+  /v1/contacts:
+    post:
+      application/json: ContactCreateOrUpdateWithOptInReasonRequest
+    put:
+      application/json: ContactCreateOrUpdateRequest
+  /v1/contacts/model/customFields:
+    post:
+      application/json: ContactAddCustomFieldRequest
+  /v1/contacts/{contactId}:
+    patch:
+      application/json: ContactUpdateWithOptInReasonRequest
+  /v1/contacts/{contactId}/creditCards:
+    post:
+      application/json: ContactAddCreditCardRequest
+  /v1/contacts/{contactId}/emails:
+    post:
+      application/json: ContactCreateEmailRecordRequest
+  /v1/contacts/{contactId}/tags:
+    post:
+      application/json: ContactApplyTagsRequest
+  /v1/contacts/{contactId}/utm:
+    post:
+      application/json: ContactInsertUtmForRequest
+  /v1/emailAddresses/{email}:
+    put:
+      application/json: EmailAddressReplaceEmailRequest
+  /v1/emails:
+    post:
+      application/json: EmailRecordCreationRequest
+  /v1/emails/queue:
+    post:
+      application/json: EmailSendToContactsRequest
+  /v1/emails/sync:
+    post:
+      application/json: EmailCreateRecordsRequest
+  /v1/emails/unsync:
+    post:
+      application/json: EmailBatchUnsyncRequest
+  /v1/files:
+    post:
+      application/json: FileUploadBase64EncodedRequest
+  /v1/files/{fileId}:
+    put:
+      application/json: FileReplaceBase64EncodedFileRequest
+  /v1/hooks:
+    post:
+      application/json: RestHooksCreateHookSubscriptionRequest
+  /v1/hooks/{key}:
+    put:
+      application/json: RestHooksModifySubscriptionRequest
+  /v1/notes:
+    post:
+      application/json: NoteCreateNewNoteRequest
+  /v1/notes/model/customFields:
+    post:
+      application/json: NoteAddCustomFieldRequest
+  /v1/notes/{noteId}:
+    patch:
+      application/json: NoteUpdateNoteValuesRequest
+    put:
+      application/json: NoteReplaceAllValuesRequest
+  /v1/opportunities:
+    post:
+      application/json: OpportunityCreateNewOpportunityRequest
+    put:
+      application/json: OpportunityReplaceValuesRequest
+  /v1/orders:
+    post:
+      application/json: ECommerceCreateOrderRequest
+  /v1/orders/{orderId}/items:
+    post:
+      application/json: ECommerceCreateOrderItemRequest
+  /v1/orders/{orderId}/paymentPlan:
+    put:
+      application/json: ECommerceReplacePayPlanRequest
+  /v1/orders/{orderId}/payments:
+    post:
+      application/json: ECommerceCreatePaymentRecordRequest
+  /v1/products:
+    post:
+      application/json: ProductCreateNewProductRequest
+  /v1/products/{productId}:
+    patch:
+      application/json: ProductUpdateValuesRequest
+  /v1/products/{productId}/image:
+    post:
+      application/json: ProductUploadImageRequest
+  /v1/products/{productId}/subscriptions:
+    post:
+      application/json: ProductSubscribeNewRequest
+  /v1/subscriptions:
+    post:
+      application/json: ECommerceCreateSubscriptionRequest
+  /v1/tags:
+    post:
+      application/json: TagsCreateNewTagRequest
+  /v1/tags/categories:
+    post:
+      application/json: TagsCreateCategoryRequest
+  /v1/tags/{tagId}/contacts:
+    post:
+      application/json: TagsApplyToContactsRequest
+  /v1/tasks:
+    post:
+      application/json: TaskCreateNewTaskRequest
+  /v1/tasks/model/customFields:
+    post:
+      application/json: TaskAddCustomFieldRequest
+  /v1/tasks/{taskId}:
+    patch:
+      application/json: TaskUpdateByValuesRequest
+    put:
+      application/json: TaskReplaceTaskValuesRequest
+  /v1/users:
+    post:
+      application/json: UsersCreateNewUserRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/account/profile:
+    get:
+      '200':
+        application/json: AccountInfoGetProfileInfoResponse
+      '401':
+        application/json: AccountInfoGetProfileInfo401Response
+      '403':
+        application/json: AccountInfoGetProfileInfo403Response
+      '404':
+        application/json: AccountInfoGetProfileInfo404Response
+    put:
+      '200':
+        application/json: AccountInfoUpdateProfileInfoResponse
+      '401':
+        application/json: AccountInfoUpdateProfileInfo401Response
+      '403':
+        application/json: AccountInfoUpdateProfileInfo403Response
+      '404':
+        application/json: AccountInfoUpdateProfileInfo404Response
+  /v1/affiliates:
+    get:
+      '200':
+        application/json: AffiliateListAllResponse
+      '401':
+        application/json: AffiliateListAll401Response
+      '403':
+        application/json: AffiliateListAll403Response
+      '404':
+        application/json: AffiliateListAll404Response
+    post:
+      '201':
+        application/json: AffiliateCreateSingleAffiliateResponse
+      '401':
+        application/json: AffiliateCreateSingleAffiliate401Response
+      '403':
+        application/json: AffiliateCreateSingleAffiliate403Response
+  /v1/affiliates/commissions:
+    get:
+      '200':
+        application/json: AffiliateGetCommissionsResponse
+      '401':
+        application/json: AffiliateGetCommissions401Response
+      '403':
+        application/json: AffiliateGetCommissions403Response
+      '404':
+        application/json: AffiliateGetCommissions404Response
+  /v1/affiliates/model:
+    get:
+      '200':
+        application/json: AffiliateGetModelResponse
+      '401':
+        application/json: AffiliateGetModel401Response
+      '403':
+        application/json: AffiliateGetModel403Response
+      '404':
+        application/json: AffiliateGetModel404Response
+  /v1/affiliates/programs:
+    get:
+      '200':
+        application/json: AffiliateListCommissionProgramsResponse
+      '401':
+        application/json: AffiliateListCommissionPrograms401Response
+      '403':
+        application/json: AffiliateListCommissionPrograms403Response
+      '404':
+        application/json: AffiliateListCommissionPrograms404Response
+  /v1/affiliates/redirectlinks:
+    get:
+      '200':
+        application/json: AffiliateGetRedirectsResponse
+      '401':
+        application/json: AffiliateGetRedirects401Response
+      '403':
+        application/json: AffiliateGetRedirects403Response
+      '404':
+        application/json: AffiliateGetRedirects404Response
+  /v1/affiliates/summaries:
+    get:
+      '200':
+        application/json: AffiliateListSummariesResponse
+      '401':
+        application/json: AffiliateListSummaries401Response
+      '403':
+        application/json: AffiliateListSummaries403Response
+      '404':
+        application/json: AffiliateListSummaries404Response
+  /v1/affiliates/{affiliateId}/clawbacks:
+    get:
+      '200':
+        application/json: AffiliateListClawbacksResponse
+      '401':
+        application/json: AffiliateListClawbacks401Response
+      '403':
+        application/json: AffiliateListClawbacks403Response
+      '404':
+        application/json: AffiliateListClawbacks404Response
+  /v1/affiliates/{affiliateId}/payments:
+    get:
+      '200':
+        application/json: AffiliateListPaymentsResponse
+      '401':
+        application/json: AffiliateListPayments401Response
+      '403':
+        application/json: AffiliateListPayments403Response
+      '404':
+        application/json: AffiliateListPayments404Response
+  /v1/affiliates/{id}:
+    get:
+      '200':
+        application/json: AffiliateGetSingleAffiliateResponse
+      '401':
+        application/json: AffiliateGetSingleAffiliate401Response
+      '403':
+        application/json: AffiliateGetSingleAffiliate403Response
+      '404':
+        application/json: AffiliateGetSingleAffiliate404Response
+  /v1/appointments:
+    get:
+      '200':
+        application/json: AppointmentListAllAppointmentsResponse
+      '401':
+        application/json: AppointmentListAllAppointments401Response
+      '403':
+        application/json: AppointmentListAllAppointments403Response
+      '404':
+        application/json: AppointmentListAllAppointments404Response
+    post:
+      '201':
+        application/json: AppointmentCreateNewResponse
+      '401':
+        application/json: AppointmentCreateNew401Response
+      '403':
+        application/json: AppointmentCreateNew403Response
+  /v1/appointments/model:
+    get:
+      '200':
+        application/json: AppointmentGetModelResponse
+      '401':
+        application/json: AppointmentGetModel401Response
+      '403':
+        application/json: AppointmentGetModel403Response
+      '404':
+        application/json: AppointmentGetModel404Response
+  /v1/appointments/model/customFields:
+    post:
+      '201':
+        application/json: AppointmentAddCustomFieldResponse
+      '401':
+        application/json: AppointmentAddCustomField401Response
+      '403':
+        application/json: AppointmentAddCustomField403Response
+  /v1/appointments/{appointmentId}:
+    delete:
+      '401':
+        application/json: AppointmentRemoveResponse
+      '403':
+        application/json: AppointmentRemove403Response
+      '404':
+        application/json: AppointmentRemove404Response
+    get:
+      '200':
+        application/json: AppointmentGetByIdResponse
+      '401':
+        application/json: AppointmentGetById401Response
+      '403':
+        application/json: AppointmentGetById403Response
+      '404':
+        application/json: AppointmentGetById404Response
+    patch:
+      '200':
+        application/json: AppointmentUpdateValuesResponse
+      '401':
+        application/json: AppointmentUpdateValues401Response
+      '403':
+        application/json: AppointmentUpdateValues403Response
+      '404':
+        application/json: AppointmentUpdateValues404Response
+    put:
+      '200':
+        application/json: AppointmentReplaceValuesResponse
+      '401':
+        application/json: AppointmentReplaceValues401Response
+      '403':
+        application/json: AppointmentReplaceValues403Response
+      '404':
+        application/json: AppointmentReplaceValues404Response
+  /v1/campaigns:
+    get:
+      '200':
+        application/json: CampaignGetAllCampaignsResponse
+      '401':
+        application/json: CampaignGetAllCampaigns401Response
+      '403':
+        application/json: CampaignGetAllCampaigns403Response
+      '404':
+        application/json: CampaignGetAllCampaigns404Response
+  /v1/campaigns/goals/{integration}/{callName}:
+    post:
+      '201':
+        application/json: CampaignAchieveGoalResponse
+      '401':
+        application/json: CampaignAchieveGoal401Response
+      '403':
+        application/json: CampaignAchieveGoal403Response
+  /v1/campaigns/{campaignId}:
+    get:
+      '200':
+        application/json: CampaignGetSingleResponse
+      '401':
+        application/json: CampaignGetSingle401Response
+      '403':
+        application/json: CampaignGetSingle403Response
+      '404':
+        application/json: CampaignGetSingle404Response
+  /v1/campaigns/{campaignId}/sequences/{sequenceId}/contacts:
+    delete:
+      '401':
+        application/json: CampaignRemoveMultipleFromSequenceResponse
+      '403':
+        application/json: CampaignRemoveMultipleFromSequence403Response
+      '404':
+        application/json: CampaignRemoveMultipleFromSequence404Response
+    post:
+      '200':
+        application/json: CampaignAddMultipleToSequenceResponse
+      '401':
+        application/json: CampaignAddMultipleToSequence401Response
+      '403':
+        application/json: CampaignAddMultipleToSequence403Response
+  /v1/campaigns/{campaignId}/sequences/{sequenceId}/contacts/{contactId}:
+    delete:
+      '401':
+        application/json: CampaignRemoveContactFromSequenceResponse
+      '403':
+        application/json: CampaignRemoveContactFromSequence403Response
+      '404':
+        application/json: CampaignRemoveContactFromSequence404Response
+    post:
+      '401':
+        application/json: CampaignAddToSequenceResponse
+      '403':
+        application/json: CampaignAddToSequence403Response
+  /v1/companies:
+    get:
+      '200':
+        application/json: CompanyGetAllResponse
+      '401':
+        application/json: CompanyGetAll401Response
+      '403':
+        application/json: CompanyGetAll403Response
+      '404':
+        application/json: CompanyGetAll404Response
+    post:
+      '201':
+        application/json: CompanyCreateOrUpdateWithOptInReasonResponse
+      '401':
+        application/json: CompanyCreateOrUpdateWithOptInReason401Response
+      '403':
+        application/json: CompanyCreateOrUpdateWithOptInReason403Response
+  /v1/companies/model:
+    get:
+      '200':
+        application/json: CompanyGetModelResponse
+      '401':
+        application/json: CompanyGetModel401Response
+      '403':
+        application/json: CompanyGetModel403Response
+      '404':
+        application/json: CompanyGetModel404Response
+  /v1/companies/{companyId}:
+    get:
+      '200':
+        application/json: CompanyGetSingleCompanyResponse
+      '401':
+        application/json: CompanyGetSingleCompany401Response
+      '403':
+        application/json: CompanyGetSingleCompany403Response
+      '404':
+        application/json: CompanyGetSingleCompany404Response
+    patch:
+      '200':
+        application/json: CompanyUpdateWithOptInReasonResponse
+      '401':
+        application/json: CompanyUpdateWithOptInReason401Response
+      '403':
+        application/json: CompanyUpdateWithOptInReason403Response
+      '404':
+        application/json: CompanyUpdateWithOptInReason404Response
+  /v1/contacts:
+    get:
+      '200':
+        application/json: ContactGetAllResponse
+      '401':
+        application/json: ContactGetAll401Response
+      '403':
+        application/json: ContactGetAll403Response
+      '404':
+        application/json: ContactGetAll404Response
+    post:
+      '201':
+        application/json: ContactCreateOrUpdateWithOptInReasonResponse
+      '401':
+        application/json: ContactCreateOrUpdateWithOptInReason401Response
+      '403':
+        application/json: ContactCreateOrUpdateWithOptInReason403Response
+    put:
+      '200':
+        application/json: ContactCreateOrUpdateResponse
+      '401':
+        application/json: ContactCreateOrUpdate401Response
+      '403':
+        application/json: ContactCreateOrUpdate403Response
+      '404':
+        application/json: ContactCreateOrUpdate404Response
+  /v1/contacts/model:
+    get:
+      '200':
+        application/json: ContactGetModelResponse
+      '401':
+        application/json: ContactGetModel401Response
+      '403':
+        application/json: ContactGetModel403Response
+      '404':
+        application/json: ContactGetModel404Response
+  /v1/contacts/model/customFields:
+    post:
+      '201':
+        application/json: ContactAddCustomFieldResponse
+      '401':
+        application/json: ContactAddCustomField401Response
+      '403':
+        application/json: ContactAddCustomField403Response
+  /v1/contacts/{contactId}:
+    delete:
+      '401':
+        application/json: ContactDeleteContactResponse
+      '403':
+        application/json: ContactDeleteContact403Response
+      '404':
+        application/json: ContactDeleteContact404Response
+    patch:
+      '200':
+        application/json: ContactUpdateWithOptInReasonResponse
+      '401':
+        application/json: ContactUpdateWithOptInReason401Response
+      '403':
+        application/json: ContactUpdateWithOptInReason403Response
+      '404':
+        application/json: ContactUpdateWithOptInReason404Response
+  /v1/contacts/{contactId}/creditCards:
+    get:
+      '200':
+        application/json: ContactGetCreditCardsResponse
+      '401':
+        application/json: ContactGetCreditCards401Response
+      '403':
+        application/json: ContactGetCreditCards403Response
+      '404':
+        application/json: ContactGetCreditCards404Response
+    post:
+      '201':
+        application/json: ContactAddCreditCardResponse
+      '401':
+        application/json: ContactAddCreditCard401Response
+      '403':
+        application/json: ContactAddCreditCard403Response
+  /v1/contacts/{contactId}/emails:
+    get:
+      '200':
+        application/json: ContactListEmailsResponse
+      '401':
+        application/json: ContactListEmails401Response
+      '403':
+        application/json: ContactListEmails403Response
+      '404':
+        application/json: ContactListEmails404Response
+    post:
+      '201':
+        application/json: ContactCreateEmailRecordResponse
+      '401':
+        application/json: ContactCreateEmailRecord401Response
+      '403':
+        application/json: ContactCreateEmailRecord403Response
+  /v1/contacts/{contactId}/tags:
+    delete:
+      '401':
+        application/json: ContactRemoveTagsResponse
+      '403':
+        application/json: ContactRemoveTags403Response
+      '404':
+        application/json: ContactRemoveTags404Response
+    get:
+      '200':
+        application/json: ContactGetTagsResponse
+      '401':
+        application/json: ContactGetTags401Response
+      '403':
+        application/json: ContactGetTags403Response
+      '404':
+        application/json: ContactGetTags404Response
+    post:
+      '200':
+        application/json: ContactApplyTagsResponse
+      '401':
+        application/json: ContactApplyTags401Response
+      '403':
+        application/json: ContactApplyTags403Response
+  /v1/contacts/{contactId}/tags/{tagId}:
+    delete:
+      '401':
+        application/json: ContactRemoveAppliedTagResponse
+      '403':
+        application/json: ContactRemoveAppliedTag403Response
+      '404':
+        application/json: ContactRemoveAppliedTag404Response
+  /v1/contacts/{contactId}/utm:
+    post:
+      '201':
+        application/json: ContactInsertUtmForResponse
+      '401':
+        application/json: ContactInsertUtmFor401Response
+      '403':
+        application/json: ContactInsertUtmFor403Response
+  /v1/contacts/{id}:
+    get:
+      '200':
+        application/json: ContactGetSingleResponse
+      '401':
+        application/json: ContactGetSingle401Response
+      '403':
+        application/json: ContactGetSingle403Response
+      '404':
+        application/json: ContactGetSingle404Response
+  /v1/emailAddresses/{email}:
+    put:
+      '200':
+        application/json: EmailAddressReplaceEmailResponse
+      '401':
+        application/json: EmailAddressReplaceEmail401Response
+      '403':
+        application/json: EmailAddressReplaceEmail403Response
+      '404':
+        application/json: EmailAddressReplaceEmail404Response
+  /v1/emails:
+    get:
+      '200':
+        application/json: EmailGetListResponse
+      '401':
+        application/json: EmailGetList401Response
+      '403':
+        application/json: EmailGetList403Response
+      '404':
+        application/json: EmailGetList404Response
+    post:
+      '201':
+        application/json: EmailRecordCreationResponse
+      '401':
+        application/json: EmailRecordCreation401Response
+      '403':
+        application/json: EmailRecordCreation403Response
+  /v1/emails/queue:
+    post:
+      '401':
+        application/json: EmailSendToContactsResponse
+      '403':
+        application/json: EmailSendToContacts403Response
+  /v1/emails/sync:
+    post:
+      '201':
+        application/json: EmailCreateRecordsResponse
+      '401':
+        application/json: EmailCreateRecords401Response
+      '403':
+        application/json: EmailCreateRecords403Response
+  /v1/emails/unsync:
+    post:
+      '200':
+        application/json: EmailBatchUnsyncResponse
+      '401':
+        application/json: EmailBatchUnsync401Response
+      '403':
+        application/json: EmailBatchUnsync403Response
+  /v1/emails/{id}:
+    delete:
+      '401':
+        application/json: EmailDeleteRecordResponse
+      '403':
+        application/json: EmailDeleteRecord403Response
+      '404':
+        application/json: EmailDeleteRecord404Response
+    get:
+      '200':
+        application/json: EmailGetSingleResponse
+      '401':
+        application/json: EmailGetSingle401Response
+      '403':
+        application/json: EmailGetSingle403Response
+      '404':
+        application/json: EmailGetSingle404Response
+  /v1/files:
+    get:
+      '200':
+        application/json: FileGetAllResponse
+      '401':
+        application/json: FileGetAll401Response
+      '403':
+        application/json: FileGetAll403Response
+      '404':
+        application/json: FileGetAll404Response
+    post:
+      '200':
+        application/json: FileUploadBase64EncodedResponse
+      '401':
+        application/json: FileUploadBase64Encoded401Response
+      '403':
+        application/json: FileUploadBase64Encoded403Response
+  /v1/files/{fileId}:
+    delete:
+      '401':
+        application/json: FileRemoveByIdResponse
+      '403':
+        application/json: FileRemoveById403Response
+      '404':
+        application/json: FileRemoveById404Response
+    get:
+      '200':
+        application/json: FileGetDataResponse
+      '401':
+        application/json: FileGetData401Response
+      '403':
+        application/json: FileGetData403Response
+      '404':
+        application/json: FileGetData404Response
+    put:
+      '200':
+        application/json: FileReplaceBase64EncodedFileResponse
+      '401':
+        application/json: FileReplaceBase64EncodedFile401Response
+      '403':
+        application/json: FileReplaceBase64EncodedFile403Response
+      '404':
+        application/json: FileReplaceBase64EncodedFile404Response
+  /v1/hooks:
+    get:
+      '200':
+        application/json: RestHooksListStoredHookSubscriptionsResponse
+      '401':
+        application/json: RestHooksListStoredHookSubscriptions401Response
+      '403':
+        application/json: RestHooksListStoredHookSubscriptions403Response
+      '404':
+        application/json: RestHooksListStoredHookSubscriptions404Response
+    post:
+      '200':
+        application/json: RestHooksCreateHookSubscriptionResponse
+      '401':
+        application/json: RestHooksCreateHookSubscription401Response
+      '403':
+        application/json: RestHooksCreateHookSubscription403Response
+  /v1/hooks/event_keys:
+    get:
+      '200':
+        application/json: RestHooksListEventTypesResponse
+      '401':
+        application/json: RestHooksListEventTypes401Response
+      '403':
+        application/json: RestHooksListEventTypes403Response
+      '404':
+        application/json: RestHooksListEventTypes404Response
+  /v1/hooks/{key}:
+    delete:
+      '401':
+        application/json: RestHooksDeleteHookSubscriptionResponse
+      '403':
+        application/json: RestHooksDeleteHookSubscription403Response
+      '404':
+        application/json: RestHooksDeleteHookSubscription404Response
+    get:
+      '200':
+        application/json: RestHooksGetHookSubscriptionResponse
+      '401':
+        application/json: RestHooksGetHookSubscription401Response
+      '403':
+        application/json: RestHooksGetHookSubscription403Response
+      '404':
+        application/json: RestHooksGetHookSubscription404Response
+    put:
+      '200':
+        application/json: RestHooksModifySubscriptionResponse
+      '401':
+        application/json: RestHooksModifySubscription401Response
+      '403':
+        application/json: RestHooksModifySubscription403Response
+      '404':
+        application/json: RestHooksModifySubscription404Response
+  /v1/hooks/{key}/delayedVerify:
+    post:
+      '200':
+        application/json: RestHooksDelayedVerifySubscriptionResponse
+      '401':
+        application/json: RestHooksDelayedVerifySubscription401Response
+      '403':
+        application/json: RestHooksDelayedVerifySubscription403Response
+  /v1/hooks/{key}/verify:
+    post:
+      '200':
+        application/json: RestHooksVerifyHookSubscriptionResponse
+      '401':
+        application/json: RestHooksVerifyHookSubscription401Response
+      '403':
+        application/json: RestHooksVerifyHookSubscription403Response
+  /v1/locales/countries:
+    get:
+      '200':
+        application/json: LocaleListCountriesResponse
+      '401':
+        application/json: LocaleListCountries401Response
+      '403':
+        application/json: LocaleListCountries403Response
+      '404':
+        application/json: LocaleListCountries404Response
+  /v1/locales/countries/{countryCode}/provinces:
+    get:
+      '200':
+        application/json: LocaleListCountryProvincesResponse
+      '401':
+        application/json: LocaleListCountryProvinces401Response
+      '403':
+        application/json: LocaleListCountryProvinces403Response
+      '404':
+        application/json: LocaleListCountryProvinces404Response
+  /v1/locales/defaultOptions:
+    get:
+      '200':
+        application/json: LocaleListDropdownDefaultOptionsResponse
+      '401':
+        application/json: LocaleListDropdownDefaultOptions401Response
+      '403':
+        application/json: LocaleListDropdownDefaultOptions403Response
+      '404':
+        application/json: LocaleListDropdownDefaultOptions404Response
+  /v1/merchants:
+    get:
+      '200':
+        application/json: MerchantGetAllAccountsResponse
+      '401':
+        application/json: MerchantGetAllAccounts401Response
+      '403':
+        application/json: MerchantGetAllAccounts403Response
+      '404':
+        application/json: MerchantGetAllAccounts404Response
+  /v1/notes:
+    get:
+      '200':
+        application/json: NoteListAllNotesResponse
+      '401':
+        application/json: NoteListAllNotes401Response
+      '403':
+        application/json: NoteListAllNotes403Response
+      '404':
+        application/json: NoteListAllNotes404Response
+    post:
+      '201':
+        application/json: NoteCreateNewNoteResponse
+      '401':
+        application/json: NoteCreateNewNote401Response
+      '403':
+        application/json: NoteCreateNewNote403Response
+  /v1/notes/model:
+    get:
+      '200':
+        application/json: NoteGetModelResponse
+      '401':
+        application/json: NoteGetModel401Response
+      '403':
+        application/json: NoteGetModel403Response
+      '404':
+        application/json: NoteGetModel404Response
+  /v1/notes/model/customFields:
+    post:
+      '201':
+        application/json: NoteAddCustomFieldResponse
+      '401':
+        application/json: NoteAddCustomField401Response
+      '403':
+        application/json: NoteAddCustomField403Response
+  /v1/notes/{noteId}:
+    delete:
+      '401':
+        application/json: NoteDeleteNoteResponse
+      '403':
+        application/json: NoteDeleteNote403Response
+      '404':
+        application/json: NoteDeleteNote404Response
+    get:
+      '200':
+        application/json: NoteGetSingleNoteResponse
+      '401':
+        application/json: NoteGetSingleNote401Response
+      '403':
+        application/json: NoteGetSingleNote403Response
+      '404':
+        application/json: NoteGetSingleNote404Response
+    patch:
+      '200':
+        application/json: NoteUpdateNoteValuesResponse
+      '401':
+        application/json: NoteUpdateNoteValues401Response
+      '403':
+        application/json: NoteUpdateNoteValues403Response
+      '404':
+        application/json: NoteUpdateNoteValues404Response
+    put:
+      '200':
+        application/json: NoteReplaceAllValuesResponse
+      '401':
+        application/json: NoteReplaceAllValues401Response
+      '403':
+        application/json: NoteReplaceAllValues403Response
+      '404':
+        application/json: NoteReplaceAllValues404Response
+  /v1/oauth/connect/userinfo:
+    get:
+      '200':
+        application/json: UserInfoGetInfoResponse
+      '401':
+        application/json: UserInfoGetInfo401Response
+      '403':
+        application/json: UserInfoGetInfo403Response
+      '404':
+        application/json: UserInfoGetInfo404Response
+  /v1/opportunities:
+    get:
+      '200':
+        application/json: OpportunityListAllResponse
+      '401':
+        application/json: OpportunityListAll401Response
+      '403':
+        application/json: OpportunityListAll403Response
+      '404':
+        application/json: OpportunityListAll404Response
+    post:
+      '200':
+        application/json: OpportunityCreateNewOpportunityResponse
+      '401':
+        application/json: OpportunityCreateNewOpportunity401Response
+      '403':
+        application/json: OpportunityCreateNewOpportunity403Response
+    put:
+      '200':
+        application/json: OpportunityReplaceValuesResponse
+      '401':
+        application/json: OpportunityReplaceValues401Response
+      '403':
+        application/json: OpportunityReplaceValues403Response
+      '404':
+        application/json: OpportunityReplaceValues404Response
+  /v1/opportunities/model:
+    get:
+      '200':
+        application/json: OpportunityGetModelResponse
+      '401':
+        application/json: OpportunityGetModel401Response
+      '403':
+        application/json: OpportunityGetModel403Response
+      '404':
+        application/json: OpportunityGetModel404Response
+  /v1/opportunities/{opportunityId}:
+    get:
+      '200':
+        application/json: OpportunityGetSingleOpportunityResponse
+      '401':
+        application/json: OpportunityGetSingleOpportunity401Response
+      '403':
+        application/json: OpportunityGetSingleOpportunity403Response
+      '404':
+        application/json: OpportunityGetSingleOpportunity404Response
+    patch:
+      '200':
+        application/json: OpportunityUpdateValuesResponse
+      '401':
+        application/json: OpportunityUpdateValues401Response
+      '403':
+        application/json: OpportunityUpdateValues403Response
+      '404':
+        application/json: OpportunityUpdateValues404Response
+  /v1/opportunity/stage_pipeline:
+    get:
+      '200':
+        application/json: OpportunityListStagePipelineResponse
+      '401':
+        application/json: OpportunityListStagePipeline401Response
+      '403':
+        application/json: OpportunityListStagePipeline403Response
+      '404':
+        application/json: OpportunityListStagePipeline404Response
+  /v1/orders:
+    get:
+      '200':
+        application/json: ECommerceGetOrderListResponse
+      '401':
+        application/json: ECommerceGetOrderList401Response
+      '403':
+        application/json: ECommerceGetOrderList403Response
+      '404':
+        application/json: ECommerceGetOrderList404Response
+    post:
+      '201':
+        application/json: ECommerceCreateOrderResponse
+      '401':
+        application/json: ECommerceCreateOrder401Response
+      '403':
+        application/json: ECommerceCreateOrder403Response
+  /v1/orders/model:
+    get:
+      '200':
+        application/json: ECommerceGetOrderModelResponse
+      '401':
+        application/json: ECommerceGetOrderModel401Response
+      '403':
+        application/json: ECommerceGetOrderModel403Response
+      '404':
+        application/json: ECommerceGetOrderModel404Response
+  /v1/orders/{orderId}:
+    delete:
+      '401':
+        application/json: ECommerceDeleteOrderWithoutPaymentResponse
+      '403':
+        application/json: ECommerceDeleteOrderWithoutPayment403Response
+      '404':
+        application/json: ECommerceDeleteOrderWithoutPayment404Response
+    get:
+      '200':
+        application/json: ECommerceGetOrderResponse
+      '401':
+        application/json: ECommerceGetOrder401Response
+      '403':
+        application/json: ECommerceGetOrder403Response
+      '404':
+        application/json: ECommerceGetOrder404Response
+  /v1/orders/{orderId}/items:
+    post:
+      '201':
+        application/json: ECommerceCreateOrderItemResponse
+      '401':
+        application/json: ECommerceCreateOrderItem401Response
+      '403':
+        application/json: ECommerceCreateOrderItem403Response
+  /v1/orders/{orderId}/items/{orderItemId}:
+    delete:
+      '401':
+        application/json: ECommerceDeleteOrderItemResponse
+      '403':
+        application/json: ECommerceDeleteOrderItem403Response
+      '404':
+        application/json: ECommerceDeleteOrderItem404Response
+  /v1/orders/{orderId}/paymentPlan:
+    put:
+      '200':
+        application/json: ECommerceReplacePayPlanResponse
+      '401':
+        application/json: ECommerceReplacePayPlan401Response
+      '403':
+        application/json: ECommerceReplacePayPlan403Response
+      '404':
+        application/json: ECommerceReplacePayPlan404Response
+  /v1/orders/{orderId}/payments:
+    get:
+      '200':
+        application/json: ECommerceGetOrderPaymentsResponse
+      '401':
+        application/json: ECommerceGetOrderPayments401Response
+      '403':
+        application/json: ECommerceGetOrderPayments403Response
+      '404':
+        application/json: ECommerceGetOrderPayments404Response
+    post:
+      '201':
+        application/json: ECommerceCreatePaymentRecordResponse
+      '401':
+        application/json: ECommerceCreatePaymentRecord401Response
+      '403':
+        application/json: ECommerceCreatePaymentRecord403Response
+  /v1/orders/{orderId}/transactions:
+    get:
+      '200':
+        application/json: ECommerceGetOrderTransactionsResponse
+      '401':
+        application/json: ECommerceGetOrderTransactions401Response
+      '403':
+        application/json: ECommerceGetOrderTransactions403Response
+      '404':
+        application/json: ECommerceGetOrderTransactions404Response
+  /v1/products:
+    get:
+      '200':
+        application/json: ProductGetAllProductsResponse
+      '401':
+        application/json: ProductGetAllProducts401Response
+      '403':
+        application/json: ProductGetAllProducts403Response
+      '404':
+        application/json: ProductGetAllProducts404Response
+    post:
+      '201':
+        application/json: ProductCreateNewProductResponse
+      '401':
+        application/json: ProductCreateNewProduct401Response
+      '403':
+        application/json: ProductCreateNewProduct403Response
+  /v1/products/sync:
+    get:
+      '200':
+        application/json: ProductGetSyncedProductsResponse
+      '401':
+        application/json: ProductGetSyncedProducts401Response
+      '403':
+        application/json: ProductGetSyncedProducts403Response
+      '404':
+        application/json: ProductGetSyncedProducts404Response
+  /v1/products/{productId}:
+    delete:
+      '401':
+        application/json: ProductDeleteSubscriptionResponse
+      '403':
+        application/json: ProductDeleteSubscription403Response
+      '404':
+        application/json: ProductDeleteSubscription404Response
+    get:
+      '200':
+        application/json: ProductGetByIdResponse
+      '401':
+        application/json: ProductGetById401Response
+      '403':
+        application/json: ProductGetById403Response
+      '404':
+        application/json: ProductGetById404Response
+    patch:
+      '200':
+        application/json: ProductUpdateValuesResponse
+      '401':
+        application/json: ProductUpdateValues401Response
+      '403':
+        application/json: ProductUpdateValues403Response
+      '404':
+        application/json: ProductUpdateValues404Response
+  /v1/products/{productId}/image:
+    delete:
+      '401':
+        application/json: ProductDeleteImageResponse
+      '403':
+        application/json: ProductDeleteImage403Response
+      '404':
+        application/json: ProductDeleteImage404Response
+    post:
+      '401':
+        application/json: ProductUploadImageResponse
+      '403':
+        application/json: ProductUploadImage403Response
+  /v1/products/{productId}/subscriptions:
+    post:
+      '201':
+        application/json: ProductSubscribeNewResponse
+      '401':
+        application/json: ProductSubscribeNew401Response
+      '403':
+        application/json: ProductSubscribeNew403Response
+  /v1/products/{productId}/subscriptions/{subscriptionId}:
+    delete:
+      '401':
+        application/json: ProductDeleteSubscription401Response
+      '403':
+        application/json: ProductDeleteSubscription403Response
+      '404':
+        application/json: ProductDeleteSubscription404Response
+    get:
+      '200':
+        application/json: ProductSubscriptionRetrieveResponse
+      '401':
+        application/json: ProductSubscriptionRetrieve401Response
+      '403':
+        application/json: ProductSubscriptionRetrieve403Response
+      '404':
+        application/json: ProductSubscriptionRetrieve404Response
+  /v1/setting/application/configuration:
+    get:
+      '200':
+        application/json: SettingGetConfigurationResponse
+      '401':
+        application/json: SettingGetConfiguration401Response
+      '403':
+        application/json: SettingGetConfiguration403Response
+      '404':
+        application/json: SettingGetConfiguration404Response
+  /v1/setting/application/enabled:
+    get:
+      '200':
+        application/json: SettingGetApplicationStatusResponse
+      '401':
+        application/json: SettingGetApplicationStatus401Response
+      '403':
+        application/json: SettingGetApplicationStatus403Response
+      '404':
+        application/json: SettingGetApplicationStatus404Response
+  /v1/setting/contact/optionTypes:
+    get:
+      '200':
+        application/json: SettingListContactTypesResponse
+      '401':
+        application/json: SettingListContactTypes401Response
+      '403':
+        application/json: SettingListContactTypes403Response
+      '404':
+        application/json: SettingListContactTypes404Response
+  /v1/subscriptions:
+    get:
+      '200':
+        application/json: ECommerceListSubscriptionsResponse
+      '401':
+        application/json: ECommerceListSubscriptions401Response
+      '403':
+        application/json: ECommerceListSubscriptions403Response
+      '404':
+        application/json: ECommerceListSubscriptions404Response
+    post:
+      '201':
+        application/json: ECommerceCreateSubscriptionResponse
+      '401':
+        application/json: ECommerceCreateSubscription401Response
+      '403':
+        application/json: ECommerceCreateSubscription403Response
+  /v1/subscriptions/model:
+    get:
+      '200':
+        application/json: ECommerceGetSubscriptionModelResponse
+      '401':
+        application/json: ECommerceGetSubscriptionModel401Response
+      '403':
+        application/json: ECommerceGetSubscriptionModel403Response
+      '404':
+        application/json: ECommerceGetSubscriptionModel404Response
+  /v1/tags:
+    get:
+      '200':
+        application/json: TagsListResponse
+      '401':
+        application/json: TagsList401Response
+      '403':
+        application/json: TagsList403Response
+      '404':
+        application/json: TagsList404Response
+    post:
+      '200':
+        application/json: TagsCreateNewTagResponse
+      '401':
+        application/json: TagsCreateNewTag401Response
+      '403':
+        application/json: TagsCreateNewTag403Response
+  /v1/tags/categories:
+    post:
+      '200':
+        application/json: TagsCreateCategoryResponse
+      '401':
+        application/json: TagsCreateCategory401Response
+      '403':
+        application/json: TagsCreateCategory403Response
+  /v1/tags/{id}:
+    get:
+      '200':
+        application/json: TagsGetTagResponse
+      '401':
+        application/json: TagsGetTag401Response
+      '403':
+        application/json: TagsGetTag403Response
+      '404':
+        application/json: TagsGetTag404Response
+  /v1/tags/{tagId}/companies:
+    get:
+      '200':
+        application/json: TagsListCompaniesResponse
+      '401':
+        application/json: TagsListCompanies401Response
+      '403':
+        application/json: TagsListCompanies403Response
+      '404':
+        application/json: TagsListCompanies404Response
+  /v1/tags/{tagId}/contacts:
+    delete:
+      '401':
+        application/json: TagsRemoveFromContactsResponse
+      '403':
+        application/json: TagsRemoveFromContacts403Response
+      '404':
+        application/json: TagsRemoveFromContacts404Response
+    get:
+      '200':
+        application/json: TagsListTaggedContactsResponse
+      '401':
+        application/json: TagsListTaggedContacts401Response
+      '403':
+        application/json: TagsListTaggedContacts403Response
+      '404':
+        application/json: TagsListTaggedContacts404Response
+    post:
+      '200':
+        application/json: TagsApplyToContactsResponse
+      '401':
+        application/json: TagsApplyToContacts401Response
+      '403':
+        application/json: TagsApplyToContacts403Response
+  /v1/tags/{tagId}/contacts/{contactId}:
+    delete:
+      '401':
+        application/json: TagsRemoveFromContactResponse
+      '403':
+        application/json: TagsRemoveFromContact403Response
+      '404':
+        application/json: TagsRemoveFromContact404Response
+  /v1/tasks:
+    get:
+      '200':
+        application/json: TaskGetAllResponse
+      '401':
+        application/json: TaskGetAll401Response
+      '403':
+        application/json: TaskGetAll403Response
+      '404':
+        application/json: TaskGetAll404Response
+    post:
+      '200':
+        application/json: TaskCreateNewTaskResponse
+      '401':
+        application/json: TaskCreateNewTask401Response
+      '403':
+        application/json: TaskCreateNewTask403Response
+  /v1/tasks/model:
+    get:
+      '200':
+        application/json: TaskGetModelResponse
+      '401':
+        application/json: TaskGetModel401Response
+      '403':
+        application/json: TaskGetModel403Response
+      '404':
+        application/json: TaskGetModel404Response
+  /v1/tasks/model/customFields:
+    post:
+      '201':
+        application/json: TaskAddCustomFieldResponse
+      '401':
+        application/json: TaskAddCustomField401Response
+      '403':
+        application/json: TaskAddCustomField403Response
+  /v1/tasks/search:
+    get:
+      '200':
+        application/json: TaskGetByCriteriaResponse
+      '401':
+        application/json: TaskGetByCriteria401Response
+      '403':
+        application/json: TaskGetByCriteria403Response
+      '404':
+        application/json: TaskGetByCriteria404Response
+  /v1/tasks/{taskId}:
+    delete:
+      '401':
+        application/json: TaskRemoveTaskResponse
+      '403':
+        application/json: TaskRemoveTask403Response
+      '404':
+        application/json: TaskRemoveTask404Response
+    get:
+      '200':
+        application/json: TaskGetSingleTaskResponse
+      '401':
+        application/json: TaskGetSingleTask401Response
+      '403':
+        application/json: TaskGetSingleTask403Response
+      '404':
+        application/json: TaskGetSingleTask404Response
+    patch:
+      '200':
+        application/json: TaskUpdateByValuesResponse
+      '401':
+        application/json: TaskUpdateByValues401Response
+      '403':
+        application/json: TaskUpdateByValues403Response
+      '404':
+        application/json: TaskUpdateByValues404Response
+    put:
+      '200':
+        application/json: TaskReplaceTaskValuesResponse
+      '401':
+        application/json: TaskReplaceTaskValues401Response
+      '403':
+        application/json: TaskReplaceTaskValues403Response
+      '404':
+        application/json: TaskReplaceTaskValues404Response
+  /v1/transactions:
+    get:
+      '200':
+        application/json: ECommerceListTransactionsResponse
+      '401':
+        application/json: ECommerceListTransactions401Response
+      '403':
+        application/json: ECommerceListTransactions403Response
+      '404':
+        application/json: ECommerceListTransactions404Response
+  /v1/transactions/{transactionId}:
+    get:
+      '200':
+        application/json: ECommerceGetTransactionResponse
+      '401':
+        application/json: ECommerceGetTransaction401Response
+      '403':
+        application/json: ECommerceGetTransaction403Response
+      '404':
+        application/json: ECommerceGetTransaction404Response
+  /v1/users:
+    get:
+      '200':
+        application/json: UsersGetAllResponse
+      '401':
+        application/json: UsersGetAll401Response
+      '403':
+        application/json: UsersGetAll403Response
+      '404':
+        application/json: UsersGetAll404Response
+    post:
+      '201':
+        application/json: UsersCreateNewUserResponse
+      '401':
+        application/json: UsersCreateNewUser401Response
+      '403':
+        application/json: UsersCreateNewUser403Response
+  /v1/users/{userId}/signature:
+    get:
+      '200':
+        application/json: UsersGetEmailSignatureResponse
+      '401':
+        application/json: UsersGetEmailSignature401Response
+      '403':
+        application/json: UsersGetEmailSignature403Response
+      '404':
+        application/json: UsersGetEmailSignature404Response
+securityParameters:
+  X-Hook-Secret:
+    header: false
+  active:
+    query: false
+  affiliateId:
+    query: false
+  affiliate_id:
+    query: false
+  affiliate_ids:
+    query: false
+  category:
+    query: false
+  code:
+    query: false
+  company_name:
+    query: false
+  completed:
+    query: false
+  contact_id:
+    query: false
+  email:
+    query: false
+  family_name:
+    query: false
+  given_name:
+    query: false
+  has_due_date:
+    query: false
+  ids:
+    query: false
+  include_inactive:
+    query: false
+  include_partners:
+    query: false
+  limit:
+    query: false
+  name:
+    query: false
+  offset:
+    query: false
+  optional_properties:
+    query: false
+  order:
+    query: false
+  order_direction:
+    query: false
+  ordered:
+    query: false
+  paid:
+    query: false
+  parent_id:
+    query: false
+  permission:
+    query: false
+  product_id:
+    query: false
+  program_id:
+    query: false
+  search_term:
+    query: false
+  search_text:
+    query: false
+  since:
+    query: false
+  since_sent_date:
+    query: false
+  stage_id:
+    query: false
+  status:
+    query: false
+  sync_token:
+    query: false
+  type:
+    query: false
+  until:
+    query: false
+  until_sent_date:
+    query: false
+  update_mask:
+    query: false
+  user_id:
+    query: false
+  viewable:
+    query: false
+validServerUrls: {}
