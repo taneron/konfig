@@ -1666,6 +1666,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://dac-static.atlassian.com/cloud/jira/platform/swagger-v3.v3.json",
   },
+  "gladly.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.gladly.com/rest/",
+        browser,
+      });
+    },
+  },
   "dixa.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

@@ -1,0 +1,390 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /api/v1/orgs/{orgId}/answers/{answerId}:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v1/agents:
+    get: Agents_list
+  /api/v1/agents/{agentId}:
+    get: Agents_getAgentProfile
+  /api/v1/agents/{agentId}/call-recorder:
+    get: Agents_getCallRecorderStatus
+    patch: Agents_updateCallRecorder
+  /api/v1/communications/custom-channels/{customChannelId}/messages:
+    post: Communications_receiveCustomChannelMessages
+  /api/v1/communications/custom-channels/{customChannelId}/messages/{messageId}/status:
+    put: Communications_updateMessageStatus
+  /api/v1/communications/sms:
+    post: Communications_sendSms
+  /api/v1/conversation-items:
+    post: Conversations_createCustomerItem
+  /api/v1/conversation-items/{itemId}:
+    delete: Conversations_deleteItem
+    get: Conversations_getItem
+  /api/v1/conversation-items/{itemId}/media/recording:
+    get: Conversations_getRecording
+  /api/v1/conversation-items/{itemId}/redact:
+    post: Conversations_redactConversationItem
+  /api/v1/conversation-items/{itemId}/reply:
+    post: Conversations_sendResponse
+  /api/v1/conversations/{conversationId}:
+    get: Conversations_getMetadata
+    patch: Conversations_updateAssigneeStatus
+  /api/v1/conversations/{conversationId}/items:
+    get: Conversations_listItemsInConversation
+  /api/v1/conversations/{conversationId}/notes:
+    post: Conversations_addNoteToConversation
+  /api/v1/conversations/{conversationId}/notes/{noteId}:
+    get: Conversations_getNote
+  /api/v1/conversations/{conversationId}/topics:
+    post: Conversations_addTopicToList
+  /api/v1/conversations/{conversationId}/topics/{topicId}:
+    delete: Conversations_deleteTopic
+  /api/v1/custom-attributes/:customAttributeId:
+    get: FreeformTopics_getAttribute
+  /api/v1/customer-history/{customerId}/conversations/{conversationId}/custom-attributes:
+    post: Conversations_addFreeformTopics
+  /api/v1/customer-profiles:
+    get: Customers_findProfiles
+    post: Customers_createProfile
+  /api/v1/customer-profiles/{customerId}:
+    get: Customers_getProfileById
+    patch: Customers_updateProfileById
+  /api/v1/customers/{customerId}/conversation-items:
+    post: Conversations_createCustomerItem
+  /api/v1/customers/{customerId}/conversation-items/{itemId}:
+    delete: Conversations_deleteCustomerItem
+  /api/v1/customers/{customerId}/tasks:
+    get: Tasks_getCustomerTasks
+    post: Tasks_createCustomerTask
+  /api/v1/events:
+    get: Events_listStreamOfEvents
+  /api/v1/export/jobs:
+    get: Export_jobsList
+  /api/v1/export/jobs/{jobId}:
+    delete: Export_deleteJob
+    get: Export_jobById
+  /api/v1/export/jobs/{jobId}/files/{filename}:
+    get: Export_downloadFile
+  /api/v1/export/schedules:
+    get: Export_listSchedules
+  /api/v1/inboxes:
+    get: Inboxes_listMetadata
+  /api/v1/inboxes/{inboxId}:
+    get: Inboxes_getMetadata
+  /api/v1/message-automation/sessions/{sessionId}:
+    get: MessageAutomation_getSession
+  /api/v1/message-automation/sessions/{sessionId}/close:
+    post: MessageAutomation_closeSession
+  /api/v1/message-automation/sessions/{sessionId}/handoff:
+    post: MessageAutomation_handoffSessionToAgent
+  /api/v1/message-automation/sessions/{sessionId}/messages:
+    get: MessageAutomation_getSessionMessages
+    post: MessageAutomation_outboundMessage
+  /api/v1/message-automation/sessions/{sessionId}/messages/{messageId}:
+    get: MessageAutomation_getMessage
+  /api/v1/organization:
+    get: Organization_getMetadata
+  /api/v1/orgs/{orgId}/answers-search?q=search+terms:
+    get: Answers_searchResults
+  /api/v1/orgs/{orgId}/answers/{answerId}:
+    get: Answers_getById
+  /api/v1/orgs/{orgId}/answers?lng={lng}&audienceId={audienceId}:
+    get: Answers_listPublic
+  /api/v1/orgs/{orgId}/help-center/{helpCenterId}/answer-titles?lng={lng}&audienceId={audienceId}:
+    get: Answers_listAnswerTitles
+  /api/v1/reports:
+    post: Reports_generateReportCsv
+  /api/v1/reports/work-session-events:
+    post: Reports_generateWorkSessionReport
+  /api/v1/tasks:
+    post: Tasks_customerTimeline
+  /api/v1/tasks/{taskId}:
+    get: Tasks_getTask
+    patch: Tasks_updateTask
+  /api/v1/tasks/{taskId}/comments:
+    get: Tasks_getTaskComments
+    post: Tasks_addTaskComment
+  /api/v1/tasks/{taskId}/comments/{commentId}:
+    get: Tasks_getComment
+  /api/v1/teams:
+    get: Teams_listTeams
+  /api/v1/teams/{teamId}:
+    get: Teams_getById
+  /api/v1/topics:
+    get: Topics_list
+  /api/v1/topics/{topicId}:
+    get: Topics_getById
+  /api/v1/user-identity-jwt:
+    post: UserIdentity_generateJwt
+  /api/v1/webhooks:
+    get: Webhooks_list
+    post: Webhooks_createWebhook
+  /api/v1/webhooks/{webhookId}:
+    delete: Webhooks_deleteById
+    get: Webhooks_getById
+    patch: Webhooks_updateById
+  /gladly/webhook:
+    post: Payloads_notifyEndpoint
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/agents/{agentId}/call-recorder:
+    patch:
+      application/json: AgentsUpdateCallRecorderRequest
+  /api/v1/communications/custom-channels/{customChannelId}/messages:
+    post:
+      application/json: CommunicationsReceiveCustomChannelMessagesRequest
+  /api/v1/communications/custom-channels/{customChannelId}/messages/{messageId}/status:
+    put:
+      application/json: CommunicationsUpdateMessageStatusRequest
+  /api/v1/communications/sms:
+    post:
+      application/json: CommunicationsSendSmsRequest
+  /api/v1/conversation-items:
+    post:
+      application/json: ConversationsCreateCustomerItemRequest
+  /api/v1/conversation-items/{itemId}/redact:
+    post:
+      application/json: ConversationsRedactConversationItemRequest
+  /api/v1/conversation-items/{itemId}/reply:
+    post:
+      application/json: ConversationsSendResponseRequest
+  /api/v1/conversations/{conversationId}:
+    patch:
+      application/json: ConversationsUpdateAssigneeStatusRequest
+  /api/v1/conversations/{conversationId}/notes:
+    post:
+      application/json: ConversationsAddNoteToConversationRequest
+  /api/v1/conversations/{conversationId}/topics:
+    post:
+      application/json: ConversationsAddTopicToListRequest
+  /api/v1/customer-history/{customerId}/conversations/{conversationId}/custom-attributes:
+    post:
+      application/json: ConversationsAddFreeformTopicsRequest
+  /api/v1/customer-profiles:
+    post:
+      application/json: CustomersCreateProfileRequest
+  /api/v1/customer-profiles/{customerId}:
+    patch:
+      application/json: CustomersUpdateProfileByIdRequest
+  /api/v1/customers/{customerId}/conversation-items:
+    post:
+      application/json: ConversationsCreateCustomerItemRequest1
+  /api/v1/customers/{customerId}/tasks:
+    post:
+      application/json: TasksCreateCustomerTaskRequest
+  /api/v1/message-automation/sessions/{sessionId}/close:
+    post:
+      application/json: MessageAutomationCloseSessionRequest
+  /api/v1/message-automation/sessions/{sessionId}/handoff:
+    post:
+      application/json: MessageAutomationHandoffSessionToAgentRequest
+  /api/v1/message-automation/sessions/{sessionId}/messages:
+    post:
+      application/json: MessageAutomationOutboundMessageRequest
+  /api/v1/reports:
+    post:
+      application/json: ReportsGenerateReportCsvRequest
+  /api/v1/reports/work-session-events:
+    post:
+      application/json: ReportsGenerateWorkSessionReportRequest
+  /api/v1/tasks:
+    post:
+      application/json: TasksCustomerTimelineRequest
+  /api/v1/tasks/{taskId}:
+    patch:
+      application/json: TasksUpdateTaskRequest
+  /api/v1/tasks/{taskId}/comments:
+    post:
+      application/json: TasksAddTaskCommentRequest
+  /api/v1/user-identity-jwt:
+    post:
+      application/json: UserIdentityGenerateJwtRequest
+  /api/v1/webhooks:
+    post:
+      application/json: WebhooksCreateWebhookRequest
+  /api/v1/webhooks/{webhookId}:
+    patch:
+      application/json: WebhooksUpdateByIdRequest
+  /gladly/webhook:
+    post:
+      application/json: PayloadsNotifyEndpointRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/agents:
+    get:
+      '200':
+        application/json: AgentsListResponse
+  /api/v1/agents/{agentId}:
+    get:
+      '200':
+        application/json: AgentsGetAgentProfileResponse
+  /api/v1/communications/sms:
+    post:
+      '200':
+        application/json: CommunicationsSendSmsResponse
+  /api/v1/conversation-items:
+    post:
+      '200':
+        application/json: ConversationsCreateCustomerItemResponse
+  /api/v1/conversation-items/{itemId}:
+    get:
+      '200':
+        application/json: ConversationsGetItemResponse
+  /api/v1/conversation-items/{itemId}/media/recording:
+    get:
+      '200':
+        audio/mpeg: ConversationsGetRecordingResponse
+  /api/v1/conversations/{conversationId}:
+    get:
+      '200':
+        application/json: ConversationsGetMetadataResponse
+  /api/v1/conversations/{conversationId}/items:
+    get:
+      '200':
+        application/json: ConversationsListItemsInConversationResponse
+  /api/v1/conversations/{conversationId}/notes/{noteId}:
+    get:
+      '200':
+        application/json: ConversationsGetNoteResponse
+  /api/v1/custom-attributes/:customAttributeId:
+    get:
+      '200':
+        application/json: FreeformTopicsGetAttributeResponse
+  /api/v1/customer-profiles:
+    get:
+      '200':
+        application/json: CustomersFindProfilesResponse
+  /api/v1/customer-profiles/{customerId}:
+    get:
+      '200':
+        application/json: CustomersGetProfileByIdResponse
+  /api/v1/customers/{customerId}/tasks:
+    get:
+      '200':
+        application/json: TasksGetCustomerTasksResponse
+  /api/v1/events:
+    get:
+      '200':
+        application/x-jsonlines: EventsListStreamOfEventsResponse
+  /api/v1/export/jobs:
+    get:
+      '200':
+        application/json: ExportJobsListResponse
+  /api/v1/export/jobs/{jobId}:
+    get:
+      '200':
+        application/json: ExportJobByIdResponse
+  /api/v1/export/jobs/{jobId}/files/{filename}:
+    get:
+      '200':
+        application/x-ndjson: ExportDownloadFileResponse
+  /api/v1/export/schedules:
+    get:
+      '200':
+        application/json: ExportListSchedulesResponse
+  /api/v1/inboxes:
+    get:
+      '200':
+        application/json: InboxesListMetadataResponse
+  /api/v1/inboxes/{inboxId}:
+    get:
+      '200':
+        application/json: InboxesGetMetadataResponse
+  /api/v1/message-automation/sessions/{sessionId}:
+    get:
+      '200':
+        application/json: MessageAutomationGetSessionResponse
+  /api/v1/message-automation/sessions/{sessionId}/messages:
+    get:
+      '200':
+        application/json: MessageAutomationGetSessionMessagesResponse
+    post:
+      '200':
+        application/json: MessageAutomationOutboundMessageResponse
+  /api/v1/organization:
+    get:
+      '200':
+        application/json: OrganizationGetMetadataResponse
+  /api/v1/orgs/{orgId}/answers-search?q=search+terms:
+    get:
+      '200':
+        application/json: AnswersSearchResultsResponse
+  /api/v1/orgs/{orgId}/answers/{answerId}:
+    get:
+      '200':
+        application/json: AnswersGetByIdResponse
+  /api/v1/orgs/{orgId}/answers?lng={lng}&audienceId={audienceId}:
+    get:
+      '200':
+        application/json: AnswersListPublicResponse
+  /api/v1/orgs/{orgId}/help-center/{helpCenterId}/answer-titles?lng={lng}&audienceId={audienceId}:
+    get:
+      '200':
+        application/json: AnswersListAnswerTitlesResponse
+  /api/v1/reports:
+    post:
+      '200':
+        text/csv: ReportsGenerateReportCsvResponse
+  /api/v1/reports/work-session-events:
+    post:
+      '200':
+        text/csv: ReportsGenerateWorkSessionReportResponse
+  /api/v1/tasks/{taskId}:
+    get:
+      '200':
+        application/json: TasksGetTaskResponse
+  /api/v1/tasks/{taskId}/comments:
+    get:
+      '200':
+        application/json: TasksGetTaskCommentsResponse
+  /api/v1/tasks/{taskId}/comments/{commentId}:
+    get:
+      '200':
+        application/json: TasksGetCommentResponse
+  /api/v1/teams:
+    get:
+      '200':
+        application/json: TeamsListTeamsResponse
+  /api/v1/teams/{teamId}:
+    get:
+      '200':
+        application/json: TeamsGetByIdResponse
+  /api/v1/topics:
+    get:
+      '200':
+        application/json: TopicsListResponse
+  /api/v1/topics/{topicId}:
+    get:
+      '200':
+        application/json: TopicsGetByIdResponse
+  /api/v1/user-identity-jwt:
+    post:
+      '200':
+        application/json: UserIdentityGenerateJwtResponse
+  /api/v1/webhooks:
+    get:
+      '200':
+        application/json: WebhooksListResponse
+securityParameters:
+  audienceId:
+    query: false
+  email:
+    query: false
+  externalCustomerId:
+    query: false
+  lng:
+    query: false
+  phoneNumber:
+    query: false
+  q:
+    query: false
+  status:
+    query: false
+validServerUrls: {}

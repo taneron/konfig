@@ -1,0 +1,1707 @@
+hash: dd142361fb681a3de077a248a7320cb3c775df1235e5a78e5284ba838c046c7a
+methodObjects:
+  - url: /api/v1/communications/sms
+    method: sendSms
+    httpMethod: post
+    tag: Communications
+    typeScriptTag: communications
+    description: Send SMS
+    parameters:
+      - name: customer
+        schema: object
+        required: true
+        description: ''
+      - name: from
+        schema: string
+        required: true
+        description: ''
+        example: '+14152223316'
+      - name: body
+        schema: string
+        required: true
+        description: ''
+        example: hello, this is an SMS message!
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/communications/custom-channels/{customChannelId}/messages
+    method: receiveCustomChannelMessages
+    httpMethod: post
+    tag: Communications
+    typeScriptTag: communications
+    description: Receive Custom Channel messages
+    parameters:
+      - name: customChannelId
+        schema: string
+        required: true
+        description: >
+          The ID of the Custom Channel. To find the Custom Channel ID, you must
+          open the overflow menu of a 
+
+          Custom Channel Entry Point and select the "View Integration Data"
+          option.
+        example: CUSTOMCHANNELID
+      - name: sender
+        schema: object
+        required: true
+        description: ''
+      - name: to
+        schema: string
+        required: true
+        description: ''
+        example: TO
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: groupId
+        schema: string
+        required: false
+        description: ''
+      - name: groupName
+        schema: string
+        required: false
+        description: ''
+      - name: content
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: |
+          Message received
+      - statusCode: '400'
+        description: ''
+  - url: >-
+      /api/v1/communications/custom-channels/{customChannelId}/messages/{messageId}/status
+    method: updateMessageStatus
+    httpMethod: put
+    tag: Communications
+    typeScriptTag: communications
+    description: Update message status
+    parameters:
+      - name: customChannelId
+        schema: string
+        required: true
+        description: >
+          The ID of the Custom Channel. To find the Custom Channel ID, you must
+          open the overflow menu of a 
+
+          Custom Channel Entry Point and select the "View Integration Data"
+          option.
+        example: CUSTOMCHANNELID
+      - name: messageId
+        schema: string
+        required: true
+        description: |
+          The id of message updated
+        example: MESSAGEID
+      - name: value
+        schema: string
+        required: true
+        description: ''
+        example: VALUE
+      - name: details
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+          Status updated
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/conversations/{conversationId}
+    method: getMetadata
+    httpMethod: get
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Get conversation
+    parameters:
+      - name: conversationId
+        schema: string
+        required: true
+        description: Id of the conversation to get
+        example: 9BcE2O0DQ2ynGHRmk9FeoA
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: A conversation with the given id does not exist
+  - url: /api/v1/conversations/{conversationId}
+    method: updateAssigneeStatus
+    httpMethod: patch
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Update conversation
+    parameters:
+      - name: conversationId
+        schema: string
+        required: true
+        description: Id of the conversation
+        example: 9BcE2O0DQ2ynGHRmk9FeoA
+      - name: assignee
+        schema: object
+        description: ''
+      - name: status
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: updated conversation
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/conversation-items
+    method: createCustomerItem
+    httpMethod: post
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Create item
+    parameters:
+      - name: id
+        schema: string
+        required: false
+        description: ''
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: customer
+        schema: object
+        required: true
+        description: ''
+      - name: content
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '409'
+        description: ''
+  - url: /api/v1/conversation-items/{itemId}
+    method: deleteItem
+    httpMethod: delete
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Delete item
+    parameters:
+      - name: itemId
+        schema: string
+        required: true
+        description: |
+          Id of the item to be deleted.
+        example: ITEMID
+    responses:
+      - statusCode: '204'
+        description: The item was deleted
+      - statusCode: '404'
+        description: An item with the given id could not be found
+  - url: /api/v1/conversation-items/{itemId}
+    method: getItem
+    httpMethod: get
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Get item
+    parameters:
+      - name: itemId
+        schema: string
+        required: true
+        description: |
+          id of the conversation item
+        example: pOVVdzweSumI4bFxjlT8LA
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: An item with the given id could not be found
+  - url: /api/v1/conversation-items/{itemId}/media/recording
+    method: getRecording
+    httpMethod: get
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Get media
+    parameters:
+      - name: itemId
+        schema: string
+        required: true
+        description: |
+          id of the conversation item
+        example: pOVVdzweSumI4bFxjlT8LA
+    responses:
+      - statusCode: '200'
+        description: Single channel 32-kbps MP3 audio file
+      - statusCode: '404'
+        description: An item with the given id could not be found
+  - url: /api/v1/customers/{customerId}/conversation-items
+    method: createCustomerItem
+    httpMethod: post
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Create item for customer
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: >
+          Id of the customer associated with this item.
+
+
+          You can look up the id using the [Find
+          customers](https://developer.gladly.com/rest/ API.
+        example: CUSTOMERID
+      - name: id
+        schema: string
+        required: false
+        description: ''
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: content
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '301'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: Customer with customerId does not exist
+      - statusCode: '409'
+        description: ''
+  - url: /api/v1/customers/{customerId}/conversation-items/{itemId}
+    method: deleteCustomerItem
+    httpMethod: delete
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Delete item for customer
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: >
+          Id of the customer associated with this item.
+
+
+          You can look up the id using the [Find
+          customers](https://developer.gladly.com/rest/ API.
+        example: CUSTOMERID
+      - name: itemId
+        schema: string
+        required: true
+        description: |
+          Id of the item to be deleted.
+        example: ITEMID
+    responses:
+      - statusCode: '204'
+        description: The item was deleted
+      - statusCode: '404'
+        description: >-
+          An item with the given id, for the given customer id, could not be
+          found
+  - url: /api/v1/conversations/{conversationId}/items
+    method: listItemsInConversation
+    httpMethod: get
+    tag: Conversations
+    typeScriptTag: conversations
+    description: List items in conversation
+    parameters:
+      - name: conversationId
+        schema: string
+        required: true
+        description: Id of the conversation to get the timeline for
+        example: 9BcE2O0DQ2ynGHRmk9FeoA
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: A conversation with the given id does not exist
+  - url: /api/v1/conversations/{conversationId}/topics
+    method: addTopicToList
+    httpMethod: post
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Add topic
+    parameters:
+      - name: conversationId
+        schema: string
+        required: true
+        description: |
+          Id of the conversation.
+        example: CONVERSATIONID
+      - name: topicIds
+        schema: array
+        required: false
+        description: ''
+        example:
+          - pOVVdzweSumI4bFxjlT8LA
+    responses:
+      - statusCode: '204'
+        description: The topic was added successfully
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: A conversation with the given Id could not be found
+  - url: /api/v1/conversations/{conversationId}/topics/{topicId}
+    method: deleteTopic
+    httpMethod: delete
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Delete topic
+    parameters:
+      - name: conversationId
+        schema: string
+        required: true
+        description: |
+          Id of the conversation.
+        example: CONVERSATIONID
+      - name: topicId
+        schema: string
+        required: true
+        description: |
+          Id of topic to be deleted from conversation.
+        example: TOPICID
+    responses:
+      - statusCode: '204'
+        description: The topic was deleted from the conversation successfully
+      - statusCode: '404'
+        description: A conversation with the given id could not be found
+  - url: >-
+      /api/v1/customer-history/{customerId}/conversations/{conversationId}/custom-attributes
+    method: addFreeformTopics
+    httpMethod: post
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Add or Remove Freeform topic
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: |
+          Id of the customer.
+        example: CUSTOMERID
+      - name: conversationId
+        schema: string
+        required: true
+        description: |
+          Id of the conversation.
+        example: CONVERSATIONID
+      - name: body
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: The freeform topic was added successfully
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: A conversation with the given Id could not be found
+  - url: /api/v1/conversations/{conversationId}/notes
+    method: addNoteToConversation
+    httpMethod: post
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Add note
+    parameters:
+      - name: conversationId
+        schema: string
+        required: true
+        description: |
+          Id of the conversation.
+        example: CONVERSATIONID
+      - name: body
+        schema: string
+        required: false
+        description: ''
+        example: >-
+          <h1>Customer has requested more information about our loyalty
+          program.</h1>
+    responses:
+      - statusCode: '201'
+        description: The note was added successfully
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: A conversation with the given Id could not be found
+  - url: /api/v1/conversations/{conversationId}/notes/{noteId}
+    method: getNote
+    httpMethod: get
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Get note
+    parameters:
+      - name: conversationId
+        schema: string
+        required: true
+        description: |
+          id of the conversation
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: noteId
+        schema: string
+        required: true
+        description: |
+          id of the note
+        example: aOVVdzweSumI4bFxjlT8LA
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: An item with the given id could not be found
+  - url: /api/v1/conversation-items/{itemId}/reply
+    method: sendResponse
+    httpMethod: post
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Reply to message
+    parameters:
+      - name: itemId
+        schema: string
+        required: true
+        description: |
+          id of the conversation item
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: content
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: >-
+          The reply was created successfully. Note that creation doesn't
+          guarantee delivery
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: A conversation item with the given id could not be found
+  - url: /api/v1/conversation-items/{itemId}/redact
+    method: redactConversationItem
+    httpMethod: post
+    tag: Conversations
+    typeScriptTag: conversations
+    description: Redact conversation item
+    parameters:
+      - name: itemId
+        schema: string
+        required: true
+        description: |
+          id of the conversation item
+        example: pOVVdzweSumI4bFxjlT8LA
+    responses:
+      - statusCode: '201'
+        description: The redaction was successful.
+      - statusCode: '404'
+        description: A conversation item with the given id could not be found
+  - url: /api/v1/message-automation/sessions/{sessionId}
+    method: getSession
+    httpMethod: get
+    tag: Message Automation
+    typeScriptTag: messageAutomation
+    description: Get Automation Session
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: The id of the automation session.
+        example: pOVVdzweSumI4bFxjlT8LA
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/message-automation/sessions/{sessionId}/messages
+    method: getSessionMessages
+    httpMethod: get
+    tag: Message Automation
+    typeScriptTag: messageAutomation
+    description: Get Automation Messages
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: |
+          Id of the automation session.
+        example: pOVVdzweSumI4bFxjlT8LA
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/message-automation/sessions/{sessionId}/messages
+    method: outboundMessage
+    httpMethod: post
+    tag: Message Automation
+    typeScriptTag: messageAutomation
+    description: Send Outbound Automation Message
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: Id of the automation session.
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: content
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/message-automation/sessions/{sessionId}/messages/{messageId}
+    method: getMessage
+    httpMethod: get
+    tag: Message Automation
+    typeScriptTag: messageAutomation
+    description: Get Automation Message
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: Id of the automation session.
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: messageId
+        schema: string
+        required: true
+        description: |
+          Id of the message.
+        example: 62723418e0374c00f31c4ca7
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/message-automation/sessions/{sessionId}/handoff
+    method: handoffSessionToAgent
+    httpMethod: post
+    tag: Message Automation
+    typeScriptTag: messageAutomation
+    description: Agent Handoff
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: Id of the automation session.
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: description
+        schema: string
+        required: true
+        description: ''
+        example: DESCRIPTION
+    responses:
+      - statusCode: '204'
+        description: The handoff is successful.
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/message-automation/sessions/{sessionId}/close
+    method: closeSession
+    httpMethod: post
+    tag: Message Automation
+    typeScriptTag: messageAutomation
+    description: Close Automation Session
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: Id of the automation session.
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: description
+        schema: string
+        required: true
+        description: ''
+        example: DESCRIPTION
+    responses:
+      - statusCode: '204'
+        description: Automation session was successfully closed.
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/tasks
+    method: customerTimeline
+    httpMethod: post
+    tag: Tasks
+    typeScriptTag: tasks
+    description: Create task
+    parameters:
+      - name: id
+        schema: string
+        required: false
+        description: ''
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: assignee
+        schema: undefined
+        required: true
+        description: ''
+      - name: body
+        schema: string
+        required: true
+        description: ''
+        example: Call customer back with information about booking
+      - name: dueAt
+        schema: string
+        required: true
+        description: ''
+        example: '2020-03-15T06:13:00.125Z'
+      - name: customer
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: task created
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/customers/{customerId}/tasks
+    method: getCustomerTasks
+    httpMethod: get
+    tag: Tasks
+    typeScriptTag: tasks
+    description: List tasks
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: |
+          Id of the customer whose tasks you'd like to view.
+        example: CUSTOMERID
+      - name: status
+        schema: string
+        required: false
+        description: |
+          Fetch tasks with the provided status.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/customers/{customerId}/tasks
+    method: createCustomerTask
+    httpMethod: post
+    tag: Tasks
+    typeScriptTag: tasks
+    description: Create task for customer
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: >
+          Id of the customer associated with the task to create.
+
+
+          You can look up the id using the [Find
+          customers](https://developer.gladly.com/rest/ API.
+        example: CUSTOMERID
+      - name: id
+        schema: string
+        required: false
+        description: ''
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: assignee
+        schema: undefined
+        required: true
+        description: ''
+      - name: body
+        schema: string
+        required: true
+        description: ''
+        example: Call customer back with information about booking
+      - name: dueAt
+        schema: string
+        required: true
+        description: ''
+        example: '2020-03-15T06:13:00.125Z'
+    responses:
+      - statusCode: '201'
+        description: task created
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '409'
+        description: ''
+  - url: /api/v1/tasks/{taskId}
+    method: getTask
+    httpMethod: get
+    tag: Tasks
+    typeScriptTag: tasks
+    description: Get task
+    parameters:
+      - name: taskId
+        schema: string
+        required: true
+        description: |
+          Id of the task requested
+        example: TASKID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/tasks/{taskId}
+    method: updateTask
+    httpMethod: patch
+    tag: Tasks
+    typeScriptTag: tasks
+    description: Update task
+    parameters:
+      - name: taskId
+        schema: string
+        required: true
+        description: |
+          Id of the task that is to be updated
+        example: TASKID
+      - name: status
+        schema: string
+        description: ''
+      - name: body
+        schema: string
+        description: ''
+        example: Call customer back with information about booking
+      - name: dueAt
+        schema: string
+        description: ''
+        example: '2021-04-11T14:09:23.000Z'
+      - name: assignee
+        schema: undefined
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: The task was created task
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/tasks/{taskId}/comments
+    method: getTaskComments
+    httpMethod: get
+    tag: Tasks
+    typeScriptTag: tasks
+    description: Get task comments
+    parameters:
+      - name: taskId
+        schema: string
+        required: true
+        description: |
+          Id of the task comments are requested for.
+        example: TASKID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/tasks/{taskId}/comments
+    method: addTaskComment
+    httpMethod: post
+    tag: Tasks
+    typeScriptTag: tasks
+    description: |
+      Add task comment
+    parameters:
+      - name: taskId
+        schema: string
+        required: true
+        description: |
+          Id of the task that will be commented on.
+        example: TASKID
+      - name: id
+        schema: string
+        required: false
+        description: ''
+        example: pOVVdzweSumI4bFxjlT8LA
+      - name: agentId
+        schema: string
+        required: true
+        description: ''
+        example: dzweSumI4bFxjlT8LApOVV
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+        example: Return call to customer
+    responses:
+      - statusCode: '201'
+        description: comment added
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/tasks/{taskId}/comments/{commentId}
+    method: getComment
+    httpMethod: get
+    tag: Tasks
+    typeScriptTag: tasks
+    description: Get task comment
+    parameters:
+      - name: taskId
+        schema: string
+        required: true
+        description: |
+          Task id
+        example: TASKID
+      - name: commentId
+        schema: string
+        required: true
+        description: |
+          Comment id
+        example: COMMENTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/custom-attributes/:customAttributeId
+    method: getAttribute
+    httpMethod: get
+    tag: Freeform Topics
+    typeScriptTag: freeformTopics
+    description: Get custom attribute
+    parameters:
+      - name: customAttributeId
+        schema: string
+        required: true
+        description: |
+          id of the custom attribute
+        example: 1grfSzATQLa334VDLCWc4A
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/customer-profiles
+    method: findProfiles
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Find customers
+    parameters:
+      - name: email
+        schema: string
+        description: customer email address to search on.
+        example: customer@email.net
+      - name: externalCustomerId
+        schema: string
+        description: >-
+          Customer ID in your system of record for Customer Profiles linked to a
+          Lookup Adaptor installed prior to 05/12/21. If Customer Profile is
+          linked to a Lookup Adaptor installed on or after 05/12/21, this field
+          is not searchable.
+        example: a21c1636-c622-48b7-bf6a-d9032645aa55
+      - name: phoneNumber
+        schema: string
+        description: >
+          Phone number in E.164 format. The value should be URL escaped where
+          `+` becomes `%2B`.
+        example: '+16505551987'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/customer-profiles
+    method: createProfile
+    httpMethod: post
+    tag: Customers
+    typeScriptTag: customers
+    description: Create customer
+    parameters: []
+    responses:
+      - statusCode: '201'
+        description: customer created
+      - statusCode: '400'
+        description: ''
+      - statusCode: '409'
+        description: ''
+  - url: /api/v1/customer-profiles/{customerId}
+    method: getProfileById
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Get customer
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '301'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/customer-profiles/{customerId}
+    method: updateProfileById
+    httpMethod: patch
+    tag: Customers
+    typeScriptTag: customers
+    description: Update customer
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+        example: Martha J Williams
+      - name: image
+        schema: string
+        description: ''
+        example: https://www.gladly.com/your-image.jpg
+      - name: address
+        schema: string
+        description: ''
+        example: 563 Rigoberto Station Apt. 197
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: externalCustomerId
+        schema: string
+        description: ''
+        example: a21c1636-c622-48b7-bf6a-d9032645aa55
+      - name: customAttributes
+        schema: object
+        description: ''
+        example:
+          membershipNumber: RQ564555333
+          membershipTier: gold
+    responses:
+      - statusCode: '204'
+        description: updated customer
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/user-identity-jwt
+    method: generateJwt
+    httpMethod: post
+    tag: User Identity
+    typeScriptTag: userIdentity
+    description: Create a User Identity JWT
+    parameters:
+      - name: identityType
+        schema: string
+        description: ''
+        example: EMAIL
+      - name: identity
+        schema: string
+        description: ''
+        example: test@example.com
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/orgs/{orgId}/answers-search?q=search+terms
+    method: searchResults
+    httpMethod: get
+    tag: Answers
+    typeScriptTag: answers
+    description: Search public answers
+    parameters:
+      - name: orgId
+        schema: string
+        required: true
+        description: >
+          id of your organization
+
+
+          You can look up the ID using the [Get
+          organization](https://developer.gladly.com/rest/ API.
+        example: ihKsWxiZCDVtXg1iwVmT9Q
+      - name: q
+        schema: string
+        description: search term
+        example: reset%20password
+      - name: lng
+        schema: string
+        description: language code
+        example: en-us
+      - name: audienceId
+        schema: string
+        description: >-
+          Audience ID. The Audience ID can be retrieved by going to Settings >
+          Audiences in Gladly, then clicking on the Edit button next to the
+          Audience in question. The ID will be in the page URL.
+        example: en-us
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/orgs/{orgId}/answers?lng={lng}&audienceId={audienceId}
+    method: listPublic
+    httpMethod: get
+    tag: Answers
+    typeScriptTag: answers
+    description: List public answers
+    parameters:
+      - name: orgId
+        schema: string
+        required: true
+        description: >
+          id of your organization
+
+
+          You can look up the ID using the [Get
+          organization](https://developer.gladly.com/rest/ API.
+        example: ihKsWxiZCDVtXg1iwVmT9Q
+      - name: lng
+        schema: string
+        description: |
+          Language of the answers returned
+
+          Defaults to `en-us`
+        example: es-419
+      - name: audienceId
+        schema: string
+        description: >
+          Audience ID for answers returned - optional. The Audience ID can be
+          retrieved by going to Settings > Audiences in Gladly, then clicking on
+          the Edit button next to the Audience in question. The ID will be in
+          the page URL.
+        example: ihKsWxiZCDVtXg1iwVmT9Q
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: >-
+      /api/v1/orgs/{orgId}/help-center/{helpCenterId}/answer-titles?lng={lng}&audienceId={audienceId}
+    method: listAnswerTitles
+    httpMethod: get
+    tag: Answers
+    typeScriptTag: answers
+    description: List Help Center Answer Titles
+    parameters:
+      - name: orgId
+        schema: string
+        required: true
+        description: >
+          id of your organization
+
+
+          You can look up the ID using the [Get
+          organization](https://developer.gladly.com/rest/ API.
+        example: ihKsWxiZCDVtXg1iwVmT9Q
+      - name: helpCenterId
+        schema: string
+        required: true
+        description: >
+          Help Center ID
+
+
+          You can look up the ID by going to Settings > Help Center in Gladly,
+          then clicking on the 3 dots next to the Help Center and selecting
+          Configure. Help Center ID will be in the URL
+        example: ihKsWxiZCDVtXg1iwVmT9Q
+      - name: lng
+        schema: string
+        description: |
+          Language of the answers returned
+
+          Defaults to `en-us`
+        example: es-419
+      - name: audienceId
+        schema: string
+        description: >
+          Audience ID for answers returned - optional. The Audience ID can be
+          retrieved by going to Settings > Audiences in Gladly, then clicking on
+          the Edit button next to the Audience in question. The ID will be in
+          the page URL.
+        example: ihKsWxiZCDVtXg1iwVmT9Q
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/orgs/{orgId}/answers/{answerId}
+    method: getById
+    httpMethod: get
+    tag: Answers
+    typeScriptTag: answers
+    description: Get public answer
+    parameters:
+      - name: orgId
+        schema: string
+        required: true
+        description: >
+          id of your organization
+
+
+          You can look up the ID using the [Get
+          organization](https://developer.gladly.com/rest/ API.
+        example: ihKsWxiZCDVtXg1iwVmT9Q
+      - name: answerId
+        schema: string
+        required: true
+        description: id of the answer
+        example: 1grfSzATQLa334VDLCWc4A
+      - name: lng
+        schema: string
+        description: language code
+        example: en-us
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/agents
+    method: list
+    httpMethod: get
+    tag: Agents
+    typeScriptTag: agents
+    description: List Agents
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/agents/{agentId}
+    method: getAgentProfile
+    httpMethod: get
+    tag: Agents
+    typeScriptTag: agents
+    description: Get Agent
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/agents/{agentId}/call-recorder
+    method: getCallRecorderStatus
+    httpMethod: get
+    tag: Agents
+    typeScriptTag: agents
+    description: Get Agent CallRecorder
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/agents/{agentId}/call-recorder
+    method: updateCallRecorder
+    httpMethod: patch
+    tag: Agents
+    typeScriptTag: agents
+    description: Update Agent CallRecorder
+    parameters:
+      - name: agentId
+        schema: string
+        description: ''
+        example: WmeA3Y51Q5ayCAaZ1AotIA
+      - name: customerId
+        schema: string
+        description: ''
+        example: ZcyobierQhucTS5GV1R2Fw
+      - name: conversationItemId
+        schema: string
+        description: ''
+        example: g6UatsvAQC69AcDpOKF-yQ
+      - name: recording
+        schema: boolean
+        description: ''
+        example: true
+    responses:
+      - statusCode: '204'
+        description: >-
+          Call recording updated. If an agent is not on a call the update will
+          do nothing.
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/organization
+    method: getMetadata
+    httpMethod: get
+    tag: Organization
+    typeScriptTag: organization
+    description: Get organization
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/inboxes
+    method: listMetadata
+    httpMethod: get
+    tag: Inboxes
+    typeScriptTag: inboxes
+    description: List inboxes
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/inboxes/{inboxId}
+    method: getMetadata
+    httpMethod: get
+    tag: Inboxes
+    typeScriptTag: inboxes
+    description: Get inbox
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/teams
+    method: listTeams
+    httpMethod: get
+    tag: Teams
+    typeScriptTag: teams
+    description: List teams
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/teams/{teamId}
+    method: getById
+    httpMethod: get
+    tag: Teams
+    typeScriptTag: teams
+    description: Get team
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/topics
+    method: list
+    httpMethod: get
+    tag: Topics
+    typeScriptTag: topics
+    description: List topics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/topics/{topicId}
+    method: getById
+    httpMethod: get
+    tag: Topics
+    typeScriptTag: topics
+    description: Get topic
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/export/schedules
+    method: listSchedules
+    httpMethod: get
+    tag: Export
+    typeScriptTag: export
+    description: List schedules
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/export/jobs
+    method: jobsList
+    httpMethod: get
+    tag: Export
+    typeScriptTag: export
+    description: List jobs
+    parameters:
+      - name: status
+        schema: string
+        description: export job status to search on.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/export/jobs/{jobId}
+    method: deleteJob
+    httpMethod: delete
+    tag: Export
+    typeScriptTag: export
+    description: Delete job
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: the job was deleted
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/export/jobs/{jobId}
+    method: jobById
+    httpMethod: get
+    tag: Export
+    typeScriptTag: export
+    description: Get job
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: Export job
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/export/jobs/{jobId}/files/{filename}
+    method: downloadFile
+    httpMethod: get
+    tag: Export
+    typeScriptTag: export
+    description: Get file
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: id of the job
+        example: OOrlNMXeS72gs_WEX2TtMg
+      - name: filename
+        schema: string
+        required: true
+        description: name of the file
+        example: agents.jsonl
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/reports
+    method: generateReportCsv
+    httpMethod: post
+    tag: Reports
+    typeScriptTag: reports
+    description: Generate a report
+    parameters:
+      - name: metricSet
+        schema: string
+        required: true
+        description: ''
+        example: ContactSummaryReport
+      - name: timezone
+        schema: string
+        required: false
+        description: ''
+        example: America/Denver
+      - name: startAt
+        schema: string
+        required: true
+        description: ''
+        example: '2019-05-01'
+      - name: endAt
+        schema: string
+        required: true
+        description: ''
+        example: '2019-05-16'
+      - name: aggregationLevel
+        schema: string
+        required: false
+        description: ''
+        example: daily
+        default: daily
+      - name: filters
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: CSV report
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/webhooks
+    method: list
+    httpMethod: get
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: List webhooks
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/webhooks
+    method: createWebhook
+    httpMethod: post
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: Create webhook
+    parameters: []
+    responses:
+      - statusCode: '201'
+        description: Created webhook
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/webhooks/{webhookId}
+    method: deleteById
+    httpMethod: delete
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: Delete webhook
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: Webhook deleted
+      - statusCode: '400'
+        description: Webhook must be disabled to be deleted
+      - statusCode: '404'
+        description: Webhook with id does not exist
+  - url: /api/v1/webhooks/{webhookId}
+    method: getById
+    httpMethod: get
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: Get webhook
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Webhook with id does not exist
+  - url: /api/v1/webhooks/{webhookId}
+    method: updateById
+    httpMethod: patch
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: Update webhook
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: Updated webhook
+      - statusCode: '400'
+        description: Invalid field(https://developer.gladly.com/rest/ in request body
+      - statusCode: '404'
+        description: Webhook with id does not exist
+  - url: /gladly/webhook
+    method: notifyEndpoint
+    httpMethod: post
+    tag: Payloads
+    typeScriptTag: payloads
+    description: >
+      Gladly will perform a POST request to your endpoint when the event occurs.
+
+
+      Your service is expected to respond within 15 seconds.
+
+
+      If your service responds to a webhook notification with a response code
+      outside the 2XX range or times out after 15 seconds, Gladly considers that
+      delivery as failed and will resend the request up to 4 times over an hour.
+      After the fourth attempt, we will deactivate the webhook and will notify
+      all API Users in your organization's environment via email.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /api/v1/reports/work-session-events
+    method: generateWorkSessionReport
+    httpMethod: post
+    tag: Reports
+    typeScriptTag: reports
+    description: Generate a work session report
+    parameters:
+      - name: startAtTime
+        schema: string
+        required: true
+        description: ''
+        example: 2020-04-13T19:27Z
+      - name: endAtTime
+        schema: string
+        required: true
+        description: ''
+        example: 2020-04-14T19:27-09:00
+    responses:
+      - statusCode: '200'
+        description: Work Session Report CSV
+      - statusCode: '400'
+        description: ''
+  - url: /api/v1/events
+    method: listStreamOfEvents
+    httpMethod: get
+    tag: Events
+    typeScriptTag: events
+    description: List events
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+numberOfSchemas: 69
+apiDescription: >-
+  # Introducing the Gladly API
+
+
+  At Gladly, we believe that customer service is best when it's a conversation.
+
+  That means more than just helping customers with one-off questions or issues:
+  it's about making them feel known, valued, and respected for the individuals
+  they are.
+
+
+  The Gladly API was built to help facilitate those relationships, providing
+  agents with the rich customer context
+
+  they need to deliver seamless experiences that make customers feel like
+  they're more than just a number in a sea of others.
+
+
+  # Overview
+
+
+  You can integrate easily with Gladly by calling Gladly's [REST
+  API](https://developer.gladly.com/rest/)
+
+  and implementing the [Lookup API](https://developer.gladly.com/rest/) to
+  provide data from your own services.
+
+
+  Some examples of what you do through Gladly APIs include managing customer
+  profile data, interacting with a customer's timeline,
+
+  providing the latest information about a customer's orders, and more.
+
+
+  ## REST API
+
+
+  Clients can access the **REST API** via HTTPS at your organization's Gladly
+  domain (e.g. `https://{organization}.gladly.com`).
+
+
+  Resources follow REST semantics and utilize industry-standard HTTP verbs,
+  response codes, and authentication schemes.
+
+  In addition, all responses and payloads are in JSON with consistent error
+  codes and formats.
+
+
+  ## Lookup API
+
+
+  The Gladly **Lookup API** allows your organization to provide data services to
+  power the agent's experience with a complete view of your customers'
+
+  information, transactions, and activity. You can provide a web service that
+  implements the Lookup API and Gladly will call it when that data is needed.
+
+
+  Like the REST API, the Lookup API is specified using REST semantics, and
+  exchanges JSON requests and responses authenticated and signed with secure
+  keys.
+
+
+  Gladly will perform lookups when certain activities occur within Gladly, such
+  as when a customer's profile is loaded.
+
+
+  A detailed overview of Lookup Adaptor architecture, requests, resposnes and
+  more can be found
+  [here](https://help.gladly.com/developer/docs/lookup-adapter-introduction).
+
+
+  ## Testing
+
+
+  Test the myriad possibilities of the Gladly API in a safe, secure space. We'll
+  enable the Gladly API in a separate sandbox environment, so you can experiment
+  freely without impacting your production environment (or vice versa).
+
+
+  Your sandbox environment is accessible at `https://{organization}.gladly.qa`,
+  where `organization` is your company name. For specific API endpoints, see
+  documentation below.
+
+
+  # Getting Started
+
+
+  Think of this section as getting the keys to unlocking your access to the
+  Gladly APIs.
+
+  First, you'll need to set up an account with the necessary API
+  [permissions](https://developer.gladly.com/rest/).
+
+  With these permissions, you can then go on to create the [API
+  Token(s)](https://developer.gladly.com/rest/) you need to access Gladly's API
+  [resources](https://developer.gladly.com/rest/).
+
+
+  ## Permissions
+
+
+  Gladly Administrators can set API permissions on an agent-by-agent basis.
+
+  We'll discuss how this maps to API access in the section on
+  [authentication](https://developer.gladly.com/rest/) below.
+
+
+  To allow a user to create API tokens and access the API:
+
+  1. Log in to your Gladly instance.
+
+  2. Open the menu on the top left-hand corner of the page.
+
+  3. Navigate to **Settings** > **Users*
+
+  4. Search and click the user profile you wish to give access to.
+
+  5. You'll see a permission called **API User**. Select it, while making sure
+  to keep the user's **Agent** role intact.
+
+  6. Hit **Save** to give access.
+
+
+  ![Agent profile screen](assets/permissions-agent.png)
+
+
+  We recommend creating a dedicated user to make API calls, whose account won't
+  be used for agent and organization management.
+
+  This will help you with any future audits of API activity vs. agent activity.
+
+
+  ## Creating API Tokens
+
+
+  You must create an API token to access Gladly API resources (see above
+  [Permissions](https://developer.gladly.com/rest/)).
+
+  If your profile already has access to the **API User** permission, you'll see
+  a menu item titled **More settings**. Click **More settings**:
+
+
+  ![API Token Menu](assets/permissions-token-nav.png)
+
+
+  Click **API Tokens**, then the **Create Token** button on the upper right-hand
+  corner of the page:
+
+
+  ![API Token Add](assets/permissions-token-add.png)
+
+
+  A token will be generated and named, by default, **New Token** (though
+  depending on whether you have existing tokens, it may be named New Token 2, or
+  New Token 3, etc.).
+
+  You can rename the token to something more easily referenceable by clicking
+  the name to edit.
+
+
+  This token will be associated with your agent profile, which we refer to as
+  the API User in this document.
+
+
+  ![API Token View](assets/permissions-token-view.png)
+
+
+  For security purposes, you'll only see a new token once before you navigate
+  away from the page.
+
+
+  ## Replacing/Rotating API Tokens
+
+
+  Should you lose this token, or wish to rotate your application keys, you can
+  do the following:
+
+
+  1. Generate a new token.
+
+  2. Store the new token in a secure location.
+
+  3. Delete the old token.
+
+  4. Update your applications/scripts with the new token.
+
+
+  # Authentication
+
+
+  <!-- ReDoc-Inject: <security-definitions> -->

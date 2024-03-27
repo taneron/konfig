@@ -1,0 +1,238 @@
+processed:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: >
+        Gladly API uses token-based **Basic Authentication**. API tokens are
+        associated with designated Gladly users.
+
+        To create and use an API token, your user must have the API User
+        permission. An API token can be used to perform any API request without
+        restriction.
+
+
+        | user name   | password  |
+
+        | ----------- | --------- |
+
+        | agent email | API token |
+
+
+        The credentials must be passed via an `Authorization` HTTP header. All
+        requests must be made over HTTPS.
+
+
+        ```shell
+
+        curl -u user@organization.com:$GLADLY_API_TOKEN \
+
+        https://organization.gladly.com/api/v1/organization
+
+        ```
+  apiBaseUrl: https://organization.gladly.com
+  apiVersion: '1.0'
+  apiDescription: >-
+    # Introducing the Gladly API
+
+
+    At Gladly, we believe that customer service is best when it's a
+    conversation.
+
+    That means more than just helping customers with one-off questions or
+    issues: it's about making them feel known, valued, and respected for the
+    individuals they are.
+
+
+    The Gladly API was built to help facilitate those relationships, providing
+    agents with the rich customer context
+
+    they need to deliver seamless experiences that make customers feel like
+    they're more than just a number in a sea of others.
+
+
+    # Overview
+
+
+    You can integrate easily with Gladly by calling Gladly's [REST
+    API](https://developer.gladly.com/rest/)
+
+    and implementing the [Lookup API](https://developer.gladly.com/rest/) to
+    provide data from your own services.
+
+
+    Some examples of what you do through Gladly APIs include managing customer
+    profile data, interacting with a customer's timeline,
+
+    providing the latest information about a customer's orders, and more.
+
+
+    ## REST API
+
+
+    Clients can access the **REST API** via HTTPS at your organization's Gladly
+    domain (e.g. `https://{organization}.gladly.com`).
+
+
+    Resources follow REST semantics and utilize industry-standard HTTP verbs,
+    response codes, and authentication schemes.
+
+    In addition, all responses and payloads are in JSON with consistent error
+    codes and formats.
+
+
+    ## Lookup API
+
+
+    The Gladly **Lookup API** allows your organization to provide data services
+    to power the agent's experience with a complete view of your customers'
+
+    information, transactions, and activity. You can provide a web service that
+    implements the Lookup API and Gladly will call it when that data is needed.
+
+
+    Like the REST API, the Lookup API is specified using REST semantics, and
+    exchanges JSON requests and responses authenticated and signed with secure
+    keys.
+
+
+    Gladly will perform lookups when certain activities occur within Gladly,
+    such as when a customer's profile is loaded.
+
+
+    A detailed overview of Lookup Adaptor architecture, requests, resposnes and
+    more can be found
+    [here](https://help.gladly.com/developer/docs/lookup-adapter-introduction).
+
+
+    ## Testing
+
+
+    Test the myriad possibilities of the Gladly API in a safe, secure space.
+    We'll enable the Gladly API in a separate sandbox environment, so you can
+    experiment freely without impacting your production environment (or vice
+    versa).
+
+
+    Your sandbox environment is accessible at
+    `https://{organization}.gladly.qa`, where `organization` is your company
+    name. For specific API endpoints, see documentation below.
+
+
+    # Getting Started
+
+
+    Think of this section as getting the keys to unlocking your access to the
+    Gladly APIs.
+
+    First, you'll need to set up an account with the necessary API
+    [permissions](https://developer.gladly.com/rest/).
+
+    With these permissions, you can then go on to create the [API
+    Token(s)](https://developer.gladly.com/rest/) you need to access Gladly's
+    API [resources](https://developer.gladly.com/rest/).
+
+
+    ## Permissions
+
+
+    Gladly Administrators can set API permissions on an agent-by-agent basis.
+
+    We'll discuss how this maps to API access in the section on
+    [authentication](https://developer.gladly.com/rest/) below.
+
+
+    To allow a user to create API tokens and access the API:
+
+    1. Log in to your Gladly instance.
+
+    2. Open the menu on the top left-hand corner of the page.
+
+    3. Navigate to **Settings** > **Users*
+
+    4. Search and click the user profile you wish to give access to.
+
+    5. You'll see a permission called **API User**. Select it, while making sure
+    to keep the user's **Agent** role intact.
+
+    6. Hit **Save** to give access.
+
+
+    ![Agent profile screen](assets/permissions-agent.png)
+
+
+    We recommend creating a dedicated user to make API calls, whose account
+    won't be used for agent and organization management.
+
+    This will help you with any future audits of API activity vs. agent
+    activity.
+
+
+    ## Creating API Tokens
+
+
+    You must create an API token to access Gladly API resources (see above
+    [Permissions](https://developer.gladly.com/rest/)).
+
+    If your profile already has access to the **API User** permission, you'll
+    see a menu item titled **More settings**. Click **More settings**:
+
+
+    ![API Token Menu](assets/permissions-token-nav.png)
+
+
+    Click **API Tokens**, then the **Create Token** button on the upper
+    right-hand corner of the page:
+
+
+    ![API Token Add](assets/permissions-token-add.png)
+
+
+    A token will be generated and named, by default, **New Token** (though
+    depending on whether you have existing tokens, it may be named New Token 2,
+    or New Token 3, etc.).
+
+    You can rename the token to something more easily referenceable by clicking
+    the name to edit.
+
+
+    This token will be associated with your agent profile, which we refer to as
+    the API User in this document.
+
+
+    ![API Token View](assets/permissions-token-view.png)
+
+
+    For security purposes, you'll only see a new token once before you navigate
+    away from the page.
+
+
+    ## Replacing/Rotating API Tokens
+
+
+    Should you lose this token, or wish to rotate your application keys, you can
+    do the following:
+
+
+    1. Generate a new token.
+
+    2. Store the new token in a secure location.
+
+    3. Delete the old token.
+
+    4. Update your applications/scripts with the new token.
+
+
+    # Authentication
+
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+  apiTitle: Gladly API
+  endpoints: 55
+  sdkMethods: 78
+  schemas: 3
+  parameters: 122
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: gladly.com.yaml
+  difficultyScore: 110
