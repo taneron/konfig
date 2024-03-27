@@ -1,0 +1,337 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /crm/v3/extensions/calling/{appId}/settings:
+    delete: Settings_deleteCallingExtension
+    get: Settings_getCallingConfig
+    patch: Settings_updateCallingExtension
+    post: Settings_configureCallingExtension
+  /crm/v3/extensions/calling/{appId}/settings/recording:
+    get: RecordingSettings_getByAppId
+    patch: RecordingSettings_updateCallingSettings
+    post: RecordingSettings_setCallRecording
+  /crm/v3/extensions/videoconferencing/settings/{appId}:
+    delete: Settings_deleteVideoConferencingAppSettings
+    get: Settings_getById
+    put: Settings_updateVideoConferencingAppSettings
+  /crm/v3/imports/:
+    get: Core_getActiveImportsPage
+    post: Core_startImport
+  /crm/v3/imports/{importId}:
+    get: Core_getImportRecord
+  /crm/v3/imports/{importId}/cancel:
+    post: Core_cancelImport
+  /crm/v3/imports/{importId}/errors:
+    get: PublicImports_getErrorDetails
+  /crm/v3/objects/companies:
+    get: Basic_listCompaniesPage
+    post: Basic_createCompanyObject
+  /crm/v3/objects/companies/batch/archive:
+    post: Batch_archiveCompaniesByIdBatch
+  /crm/v3/objects/companies/batch/create:
+    post: Batch_createCompaniesBatch
+  /crm/v3/objects/companies/batch/read:
+    post: Batch_readCompaniesByProperties
+  /crm/v3/objects/companies/batch/update:
+    post: Batch_updateCompaniesBatch
+  /crm/v3/objects/companies/gdpr-delete:
+    post: Gdpr_permanentlyDeleteContact
+  /crm/v3/objects/companies/merge:
+    post: PublicObject_mergeCompaniesSameType
+  /crm/v3/objects/companies/search:
+    post: Search_companyObjects
+  /crm/v3/objects/companies/{companyId}:
+    delete: Basic_archiveCompany
+    get: Basic_readCompanyObject
+    patch: Basic_updateCompanyObject
+  /crm/v3/objects/contacts:
+    get: Basic_listContactsPage
+    post: Basic_createContactObject
+  /crm/v3/objects/contacts/batch/archive:
+    post: Batch_archiveContactsByIdBatch
+  /crm/v3/objects/contacts/batch/create:
+    post: Batch_createContacts
+  /crm/v3/objects/contacts/batch/read:
+    post: Batch_readContactsByProperties
+  /crm/v3/objects/contacts/batch/update:
+    post: Batch_updateContactsBatch
+  /crm/v3/objects/contacts/gdpr-delete:
+    post: Gdpr_permanentlyDeleteContact
+  /crm/v3/objects/contacts/merge:
+    post: PublicObject_mergeContactsSameType
+  /crm/v3/objects/contacts/search:
+    post: Search_contactsByCriteria
+  /crm/v3/objects/contacts/{contactId}:
+    delete: Basic_archiveContact
+    get: Basic_readContactById
+    patch: Basic_updateContactObject
+  /crm/v3/objects/deals:
+    get: Basic_getDealsPage
+    post: Basic_createDealObject
+  /crm/v3/objects/deals/batch/archive:
+    post: Batch_archiveDealsByIds
+  /crm/v3/objects/deals/batch/create:
+    post: Batch_createDealsObject
+  /crm/v3/objects/deals/batch/read:
+    post: Batch_readDealsByInternalIdOrPropertyValues
+  /crm/v3/objects/deals/batch/update:
+    post: Batch_updateDealsObjects
+  /crm/v3/objects/deals/gdpr-delete:
+    post: Gdpr_permanentlyDeleteDeal
+  /crm/v3/objects/deals/merge:
+    post: PublicObject_mergeDealsSameType
+  /crm/v3/objects/deals/search:
+    post: Search_dealsByCriteria
+  /crm/v3/objects/deals/{dealId}:
+    delete: Basic_archiveDealObject
+    get: Basic_readDealById
+    patch: Basic_updateDealObject
+  /crm/v3/objects/feedback_submissions:
+    get: Basic_listFeedbackSubmissionsPage
+    post: Basic_createFeedbackSubmission
+  /crm/v3/objects/feedback_submissions/batch/archive:
+    post: Batch_archiveFeedbackSubmissionsById
+  /crm/v3/objects/feedback_submissions/batch/create:
+    post: Batch_createFeedbackSubmissions
+  /crm/v3/objects/feedback_submissions/batch/read:
+    post: Batch_readFeedbackSubmissions
+  /crm/v3/objects/feedback_submissions/batch/update:
+    post: Batch_updateFeedbackSubmissions
+  /crm/v3/objects/feedback_submissions/gdpr-delete:
+    post: Gdpr_permanentlyDeleteContact
+  /crm/v3/objects/feedback_submissions/merge:
+    post: PublicObject_mergeFeedbackSubmissions
+  /crm/v3/objects/feedback_submissions/search:
+    post: Search_feedbackSubmissions
+  /crm/v3/objects/feedback_submissions/{feedbackSubmissionId}:
+    delete: Basic_archiveFeedbackSubmission
+    get: Basic_readFeedbackSubmission
+    patch: Basic_updateFeedbackSubmission
+  /crm/v3/objects/line_items:
+    get: Basic_listLineItemsPage
+    post: Basic_createLineItemObject
+  /crm/v3/objects/line_items/batch/archive:
+    post: Batch_archiveLineItemsByIds
+  /crm/v3/objects/line_items/batch/create:
+    post: Batch_lineItemsCreateBatch
+  /crm/v3/objects/line_items/batch/read:
+    post: Batch_readLineItems
+  /crm/v3/objects/line_items/batch/update:
+    post: Batch_updateLineItems
+  /crm/v3/objects/line_items/gdpr-delete:
+    post: Gdpr_deleteContactContent
+  /crm/v3/objects/line_items/merge:
+    post: PublicObject_mergeLineItemsSameType
+  /crm/v3/objects/line_items/search:
+    post: Search_lineItemsByCriteria
+  /crm/v3/objects/line_items/{lineItemId}:
+    delete: Basic_archiveLineItem
+    get: Basic_readLineItemById
+    patch: Basic_updateLineItemObject
+  /crm/v3/objects/products:
+    get: Basic_listProductsPage
+    post: Basic_createProductObject
+  /crm/v3/objects/products/batch/archive:
+    post: Batch_archiveProductsByIds
+  /crm/v3/objects/products/batch/create:
+    post: Batch_createProductsBatch
+  /crm/v3/objects/products/batch/read:
+    post: Batch_readByProperties
+  /crm/v3/objects/products/batch/update:
+    post: Batch_updateProductsBatch
+  /crm/v3/objects/products/gdpr-delete:
+    post: Gdpr_deleteContact
+  /crm/v3/objects/products/merge:
+    post: PublicObject_mergeProductsSameType
+  /crm/v3/objects/products/search:
+    post: Search_productsByCriteria
+  /crm/v3/objects/products/{productId}:
+    delete: Basic_archiveProduct
+    get: Basic_readProductById
+    patch: Basic_updateProduct
+  /crm/v3/objects/quotes:
+    get: Basic_listQuotesPage
+    post: Basic_createQuoteObject
+  /crm/v3/objects/quotes/batch/archive:
+    post: Batch_archiveQuotesByIdBatch
+  /crm/v3/objects/quotes/batch/create:
+    post: Batch_createQuotesBatch
+  /crm/v3/objects/quotes/batch/read:
+    post: Batch_readQuotesByPropertyValues
+  /crm/v3/objects/quotes/batch/update:
+    post: Batch_updateQuotesBatch
+  /crm/v3/objects/quotes/gdpr-delete:
+    post: Gdpr_permanentlyDeleteContact
+  /crm/v3/objects/quotes/merge:
+    post: PublicObject_mergeTwoQuotesSameType
+  /crm/v3/objects/quotes/search:
+    post: Search_quotesByCriteria
+  /crm/v3/objects/quotes/{quoteId}:
+    delete: Basic_archiveQuoteObject
+    get: Basic_readQuoteById
+    patch: Basic_updateQuoteObject
+  /crm/v3/objects/tickets:
+    get: Basic_listTicketsPage
+    post: Basic_createTicketObject
+  /crm/v3/objects/tickets/batch/archive:
+    post: Batch_archiveTicketsById
+  /crm/v3/objects/tickets/batch/create:
+    post: Batch_ticketCreationBatch
+  /crm/v3/objects/tickets/batch/read:
+    post: Batch_readTicketsByProperties
+  /crm/v3/objects/tickets/batch/update:
+    post: Batch_updateTicketsBatch
+  /crm/v3/objects/tickets/gdpr-delete:
+    post: Gdpr_permanentlyDeleteContact
+  /crm/v3/objects/tickets/merge:
+    post: PublicObject_mergeTicketsSameType
+  /crm/v3/objects/tickets/search:
+    post: Search_ticketsByCriteria
+  /crm/v3/objects/tickets/{ticketId}:
+    delete: Basic_archiveTicket
+    get: Basic_readTicketById
+    patch: Basic_updateTicketObject
+  /crm/v3/objects/{objectType}:
+    get: Basic_listObjectsPage
+    post: Basic_createCRMObject
+  /crm/v3/objects/{objectType}/batch/archive:
+    post: Batch_archiveObjectsById
+  /crm/v3/objects/{objectType}/batch/create:
+    post: Batch_createObjects
+  /crm/v3/objects/{objectType}/batch/read:
+    post: Batch_readObjectsByInternalIdOrPropertyValues
+  /crm/v3/objects/{objectType}/batch/update:
+    post: Batch_updateObjectsByInternalIdOrPropertyValues
+  /crm/v3/objects/{objectType}/gdpr-delete:
+    post: Gdpr_permanentlyDeleteContact
+  /crm/v3/objects/{objectType}/merge:
+    post: PublicObject_mergeObjectsWithType
+  /crm/v3/objects/{objectType}/search:
+    post: Search_objectsByCriteria
+  /crm/v3/objects/{objectType}/{objectId}:
+    delete: Basic_archiveObject
+    get: Basic_readObjectById
+    patch: Basic_updateObject
+  /crm/v3/owners/:
+    get: Owners_getPage
+  /crm/v3/owners/{ownerId}:
+    get: Owners_getById
+  /crm/v3/pipelines/{objectType}:
+    get: Pipelines_getAll
+    post: Pipelines_createNewPipelineObject
+  /crm/v3/pipelines/{objectType}/{pipelineId}:
+    delete: Pipelines_removeById
+    get: Pipelines_getById
+    patch: Pipelines_updatePipelineById
+    put: Pipelines_replacePipelineObject
+  /crm/v3/pipelines/{objectType}/{pipelineId}/audit:
+    get: PipelineAudits_getByPipelineId
+  /crm/v3/pipelines/{objectType}/{pipelineId}/stages:
+    get: PipelineStages_getAll
+    post: PipelineStages_createStageObject
+  /crm/v3/pipelines/{objectType}/{pipelineId}/stages/{stageId}:
+    delete: PipelineStages_deleteStage
+    get: PipelineStages_getById
+    patch: PipelineStages_updateStageById
+    put: PipelineStages_replaceStageObject
+  /crm/v3/pipelines/{objectType}/{pipelineId}/stages/{stageId}/audit:
+    get: PipelineStageAudits_getStageAudit
+  /crm/v3/properties/{objectType}:
+    get: Core_getAllProperties
+    post: Core_createProperty
+  /crm/v3/properties/{objectType}/batch/archive:
+    post: Batch_archiveProperties
+  /crm/v3/properties/{objectType}/batch/create:
+    post: Batch_propertiesCreateBatch
+  /crm/v3/properties/{objectType}/batch/read:
+    post: Batch_readProperties
+  /crm/v3/properties/{objectType}/groups:
+    get: Groups_readAllProperty
+    post: Groups_createCopy
+  /crm/v3/properties/{objectType}/groups/{groupName}:
+    delete: Groups_archivePropertyGroup
+    get: Groups_readPropertyGroup
+    patch: Groups_updatePropertyGroup
+  /crm/v3/properties/{objectType}/{propertyName}:
+    delete: Core_archiveProperty
+    get: Core_readProperty
+    patch: Core_updatePropertyById
+  /crm/v3/schemas:
+    get: Core_getAllSchemas
+    post: Core_defineObjectSchema
+  /crm/v3/schemas/{objectType}:
+    delete: Core_deleteSchema
+    get: Core_getExistingSchema
+    patch: Core_updateSchemaObject
+  /crm/v3/schemas/{objectType}/associations:
+    post: Core_createAssociation
+  /crm/v3/schemas/{objectType}/associations/{associationIdentifier}:
+    delete: Core_removeAssociation
+  /crm/v3/schemas/{objectType}/purge:
+    delete: PublicObjectSchemas_purgeObjectSchema
+  /crm/v3/timeline/events:
+    post: Events_createSingleEvent
+  /crm/v3/timeline/events/batch/create:
+    post: Events_createMultipleBatch
+  /crm/v3/timeline/events/{eventTemplateId}/{eventId}:
+    get: Events_getEventById
+  /crm/v3/timeline/events/{eventTemplateId}/{eventId}/detail:
+    get: Events_renderDetailTemplate
+  /crm/v3/timeline/events/{eventTemplateId}/{eventId}/render:
+    get: Events_renderingHtml
+  /crm/v3/timeline/{appId}/event-templates:
+    get: Templates_listEventTemplates
+    post: Templates_createEventTemplateForApp
+  /crm/v3/timeline/{appId}/event-templates/{eventTemplateId}:
+    delete: Templates_deleteEventTemplate
+    get: Templates_getSpecificEventTemplate
+    put: Templates_updateEventTemplate
+  /crm/v3/timeline/{appId}/event-templates/{eventTemplateId}/tokens:
+    post: Tokens_addToEventTemplate
+  /crm/v3/timeline/{appId}/event-templates/{eventTemplateId}/tokens/{tokenName}:
+    delete: Tokens_removeFromTemplate
+    put: Tokens_updateExistingTokenOnEventTemplate
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /crm/v3/imports:
+    post:
+      multipart/form-data: CoreStartImportRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /crm/v3/timeline/events/batch/create:
+    post:
+      '200':
+        application/json: EventsCreateMultipleBatchResponse
+  /crm/v3/timeline/events/{eventTemplateId}/{eventId}/render:
+    get:
+      '200':
+        text/html: EventsRenderingHtmlResponse
+securityParameters:
+  after:
+    query: false
+  archived:
+    query: false
+  associations:
+    query: false
+  before:
+    query: false
+  detail:
+    query: false
+  email:
+    query: false
+  idProperty:
+    query: false
+  limit:
+    query: false
+  properties:
+    query: false
+  propertiesWithHistory:
+    query: false
+  validateDealStageUsagesBeforeDelete:
+    query: false
+  validateReferencesBeforeDelete:
+    query: false
+validServerUrls: {}

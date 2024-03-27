@@ -7,6 +7,7 @@ import path from "path";
 import { Db } from "../scripts/collect";
 import * as fs from "fs-extra";
 import deepmerge from "deepmerge";
+import deepEqual from "deep-equal";
 import yaml from "js-yaml";
 import puppeteer, { Browser as PuppeteerBrowser } from "puppeteer";
 import AdmZip from "adm-zip";
@@ -491,6 +492,63 @@ const customRequests: Record<string, CustomRequest> = {
   "zapier.com_Embed": {
     type: "GET",
     url: "https://stoplight.io/api/v1/projects/zapier/public-api/nodes/spec/reference/API.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
+  },
+  "hubspot.com_CRM": {
+    lambda: async () => {
+      const indexUrl = "https://api.hubspot.com/api-catalog-public/v1/apis";
+
+      // fetch and parse for result[name=CRM].features.openapi
+      const response = await fetch(indexUrl);
+      const json = await response.json();
+      const openapiUrls = json.results.find(
+        (item: any) => item.name === "CRM"
+      ).features;
+
+      console.log(openapiUrls);
+
+      // fetch all openapi files and merge
+      const openapiSpecs = (
+        await Promise.all(
+          Object.values(openapiUrls).map(async ({ openAPI }: any) => {
+            try {
+              const response = await fetch(openAPI);
+              if (!response.ok) {
+                if (response.status === 404) {
+                  console.log(`OpenAPI not found at ${openAPI}. Skipping...`);
+                  return;
+                } else {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+                }
+              }
+              return response.json();
+            } catch (error) {
+              console.error("Fetch error:", error);
+            }
+          })
+        )
+      ).filter((spec) => spec !== undefined && spec !== null);
+
+      // write openapiSpecs to file
+      fs.writeFileSync(
+        "openapiSpecs.json",
+        JSON.stringify(openapiSpecs, null, 2)
+      );
+
+      // merge
+      const mergedSpec = openapiSpecs.reduce((acc, curr) => {
+        return deepmerge.all([acc, curr], {
+          arrayMerge: (acc, curr) => {
+            // merge and deduplicate object that are deep equal
+            const deduplicated = acc.filter(
+              (item) => !curr.some((currItem) => deepEqual(item, currItem))
+            );
+            return deduplicated.concat(curr);
+          },
+        });
+      }, {});
+
+      return JSON.stringify(mergedSpec, null, 2);
+    },
   },
   "lucca-hr.com_Organization": {
     type: "GET",
