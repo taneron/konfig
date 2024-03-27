@@ -17,7 +17,7 @@ export default function BlueTimeTypeScriptSdk() {
       companyKebabCase="blue-time"
       clientNameCamelCase="blueTime"
       homepage="bluetime.io/"
-      lastUpdated={new Date("2024-03-26T23:22:05.022Z")}
+      lastUpdated={new Date("2024-03-27T21:35:27.963Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/bluetime/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -82,7 +82,7 @@ export default function BlueTimeTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "CustomForms",
     "typeScriptTag": "customForms",
-    "description": "Upload a custom form folder (add or replace)",
+    "description": "Upload a custom form folder (https://developers.bluetime.io/reference",
     "parameters": [
       {
         "name": "name",
@@ -882,7 +882,7 @@ export default function BlueTimeTypeScriptSdk() {
       },
       {
         "statusCode": "202",
-        "description": "Accepted (for future processing by payment gateway)"
+        "description": "Accepted (https://developers.bluetime.io/reference"
       },
       {
         "statusCode": "400",
@@ -990,7 +990,7 @@ export default function BlueTimeTypeScriptSdk() {
       },
       {
         "statusCode": "202",
-        "description": "Accepted (for future processing by payment gateway)"
+        "description": "Accepted (https://developers.bluetime.io/reference"
       },
       {
         "statusCode": "400",
@@ -1087,7 +1087,7 @@ export default function BlueTimeTypeScriptSdk() {
       },
       {
         "statusCode": "202",
-        "description": "Accepted (for future processing by payment gateway)"
+        "description": "Accepted (https://developers.bluetime.io/reference"
       },
       {
         "statusCode": "400",
@@ -1190,7 +1190,7 @@ export default function BlueTimeTypeScriptSdk() {
       },
       {
         "statusCode": "202",
-        "description": "Accepted (for future processing by payment gateway)"
+        "description": "Accepted (https://developers.bluetime.io/reference"
       },
       {
         "statusCode": "400",
@@ -1287,7 +1287,7 @@ export default function BlueTimeTypeScriptSdk() {
       },
       {
         "statusCode": "202",
-        "description": "Accepted (for future processing by payment gateway)"
+        "description": "Accepted (https://developers.bluetime.io/reference"
       },
       {
         "statusCode": "400",
@@ -1381,7 +1381,7 @@ export default function BlueTimeTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "200",
-        "description": "base class for message to client (Http response or over WebSocket)"
+        "description": "base class for message to client (https://developers.bluetime.io/reference"
       },
       {
         "statusCode": "401",
@@ -1395,7 +1395,7 @@ export default function BlueTimeTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "ThreeDsSessions",
     "typeScriptTag": "threeDsSessions",
-    "description": "Handle a callback (redirect from challenge)",
+    "description": "Handle a callback (https://developers.bluetime.io/reference",
     "parameters": [
       {
         "name": "sessionId",
@@ -1418,7 +1418,7 @@ export default function BlueTimeTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "ThreeDsSessions",
     "typeScriptTag": "threeDsSessions",
-    "description": "Handle a callback (redirect from device fingerprint)",
+    "description": "Handle a callback (https://developers.bluetime.io/reference",
     "parameters": [
       {
         "name": "sessionId",
@@ -1466,7 +1466,7 @@ export default function BlueTimeTypeScriptSdk() {
         "name": "iin",
         "schema": "string",
         "required": true,
-        "description": "Card's BIN / IIN (the first 6 to 11 digits of the card number)",
+        "description": "Card's BIN / IIN (https://developers.bluetime.io/reference",
         "example": "IIN"
       }
     ],
@@ -1524,7 +1524,7 @@ export default function BlueTimeTypeScriptSdk() {
         "name": "iin",
         "schema": "string",
         "required": true,
-        "description": "Card's BIN / IIN (the first 6 to 11 digits of the card number)",
+        "description": "Card's BIN / IIN (https://developers.bluetime.io/reference",
         "example": "IIN"
       }
     ],
@@ -1644,7 +1644,7 @@ export default function BlueTimeTypeScriptSdk() {
         "name": "iin",
         "schema": "string",
         "required": true,
-        "description": "Card's BIN / IIN (the first 6 to 11 digits of the card number)",
+        "description": "Card's BIN / IIN (https://developers.bluetime.io/reference",
         "example": "IIN"
       },
       {
@@ -1736,7 +1736,7 @@ export default function BlueTimeTypeScriptSdk() {
       sdkMethods={43}
       schemas={83}
       parameters={117}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/bluetime/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/bluetime/openapi.yaml"
       developerDocumentation="developers.bluetime.io/reference"

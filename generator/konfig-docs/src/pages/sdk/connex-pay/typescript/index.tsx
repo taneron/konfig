@@ -23,7 +23,7 @@ Founded in 2017, ConnexPay is a leading payments provider for travel agencies an
       companyKebabCase="connex-pay"
       clientNameCamelCase="connexPay"
       homepage="connexpay.com/"
-      lastUpdated={new Date("2024-03-27T21:38:40.500Z")}
+      lastUpdated={new Date("2024-03-27T21:44:11.801Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/connexpay/favicon.png"
       contactUrl="https://docs.connexpay.com"
       // Missing contactEmail
@@ -4074,7 +4074,7 @@ Founded in 2017, ConnexPay is a leading payments provider for travel agencies an
       sdkMethods={59}
       schemas={142}
       parameters={503}
-      difficulty="Hard"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/connexpay/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/connexpay/openapi.yaml"
       developerDocumentation="docs.connexpay.com/reference"

@@ -27,7 +27,7 @@ Make customer service your business with Gladly.`}
       companyKebabCase="gladly"
       clientNameCamelCase="gladly"
       homepage="gladly.com"
-      lastUpdated={new Date("2024-03-27T21:38:40.500Z")}
+      lastUpdated={new Date("2024-03-27T21:44:11.801Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gladly/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2213,7 +2213,7 @@ Make customer service your business with Gladly.`}
       sdkMethods={78}
       schemas={69}
       parameters={122}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gladly/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gladly/openapi.yaml"
       developerDocumentation="developer.gladly.com/rest/"
