@@ -517,6 +517,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/intercom/Intercom-OpenAPI/main/descriptions/2.9/api.intercom.io.yaml",
   },
+  "shortcut.com": {
+    type: "GET",
+    url: "https://developer.shortcut.com/api/rest/v3/shortcut.swagger.json",
+  },
   "kustomer.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

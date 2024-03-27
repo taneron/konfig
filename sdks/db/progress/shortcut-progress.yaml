@@ -1,0 +1,538 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/v3/categories:
+    get: Category_listAll
+    post: Category_createNewCategory
+  /api/v3/categories/{category-public-id}:
+    delete: Category_deleteCategory
+    get: Category_getInformation
+    put: Category_updateName
+  /api/v3/categories/{category-public-id}/milestones:
+    get: Category_listMilestones
+  /api/v3/categories/{category-public-id}/objectives:
+    get: Category_listObjectives
+  /api/v3/custom-fields:
+    get: CustomField_list
+  /api/v3/custom-fields/{custom-field-public-id}:
+    delete: CustomField_deleteField
+    get: CustomField_getById
+    put: CustomField_updateDefinition
+  /api/v3/entity-templates:
+    get: Template_listEntityTemplates
+    post: Template_createNewEntity
+  /api/v3/entity-templates/disable:
+    put: Story_disableTemplate
+  /api/v3/entity-templates/enable:
+    put: Story_enableTemplateFeature
+  /api/v3/entity-templates/{entity-template-public-id}:
+    delete: Template_deleteEntityTemplate
+    get: Template_getInformation
+    put: Template_updateContents
+  /api/v3/epic-workflow:
+    get: Epic_getWorkflow
+  /api/v3/epics:
+    get: Epic_listAllAttributes
+    post: Epic_createNewEpic
+  /api/v3/epics/{epic-public-id}:
+    delete: Epic_deleteEpic
+    get: Epic_getInformation
+    put: Epic_updateDetails
+  /api/v3/epics/{epic-public-id}/comments:
+    get: Epic_getAllEpicComments
+    post: Epic_createComment
+  /api/v3/epics/{epic-public-id}/comments/{comment-public-id}:
+    delete: Epic_deleteComment
+    get: Epic_getCommentInfo
+    post: Epic_createCommentComment
+    put: Epic_updateComment
+  /api/v3/epics/{epic-public-id}/stories:
+    get: Epic_listStories
+  /api/v3/epics/{epic-public-id}/unlink-productboard:
+    post: Epic_unlinkProductboard
+  /api/v3/external-link/stories:
+    get: ExternalLinkStory_getStories
+  /api/v3/files:
+    get: File_listFiles
+    post: File_uploadAndAssociate
+  /api/v3/files/{file-public-id}:
+    delete: File_deleteFile
+    get: File_getFileInfo
+    put: File_updateProperties
+  /api/v3/groups:
+    get: Group_listTeams
+    post: Group_createNew
+  /api/v3/groups/disable:
+    put: Group_disableWorkspace
+  /api/v3/groups/enable:
+    put: Group_enableWorkspace
+  /api/v3/groups/{group-public-id}:
+    get: Group_getDetails
+    put: Group_updateGroupById
+  /api/v3/groups/{group-public-id}/stories:
+    get: Group_listStories
+  /api/v3/iterations:
+    get: Iteration_getAllIterations
+    post: Iteration_createNewIteration
+  /api/v3/iterations/disable:
+    put: Iteration_disableIterations
+  /api/v3/iterations/enable:
+    put: Iteration_enableIterations
+  /api/v3/iterations/{iteration-public-id}:
+    delete: Iteration_removeById
+    get: Iteration_getById
+    put: Iteration_updateIterationById
+  /api/v3/iterations/{iteration-public-id}/stories:
+    get: Iteration_listStories
+  /api/v3/key-results/{key-result-public-id}:
+    get: KeyResult_getInformation
+    put: KeyResult_updateValues
+  /api/v3/labels:
+    get: Label_list
+    post: Label_createNew
+  /api/v3/labels/{label-public-id}:
+    delete: Label_remove
+    get: Label_getInfo
+    put: Label_updateNameById
+  /api/v3/labels/{label-public-id}/epics:
+    get: Epic_listEpics
+  /api/v3/labels/{label-public-id}/stories:
+    get: Label_listStories
+  /api/v3/linked-files:
+    get: File_listLinkedFiles
+    post: File_createLinkedFile
+  /api/v3/linked-files/{linked-file-public-id}:
+    delete: File_deleteLinkedFile
+    get: File_getLinkedFileInfo
+    put: File_updateLinkedFile
+  /api/v3/member:
+    get: Member_getCurrentInfo
+  /api/v3/members:
+    get: Member_listWorkspaceMembers
+  /api/v3/members/{member-public-id}:
+    get: Member_getInfo
+  /api/v3/milestones:
+    get: Milestone_listAllAttributes
+    post: Milestone_createNew
+  /api/v3/milestones/{milestone-public-id}:
+    delete: Milestone_deleteMilestone
+    get: Milestone_getInfo
+    put: Milestone_updateProperties
+  /api/v3/milestones/{milestone-public-id}/epics:
+    get: Epic_listMilestoneEpics
+  /api/v3/objectives:
+    get: Objective_listAll
+    post: Objective_createNewObjective
+  /api/v3/objectives/{objective-public-id}:
+    delete: Objective_remove
+    get: Objective_getInfo
+    put: Objective_updateProperties
+  /api/v3/objectives/{objective-public-id}/epics:
+    get: Epic_listObjectiveEpics
+  /api/v3/projects:
+    get: Project_getAll
+    post: Project_createShortcutProject
+  /api/v3/projects/{project-public-id}:
+    delete: Project_deleteProject
+    get: Project_getInformation
+    put: Project_updateProperties
+  /api/v3/projects/{project-public-id}/stories:
+    get: Project_listStories
+  /api/v3/repositories:
+    get: Repository_listAll
+  /api/v3/repositories/{repo-public-id}:
+    get: Repository_getInformation
+  /api/v3/search:
+    get: Search_epicsAndStories
+  /api/v3/search/epics:
+    get: Epic_getEpics
+  /api/v3/search/iterations:
+    get: Search_iterations
+  /api/v3/search/milestones:
+    get: Search_milestones
+  /api/v3/search/objectives:
+    get: Search_objectives
+  /api/v3/search/stories:
+    get: Search_storiesGet
+  /api/v3/stories:
+    post: Story_addNew
+  /api/v3/stories/bulk:
+    delete: Story_deleteMultiple
+    post: Story_createMultiple
+    put: Story_updateMultiple
+  /api/v3/stories/from-template:
+    post: Story_createFromTemplate
+  /api/v3/stories/search:
+    post: Search_storiesOld
+  /api/v3/stories/{story-public-id}:
+    delete: Story_remove
+    get: Story_getInformation
+    put: Story_updateProperties
+  /api/v3/stories/{story-public-id}/comments:
+    get: Story_listComments
+    post: Story_createComment
+  /api/v3/stories/{story-public-id}/comments/{comment-public-id}:
+    delete: Story_deleteComment
+    get: Story_getComment
+    put: Story_updateCommentText
+  /api/v3/stories/{story-public-id}/comments/{comment-public-id}/reactions:
+    delete: Story_deleteReaction
+    post: Story_addReaction
+  /api/v3/stories/{story-public-id}/history:
+    get: Story_getHistory
+  /api/v3/stories/{story-public-id}/tasks:
+    post: Story_createNewTask
+  /api/v3/stories/{story-public-id}/tasks/{task-public-id}:
+    delete: Story_removeTask
+    get: Story_getTaskInformation
+    put: Story_updateTask
+  /api/v3/story-links:
+    post: Story_createLink
+  /api/v3/story-links/{story-link-public-id}:
+    delete: Story_unlinkRelationship
+    get: Story_getRelationship
+    put: Story_updateLinkRelationship
+  /api/v3/workflows:
+    get: Workflow_listAll
+  /api/v3/workflows/{workflow-public-id}:
+    get: Workflow_getInformation
+operationTags:
+  /api/v3/categories:
+    get: Category
+    post: Category
+  /api/v3/categories/{category-public-id}:
+    delete: Category
+    get: Category
+    put: Category
+  /api/v3/categories/{category-public-id}/milestones:
+    get: Category
+  /api/v3/categories/{category-public-id}/objectives:
+    get: Category
+  /api/v3/custom-fields:
+    get: CustomField
+  /api/v3/custom-fields/{custom-field-public-id}:
+    delete: CustomField
+    get: CustomField
+    put: CustomField
+  /api/v3/entity-templates:
+    get: Template
+    post: Template
+  /api/v3/entity-templates/disable:
+    put: Story
+  /api/v3/entity-templates/enable:
+    put: Story
+  /api/v3/entity-templates/{entity-template-public-id}:
+    delete: Template
+    get: Template
+    put: Template
+  /api/v3/epic-workflow:
+    get: Epic
+  /api/v3/epics:
+    get: Epic
+    post: Epic
+  /api/v3/epics/{epic-public-id}:
+    delete: Epic
+    get: Epic
+    put: Epic
+  /api/v3/epics/{epic-public-id}/comments:
+    get: Epic
+    post: Epic
+  /api/v3/epics/{epic-public-id}/comments/{comment-public-id}:
+    delete: Epic
+    get: Epic
+    post: Epic
+    put: Epic
+  /api/v3/epics/{epic-public-id}/stories:
+    get: Epic
+  /api/v3/epics/{epic-public-id}/unlink-productboard:
+    post: Epic
+  /api/v3/external-link/stories:
+    get: ExternalLinkStory
+  /api/v3/files:
+    get: File
+    post: File
+  /api/v3/files/{file-public-id}:
+    delete: File
+    get: File
+    put: File
+  /api/v3/groups:
+    get: Group
+    post: Group
+  /api/v3/groups/disable:
+    put: Group
+  /api/v3/groups/enable:
+    put: Group
+  /api/v3/groups/{group-public-id}:
+    get: Group
+    put: Group
+  /api/v3/groups/{group-public-id}/stories:
+    get: Group
+  /api/v3/iterations:
+    get: Iteration
+    post: Iteration
+  /api/v3/iterations/disable:
+    put: Iteration
+  /api/v3/iterations/enable:
+    put: Iteration
+  /api/v3/iterations/{iteration-public-id}:
+    delete: Iteration
+    get: Iteration
+    put: Iteration
+  /api/v3/iterations/{iteration-public-id}/stories:
+    get: Iteration
+  /api/v3/key-results/{key-result-public-id}:
+    get: KeyResult
+    put: KeyResult
+  /api/v3/labels:
+    get: Label
+    post: Label
+  /api/v3/labels/{label-public-id}:
+    delete: Label
+    get: Label
+    put: Label
+  /api/v3/labels/{label-public-id}/epics:
+    get: Epic
+  /api/v3/labels/{label-public-id}/stories:
+    get: Label
+  /api/v3/linked-files:
+    get: File
+    post: File
+  /api/v3/linked-files/{linked-file-public-id}:
+    delete: File
+    get: File
+    put: File
+  /api/v3/member:
+    get: Member
+  /api/v3/members:
+    get: Member
+  /api/v3/members/{member-public-id}:
+    get: Member
+  /api/v3/milestones:
+    get: Milestone
+    post: Milestone
+  /api/v3/milestones/{milestone-public-id}:
+    delete: Milestone
+    get: Milestone
+    put: Milestone
+  /api/v3/milestones/{milestone-public-id}/epics:
+    get: Epic
+  /api/v3/objectives:
+    get: Objective
+    post: Objective
+  /api/v3/objectives/{objective-public-id}:
+    delete: Objective
+    get: Objective
+    put: Objective
+  /api/v3/objectives/{objective-public-id}/epics:
+    get: Epic
+  /api/v3/projects:
+    get: Project
+    post: Project
+  /api/v3/projects/{project-public-id}:
+    delete: Project
+    get: Project
+    put: Project
+  /api/v3/projects/{project-public-id}/stories:
+    get: Project
+  /api/v3/repositories:
+    get: Repository
+  /api/v3/repositories/{repo-public-id}:
+    get: Repository
+  /api/v3/search:
+    get: Search
+  /api/v3/search/epics:
+    get: Epic
+  /api/v3/search/iterations:
+    get: Search
+  /api/v3/search/milestones:
+    get: Search
+  /api/v3/search/objectives:
+    get: Search
+  /api/v3/search/stories:
+    get: Search
+  /api/v3/stories:
+    post: Story
+  /api/v3/stories/bulk:
+    delete: Story
+    post: Story
+    put: Story
+  /api/v3/stories/from-template:
+    post: Story
+  /api/v3/stories/search:
+    post: Search
+  /api/v3/stories/{story-public-id}:
+    delete: Story
+    get: Story
+    put: Story
+  /api/v3/stories/{story-public-id}/comments:
+    get: Story
+    post: Story
+  /api/v3/stories/{story-public-id}/comments/{comment-public-id}:
+    delete: Story
+    get: Story
+    put: Story
+  /api/v3/stories/{story-public-id}/comments/{comment-public-id}/reactions:
+    delete: Story
+    post: Story
+  /api/v3/stories/{story-public-id}/history:
+    get: Story
+  /api/v3/stories/{story-public-id}/tasks:
+    post: Story
+  /api/v3/stories/{story-public-id}/tasks/{task-public-id}:
+    delete: Story
+    get: Story
+    put: Story
+  /api/v3/story-links:
+    post: Story
+  /api/v3/story-links/{story-link-public-id}:
+    delete: Story
+    get: Story
+    put: Story
+  /api/v3/workflows:
+    get: Workflow
+  /api/v3/workflows/{workflow-public-id}:
+    get: Workflow
+renameTags: {}
+requestSchemaNames:
+  /api/v3/files:
+    post:
+      multipart/form-data: FileUploadAndAssociateRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v3/categories:
+    get:
+      '200':
+        application/json: CategoryListAllResponse
+  /api/v3/categories/{category-public-id}/milestones:
+    get:
+      '200':
+        application/json: CategoryListMilestonesResponse
+  /api/v3/categories/{category-public-id}/objectives:
+    get:
+      '200':
+        application/json: CategoryListObjectivesResponse
+  /api/v3/custom-fields:
+    get:
+      '200':
+        application/json: CustomFieldListResponse
+  /api/v3/entity-templates:
+    get:
+      '200':
+        application/json: TemplateListEntityTemplatesResponse
+  /api/v3/epics:
+    get:
+      '200':
+        application/json: EpicListAllAttributesResponse
+  /api/v3/epics/{epic-public-id}/comments:
+    get:
+      '200':
+        application/json: EpicGetAllEpicCommentsResponse
+  /api/v3/epics/{epic-public-id}/stories:
+    get:
+      '200':
+        application/json: EpicListStoriesResponse
+  /api/v3/external-link/stories:
+    get:
+      '200':
+        application/json: ExternalLinkStoryGetStoriesResponse
+  /api/v3/files:
+    get:
+      '200':
+        application/json: FileListFilesResponse
+    post:
+      '201':
+        application/json: FileUploadAndAssociateResponse
+  /api/v3/groups:
+    get:
+      '200':
+        application/json: GroupListTeamsResponse
+  /api/v3/groups/{group-public-id}/stories:
+    get:
+      '200':
+        application/json: GroupListStoriesResponse
+  /api/v3/iterations:
+    get:
+      '200':
+        application/json: IterationGetAllIterationsResponse
+  /api/v3/iterations/{iteration-public-id}/stories:
+    get:
+      '200':
+        application/json: IterationListStoriesResponse
+  /api/v3/labels:
+    get:
+      '200':
+        application/json: LabelListResponse
+  /api/v3/labels/{label-public-id}/epics:
+    get:
+      '200':
+        application/json: EpicListEpicsResponse
+  /api/v3/labels/{label-public-id}/stories:
+    get:
+      '200':
+        application/json: LabelListStoriesResponse
+  /api/v3/linked-files:
+    get:
+      '200':
+        application/json: FileListLinkedFilesResponse
+  /api/v3/members:
+    get:
+      '200':
+        application/json: MemberListWorkspaceMembersResponse
+  /api/v3/milestones:
+    get:
+      '200':
+        application/json: MilestoneListAllAttributesResponse
+  /api/v3/milestones/{milestone-public-id}/epics:
+    get:
+      '200':
+        application/json: EpicListMilestoneEpicsResponse
+  /api/v3/objectives:
+    get:
+      '200':
+        application/json: ObjectiveListAllResponse
+  /api/v3/objectives/{objective-public-id}/epics:
+    get:
+      '200':
+        application/json: EpicListObjectiveEpicsResponse
+  /api/v3/projects:
+    get:
+      '200':
+        application/json: ProjectGetAllResponse
+  /api/v3/projects/{project-public-id}/stories:
+    get:
+      '200':
+        application/json: ProjectListStoriesResponse
+  /api/v3/repositories:
+    get:
+      '200':
+        application/json: RepositoryListAllResponse
+  /api/v3/stories/bulk:
+    post:
+      '201':
+        application/json: StoryCreateMultipleResponse
+    put:
+      '200':
+        application/json: StoryUpdateMultipleResponse
+  /api/v3/stories/search:
+    post:
+      '201':
+        application/json: SearchStoriesOldResponse
+  /api/v3/stories/{story-public-id}/comments:
+    get:
+      '200':
+        application/json: StoryListCommentsResponse
+  /api/v3/stories/{story-public-id}/comments/{comment-public-id}/reactions:
+    post:
+      '201':
+        application/json: StoryAddReactionResponse
+  /api/v3/stories/{story-public-id}/history:
+    get:
+      '200':
+        application/json: StoryGetHistoryResponse
+  /api/v3/workflows:
+    get:
+      '200':
+        application/json: WorkflowListAllResponse
+securityParameters: {}
+validServerUrls: {}

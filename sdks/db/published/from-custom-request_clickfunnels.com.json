@@ -9,16 +9,16 @@
   "apiVersion": "V2",
   "apiDescription": "# Introduction\n\nThe ClickFunnels v2 API lets you:\n\n- import data from other apps and sources into ClickFunnels and export data that you need somewhere else\n- extend the ClickFunnels platform to your own needs and embed it in your own applications\n- act on behalf of other ClickFunnels users via OAuth to offer extended services to other fellow ClickFunnels entrepreneurs\n\nWe are starting with exposing a given set of resources but the goal is to converge in terms of\nfunctionality with what the actual app is offering and also offering functionality on top.\n\nFor any feedback, please drop us a line at:\n\n- https://feedback.myclickfunnels.com/feature-requests?category=api\n\nFor issues and support you can currently go here:\n\n- https://help.clickfunnels.com/hc/en-us\n\n# Authentication\n\nMaking your first request is easiest with a Bearer token:\n\n```shell\n$ curl 'https://myteam.myclickfunnels.com/api/v2/teams' \\\n--header 'Authorization: Bearer AVJrj0ZMJ-xoraUk1xxVM6UuL9KXmsWmnJvvSosUO6X'\n[{\"id\":3,\"name\":\"My Team\", # ... more output...}]\n```\n\nHow to get your API key step by step:\n\nhttps://developers.myclickfunnels.com/docs/getting-started\n\n# Rate limiting\n\nThe rate limit is currently set per IP address.\n\nThe actual rate limit and the approach on how this is handled is subject to change in future\nreleases. Please let us know if you have special request limit needs.\n\n# Pagination and Ordering\n\nIn order to paginate through a large list response, you can use our cursor-based pagination using\nthe `id` field of a given object in the list.\n\nThere is a limit of 20 objects per list response ordered ascending by ID. So, you can get to items\nafter the last one in the list, by taking the last item's ID and submitting it in a list request\nas the value of an `after` URL parameter. For example:\n\n```shell\n# The first 20 contacts are returned without any pagination nor ordering params:\n$ curl 'https://myteam.myclickfunnels.com/api/v2/workspaces/3/contacts' --header 'Authorization: Bearer ...'\n[{\"id\": 1, \"email_address\": \"first@contact.com\" ...}, {\"id\": 4, ...} ... {\"id\": 55, \"email_address\": \"last@contact.com\", ...}]\n\n$ curl 'https://myteam.myclickfunnels.com/api/v2/workspaces/3/contacts?after=55' --header 'Authorization: Bearer ...'\n[{\"id\": 56, ...}] # There is one more record after ID 55.\n```\n\nThe `after` param always acts as if you are \"turning the next page\". So if you order in a descending\norder, you will also use `after` to get to the next records:\n\n```shell\n$ curl 'https://myteam.myclickfunnels.com/api/v2/workspaces/3/contacts?sort_order=desc' --header 'Authorization: Bearer ...'\n[{\"id\": 56, ...},  {\"id\": 55, ...}, {\"id\": 4, ...}] # All contacts in descending order.\n\n$ curl 'https://myteam.myclickfunnels.com/api/v2/workspaces/3/contacts?sort_order=desc&after=4' --header 'Authorization: Bearer ...'\n[{\"id\": 1, ...}] # There is one more contact on the next page after ID 55.\n```\n\nYou can also use the `Pagination-Next` header to get the last ID value directly:\n\n```http request\n# Example header.\nPagination-Next: 55\n```\n\nAnd you can use the `Link` header to get the next page directly without needing to calculate it\nyourself:\n\n```http request\n# Example header.\nLink: <https://localteam.myclickfunnels.com/api/v2/workspaces/3/contacts?after=55>; rel=\"next\"\n```\n\n# Filtering\n\n**Current filters**\n\nIf filtering is available for a specific endpoint, 'filter' will be listed as one of the options in the query parameters section of the Request area. Attributes by which you can filter will be listed as well.\n\n**How it works**\n\nThere is a filter mechanism that adheres to some simple conventions. The filters provided on\nlist endpoints, like `filter[email_address]` and `filter[id]` on the `Contacts` list endpoint, need\nto be \"simple\" and \"fast\". These filters are supposed to be easy to use and allow you to filter by\none or more concrete values.\n\nHere's an example of how you could use the filter to find a contact with a certain email address:\n\n```shell\n$ curl -g 'https://myteam.myclickfunnels.com/api/v2/workspaces/3/contacts?filter[email_address]=you@cf.com' --header 'Authorization: Bearer ...'\n[{\"email_address\": \"you@cf.com\",...}]\n```\n\nYou can also filter by multiple values:\n\n```shell\n$ curl -g 'https://myteam.myclickfunnels.com/api/v2/workspaces/3/contacts?filter[email_address]=you@cf.com,u2@cf.com' --header 'Authorization: Bearer ...'\n[{\"email_address\": \"you@cf.com\",...}, {\"email_address\": \"u2@cf.com\",...}]\n```\n\nYou can also filter by multiple attributes. Similar to filters that you might be familiar with when\nusing GitHub (e.g.: filtering PRs by closed and assignee), those filters are `AND` filters, which\ngive you the intersection of multiple records:\n\n```shell\n# If you@cf.com comes with an ID of 1, you will only see this record for this API call:\n$ curl -g 'https://myteam.myclickfunnels.com/api/v2/workspaces/3/contacts?filter[email_address]=you@cf.com,u2@cf.com&filter[id]=1' --header 'Authorization: Bearer ...'\n[{\"email_address\": \"you@cf.com\",...}] \n# u2@cf.com is not included because it has a different ID that is not included in the filter.\n```\n\n> Please let us know your use case if you need more filter or complex search capabilities, we are \n> actively improving these areas: https://feedback.myclickfunnels.com/feature-requests?category=api\n\n# Webhooks\n\nClickFunnels webhooks allow you to react to many events in the ClickFunnels app on your own server, \nZapier and other similar tools.\n\nYou need to configure one or more endpoints within the ClickFunnels API by using the [Webhooks::Outgoing::Endpoints](https://apidocs.myclickfunnels.com/tag/Webhooks::Outgoing::Endpoint) \nendpoint with the `event_type_ids` that you want to listen to (see below for all types).\n\nOnce configured, you will receive POST requrests from us to the configured endpoint URL with the\n[Webhooks::Outgoing::Event](https://apidocs.myclickfunnels.com/tag/Webhooks::Outgoing::Event#operation/getWebhooksOutgoingEvents) \npayload, that will contain the subject payload in the `data` property. Like here for the\n`contact.identified` webhook in V2 version:\n\n```json\n{\n  \"id\": null,\n  \"public_id\": \"YVIOwX\",\n  \"workspace_id\": 32,\n  \"uuid\": \"94856650751bb2c141fc38436fd699cb\",\n  \"event_type_id\": \"contact.identified\",\n  \"subject_id\": 100,\n  \"subject_type\": \"Contact\",\n  \"data\": {\n    \"id\": 12,\n    \"public_id\": \"fdPJAZ\",\n    \"workspace_id\": 32,\n    \"anonymous\": null,\n    \"email_address\": \"joe.doe@example.com\",\n    \"first_name\": \"Joe\",\n    \"last_name\": \"Doe\",\n    \"phone_number\": \"1-241-822-5555\",\n    \"time_zone\": \"Pacific Time (US & Canada)\",\n    \"uuid\": \"26281ba2-7d3b-524d-8ea3-b01ff8414120\",\n    \"unsubscribed_at\": null,\n    \"last_notification_email_sent_at\": null,\n    \"fb_url\": \"https://www.facebook.com/example\",\n    \"twitter_url\": \"https://twitter.com/example\",\n    \"instagram_url\": \"https://instagram.com/example\",\n    \"linkedin_url\": \"https://www.linkedin.com/in/example\",\n    \"website_url\": \"https://example.com\",\n    \"created_at\": \"2023-12-31T18:57:40.871Z\",\n    \"updated_at\": \"2023-12-31T18:57:40.872Z\",\n    \"tags\": [\n      {\n        \"id\": 20,\n        \"public_id\": \"bRkQrc\",\n        \"name\": \"Example Tag\",\n        \"color\": \"#59b0a8\"\n      }\n    ]\n  },\n  \"created_at\": \"2023-12-31T18:57:41.872Z\"\n}\n```\n\nThe content of the `data` property will vary depending on the event type that you are receiving.\n\nEvent types are structured like this: `subject.action`. So, for a `contact.identified` webhook, your\n`data` payload will contain data that you can source from [the contact response schema/example in the\ndocumentation](https://apidocs.myclickfunnels.com/tag/Contact#operation/getContacts). Similarly, for\nwebhooks like `order.created` and `one-time-order.identified`, you will find the documentation in\n[the Order resource description](https://apidocs.myclickfunnels.com/tag/Order#operation/getOrders).\n\n**Contact webhooks**\n\nAre delivered with [the Contact data payload](https://apidocs.myclickfunnels.com/tag/Contact#operation/getContacts).\n\n| <div style=\"width:375px;\">Event type</div>| Versions available | Description                                                            | \n|--------------------------------------------------|--------------------|------------------------------------------------------------------------|\n| ***Contact***                                    |                    |                                                                        |\n| `contact.created`                                | V1, V2             | Sent when a Contact is created                                         |\n| `contact.updated`                                | V1, V2             | Sent when a Contact is updated                                         |\n| `contact.deleted`                                | V1, V2             | Sent when a Contact is deleted                                         |\n| `contact.identified`                             | V1, V2             | Sent when a Contact is identified by email address and/or phone number |\n| `contact.unsubscribed`                           | V1, V2             | Sent when a Contact unsubscribes from getting communications from the ClickFunnels workspace                         |\n\n**Contact::AppliedTag webhooks**\n\nAre delivered with [the Contact::AppliedTag data payload](https://apidocs.myclickfunnels.com/tag/Contacts::AppliedTag#operation/getContactsAppliedTags)\n\n| <div style=\"width:375px;\">Event type</div>| Versions available | Description                                                            |\n|--------------------------------------------------|--------------------|------------------------------------------------------------------------|\n| ***Contacts::AppliedTag***                       |                    |                                                                        |\n| `contact/applied_tag.created`                    | V2                 | Sent when a Contacts::AppliedTag is created                            |\n| `contact/applied_tag.deleted`                    | V2                 | Sent when a Contacts::AppliedTag is deleted\n\n**Courses webhooks**\n\nPayloads correspond to the respective API resources:\n\n- [Course](https://apidocs.myclickfunnels.com/tag/Course#operation/getCourses)\n- [Courses::Enrollment](https://apidocs.myclickfunnels.com/tag/Courses::Enrollment#operation/getCoursesEnrollments)\n- [Courses::Section](https://apidocs.myclickfunnels.com/tag/Courses::Section#operation/getCoursesSections)\n- [Courses::Lesson](https://apidocs.myclickfunnels.com/tag/Courses::Lesson#operation/getCoursesLessons)\n\n| <div style=\"width:375px;\">Event type</div>| Versions available | Description                                                            | \n|--------------------------------------------------|--------------------|------------------------------------------------------------------------|\n| ***Course***                                     |                    |                                                                        |\n| `course.created`                                 | V2             | Sent when a Course is created                                          |\n| `course.updated`                                 | V2             | Sent when a Course is updated                                          |\n| `course.deleted`                                 | V2             | Sent when a Course is deleted                                          |\n| `course.published`                               | V2                 | Sent when a Course has been published                                  |\n| ***Courses::Enrollment***                        |                    |                                                                        |\n| `courses/enrollment.created`                     | V2             | Sent when a Course::Enrollment is created                              |\n| `courses/enrollment.updated`                     | V2             | Sent when a Course::Enrollment is updated                              |\n| `courses/enrollment.deleted`                     | V2             | Sent when a Course::Enrollment is deleted                              |\n| `courses/enrollment.suspended`                   | V2                 | Sent when a Course::Enrollment has been suspended                      |\n| `courses/enrollment.course_completed`                   | V2                 | Sent when a Course::Enrollment completes a course                      |\n| \n***Courses::Section***                           |                    |                                                                        |\n| `courses/section.created`                        | V2             | Sent when a Courses::Section is created                                |\n| `courses/section.updated`                        | V2             | Sent when a Courses::Section is updated                                |\n| `courses/section.deleted`                        | V2             | Sent when a Courses::Section is deleted                                |\n| `courses/section.published`                       | V2                 | Sent when a Courses::Lesson has been published                         |\n|                      |\n***Courses::Lesson***                            |                    |                                                                        |\n| `courses/lesson.created`                         | V2             | Sent when a Courses::Lesson is created                                 |\n| `courses/lesson.updated`                         | V2             | Sent when a Courses::Lesson is updated                                 |\n| `courses/lesson.deleted`                         | V2             | Sent when a Courses::Lesson is deleted                                 |\n| `courses/lesson.published`                       | V2                 | Sent when a Courses::Lesson has been published                         |\n|                      |\n\n**Form submission webhooks**\n\nCurrently only available in V1 with the following JSON payload sample:\n\n```json\n{\n  \"data\": {\n    \"id\": \"4892034\",\n    \"type\": \"form_submission\",\n    \"attributes\": {\n      \"id\": 9874322,\n      \"data\": {\n        \"action\": \"submit\",\n        \"contact\": {\n          \"email\": \"joe.doe@example.com\",\n          \"aff_sub\": \"43242122e8c15480e9117143ce806d111\"\n        },\n        \"controller\": \"user_pages/pages\",\n        \"redirect_to\": \"https://www.example.com/thank-you-newsletter\"\n      },\n      \"page_id\": 2342324,\n      \"contact_id\": 234424,\n      \"created_at\": \"2023-11-14T23:25:54.070Z\",\n      \"updated_at\": \"2023-11-14T23:25:54.134Z\",\n      \"workspace_id\": 11\n    }\n  },\n  \"event_id\": \"bb50ab45-3da8-4532-9d7e-1c85d159ee71\",\n  \"event_type\": \"form_submission.created\",\n  \"subject_id\": 9894793,\n  \"subject_type\": \"FormSubmission\"\n}\n```\n\n| <div style=\"width:375px;\">Event type</div>| Versions available | Description                             | \n|--------------------------------------------------|--------------------|-----------------------------------------|\n| ***Form::Submission***                           |                    |                                         |\n| `form/submission.created`                        | V1                 | Sent when a Form::Submission is created |\n\n**Order webhooks**\n\nSubscriptions and orders are all of type \"Order\" and their payload will be as in the [Order resources\nresponse payload](https://apidocs.myclickfunnels.com/tag/Order#operation/getOrders).\n\n| <div style=\"width:375px;\">Event type</div> | Versions available | Description                                                                                               | \n|--------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------|\n| ***Order***                                |                    |                                                                                                           |\n| `order.created`                            | V1, V2             | Sent when an Order has been created                                                                       |\n| `order.updated`                            | V1, V2             | Sent when an Order has been updated                                                                       |\n| `order.deleted`                            | V1, V2             | Sent when an Order has been deleted                                                                       |\n| `order.completed`                          | V1, V2             | Sent when a one-time order was paid or a subscription order's service period has concluded                |\n| ***One-Time Order***                       |                    |                                                                                                           |\n| `one-time-order.completed`                 | V1, V2             | Sent when an Order of `order_type: \"one-time-order\"` has been completed                                   |\n| `one_time_order.refunded`                  | V1, V2             | Sent when an Order of `order_type: \"one-time-order\"` refund has been issued                               |\n| ***Subscription***                         |                    |                                                                                                           |\n| `subscription.canceled`                    | V1, V2             | Sent when an Order of `order_type: \"subscription\"` has been canceled                                      |\n| `subscription.reactivated`                 | V1, V2             | Sent when an Order of `order_type: \"subscription\"` that was canceled was reactivated                      |\n| `subscription.downgraded`                  | V1, V2             | Sent when an Order of `order_type: \"subscription\"` is changed to a product of smaller value               |\n| `subscription.upgraded`                    | V1, V2             | Sent when an Order of `order_type: \"subscription\"` is changed to a product of higher value                |\n| `subscription.churned`                     | V1, V2             | Sent when an Order of `order_type: \"subscription\"` has been churned                                       |\n| `subscription.modified`                    | V1, V2             | Sent when an Order of `order_type: \"subscription\"` has been modified                                      |\n| `subscription.activated`                   | V1, V2             | Sent when an Order of `order_type: \"subscription\"` has been activated                                     |\n| `subscription.completed`                   | V1, V2             | Sent when an Order of `order_type: \"subscription\"` has been completed                                     |\n| `subscription.first_payment_received`      | V1, V2             | Sent when an Order of `order_type: \"subscription\"` received first non-setup payment for subscription item |\n\n**Orders::Transaction Webhooks**\n\nOrders transactions are currently not part of our V2 API, but you can refer to this sample V2 webhook data payload: \n\n```json\n{\n  \"id\": 1821233,\n  \"arn\": null,\n  \"amount\": \"200.00\",\n  \"reason\": null,\n  \"result\": \"approved\",\n  \"status\": \"completed\",\n  \"currency\": \"USD\",\n  \"order_id\": 110030,\n  \"is_rebill\": false,\n  \"public_id\": \"asLOAY\",\n  \"created_at\": \"2024-01-30T06:25:06.754Z\",\n  \"updated_at\": \"2024-01-30T06:25:06.754Z\",\n  \"external_id\": \"txn_01HNCGNQE2C234PCFNERD2AVFZ\",\n  \"external_type\": \"sale\",\n  \"rebill_number\": 0,\n  \"adjusted_transaction_id\": null,\n  \"billing_payment_instruction_id\": 1333223,\n  \"billing_payment_instruction_type\": \"Billing::PaymentMethod\"\n}\n```\n\n| <div style=\"width:375px;\">Event type</div>                            | Versions available | Description                                       | \n|---------------------------------------|--------------------|---------------------------------------------------|\n| ***Orders::Transaction***                      |                    |                                                   |\n| `orders/transaction.created`                   | V1, V2             | Sent when an Orders::Transaction has been created |\n| `orders/transaction.updated`                   | V1, V2             | Sent when an Orders::Transaction has been updated |\n\n**Invoice webhooks**\n\nWith the [Invoice payload](https://apidocs.myclickfunnels.com/tag/Orders::Invoice).\n\n| <div style=\"width:375px;\">Event type</div>   | Versions available   | Description                                                                 | \n|----------------------------------------------|----------------------|-----------------------------------------------------------------------------|\n| ***Orders::Invoice***                        |                      |                                                                             |\n| `orders/invoice.created`                     | V1, V2               | Sent when an Orders::Invoice has been created                               |\n| `orders/invoice.updated`                     | V1, V2               | Sent when an Orders::Invoice has been updated                               |\n| `orders/invoice.refunded`                    | V1, V2               | Sent when an Orders::Invoice has been refunded                              |\n| `renewal-invoice-payment-declined`           | V1, V2               | Issued when a renewal Orders::Invoice payment has been declined             |\n| ***OneTimeOrder::Invoice***                  |                      |                                                                             |\n| `one-time-order.invoice.paid`                | V1, V2               | Sent when an Order::Invoice of `order_type: \"one-time-order\"` has been paid |\n| ***Subscription::Invoice***                  |                      |                                                                             |\n| `subscription/invoice.paid`                  | V1, V2               | Sent when an Order of `order_type: \"subscription\"` has been paid            |\n\n**Workflow-based webhooks**\n\nThese are mostly used for [the UI-based ClickFunnels Workflows functionality](https://support.myclickfunnels.com/support/solutions/articles/150000156983-using-the-webhook-step-in-a-workflow).\n\n| <div style=\"width:375px;\">Event type</div>| Versions available | Description                                                        | \n|--------------------------------------------------|--------------------|--------------------------------------------------------------------| \n| ***Runs::Step***                                 |                    |                                                                    |\n| `runs/step.dontrunme`                            | V1                 | Issued when the `dontrunme` step has been ran on a Workflow        |\n| ***Workflows::Integration::Step***               |                    |                                                                    |\n| `workflows_integration_step.executed`            | V1                 | Sent when a Workflows::Integration::Step has been executed         |\n| ***Workflows::Steps::IntegrationStep***          |                    |                                                                    |\n| `workflows/steps/integration_step.executed`      | V1                 | Sent when a Workflows::Steps::IntegrationStep has been executed    |\n| ***Workflows::Steps::DeliverWebhookStep***       |                    |                                                                    |\n| `workflows/steps/deliver_webhook_step.executed`  | V1                 | Sent when a Workflows::Steps::DeliverWebhookStep has been executed |\n",
   "apiTitle": "ClickFunnels API",
-  "endpoints": 79,
-  "sdkMethods": 153,
-  "schemas": 492,
-  "parameters": 283,
+  "endpoints": 82,
+  "sdkMethods": 159,
+  "schemas": 510,
+  "parameters": 293,
   "contactUrl": "https://developers.myclickfunnels.com",
   "originalCustomRequest": {
     "lambda": true
   },
   "customRequestSpecFilename": "clickfunnels.com.yaml",
-  "difficultyScore": 260.25,
+  "difficultyScore": 269.75,
   "difficulty": "Hard",
   "company": "ClickFunnels",
   "sdkName": "click-funnels-{language}-sdk",
@@ -51,7 +51,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -163,7 +163,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -228,9 +228,9 @@
           "schema": "object",
           "description": "",
           "example": {
-            "email": "huong@stroman-kuhlman.co",
-            "first_name": "Louis",
-            "last_name": "Von",
+            "email": "lani@hermann.io",
+            "first_name": "Ashanti",
+            "last_name": "Hills",
             "time_zone": "Pacific Time (US & Canada)",
             "locale": "en"
           }
@@ -276,7 +276,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -434,7 +434,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         },
         {
           "name": "filter",
@@ -478,10 +478,10 @@
           "schema": "object",
           "description": "",
           "example": {
-            "email_address": "test-1d4db4ce8f9f3c561a5e@example.com",
-            "first_name": "Solomon",
+            "email_address": "test-cffecbe1838afd32016e@example.com",
+            "first_name": "Oswaldo",
             "last_name": "Little",
-            "phone_number": "(652) 729-2659",
+            "phone_number": "267.675.3083 x142",
             "time_zone": "Pacific Time (US & Canada)",
             "fb_url": "https://www.facebook.com/example",
             "twitter_url": "https://twitter.com/example",
@@ -587,10 +587,10 @@
           "schema": "object",
           "description": "",
           "example": {
-            "email_address": "test-1d4db4ce8f9f3c561a5e@example.com",
-            "first_name": "Solomon",
+            "email_address": "test-cffecbe1838afd32016e@example.com",
+            "first_name": "Oswaldo",
             "last_name": "Little",
-            "phone_number": "(652) 729-2659",
+            "phone_number": "267.675.3083 x142",
             "time_zone": "Pacific Time (US & Canada)",
             "fb_url": "https://www.facebook.com/example",
             "twitter_url": "https://twitter.com/example",
@@ -706,7 +706,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -850,7 +850,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -889,7 +889,7 @@
           "description": "",
           "example": {
             "name": "Example Tag",
-            "color": "#044662"
+            "color": "#7c8863"
           }
         }
       ],
@@ -991,7 +991,7 @@
           "description": "",
           "example": {
             "name": "Example Tag",
-            "color": "#044662"
+            "color": "#7c8863"
           }
         }
       ],
@@ -1039,7 +1039,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -1113,7 +1113,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -1271,7 +1271,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -1389,7 +1389,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -1506,7 +1506,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -1693,7 +1693,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -1880,7 +1880,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -2069,7 +2069,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -2107,7 +2107,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "label": "accusamus"
+            "label": "praesentium"
           }
         }
       ],
@@ -2208,7 +2208,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "label": "accusamus"
+            "label": "praesentium"
           }
         }
       ],
@@ -2256,7 +2256,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -2443,7 +2443,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -2610,6 +2610,207 @@
       ]
     },
     {
+      "url": "/workspaces/{workspace_id}/form_submissions",
+      "method": "listSubmissions",
+      "httpMethod": "get",
+      "tag": "FormSubmission",
+      "typeScriptTag": "formSubmission",
+      "description": "List Form Submissions",
+      "parameters": [
+        {
+          "name": "workspaceId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "after",
+          "schema": "string",
+          "required": false,
+          "description": "ID of item after which the collection should be returned"
+        },
+        {
+          "name": "sortOrder",
+          "schema": "string",
+          "required": false,
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workspaces/{workspace_id}/form_submissions",
+      "method": "createSubmission",
+      "httpMethod": "post",
+      "tag": "FormSubmission",
+      "typeScriptTag": "formSubmission",
+      "description": "Create Form Submission",
+      "parameters": [
+        {
+          "name": "workspaceId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "form_submission",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "contact_id": 6,
+            "page_id": 1,
+            "data": {
+              "email": "test@example.com",
+              "phone": "123-456-7890",
+              "full_name": "Test User",
+              "t_shirt_size": "L"
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": "Form submissions"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/form_submissions/{id}",
+      "method": "removeById",
+      "httpMethod": "delete",
+      "tag": "FormSubmission",
+      "typeScriptTag": "formSubmission",
+      "description": "Remove Form Submission",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "No Content"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/form_submissions/{id}",
+      "method": "getSubmission",
+      "httpMethod": "get",
+      "tag": "FormSubmission",
+      "typeScriptTag": "formSubmission",
+      "description": "Fetch Form Submission",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Form submissions"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/form_submissions/{id}",
+      "method": "updateById",
+      "httpMethod": "put",
+      "tag": "FormSubmission",
+      "typeScriptTag": "formSubmission",
+      "description": "Update Form Submission",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "form_submission",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "contact_id": 6,
+            "page_id": 1,
+            "data": {
+              "email": "test@example.com",
+              "phone": "123-456-7890",
+              "full_name": "Test User",
+              "t_shirt_size": "L"
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Form submissions"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
       "url": "/workspaces/{workspace_id}/fulfillments",
       "method": "list",
       "httpMethod": "get",
@@ -2634,7 +2835,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -2672,7 +2873,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "contact_id": 6,
+            "contact_id": 7,
             "tracking_url": "https://usps.com/track/1234567890",
             "shipping_provider": "USPS",
             "tracking_code": "1234567890",
@@ -2746,7 +2947,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "contact_id": 6,
+            "contact_id": 7,
             "tracking_url": "https://usps.com/track/1234567890",
             "shipping_provider": "USPS",
             "tracking_code": "1234567890",
@@ -2833,7 +3034,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -2873,8 +3074,8 @@
           "example": {
             "name": "Example Location",
             "address_name": "Example Address",
-            "email_address": "myemail1710866918@example.com",
-            "phone_number": "(123)-555-4567"
+            "email_address": "myemail1711566236@example.com",
+            "phone_number": "(https://developers.myclickfunnels.com/-555-4567"
           }
         }
       ],
@@ -2977,8 +3178,8 @@
           "example": {
             "name": "Example Location",
             "address_name": "Example Address",
-            "email_address": "myemail1710866918@example.com",
-            "phone_number": "(123)-555-4567"
+            "email_address": "myemail1711566236@example.com",
+            "phone_number": "(https://developers.myclickfunnels.com/-555-4567"
           }
         }
       ],
@@ -3026,7 +3227,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -3217,7 +3418,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         },
         {
           "name": "filter",
@@ -3292,7 +3493,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "notes": "Recusandae et dolores autem."
+            "notes": "Quisquam reiciendis mollitia ea."
           }
         }
       ],
@@ -3340,7 +3541,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -3414,7 +3615,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -3558,7 +3759,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -3632,7 +3833,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -3706,7 +3907,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -3745,7 +3946,7 @@
           "description": "",
           "example": {
             "name": "Example Tag",
-            "color": "#4f4ca7"
+            "color": "#8895e6"
           }
         }
       ],
@@ -3847,7 +4048,7 @@
           "description": "",
           "example": {
             "name": "Example Tag",
-            "color": "#4f4ca7"
+            "color": "#8895e6"
           }
         }
       ],
@@ -3895,7 +4096,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -3933,11 +4134,11 @@
           "schema": "object",
           "description": "",
           "example": {
-            "name": "Small Steel Bottle 41972f",
+            "name": "Small Granite Wallet a3ebb2",
             "visible_in_store": true,
             "visible_in_customer_center": true,
-            "seo_title": "Totam et dolores rerum.",
-            "seo_description": "Nostrum laborum provident et.",
+            "seo_title": "Doloribus consequatur sit officia.",
+            "seo_description": "Atque sunt maiores et.",
             "commissionable": true
           }
         }
@@ -4008,11 +4209,11 @@
           "schema": "object",
           "description": "",
           "example": {
-            "name": "Small Steel Bottle 41972f",
+            "name": "Small Granite Wallet a3ebb2",
             "visible_in_store": true,
             "visible_in_customer_center": true,
-            "seo_title": "Totam et dolores rerum.",
-            "seo_description": "Nostrum laborum provident et.",
+            "seo_title": "Doloribus consequatur sit officia.",
+            "seo_description": "Atque sunt maiores et.",
             "commissionable": true
           }
         }
@@ -4107,58 +4308,15 @@
       ]
     },
     {
-      "url": "/products/{product_id}/prices",
-      "method": "listForVariant",
-      "httpMethod": "get",
-      "tag": "Products::Price",
-      "typeScriptTag": "products::price",
-      "description": "List Prices",
-      "parameters": [
-        {
-          "name": "productId",
-          "schema": "integer",
-          "required": true,
-          "description": "",
-          "example": 0
-        },
-        {
-          "name": "after",
-          "schema": "string",
-          "required": false,
-          "description": "ID of item after which the collection should be returned"
-        },
-        {
-          "name": "sortOrder",
-          "schema": "string",
-          "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
-        }
-      ],
-      "responses": [
-        {
-          "statusCode": "200",
-          "description": ""
-        },
-        {
-          "statusCode": "401",
-          "description": ""
-        },
-        {
-          "statusCode": "404",
-          "description": ""
-        }
-      ]
-    },
-    {
-      "url": "/products/{product_id}/prices",
-      "method": "createVariantPrice",
+      "url": "/products/variants/{variant_id}/prices",
+      "method": "createNewPrice",
       "httpMethod": "post",
       "tag": "Products::Price",
       "typeScriptTag": "products::price",
       "description": "Create Price",
       "parameters": [
         {
-          "name": "productId",
+          "name": "variantId",
           "schema": "integer",
           "required": true,
           "description": "",
@@ -4196,6 +4354,49 @@
         },
         {
           "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/products/{product_id}/prices",
+      "method": "listForVariant",
+      "httpMethod": "get",
+      "tag": "Products::Price",
+      "typeScriptTag": "products::price",
+      "description": "List Prices",
+      "parameters": [
+        {
+          "name": "productId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "after",
+          "schema": "string",
+          "required": false,
+          "description": "ID of item after which the collection should be returned"
+        },
+        {
+          "name": "sortOrder",
+          "schema": "string",
+          "required": false,
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
           "description": ""
         }
       ]
@@ -4311,7 +4512,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -4349,15 +4550,15 @@
           "schema": "object",
           "description": "",
           "example": {
-            "description": "Dolores asperiores eveniet expedita.",
-            "name": "Lightweight Bronze Clock variant e702",
-            "sku": "AhMTx0yMQkbdFNVr",
+            "description": "Molestiae reiciendis debitis nulla.",
+            "name": "Sleek Marble Plate variant dc50",
+            "sku": "KP6DOH5kFkFBljFa",
             "product_type": "physical",
-            "weight": "20.0",
+            "weight": "83.0",
             "weight_unit": "lb",
-            "height": "46.0",
-            "width": "805.0",
-            "length": "47.0",
+            "height": "63.0",
+            "width": "219.0",
+            "length": "79.0",
             "dimensions_unit": "inches",
             "visible": true
           }
@@ -4429,15 +4630,15 @@
           "schema": "object",
           "description": "",
           "example": {
-            "description": "Dolores asperiores eveniet expedita.",
-            "name": "Lightweight Bronze Clock variant e702",
-            "sku": "AhMTx0yMQkbdFNVr",
+            "description": "Molestiae reiciendis debitis nulla.",
+            "name": "Sleek Marble Plate variant dc50",
+            "sku": "KP6DOH5kFkFBljFa",
             "product_type": "physical",
-            "weight": "20.0",
+            "weight": "83.0",
             "weight_unit": "lb",
-            "height": "46.0",
-            "width": "805.0",
-            "length": "47.0",
+            "height": "63.0",
+            "width": "219.0",
+            "length": "79.0",
             "dimensions_unit": "inches",
             "visible": true
           }
@@ -4487,7 +4688,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -4526,7 +4727,7 @@
           "description": "",
           "example": {
             "name": "Example Tag",
-            "color": "emerald"
+            "color": "pink"
           }
         }
       ],
@@ -4628,7 +4829,7 @@
           "description": "",
           "example": {
             "name": "Example Tag",
-            "color": "emerald"
+            "color": "pink"
           }
         }
       ],
@@ -4676,7 +4877,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -4750,7 +4951,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -4951,7 +5152,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -5138,7 +5339,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -5176,7 +5377,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "provider_name": "Gov. Shanda Dach",
+            "provider_name": "Msgr. Willy Larkin",
             "price": "10.00",
             "price_currency": "USD",
             "rates_name_id": 1
@@ -5280,7 +5481,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "provider_name": "Gov. Shanda Dach",
+            "provider_name": "Msgr. Willy Larkin",
             "price": "10.00",
             "price_currency": "USD",
             "rates_name_id": 1
@@ -5331,7 +5532,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -5369,7 +5570,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "name": "Bruce Marquardt"
+            "name": "Peter Hills"
           }
         }
       ],
@@ -5470,7 +5671,7 @@
           "schema": "object",
           "description": "",
           "example": {
-            "name": "Bruce Marquardt"
+            "name": "Peter Hills"
           }
         }
       ],
@@ -5518,7 +5719,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -5705,7 +5906,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -5744,7 +5945,10 @@
           "description": "",
           "example": {
             "url": "https://example.com/some-endpoint-url",
-            "name": "Example Endpoint"
+            "name": "Example Endpoint",
+            "event_type_ids": [
+              "contact.identified"
+            ]
           }
         }
       ],
@@ -5759,6 +5963,37 @@
         },
         {
           "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/webhooks/outgoing/endpoints/{id}",
+      "method": "remove",
+      "httpMethod": "delete",
+      "tag": "Webhooks::Outgoing::Endpoint",
+      "typeScriptTag": "webhooks::outgoing::endpoint",
+      "description": "Remove Endpoint",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "No Content"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
           "description": ""
         }
       ]
@@ -5815,7 +6050,10 @@
           "description": "",
           "example": {
             "url": "https://example.com/some-endpoint-url",
-            "name": "Example Endpoint"
+            "name": "Example Endpoint",
+            "event_type_ids": [
+              "contact.identified"
+            ]
           }
         }
       ],
@@ -5863,7 +6101,7 @@
           "name": "sortOrder",
           "schema": "string",
           "required": false,
-          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+          "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
         }
       ],
       "responses": [
@@ -5920,7 +6158,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickfunnels/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickfunnels/favicon.png",
   "clientNameCamelCase": "clickFunnels",
-  "lastUpdated": "2024-03-27T01:23:25.425Z",
+  "lastUpdated": "2024-03-27T22:36:36.651Z",
   "typescriptSdkUsageCode": "import { ClickFunnels } from 'click-funnels-typescript-sdk';\n\nconst clickFunnels = new ClickFunnels({\n    bearerAuth: \"BEARER_AUTH\"\n})",
   "typescriptSdkFirstRequestCode": "// List Teams\nconst getAllResponse = clickFunnels.team.getAll()",
   "fixedSpecFileName": "click-funnels-fixed-spec.yaml"

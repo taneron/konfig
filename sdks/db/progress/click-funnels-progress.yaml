@@ -36,6 +36,10 @@ operationIds:
     get: CoursesSection_listSections
   /courses/{id}:
     get: Course_getById
+  /form_submissions/{id}:
+    delete: FormSubmission_removeById
+    get: FormSubmission_getSubmission
+    put: FormSubmission_updateById
   /forms/field_sets/{field_set_id}/fields:
     get: FormsField_listFieldsForFieldSet
     post: FormsField_addNewField
@@ -121,6 +125,8 @@ operationIds:
   /products/variants/{id}:
     get: ProductsVariant_getSingle
     put: ProductsVariant_updateSingle
+  /products/variants/{variant_id}/prices:
+    post: ProductsPrice_createNewPrice
   /products/{id}:
     get: Product_getForWorkspace
     put: Product_updateForWorkspace
@@ -178,6 +184,7 @@ operationIds:
     get: User_getSingle
     put: User_updateSingleUser
   /webhooks/outgoing/endpoints/{id}:
+    delete: WebhooksOutgoingEndpoint_remove
     get: WebhooksOutgoingEndpoint_get
     put: WebhooksOutgoingEndpoint_updateEndpoint
   /webhooks/outgoing/events/{id}:
@@ -195,6 +202,9 @@ operationIds:
     post: Contact_upsert
   /workspaces/{workspace_id}/courses:
     get: Course_listForWorkspace
+  /workspaces/{workspace_id}/form_submissions:
+    get: FormSubmission_listSubmissions
+    post: FormSubmission_createSubmission
   /workspaces/{workspace_id}/forms:
     get: Form_listWorkspaceForms
     post: Form_createNewForm
@@ -258,6 +268,9 @@ requestSchemaNames:
   /courses/{course_id}/enrollments:
     post:
       application/json: CoursesEnrollmentCreateNewEnrollmentRequest
+  /form_submissions/{id}:
+    put:
+      application/json: FormSubmissionUpdateByIdRequest
   /forms/field_sets/{field_set_id}/fields:
     post:
       application/json: FormsFieldAddNewFieldRequest
@@ -318,6 +331,9 @@ requestSchemaNames:
   /products/variants/{id}:
     put:
       application/json: ProductsVariantUpdateSingleRequest
+  /products/variants/{variant_id}/prices:
+    post:
+      application/json: ProductsPriceCreateNewPriceRequest
   /products/{id}:
     put:
       application/json: ProductUpdateForWorkspaceRequest
@@ -372,6 +388,9 @@ requestSchemaNames:
   /workspaces/{workspace_id}/contacts/upsert:
     post:
       application/json: ContactUpsertRequest
+  /workspaces/{workspace_id}/form_submissions:
+    post:
+      application/json: FormSubmissionCreateSubmissionRequest
   /workspaces/{workspace_id}/forms:
     post:
       application/json: FormCreateNewFormRequest
@@ -541,6 +560,24 @@ responseSchemaNames:
         application/json: CourseGetByIdResponse
       '404':
         application/json: CourseGetById404Response
+  /form_submissions/{id}:
+    delete:
+      '401':
+        application/json: FormSubmissionRemoveByIdResponse
+      '404':
+        application/json: FormSubmissionRemoveById404Response
+    get:
+      '401':
+        application/json: FormSubmissionGetSubmissionResponse
+      '404':
+        application/json: FormSubmissionGetSubmission404Response
+    put:
+      '400':
+        application/json: FormSubmissionUpdateByIdResponse
+      '401':
+        application/json: FormSubmissionUpdateById401Response
+      '404':
+        application/json: FormSubmissionUpdateById404Response
   /forms/field_sets/{field_set_id}/fields:
     get:
       '200':
@@ -898,6 +935,12 @@ responseSchemaNames:
         application/json: ProductsVariantUpdateSingle401Response
       '404':
         application/json: ProductsVariantUpdateSingle404Response
+  /products/variants/{variant_id}/prices:
+    post:
+      '400':
+        application/json: ProductsPriceCreateNewPriceResponse
+      '401':
+        application/json: ProductsPriceCreateNewPrice401Response
   /products/{id}:
     get:
       '401':
@@ -1119,6 +1162,11 @@ responseSchemaNames:
       '404':
         application/json: UserUpdateSingleUser404Response
   /webhooks/outgoing/endpoints/{id}:
+    delete:
+      '401':
+        application/json: WebhooksOutgoingEndpointRemoveResponse
+      '404':
+        application/json: WebhooksOutgoingEndpointRemove404Response
     get:
       '401':
         application/json: WebhooksOutgoingEndpointGetResponse
@@ -1190,6 +1238,19 @@ responseSchemaNames:
         application/json: CourseListForWorkspace401Response
       '404':
         application/json: CourseListForWorkspace404Response
+  /workspaces/{workspace_id}/form_submissions:
+    get:
+      '200':
+        application/json: FormSubmissionListSubmissionsResponse
+      '401':
+        application/json: FormSubmissionListSubmissions401Response
+      '404':
+        application/json: FormSubmissionListSubmissions404Response
+    post:
+      '400':
+        application/json: FormSubmissionCreateSubmissionResponse
+      '401':
+        application/json: FormSubmissionCreateSubmission401Response
   /workspaces/{workspace_id}/forms:
     get:
       '200':
