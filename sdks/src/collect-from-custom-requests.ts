@@ -996,6 +996,21 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "paychex.com": {
+    lambda: async () => {
+      // fetch HTML from url and parse for spec-url at:
+      // <redoc spec-url=https://developer.paychex.com/sites/default/files/apidocument/openapi-merge-develop.114.json></redoc>
+      const url = "https://developer.paychex.com/documentation";
+      const response = await fetch(url);
+      const html = await response.text();
+      const regex = /<redoc spec-url=(.*?)>/;
+      const match = html.match(regex);
+      if (!match) throw Error("Expecting spec-url to be defined");
+      const specUrl = match[1];
+      console.log(specUrl);
+      return fetch(specUrl).then((res) => res.text());
+    },
+  },
   // "oracle.com_HumanCapitalManagement": {
   //   doNotCollect: true,
   //   lambda: async () => {

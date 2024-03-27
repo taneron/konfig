@@ -1,0 +1,232 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /auth/oauth/v2/token:
+    post: Authentication_createBearerToken
+  /checks:
+    delete: Payroll_deleteChecksByPayPeriodAndUser
+  /checks/{checkId}/checkcomponents:
+    post: Payroll_addPayComponentToCheck
+  /checks/{checkId}/checkcomponents/{checkComponentId}:
+    delete: Payroll_removePayComponent
+    patch: Payroll_updatePayComponent
+  /companies:
+    get: Company_list
+  /companies/{companyId}:
+    get: Company_getInformation
+  /companies/{companyId}/calculationbases:
+    get: Company_getCalculationBases
+  /companies/{companyId}/checks:
+    get: Payroll_getCompanyChecksByPayPeriod
+    post: Payroll_addCompanyChecks
+  /companies/{companyId}/contacttypes:
+    get: Company_getContactTypes
+  /companies/{companyId}/customfields:
+    get: Company_getCustomFields
+    post: Company_createCustomFieldAtCompanyLevel
+  /companies/{companyId}/customfields/{customFieldId}:
+    get: Company_getCustomField
+  /companies/{companyId}/customfields/{customfieldid}:
+    delete: Company_deleteCustomField
+    patch: Company_updateCustomField
+  /companies/{companyId}/customfieldscategories:
+    get: Company_getCustomFieldCategories
+    post: Company_createCustomFieldCategory
+  /companies/{companyId}/customfieldscategories/{categoryId}:
+    get: Company_getCustomFieldsCategory
+  /companies/{companyId}/customfieldscategories/{categoryid}:
+    delete: Company_deleteCustomFieldsCategory
+    patch: Company_updateCustomFieldsCategory
+  /companies/{companyId}/jobs:
+    get: Company_getJobs
+    post: Company_addJob
+  /companies/{companyId}/jobs/{jobId}:
+    get: Company_getJobInformation
+    patch: Company_updateJob
+  /companies/{companyId}/jobsegments:
+    get: Company_getJobSegmentStructureSetup
+  /companies/{companyId}/jobtitles:
+    get: Company_listJobTitles
+  /companies/{companyId}/jobtitles/{jobTitleId}:
+    get: Company_getJobTitle
+  /companies/{companyId}/laborassignments:
+    get: Company_listLaborAssignments
+  /companies/{companyId}/laborassignments/{laborAssignmentId}:
+    get: Company_getLaborAssignment
+  /companies/{companyId}/locations:
+    get: Company_getLocations
+  /companies/{companyId}/locations/{locationId}:
+    get: Company_getLocation
+  /companies/{companyId}/organizations:
+    get: Company_getOrganizations
+  /companies/{companyId}/organizations/{orgId}:
+    get: Company_getOrganization
+  /companies/{companyId}/paycomponents:
+    get: Payroll_getCompanyPayComponents
+  /companies/{companyId}/paycomponents/{paycomponentId}:
+    get: Payroll_getCompanyPayComponent
+  /companies/{companyId}/payfrequencies:
+    get: Company_getPayFrequencies
+  /companies/{companyId}/payperiods:
+    get: Payroll_getCompanyPayPeriods
+  /companies/{companyId}/payperiods/{payperiodId}:
+    get: Payroll_getPayPeriod
+  /companies/{companyId}/workers:
+    get: Company_getWorkers
+    post: Company_addInProgressWorkers
+  /companies/{companyId}/workerstatuses:
+    get: Company_listWorkerStatuses
+  /companies/{companyId}/workerstatuses/{statusId}:
+    get: Company_getStatus
+  /management/domains:
+    get: Webhooks_getAvailableDomains
+  /management/hooks:
+    get: Webhooks_list
+    post: Webhooks_addWebhook
+  /management/hooks/{hookId}:
+    delete: Webhooks_deleteById
+    get: Webhooks_getSpecificHookById
+  /management/requestclientaccess:
+    post: Management_linkPaychexClients
+  /workers/{workerId}:
+    delete: Worker_deleteInProgress
+    get: Worker_getInformation
+    patch: Worker_updateUniqueWorker
+  /workers/{workerId}/assignmentdistributions:
+    get: Worker_listAssignmentDistributions
+  /workers/{workerId}/checks:
+    get: Payroll_getWorkerChecksByPayPeriod
+    post: Payroll_addWorkerCheck
+  /workers/{workerId}/checks/{externalCheckId}:
+    delete: Payroll_removeWorkerCheck
+    get: Payroll_getWorkerCheck
+  /workers/{workerId}/communications:
+    get: Worker_getCommunications
+    post: Worker_addCommunication
+  /workers/{workerId}/communications/{communicationId}:
+    delete: Worker_removeCommunication
+    get: Worker_getCommunicationItem
+    patch: Worker_updateCommunicationItem
+  /workers/{workerId}/compensation:
+    get: Worker_getCompensationInformation
+  /workers/{workerId}/compensation/payrates:
+    get: Worker_getPayRatesByWorkerId
+    post: Worker_addPayRate
+  /workers/{workerId}/compensation/payrates/{rateId}:
+    delete: Worker_removePayRate
+    get: Worker_getPayRate
+    patch: Worker_updateCompensationRate
+  /workers/{workerId}/compensation/paystandards:
+    get: Worker_getPayStandards
+  /workers/{workerId}/contacts:
+    get: Worker_getContacts
+    post: Worker_addWorkerContacts
+  /workers/{workerId}/contacts/{contactId}:
+    delete: Worker_deleteContactByContactId
+    get: Worker_getContactByContactId
+    patch: Worker_updateContact
+  /workers/{workerId}/customfields:
+    get: Worker_getCustomFields
+    post: Worker_createCustomField
+  /workers/{workerId}/customfields/{workerCustomFieldId}:
+    delete: Worker_deleteCustomField
+    get: Worker_getCustomField
+    patch: Worker_updateCustomField
+  /workers/{workerId}/directdeposits:
+    get: Worker_listDirectDeposits
+    patch: Worker_updateDirectDeposits
+    post: Worker_addDirectDeposit
+  /workers/{workerId}/directdeposits/{directDepositId}:
+    delete: Worker_removeDirectDeposit
+    get: Worker_getDirectDeposit
+    patch: Worker_updateDirectDeposit
+  /workers/{workerId}/federaltax:
+    delete: Worker_removeFederalTax
+    get: Worker_getFederalTaxSetup
+    patch: Worker_updateFederalTaxSetup
+    post: Worker_addFederalTaxSetup
+  /workers/{workerId}/paycomponents:
+    get: Worker_getPayComponents
+    patch: Worker_updatePayComponents
+    post: Worker_addPayComponent
+  /workers/{workerId}/paycomponents/{workerComponentId}:
+    delete: Worker_removePayComponent
+    get: Worker_getPayComponent
+    patch: Worker_updatePayComponent
+  /workers/{workerId}/status:
+    get: Worker_getWorkerStatusList
+  /workers/{workerId}/timeoff:
+    get: Worker_getTimeOffBalance
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /auth/oauth/v2/token:
+    post:
+      application/x-www-form-urlencoded: AuthenticationCreateBearerTokenRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /management/domains:
+    get:
+      '200':
+        application/json: WebhooksGetAvailableDomainsResponse
+  /management/hooks:
+    get:
+      '200':
+        application/json: WebhooksListResponse
+  /management/hooks/{hookId}:
+    delete:
+      '204':
+        '*/*': WebhooksDeleteByIdResponse
+    get:
+      '200':
+        application/json: WebhooksGetSpecificHookByIdResponse
+  /management/requestclientaccess:
+    post:
+      '400':
+        application/json: ManagementLinkPaychexClientsResponse
+securityParameters:
+  asof:
+    query: false
+  classificationtype:
+    query: false
+  componentid:
+    query: false
+  deletebyuserid:
+    query: false
+  displayid:
+    query: false
+  effectivitydate:
+    query: false
+  effectonpay:
+    query: false
+  employeeid:
+    query: false
+  familyname:
+    query: false
+  filterbyuserid:
+    query: false
+  from:
+    query: false
+  givenname:
+    query: false
+  legallastfour:
+    query: false
+  limit:
+    query: false
+  locationid:
+    query: false
+  name:
+    query: false
+  offset:
+    query: false
+  payfrequency:
+    query: false
+  payperiodid:
+    query: false
+  status:
+    query: false
+  to:
+    query: false
+validServerUrls: {}
