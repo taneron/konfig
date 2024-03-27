@@ -1602,6 +1602,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/checkout_orders_v2.json",
   },
+  "paypal.com_Invoicing": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/invoicing_v2.json",
+  },
+  "paypal.com_Payment": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/payments_payment_v2.json",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

@@ -1,0 +1,35 @@
+{
+  "securitySchemes": {
+    "Oauth2": {
+      "type": "oauth2",
+      "description": "OAuth 2.0 authentication",
+      "flows": {
+        "clientCredentials": {
+          "tokenUrl": "/v1/oauth2/token",
+          "scopes": {
+            "https://uri.paypal.com/services/payments/payment/authcapture": "Permission to do non-real time payments like capture on authorization",
+            "https://uri.paypal.com/services/payments/refund": "Permission to initiate a refund on a capture transaction",
+            "https://uri.paypal.com/services/payments/non-referenced-credit": "Permission to initiate non referenced credit",
+            "https://uri.paypal.com/services/payments/realtimepayment": "Permission to do any real time payment, with support for sale/authorize/order intents",
+            "https://uri.paypal.com/services/payments/reversepayment": "Permission to do any reverse payment"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://api-m.sandbox.paypal.com",
+  "apiVersion": "2.5",
+  "apiDescription": "Call the Payments API to authorize payments, capture authorized payments, refund payments that have already been captured, and show payment information. Use the Payments API in conjunction with the <a href=\"/docs/api/orders/v2/\">Orders API</a>. For more information, see the <a href=\"/docs/checkout/\">PayPal Checkout Overview</a>.",
+  "apiTitle": "Payments",
+  "endpoints": 7,
+  "sdkMethods": 7,
+  "schemas": 60,
+  "parameters": 22,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/payments_payment_v2.json"
+  },
+  "customRequestSpecFilename": "paypal.com_Payment.yaml",
+  "difficultyScore": 42.5,
+  "difficulty": "Easy"
+}

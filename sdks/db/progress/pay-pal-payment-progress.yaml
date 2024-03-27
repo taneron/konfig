@@ -1,0 +1,99 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v2/payments/authorizations/{authorization_id}:
+    get: Authorizations_showDetails
+  /v2/payments/authorizations/{authorization_id}/capture:
+    post: Authorizations_capturePayment
+  /v2/payments/authorizations/{authorization_id}/reauthorize:
+    post: Authorizations_reauthorizePayment
+  /v2/payments/authorizations/{authorization_id}/void:
+    post: Authorizations_voidPayment
+  /v2/payments/captures/{capture_id}:
+    get: Captures_showDetails
+  /v2/payments/captures/{capture_id}/refund:
+    post: Captures_refundPayment
+  /v2/payments/refunds/{refund_id}:
+    get: Refunds_details
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/payments/authorizations/{authorization_id}:
+    get:
+      '403':
+        application/json: AuthorizationsShowDetailsResponse
+      '404':
+        application/json: AuthorizationsShowDetails404Response
+  /v2/payments/authorizations/{authorization_id}/capture:
+    post:
+      '400':
+        application/json: AuthorizationsCapturePaymentResponse
+      '403':
+        application/json: AuthorizationsCapturePayment403Response
+      '404':
+        application/json: AuthorizationsCapturePayment404Response
+      '422':
+        application/json: AuthorizationsCapturePayment422Response
+  /v2/payments/authorizations/{authorization_id}/reauthorize:
+    post:
+      '400':
+        application/json: AuthorizationsReauthorizePaymentResponse
+      '403':
+        application/json: AuthorizationsReauthorizePayment403Response
+      '404':
+        application/json: AuthorizationsReauthorizePayment404Response
+      '422':
+        application/json: AuthorizationsReauthorizePayment422Response
+  /v2/payments/authorizations/{authorization_id}/void:
+    post:
+      '401':
+        application/json: AuthorizationsVoidPaymentResponse
+      '403':
+        application/json: AuthorizationsVoidPayment403Response
+      '404':
+        application/json: AuthorizationsVoidPayment404Response
+      '409':
+        application/json: AuthorizationsVoidPayment409Response
+      '422':
+        application/json: AuthorizationsVoidPayment422Response
+  /v2/payments/captures/{capture_id}:
+    get:
+      '403':
+        application/json: CapturesShowDetailsResponse
+      '404':
+        application/json: CapturesShowDetails404Response
+  /v2/payments/captures/{capture_id}/refund:
+    post:
+      '400':
+        application/json: CapturesRefundPaymentResponse
+      '401':
+        application/json: CapturesRefundPayment401Response
+      '403':
+        application/json: CapturesRefundPayment403Response
+      '404':
+        application/json: CapturesRefundPayment404Response
+      '409':
+        application/json: CapturesRefundPayment409Response
+      '422':
+        application/json: CapturesRefundPayment422Response
+  /v2/payments/refunds/{refund_id}:
+    get:
+      '401':
+        application/json: RefundsDetailsResponse
+      '403':
+        application/json: RefundsDetails403Response
+      '404':
+        application/json: RefundsDetails404Response
+securityParameters:
+  PayPal-Auth-Assertion:
+    header: false
+  PayPal-Request-Id:
+    header: false
+  Prefer:
+    header: false
+validServerUrls: {}

@@ -1,0 +1,33 @@
+{
+  "securitySchemes": {
+    "Oauth2": {
+      "type": "oauth2",
+      "description": "Oauth 2.0 authentication",
+      "flows": {
+        "clientCredentials": {
+          "tokenUrl": "/v1/oauth2/token",
+          "scopes": {
+            "https://uri.paypal.com/services/invoicing/invoices/read": "For Reading the invoice details.",
+            "https://uri.paypal.com/services/invoicing/invoices/readwrite": "For managing (Create, Update, Delete) invoice.",
+            "https://uri.paypal.com/services/invoicing/internal": "Manage invoice resource internal clients."
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://api-m.sandbox.paypal.com",
+  "apiVersion": "2.3",
+  "apiDescription": "Use the Invoicing API to create, send, and manage invoices. You can also use the API or webhooks to track invoice payments. When you send an invoice to a customer, the invoice moves from draft to payable state. PayPal then emails the customer a link to the invoice on the PayPal website. Customers with a PayPal account can log in and pay the invoice with PayPal. Alternatively, customers can pay as a guest with a debit card or credit card. For more information, see the <a href=\"/docs/invoicing/\">Invoicing Overview</a> and the <a href=\"/docs/invoicing/basic-integration/\">Invoicing Integration Guide</a>.",
+  "apiTitle": "Invoices",
+  "endpoints": 14,
+  "sdkMethods": 20,
+  "schemas": 103,
+  "parameters": 120,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/invoicing_v2.json"
+  },
+  "customRequestSpecFilename": "paypal.com_Invoicing.yaml",
+  "difficultyScore": 101.5,
+  "difficulty": "Easy"
+}

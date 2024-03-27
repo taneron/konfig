@@ -1,0 +1,177 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v2/invoicing/generate-next-invoice-number:
+    post: Invoices_generateNextInvoiceNumber
+  /v2/invoicing/invoices:
+    get: Invoices_getInvoices
+    post: Invoices_createDraftInvoice
+  /v2/invoicing/invoices/{invoice_id}:
+    delete: Invoices_deleteDraftOrScheduledInvoice
+    get: Invoices_getDetails
+    put: Invoices_updateFullInvoice
+  /v2/invoicing/invoices/{invoice_id}/cancel:
+    post: Invoices_cancelSentInvoice
+  /v2/invoicing/invoices/{invoice_id}/generate-qr-code:
+    post: Invoices_generateQrCode
+  /v2/invoicing/invoices/{invoice_id}/payments:
+    post: Invoices_recordPayment
+  /v2/invoicing/invoices/{invoice_id}/payments/{transaction_id}:
+    delete: Invoices_deleteExternalPayment
+  /v2/invoicing/invoices/{invoice_id}/refunds:
+    post: Invoices_recordRefund
+  /v2/invoicing/invoices/{invoice_id}/refunds/{transaction_id}:
+    delete: Invoices_deleteExternalRefund
+  /v2/invoicing/invoices/{invoice_id}/remind:
+    post: Invoices_sendReminder
+  /v2/invoicing/invoices/{invoice_id}/send:
+    post: Invoices_sendInvoice
+  /v2/invoicing/search-invoices:
+    post: Searchinvoices_list
+  /v2/invoicing/templates:
+    get: Templates_listDetails
+    post: Templates_createTemplate
+  /v2/invoicing/templates/{template_id}:
+    delete: Templates_deleteById
+    get: Templates_showDetailsById
+    put: Templates_updateFullTemplate
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/invoicing/invoices:
+    get:
+      '400':
+        application/json: InvoicesGetInvoicesResponse
+        multipart/mixed: InvoicesGetInvoices400Response
+    post:
+      '400':
+        application/json: InvoicesCreateDraftInvoiceResponse
+        multipart/mixed: InvoicesCreateDraftInvoice400Response
+      '422':
+        application/json: InvoicesCreateDraftInvoice422Response
+        multipart/mixed: InvoicesCreateDraftInvoice422Response
+  /v2/invoicing/invoices/{invoice_id}:
+    delete:
+      '403':
+        application/json: InvoicesDeleteDraftOrScheduledInvoiceResponse
+    get:
+      '403':
+        application/json: InvoicesGetDetailsResponse
+    put:
+      '400':
+        application/json: InvoicesUpdateFullInvoiceResponse
+        multipart/mixed: InvoicesUpdateFullInvoice400Response
+      '403':
+        application/json: InvoicesUpdateFullInvoice403Response
+        multipart/mixed: InvoicesUpdateFullInvoice403Response
+      '422':
+        application/json: InvoicesUpdateFullInvoice422Response
+        multipart/mixed: InvoicesUpdateFullInvoice422Response
+  /v2/invoicing/invoices/{invoice_id}/cancel:
+    post:
+      '400':
+        application/json: InvoicesCancelSentInvoiceResponse
+      '403':
+        application/json: InvoicesCancelSentInvoice403Response
+      '422':
+        application/json: InvoicesCancelSentInvoice422Response
+  /v2/invoicing/invoices/{invoice_id}/generate-qr-code:
+    post:
+      '400':
+        multipart/mixed: InvoicesGenerateQrCodeResponse
+      '403':
+        multipart/mixed: InvoicesGenerateQrCode403Response
+  /v2/invoicing/invoices/{invoice_id}/payments:
+    post:
+      '400':
+        application/json: InvoicesRecordPaymentResponse
+        multipart/mixed: InvoicesRecordPayment400Response
+      '403':
+        application/json: InvoicesRecordPayment403Response
+        multipart/mixed: InvoicesRecordPayment403Response
+      '422':
+        application/json: InvoicesRecordPayment422Response
+        multipart/mixed: InvoicesRecordPayment422Response
+  /v2/invoicing/invoices/{invoice_id}/payments/{transaction_id}:
+    delete:
+      '403':
+        application/json: InvoicesDeleteExternalPaymentResponse
+      '422':
+        application/json: InvoicesDeleteExternalPayment422Response
+  /v2/invoicing/invoices/{invoice_id}/refunds:
+    post:
+      '400':
+        application/json: InvoicesRecordRefundResponse
+        multipart/mixed: InvoicesRecordRefund400Response
+      '403':
+        application/json: InvoicesRecordRefund403Response
+        multipart/mixed: InvoicesRecordRefund403Response
+      '422':
+        application/json: InvoicesRecordRefund422Response
+        multipart/mixed: InvoicesRecordRefund422Response
+  /v2/invoicing/invoices/{invoice_id}/refunds/{transaction_id}:
+    delete:
+      '403':
+        application/json: InvoicesDeleteExternalRefundResponse
+        multipart/mixed: InvoicesDeleteExternalRefund403Response
+  /v2/invoicing/invoices/{invoice_id}/remind:
+    post:
+      '400':
+        application/json: InvoicesSendReminderResponse
+        multipart/mixed: InvoicesSendReminder400Response
+      '403':
+        application/json: InvoicesSendReminder403Response
+        multipart/mixed: InvoicesSendReminder403Response
+      '422':
+        application/json: InvoicesSendReminder422Response
+        multipart/mixed: InvoicesSendReminder422Response
+  /v2/invoicing/search-invoices:
+    post:
+      '400':
+        application/json: SearchinvoicesListResponse
+        multipart/mixed: SearchinvoicesList400Response
+  /v2/invoicing/templates:
+    get:
+      '400':
+        application/json: TemplatesListDetailsResponse
+        multipart/mixed: TemplatesListDetails400Response
+    post:
+      '400':
+        application/json: TemplatesCreateTemplateResponse
+        multipart/mixed: TemplatesCreateTemplate400Response
+      '422':
+        application/json: TemplatesCreateTemplate422Response
+        multipart/mixed: TemplatesCreateTemplate422Response
+  /v2/invoicing/templates/{template_id}:
+    delete:
+      '403':
+        application/json: TemplatesDeleteByIdResponse
+        multipart/mixed: TemplatesDeleteById403Response
+    get:
+      '403':
+        application/json: TemplatesShowDetailsByIdResponse
+        multipart/mixed: TemplatesShowDetailsById403Response
+    put:
+      '400':
+        application/json: TemplatesUpdateFullTemplateResponse
+      '403':
+        application/json: TemplatesUpdateFullTemplate403Response
+      '422':
+        application/json: TemplatesUpdateFullTemplate422Response
+securityParameters:
+  fields:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  send_to_invoicer:
+    query: false
+  send_to_recipient:
+    query: false
+  total_required:
+    query: false
+validServerUrls: {}
