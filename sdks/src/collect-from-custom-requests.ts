@@ -1227,6 +1227,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://docs.jumpcloud.com/api/2.0/index.yaml",
   },
+  "sage.com": {
+    type: "GET",
+    url: "https://developer.sage.com/hr/reference/sage-hr-v1.0.swagger.yml",
+  },
   "keka.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

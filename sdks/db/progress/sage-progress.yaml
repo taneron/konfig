@@ -1,0 +1,401 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /documents:
+    post: Documents_createNewDocument
+  /documents/categories:
+    get: Documents_listCategories
+  /employees:
+    get: Employee_listActiveEmployees
+    post: Employee_createNewEmployee
+  /employees/{id}:
+    get: Employee_getById
+    put: Employee_updateById
+  /employees/{id}/compensations:
+    get: Employee_getCompensations
+  /employees/{id}/custom-fields:
+    get: Employee_getCustomFields
+  /employees/{id}/custom-fields/{custom_field_id}:
+    put: Employee_updateCustomField
+  /employees/{id}/leave-management/balances:
+    get: LeaveManagement_getTimeOffBalances
+  /employees/{id}/terminations:
+    post: Employee_terminateEmployee
+  /leave-management/kit-days:
+    get: LeaveManagement_getKitDays
+    post: LeaveManagement_createKitDay
+  /leave-management/kit-days/{id}:
+    patch: LeaveManagement_processKitDay
+  /leave-management/out-of-office-today:
+    get: LeaveManagement_listEmployeesOutToday
+  /leave-management/policies:
+    get: LeaveManagement_listTimeOffPolicies
+  /leave-management/policies/{id}:
+    get: LeaveManagement_getTimeOffPolicyById
+    patch: LeaveManagement_updateKitDaysConfiguration
+  /leave-management/reports/individual-allowances:
+    get: LeaveManagement_getIndividualAllowances
+  /leave-management/requests:
+    get: LeaveManagement_listTimeOffRequests
+    post: LeaveManagement_newTimeOffRequest
+  /offboarding/categories:
+    get: Offboarding_listCategories
+  /offboarding/tasks:
+    post: Offboarding_createTask
+  /onboarding/categories:
+    get: Onboarding_listTaskCategories
+  /onboarding/tasks:
+    post: Onboarding_createNewTask
+  /performance/goals/quarterly-progress/company-goals:
+    get: Performance_getQuarterlyCompanyGoals
+  /performance/goals/quarterly-progress/individual-goals:
+    get: Performance_getQuarterlyIndividualGoals
+  /performance/goals/quarterly-progress/overall:
+    get: Performance_overviewQuarterlyProgress
+  /performance/goals/quarterly-progress/team-goals:
+    get: Performance_getQuarterlyTeamGoals
+  /positions:
+    get: Positions_listCompanyPositions
+  /recruitment/applicants/{id}:
+    get: Recruitment_getApplicantDetails
+  /recruitment/applicants/{id}/actions:
+    get: Recruitment_listApplicantActions
+  /recruitment/positions:
+    get: Recruitment_listPositions
+  /recruitment/positions/{id}:
+    get: Recruitment_getPositionDetails
+  /recruitment/positions/{id}/applicants:
+    get: Recruitment_listApplicants
+    post: Recruitment_createApplicantWithReferral
+  /teams:
+    get: Teams_listInCompany
+  /terminated-employees:
+    get: Employee_listTerminatedEmployees
+  /terminated-employees/{id}:
+    get: Employee_getTerminatedEmployee
+  /termination-reasons:
+    get: TerminationsReasons_listInCompany
+  /timesheets/clock-in:
+    post: Timesheets_clockInOut
+  /vikarina/appointments:
+    post: Integrations_transferAppointmentInfo
+  /vikarina/bank-accounts:
+    post: Integrations_transferBankAccountInfo
+  /vikarina/bonuses:
+    post: Integrations_sendBonusesToVikarina
+  /vikarina/contract-information:
+    post: Integrations_transferContractInformationToVikarina
+  /vikarina/job-positions:
+    post: Integrations_transferJobPositionFromSageToVikarina
+  /vikarina/leave-types:
+    post: Integrations_transferLeaveInformationToVikarina
+  /vikarina/newstarter-employees:
+    post: Integrations_importNewStartersList
+  /vikarina/organization-structure:
+    post: Integrations_transferOrganizationalStructureFromSageToVikarina
+  /vikarina/salaries:
+    post: Integrations_transferSalaryInformation
+  /vikarina/terminated-employees:
+    post: Integrations_transferTerminationInfoToVikarina
+  /vikarina/timesheets:
+    post: Integrations_transferTimeScheduleInformation
+  /vikarina/unused-days:
+    post: Integrations_transferUnusedVacationDaysToVikarina
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /documents:
+    post:
+      multipart/form-data: DocumentsCreateNewDocumentRequest
+  /employees:
+    post:
+      application/x-www-form-urlencoded: EmployeeCreateNewEmployeeRequest
+  /employees/{id}:
+    put:
+      application/json: EmployeeUpdateByIdRequest
+  /employees/{id}/custom-fields/{custom_field_id}:
+    put:
+      application/x-www-form-urlencoded: EmployeeUpdateCustomFieldRequest
+  /employees/{id}/terminations:
+    post:
+      application/x-www-form-urlencoded: EmployeeTerminateEmployeeRequest
+  /leave-management/kit-days:
+    post:
+      application/x-www-form-urlencoded: LeaveManagementCreateKitDayRequest
+  /leave-management/kit-days/{id}:
+    patch:
+      application/x-www-form-urlencoded: LeaveManagementProcessKitDayRequest
+  /leave-management/policies/{id}:
+    patch:
+      application/x-www-form-urlencoded: LeaveManagementUpdateKitDaysConfigurationRequest
+  /leave-management/requests:
+    post:
+      application/x-www-form-urlencoded: LeaveManagementNewTimeOffRequestRequest
+  /offboarding/tasks:
+    post:
+      application/x-www-form-urlencoded: OffboardingCreateTaskRequest
+  /onboarding/tasks:
+    post:
+      application/x-www-form-urlencoded: OnboardingCreateNewTaskRequest
+  /recruitment/positions/{id}/applicants:
+    post:
+      multipart/form-data: RecruitmentCreateApplicantWithReferralRequest
+  /timesheets/clock-in:
+    post:
+      application/json: TimesheetsClockInOutRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /documents:
+    post:
+      '201':
+        application/json: DocumentsCreateNewDocumentResponse
+  /documents/categories:
+    get:
+      '200':
+        application/json: DocumentsListCategoriesResponse
+  /employees:
+    get:
+      '200':
+        application/json: EmployeeListActiveEmployeesResponse
+    post:
+      '201':
+        application/json: EmployeeCreateNewEmployeeResponse
+  /employees/{id}:
+    get:
+      '200':
+        application/json: EmployeeGetByIdResponse
+    put:
+      '202':
+        application/json: EmployeeUpdateByIdResponse
+      '404':
+        application/json: EmployeeUpdateById404Response
+  /employees/{id}/compensations:
+    get:
+      '200':
+        application/json: EmployeeGetCompensationsResponse
+  /employees/{id}/custom-fields:
+    get:
+      '200':
+        application/json: EmployeeGetCustomFieldsResponse
+  /employees/{id}/custom-fields/{custom_field_id}:
+    put:
+      '200':
+        application/json: EmployeeUpdateCustomFieldResponse
+      '422':
+        application/json: EmployeeUpdateCustomField422Response
+  /employees/{id}/leave-management/balances:
+    get:
+      '200':
+        application/json: LeaveManagementGetTimeOffBalancesResponse
+  /employees/{id}/terminations:
+    post:
+      '201':
+        application/json: EmployeeTerminateEmployeeResponse
+  /leave-management/kit-days:
+    get:
+      '200':
+        application/json: LeaveManagementGetKitDaysResponse
+    post:
+      '200':
+        application/json: LeaveManagementCreateKitDayResponse
+      '422':
+        application/json: LeaveManagementCreateKitDay422Response
+  /leave-management/out-of-office-today:
+    get:
+      '200':
+        application/json: LeaveManagementListEmployeesOutTodayResponse
+  /leave-management/policies:
+    get:
+      '200':
+        application/json: LeaveManagementListTimeOffPoliciesResponse
+  /leave-management/policies/{id}:
+    get:
+      '200':
+        application/json: LeaveManagementGetTimeOffPolicyByIdResponse
+    patch:
+      '422':
+        application/json: LeaveManagementUpdateKitDaysConfigurationResponse
+  /leave-management/reports/individual-allowances:
+    get:
+      '200':
+        application/json: LeaveManagementGetIndividualAllowancesResponse
+  /leave-management/requests:
+    get:
+      '200':
+        application/json: LeaveManagementListTimeOffRequestsResponse
+    post:
+      '201':
+        application/json: LeaveManagementNewTimeOffRequestResponse
+      '422':
+        application/json: LeaveManagementNewTimeOffRequest422Response
+  /offboarding/categories:
+    get:
+      '200':
+        application/json: OffboardingListCategoriesResponse
+  /offboarding/tasks:
+    post:
+      '201':
+        application/json: OffboardingCreateTaskResponse
+  /onboarding/categories:
+    get:
+      '200':
+        application/json: OnboardingListTaskCategoriesResponse
+  /onboarding/tasks:
+    post:
+      '201':
+        application/json: OnboardingCreateNewTaskResponse
+  /performance/goals/quarterly-progress/company-goals:
+    get:
+      '200':
+        application/json: PerformanceGetQuarterlyCompanyGoalsResponse
+  /performance/goals/quarterly-progress/individual-goals:
+    get:
+      '200':
+        application/json: PerformanceGetQuarterlyIndividualGoalsResponse
+  /performance/goals/quarterly-progress/overall:
+    get:
+      '200':
+        application/json: PerformanceOverviewQuarterlyProgressResponse
+  /performance/goals/quarterly-progress/team-goals:
+    get:
+      '200':
+        application/json: PerformanceGetQuarterlyTeamGoalsResponse
+  /positions:
+    get:
+      '200':
+        application/json: PositionsListCompanyPositionsResponse
+  /recruitment/applicants/{id}:
+    get:
+      '200':
+        application/json: RecruitmentGetApplicantDetailsResponse
+  /recruitment/applicants/{id}/actions:
+    get:
+      '200':
+        application/json: RecruitmentListApplicantActionsResponse
+  /recruitment/positions:
+    get:
+      '200':
+        application/json: RecruitmentListPositionsResponse
+  /recruitment/positions/{id}:
+    get:
+      '200':
+        application/json: RecruitmentGetPositionDetailsResponse
+  /recruitment/positions/{id}/applicants:
+    get:
+      '200':
+        application/json: RecruitmentListApplicantsResponse
+    post:
+      '201':
+        application/json: RecruitmentCreateApplicantWithReferralResponse
+      '422':
+        application/json: RecruitmentCreateApplicantWithReferral422Response
+  /teams:
+    get:
+      '200':
+        application/json: TeamsListInCompanyResponse
+  /terminated-employees:
+    get:
+      '200':
+        application/json: EmployeeListTerminatedEmployeesResponse
+  /terminated-employees/{id}:
+    get:
+      '200':
+        application/json: EmployeeGetTerminatedEmployeeResponse
+  /termination-reasons:
+    get:
+      '200':
+        application/json: TerminationsReasonsListInCompanyResponse
+  /timesheets/clock-in:
+    post:
+      '200':
+        application/json: TimesheetsClockInOutResponse
+  /vikarina/appointments:
+    post:
+      '200':
+        application/json: IntegrationsTransferAppointmentInfoResponse
+  /vikarina/bank-accounts:
+    post:
+      '200':
+        application/json: IntegrationsTransferBankAccountInfoResponse
+  /vikarina/bonuses:
+    post:
+      '200':
+        application/json: IntegrationsSendBonusesToVikarinaResponse
+  /vikarina/contract-information:
+    post:
+      '200':
+        application/json: IntegrationsTransferContractInformationToVikarinaResponse
+  /vikarina/job-positions:
+    post:
+      '200':
+        application/json: IntegrationsTransferJobPositionFromSageToVikarinaResponse
+  /vikarina/leave-types:
+    post:
+      '200':
+        application/json: IntegrationsTransferLeaveInformationToVikarinaResponse
+  /vikarina/newstarter-employees:
+    post:
+      '200':
+        application/json: IntegrationsImportNewStartersListResponse
+  /vikarina/organization-structure:
+    post:
+      '200':
+        application/json: IntegrationsTransferOrganizationalStructureFromSageToVikarinaResponse
+  /vikarina/salaries:
+    post:
+      '200':
+        application/json: IntegrationsTransferSalaryInformationResponse
+  /vikarina/terminated-employees:
+    post:
+      '200':
+        application/json: IntegrationsTransferTerminationInfoToVikarinaResponse
+  /vikarina/timesheets:
+    post:
+      '200':
+        application/json: IntegrationsTransferTimeScheduleInformationResponse
+  /vikarina/unused-days:
+    post:
+      '200':
+        application/json: IntegrationsTransferUnusedVacationDaysToVikarinaResponse
+securityParameters:
+  date:
+    query: false
+  employee_id:
+    query: false
+  employee_ids:
+    query: false
+  employment_status_history:
+    query: false
+  end_date:
+    query: false
+  from:
+    query: false
+  group_ids:
+    query: false
+  hiring_manager_ids:
+    query: false
+  location_ids:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  policy_id:
+    query: false
+  position_history:
+    query: false
+  stage_id:
+    query: false
+  start_date:
+    query: false
+  status:
+    query: false
+  team_history:
+    query: false
+  team_ids:
+    query: false
+  to:
+    query: false
+validServerUrls: {}
