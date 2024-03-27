@@ -1573,6 +1573,10 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "paypal.com_Checkout": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/checkout_orders_v2.json"
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({

@@ -1,0 +1,114 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /v2/checkout/orders:
+    post: Orders_createOrder
+  /v2/checkout/orders/{id}:
+    get: Orders_showDetails
+    patch: Orders_updateOrderStatus
+  /v2/checkout/orders/{id}/authorize:
+    post: Orders_authorizePaymentOrder
+  /v2/checkout/orders/{id}/capture:
+    post: Orders_capturePayment
+  /v2/checkout/orders/{id}/confirm-payment-source:
+    post: Orders_confirmPaymentSource
+  /v2/checkout/orders/{id}/track:
+    post: Orders_addTrackingInformation
+  /v2/checkout/orders/{id}/trackers/{tracker_id}:
+    patch: Trackers_updateTrackingInfo
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/checkout/orders:
+    post:
+      '400':
+        application/json: OrdersCreateOrderResponse
+      '401':
+        application/json: OrdersCreateOrder401Response
+      '422':
+        application/json: OrdersCreateOrder422Response
+  /v2/checkout/orders/{id}:
+    get:
+      '401':
+        application/json: OrdersShowDetailsResponse
+      '404':
+        application/json: OrdersShowDetails404Response
+    patch:
+      '400':
+        application/json: OrdersUpdateOrderStatusResponse
+      '401':
+        application/json: OrdersUpdateOrderStatus401Response
+      '404':
+        application/json: OrdersUpdateOrderStatus404Response
+      '422':
+        application/json: OrdersUpdateOrderStatus422Response
+  /v2/checkout/orders/{id}/authorize:
+    post:
+      '400':
+        application/json: OrdersAuthorizePaymentOrderResponse
+      '401':
+        application/json: OrdersAuthorizePaymentOrder401Response
+      '403':
+        application/json: OrdersAuthorizePaymentOrder403Response
+      '404':
+        application/json: OrdersAuthorizePaymentOrder404Response
+      '422':
+        application/json: OrdersAuthorizePaymentOrder422Response
+  /v2/checkout/orders/{id}/capture:
+    post:
+      '400':
+        application/json: OrdersCapturePaymentResponse
+      '401':
+        application/json: OrdersCapturePayment401Response
+      '403':
+        application/json: OrdersCapturePayment403Response
+      '404':
+        application/json: OrdersCapturePayment404Response
+      '422':
+        application/json: OrdersCapturePayment422Response
+  /v2/checkout/orders/{id}/confirm-payment-source:
+    post:
+      '400':
+        application/json: OrdersConfirmPaymentSourceResponse
+      '403':
+        application/json: OrdersConfirmPaymentSource403Response
+      '422':
+        application/json: OrdersConfirmPaymentSource422Response
+  /v2/checkout/orders/{id}/track:
+    post:
+      '400':
+        application/json: OrdersAddTrackingInformationResponse
+      '403':
+        application/json: OrdersAddTrackingInformation403Response
+      '404':
+        application/json: OrdersAddTrackingInformation404Response
+      '422':
+        application/json: OrdersAddTrackingInformation422Response
+  /v2/checkout/orders/{id}/trackers/{tracker_id}:
+    patch:
+      '400':
+        application/json: TrackersUpdateTrackingInfoResponse
+      '403':
+        application/json: TrackersUpdateTrackingInfo403Response
+      '404':
+        application/json: TrackersUpdateTrackingInfo404Response
+      '422':
+        application/json: TrackersUpdateTrackingInfo422Response
+securityParameters:
+  PayPal-Auth-Assertion:
+    header: false
+  PayPal-Client-Metadata-Id:
+    header: false
+  PayPal-Partner-Attribution-Id:
+    header: false
+  PayPal-Request-Id:
+    header: false
+  Prefer:
+    header: false
+  fields:
+    query: false
+validServerUrls: {}

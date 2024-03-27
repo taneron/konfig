@@ -1,0 +1,595 @@
+{
+  "securitySchemes": {
+    "Oauth2": {
+      "type": "oauth2",
+      "description": "Oauth 2.0 authentication",
+      "flows": {
+        "clientCredentials": {
+          "tokenUrl": "/v1/oauth2/token",
+          "scopes": {
+            "https://uri.paypal.com/services/payments/payment": "Manage payments and checkout workflow.",
+            "https://uri.paypal.com/services/payments/payment/reference-transaction": "Permission to initiate reference transaction",
+            "https://uri.paypal.com/services/payments/initiatepayment": "Initiates payments and checkout workflows.",
+            "https://uri.paypal.com/services/payments/orders/client-side-integration": "Allows client-side integration on Create, Get, Patch, Authorize & Capture Order endpoints."
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://api-m.sandbox.paypal.com",
+  "apiVersion": "2.13",
+  "apiDescription": "An order represents a payment between two or more parties. Use the Orders API to create, update, retrieve, authorize, and capture orders.",
+  "apiTitle": "Orders",
+  "endpoints": 7,
+  "sdkMethods": 8,
+  "schemas": 240,
+  "parameters": 34,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/checkout_orders_v2.json"
+  },
+  "customRequestSpecFilename": "paypal.com_Checkout.yaml",
+  "difficultyScore": 121.5,
+  "difficulty": "Medium",
+  "company": "PayPal",
+  "serviceName": "Checkout",
+  "sdkName": "pay-pal-checkout-{language}-sdk",
+  "clientName": "PayPalCheckout",
+  "metaDescription": "We're championing possibilities for all by making money fast, easy, and more enjoyable. Our hope is unlock opportunities for people in their everyday lives and empower the millions of people and businesses around the world who trust, rely, and use PayPal every day. \n\nFor support, visit the PayPal Help Center. https://payp.al/help\n\nFor employment opportunities, check out our job openings in the 'Jobs' tab. We're an equal opportunity employer that welcomes diversity, and offer generous benefits to help you thrive at work and in your free time.",
+  "apiStatusUrls": "inherit",
+  "homepage": "www.paypal.com/",
+  "developerDocumentation": "developer.paypal.com/",
+  "categories": [
+    "payments",
+    "financial_technology",
+    "fintech",
+    "online_payments",
+    "financial_services"
+  ],
+  "category": "Payment Processing",
+  "methods": [
+    {
+      "url": "/v2/checkout/orders",
+      "method": "createOrder",
+      "httpMethod": "post",
+      "tag": "orders",
+      "typeScriptTag": "orders",
+      "description": "Create order",
+      "parameters": [
+        {
+          "name": "payPalRequestId",
+          "schema": "string",
+          "required": false,
+          "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+        },
+        {
+          "name": "payPalPartnerAttributionId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "payPalClientMetadataId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "prefer",
+          "schema": "string",
+          "required": false,
+          "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+          "default": "return=minimal"
+        },
+        {
+          "name": "intent",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "INTENT"
+        },
+        {
+          "name": "payer",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "purchase_units",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "payment_source",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "application_context",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The order details."
+        },
+        {
+          "statusCode": "201",
+          "description": "The order details."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The default error response."
+        }
+      ]
+    },
+    {
+      "url": "/v2/checkout/orders/{id}",
+      "method": "showDetails",
+      "httpMethod": "get",
+      "tag": "orders",
+      "typeScriptTag": "orders",
+      "description": "Show order details",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the order that the tracking information is associated with.",
+          "example": "ID"
+        },
+        {
+          "name": "fields",
+          "schema": "string",
+          "required": false,
+          "description": "A comma-separated list of fields that should be returned for the order. Valid filter field is `payment_source`."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The order details."
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The default error response."
+        }
+      ]
+    },
+    {
+      "url": "/v2/checkout/orders/{id}",
+      "method": "updateOrderStatus",
+      "httpMethod": "patch",
+      "tag": "orders",
+      "typeScriptTag": "orders",
+      "description": "Update order",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the order that the tracking information is associated with.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "A successful request returns the HTTP `204 No Content` status code with an empty object in the JSON response body."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The default error response."
+        }
+      ]
+    },
+    {
+      "url": "/v2/checkout/orders/{id}/confirm-payment-source",
+      "method": "confirmPaymentSource",
+      "httpMethod": "post",
+      "tag": "orders",
+      "typeScriptTag": "orders",
+      "description": "Confirm the Order",
+      "parameters": [
+        {
+          "name": "payPalClientMetadataId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the order that the tracking information is associated with.",
+          "example": "ID"
+        },
+        {
+          "name": "prefer",
+          "schema": "string",
+          "required": false,
+          "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+          "default": "return=minimal"
+        },
+        {
+          "name": "payment_source",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "processing_instruction",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": "NO_INSTRUCTION"
+        },
+        {
+          "name": "application_context",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The order details."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server."
+        },
+        {
+          "statusCode": "default",
+          "description": "The default error response."
+        }
+      ]
+    },
+    {
+      "url": "/v2/checkout/orders/{id}/authorize",
+      "method": "authorizePaymentOrder",
+      "httpMethod": "post",
+      "tag": "orders",
+      "typeScriptTag": "orders",
+      "description": "Authorize payment for order",
+      "parameters": [
+        {
+          "name": "payPalRequestId",
+          "schema": "string",
+          "required": false,
+          "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+        },
+        {
+          "name": "prefer",
+          "schema": "string",
+          "required": false,
+          "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+          "default": "return=minimal"
+        },
+        {
+          "name": "payPalClientMetadataId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the order that the tracking information is associated with.",
+          "example": "ID"
+        },
+        {
+          "name": "payPalAuthAssertion",
+          "schema": "string",
+          "required": false,
+          "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"/api/rest/requests/#paypal-auth-assertion\">PayPal-Auth-Assertion</a>."
+        },
+        {
+          "name": "payment_source",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The order authorize response."
+        },
+        {
+          "statusCode": "201",
+          "description": "The order authorize response."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server."
+        },
+        {
+          "statusCode": "default",
+          "description": "The default error response."
+        }
+      ]
+    },
+    {
+      "url": "/v2/checkout/orders/{id}/capture",
+      "method": "capturePayment",
+      "httpMethod": "post",
+      "tag": "orders",
+      "typeScriptTag": "orders",
+      "description": "Capture payment for order",
+      "parameters": [
+        {
+          "name": "payPalRequestId",
+          "schema": "string",
+          "required": false,
+          "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+        },
+        {
+          "name": "prefer",
+          "schema": "string",
+          "required": false,
+          "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+          "default": "return=minimal"
+        },
+        {
+          "name": "payPalClientMetadataId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the order that the tracking information is associated with.",
+          "example": "ID"
+        },
+        {
+          "name": "payPalAuthAssertion",
+          "schema": "string",
+          "required": false,
+          "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"/api/rest/requests/#paypal-auth-assertion\">PayPal-Auth-Assertion</a>."
+        },
+        {
+          "name": "payment_source",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The order details."
+        },
+        {
+          "statusCode": "201",
+          "description": "The order details."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server."
+        },
+        {
+          "statusCode": "default",
+          "description": "The default error response."
+        }
+      ]
+    },
+    {
+      "url": "/v2/checkout/orders/{id}/track",
+      "method": "addTrackingInformation",
+      "httpMethod": "post",
+      "tag": "orders",
+      "typeScriptTag": "orders",
+      "description": "Add tracking information for an Order.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the order that the tracking information is associated with.",
+          "example": "ID"
+        },
+        {
+          "name": "payPalAuthAssertion",
+          "schema": "string",
+          "required": false,
+          "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href=\"/api/rest/requests/#paypal-auth-assertion\">PayPal-Auth-Assertion</a>."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The order details."
+        },
+        {
+          "statusCode": "201",
+          "description": "The order details."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server."
+        },
+        {
+          "statusCode": "default",
+          "description": "The default error response."
+        }
+      ]
+    },
+    {
+      "url": "/v2/checkout/orders/{id}/trackers/{tracker_id}",
+      "method": "updateTrackingInfo",
+      "httpMethod": "patch",
+      "tag": "trackers",
+      "typeScriptTag": "trackers",
+      "description": "Update or cancel tracking information for a PayPal order",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the order that the tracking information is associated with.",
+          "example": "ID"
+        },
+        {
+          "name": "trackerId",
+          "schema": "string",
+          "required": true,
+          "description": "The order tracking ID.",
+          "example": "TRACKER_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "A successful request returns the HTTP `204 No Content` status code with an empty object in the JSON response body."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server."
+        },
+        {
+          "statusCode": "default",
+          "description": "The default error response."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Making money fast, easy, and enjoyable. Empowering people and businesses worldwide. Equal opportunity employer with generous benefits. PayPal's {language} SDK for Checkout API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paypal/checkout/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paypal/checkout/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paypal/checkout/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paypal/checkout/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paypal/checkout/favicon.png",
+  "clientNameCamelCase": "payPalCheckout",
+  "lastUpdated": "2024-03-27T06:26:22.306Z",
+  "typescriptSdkUsageCode": "import { PayPalCheckout } from 'pay-pal-checkout-typescript-sdk';\n\nconst payPalCheckout = new PayPalCheckout({\n    // Oauth 2.0 authentication\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\"\n})",
+  "typescriptSdkFirstRequestCode": "// Create order\nconst createOrderResponse = payPalCheckout.orders.createOrder({\n    prefer: \"return=minimal\"\n    intent: \"INTENT\"\n})",
+  "fixedSpecFileName": "pay-pal-checkout-fixed-spec.yaml"
+}

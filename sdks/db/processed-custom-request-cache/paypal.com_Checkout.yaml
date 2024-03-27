@@ -1,0 +1,31 @@
+processed:
+  securitySchemes:
+    Oauth2:
+      type: oauth2
+      description: Oauth 2.0 authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/oauth2/token
+          scopes:
+            https://uri.paypal.com/services/payments/payment: Manage payments and checkout workflow.
+            https://uri.paypal.com/services/payments/payment/reference-transaction: Permission to initiate reference transaction
+            https://uri.paypal.com/services/payments/initiatepayment: Initiates payments and checkout workflows.
+            https://uri.paypal.com/services/payments/orders/client-side-integration: >-
+              Allows client-side integration on Create, Get, Patch, Authorize &
+              Capture Order endpoints.
+  apiBaseUrl: https://api-m.sandbox.paypal.com
+  apiVersion: '2.13'
+  apiDescription: >-
+    An order represents a payment between two or more parties. Use the Orders
+    API to create, update, retrieve, authorize, and capture orders.
+  apiTitle: Orders
+  endpoints: 7
+  sdkMethods: 8
+  schemas: 210
+  parameters: 34
+  originalCustomRequest:
+    type: GET
+    url: >-
+      https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/checkout_orders_v2.json
+  customRequestSpecFilename: paypal.com_Checkout.yaml
+  difficultyScore: 121.5

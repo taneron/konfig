@@ -1,0 +1,396 @@
+hash: 747731250db37ff5401bd6f066ea1c7b8afa5a7dbef0e9b0765230b3bef29228
+methodObjects:
+  - url: /v2/checkout/orders
+    method: createOrder
+    httpMethod: post
+    tag: orders
+    typeScriptTag: orders
+    description: Create order
+    parameters:
+      - name: payPalRequestId
+        schema: string
+        required: false
+        description: >-
+          The server stores keys for 6 hours. The API callers can request the
+          times to up to 72 hours by speaking to their Account Manager.
+      - name: payPalPartnerAttributionId
+        schema: string
+        required: false
+        description: ''
+      - name: payPalClientMetadataId
+        schema: string
+        required: false
+        description: ''
+      - name: prefer
+        schema: string
+        required: false
+        description: >-
+          The preferred server response upon successful completion of the
+          request. Value is:<ul><li><code>return=minimal</code>. The server
+          returns a minimal response to optimize communication between the API
+          caller and the server. A minimal response includes the
+          <code>id</code>, <code>status</code> and HATEOAS
+          links.</li><li><code>return=representation</code>. The server returns
+          a complete resource representation, including the current state of the
+          resource.</li></ul>
+        default: return=minimal
+      - name: intent
+        schema: string
+        required: true
+        description: ''
+        example: INTENT
+      - name: payer
+        schema: object
+        required: false
+        description: ''
+      - name: purchase_units
+        schema: array
+        required: true
+        description: ''
+      - name: payment_source
+        schema: object
+        required: false
+        description: ''
+      - name: application_context
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: The order details.
+      - statusCode: '201'
+        description: The order details.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: default
+        description: The default error response.
+  - url: /v2/checkout/orders/{id}
+    method: showDetails
+    httpMethod: get
+    tag: orders
+    typeScriptTag: orders
+    description: Show order details
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The ID of the order that the tracking information is associated with.
+        example: ID
+      - name: fields
+        schema: string
+        required: false
+        description: >-
+          A comma-separated list of fields that should be returned for the
+          order. Valid filter field is `payment_source`.
+    responses:
+      - statusCode: '200'
+        description: The order details.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: The default error response.
+  - url: /v2/checkout/orders/{id}
+    method: updateOrderStatus
+    httpMethod: patch
+    tag: orders
+    typeScriptTag: orders
+    description: Update order
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The ID of the order that the tracking information is associated with.
+        example: ID
+    responses:
+      - statusCode: '204'
+        description: >-
+          A successful request returns the HTTP `204 No Content` status code
+          with an empty object in the JSON response body.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: default
+        description: The default error response.
+  - url: /v2/checkout/orders/{id}/confirm-payment-source
+    method: confirmPaymentSource
+    httpMethod: post
+    tag: orders
+    typeScriptTag: orders
+    description: Confirm the Order
+    parameters:
+      - name: payPalClientMetadataId
+        schema: string
+        required: false
+        description: ''
+      - name: id
+        schema: string
+        required: true
+        description: The ID of the order that the tracking information is associated with.
+        example: ID
+      - name: prefer
+        schema: string
+        required: false
+        description: >-
+          The preferred server response upon successful completion of the
+          request. Value is:<ul><li><code>return=minimal</code>. The server
+          returns a minimal response to optimize communication between the API
+          caller and the server. A minimal response includes the
+          <code>id</code>, <code>status</code> and HATEOAS
+          links.</li><li><code>return=representation</code>. The server returns
+          a complete resource representation, including the current state of the
+          resource.</li></ul>
+        default: return=minimal
+      - name: payment_source
+        schema: object
+        required: true
+        description: ''
+      - name: processing_instruction
+        schema: string
+        required: false
+        description: ''
+        default: NO_INSTRUCTION
+      - name: application_context
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: The order details.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          This is either a system or application error, and generally indicates
+          that although the client appeared to provide a correct request,
+          something unexpected has gone wrong on the server.
+      - statusCode: default
+        description: The default error response.
+  - url: /v2/checkout/orders/{id}/authorize
+    method: authorizePaymentOrder
+    httpMethod: post
+    tag: orders
+    typeScriptTag: orders
+    description: Authorize payment for order
+    parameters:
+      - name: payPalRequestId
+        schema: string
+        required: false
+        description: >-
+          The server stores keys for 6 hours. The API callers can request the
+          times to up to 72 hours by speaking to their Account Manager.
+      - name: prefer
+        schema: string
+        required: false
+        description: >-
+          The preferred server response upon successful completion of the
+          request. Value is:<ul><li><code>return=minimal</code>. The server
+          returns a minimal response to optimize communication between the API
+          caller and the server. A minimal response includes the
+          <code>id</code>, <code>status</code> and HATEOAS
+          links.</li><li><code>return=representation</code>. The server returns
+          a complete resource representation, including the current state of the
+          resource.</li></ul>
+        default: return=minimal
+      - name: payPalClientMetadataId
+        schema: string
+        required: false
+        description: ''
+      - name: id
+        schema: string
+        required: true
+        description: The ID of the order that the tracking information is associated with.
+        example: ID
+      - name: payPalAuthAssertion
+        schema: string
+        required: false
+        description: >-
+          An API-caller-provided JSON Web Token (JWT) assertion that identifies
+          the merchant. For details, see <a
+          href="/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>.
+      - name: payment_source
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: The order authorize response.
+      - statusCode: '201'
+        description: The order authorize response.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          This is either a system or application error, and generally indicates
+          that although the client appeared to provide a correct request,
+          something unexpected has gone wrong on the server.
+      - statusCode: default
+        description: The default error response.
+  - url: /v2/checkout/orders/{id}/capture
+    method: capturePayment
+    httpMethod: post
+    tag: orders
+    typeScriptTag: orders
+    description: Capture payment for order
+    parameters:
+      - name: payPalRequestId
+        schema: string
+        required: false
+        description: >-
+          The server stores keys for 6 hours. The API callers can request the
+          times to up to 72 hours by speaking to their Account Manager.
+      - name: prefer
+        schema: string
+        required: false
+        description: >-
+          The preferred server response upon successful completion of the
+          request. Value is:<ul><li><code>return=minimal</code>. The server
+          returns a minimal response to optimize communication between the API
+          caller and the server. A minimal response includes the
+          <code>id</code>, <code>status</code> and HATEOAS
+          links.</li><li><code>return=representation</code>. The server returns
+          a complete resource representation, including the current state of the
+          resource.</li></ul>
+        default: return=minimal
+      - name: payPalClientMetadataId
+        schema: string
+        required: false
+        description: ''
+      - name: id
+        schema: string
+        required: true
+        description: The ID of the order that the tracking information is associated with.
+        example: ID
+      - name: payPalAuthAssertion
+        schema: string
+        required: false
+        description: >-
+          An API-caller-provided JSON Web Token (JWT) assertion that identifies
+          the merchant. For details, see <a
+          href="/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>.
+      - name: payment_source
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: The order details.
+      - statusCode: '201'
+        description: The order details.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          This is either a system or application error, and generally indicates
+          that although the client appeared to provide a correct request,
+          something unexpected has gone wrong on the server.
+      - statusCode: default
+        description: The default error response.
+  - url: /v2/checkout/orders/{id}/track
+    method: addTrackingInformation
+    httpMethod: post
+    tag: orders
+    typeScriptTag: orders
+    description: Add tracking information for an Order.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The ID of the order that the tracking information is associated with.
+        example: ID
+      - name: payPalAuthAssertion
+        schema: string
+        required: false
+        description: >-
+          An API-caller-provided JSON Web Token (JWT) assertion that identifies
+          the merchant. For details, see <a
+          href="/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>.
+    responses:
+      - statusCode: '200'
+        description: The order details.
+      - statusCode: '201'
+        description: The order details.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          This is either a system or application error, and generally indicates
+          that although the client appeared to provide a correct request,
+          something unexpected has gone wrong on the server.
+      - statusCode: default
+        description: The default error response.
+  - url: /v2/checkout/orders/{id}/trackers/{tracker_id}
+    method: updateTrackingInfo
+    httpMethod: patch
+    tag: trackers
+    typeScriptTag: trackers
+    description: Update or cancel tracking information for a PayPal order
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The ID of the order that the tracking information is associated with.
+        example: ID
+      - name: trackerId
+        schema: string
+        required: true
+        description: The order tracking ID.
+        example: TRACKER_ID
+    responses:
+      - statusCode: '204'
+        description: >-
+          A successful request returns the HTTP `204 No Content` status code
+          with an empty object in the JSON response body.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          This is either a system or application error, and generally indicates
+          that although the client appeared to provide a correct request,
+          something unexpected has gone wrong on the server.
+      - statusCode: default
+        description: The default error response.
+numberOfSchemas: 240
+apiDescription: >-
+  An order represents a payment between two or more parties. Use the Orders API
+  to create, update, retrieve, authorize, and capture orders.
