@@ -17,7 +17,7 @@ export default function BoxTypeScriptSdk() {
       companyKebabCase="box"
       clientNameCamelCase="box"
       homepage="box.com"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T20:29:17.115Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/box/favicon.png"
       contactUrl="https://box.dev"
       contactEmail="devrel@box.com"
@@ -12573,7 +12573,7 @@ export default function BoxTypeScriptSdk() {
       sdkMethods={263}
       schemas={301}
       parameters={792}
-      difficulty="Very Hard"
+      difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/box/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/box/openapi.yaml"
       developerDocumentation="developer.box.com/reference/"

@@ -23,7 +23,7 @@ Proliant delivers a perfect balance of technology and services supported by expe
       companyKebabCase="proliant"
       clientNameCamelCase="proliant"
       homepage="proliant.com"
-      lastUpdated={new Date("2024-03-27T16:38:55.058Z")}
+      lastUpdated={new Date("2024-03-27T20:29:17.115Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/proliant/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -12072,7 +12072,7 @@ Proliant delivers a perfect balance of technology and services supported by expe
       sdkMethods={187}
       schemas={189}
       parameters={1283}
-      difficulty="Very Hard"
+      difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/proliant/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/proliant/openapi.yaml"
       developerDocumentation="www.readypayonline.com/CompanyAPI/swagger/ui/index#!/"
