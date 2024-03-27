@@ -1,0 +1,1929 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /Webhooks/{id}:
+    delete: Webhooks_deleteOne
+  /addresses:
+    get: Addresses_searchFilterableSortable
+    post: Addresses_createNewAddress
+  /addresses/count:
+    get: Addresses_getCount
+  /addresses/{id}:
+    delete: Addresses_deleteAddress
+    put: Addresses_updateOneAddress
+  /addresss/{id}:
+    get: Addresses_getOneAddress
+  /audit-logs:
+    get: AuditLogs_listDescendingByDate
+  /batch-payments:
+    get: BatchPayments_searchFilterableSortable
+    post: BatchPayments_createNewBatchPayment
+  /batch-payments/count:
+    get: BatchPayments_getCount
+  /batch-payments/{id}:
+    delete: BatchPayments_deleteOne
+    get: BatchPayments_getOne
+  /batch-payments/{id}/approve:
+    put: BatchPayments_approve
+  /batch-payments/{id}/bills:
+    get: BatchPayments_getBills
+  /batch-payments/{id}/bills/count:
+    get: BatchPayments_getBillsCount
+  /batch-payments/{id}/payments:
+    get: BatchPayments_getPayments
+  /batch-payments/{id}/payments/count:
+    get: BatchPayments_getPaymentsCount
+  /batch-payments/{id}/void:
+    put: BatchPayments_voidBatchPayment
+  /bills:
+    get: Bills_list
+    post: Bills_createBill
+  /bills/count:
+    get: Bills_countItems
+  /bills/count/unpaid:
+    get: Bills_countUnpaid
+  /bills/line/{id}:
+    delete: Bills_deleteLine
+    put: Bills_updateLineItem
+  /bills/lines:
+    get: Bills_searchLines
+  /bills/lines/count:
+    get: Bills_getLineCount
+  /bills/unpaid:
+    get: Bills_getUnpaid
+  /bills/{id}:
+    delete: Bills_deleteOneBill
+    get: Bills_getOne
+    put: Bills_updateOneBill
+  /bills/{id}/approve:
+    put: Bills_approveBill
+  /bills/{id}/line:
+    post: Bills_createLineItem
+  /bills/{id}/payments:
+    get: Bills_getPayments
+  /bills/{id}/void:
+    put: Bills_voidBill
+  /cash-receipts:
+    get: CashReceipts_searchSortable
+    post: CashReceipts_createNew
+  /cash-receipts/count:
+    get: CashReceipts_getCount
+  /cash-receipts/{id}:
+    delete: CashReceipts_deleteOne
+    get: CashReceipts_getOne
+    put: CashReceipts_updateOne
+  /cash-receipts/{id}/payments:
+    get: CashReceipts_getPayments
+  /cash-receipts/{id}/void:
+    put: CashReceipts_voidOne
+  /coins:
+    get: Coins_list
+    post: Coins_createNewCoin
+  /coins/list:
+    get: Coins_getList
+  /coins/list/{rateId}:
+    get: Coins_getByRateId
+  /coins/summary:
+    get: Coins_getSummaryCoins
+  /coins/{CoinId}/crypto-transactions:
+    get: Coins_listCryptoTransactions
+  /coins/{CoinId}/crypto-transactions/count:
+    get: Coins_countCryptoTransactions
+  /coins/{CoinId}/summary:
+    get: Coins_getSummaryById
+  /coins/{id}:
+    delete: Coins_deleteCoin
+    get: Coins_getById
+    put: Coins_updateOneCoin
+  /coins/{id}/rate:
+    get: Coins_getRate
+  /consolidation-rates:
+    get: ConsolidationRates_searchFilterableSortable
+    put: ConsolidationRates_upsertRate
+  /consolidation-rates/populate:
+    post: ConsolidationRates_populateRates
+  /consolidation-rates/{id}:
+    get: ConsolidationRates_getRecord
+  /consolidation-rates/{id}/reset:
+    put: ConsolidationRates_resetRate
+  /contacts:
+    get: Contacts_searchFilterableSortable
+    post: Contacts_createNewContact
+  /contacts/count:
+    get: Contacts_getCount
+  /contacts/{id}:
+    delete: Contacts_deleteOneContact
+    get: Contacts_getById
+    put: Contacts_updateOneContact
+  /cost-centers:
+    get: CostCenters_searchFilterableSortable
+    post: CostCenters_createCostCenter
+  /cost-centers/count:
+    get: CostCenters_countGet
+  /cost-centers/{id}:
+    delete: CostCenters_deleteOne
+    get: CostCenters_getOne
+    put: CostCenters_updateWebhook
+  /crypto-transactions:
+    get: CryptoTransactions_searchFilterableSortable
+    post: CryptoTransactions_createNewTransaction
+  /crypto-transactions/cost-basis:
+    delete: CryptoTransactions_cancelCostBasisProcess
+    get: CryptoTransactions_getNextCostBasis
+    post: CryptoTransactions_startCostBasisProcess
+  /crypto-transactions/count:
+    get: CryptoTransactions_getTransactionsCount
+  /crypto-transactions/create-journals:
+    post: CryptoTransactions_startJournalProcess
+  /crypto-transactions/merge:
+    post: CryptoTransactions_mergeTransactions
+  /crypto-transactions/{id}:
+    delete: CryptoTransactions_deleteOne
+    get: CryptoTransactions_getOne
+    put: CryptoTransactions_updateOneTransaction
+  /crypto-transactions/{id}/layers:
+    get: CryptoTransactions_listCostLayersDescending
+  /currency:
+    get: Currencies_getAll
+    post: Currencies_createNewCurrency
+  /currency/{code}:
+    delete: Currencies_deleteCurrency
+    get: Currencies_getOneCurrency
+    put: Currencies_updateCurrency
+  /currency/{code}/forex-rates:
+    get: Currencies_getForexRates
+  /custom-fields/{type}:
+    get: CustomFields_search
+    post: CustomFields_upsertField
+  /custom-fields/{type}/{property}:
+    delete: CustomFields_deleteProperty
+  /custom/{name}:
+    get: CustomDimensions_searchFilterableSortable
+    post: CustomDimensions_createNewCustomDimension
+  /custom/{name}/count:
+    get: CustomDimensions_getCount
+  /custom/{name}/{id}:
+    delete: CustomDimensions_deleteDimension
+    get: CustomDimensions_getOneDimension
+    put: CustomDimensions_updateDimension
+  /customers:
+    get: Customers_searchFilterableSortable
+    post: Customers_createNewCustomer
+  /customers/count:
+    get: Customers_getCount
+  /customers/{id}:
+    delete: Customers_deleteCustomer
+    get: Customers_getOneCustomer
+    put: Customers_updateOneCustomer
+  /customers/{id}/email/statement:
+    put: Customers_emailStatement
+  /customers/{id}/invoices:
+    get: Customers_getInvoicesFor
+  /customers/{id}/payments:
+    get: Customers_getCustomerPayments
+  /customers/{id}/pdf/statement:
+    get: Customers_getStatementPdf
+  /emails:
+    get: Emails_getAll
+  /emails/{messageid}:
+    get: Emails_getMessageDetails
+  /fx-remeasure/{AccountingPeriodId}:
+    get: FxRemeasure_getCurrentRates
+    put: FxRemeasure_upsertRates
+  /fx-remeasure/{AccountingPeriodId}/balances:
+    get: FxRemeasure_getBalancesForPeriod
+  /fx-remeasure/{AccountingPeriodId}/journals:
+    delete: FxRemeasure_deleteJournals
+    post: FxRemeasure_postJournals
+  /fx-revalue/adjustments/{AccountingPeriodId}:
+    delete: FxRevalue_deleteAdjustments
+    post: FxRevalue_postEntries
+  /fx-revalue/rates/{AccountingPeriodId}:
+    get: FxRevalue_getRates
+    post: FxRevalue_saveRatesForPeriod
+  /inventory/cost-basis:
+    get: StockAdjustments_getNextCostBasisRun
+    post: StockAdjustments_startCostBasisProcess
+  /invoice/{id}:
+    get: Invoices_getOne
+  /invoices:
+    get: Invoices_searchFilterableSortable
+    post: Invoices_createNewInvoice
+  /invoices/count:
+    get: Invoices_countItems
+  /invoices/line/{id}:
+    delete: Invoices_deleteLine
+    put: Invoices_updateLineItem
+  /invoices/lines:
+    get: Invoices_searchLines
+  /invoices/lines/count:
+    get: Invoices_countLines
+  /invoices/unpaid:
+    get: Invoices_getUnpaidInvoices
+  /invoices/{id}:
+    delete: Invoices_deleteOneInvoice
+    put: Invoices_updateOneInvoice
+  /invoices/{id}/email:
+    put: Invoices_sendEmail
+  /invoices/{id}/issue:
+    put: Invoices_issueInvoice
+  /invoices/{id}/line:
+    post: Invoices_createLineItem
+  /invoices/{id}/payments:
+    get: Invoices_getPayments
+  /invoices/{id}/pdf:
+    get: Invoices_getPdf
+  /invoices/{id}/void:
+    put: Invoices_voidInvoice
+  /items:
+    get: Items_getFilteredItems
+    post: Items_createNewItem
+  /items/count:
+    get: Items_countFilteredItems
+  /items/{id}:
+    delete: Items_deleteItem
+    get: Items_getOneItem
+    put: Items_updateOneItem
+  /items/{id}/stock/summary:
+    get: Items_getStockSummary
+  /jobs:
+    get: Jobs_getFilterableSortable
+    post: Jobs_createJob
+  /jobs/count:
+    get: Jobs_countJobs
+  /jobs/{id}:
+    delete: Jobs_deleteJobById
+    get: Jobs_getOneJob
+    put: Jobs_updateJobWebhooks
+  /journals:
+    get: Journals_searchFilterableSortable
+    post: Journals_createNewJournal
+  /journals/lines:
+    get: Journals_searchLines
+  /journals/lines/count:
+    get: Journals_getLinesCount
+  /journals/{id}:
+    delete: Journals_deleteOneJournal
+    get: Journals_getJournalById
+    put: Journals_updateOneJournal
+  /journals/{id}/post:
+    put: Journals_postDraftJournal
+  /ledger-accounts:
+    get: LedgerAccounts_searchFilterableSortable
+    post: LedgerAccounts_createNewAccount
+  /ledger-accounts/count:
+    get: LedgerAccounts_countFilteredItems
+  /ledger-accounts/subtypes:
+    get: LedgerAccounts_getAllSubtypes
+    put: LedgerAccounts_upsertSubtypeReportGroupMappings
+  /ledger-accounts/subtypes/{param}:
+    delete: LedgerAccounts_deleteSubtype
+    get: LedgerAccounts_getAllSubtypes
+  /ledger-accounts/{id}:
+    delete: LedgerAccounts_deleteAccount
+    get: LedgerAccounts_getOne
+    put: LedgerAccounts_updateOne
+  /locations:
+    get: Locations_searchFilterableSortable
+    post: Locations_createLocation
+  /locations/count:
+    get: Locations_getCount
+  /locations/me:
+    get: Locations_getMyLocationTree
+  /locations/{id}:
+    delete: Locations_deleteOneLocation
+    get: Locations_getOneLocation
+    put: Locations_updateOneLocation
+  /locations/{id}/accounts:
+    get: Locations_searchAccounts
+  /locations/{id}/descendants:
+    get: Locations_getDescendants
+  /oauth/token:
+    post: Authentication_requestToken
+  /part-numbers:
+    get: PartNumbers_searchFilterableSortable
+    post: PartNumbers_createNewPartNumber
+  /part-numbers/{id}:
+    delete: PartNumbers_deleteOne
+    get: PartNumbers_getOne
+    put: PartNumbers_updateOnePartNumber
+  /payments:
+    get: Payments_searchFilterableSortable
+    post: Payments_createNewPayment
+  /payments/count:
+    get: Payments_getCount
+  /payments/{id}:
+    delete: Payments_deleteOne
+    get: Payments_getPaymentById
+    put: Payments_updatePayment
+  /payments/{id}/approve:
+    put: Payments_approvePayment
+  /payments/{id}/void:
+    put: Payments_voidPayment
+  /periods:
+    get: Periods_getAllPeriods
+  /periods/{id}/close/{task}:
+    put: Periods_closeTask
+  /periods/{id}/open/{task}:
+    put: Periods_openTask
+  /preferences:
+    get: Preferences_getDescendingPreferences
+    post: Preferences_createNew
+  /preferences/{id}:
+    delete: Preferences_deletePreference
+    get: Preferences_getPreferenceById
+    put: Preferences_updatePreference
+  /products:
+    get: Products_searchFilterableSortable
+    post: Products_createNewProduct
+  /products/count:
+    get: Products_getCount
+  /products/{id}:
+    delete: Products_deleteProduct
+    get: Products_getOneProduct
+    put: Products_updateProductWebhooks
+  /purchase-orders:
+    get: PurchaseOrders_searchFilterableSortable
+    post: PurchaseOrders_createNew
+  /purchase-orders/count:
+    get: PurchaseOrders_countItems
+  /purchase-orders/line/{id}:
+    delete: PurchaseOrders_deleteLine
+    put: PurchaseOrders_updateLineItem
+  /purchase-orders/lines:
+    get: PurchaseOrders_searchLinesFilterableSortable
+  /purchase-orders/lines/count:
+    get: PurchaseOrders_countLines
+  /purchase-orders/{id}:
+    delete: PurchaseOrders_deleteOne
+    get: PurchaseOrders_getOrderById
+    put: PurchaseOrders_updateById
+  /purchase-orders/{id}/email:
+    put: PurchaseOrders_sendEmailToVendor
+  /purchase-orders/{id}/issue:
+    put: PurchaseOrders_issueOrder
+  /purchase-orders/{id}/line:
+    post: PurchaseOrders_createLineItem
+  /purchase-orders/{id}/lines:
+    get: PurchaseOrders_searchLines
+  /purchase-orders/{id}/pdf:
+    get: PurchaseOrders_getPdf
+  /purchase-orders/{id}/stock-adjustments:
+    get: PurchaseOrders_getStockAdjustments
+  /purchase-orders/{id}/unissue:
+    put: PurchaseOrders_unissueOrder
+  /purchase-orders/{id}/void:
+    put: PurchaseOrders_voidOrder
+  /recurring-jobs:
+    get: RecurringJobs_searchFilterableSortable
+    post: RecurringJobs_createNewRecurringJob
+  /recurring-jobs/{id}:
+    delete: RecurringJobs_deleteOneJob
+    put: RecurringJobs_updateOneJob
+  /reports/accountBalance:
+    post: Financials_getConsolidatedBalance
+  /reports/aging/Invoices:
+    post: Financials_getAgingInvoices
+  /reports/aging/ap:
+    post: Financials_getApprovedBillsAging
+  /reports/aging/ar:
+    post: Financials_getAgingAR
+  /reports/aging/bills:
+    post: Financials_getAgingBills
+  /reports/financialFormula:
+    post: Financials_calculateCurrentPeriodIncome
+  /reports/financialReport:
+    post: Financials_generateReportData
+  /reports/financials:
+    post: Financials_generateDimensionReport
+  /reports/generalLedger:
+    post: Financials_getGeneralLedgerBalances
+  /reports/trialBalance:
+    post: Financials_getTrialBalance
+  /roles:
+    get: Roles_listAllRoles
+  /roles/{id}/permissions:
+    get: Roles_getPermissions
+  /sales-orders:
+    get: SalesOrders_searchFilterableSortable
+    post: SalesOrders_createNewSalesOrder
+  /sales-orders/count:
+    get: SalesOrders_countAll
+  /sales-orders/line/{id}:
+    delete: SalesOrders_deleteLine
+    put: SalesOrders_updateLine
+  /sales-orders/line/{id}/fulfill:
+    put: SalesOrders_fulfillLineItem
+  /sales-orders/line/{id}/unfulfill:
+    put: SalesOrders_unfulfillLineItem
+  /sales-orders/lines:
+    get: SalesOrders_listLinesFilterableSortable
+  /sales-orders/lines/count:
+    get: SalesOrders_getLinesCount
+  /sales-orders/{id}:
+    delete: SalesOrders_deleteOne
+    get: SalesOrders_getOrder
+    put: SalesOrders_updateOne
+  /sales-orders/{id}/accept:
+    put: SalesOrders_acceptSalesOrder
+  /sales-orders/{id}/complete:
+    put: SalesOrders_completeOrder
+  /sales-orders/{id}/email:
+    put: SalesOrders_emailToCustomer
+  /sales-orders/{id}/issue:
+    put: SalesOrders_issueSalesOrder
+  /sales-orders/{id}/line:
+    post: SalesOrders_createLineItem
+  /sales-orders/{id}/lines:
+    get: SalesOrders_searchOrderLines
+  /sales-orders/{id}/lines/count:
+    get: SalesOrders_getLinesCount
+  /sales-orders/{id}/pdf:
+    get: SalesOrders_getPdf
+  /sales-orders/{id}/reject:
+    put: SalesOrders_rejectSalesOrder
+  /sales-orders/{id}/stock-adjustments:
+    get: SalesOrders_getStockAdjustments
+  /sales-orders/{id}/uncomplete:
+    put: SalesOrders_uncompleteOne
+  /sales-orders/{id}/void:
+    put: SalesOrders_voidSalesOrder
+  /settings:
+    get: Settings_getSettings
+    put: Settings_updateWebhooks
+  /settings/sequence:
+    get: Settings_getSequenceNumbers
+    put: Settings_updateSequenceNumbers
+  /shipment-receipts:
+    get: ShipmentReceipts_searchFilterableSortable
+    post: ShipmentReceipts_createNewShipmentReceipt
+  /shipment-receipts/count:
+    get: ShipmentReceipts_getCount
+  /shipment-receipts/line/{id}/void:
+    put: ShipmentReceipts_voidLine
+  /shipment-receipts/lines:
+    get: ShipmentReceipts_getLinesFilterableSortable
+  /shipment-receipts/lines/count:
+    get: ShipmentReceipts_getLinesCount
+  /shipment-receipts/{id}:
+    get: ShipmentReceipts_getOneReceipt
+  /statements:
+    get: Statements_searchFilterableSortable
+    post: Statements_createNewStatement
+  /statements/transactions/reconcile:
+    put: Statements_reconcileTransactions
+  /statements/transactions/unreconcile:
+    put: Statements_unreconcileTransactions
+  /statements/{id}:
+    delete: Statements_deleteOne
+    get: Statements_getOneStatement
+  /statements/{id}/close:
+    put: Statements_closeStatement
+  /statements/{id}/open:
+    put: Statements_reopenStatement
+  /status/{type}:
+    get: Status_jobStatus
+  /stock-adjustments:
+    get: StockAdjustments_searchFilterableSortable
+    post: StockAdjustments_createNew
+  /stock-adjustments/count:
+    get: StockAdjustments_countItems
+  /stock-adjustments/summary:
+    get: StockAdjustments_getSummary
+  /stock-adjustments/{id}:
+    delete: StockAdjustments_deleteOne
+    put: StockAdjustments_updateWebhook
+  /stock-adjustments/{id}/cost-layers:
+    get: StockAdjustments_getCostLayers
+  /stock-counts:
+    get: StockCounts_search
+  /stock-counts/{id}:
+    delete: StockCounts_deleteDraft
+    put: StockCounts_updateOne
+  /stock-counts/{id}/submit:
+    post: StockCounts_submitForApproval
+  /system-jobs:
+    get: SystemJobs_listDescendingByDate
+    post: SystemJobs_createNewJob
+  /system-jobs/count:
+    get: SystemJobs_getCount
+  /system-jobs/{id}:
+    get: SystemJobs_getJobById
+  /tax-codes:
+    get: TaxCodes_searchFilterableSortable
+    post: TaxCodes_createNewTaxCode
+  /tax-codes/{id}:
+    delete: TaxCodes_deleteOne
+    put: TaxCodes_updateOne
+  /templates:
+    get: Templates_searchFilterableSortable
+    post: Templates_createNewTemplate
+  /templates/{id}:
+    delete: Templates_deleteTemplate
+    get: Templates_getOneTemplate
+    put: Templates_updateOneTemplate
+  /transactions:
+    get: Transactions_searchFilterableSortable
+  /transactions/running-sum:
+    get: Transactions_getRunningSum
+  /transactions/sum:
+    get: Transactions_calculateSum
+  /transfers:
+    get: Transfers_searchFilterableSortable
+    post: Transfers_createNewTransfer
+  /transfers/count:
+    get: Transfers_countSummary
+  /transfers/{id}:
+    delete: Transfers_deleteTransfer
+    put: Transfers_updateTransfer
+  /transfers/{id}/complete:
+    put: Transfers_completeTransfer
+  /users:
+    get: Users_getAllUsers
+    post: Users_createNewUser
+  /users/me:
+    put: Users_updateSelf
+  /users/{id}:
+    delete: Users_deleteUser
+    get: Users_getOne
+    put: Users_updateUser
+  /users/{id}/roles:
+    get: Users_getRoles
+    put: Users_updateRoles
+  /vendor-credits:
+    get: VendorCredits_search
+    post: VendorCredits_createNewCredit
+  /vendor-credits/count:
+    get: VendorCredits_countGet
+  /vendor-credits/{id}:
+    delete: VendorCredits_deleteOne
+    get: VendorCredits_getOne
+    put: VendorCredits_updateOne
+  /vendor-credits/{id}/payments:
+    get: VendorCredits_getPayments
+  /vendor-credits/{id}/void:
+    put: VendorCredits_voidOneCredit
+  /vendor-prices:
+    get: VendorPrices_searchFilterableSortable
+    post: VendorPrices_createNewPrice
+  /vendor-prices/price:
+    get: VendorPrices_showItemPrice
+  /vendor-prices/{id}:
+    delete: VendorPrices_deleteOne
+    put: VendorPrices_updateOnePrice
+  /vendors:
+    get: Vendors_searchFilterableSortable
+    post: Vendors_createNewVendor
+  /vendors/count:
+    get: Vendors_countItems
+  /vendors/{id}:
+    delete: Vendors_deleteVendor
+    get: Vendors_getOne
+    put: Vendors_updateOne
+  /vendors/{id}/bills:
+    get: Vendors_getBills
+  /vendors/{id}/bills/count:
+    get: Vendors_getBillCount
+  /vendors/{id}/payments:
+    get: Vendors_getPayments
+  /wallets:
+    get: Wallets_getAll
+    post: Wallets_createNewWallet
+  /wallets/count:
+    get: Wallets_count
+  /wallets/{id}:
+    delete: Wallets_deleteOneWallet
+    get: Wallets_getOne
+    put: Wallets_updateWebhook
+  /wallets/{id}/coins:
+    get: Wallets_getCoinsSummary
+  /warehouse-items:
+    get: WarehouseItems_searchFilterableSortable
+    post: WarehouseItems_createNewWarehouseItem
+  /warehouse-items/{id}:
+    delete: WarehouseItems_deleteOneItem
+    put: WarehouseItems_updateOneItem
+  /warehouses:
+    get: Warehouses_getAll
+    post: Warehouses_createNewWarehouse
+  /warehouses/count:
+    get: Warehouses_count
+  /warehouses/{id}:
+    delete: Warehouses_deleteWarehouse
+    get: Warehouses_getById
+    put: Warehouses_updateWarehouseById
+  /warehouses/{id}/stock/summary:
+    get: Warehouses_getStockSummary
+  /webhooks:
+    get: Webhooks_listAscendingByUri
+    post: Webhooks_createNewWebhook
+  /years:
+    get: Years_getAllYears
+    post: Years_createFirstDayYear
+  /years/{id}:
+    delete: Years_deleteYear
+  /years/{id}/close:
+    get: Years_closeYear
+  /years/{id}/open:
+    get: Years_openYear
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /addresses:
+    post:
+      application/json: AddressesCreateNewAddressRequest
+  /addresses/{id}:
+    put:
+      application/json: AddressesUpdateOneAddressRequest
+  /batch-payments:
+    post:
+      application/json: BatchPaymentsCreateNewBatchPaymentRequest
+  /batch-payments/{id}/void:
+    put:
+      application/json: BatchPaymentsVoidBatchPaymentRequest
+  /bills:
+    post:
+      application/json: BillsCreateBillRequest
+  /bills/line/{id}:
+    put:
+      application/json: BillsUpdateLineItemRequest
+  /bills/{id}:
+    put:
+      application/json: BillsUpdateOneBillRequest
+  /bills/{id}/line:
+    post:
+      application/json: BillsCreateLineItemRequest
+  /bills/{id}/void:
+    put:
+      application/json: BillsVoidBillRequest
+  /cash-receipts:
+    post:
+      application/json: CashReceiptsCreateNewRequest
+  /cash-receipts/{id}:
+    put:
+      application/json: CashReceiptsUpdateOneRequest
+  /coins:
+    post:
+      application/json: CoinsCreateNewCoinRequest
+  /coins/{id}:
+    put:
+      application/json: CoinsUpdateOneCoinRequest
+  /consolidation-rates:
+    put:
+      application/json: ConsolidationRatesUpsertRateRequest
+  /consolidation-rates/populate:
+    post:
+      application/json: ConsolidationRatesPopulateRatesRequest
+  /contacts:
+    post:
+      application/json: ContactsCreateNewContactRequest
+  /contacts/{id}:
+    put:
+      application/json: ContactsUpdateOneContactRequest
+  /cost-centers:
+    post:
+      application/json: CostCentersCreateCostCenterRequest
+  /cost-centers/{id}:
+    put:
+      application/json: CostCentersUpdateWebhookRequest
+  /crypto-transactions:
+    post:
+      application/json: CryptoTransactionsCreateNewTransactionRequest
+  /crypto-transactions/merge:
+    post:
+      application/json: CryptoTransactionsMergeTransactionsRequest
+  /crypto-transactions/{id}:
+    put:
+      application/json: CryptoTransactionsUpdateOneTransactionRequest
+  /currency:
+    post:
+      application/json: CurrenciesCreateNewCurrencyRequest
+  /currency/{code}:
+    put:
+      application/json: CurrenciesUpdateCurrencyRequest
+  /custom-fields/{type}:
+    post:
+      application/json: CustomFieldsUpsertFieldRequest
+  /custom/{name}:
+    post:
+      application/json: CustomDimensionsCreateNewCustomDimensionRequest
+  /custom/{name}/{id}:
+    put:
+      application/json: CustomDimensionsUpdateDimensionRequest
+  /customers:
+    post:
+      application/json: CustomersCreateNewCustomerRequest
+  /customers/{id}:
+    put:
+      application/json: CustomersUpdateOneCustomerRequest
+  /fx-remeasure/{AccountingPeriodId}:
+    put:
+      application/json: FxRemeasureUpsertRatesRequest
+  /fx-revalue/rates/{AccountingPeriodId}:
+    post:
+      application/json: FxRevalueSaveRatesForPeriodRequest
+  /invoices:
+    post:
+      application/json: InvoicesCreateNewInvoiceRequest
+  /invoices/line/{id}:
+    put:
+      application/json: InvoicesUpdateLineItemRequest
+  /invoices/{id}:
+    put:
+      application/json: InvoicesUpdateOneInvoiceRequest
+  /invoices/{id}/line:
+    post:
+      application/json: InvoicesCreateLineItemRequest
+  /invoices/{id}/void:
+    put:
+      application/json: InvoicesVoidInvoiceRequest
+  /items:
+    post:
+      application/json: ItemsCreateNewItemRequest
+  /items/{id}:
+    put:
+      application/json: ItemsUpdateOneItemRequest
+  /jobs:
+    post:
+      application/json: JobsCreateJobRequest
+  /jobs/{id}:
+    put:
+      application/json: JobsUpdateJobWebhooksRequest
+  /journals:
+    post:
+      application/json: JournalsCreateNewJournalRequest
+  /journals/{id}:
+    put:
+      application/json: JournalsUpdateOneJournalRequest
+  /ledger-accounts:
+    post:
+      application/json: LedgerAccountsCreateNewAccountRequest
+  /ledger-accounts/subtypes:
+    put:
+      application/json: LedgerAccountsUpsertSubtypeReportGroupMappingsRequest
+  /ledger-accounts/{id}:
+    put:
+      application/json: LedgerAccountsUpdateOneRequest
+  /locations:
+    post:
+      application/json: LocationsCreateLocationRequest
+  /locations/{id}:
+    put:
+      application/json: LocationsUpdateOneLocationRequest
+  /oauth/token:
+    post:
+      application/json: AuthenticationRequestTokenRequest
+  /part-numbers:
+    post:
+      application/json: PartNumbersCreateNewPartNumberRequest
+  /part-numbers/{id}:
+    put:
+      application/json: PartNumbersUpdateOnePartNumberRequest
+  /payments:
+    post:
+      application/json: PaymentsCreateNewPaymentRequest
+  /payments/{id}:
+    put:
+      application/json: PaymentsUpdatePaymentRequest
+  /payments/{id}/void:
+    put:
+      application/json: PaymentsVoidPaymentRequest
+  /preferences:
+    post:
+      application/json: PreferencesCreateNewRequest
+  /preferences/{id}:
+    put:
+      application/json: PreferencesUpdatePreferenceRequest
+  /products:
+    post:
+      application/json: ProductsCreateNewProductRequest
+  /products/{id}:
+    put:
+      application/json: ProductsUpdateProductWebhooksRequest
+  /purchase-orders:
+    post:
+      application/json: PurchaseOrdersCreateNewRequest
+  /purchase-orders/line/{id}:
+    put:
+      application/json: PurchaseOrdersUpdateLineItemRequest
+  /purchase-orders/{id}:
+    put:
+      application/json: PurchaseOrdersUpdateByIdRequest
+  /purchase-orders/{id}/line:
+    post:
+      application/json: PurchaseOrdersCreateLineItemRequest
+  /recurring-jobs:
+    post:
+      application/json: RecurringJobsCreateNewRecurringJobRequest
+  /recurring-jobs/{id}:
+    put:
+      application/json: RecurringJobsUpdateOneJobRequest
+  /reports/accountBalance:
+    post:
+      application/json: FinancialsGetConsolidatedBalanceRequest
+  /reports/aging/Invoices:
+    post:
+      application/json: FinancialsGetAgingInvoicesRequest
+  /reports/aging/ap:
+    post:
+      application/json: FinancialsGetApprovedBillsAgingRequest
+  /reports/aging/ar:
+    post:
+      application/json: FinancialsGetAgingArRequest
+  /reports/aging/bills:
+    post:
+      application/json: FinancialsGetAgingBillsRequest
+  /reports/financialFormula:
+    post:
+      application/json: FinancialsCalculateCurrentPeriodIncomeRequest
+  /reports/financialReport:
+    post:
+      application/json: FinancialsGenerateReportDataRequest
+  /reports/financials:
+    post:
+      application/json: FinancialsGenerateDimensionReportRequest
+  /reports/generalLedger:
+    post:
+      application/json: FinancialsGetGeneralLedgerBalancesRequest
+  /reports/trialBalance:
+    post:
+      application/json: FinancialsGetTrialBalanceRequest
+  /sales-orders:
+    post:
+      application/json: SalesOrdersCreateNewSalesOrderRequest
+  /sales-orders/line/{id}:
+    put:
+      application/json: SalesOrdersUpdateLineRequest
+  /sales-orders/line/{id}/fulfill:
+    put:
+      application/json: SalesOrdersFulfillLineItemRequest
+  /sales-orders/line/{id}/unfulfill:
+    put:
+      application/json: SalesOrdersUnfulfillLineItemRequest
+  /sales-orders/{id}:
+    put:
+      application/json: SalesOrdersUpdateOneRequest
+  /sales-orders/{id}/accept:
+    put:
+      application/json: SalesOrdersAcceptSalesOrderRequest
+  /sales-orders/{id}/complete:
+    put:
+      application/json: SalesOrdersCompleteOrderRequest
+  /sales-orders/{id}/line:
+    post:
+      application/json: SalesOrdersCreateLineItemRequest
+  /settings:
+    put:
+      application/json: SettingsUpdateWebhooksRequest
+  /settings/sequence:
+    put:
+      application/json: SettingsUpdateSequenceNumbersRequest
+  /shipment-receipts:
+    post:
+      application/json: ShipmentReceiptsCreateNewShipmentReceiptRequest
+  /shipment-receipts/line/{id}/void:
+    put:
+      application/json: ShipmentReceiptsVoidLineRequest
+  /statements:
+    post:
+      application/json: StatementsCreateNewStatementRequest
+  /statements/transactions/reconcile:
+    put:
+      application/json: StatementsReconcileTransactionsRequest
+  /statements/transactions/unreconcile:
+    put:
+      application/json: StatementsUnreconcileTransactionsRequest
+  /stock-adjustments:
+    post:
+      application/json: StockAdjustmentsCreateNewRequest
+  /stock-adjustments/{id}:
+    put:
+      application/json: StockAdjustmentsUpdateWebhookRequest
+  /stock-counts/{id}:
+    put:
+      application/json: StockCountsUpdateOneRequest
+  /stock-counts/{id}/submit:
+    post:
+      application/json: StockCountsSubmitForApprovalRequest
+  /system-jobs:
+    post:
+      application/json: SystemJobsCreateNewJobRequest
+  /tax-codes:
+    post:
+      application/json: TaxCodesCreateNewTaxCodeRequest
+  /tax-codes/{id}:
+    put:
+      application/json: TaxCodesUpdateOneRequest
+  /templates:
+    post:
+      application/json: TemplatesCreateNewTemplateRequest
+  /templates/{id}:
+    put:
+      application/json: TemplatesUpdateOneTemplateRequest
+  /transfers:
+    post:
+      application/json: TransfersCreateNewTransferRequest
+  /transfers/{id}:
+    put:
+      application/json: TransfersUpdateTransferRequest
+  /transfers/{id}/complete:
+    put:
+      application/json: TransfersCompleteTransferRequest
+  /users:
+    post:
+      application/json: UsersCreateNewUserRequest
+  /users/me:
+    put:
+      application/json: UsersUpdateSelfRequest
+  /users/{id}:
+    put:
+      application/json: UsersUpdateUserRequest
+  /users/{id}/roles:
+    put:
+      application/json: UsersUpdateRolesRequest
+  /vendor-credits:
+    post:
+      application/json: VendorCreditsCreateNewCreditRequest
+  /vendor-credits/{id}:
+    put:
+      application/json: VendorCreditsUpdateOneRequest
+  /vendor-prices:
+    post:
+      application/json: VendorPricesCreateNewPriceRequest
+  /vendor-prices/{id}:
+    put:
+      application/json: VendorPricesUpdateOnePriceRequest
+  /vendors:
+    post:
+      application/json: VendorsCreateNewVendorRequest
+  /vendors/{id}:
+    put:
+      application/json: VendorsUpdateOneRequest
+  /wallets:
+    post:
+      application/json: WalletsCreateNewWalletRequest
+  /wallets/{id}:
+    put:
+      application/json: WalletsUpdateWebhookRequest
+  /warehouse-items:
+    post:
+      application/json: WarehouseItemsCreateNewWarehouseItemRequest
+  /warehouse-items/{id}:
+    put:
+      application/json: WarehouseItemsUpdateOneItemRequest
+  /warehouses:
+    post:
+      application/json: WarehousesCreateNewWarehouseRequest
+  /warehouses/{id}:
+    put:
+      application/json: WarehousesUpdateWarehouseByIdRequest
+  /webhooks:
+    post:
+      application/json: WebhooksCreateNewWebhookRequest
+  /years:
+    post:
+      application/json: YearsCreateFirstDayYearRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /addresses:
+    get:
+      '200':
+        application/json: AddressesSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: AddressesCreateNewAddressResponse
+  /addresses/{id}:
+    put:
+      '200':
+        application/json: AddressesUpdateOneAddressResponse
+  /addresss/{id}:
+    get:
+      '200':
+        application/json: AddressesGetOneAddressResponse
+  /audit-logs:
+    get:
+      '200':
+        application/json: AuditLogsListDescendingByDateResponse
+  /batch-payments:
+    get:
+      '200':
+        application/json: BatchPaymentsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: BatchPaymentsCreateNewBatchPaymentResponse
+  /batch-payments/{id}:
+    get:
+      '200':
+        application/json: BatchPaymentsGetOneResponse
+  /batch-payments/{id}/bills:
+    get:
+      '200':
+        application/json: BatchPaymentsGetBillsResponse
+  /batch-payments/{id}/payments:
+    get:
+      '200':
+        application/json: BatchPaymentsGetPaymentsResponse
+  /bills:
+    get:
+      '200':
+        application/json: BillsListResponse
+    post:
+      '201':
+        application/json: BillsCreateBillResponse
+  /bills/line/{id}:
+    put:
+      '200':
+        application/json: BillsUpdateLineItemResponse
+  /bills/lines:
+    get:
+      '200':
+        application/json: BillsSearchLinesResponse
+  /bills/unpaid:
+    get:
+      '200':
+        application/json: BillsGetUnpaidResponse
+  /bills/{id}:
+    get:
+      '200':
+        application/json: BillsGetOneResponse
+    put:
+      '200':
+        application/json: BillsUpdateOneBillResponse
+  /bills/{id}/line:
+    post:
+      '201':
+        application/json: BillsCreateLineItemResponse
+  /cash-receipts:
+    get:
+      '200':
+        application/json: CashReceiptsSearchSortableResponse
+    post:
+      '201':
+        application/json: CashReceiptsCreateNewResponse
+  /cash-receipts/{id}:
+    get:
+      '200':
+        application/json: CashReceiptsGetOneResponse
+    put:
+      '200':
+        application/json: CashReceiptsUpdateOneResponse
+  /coins:
+    get:
+      '200':
+        application/json: CoinsListResponse
+    post:
+      '201':
+        application/json: CoinsCreateNewCoinResponse
+  /coins/list:
+    get:
+      '200':
+        application/json: CoinsGetListResponse
+  /coins/list/{rateId}:
+    get:
+      '200':
+        application/json: CoinsGetByRateIdResponse
+  /coins/summary:
+    get:
+      '200':
+        application/json: CoinsGetSummaryCoinsResponse
+  /coins/{CoinId}/crypto-transactions:
+    get:
+      '200':
+        application/json: CoinsListCryptoTransactionsResponse
+  /coins/{CoinId}/crypto-transactions/count:
+    get:
+      '200':
+        application/json: CoinsCountCryptoTransactionsResponse
+  /coins/{CoinId}/summary:
+    get:
+      '200':
+        application/json: CoinsGetSummaryByIdResponse
+  /coins/{id}:
+    get:
+      '200':
+        application/json: CoinsGetByIdResponse
+    put:
+      '200':
+        application/json: CoinsUpdateOneCoinResponse
+  /coins/{id}/rate:
+    get:
+      '200':
+        application/json: CoinsGetRateResponse
+  /consolidation-rates:
+    get:
+      '200':
+        application/json: ConsolidationRatesSearchFilterableSortableResponse
+    put:
+      '200':
+        application/json: ConsolidationRatesUpsertRateResponse
+  /consolidation-rates/{id}:
+    get:
+      '200':
+        application/json: ConsolidationRatesGetRecordResponse
+  /consolidation-rates/{id}/reset:
+    put:
+      '200':
+        application/json: ConsolidationRatesResetRateResponse
+  /contacts:
+    get:
+      '200':
+        application/json: ContactsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: ContactsCreateNewContactResponse
+  /contacts/{id}:
+    get:
+      '200':
+        application/json: ContactsGetByIdResponse
+    put:
+      '200':
+        application/json: ContactsUpdateOneContactResponse
+  /cost-centers:
+    get:
+      '200':
+        application/json: CostCentersSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: CostCentersCreateCostCenterResponse
+  /cost-centers/{id}:
+    get:
+      '200':
+        application/json: CostCentersGetOneResponse
+    put:
+      '200':
+        application/json: CostCentersUpdateWebhookResponse
+  /crypto-transactions:
+    get:
+      '200':
+        application/json: CryptoTransactionsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: CryptoTransactionsCreateNewTransactionResponse
+  /crypto-transactions/cost-basis:
+    get:
+      '200':
+        application/json: CryptoTransactionsGetNextCostBasisResponse
+  /crypto-transactions/count:
+    get:
+      '200':
+        application/json: CryptoTransactionsGetTransactionsCountResponse
+  /crypto-transactions/merge:
+    post:
+      '201':
+        application/json: CryptoTransactionsMergeTransactionsResponse
+  /crypto-transactions/{id}:
+    get:
+      '200':
+        application/json: CryptoTransactionsGetOneResponse
+    put:
+      '200':
+        application/json: CryptoTransactionsUpdateOneTransactionResponse
+  /crypto-transactions/{id}/layers:
+    get:
+      '200':
+        application/json: CryptoTransactionsListCostLayersDescendingResponse
+  /currency:
+    get:
+      '200':
+        application/json: CurrenciesGetAllResponse
+    post:
+      '201':
+        application/json: CurrenciesCreateNewCurrencyResponse
+  /currency/{code}:
+    get:
+      '200':
+        application/json: CurrenciesGetOneCurrencyResponse
+    put:
+      '200':
+        application/json: CurrenciesUpdateCurrencyResponse
+  /currency/{code}/forex-rates:
+    get:
+      '200':
+        application/json: CurrenciesGetForexRatesResponse
+  /custom-fields/{type}:
+    get:
+      '200':
+        application/json: CustomFieldsSearchResponse
+    post:
+      '200':
+        application/json: CustomFieldsUpsertFieldResponse
+  /custom/{name}:
+    get:
+      '200':
+        application/json: CustomDimensionsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: CustomDimensionsCreateNewCustomDimensionResponse
+  /custom/{name}/{id}:
+    get:
+      '200':
+        application/json: CustomDimensionsGetOneDimensionResponse
+    put:
+      '200':
+        application/json: CustomDimensionsUpdateDimensionResponse
+  /customers:
+    get:
+      '200':
+        application/json: CustomersSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: CustomersCreateNewCustomerResponse
+  /customers/{id}:
+    get:
+      '200':
+        application/json: CustomersGetOneCustomerResponse
+    put:
+      '200':
+        application/json: CustomersUpdateOneCustomerResponse
+  /customers/{id}/invoices:
+    get:
+      '200':
+        application/json: CustomersGetInvoicesForResponse
+  /emails:
+    get:
+      '200':
+        application/json: EmailsGetAllResponse
+  /emails/{messageid}:
+    get:
+      '200':
+        application/json: EmailsGetMessageDetailsResponse
+  /fx-remeasure/{AccountingPeriodId}:
+    get:
+      '200':
+        application/json: FxRemeasureGetCurrentRatesResponse
+  /fx-remeasure/{AccountingPeriodId}/balances:
+    get:
+      '200':
+        application/json: FxRemeasureGetBalancesForPeriodResponse
+  /fx-revalue/rates/{AccountingPeriodId}:
+    get:
+      '200':
+        application/json: FxRevalueGetRatesResponse
+  /inventory/cost-basis:
+    get:
+      '200':
+        application/json: StockAdjustmentsGetNextCostBasisRunResponse
+  /invoice/{id}:
+    get:
+      '200':
+        application/json: InvoicesGetOneResponse
+  /invoices:
+    post:
+      '201':
+        application/json: InvoicesCreateNewInvoiceResponse
+  /invoices/line/{id}:
+    put:
+      '200':
+        application/json: InvoicesUpdateLineItemResponse
+  /invoices/lines:
+    get:
+      '200':
+        application/json: InvoicesSearchLinesResponse
+  /invoices/unpaid:
+    get:
+      '200':
+        application/json: InvoicesGetUnpaidInvoicesResponse
+  /invoices/{id}:
+    put:
+      '200':
+        application/json: InvoicesUpdateOneInvoiceResponse
+  /invoices/{id}/line:
+    post:
+      '201':
+        application/json: InvoicesCreateLineItemResponse
+  /items:
+    get:
+      '200':
+        application/json: ItemsGetFilteredItemsResponse
+    post:
+      '201':
+        application/json: ItemsCreateNewItemResponse
+  /items/{id}:
+    get:
+      '200':
+        application/json: ItemsGetOneItemResponse
+    put:
+      '200':
+        application/json: ItemsUpdateOneItemResponse
+  /items/{id}/stock/summary:
+    get:
+      '200':
+        application/json: ItemsGetStockSummaryResponse
+  /jobs:
+    get:
+      '200':
+        application/json: JobsGetFilterableSortableResponse
+    post:
+      '201':
+        application/json: JobsCreateJobResponse
+  /jobs/{id}:
+    get:
+      '200':
+        application/json: JobsGetOneJobResponse
+    put:
+      '200':
+        application/json: JobsUpdateJobWebhooksResponse
+  /journals:
+    get:
+      '200':
+        application/json: JournalsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: JournalsCreateNewJournalResponse
+  /journals/lines:
+    get:
+      '200':
+        application/json: JournalsSearchLinesResponse
+  /journals/{id}:
+    get:
+      '200':
+        application/json: JournalsGetJournalByIdResponse
+    put:
+      '200':
+        application/json: JournalsUpdateOneJournalResponse
+  /ledger-accounts:
+    get:
+      '200':
+        application/json: LedgerAccountsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: LedgerAccountsCreateNewAccountResponse
+  /ledger-accounts/subtypes:
+    get:
+      '200':
+        application/json: LedgerAccountsGetAllSubtypes200Response
+    put:
+      '200':
+        application/json: LedgerAccountsUpsertSubtypeReportGroupMappingsResponse
+  /ledger-accounts/subtypes/{param}:
+    get:
+      '200':
+        application/json: LedgerAccountsGetAllSubtypesResponse
+  /ledger-accounts/{id}:
+    get:
+      '200':
+        application/json: LedgerAccountsGetOneResponse
+    put:
+      '200':
+        application/json: LedgerAccountsUpdateOneResponse
+  /locations:
+    get:
+      '200':
+        application/json: LocationsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: LocationsCreateLocationResponse
+  /locations/me:
+    get:
+      '200':
+        application/json: LocationsGetMyLocationTreeResponse
+  /locations/{id}:
+    get:
+      '200':
+        application/json: LocationsGetOneLocationResponse
+    put:
+      '200':
+        application/json: LocationsUpdateOneLocationResponse
+  /locations/{id}/accounts:
+    get:
+      '200':
+        application/json: LocationsSearchAccountsResponse
+  /locations/{id}/descendants:
+    get:
+      '200':
+        application/json: LocationsGetDescendantsResponse
+  /oauth/token:
+    post:
+      '200':
+        application/json: AuthenticationRequestTokenResponse
+  /part-numbers:
+    get:
+      '200':
+        application/json: PartNumbersSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: PartNumbersCreateNewPartNumberResponse
+  /part-numbers/{id}:
+    get:
+      '200':
+        application/json: PartNumbersGetOneResponse
+    put:
+      '201':
+        application/json: PartNumbersUpdateOnePartNumberResponse
+  /payments:
+    post:
+      '201':
+        application/json: PaymentsCreateNewPaymentResponse
+  /payments/{id}:
+    get:
+      '200':
+        application/json: PaymentsGetPaymentByIdResponse
+    put:
+      '200':
+        application/json: PaymentsUpdatePaymentResponse
+  /periods:
+    get:
+      '200':
+        application/json: PeriodsGetAllPeriodsResponse
+  /periods/{id}/close/{task}:
+    put:
+      '200':
+        application/json: PeriodsCloseTaskResponse
+  /periods/{id}/open/{task}:
+    put:
+      '200':
+        application/json: PeriodsOpenTaskResponse
+  /preferences:
+    get:
+      '200':
+        application/json: PreferencesGetDescendingPreferencesResponse
+    post:
+      '201':
+        application/json: PreferencesCreateNewResponse
+  /preferences/{id}:
+    get:
+      '200':
+        application/json: PreferencesGetPreferenceByIdResponse
+    put:
+      '200':
+        application/json: PreferencesUpdatePreferenceResponse
+  /products:
+    get:
+      '200':
+        application/json: ProductsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: ProductsCreateNewProductResponse
+  /products/{id}:
+    get:
+      '200':
+        application/json: ProductsGetOneProductResponse
+    put:
+      '200':
+        application/json: ProductsUpdateProductWebhooksResponse
+  /purchase-orders:
+    get:
+      '200':
+        application/json: PurchaseOrdersSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: PurchaseOrdersCreateNewResponse
+  /purchase-orders/line/{id}:
+    put:
+      '201':
+        application/json: PurchaseOrdersUpdateLineItemResponse
+  /purchase-orders/lines:
+    get:
+      '200':
+        application/json: PurchaseOrdersSearchLinesFilterableSortableResponse
+  /purchase-orders/{id}:
+    get:
+      '200':
+        application/json: PurchaseOrdersGetOrderByIdResponse
+    put:
+      '201':
+        application/json: PurchaseOrdersUpdateByIdResponse
+  /purchase-orders/{id}/line:
+    post:
+      '201':
+        application/json: PurchaseOrdersCreateLineItemResponse
+  /purchase-orders/{id}/lines:
+    get:
+      '200':
+        application/json: PurchaseOrdersSearchLinesResponse
+  /purchase-orders/{id}/stock-adjustments:
+    get:
+      '200':
+        application/json: PurchaseOrdersGetStockAdjustmentsResponse
+  /recurring-jobs:
+    get:
+      '200':
+        application/json: RecurringJobsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: RecurringJobsCreateNewRecurringJobResponse
+  /recurring-jobs/{id}:
+    put:
+      '200':
+        application/json: RecurringJobsUpdateOneJobResponse
+  /reports/accountBalance:
+    post:
+      '200':
+        application/json: FinancialsGetConsolidatedBalanceResponse
+  /reports/aging/Invoices:
+    post:
+      '200':
+        application/json: FinancialsGetAgingInvoicesResponse
+  /reports/aging/ap:
+    post:
+      '200':
+        application/json: FinancialsGetApprovedBillsAgingResponse
+  /reports/aging/ar:
+    post:
+      '200':
+        application/json: FinancialsGetAgingArResponse
+  /reports/aging/bills:
+    post:
+      '200':
+        application/json: FinancialsGetAgingBillsResponse
+  /reports/financialFormula:
+    post:
+      '200':
+        application/json: FinancialsCalculateCurrentPeriodIncomeResponse
+  /reports/financialReport:
+    post:
+      '200':
+        application/json: FinancialsGenerateReportDataResponse
+  /reports/financials:
+    post:
+      '200':
+        application/json: FinancialsGenerateDimensionReportResponse
+  /reports/generalLedger:
+    post:
+      '200':
+        application/json: FinancialsGetGeneralLedgerBalancesResponse
+  /reports/trialBalance:
+    post:
+      '200':
+        application/json: FinancialsGetTrialBalanceResponse
+  /roles:
+    get:
+      '200':
+        application/json: RolesListAllRolesResponse
+  /roles/{id}/permissions:
+    get:
+      '200':
+        application/json: RolesGetPermissionsResponse
+  /sales-orders:
+    get:
+      '200':
+        application/json: SalesOrdersSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: SalesOrdersCreateNewSalesOrderResponse
+  /sales-orders/line/{id}:
+    put:
+      '200':
+        application/json: SalesOrdersUpdateLineResponse
+  /sales-orders/lines:
+    get:
+      '200':
+        application/json: SalesOrdersListLinesFilterableSortableResponse
+  /sales-orders/{id}:
+    get:
+      '200':
+        application/json: SalesOrdersGetOrderResponse
+    put:
+      '200':
+        application/json: SalesOrdersUpdateOneResponse
+  /sales-orders/{id}/accept:
+    put:
+      '200':
+        application/json: SalesOrdersAcceptSalesOrderResponse
+  /sales-orders/{id}/line:
+    post:
+      '201':
+        application/json: SalesOrdersCreateLineItemResponse
+  /sales-orders/{id}/lines:
+    get:
+      '200':
+        application/json: SalesOrdersSearchOrderLinesResponse
+  /sales-orders/{id}/stock-adjustments:
+    get:
+      '200':
+        application/json: SalesOrdersGetStockAdjustmentsResponse
+  /settings:
+    get:
+      '200':
+        application/json: SettingsGetSettingsResponse
+  /settings/sequence:
+    get:
+      '200':
+        application/json: SettingsGetSequenceNumbersResponse
+  /shipment-receipts:
+    get:
+      '200':
+        application/json: ShipmentReceiptsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: ShipmentReceiptsCreateNewShipmentReceiptResponse
+  /shipment-receipts/lines:
+    get:
+      '200':
+        application/json: ShipmentReceiptsGetLinesFilterableSortableResponse
+  /shipment-receipts/{id}:
+    get:
+      '201':
+        application/json: ShipmentReceiptsGetOneReceiptResponse
+  /statements:
+    get:
+      '200':
+        application/json: StatementsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: StatementsCreateNewStatementResponse
+  /statements/{id}:
+    get:
+      '200':
+        application/json: StatementsGetOneStatementResponse
+  /status/{type}:
+    get:
+      '200':
+        application/json: StatusJobStatusResponse
+  /stock-adjustments:
+    get:
+      '200':
+        application/json: StockAdjustmentsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: StockAdjustmentsCreateNewResponse
+  /stock-adjustments/summary:
+    get:
+      '200':
+        application/json: StockAdjustmentsGetSummaryResponse
+  /stock-adjustments/{id}:
+    put:
+      '200':
+        application/json: StockAdjustmentsUpdateWebhookResponse
+  /stock-adjustments/{id}/cost-layers:
+    get:
+      '200':
+        application/json: StockAdjustmentsGetCostLayersResponse
+  /stock-counts:
+    get:
+      '200':
+        application/json: StockCountsSearchResponse
+  /stock-counts/{id}:
+    put:
+      '200':
+        application/json: StockCountsUpdateOneResponse
+  /system-jobs:
+    get:
+      '200':
+        application/json: SystemJobsListDescendingByDateResponse
+    post:
+      '201':
+        application/json: SystemJobsCreateNewJobResponse
+  /system-jobs/count:
+    get:
+      '200':
+        application/json: SystemJobsGetCountResponse
+  /system-jobs/{id}:
+    get:
+      '200':
+        application/json: SystemJobsGetJobByIdResponse
+  /tax-codes:
+    get:
+      '200':
+        application/json: TaxCodesSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: TaxCodesCreateNewTaxCodeResponse
+  /tax-codes/{id}:
+    put:
+      '200':
+        application/json: TaxCodesUpdateOneResponse
+  /templates:
+    get:
+      '200':
+        application/json: TemplatesSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: TemplatesCreateNewTemplateResponse
+  /templates/{id}:
+    get:
+      '200':
+        application/json: TemplatesGetOneTemplateResponse
+    put:
+      '200':
+        application/json: TemplatesUpdateOneTemplateResponse
+  /transactions:
+    get:
+      '200':
+        application/json: TransactionsSearchFilterableSortableResponse
+  /transactions/running-sum:
+    get:
+      '200':
+        application/json: TransactionsGetRunningSumResponse
+  /transactions/sum:
+    get:
+      '200':
+        application/json: TransactionsCalculateSumResponse
+  /transfers:
+    get:
+      '200':
+        application/json: TransfersSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: TransfersCreateNewTransferResponse
+  /transfers/{id}:
+    put:
+      '200':
+        application/json: TransfersUpdateTransferResponse
+  /users:
+    get:
+      '200':
+        application/json: UsersGetAllUsersResponse
+    post:
+      '201':
+        application/json: UsersCreateNewUserResponse
+  /users/me:
+    put:
+      '200':
+        application/json: UsersUpdateSelfResponse
+  /users/{id}:
+    get:
+      '200':
+        application/json: UsersGetOneResponse
+    put:
+      '200':
+        application/json: UsersUpdateUserResponse
+  /users/{id}/roles:
+    get:
+      '200':
+        application/json: UsersGetRolesResponse
+  /vendor-credits:
+    get:
+      '200':
+        application/json: VendorCreditsSearchResponse
+    post:
+      '201':
+        application/json: VendorCreditsCreateNewCreditResponse
+  /vendor-credits/{id}:
+    get:
+      '200':
+        application/json: VendorCreditsGetOneResponse
+    put:
+      '200':
+        application/json: VendorCreditsUpdateOneResponse
+  /vendor-prices:
+    get:
+      '200':
+        application/json: VendorPricesSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: VendorPricesCreateNewPriceResponse
+  /vendor-prices/price:
+    get:
+      '200':
+        application/json: VendorPricesShowItemPriceResponse
+  /vendor-prices/{id}:
+    put:
+      '200':
+        application/json: VendorPricesUpdateOnePriceResponse
+  /vendors:
+    get:
+      '200':
+        application/json: VendorsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: VendorsCreateNewVendorResponse
+  /vendors/{id}:
+    get:
+      '200':
+        application/json: VendorsGetOneResponse
+    put:
+      '200':
+        application/json: VendorsUpdateOneResponse
+  /vendors/{id}/bills:
+    get:
+      '200':
+        application/json: VendorsGetBillsResponse
+  /wallets:
+    get:
+      '200':
+        application/json: WalletsGetAllResponse
+    post:
+      '201':
+        application/json: WalletsCreateNewWalletResponse
+  /wallets/{id}:
+    get:
+      '200':
+        application/json: WalletsGetOneResponse
+    put:
+      '201':
+        application/json: WalletsUpdateWebhookResponse
+  /wallets/{id}/coins:
+    get:
+      '200':
+        application/json: WalletsGetCoinsSummaryResponse
+  /warehouse-items:
+    get:
+      '200':
+        application/json: WarehouseItemsSearchFilterableSortableResponse
+    post:
+      '201':
+        application/json: WarehouseItemsCreateNewWarehouseItemResponse
+  /warehouse-items/{id}:
+    put:
+      '200':
+        application/json: WarehouseItemsUpdateOneItemResponse
+  /warehouses:
+    get:
+      '200':
+        application/json: WarehousesGetAllResponse
+    post:
+      '201':
+        application/json: WarehousesCreateNewWarehouseResponse
+  /warehouses/{id}:
+    get:
+      '200':
+        application/json: WarehousesGetByIdResponse
+    put:
+      '200':
+        application/json: WarehousesUpdateWarehouseByIdResponse
+  /warehouses/{id}/stock/summary:
+    get:
+      '200':
+        application/json: WarehousesGetStockSummaryResponse
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhooksListAscendingByUriResponse
+    post:
+      '201':
+        application/json: WebhooksCreateNewWebhookResponse
+  /years:
+    get:
+      '200':
+        application/json: YearsGetAllYearsResponse
+    post:
+      '201':
+        application/json: YearsCreateFirstDayYearResponse
+securityParameters:
+  ItemId:
+    query: false
+  LocationId:
+    query: false
+  VendorId:
+    query: false
+  childWh:
+    query: false
+  coinId:
+    query: false
+  consolidated:
+    query: false
+  costLayers:
+    query: false
+  credit:
+    query: false
+  currency:
+    query: false
+  cursor:
+    query: false
+  date:
+    query: false
+  dontRunCostBasis:
+    query: false
+  endDate:
+    query: false
+  fiat:
+    query: false
+  filter:
+    query: false
+  filterCurrency:
+    query: false
+  filterLocationId:
+    query: false
+  filterType:
+    query: false
+  hideZero:
+    query: false
+  limit:
+    query: false
+  mapgroups:
+    query: false
+  objectId:
+    query: false
+  objectType:
+    query: false
+  offset:
+    query: false
+  order:
+    query: false
+  quantity:
+    query: false
+  queueName:
+    query: false
+  receivableOnly:
+    query: false
+  runCostBasis:
+    query: false
+  showHidden:
+    query: false
+  startDate:
+    query: false
+  status:
+    query: false
+  system:
+    query: false
+  type:
+    query: false
+  walletId:
+    query: false
+  where:
+    query: false
+validServerUrls: {}

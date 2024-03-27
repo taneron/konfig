@@ -1835,6 +1835,15 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://developers.echelonpay.com/api/_static/openapi.yaml",
   },
+  "softledger.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://api-docs.softledger.com/",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({
