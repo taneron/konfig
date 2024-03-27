@@ -488,7 +488,14 @@ async function main() {
       numberOfSchemas = cachedMethodObjects?.numberOfSchemas;
       apiDescription = cachedMethodObjects?.apiDescription;
     } else {
-      const oas = await parseSpec(fixedSpecString);
+      const developerDocumentation = publishData.developerDocumentation ?? "";
+      const developerDocumentationUrl = `https://${developerDocumentation}`;
+      const specStringWithoutRelativeLinks = removeRelativeLinks({
+        specString: fixedSpecString,
+        developerDocumentation: developerDocumentationUrl,
+      });
+
+      const oas = await parseSpec(specStringWithoutRelativeLinks);
       methods = getMethodObjects(oas);
       fs.writeFileSync(openapiExamplesFilePath, yaml.dump(oas.spec));
       numberOfSchemas = getNumberOfSchemas(oas);
@@ -611,6 +618,32 @@ async function main() {
       fs.unlinkSync(path.join(publishedDirPath, file));
     }
   }
+}
+
+function removeRelativeLinks({
+  specString,
+  developerDocumentation,
+}: {
+  specString: string;
+  developerDocumentation: string;
+}): string {
+  // Replace all relative links in fixedSpecString with developer documentation
+  // Examples of relative links in spec
+  // href="/docs/tracking/reference/shipping-status/"
+  // href="/docs/tracking/reference/shipping-status"
+  // (/docs/tracking/reference/shipping-status/)
+  // (/docs/tracking/reference/shipping-status)
+  // (/api/rest/responses/#hateoas-links)
+  const relativeLinkRegex = /href="\/([^"]+)"/g;
+  specString = specString.replace(
+    relativeLinkRegex,
+    `href="${developerDocumentation}`
+  );
+  specString = specString.replace(
+    /\(\/([^)]+)\)/g,
+    `(/${developerDocumentation}`
+  );
+  return specString;
 }
 
 function getFixedSpecFileName(sdkName: string) {
