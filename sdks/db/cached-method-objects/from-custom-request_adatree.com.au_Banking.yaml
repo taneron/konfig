@@ -1,0 +1,1119 @@
+hash: 261a0b9e617a8210661ee7ac7de3f13060049c7819499103bdcf446140584366
+methodObjects:
+  - url: /adr/banking/arrangements/{cdrArrangementId}/accounts
+    method: getCdrArrangementAccounts
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: Get Accounts under cdr arrangement id
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: productCategory
+        schema: string
+        required: false
+        description: >-
+          Used to filter results on the productCategory field applicable to
+          accounts. Any one of the valid values for this field can be supplied.
+          If absent then all accounts returned.
+        example: BUSINESS_LOANS
+      - name: openStatus
+        schema: string
+        required: false
+        description: >-
+          Used to filter results according to open/closed status. Values can be
+          OPEN, CLOSED or ALL. If absent then ALL is assumed
+        example: OPEN
+        default: ALL
+      - name: isOwned
+        schema: boolean
+        description: >-
+          Filters accounts based on whether they are owned by the authorised
+          customer. True for owned accounts, false for unowned accounts and
+          absent for all accounts
+        example: true
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/banking/arrangements/{cdrArrangementId}/accounts/balances
+    method: getFilteredBalances
+    httpMethod: get
+    tag: AccountsBalances
+    typeScriptTag: accountsBalances
+    description: Get Bulk Balances
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountIds
+        schema: array
+        required: false
+        description: Adatree's extension to support account ids for GET /accounts/balances
+      - name: productCategory
+        schema: string
+        required: false
+        description: >-
+          Used to filter results on the productCategory field applicable to
+          accounts. Any one of the valid values for this field can be supplied.
+          If absent then all accounts returned.
+        example: BUSINESS_LOANS
+      - name: openStatus
+        schema: string
+        required: false
+        description: >-
+          Used to filter results according to open/closed status. Values can be
+          OPEN, CLOSED or ALL. If absent then ALL is assumed
+        example: OPEN
+        default: ALL
+      - name: isOwned
+        schema: boolean
+        description: >-
+          Filters accounts based on whether they are owned by the authorised
+          customer. True for owned accounts, false for unowned accounts and
+          absent for all accounts
+        example: true
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/balance
+    method: obtainSingleAccountBalance
+    httpMethod: get
+    tag: AccountsBalance
+    typeScriptTag: accountsBalance
+    description: Get Account Balance
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountId
+        schema: string
+        required: true
+        description: >-
+          A tokenised identifier for the account which is unique but not
+          shareable
+        example: d9e75179-104f-47cf-9d29-18284222bab0
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}
+    method: obtainDetail
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: Get Account Detail
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountId
+        schema: string
+        required: true
+        description: >-
+          A tokenised identifier for the account which is unique but not
+          shareable
+        example: d9e75179-104f-47cf-9d29-18284222bab0
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: >-
+      /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/transactions
+    method: getByAccountIdAndCdrArrangementId
+    httpMethod: get
+    tag: AccountTransactions
+    typeScriptTag: accountTransactions
+    description: Get Transactions For Account
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountId
+        schema: string
+        required: true
+        description: >-
+          ID of the account to get transactions for. Must have previously been
+          returned by one of the account list end points.
+        example: d9e75179-104f-47cf-9d29-18284222bab0
+      - name: oldestTime
+        schema: string
+        description: >-
+          Constrain the transaction history request to transactions with
+          effective time at or after this date/time. If absent defaults to
+          newest-time minus 90 days.  Format is aligned to DateTimeString common
+          type
+      - name: newestTime
+        schema: string
+        description: >-
+          Constrain the transaction history request to transactions with
+          effective time at or before this date/time.  If absent defaults to
+          today.  Format is aligned to DateTimeString common type
+      - name: minAmount
+        schema: string
+        description: >-
+          Filter transactions to only transactions with amounts higher or equal
+          to than this amount
+      - name: maxAmount
+        schema: string
+        description: >-
+          Filter transactions to only transactions with amounts less than or
+          equal to than this amount
+        example: '10.00'
+      - name: text
+        schema: string
+        description: >-
+          Filter transactions to only transactions where this string value is
+          found as a substring of either the reference or description fields.
+          Format is arbitrary ASCII string. This parameter is optionally
+          implemented by data holders. If it is not implemented then a response
+          should be provided as normal without text filtering applied and an
+          additional boolean field named isQueryParamUnsupported should be
+          included in the meta object and set to true (whether the text
+          parameter is supplied or not)
+        example: milk
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: >-
+      /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/transactions/{transactionId}
+    method: obtainDetail
+    httpMethod: get
+    tag: AccountTransactions
+    typeScriptTag: accountTransactions
+    description: Get Transaction Detail
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountId
+        schema: string
+        required: true
+        description: >-
+          ID of the account to get transactions for. Must have previously been
+          returned by one of the account list end points.
+        example: d9e75179-104f-47cf-9d29-18284222bab0
+      - name: transactionId
+        schema: string
+        required: true
+        description: >-
+          ID of the transaction obtained from a previous call to one of the
+          other transaction end points
+        example: e27f7698-814f-467f-8c65-ca9d59832ffd
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: >-
+      /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/direct-debits
+    method: obtainForAccount
+    httpMethod: get
+    tag: AccountDirectDebits
+    typeScriptTag: accountDirectDebits
+    description: Get Direct Debits For Account
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountId
+        schema: string
+        required: true
+        description: >-
+          ID of the account to get direct debit authorisations for.  Must have
+          previously been returned by one of the account list end points.
+        example: d9e75179-104f-47cf-9d29-18284222bab0
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/banking/arrangements/{cdrArrangementId}/accounts/direct-debits
+    method: getBulkDirectDebits
+    httpMethod: get
+    tag: AccountsDirectDebits
+    typeScriptTag: accountsDirectDebits
+    description: Get Bulk Direct Debits
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountIds
+        schema: array
+        required: false
+        description: Adatree's extension to support account ids for GET /accounts/balances
+      - name: productCategory
+        schema: string
+        required: false
+        description: >-
+          Used to filter results on the productCategory field applicable to
+          accounts. Any one of the valid values for this field can be supplied.
+          If absent then all accounts returned.
+        example: BUSINESS_LOANS
+      - name: openStatus
+        schema: string
+        required: false
+        description: >-
+          Used to filter results according to open/closed status. Values can be
+          OPEN, CLOSED or ALL. If absent then ALL is assumed
+        example: OPEN
+        default: ALL
+      - name: isOwned
+        schema: boolean
+        description: >-
+          Filters accounts based on whether they are owned by the authorised
+          customer. True for owned accounts, false for unowned accounts and
+          absent for all accounts
+        example: true
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: >-
+      /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/payments/scheduled
+    method: getScheduledPayments
+    httpMethod: get
+    tag: AccountPaymentsScheduled
+    typeScriptTag: accountPaymentsScheduled
+    description: Get Scheduled Payments for Account
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountId
+        schema: string
+        required: true
+        description: >-
+          ID of the account to get scheduled payments for. Must have previously
+          been returned by one of the account list end points. The account
+          specified is the source account for the payment
+        example: d9e75179-104f-47cf-9d29-18284222bab0
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/banking/arrangements/{cdrArrangementId}/payments/scheduled
+    method: bulkGet
+    httpMethod: get
+    tag: PaymentsScheduled
+    typeScriptTag: paymentsScheduled
+    description: Get Scheduled Payments Bulk
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: accountIds
+        schema: array
+        required: false
+        description: Adatree's extension to support account ids for GET /accounts/balances
+      - name: productCategory
+        schema: string
+        required: false
+        description: >-
+          Used to filter results on the productCategory field applicable to
+          accounts. Any one of the valid values for this field can be supplied.
+          If absent then all accounts returned.
+        example: BUSINESS_LOANS
+      - name: openStatus
+        schema: string
+        required: false
+        description: >-
+          Used to filter results according to open/closed status. Values can be
+          OPEN, CLOSED or ALL. If absent then ALL is assumed
+        example: OPEN
+        default: ALL
+      - name: isOwned
+        schema: boolean
+        description: >-
+          Filters accounts based on whether they are owned by the authorised
+          customer. True for owned accounts, false for unowned accounts and
+          absent for all accounts
+        example: true
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/banking/arrangements/{cdrArrangementId}/payees
+    method: getList
+    httpMethod: get
+    tag: Payees
+    typeScriptTag: payees
+    description: Get Payees
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: type
+        schema: string
+        description: >-
+          Filter on the payee type field.  In addition to normal type field
+          values, ALL can be specified to retrieve all payees.  If absent the
+          assumed value is ALL
+        example: BILLER
+        default: ALL
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/banking/arrangements/{cdrArrangementId}/payees/{payeeId}
+    method: getDetail
+    httpMethod: get
+    tag: Payees
+    typeScriptTag: payees
+    description: Get Payee Detail
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: payeeId
+        schema: string
+        required: true
+        description: The ID used to locate the details of a particular payee
+        example: d9e75179-104f-47cf-9d29-18284222bab0
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/common/arrangements/{cdrArrangementId}/userinfo
+    method: getByArrangementId
+    httpMethod: get
+    tag: User Info
+    typeScriptTag: userInfo
+    description: Get user info under cdr arrangement id
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '424'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/common/arrangements/{cdrArrangementId}/customer
+    method: getCustomerInfo
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Get Customer
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/common/arrangements/{cdrArrangementId}/customer/detail
+    method: obtainDetailedInfo
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Get Customer Detail
+    parameters:
+      - name: cdrArrangementId
+        schema: string
+        required: true
+        description: >-
+          Used to identify the consent arrangement from which to identify the
+          bank and consumer information required to fetch the data.
+        example: 998621c8-1e1d-44ca-826e-754b910e5697
+      - name: xFapiAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in to the data recipient.
+          Required for all resource calls from a machine client. Format is
+          "HTTP-date" as in section "7.1.1.1" of RFC7231, e.g., "Tue, 11 Sep
+          2012 19:43:31 GMT"
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: xFapiCustomerIpAddress
+        schema: string
+        description: >-
+          The customer's original IP address if the customer is currently logged
+          in to the data recipient. The presence of this header indicates that
+          the API is being called in a customer present context. Not to be
+          included for unauthenticated calls.
+        example: 127.0.0.1
+      - name: xCdsClientHeaders
+        schema: string
+        description: >-
+          The customer's original standard http headers
+          [Base64](https://raw.githubusercontent.com) encoded, including the
+          original User Agent header, if the customer is currently logged in to
+          the data recipient. Mandatory for customer present calls.  Not
+          required for unattended or unauthenticated calls. Format of this field
+          is unclear and might be defined in future as discussed in
+          https://github.com/ConsumerDataStandardsAustralia/standards-maintenance/issues/104
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/discovery/status
+    method: getStatus
+    httpMethod: get
+    tag: DataHolderDiscovery
+    typeScriptTag: dataHolderDiscovery
+    description: Get Status
+    parameters:
+      - name: dataHolderIds
+        schema: array
+        required: false
+        description: >-
+          Array of strings used to identify the data holder from which to fetch
+          the product/outage/status data.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /adr/discovery/outages
+    method: getOutages
+    httpMethod: get
+    tag: DataHolderDiscovery
+    typeScriptTag: dataHolderDiscovery
+    description: Get Outages
+    parameters:
+      - name: dataHolderIds
+        schema: array
+        required: false
+        description: >-
+          Array of strings used to identify the data holder from which to fetch
+          the product/outage/status data.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+numberOfSchemas: 88
+apiDescription: >-
+  Adatree's Accredited Data Recipient (ADR) Platform Open Banking API
+  definition. API payloads conform to the Consumer Data Right Data Standard
+  1.5.1.
+
+  Payloads are sample payloads to represent the types of data to which the CDR
+  regime gives access. Adatree's simplified API makes it easier for you to
+  access the CDR ecosystem, while maintaining the high security standards
+  implemented by the regime. It also keeps the data in the original, open
+  source, CDR format to avoid lock-in to a proprietary format.

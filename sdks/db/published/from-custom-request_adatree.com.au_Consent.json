@@ -1,0 +1,658 @@
+{
+  "securitySchemes": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
+    },
+    "m2m": {
+      "type": "oauth2",
+      "description": "Machine to machine OAuth2 to access infosec token service",
+      "flows": {
+        "clientCredentials": {
+          "tokenUrl": "https://adatree-nonprod-adr.auth.ap-southeast-2.amazoncognito.com/oauth2/token",
+          "scopes": {
+            "authorizations:write": "allow ADR to create a Authorisation Request for a consumer",
+            "tokens:write": "allow ADR to create or update Authorisation Request"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://cdr-insights-prod.api.adatree.com.au",
+  "apiVersion": "1.3.0",
+  "apiDescription": "Consent Dashboard REST APIs. This allows ADR / consumers to perform CDR consumer authorization flow with Data Holders",
+  "apiTitle": "Adatree ADR Platform Consent API",
+  "endpoints": 7,
+  "sdkMethods": 10,
+  "schemas": 35,
+  "parameters": 45,
+  "contactEmail": "engineering@adatree.com.au",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/Adatree/api-specs/main/consent.yaml"
+  },
+  "customRequestSpecFilename": "adatree.com.au_Consent.yaml",
+  "difficultyScore": 36.75,
+  "difficulty": "Easy",
+  "company": "Adatree",
+  "serviceName": "Consent",
+  "sdkName": "adatree-consent-{language}-sdk",
+  "clientName": "AdatreeConsent",
+  "metaDescription": "Adatree is a CDR technology intermediary. What does that mean? Simply put, we're the poles and wires connecting Banking, Finance, Energy and Telecommunications with Open Data. Our platform is ready for implementation with out-of-the-box functionality to have you connected to compliant data within a matter of weeks. The new age of data regulations are changing the way FinTech operates. Adatree is your on-ramp to stay plugged into the digital economy. \n\nWe work with organisations of all sizes and sectors to provide turnkey solutions. We've built a world-class CDR intermediary platform that is the most robust and flexible in market, ready to scale for any Open Data use case. If the scores of awards don't prove it, our list of satisfied clients ought to. \n\nWhen you work with Adatree you're working with genuine CDR experts. We live and breathe this stuff, and strive to make it easy for other businesses to access consumer data with confidence.\n\nWe'll help you:\n- Determine which CDR access model is best for your organisation\n- Implement our fully-compliant white-labelled consent dashboard, tailored to your unique business needs\n- Meet all compliance and legislative requirements including authentication and consent\n- Leverage the full CDR ecosystem with every available API\n- Accelerate your time-to-market to weeks (not months!) with our proven streamlined integration process\n- Maintain consistent and secure connections to the Consumer Data Right network\n\nWe know the Consumer Data Right back-to-front and promise to walk you through every stage of the journey. Ready to take the first step? \n\nReach out to our team today: https://www.adatree.com.au/contact",
+  "apiStatusUrls": "inherit",
+  "homepage": "adatree.com.au/",
+  "developerDocumentation": "developer.adatree.com.au/docs/api/consent/",
+  "categories": [
+    "open_banking",
+    "fintech",
+    "financial_services",
+    "data_management",
+    "compliance"
+  ],
+  "category": "Compliance & Security",
+  "methods": [
+    {
+      "url": "/consents",
+      "method": "getAllRecords",
+      "httpMethod": "get",
+      "tag": "Consent",
+      "typeScriptTag": "consent",
+      "description": "Get Consents",
+      "parameters": [
+        {
+          "name": "consumerId",
+          "schema": "string",
+          "required": false,
+          "description": "consumeId, please be kindly reminded of proper encoding as Id from some IDP could have special character like '|', which need be encoded as '%7c'. <br/>\nconsumerId should only be used with machine token, otherwise it will be deemed BAD_REQUEST\n",
+          "example": "auth0%7c5fbc585628421a006e83d95d"
+        },
+        {
+          "name": "consentId",
+          "schema": "string",
+          "required": false,
+          "description": "consent id",
+          "example": "148c9187-e52b-431f-9b24-7225e75ca2be"
+        },
+        {
+          "name": "cdrArrangementId",
+          "schema": "string",
+          "required": false,
+          "description": "cdr arrangement id",
+          "example": "45db4977-b12f-42bf-808d-2680eb4bd366"
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "ACTIVE"
+        },
+        {
+          "name": "accessFrequency",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "ONCE_OFF"
+        },
+        {
+          "name": "postUsageAction",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "DELETION"
+        },
+        {
+          "name": "directMarketingAllowed",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "useCases",
+          "schema": "array",
+          "required": false,
+          "description": "UseCase ids"
+        },
+        {
+          "name": "dataHolderBrandId",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "55b3299a-3e50-48a2-a190-cca263ccaba5"
+        },
+        {
+          "name": "oldestCreated",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent with created time at or after this date/time. If absent defaults to newestCreated minus 90 days.  Format is aligned to DateTimeString common type",
+          "example": "1997-01-12T15:43:00.121Z"
+        },
+        {
+          "name": "newestCreated",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent with created time at or before this date/time. If absent defaults to today. Format is aligned to DateTimeString common type",
+          "example": "1997-01-12T15:43:00.121Z"
+        },
+        {
+          "name": "oldestRevoked",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent with revoked time at or after this date/time. If absent defaults to newestRevoked minus 90 days.  Format is aligned to DateTimeString common type",
+          "example": "1997-01-12T15:43:00.121Z"
+        },
+        {
+          "name": "newestRevoked",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent with revoked time at or before this date/time. If absent defaults to today. Format is aligned to DateTimeString common type",
+          "example": "1997-01-12T15:43:00.121Z"
+        },
+        {
+          "name": "oldestSharingEndDate",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent with sharingEndDate time at or after this date/time. If absent defaults to newestSharingEndDate minus 90 days.  Format is aligned to DateTimeString common type",
+          "example": "1997-01-12T15:43:00.121Z"
+        },
+        {
+          "name": "newestSharingEndDate",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent with sharingEndDate time at or before this date/time. If absent defaults to today. Format is aligned to DateTimeString common type",
+          "example": "1997-01-12T15:43:00.121Z"
+        },
+        {
+          "name": "externalId",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent by externalId",
+          "example": "an-external-id"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/consents",
+      "method": "recordCreate",
+      "httpMethod": "post",
+      "tag": "Consent",
+      "typeScriptTag": "consent",
+      "description": "Create Consent",
+      "parameters": [
+        {
+          "name": "adatreeConsumerUserAgent",
+          "schema": "string",
+          "description": "Mandatory for calls using a Machine token. The consumer's original User Agent header",
+          "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
+        },
+        {
+          "name": "adatreeConsumerIpAddress",
+          "schema": "string",
+          "description": "Mandatory for calls using a Machine token. The consumer's original IP address.",
+          "example": "127.0.0.1"
+        },
+        {
+          "name": "consumerEmail",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "consumer@example.com"
+        },
+        {
+          "name": "sharingEndDate",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2023-04-19T15:43:00.121Z"
+        },
+        {
+          "name": "dataHolderBrandId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "55b3299a-3e50-48a2-a190-cca263ccaba5"
+        },
+        {
+          "name": "useCaseId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "HOME_LOAN"
+        },
+        {
+          "name": "postUsageAction",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "DELETION"
+        },
+        {
+          "name": "directMarketingAllowed",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "externalId",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "external-id-by-adatree-customer"
+        },
+        {
+          "name": "consumerId",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "auth0%7c5fbc585628421a006e83d95d"
+        },
+        {
+          "name": "grantee",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "customData",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "employerName": "Adatree"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/consents/{consentId}",
+      "method": "revokeRecord",
+      "httpMethod": "delete",
+      "tag": "Consent",
+      "typeScriptTag": "consent",
+      "description": "Revoke Consent",
+      "parameters": [
+        {
+          "name": "consentId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "148c9187-e52b-431f-9b24-7225e75ca2be"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "default response"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/consents/{consentId}",
+      "method": "getRecord",
+      "httpMethod": "get",
+      "tag": "Consent",
+      "typeScriptTag": "consent",
+      "description": "Get Consent",
+      "parameters": [
+        {
+          "name": "consentId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "148c9187-e52b-431f-9b24-7225e75ca2be"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/consents/{consentId}",
+      "method": "updateViaDashboard",
+      "httpMethod": "patch",
+      "tag": "Consent",
+      "typeScriptTag": "consent",
+      "description": "Update a consent's via dashboard or back channel",
+      "parameters": [
+        {
+          "name": "consentId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "148c9187-e52b-431f-9b24-7225e75ca2be"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "consent successfully updated"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/consents/{consentId}/authorization",
+      "method": "redirectUrl",
+      "httpMethod": "get",
+      "tag": "Consent Authorization",
+      "typeScriptTag": "consentAuthorization",
+      "description": "Get Authorization Redirect URL for a Consent",
+      "parameters": [
+        {
+          "name": "consentId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "148c9187-e52b-431f-9b24-7225e75ca2be"
+        },
+        {
+          "name": "state",
+          "schema": "string",
+          "required": false,
+          "description": "A state is generated by the consent user-agent (https://developer.adatree.com.au/docs/api/consent/ and is used to bind the redirection response from a Data Holder with a user session as per https://openid.net/specs/openid-financial-api-part-1-1_0-final.html#public-client. It is sent in the authentication request, and is then also included redirect from the ADH to the ADR. This allows the ADR client application prevent CSRF attacks. Must be unique per authorization request."
+        },
+        {
+          "name": "redirectUri",
+          "schema": "string",
+          "required": false,
+          "description": "The URI to redirect to from the data holder when the consumer has finished data holder authentication. Must be from the list of redirect URIs configured at the ACCC register."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Authorization link for a Consent"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "409",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/consents/events",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Get consent events",
+      "typeScriptTag": "getConsentEvents",
+      "description": "Retrieve consent events",
+      "parameters": [
+        {
+          "name": "oldest",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent event result list with timestamp at or after this date/time. Format is aligned to DateTimeString common type",
+          "example": "2022-02-06T08:17:26Z"
+        },
+        {
+          "name": "newest",
+          "schema": "string",
+          "required": false,
+          "description": "Constrain the consent event result list with timestamp at or before this date/time. Format is aligned to DateTimeString common type",
+          "example": "2022-02-01T15:43:00.121Z"
+        },
+        {
+          "name": "consentId",
+          "schema": "string",
+          "required": false,
+          "description": "consent id",
+          "example": "148c9187-e52b-431f-9b24-7225e75ca2be"
+        },
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "Page of results to request (standard pagination)",
+          "example": 1,
+          "default": 1
+        },
+        {
+          "name": "pageSize",
+          "schema": "integer",
+          "description": "Page size to request. Default is 25 (standard pagination)",
+          "example": 25,
+          "default": 25
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/software-products/{softwareProductId}/data-holders",
+      "method": "listAvailable",
+      "httpMethod": "get",
+      "tag": "Data Holders",
+      "typeScriptTag": "dataHolders",
+      "description": "Get Data Holders",
+      "parameters": [
+        {
+          "name": "softwareProductId",
+          "schema": "string",
+          "required": true,
+          "description": "The identifier of the software product registered at the ACCC registry. <br/>\nThe list of data holders returned is the list where dynamic client reigstration has been peformed at each data holder for this software product. <br/>\nThe list of data holders for a use case can be restricted by management API at Use Case or Software Product level\n",
+          "example": "SOFTWAREPRODUCTID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tokens",
+      "method": "establishDataAccess",
+      "httpMethod": "post",
+      "tag": "Tokens",
+      "typeScriptTag": "tokens",
+      "description": "Create Tokens",
+      "parameters": [
+        {
+          "name": "code",
+          "schema": "string",
+          "description": "",
+          "example": "lFDNAS-JVITGzvba3yXfrPR8hWZlCKy6nutbzrmXKop56\""
+        },
+        {
+          "name": "state",
+          "schema": "string",
+          "description": "",
+          "example": "f99953a5-49a5-497c-91b6-4bd14cdace74"
+        },
+        {
+          "name": "id_token",
+          "schema": "string",
+          "description": "",
+          "example": "eyJraWQiOiIxZTlnZGs3IiwiYWxnIjoiUl..."
+        },
+        {
+          "name": "response",
+          "schema": "string",
+          "description": "",
+          "example": "eyJraWQiOiIxZTlnZGs3IiwiYWxnIjoiUl..."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/use-cases",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "UseCase",
+      "typeScriptTag": "useCase",
+      "description": "Get Use-cases",
+      "parameters": [
+        {
+          "name": "combineScopes",
+          "schema": "boolean",
+          "required": false,
+          "description": "Combine scopes that can be combined according to the CDR Consumer Experience Standards",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Adatree is a leading CDR technology intermediary connecting industries with Open Data through a robust platform. We provide turnkey solutions for organizations of all sizes, ensuring compliance and quick data access. Award-winning service with expert CDR guidance.",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adatree/consent/logo.jpg",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adatree/consent/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/adatree/consent/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adatree/consent/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adatree/consent/favicon.jpg",
+  "clientNameCamelCase": "adatreeConsent",
+  "lastUpdated": "2024-03-27T23:42:08.390Z",
+  "typescriptSdkUsageCode": "import { AdatreeConsent } from 'adatree-consent-typescript-sdk';\n\nconst adatreeConsent = new AdatreeConsent({\n    bearerAuth: \"BEARER_AUTH\",\n    // Machine to machine OAuth2 to access infosec token service\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\"\n})",
+  "typescriptSdkFirstRequestCode": "// Get Consents\nconst getAllRecordsResponse = adatreeConsent.consent.getAllRecords({\n    consumerId: \"auth0%7c5fbc585628421a006e83d95d\"\n    consentId: \"148c9187-e52b-431f-9b24-7225e75ca2be\"\n    cdrArrangementId: \"45db4977-b12f-42bf-808d-2680eb4bd366\"\n    status: \"ACTIVE\"\n    accessFrequency: \"ONCE_OFF\"\n    postUsageAction: \"DELETION\"\n    dataHolderBrandId: \"55b3299a-3e50-48a2-a190-cca263ccaba5\"\n    oldestCreated: \"1997-01-12T15:43:00.121Z\"\n    newestCreated: \"1997-01-12T15:43:00.121Z\"\n    oldestRevoked: \"1997-01-12T15:43:00.121Z\"\n    newestRevoked: \"1997-01-12T15:43:00.121Z\"\n    oldestSharingEndDate: \"1997-01-12T15:43:00.121Z\"\n    newestSharingEndDate: \"1997-01-12T15:43:00.121Z\"\n    externalId: \"an-external-id\"\n})",
+  "fixedSpecFileName": "adatree-consent-fixed-spec.yaml"
+}

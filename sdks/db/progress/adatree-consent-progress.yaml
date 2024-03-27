@@ -1,0 +1,94 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /consents:
+    get: Consent_getAllRecords
+    post: Consent_recordCreate
+  /consents/events:
+    get: GetConsentEvents_list
+  /consents/{consentId}:
+    delete: Consent_revokeRecord
+    get: Consent_getRecord
+    patch: Consent_updateViaDashboard
+  /consents/{consentId}/authorization:
+    get: ConsentAuthorization_redirectUrl
+  /software-products/{softwareProductId}/data-holders:
+    get: DataHolders_listAvailable
+  /tokens:
+    post: Tokens_establishDataAccess
+  /use-cases:
+    get: UseCase_getAll
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /consents/{consentId}:
+    patch:
+      application/json: ConsentUpdateViaDashboardRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /consents:
+    get:
+      '200':
+        application/json: ConsentGetAllRecordsResponse
+  /software-products/{softwareProductId}/data-holders:
+    get:
+      '200':
+        application/json: DataHoldersListAvailableResponse
+  /use-cases:
+    get:
+      '200':
+        application/json: UseCaseGetAllResponse
+securityParameters:
+  Adatree-Consumer-Ip-Address:
+    header: false
+  Adatree-Consumer-User-Agent:
+    header: false
+  accessFrequency:
+    query: false
+  cdrArrangementId:
+    query: false
+  combineScopes:
+    query: false
+  consentId:
+    query: false
+  consumerId:
+    query: false
+  dataHolderBrandId:
+    query: false
+  directMarketingAllowed:
+    query: false
+  externalId:
+    query: false
+  newest:
+    query: false
+  newestCreated:
+    query: false
+  newestRevoked:
+    query: false
+  newestSharingEndDate:
+    query: false
+  oldest:
+    query: false
+  oldestCreated:
+    query: false
+  oldestRevoked:
+    query: false
+  oldestSharingEndDate:
+    query: false
+  page:
+    query: false
+  page-size:
+    query: false
+  postUsageAction:
+    query: false
+  redirectUri:
+    query: false
+  state:
+    query: false
+  status:
+    query: false
+  useCases:
+    query: false
+validServerUrls: {}

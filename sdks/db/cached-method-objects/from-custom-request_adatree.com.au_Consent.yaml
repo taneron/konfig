@@ -1,0 +1,441 @@
+hash: fb83dae1c6e02464940dd45961965e83c0fdc57551038dde1e0d54e8b34268fe
+methodObjects:
+  - url: /consents
+    method: getAllRecords
+    httpMethod: get
+    tag: Consent
+    typeScriptTag: consent
+    description: Get Consents
+    parameters:
+      - name: consumerId
+        schema: string
+        required: false
+        description: >
+          consumeId, please be kindly reminded of proper encoding as Id from
+          some IDP could have special character like '|', which need be encoded
+          as '%7c'. <br/>
+
+          consumerId should only be used with machine token, otherwise it will
+          be deemed BAD_REQUEST
+        example: auth0%7c5fbc585628421a006e83d95d
+      - name: consentId
+        schema: string
+        required: false
+        description: consent id
+        example: 148c9187-e52b-431f-9b24-7225e75ca2be
+      - name: cdrArrangementId
+        schema: string
+        required: false
+        description: cdr arrangement id
+        example: 45db4977-b12f-42bf-808d-2680eb4bd366
+      - name: status
+        schema: string
+        required: false
+        description: ''
+        example: ACTIVE
+      - name: accessFrequency
+        schema: string
+        required: false
+        description: ''
+        example: ONCE_OFF
+      - name: postUsageAction
+        schema: string
+        required: false
+        description: ''
+        example: DELETION
+      - name: directMarketingAllowed
+        schema: boolean
+        required: false
+        description: ''
+        example: false
+      - name: useCases
+        schema: array
+        required: false
+        description: UseCase ids
+      - name: dataHolderBrandId
+        schema: string
+        required: false
+        description: ''
+        example: 55b3299a-3e50-48a2-a190-cca263ccaba5
+      - name: oldestCreated
+        schema: string
+        required: false
+        description: >-
+          Constrain the consent with created time at or after this date/time. If
+          absent defaults to newestCreated minus 90 days.  Format is aligned to
+          DateTimeString common type
+        example: '1997-01-12T15:43:00.121Z'
+      - name: newestCreated
+        schema: string
+        required: false
+        description: >-
+          Constrain the consent with created time at or before this date/time.
+          If absent defaults to today. Format is aligned to DateTimeString
+          common type
+        example: '1997-01-12T15:43:00.121Z'
+      - name: oldestRevoked
+        schema: string
+        required: false
+        description: >-
+          Constrain the consent with revoked time at or after this date/time. If
+          absent defaults to newestRevoked minus 90 days.  Format is aligned to
+          DateTimeString common type
+        example: '1997-01-12T15:43:00.121Z'
+      - name: newestRevoked
+        schema: string
+        required: false
+        description: >-
+          Constrain the consent with revoked time at or before this date/time.
+          If absent defaults to today. Format is aligned to DateTimeString
+          common type
+        example: '1997-01-12T15:43:00.121Z'
+      - name: oldestSharingEndDate
+        schema: string
+        required: false
+        description: >-
+          Constrain the consent with sharingEndDate time at or after this
+          date/time. If absent defaults to newestSharingEndDate minus 90 days. 
+          Format is aligned to DateTimeString common type
+        example: '1997-01-12T15:43:00.121Z'
+      - name: newestSharingEndDate
+        schema: string
+        required: false
+        description: >-
+          Constrain the consent with sharingEndDate time at or before this
+          date/time. If absent defaults to today. Format is aligned to
+          DateTimeString common type
+        example: '1997-01-12T15:43:00.121Z'
+      - name: externalId
+        schema: string
+        required: false
+        description: Constrain the consent by externalId
+        example: an-external-id
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /consents
+    method: recordCreate
+    httpMethod: post
+    tag: Consent
+    typeScriptTag: consent
+    description: Create Consent
+    parameters:
+      - name: adatreeConsumerUserAgent
+        schema: string
+        description: >-
+          Mandatory for calls using a Machine token. The consumer's original
+          User Agent header
+        example: >-
+          Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+          (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36
+      - name: adatreeConsumerIpAddress
+        schema: string
+        description: >-
+          Mandatory for calls using a Machine token. The consumer's original IP
+          address.
+        example: 127.0.0.1
+      - name: consumerEmail
+        schema: string
+        required: false
+        description: ''
+        example: consumer@example.com
+      - name: sharingEndDate
+        schema: string
+        required: true
+        description: ''
+        example: '2023-04-19T15:43:00.121Z'
+      - name: dataHolderBrandId
+        schema: string
+        required: true
+        description: ''
+        example: 55b3299a-3e50-48a2-a190-cca263ccaba5
+      - name: useCaseId
+        schema: string
+        required: true
+        description: ''
+        example: HOME_LOAN
+      - name: postUsageAction
+        schema: string
+        required: false
+        description: ''
+        example: DELETION
+      - name: directMarketingAllowed
+        schema: boolean
+        required: false
+        description: ''
+        example: false
+      - name: externalId
+        schema: string
+        required: false
+        description: ''
+        example: external-id-by-adatree-customer
+      - name: consumerId
+        schema: string
+        required: false
+        description: ''
+        example: auth0%7c5fbc585628421a006e83d95d
+      - name: grantee
+        schema: object
+        required: false
+        description: ''
+      - name: customData
+        schema: object
+        required: false
+        description: ''
+        example:
+          employerName: Adatree
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /consents/{consentId}
+    method: revokeRecord
+    httpMethod: delete
+    tag: Consent
+    typeScriptTag: consent
+    description: Revoke Consent
+    parameters:
+      - name: consentId
+        schema: string
+        required: true
+        description: ''
+        example: 148c9187-e52b-431f-9b24-7225e75ca2be
+    responses:
+      - statusCode: '200'
+        description: default response
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /consents/{consentId}
+    method: getRecord
+    httpMethod: get
+    tag: Consent
+    typeScriptTag: consent
+    description: Get Consent
+    parameters:
+      - name: consentId
+        schema: string
+        required: true
+        description: ''
+        example: 148c9187-e52b-431f-9b24-7225e75ca2be
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /consents/{consentId}
+    method: updateViaDashboard
+    httpMethod: patch
+    tag: Consent
+    typeScriptTag: consent
+    description: Update a consent's via dashboard or back channel
+    parameters:
+      - name: consentId
+        schema: string
+        required: true
+        description: ''
+        example: 148c9187-e52b-431f-9b24-7225e75ca2be
+    responses:
+      - statusCode: '200'
+        description: consent successfully updated
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /consents/{consentId}/authorization
+    method: redirectUrl
+    httpMethod: get
+    tag: Consent Authorization
+    typeScriptTag: consentAuthorization
+    description: Get Authorization Redirect URL for a Consent
+    parameters:
+      - name: consentId
+        schema: string
+        required: true
+        description: ''
+        example: 148c9187-e52b-431f-9b24-7225e75ca2be
+      - name: state
+        schema: string
+        required: false
+        description: >-
+          A state is generated by the consent user-agent
+          (https://developer.adatree.com.au/docs/api/consent/ and is used to
+          bind the redirection response from a Data Holder with a user session
+          as per
+          https://openid.net/specs/openid-financial-api-part-1-1_0-final.html#public-client.
+          It is sent in the authentication request, and is then also included
+          redirect from the ADH to the ADR. This allows the ADR client
+          application prevent CSRF attacks. Must be unique per authorization
+          request.
+      - name: redirectUri
+        schema: string
+        required: false
+        description: >-
+          The URI to redirect to from the data holder when the consumer has
+          finished data holder authentication. Must be from the list of redirect
+          URIs configured at the ACCC register.
+    responses:
+      - statusCode: '200'
+        description: Authorization link for a Consent
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /consents/events
+    method: list
+    httpMethod: get
+    tag: Get consent events
+    typeScriptTag: getConsentEvents
+    description: Retrieve consent events
+    parameters:
+      - name: oldest
+        schema: string
+        required: false
+        description: >-
+          Constrain the consent event result list with timestamp at or after
+          this date/time. Format is aligned to DateTimeString common type
+        example: '2022-02-06T08:17:26Z'
+      - name: newest
+        schema: string
+        required: false
+        description: >-
+          Constrain the consent event result list with timestamp at or before
+          this date/time. Format is aligned to DateTimeString common type
+        example: '2022-02-01T15:43:00.121Z'
+      - name: consentId
+        schema: string
+        required: false
+        description: consent id
+        example: 148c9187-e52b-431f-9b24-7225e75ca2be
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request. Default is 25 (standard pagination)
+        example: 25
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /software-products/{softwareProductId}/data-holders
+    method: listAvailable
+    httpMethod: get
+    tag: Data Holders
+    typeScriptTag: dataHolders
+    description: Get Data Holders
+    parameters:
+      - name: softwareProductId
+        schema: string
+        required: true
+        description: >
+          The identifier of the software product registered at the ACCC
+          registry. <br/>
+
+          The list of data holders returned is the list where dynamic client
+          reigstration has been peformed at each data holder for this software
+          product. <br/>
+
+          The list of data holders for a use case can be restricted by
+          management API at Use Case or Software Product level
+        example: SOFTWAREPRODUCTID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /tokens
+    method: establishDataAccess
+    httpMethod: post
+    tag: Tokens
+    typeScriptTag: tokens
+    description: Create Tokens
+    parameters:
+      - name: code
+        schema: string
+        description: ''
+        example: lFDNAS-JVITGzvba3yXfrPR8hWZlCKy6nutbzrmXKop56"
+      - name: state
+        schema: string
+        description: ''
+        example: f99953a5-49a5-497c-91b6-4bd14cdace74
+      - name: id_token
+        schema: string
+        description: ''
+        example: eyJraWQiOiIxZTlnZGs3IiwiYWxnIjoiUl...
+      - name: response
+        schema: string
+        description: ''
+        example: eyJraWQiOiIxZTlnZGs3IiwiYWxnIjoiUl...
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /use-cases
+    method: getAll
+    httpMethod: get
+    tag: UseCase
+    typeScriptTag: useCase
+    description: Get Use-cases
+    parameters:
+      - name: combineScopes
+        schema: boolean
+        required: false
+        description: >-
+          Combine scopes that can be combined according to the CDR Consumer
+          Experience Standards
+        example: true
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+numberOfSchemas: 35
+apiDescription: >-
+  Consent Dashboard REST APIs. This allows ADR / consumers to perform CDR
+  consumer authorization flow with Data Holders

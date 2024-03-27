@@ -1,0 +1,78 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /adr/banking/arrangements/{cdrArrangementId}/accounts:
+    get: Accounts_getCdrArrangementAccounts
+  /adr/banking/arrangements/{cdrArrangementId}/accounts/balances:
+    get: AccountsBalances_getFilteredBalances
+  /adr/banking/arrangements/{cdrArrangementId}/accounts/direct-debits:
+    get: AccountsDirectDebits_getBulkDirectDebits
+  /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}:
+    get: Accounts_obtainDetail
+  /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/balance:
+    get: AccountsBalance_obtainSingleAccountBalance
+  /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/direct-debits:
+    get: AccountDirectDebits_obtainForAccount
+  /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/payments/scheduled:
+    get: AccountPaymentsScheduled_getScheduledPayments
+  /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/transactions:
+    get: AccountTransactions_getByAccountIdAndCdrArrangementId
+  /adr/banking/arrangements/{cdrArrangementId}/accounts/{accountId}/transactions/{transactionId}:
+    get: AccountTransactions_obtainDetail
+  /adr/banking/arrangements/{cdrArrangementId}/payees:
+    get: Payees_getList
+  /adr/banking/arrangements/{cdrArrangementId}/payees/{payeeId}:
+    get: Payees_getDetail
+  /adr/banking/arrangements/{cdrArrangementId}/payments/scheduled:
+    get: PaymentsScheduled_bulkGet
+  /adr/common/arrangements/{cdrArrangementId}/customer:
+    get: Customers_getCustomerInfo
+  /adr/common/arrangements/{cdrArrangementId}/customer/detail:
+    get: Customers_obtainDetailedInfo
+  /adr/common/arrangements/{cdrArrangementId}/userinfo:
+    get: UserInfo_getByArrangementId
+  /adr/discovery/outages:
+    get: DataHolderDiscovery_getOutages
+  /adr/discovery/status:
+    get: DataHolderDiscovery_getStatus
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  accountIds:
+    query: false
+  data-holder-ids:
+    query: false
+  is-owned:
+    query: false
+  max-amount:
+    query: false
+  min-amount:
+    query: false
+  newest-time:
+    query: false
+  oldest-time:
+    query: false
+  open-status:
+    query: false
+  page:
+    query: false
+  page-size:
+    query: false
+  product-category:
+    query: false
+  text:
+    query: false
+  type:
+    query: false
+  x-cds-client-headers:
+    header: false
+  x-fapi-auth-date:
+    header: false
+  x-fapi-customer-ip-address:
+    header: false
+validServerUrls: {}

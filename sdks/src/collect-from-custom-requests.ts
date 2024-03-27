@@ -1957,6 +1957,22 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "adatree.com.au_Data": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Adatree/api-specs/main/data.yaml",
+  },
+  "adatree.com.au_Banking": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Adatree/api-specs/main/banking.yaml",
+  },
+  "adatree.com.au_Consent": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Adatree/api-specs/main/consent.yaml",
+  },
+  "adatree.com.au_Insights": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Adatree/api-specs/main/insights.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

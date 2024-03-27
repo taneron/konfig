@@ -1,0 +1,763 @@
+hash: 595ffb6b5c2ca871833ba4b106399e2b7853c1507706c016ee60bfa204683962
+methodObjects:
+  - url: /data/banking/accounts
+    method: getAccounts
+    httpMethod: get
+    tag: Banking
+    typeScriptTag: banking
+    description: Get Banking Accounts
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: accountIds
+        schema: array
+        required: false
+        description: Used to filter results on the accountId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: isOwned
+        schema: boolean
+        description: >-
+          Filters accounts based on whether they are owned by the authorised
+          customer. True for owned accounts, false for unowned accounts and
+          absent for all accounts
+        example: true
+      - name: openStatus
+        schema: string
+        required: false
+        description: >-
+          Used to filter results according to open/closed status. Values can be
+          OPEN, CLOSED
+        example: OPEN
+      - name: productCategories
+        schema: array
+        required: false
+        description: >-
+          Used to filter results on the productCategory field applicable to
+          accounts. Any one of the valid values for this field can be supplied.
+          If absent then all accounts returned.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+      - name: adatreeConsumerAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in. Mandatory for consumer
+          present calls using a Machine token.
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: adatreeConsumerIpAddress
+        schema: string
+        description: >-
+          The consumer's original IP address. Mandatory for consumer present
+          calls using a Machine token.
+        example: 127.0.0.1
+      - name: adatreeConsumerUserAgent
+        schema: string
+        description: >-
+          User Agent header of the consumer facing application. Mandatory for
+          consumer present calls using a Machine token.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/banking/transactions
+    method: getTransactions
+    httpMethod: get
+    tag: Banking
+    typeScriptTag: banking
+    description: Get Banking Transactions
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: accountIds
+        schema: array
+        required: false
+        description: Used to filter results on the accountId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: types
+        schema: array
+        description: Used to filter results on the type field.
+      - name: statuses
+        schema: array
+        description: Used to filter results by status.
+      - name: minimumAmount
+        schema: number
+        description: Used to filter results on the amount field
+        example: 100
+      - name: maximumAmount
+        schema: number
+        description: Used to filter results on the amount field
+        example: 300
+      - name: oldestRetrievalTime
+        schema: string
+        description: >-
+          Constrain the transaction history request to transactions with
+          retrieval time at or after this date/time. Format is aligned to
+          DateTimeString common type.
+        example: '2012-12-25T15:43:00-08:00'
+      - name: newestRetrievalTime
+        schema: string
+        description: >-
+          Constrain the transaction history request to transactions with
+          retrieval time at or before this date/time. Format is aligned to
+          DateTimeString common type.
+        example: '2012-12-25T15:43:00-08:00'
+      - name: oldestTime
+        schema: string
+        description: >-
+          Constrain the transaction history request to transactions with
+          effective time at or after this date/time. If absent defaults to
+          newest-time minus 90 days.  Format is aligned to DateTimeString common
+          type
+        example: '2012-12-25T15:43:00-08:00'
+      - name: newestTime
+        schema: string
+        description: >-
+          Constrain the transaction history request to transactions with
+          effective time at or before this date/time. Format is aligned to
+          DateTimeString common type.
+        example: '2012-12-25T15:43:00-08:00'
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/banking/payees
+    method: getPayeeList
+    httpMethod: get
+    tag: Banking
+    typeScriptTag: banking
+    description: Get Banking Payees
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: types
+        schema: array
+        description: Used to filter results on the payee type field.
+      - name: payeeIds
+        schema: array
+        required: false
+        description: Used to filter results on the payeeId field.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/banking/payments/direct-debits
+    method: getDirectDebitsList
+    httpMethod: get
+    tag: Banking
+    typeScriptTag: banking
+    description: Get Banking Direct Debits
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: accountIds
+        schema: array
+        required: false
+        description: Used to filter results on the accountId field.
+      - name: isOwned
+        schema: boolean
+        description: >-
+          Filters accounts based on whether they are owned by the authorised
+          customer. True for owned accounts, false for unowned accounts and
+          absent for all accounts
+        example: true
+      - name: openStatus
+        schema: string
+        required: false
+        description: >-
+          Used to filter results according to open/closed status. Values can be
+          OPEN, CLOSED
+        example: OPEN
+      - name: productCategories
+        schema: array
+        required: false
+        description: >-
+          Used to filter results on the productCategory field applicable to
+          accounts. Any one of the valid values for this field can be supplied.
+          If absent then all accounts returned.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/banking/payments/scheduled
+    method: listScheduledPayments
+    httpMethod: get
+    tag: Banking
+    typeScriptTag: banking
+    description: Get Scheduled Payments
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: accountIds
+        schema: array
+        required: false
+        description: Used to filter results on the accountId field.
+      - name: isOwned
+        schema: boolean
+        description: >-
+          Filters accounts based on whether they are owned by the authorised
+          customer. True for owned accounts, false for unowned accounts and
+          absent for all accounts
+        example: true
+      - name: openStatus
+        schema: string
+        required: false
+        description: >-
+          Used to filter results according to open/closed status. Values can be
+          OPEN, CLOSED
+        example: OPEN
+      - name: productCategories
+        schema: array
+        required: false
+        description: >-
+          Used to filter results on the productCategory field applicable to
+          accounts. Any one of the valid values for this field can be supplied.
+          If absent then all accounts returned.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/banking/products
+    method: getBankingProducts
+    httpMethod: get
+    tag: Banking
+    typeScriptTag: banking
+    description: Get Banking Products
+    parameters:
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: productCategories
+        schema: array
+        required: false
+        description: >-
+          Used to filter results on the productCategory field applicable to
+          accounts. Any one of the valid values for this field can be supplied.
+          If absent then all accounts returned.
+      - name: productIds
+        schema: array
+        description: IDs of the specific products
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/common/customers
+    method: getConsumerList
+    httpMethod: get
+    tag: Common
+    typeScriptTag: common
+    description: Get Customers
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: customerUTypes
+        schema: array
+        required: false
+        description: >-
+          Used to filter results on the customerUType field applicable to
+          customers. Any one of the valid values for this field can be supplied.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/energy/plans
+    method: getPlans
+    httpMethod: get
+    tag: Energy
+    typeScriptTag: energy
+    description: Get Energy Plans
+    parameters:
+      - name: planIds
+        schema: array
+        description: Used to filter results on the planId field.
+      - name: planTypes
+        schema: array
+        description: Used to filter results on the type field.
+      - name: fuelTypes
+        schema: array
+        description: Used to filter results on the fuel type field.
+      - name: effective
+        schema: string
+        description: Used to filter results on the effective field.
+        example: CURRENT
+      - name: updatedSince
+        schema: string
+        description: Used to filter results on the updatedSince field
+        example: '2021-01-12T15:43:00.121Z'
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/energy/accounts
+    method: getConsumerEnergyAccounts
+    httpMethod: get
+    tag: Energy
+    typeScriptTag: energy
+    description: Get Energy Accounts
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: accountIds
+        schema: array
+        required: false
+        description: Used to filter results on the accountId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/energy/invoices
+    method: getInvoices
+    httpMethod: get
+    tag: Energy
+    typeScriptTag: energy
+    description: Get Energy Invoices
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: accountIds
+        schema: array
+        required: false
+        description: Used to filter results on the accountId field.
+      - name: invoiceIds
+        schema: array
+        description: Used to filter results on the invoiceId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/energy/bills
+    method: getBills
+    httpMethod: get
+    tag: Energy
+    typeScriptTag: energy
+    description: Get Energy Bills
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: accountIds
+        schema: array
+        required: false
+        description: Used to filter results on the accountId field.
+      - name: billingIds
+        schema: array
+        description: Used to filter results on the billingId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/energy/electricity/servicepoints
+    method: getServicePoints
+    httpMethod: get
+    tag: Energy
+    typeScriptTag: energy
+    description: Get Electricity Service Points
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: servicePointIds
+        schema: array
+        description: Used to filter results on the servicePointId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /data/energy/electricity/usage
+    method: getConsumerElectricityUsage
+    httpMethod: get
+    tag: Energy
+    typeScriptTag: energy
+    description: Get Electricity Usage
+    parameters:
+      - name: useCaseIds
+        schema: array
+        description: Used to filter results on the useCaseId field.
+      - name: cdrArrangementIds
+        schema: array
+        description: Used to filter results on the cdrArrangementId field.
+      - name: consentIds
+        schema: array
+        description: Used to filter results on the consentId field.
+      - name: consumerIds
+        schema: array
+        description: Used to filter results on the consumerId field.
+      - name: servicePointIds
+        schema: array
+        description: Used to filter results on the servicePointId field.
+      - name: dataHolderBrandIds
+        schema: array
+        description: Used to filter results on the dataHolderBrandId field.
+      - name: page
+        schema: integer
+        description: Page of results to request (standard pagination)
+        example: 1
+        default: 1
+      - name: pageSize
+        schema: integer
+        description: Page size to request
+        example: 10
+        default: 25
+      - name: oldestDate
+        schema: string
+        description: >
+          Constrain the request to records with effective date at or after this
+          date. If absent defaults to newest-date minus 24 months.
+        example: '2022-12-31'
+      - name: newestDate
+        schema: string
+        description: >
+          Constrain the request to records with effective date at or before this
+          date. If absent defaults to current date.
+        example: '2022-12-31'
+      - name: adatreeConsumerAuthDate
+        schema: string
+        description: >-
+          The time when the customer last logged in. Mandatory for consumer
+          present calls using a Machine token.
+        example: Tue, 11 Sep 2012 19:43:31 GMT
+      - name: adatreeConsumerIpAddress
+        schema: string
+        description: >-
+          The consumer's original IP address. Mandatory for consumer present
+          calls using a Machine token.
+        example: 127.0.0.1
+      - name: adatreeConsumerUserAgent
+        schema: string
+        description: >-
+          User Agent header of the consumer facing application. Mandatory for
+          consumer present calls using a Machine token.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+numberOfSchemas: 156
+apiDescription: >-
+  Adatree's Accredited Data Recipient (ADR) Platform Data API definition.
+  Includes Banking and Energy.

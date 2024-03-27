@@ -1,0 +1,32 @@
+processed:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    m2m:
+      type: oauth2
+      description: Machine to machine OAuth2 to access infosec token service
+      flows:
+        clientCredentials:
+          tokenUrl: >-
+            https://adatree-nonprod-adr.auth.ap-southeast-2.amazoncognito.com/oauth2/token
+          scopes:
+            authorizations:write: allow ADR to create a Authorisation Request for a consumer
+            tokens:write: allow ADR to create or update Authorisation Request
+  apiBaseUrl: https://cdr-insights-prod.api.adatree.com.au
+  apiVersion: 1.3.0
+  apiDescription: >-
+    Consent Dashboard REST APIs. This allows ADR / consumers to perform CDR
+    consumer authorization flow with Data Holders
+  apiTitle: Adatree ADR Platform Consent API
+  endpoints: 7
+  sdkMethods: 10
+  schemas: 31
+  parameters: 45
+  contactEmail: engineering@adatree.com.au
+  originalCustomRequest:
+    type: GET
+    url: https://raw.githubusercontent.com/Adatree/api-specs/main/consent.yaml
+  customRequestSpecFilename: adatree.com.au_Consent.yaml
+  difficultyScore: 36.75
