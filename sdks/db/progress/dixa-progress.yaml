@@ -1,0 +1,185 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1/agents:
+    get: Agents_list
+    patch: Agents_bulkPatch
+    post: Agents_createAgent
+    put: Agents_updateBulk
+  /v1/agents/bulk:
+    post: Agents_createBulk
+  /v1/agents/presence:
+    get: Agents_listPresence
+  /v1/agents/{agentId}:
+    delete: Agents_downgradeAgent
+    get: Agents_getById
+    patch: Agents_updateAdmin
+    put: Agents_updateAgentAdmin
+  /v1/agents/{agentId}/presence:
+    get: Agents_getPresence
+  /v1/agents/{agentId}/teams:
+    get: Agents_listTeams
+  /v1/analytics/filter/{filterAttribute}:
+    get: Analytics_filterValues
+  /v1/analytics/metrics:
+    get: Analytics_listMetrics
+    post: Analytics_getMetricData
+  /v1/analytics/metrics/{metricId}:
+    get: Analytics_getMetricDescription
+  /v1/analytics/records:
+    get: Analytics_listRecords
+    post: Analytics_getMetricRecordsData
+  /v1/analytics/records/{recordId}:
+    get: Analytics_getRecordProperties
+  /v1/anonymization:
+    post: Anonymization_entityAnonymize
+  /v1/anonymization/request/{requestId}:
+    get: Anonymization_getStatus
+  /v1/contact-endpoints:
+    get: ContactEndpoints_listAll
+  /v1/contact-endpoints/{contactEndpointId}:
+    get: ContactEndpoints_getById
+  /v1/conversations:
+    post: Conversations_createNewConversation
+  /v1/conversations/activitylog:
+    get: Conversations_listOrganizationActivityLog
+  /v1/conversations/flows:
+    get: Conversations_listFlows
+  /v1/conversations/{conversationId}:
+    get: Conversations_getById
+  /v1/conversations/{conversationId}/activitylog:
+    get: Conversations_getActivityLog
+  /v1/conversations/{conversationId}/anonymize:
+    patch: Conversations_anonymizeConversation
+  /v1/conversations/{conversationId}/claim:
+    put: Conversations_claimConversation
+  /v1/conversations/{conversationId}/close:
+    put: Conversations_markClosed
+  /v1/conversations/{conversationId}/custom-attributes:
+    patch: Conversations_updateCustomAttributes
+  /v1/conversations/{conversationId}/linked:
+    get: Conversations_listLinked
+  /v1/conversations/{conversationId}/messages:
+    get: Conversations_listMessages
+    post: Conversations_addMessage
+  /v1/conversations/{conversationId}/messages/{messageId}/anonymize:
+    patch: Conversations_anonymizeMessage
+  /v1/conversations/{conversationId}/notes:
+    get: Conversations_listInternalNotes
+    post: Conversations_addInternalNote
+  /v1/conversations/{conversationId}/notes/bulk:
+    post: Conversations_addInternalNotes
+  /v1/conversations/{conversationId}/rating:
+    get: Conversations_listRating
+  /v1/conversations/{conversationId}/reopen:
+    put: Conversations_reopenConversation
+  /v1/conversations/{conversationId}/tags:
+    get: Conversations_listTags
+  /v1/conversations/{conversationId}/tags/{tagId}:
+    delete: Conversations_untagConversation
+    put: Conversations_tagConversation
+  /v1/conversations/{conversationId}/transfer/queue:
+    put: Conversations_transferQueue
+  /v1/custom-attributes:
+    get: CustomAttributes_listDefinitions
+  /v1/endusers:
+    get: EndUsers_list
+    patch: EndUsers_bulkPatch
+    post: EndUsers_createUser
+    put: EndUsers_bulkUpdate
+  /v1/endusers/bulk:
+    post: EndUsers_createBulkUser
+  /v1/endusers/{userId}:
+    get: EndUsers_getUserById
+    patch: EndUsers_updateUser
+    put: EndUsers_updateUserById
+  /v1/endusers/{userId}/anonymize:
+    patch: EndUsers_anonymizeUser
+  /v1/endusers/{userId}/conversations:
+    get: EndUsers_listConversations
+  /v1/endusers/{userId}/custom-attributes:
+    patch: EndUsers_updateCustomAttributes
+  /v1/queues:
+    get: Queues_listAll
+    post: Queues_createQueue
+  /v1/queues/{queueId}:
+    get: Queues_getById
+  /v1/queues/{queueId}/members:
+    delete: Queues_removeMembersBulk
+    get: Queues_listMembers
+    patch: Queues_assignMembers
+  /v1/search/conversations:
+    get: Search_conversationsContainingText
+  /v1/tags:
+    get: Tags_list
+    post: Tags_createTag
+  /v1/tags/{tagId}:
+    get: Tags_getById
+  /v1/tags/{tagId}/activate:
+    patch: Tags_activateTag
+  /v1/tags/{tagId}/deactivate:
+    patch: Tags_deactivateTag
+  /v1/teams:
+    get: Teams_listAll
+    post: Teams_createTeam
+  /v1/teams/{teamId}:
+    delete: Teams_removeTeam
+    get: Teams_getById
+  /v1/teams/{teamId}/agents:
+    delete: Teams_removeMembers
+    get: Teams_listMembers
+    patch: Teams_addMembers
+  /v1/teams/{teamId}/presence:
+    get: Teams_listPresenceStatus
+  /v1/webhooks:
+    get: Webhooks_listSubscriptions
+    post: Webhooks_createSubscription
+  /v1/webhooks/{webhookSubscriptionId}:
+    delete: Webhooks_deleteSubscription
+    get: Webhooks_getSubscriptionById
+    patch: Webhooks_updateSubscription
+  /v1/webhooks/{webhookSubscriptionId}/delivery-status:
+    get: Webhooks_getDeliveryStatus
+  /v1/webhooks/{webhookSubscriptionId}/delivery-status/logs/{event}:
+    get: Webhooks_getDeliveryStatusLogs
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/agents:
+    patch:
+      application/json: AgentsBulkPatchRequest
+    put:
+      application/json: AgentsUpdateBulkRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/agents/presence:
+    get:
+      '200':
+        application/json: AgentsListPresenceResponse
+securityParameters:
+  _type:
+    query: false
+  channel:
+    query: false
+  email:
+    query: false
+  exactMatch:
+    query: false
+  externalId:
+    query: false
+  force:
+    query: false
+  fromDatetime:
+    query: false
+  pageKey:
+    query: false
+  pageLimit:
+    query: false
+  phone:
+    query: false
+  query:
+    query: false
+  toDatetime:
+    query: false
+validServerUrls: {}

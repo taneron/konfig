@@ -1666,6 +1666,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://dac-static.atlassian.com/cloud/jira/platform/swagger-v3.v3.json",
   },
+  "dixa.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.dixa.io/openapi/dixa-api/v1/overview/",
+        browser,
+      });
+    },
+  },
   "nocodb.com": {
     type: "GET",
     url: "https://raw.githubusercontent.com/nocodb/nocodb/HEAD/packages/nocodb/src/schema/swagger-v2.json",

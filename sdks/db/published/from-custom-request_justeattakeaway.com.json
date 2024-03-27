@@ -1204,7 +1204,7 @@
           "name": "deliveryTime",
           "schema": "string",
           "required": true,
-          "description": "Delivery date/time when fees are required (ISO8601 format).",
+          "description": "Delivery date/time when fees are required (https://.",
           "example": "2019-09-05T12:43:48.431Z"
         },
         {
@@ -1218,7 +1218,7 @@
           "name": "latlong",
           "schema": "array",
           "required": false,
-          "description": "Point to which delivery is required (latitude, longitude). Supply this where possible as support for zone-only based lookups will be removed in future.",
+          "description": "Point to which delivery is required (https://. Supply this where possible as support for zone-only based lookups will be removed in future.",
           "example": [
             51.3851513,
             -2.0841275
@@ -1282,7 +1282,7 @@
           "name": "serviceType",
           "schema": "string",
           "required": false,
-          "description": "Retrieve restaurants based on the type of service they offer.\n\n- `any`: Retrieve restaurants offering any service type (default).\n- `delivery`: Retrieve restaurants that offer delivery.\n- `collection`: Retrieve restaurants that offer collection.\n",
+          "description": "Retrieve restaurants based on the type of service they offer.\n\n- `any`: Retrieve restaurants offering any service type (https://.\n- `delivery`: Retrieve restaurants that offer delivery.\n- `collection`: Retrieve restaurants that offer collection.\n",
           "default": "any"
         },
         {
@@ -1348,7 +1348,7 @@
           "name": "serviceType",
           "schema": "string",
           "required": false,
-          "description": "Retrieve restaurants based on the type of service they offer.\n\n- `any`: Retrieve restaurants offering any service type (default).\n- `delivery`: Retrieve restaurants that offer delivery.\n- `collection`: Retrieve restaurants that offer collection.\n",
+          "description": "Retrieve restaurants based on the type of service they offer.\n\n- `any`: Retrieve restaurants offering any service type (https://.\n- `delivery`: Retrieve restaurants that offer delivery.\n- `collection`: Retrieve restaurants that offer collection.\n",
           "default": "any"
         },
         {
@@ -2714,7 +2714,7 @@
       "httpMethod": "post",
       "tag": "API Partner Management Gateway",
       "typeScriptTag": "apiPartnerManagementGateway",
-      "description": "Order ready for preparation (async)",
+      "description": "Order ready for preparation (https://",
       "parameters": [
         {
           "name": "xJetApplication",
@@ -2804,7 +2804,7 @@
       "httpMethod": "post",
       "tag": "API Partner Management Gateway",
       "typeScriptTag": "apiPartnerManagementGateway",
-      "description": "Order ready for preparation (sync)",
+      "description": "Order ready for preparation (https://",
       "parameters": [
         {
           "name": "xJetApplication",
@@ -3158,7 +3158,7 @@
       "httpMethod": "put",
       "tag": "Manage Order Journey",
       "typeScriptTag": "manageOrderJourney",
-      "description": "Update current driver locations (bulk upload)",
+      "description": "Update current driver locations (https://",
       "parameters": [
         {
           "name": "xJetApplication",
@@ -3190,7 +3190,7 @@
           "name": "brandSlug",
           "schema": "string",
           "required": true,
-          "description": "The owning brand in the brand slug format e.g. `je-uk-example` (contact delivery manager if unsure). This field may be removed in a future version.",
+          "description": "The owning brand in the brand slug format e.g. `je-uk-example` (https://. This field may be removed in a future version.",
           "example": "je-uk-example"
         },
         {
@@ -3246,7 +3246,7 @@
           "name": "brandSlug",
           "schema": "string",
           "required": true,
-          "description": "The owning brand in the brand slug format e.g. `je-uk-example` (contact delivery manager if unsure). This field may be removed in a future version.",
+          "description": "The owning brand in the brand slug format e.g. `je-uk-example` (https://. This field may be removed in a future version.",
           "example": "je-uk-example"
         },
         {
@@ -3316,7 +3316,7 @@
           "name": "brandSlug",
           "schema": "string",
           "required": true,
-          "description": "The owning brand in the brand slug format e.g. `je-uk-example` (contact delivery manager if unsure). This field may be removed in a future version.",
+          "description": "The owning brand in the brand slug format e.g. `je-uk-example` (https://. This field may be removed in a future version.",
           "example": "je-uk-example"
         },
         {
@@ -4709,7 +4709,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/favicon.png",
   "clientNameCamelCase": "justEat",
-  "lastUpdated": "2024-03-27T01:23:25.425Z",
+  "lastUpdated": "2024-03-27T21:31:04.839Z",
   "typescriptSdkUsageCode": "import { JustEat } from 'just-eat-typescript-sdk';\n\nconst justEat = new JustEat({\n    // Bearer token authentication using a JSON Web Token (JWT).\n    bearer: \"BEARER\",\n    // APIs for delivery partners require an API key that will have been issued to you.\n    apiKey: \"AUTHORIZATION\",\n    // A few services allow the use of basic authentication when a partner doesn't support OAuth based authentication.\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n    // ADFS authentication provider for internal Just Eat tools.\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\",\n    // Bearer token authentication using a JSON Web Token (JWT), used by the restaurant sign up system\n    restaurantsignupJwt: \"RESTAURANTSIGNUP_JWT\",\n    // Bearer token authentication using a JSON Web Token (JWT), used for delivery as a service endpoints.\n    daasJwt: \"DAAS_JWT\",\n    // API Key for services run by JET Connect, formerly known as Flyt.\n    xFlytApiKey: \"X_FLYT_API_KEY\"\n})",
   "typescriptSdkFirstRequestCode": "// Attempted delivery query resolved\nconst resolveDeliveryQueryResponse = justEat.apiPartnerManagementGateway.resolveDeliveryQuery()",
   "fixedSpecFileName": "just-eat-fixed-spec.yaml"
