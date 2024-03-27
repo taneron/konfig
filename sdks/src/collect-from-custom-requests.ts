@@ -1001,6 +1001,14 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://api.quivr.app/openapi.json",
     apiBaseUrl: "https://api.quivr.app",
   },
+  "paycor.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developers.paycor.com/explore",
+        browser,
+      });
+    },
+  },
   "paychex.com": {
     lambda: async () => {
       // fetch HTML from url and parse for spec-url at:

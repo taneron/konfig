@@ -1,0 +1,320 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/employees/{employeeId}/payrollhours:
+    post:
+      '200':
+        application/json: {}
+  /v1/legalentities/{legalEntityId}/payrollhours:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/employees:
+    post: Employees_createNewEmployee
+  /v1/employees/onboarding:
+    post: EmployeeOnboarding_addNewEntry
+  /v1/employees/taxes/filingStatus/{taxCode}:
+    get: EmployeeTaxes_getFilingStatusByTaxCode
+  /v1/employees/taxes/taxFields/{taxCode}:
+    get: EmployeeTaxes_getTaxFieldsByTaxCode
+  /v1/employees/{employeeId}:
+    get: Employees_getByEmployeeId
+    put: Employees_updateContact
+  /v1/employees/{employeeId}/DirectDeposits:
+    get: EmployeeDirectDeposits_getByEmployeeId
+    post: EmployeeDirectDeposits_addByEmployeeId
+    put: EmployeeDirectDeposits_updateByEmployeeIdDDD
+  /v1/employees/{employeeId}/DirectDeposits/{directDepositId}:
+    get: EmployeeDirectDeposits_getByEmployeeAndDepositId
+  /v1/employees/{employeeId}/HSAaccounts:
+    get: EmployeeDirectDeposits_getByEmployeeIdHSA
+    post: EmployeeDirectDeposits_addByEmployeeIdHsa
+    put: EmployeeDirectDeposits_updateHsaDirectDepositsByEmployeeId
+  /v1/employees/{employeeId}/I9Verification:
+    get: EmployeeI9Verification_getByEmployeeId
+    put: EmployeeI9Verification_updateByEmployeeIdI9Verification
+  /v1/employees/{employeeId}/PayStubDocument/{documentId}:
+    get: EmployeeDocuments_downloadPayStub
+  /v1/employees/{employeeId}/Paygroup:
+    put: Employees_updatePaygroup
+  /v1/employees/{employeeId}/certifications:
+    get: EmployeeCertifications_listByEmployeeId
+    post: EmployeeCertifications_addNewCertification
+    put: EmployeeCertifications_updateCertification
+  /v1/employees/{employeeId}/customfields:
+    get: EmployeeCustomFields_getByEmployeeId
+    put: EmployeeCustomFields_updateByEmployeeId
+  /v1/employees/{employeeId}/deductions:
+    get: EmployeeDeductions_getByEmployeeId
+    post: EmployeeDeductions_addDeductionToEmployee
+    put: EmployeeDeductions_updateByEmployeeId
+  /v1/employees/{employeeId}/deductions/{employeeDeductionId}:
+    get: EmployeeDeductions_getByEmployeeIdAndDeductionId
+  /v1/employees/{employeeId}/earnings:
+    get: EmployeeEarnings_getByEmployeeId
+    post: EmployeeEarnings_addNewEarning
+    put: EmployeeEarnings_updateData
+  /v1/employees/{employeeId}/earnings/{employeeEarningId}:
+    get: EmployeeEarnings_getByEmployeeAndEarning
+  /v1/employees/{employeeId}/emergencycontact:
+    post: EmployeeEmergencyContact_createUpdate
+  /v1/employees/{employeeId}/identifyingdata:
+    put: Employees_updatePersonalData
+  /v1/employees/{employeeId}/payrates:
+    get: EmployeePayRates_getByEmployeeId
+    post: EmployeePayRates_addNewRate
+  /v1/employees/{employeeId}/payrates/{payrateId}:
+    put: EmployeePayRates_updateByEmployeeIdAndPayrateId
+  /v1/employees/{employeeId}/payrollhours:
+    post: EmployeePayrollHours_importToEmployee
+  /v1/employees/{employeeId}/payschedule:
+    get: EmployeePaySchedule_getUpcomingCheckDates
+  /v1/employees/{employeeId}/paystubDocumentData:
+    get: EmployeeDocuments_getPayStubDocumentByEmployeeId
+  /v1/employees/{employeeId}/paystubs:
+    get: EmployeePayStubs_getByEmployeeId
+  /v1/employees/{employeeId}/paystubsytd:
+    get: EmployeePayStubs_getYtdByEmployeeId
+  /v1/employees/{employeeId}/person:
+    get: Persons_getByEmployeeIdPerson
+  /v1/employees/{employeeId}/position:
+    put: Employees_updatePositionData
+  /v1/employees/{employeeId}/positionandstatus:
+    put: Employees_updatePositionAndStatusData
+  /v1/employees/{employeeId}/punches:
+    get: EmployeeTimeCardPunches_getByEmployeeId
+  /v1/employees/{employeeId}/schedules:
+    get: EmployeeLegacyPerformTimeSchedules_getByEmployeeId
+    post: EmployeeLegacyPerformTimeSchedules_addToEmployee
+  /v1/employees/{employeeId}/schedules/{scheduleId}:
+    delete: EmployeeLegacyPerformTimeSchedules_deleteLegacySchedule
+  /v1/employees/{employeeId}/status:
+    put: Employees_updateStatusData
+  /v1/employees/{employeeId}/taxes:
+    get: EmployeeTaxes_getByEmployeeId
+    post: EmployeeTaxes_addByEmployeeId
+    put: EmployeeTaxes_updateByEmployeeId
+  /v1/employees/{employeeId}/timeoffaccruals:
+    get: EmployeeTimeOffAccruals_getByEmployeeId
+  /v1/employees/{employeeId}/timeoffrequests:
+    get: TimeOffRequests_listByEmployeeId
+  /v1/events/mockevent:
+    post: Events_notifyEventDetails
+  /v1/generalledger/jobcosting/legalentities/{legalEntityId}:
+    get: GeneralLedgerJobCosting_getByLegalEntityId
+  /v1/generalledger/legalentities/{legalEntityId}:
+    get: GeneralLedger_getByLegalEntityId
+  /v1/legalEntities/{legalEntityId}/ats/accounts:
+    get: ApplicantTrackingSystem_listAtsAccountsByLegalEntity
+  /v1/legalEntities/{legalEntityId}/ats/{atsAccountId}/jobs:
+    get: ApplicantTrackingSystem_getAccountJobs
+  /v1/legalEntities/{legalEntityId}/ats/{atsAccountId}/jobs/{atsJobId}:
+    get: ApplicantTrackingSystem_getJobByJobId
+  /v1/legalEntities/{legalEntityId}/persons:
+    get: Persons_listByLegalEntityId
+  /v1/legalEntities/{legalEntityId}/punches:
+    get: EmployeeTimeCardPunches_getByLegalEntityId
+  /v1/legalEntities/{legalEntityId}/schedules:
+    get: EmployeeLegacyPerformTimeSchedules_getByLegalEntityId
+  /v1/legalentities/ActivatedLegalEntityTenantList:
+    get: LegalEntities_getTenantList
+  /v1/legalentities/{legalEntityId}:
+    get: LegalEntities_getById
+  /v1/legalentities/{legalEntityId}/activitytypes:
+    get: LegalEntityActivityTypes_getByLegalEntityId
+  /v1/legalentities/{legalEntityId}/certificationOrganizations:
+    get: LegalEntityCertifications_listCertificationOrganizations
+  /v1/legalentities/{legalEntityId}/certifications:
+    get: LegalEntityCertifications_list
+  /v1/legalentities/{legalEntityId}/deductions:
+    get: LegalEntityDeductions_viewEmployeesData
+  /v1/legalentities/{legalEntityId}/departments:
+    get: LegalEntityDepartments_listByLegalEntityId
+    post: LegalEntityDepartments_createNewDepartment
+    put: LegalEntityDepartments_updateByLegalEntityId
+  /v1/legalentities/{legalEntityId}/departments/{departmentId}:
+    get: LegalEntityDepartments_getById
+  /v1/legalentities/{legalEntityId}/earnings:
+    get: LegalEntityEarnings_getByLegalEntityId
+  /v1/legalentities/{legalEntityId}/employees:
+    get: Employees_listByLegalEntityId
+  /v1/legalentities/{legalEntityId}/employeesIdentifyingData:
+    get: Employees_getIdentifyingData
+  /v1/legalentities/{legalEntityId}/jobtitles:
+    get: LegalEntityJobTitles_listByLegalEntityId
+  /v1/legalentities/{legalEntityId}/laborcategories:
+    get: LaborCategories_byLegalEntityIdGet
+  /v1/legalentities/{legalEntityId}/laborcodes:
+    get: LaborCodes_listByLegalEntityId
+    post: LaborCodes_addLaborCodeToLegalEntity
+    put: LaborCodes_updateSpecifiedLaborCode
+  /v1/legalentities/{legalEntityId}/onboardingemployees:
+    get: EmployeeOnboarding_listOnboardingEmployees
+  /v1/legalentities/{legalEntityId}/payGroups:
+    get: LegalEntityPayGroups_listByLegalEntityId
+  /v1/legalentities/{legalEntityId}/paydata:
+    get: LegalEntityPayData_getPayDates
+  /v1/legalentities/{legalEntityId}/payrollProcessing:
+    get: LegalEntityPayrollProcessingData_getByLegalEntity
+  /v1/legalentities/{legalEntityId}/payrollhours:
+    post: EmployeePayrollHours_addHoursAndEarningsToPaygrid
+  /v1/legalentities/{legalEntityId}/payschedule:
+    get: LegalEntityPaySchedule_getByLegalEntityAndPaygroup
+  /v1/legalentities/{legalEntityId}/paystubs:
+    get: EmployeePayStubs_getByLegalEntity
+  /v1/legalentities/{legalEntityId}/paystubsytd:
+    get: EmployeePayStubs_getYtdByLegalEntity
+  /v1/legalentities/{legalEntityId}/schedulegroups:
+    get: LegalEntityScheduleGroups_getByLegalEntityId
+  /v1/legalentities/{legalEntityId}/services:
+    get: LegalEntityServices_getSubscribedServices
+  /v1/legalentities/{legalEntityId}/statusReasons/{statusCategory}:
+    get: LegalEntityStatusReason_getList
+  /v1/legalentities/{legalEntityId}/taxes:
+    get: LegalEntityTaxes_getByLegalEntityId
+  /v1/legalentities/{legalEntityId}/timeoffRequests/{timeoffRequestId}:
+    get: TimeOffRequests_getTimeoffRequestById
+  /v1/legalentities/{legalEntityId}/timeoffRequestserrorlog/{trackingId}:
+    get: LegalEntityTimeData_getTimeOffRequestErrorLogsByTrackingId
+  /v1/legalentities/{legalEntityId}/timeoffaccruals:
+    get: EmployeeTimeOffAccruals_getByLegalEntityId
+  /v1/legalentities/{legalEntityId}/timeoffrequests:
+    get: TimeOffRequests_listByLegalEntityId
+  /v1/legalentities/{legalEntityId}/timeofftypes:
+    get: LegalEntityTimeOffTypes_viewTimeOffTypes
+  /v1/legalentities/{legalEntityId}/worklocations:
+    get: LegalEntityWorkLocations_list
+    post: LegalEntityWorkLocations_addByLegalEntityId
+    put: LegalEntityWorkLocations_updateByLegalEntityId
+  /v1/legalentities/{legalEntityId}/worklocations/{workLocationId}:
+    delete: LegalEntityWorkLocations_deleteByLegalEntityAndWorkLocationId
+    get: LegalEntityWorkLocations_getByLegalEntityAndLocation
+  /v1/legalentities/{legalEntityId}/worksites:
+    get: LegalEntityWorkSites_getByLegalEntityId
+  /v1/tenants/{tenantId}:
+    get: Tenants_getById
+  /v1/tenants/{tenantId}/employees:
+    get: Employees_listByTenantId
+  /v1/tenants/{tenantId}/jobtitles:
+    get: JobTitles_listByTenantId
+  /v1/tenants/{tenantId}/persons:
+    get: Persons_listByTenantId
+  /v1/tenants/{tenantId}/persons/{personId}:
+    get: Persons_getByTenantAndPerson
+  /v1/tenants/{tenantId}/worklocations:
+    get: Tenants_getWorkLocationsByTenantId
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/employees/{employeeId}/customfields:
+    put:
+      application/json: EmployeeCustomFieldsUpdateByEmployeeIdRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/employees/{employeeId}/PayStubDocument/{documentId}:
+    get:
+      '200':
+        application/octet-stream: EmployeeDocumentsDownloadPayStubResponse
+  /v1/employees/{employeeId}/customfields:
+    get:
+      '200':
+        application/json: EmployeeCustomFieldsGetByEmployeeIdResponse
+  /v1/employees/{employeeId}/deductions:
+    post:
+      '201':
+        application/json: EmployeeDeductionsAddDeductionToEmployeeResponse
+  /v1/employees/{employeeId}/payrollhours:
+    post:
+      '200':
+        application/json: EmployeePayrollHoursImportToEmployeeResponse
+  /v1/employees/{employeeId}/schedules:
+    get:
+      '200':
+        application/json: EmployeeLegacyPerformTimeSchedulesGetByEmployeeIdResponse
+  /v1/employees/{employeeId}/taxes:
+    get:
+      '200':
+        application/json: EmployeeTaxesGetByEmployeeIdResponse
+    post:
+      '201':
+        application/json: EmployeeTaxesAddByEmployeeIdResponse
+    put:
+      '200':
+        application/json: EmployeeTaxesUpdateByEmployeeIdResponse
+  /v1/legalentities/{legalEntityId}/earnings:
+    get:
+      '200':
+        application/json: LegalEntityEarningsGetByLegalEntityIdResponse
+  /v1/legalentities/{legalEntityId}/payrollhours:
+    post:
+      '200':
+        application/json: EmployeePayrollHoursAddHoursAndEarningsToPaygridResponse
+  /v1/legalentities/{legalEntityId}/statusReasons/{statusCategory}:
+    get:
+      '200':
+        application/json: LegalEntityStatusReasonGetListResponse
+  /v1/legalentities/{legalEntityId}/taxes:
+    get:
+      '200':
+        application/json: LegalEntityTaxesGetByLegalEntityIdResponse
+securityParameters:
+  addressData:
+    query: false
+  appendData:
+    query: false
+  asOfDate:
+    query: false
+  checkDate:
+    query: false
+  continuationToken:
+    query: false
+  departmentCode:
+    query: false
+  emailType:
+    query: false
+  employeeId:
+    query: false
+  employeeNumber:
+    query: false
+  endDate:
+    query: false
+  fromCheckDate:
+    query: false
+  include:
+    query: false
+  jobCode:
+    query: false
+  lastName:
+    query: false
+  payGroupId:
+    query: false
+  periodEndDate:
+    query: false
+  periodStartDate:
+    query: false
+  plannerId:
+    query: false
+  postedToCareers:
+    query: false
+  processDate:
+    query: false
+  replaceData:
+    query: false
+  reportType:
+    query: false
+  startDate:
+    query: false
+  status:
+    query: false
+  statusFilter:
+    query: false
+  toCheckDate:
+    query: false
+  untilDate:
+    query: false
+  workLocationName:
+    query: false
+validServerUrls: {}
