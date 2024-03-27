@@ -2011,6 +2011,15 @@ const customRequests: Record<string, CustomRequest> = {
         filename: "openapi.json",
       });
     },
+  },
+  "bossinsights.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://api.bossinsights.com/",
+        browser,
+        filename: "openapi.json",
+      });
+    },
   }
 };
 
