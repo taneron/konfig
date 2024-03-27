@@ -636,6 +636,7 @@ function removeRelativeLinks({
   // (/docs/tracking/reference/shipping-status/)
   // (/docs/tracking/reference/shipping-status)
   // (/api/rest/responses/#hateoas-links)
+  // (any link that is not an absolute link and is relative)
   const relativeLinkRegex = /href="\/([^"]+)"/g;
   specString = specString.replace(
     relativeLinkRegex,
@@ -643,7 +644,11 @@ function removeRelativeLinks({
   );
   specString = specString.replace(
     /\(\/([^)]+)\)/g,
-    `(/${developerDocumentation}`
+    `(${developerDocumentation}`
+  );
+  specString = specString.replace(
+    /\((?!https?:\/\/)([^)]+)\)/g,
+    `(${developerDocumentation}`
   );
   return specString;
 }

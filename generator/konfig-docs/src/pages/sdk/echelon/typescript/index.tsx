@@ -21,7 +21,7 @@ We are here to bring you one step closer to expanding your business in East and 
       companyKebabCase="echelon"
       clientNameCamelCase="echelon"
       homepage="www.echelonpro.io/"
-      lastUpdated={new Date("2024-03-27T20:37:30.785Z")}
+      lastUpdated={new Date("2024-03-27T20:56:41.471Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/echelon/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -42,7 +42,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
@@ -111,7 +111,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
@@ -180,14 +180,14 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
         "name": "idPayin",
         "schema": "string",
         "required": true,
-        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](general.html#request-ids).",
+        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](https://developers.echelonpay.com/.",
         "example": "IDPAYIN"
       }
     ],
@@ -238,7 +238,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
@@ -251,7 +251,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "idPayin",
         "schema": "string",
         "required": true,
-        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](general.html#request-ids).",
+        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](https://developers.echelonpay.com/.",
         "example": "IDPAYIN"
       },
       {
@@ -335,14 +335,14 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
         "name": "idPayout",
         "schema": "string",
         "required": true,
-        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](general.html#request-ids).",
+        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](https://developers.echelonpay.com/.",
         "example": "IDPAYOUT"
       }
     ],
@@ -393,7 +393,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
@@ -406,7 +406,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "idPayout",
         "schema": "string",
         "required": true,
-        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](general.html#request-ids).",
+        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](https://developers.echelonpay.com/.",
         "example": "IDPAYOUT"
       },
       {
@@ -483,14 +483,14 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
         "name": "idPayin",
         "schema": "string",
         "required": true,
-        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](general.html#request-ids).",
+        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](https://developers.echelonpay.com/.",
         "example": "IDPAYIN"
       },
       {
@@ -544,7 +544,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
@@ -602,14 +602,14 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
         "name": "idPayin",
         "schema": "string",
         "required": true,
-        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](general.html#request-ids).",
+        "description": "Unique Merchant Order ID provided by merchant. See [Request IDs](https://developers.echelonpay.com/.",
         "example": "IDPAYIN"
       }
     ],
@@ -660,7 +660,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       }
     ],
@@ -707,7 +707,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       }
     ],
@@ -754,7 +754,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       }
     ],
@@ -797,7 +797,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       }
     ],
@@ -840,7 +840,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       }
     ],
@@ -883,7 +883,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
@@ -923,7 +923,7 @@ We are here to bring you one step closer to expanding your business in East and 
     "responses": [
       {
         "statusCode": "200",
-        "description": "List of (possibly) available payment options."
+        "description": "List of (https://developers.echelonpay.com/ available payment options."
       },
       {
         "statusCode": "400",
@@ -967,7 +967,7 @@ We are here to bring you one step closer to expanding your business in East and 
         "name": "xApiVersion",
         "schema": "integer",
         "required": true,
-        "description": "Required API version. See [Versioning](general.html#versioning)",
+        "description": "Required API version. See [Versioning](https://developers.echelonpay.com/",
         "example": 0
       },
       {
