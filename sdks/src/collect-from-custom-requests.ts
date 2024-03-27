@@ -525,6 +525,20 @@ const customRequests: Record<string, CustomRequest> = {
       return response.text();
     },
   },
+  "peoplehr.com": {
+    lambda: async () => {
+      const url = "https://apidocs.peoplehr.com/demo/swaggerNew.json";
+
+      // get rawSpecString
+      const response = await fetch(url);
+      let rawSpecString = await response.text();
+
+      // remove ",," from rawSpecString
+      rawSpecString = rawSpecString.replaceAll(",,", ",");
+
+      return rawSpecString;
+    },
+  },
   "signwell.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
