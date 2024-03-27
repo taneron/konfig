@@ -16,7 +16,7 @@ BlueSnap supports payments through multiple sales channels such as online and mo
 
 And with one integration and contract, businesses can sell in over 200 geographies with access to local acquiring in 47 countries, 110+ currencies and 100+ global payment types, including popular eWallets, automated accounts receivable, world-class fraud protection and chargeback management, built-in solutions for regulation and tax compliance, and unified global reporting to help businesses grow.
 
-With a US headquarters in Waltham, MA, and EU headquarters in Dublin, Ireland, BlueSnap is backed by world-class private equity investors including Great Hill Partners and Parthenon Capital Partners. 
+With a US headquarters in Waltham, MA, and EU headquarters in Dublin, Ireland, BlueSnap is backed by world-class private equity investors including Great Hill Partners and Parthenon Capital Partners.
 
 Learn more at BlueSnap.com`}
       company="BlueSnap"
@@ -25,7 +25,7 @@ Learn more at BlueSnap.com`}
       companyKebabCase="blue-snap"
       clientNameCamelCase="blueSnap"
       homepage="www.bluesnap.com/"
-      lastUpdated={new Date("2024-03-27T17:59:32.911Z")}
+      lastUpdated={new Date("2024-03-27T18:19:15.740Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/bluesnap/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
