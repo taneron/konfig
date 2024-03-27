@@ -932,6 +932,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/personio/api-docs/master/personio-personnel-data-api-oa3.yaml",
   },
+  "pingidentity.com_PingDirectory": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/pingidentity/pingdirectory-go-client/HEAD/configurationapi/api/openapi.yaml",
+  },
   "brex.com_Transactions": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

@@ -1,0 +1,781 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /access-control-handler:
+    get: Accesscontrolhandler_getSingle
+    patch: Accesscontrolhandler_updateByName
+  /access-token-validators:
+    get: Accesstokenvalidator_listObjects
+    post: Accesstokenvalidator_addNewValidator
+  /access-token-validators/{access-token-validator-name}:
+    delete: Accesstokenvalidator_deleteValidator
+    get: Accesstokenvalidator_getSingleValidator
+    patch: Accesstokenvalidator_updateByName
+  /account-status-notification-handlers:
+    get: Accountstatusnotificationhandler_listObjects
+    post: Accountstatusnotificationhandler_addNewHandler
+  /account-status-notification-handlers/{account-status-notification-handler-name}:
+    delete: Accountstatusnotificationhandler_deleteHandler
+    get: Accountstatusnotificationhandler_getSingle
+    patch: Accountstatusnotificationhandler_updateByHandlerName
+  /alarm-manager:
+    get: Alarmmanager_getSingleAlarmManager
+    patch: Alarmmanager_updateByName
+  /alert-handlers:
+    get: Alerthandler_listAlertHandlers
+    post: Alerthandler_addNewHandler
+  /alert-handlers/{alert-handler-name}:
+    delete: Alerthandler_deleteHandler
+    get: Alerthandler_getSingleHandler
+    patch: Alerthandler_updateByName
+  /attribute-syntaxes:
+    get: Attributesyntax_getAllObjects
+  /attribute-syntaxes/{attribute-syntax-name}:
+    get: Attributesyntax_getSingleAttributeSyntax
+    patch: Attributesyntax_updateByName
+  /azure-authentication-methods:
+    get: Azureauthenticationmethod_getAllObjects
+    post: Azureauthenticationmethod_addNewConfig
+  /azure-authentication-methods/{azure-authentication-method-name}:
+    delete: Azureauthenticationmethod_deleteAzureAuthenticationMethod
+    get: Azureauthenticationmethod_getSingleMethod
+    patch: Azureauthenticationmethod_updateByName
+  /backends:
+    get: Backend_getAllObjects
+    post: Backend_createConfig
+  /backends/{backend-name}:
+    delete: Backend_deleteBackend
+    get: Backend_getSingle
+    patch: Backend_updateByName
+  /backends/{backend-name}/local-db-composite-indexes:
+    get: Localdbcompositeindex_listAllObjects
+    post: Localdbcompositeindex_addNewIndex
+  /backends/{backend-name}/local-db-composite-indexes/{local-db-composite-index-name}:
+    delete: Localdbcompositeindex_deleteCompositeIndex
+    get: Localdbcompositeindex_getSingle
+    patch: Localdbcompositeindex_updateByName
+  /backends/{backend-name}/local-db-indexes:
+    get: Localdbindex_getAllIndexes
+    post: Localdbindex_addNewIndex
+  /backends/{backend-name}/local-db-indexes/{local-db-index-name}:
+    delete: Localdbindex_deleteIndex
+    get: Localdbindex_getSingle
+    patch: Localdbindex_updateByName
+  /backends/{backend-name}/local-db-vlv-indexes:
+    get: Localdbvlvindex_listObjects
+    post: Localdbvlvindex_addNewIndexToConfig
+  /backends/{backend-name}/local-db-vlv-indexes/{local-db-vlv-index-name}:
+    delete: Localdbvlvindex_delete
+    get: Localdbvlvindex_getSingle
+    patch: Localdbvlvindex_updateByName
+  /certificate-mappers:
+    get: Certificatemapper_listAllObjects
+    post: Certificatemapper_addNewMapper
+  /certificate-mappers/{certificate-mapper-name}:
+    delete: Certificatemapper_deleteMapper
+    get: Certificatemapper_getSingle
+    patch: Certificatemapper_updateByName
+  /change-subscription-handlers:
+    get: Changesubscriptionhandler_listAllHandlers
+    post: Changesubscriptionhandler_addNewHandler
+  /change-subscription-handlers/{change-subscription-handler-name}:
+    delete: Changesubscriptionhandler_deleteHandler
+    get: Changesubscriptionhandler_getSingle
+    patch: Changesubscriptionhandler_updateByName
+  /change-subscriptions:
+    get: Changesubscription_listAllObjects
+    post: Changesubscription_addNewToConfig
+  /change-subscriptions/{change-subscription-name}:
+    delete: Changesubscription_deleteSubscription
+    get: Changesubscription_getSingle
+    patch: Changesubscription_updateByName
+  /cipher-stream-providers:
+    get: Cipherstreamprovider_listAllProviders
+    post: Cipherstreamprovider_addNewProvider
+  /cipher-stream-providers/{cipher-stream-provider-name}:
+    delete: Cipherstreamprovider_deleteProvider
+    get: Cipherstreamprovider_getSingle
+    patch: Cipherstreamprovider_updateByName
+  /client-connection-policies:
+    get: Clientconnectionpolicy_getAllObjects
+    post: Clientconnectionpolicy_addNewPolicy
+  /client-connection-policies/{client-connection-policy-name}:
+    delete: Clientconnectionpolicy_deleteById
+    get: Clientconnectionpolicy_getSingle
+    patch: Clientconnectionpolicy_updateByName
+  /conjur-authentication-methods:
+    get: Conjurauthenticationmethod_listAllMethods
+    post: Conjurauthenticationmethod_addNewMethod
+  /conjur-authentication-methods/{conjur-authentication-method-name}:
+    delete: Conjurauthenticationmethod_deleteMethod
+    get: Conjurauthenticationmethod_getMethod
+    patch: Conjurauthenticationmethod_updateByMethodName
+  /connection-criteria:
+    get: Connectioncriteria_listObjects
+    post: Connectioncriteria_addNewCriteriaToConfig
+  /connection-criteria/{connection-criteria-name}:
+    delete: Connectioncriteria_deleteCriteria
+    get: Connectioncriteria_getSingleCriteria
+    patch: Connectioncriteria_updateByName
+  /connection-handlers:
+    get: Connectionhandler_listObjects
+    post: Connectionhandler_addNewConfig
+  /connection-handlers/{connection-handler-name}:
+    delete: Connectionhandler_deleteHandler
+    get: Connectionhandler_getSingle
+    patch: Connectionhandler_updateByName
+  /consent-definitions:
+    get: Consentdefinition_listAllObjects
+    post: Consentdefinition_addNewToConfig
+  /consent-definitions/{consent-definition-name}:
+    delete: Consentdefinition_deleteConsentDefinition
+    get: Consentdefinition_getSingleConsentDefinition
+    patch: Consentdefinition_updateByName
+  /consent-definitions/{consent-definition-name}/consent-definition-localizations:
+    get: Consentdefinitionlocalization_getAllObjects
+    post: Consentdefinitionlocalization_addNew
+  /consent-definitions/{consent-definition-name}/consent-definition-localizations/{consent-definition-localization-name}:
+    delete: Consentdefinitionlocalization_deleteLocalization
+    get: Consentdefinitionlocalization_getSingle
+    patch: Consentdefinitionlocalization_updateByName
+  /consent-service:
+    get: Consentservice_getSingleConsent
+    patch: Consentservice_updateByName
+  /constructed-attributes:
+    get: Constructedattribute_listAllAttributes
+    post: Constructedattribute_addNewAttribute
+  /constructed-attributes/{constructed-attribute-name}:
+    delete: Constructedattribute_deleteAttribute
+    get: Constructedattribute_getSingleAttribute
+    patch: Constructedattribute_updateByName
+  /crypto-manager:
+    get: Cryptomanager_getSingleCryptoManager
+    patch: Cryptomanager_updateByName
+  /data-security-auditors:
+    get: Datasecurityauditor_listAllAuditors
+    post: Datasecurityauditor_addNewAuditor
+  /data-security-auditors/{data-security-auditor-name}:
+    delete: Datasecurityauditor_deleteAuditor
+    get: Datasecurityauditor_getSingleAuditor
+    patch: Datasecurityauditor_updateByName
+  /delegated-admin-attribute-categories:
+    get: Delegatedadminattributecategory_listAllCategories
+    post: Delegatedadminattributecategory_addNewCategory
+  /delegated-admin-attribute-categories/{delegated-admin-attribute-category-name}:
+    delete: Delegatedadminattributecategory_deleteCategory
+    get: Delegatedadminattributecategory_getSingle
+    patch: Delegatedadminattributecategory_updateByName
+  /delegated-admin-rights:
+    get: Delegatedadminrights_listAllObjects
+    post: Delegatedadminrights_addNewConfig
+  /delegated-admin-rights/{delegated-admin-rights-name}:
+    delete: Delegatedadminrights_deleteDelegatedAdminRights
+    get: Delegatedadminrights_getSingleRights
+    patch: Delegatedadminrights_updateByName
+  /delegated-admin-rights/{delegated-admin-rights-name}/delegated-admin-resource-rights:
+    get: Delegatedadminresourcerights_listAllObjects
+    post: Delegatedadminresourcerights_addNewToConfig
+  /delegated-admin-rights/{delegated-admin-rights-name}/delegated-admin-resource-rights/{delegated-admin-resource-rights-name}:
+    delete: Delegatedadminresourcerights_deleteResourceRights
+    get: Delegatedadminresourcerights_getSingleResourceRights
+    patch: Delegatedadminresourcerights_updateByName
+  /dn-maps:
+    get: Dnmap_listObjects
+    post: Dnmap_createNewDnMap
+  /dn-maps/{dn-map-name}:
+    delete: Dnmap_deleteDnMap
+    get: Dnmap_getSingleDnMap
+    patch: Dnmap_updateDnMapByName
+  /entry-caches:
+    get: Entrycache_getAllObjects
+    post: Entrycache_addNewCache
+  /entry-caches/{entry-cache-name}:
+    delete: Entrycache_deleteEntryCache
+    get: Entrycache_getSingleCache
+    patch: Entrycache_updateByName
+  /extended-operation-handlers:
+    get: Extendedoperationhandler_listAllObjects
+    post: Extendedoperationhandler_addNewHandler
+  /extended-operation-handlers/{extended-operation-handler-name}:
+    delete: Extendedoperationhandler_deleteHandler
+    get: Extendedoperationhandler_getHandlerById
+    patch: Extendedoperationhandler_updateByName
+  /external-servers:
+    get: Externalserver_listObjects
+    post: Externalserver_addNewConfig
+  /external-servers/{external-server-name}:
+    delete: Externalserver_deleteExternalServer
+    get: Externalserver_getSingleServer
+    patch: Externalserver_updateByName
+  /failure-lockout-actions:
+    get: Failurelockoutaction_listAllObjects
+    post: Failurelockoutaction_addNewActionToConfig
+  /failure-lockout-actions/{failure-lockout-action-name}:
+    delete: Failurelockoutaction_deleteAction
+    get: Failurelockoutaction_getSingle
+    patch: Failurelockoutaction_updateByName
+  /gauge-data-sources:
+    get: Gaugedatasource_listAllGaugeDataSources
+    post: Gaugedatasource_addNewDataSource
+  /gauge-data-sources/{gauge-data-source-name}:
+    delete: Gaugedatasource_deleteDataSource
+    get: Gaugedatasource_getSingleGaugeDataSource
+    patch: Gaugedatasource_updateByName
+  /gauges:
+    get: Gauge_listObjects
+    post: Gauge_createNew
+  /gauges/{gauge-name}:
+    delete: Gauge_deleteGauge
+    get: Gauge_getSingle
+    patch: Gauge_updateByName
+  /global-configuration:
+    get: Globalconfiguration_getSingleConfig
+    patch: Globalconfiguration_updateByName
+  /group-implementations:
+    get: Groupimplementation_listAllObjects
+  /group-implementations/{group-implementation-name}:
+    get: Groupimplementation_getSingle
+    patch: Groupimplementation_updateByName
+  /http-configuration:
+    get: Httpconfiguration_getSingleConfig
+    patch: Httpconfiguration_updateByName
+  /http-servlet-cross-origin-policies:
+    get: Httpservletcrossoriginpolicy_listAllPolicies
+    post: Httpservletcrossoriginpolicy_addNewPolicy
+  /http-servlet-cross-origin-policies/{http-servlet-cross-origin-policy-name}:
+    delete: Httpservletcrossoriginpolicy_deletePolicy
+    get: Httpservletcrossoriginpolicy_getSinglePolicy
+    patch: Httpservletcrossoriginpolicy_updateByName
+  /http-servlet-extensions:
+    get: Httpservletextension_listAllExtensions
+    post: Httpservletextension_addNewExtension
+  /http-servlet-extensions/{http-servlet-extension-name}:
+    delete: Httpservletextension_deleteHttpServletExtension
+    get: Httpservletextension_getSingleExtension
+    patch: Httpservletextension_updateByName
+  /http-servlet-extensions/{http-servlet-extension-name}/prometheus-monitor-attribute-metrics:
+    get: Prometheusmonitorattributemetric_listAllObjects
+    post: Prometheusmonitorattributemetric_addNewMetricToConfig
+  /http-servlet-extensions/{http-servlet-extension-name}/prometheus-monitor-attribute-metrics/{prometheus-monitor-attribute-metric-name}:
+    delete: Prometheusmonitorattributemetric_deleteMetric
+    get: Prometheusmonitorattributemetric_getSingleMetric
+    patch: Prometheusmonitorattributemetric_updateByname
+  /http-servlet-extensions/{http-servlet-extension-name}/velocity-context-providers:
+    get: Velocitycontextprovider_listAllVelocityContextProviders
+    post: Velocitycontextprovider_addNewProviderToConfig
+  /http-servlet-extensions/{http-servlet-extension-name}/velocity-context-providers/{velocity-context-provider-name}:
+    delete: Velocitycontextprovider_deleteVelocityContextProvider
+    get: Velocitycontextprovider_getSingleVelocityContextProvider
+    patch: Velocitycontextprovider_updateBynameVelocityContextProvider
+  /http-servlet-extensions/{http-servlet-extension-name}/velocity-template-loaders:
+    get: Velocitytemplateloader_getAllTemplateLoaders
+    post: Velocitytemplateloader_addNewLoaderToConfig
+  /http-servlet-extensions/{http-servlet-extension-name}/velocity-template-loaders/{velocity-template-loader-name}:
+    delete: Velocitytemplateloader_deleteLoader
+    get: Velocitytemplateloader_getSingleLoader
+    patch: Velocitytemplateloader_updateByName
+  /id-token-validators:
+    get: Idtokenvalidator_listAllValidators
+    post: Idtokenvalidator_addNewValidator
+  /id-token-validators/{id-token-validator-name}:
+    delete: Idtokenvalidator_deleteValidator
+    get: Idtokenvalidator_getSingleByIdTokenValidator
+    patch: Idtokenvalidator_updateByName
+  /id-token-validators/{id-token-validator-name}/token-claim-validations:
+    get: Tokenclaimvalidation_listTokenClaimValidations
+    post: Tokenclaimvalidation_addNewClaimValidation
+  /id-token-validators/{id-token-validator-name}/token-claim-validations/{token-claim-validation-name}:
+    delete: Tokenclaimvalidation_deleteClaimValidation
+    get: Tokenclaimvalidation_getSingleClaimValidation
+    patch: Tokenclaimvalidation_updateClaimValidationByName
+  /identity-mappers:
+    get: Identitymapper_getAllObjects
+    post: Identitymapper_addNewIdentityMapper
+  /identity-mappers/{identity-mapper-name}:
+    delete: Identitymapper_deleteIdentityMapper
+    get: Identitymapper_getSingleMapper
+    patch: Identitymapper_updateByName
+  /json-attribute-constraints:
+    get: Jsonattributeconstraints_getAllObjects
+    post: Jsonattributeconstraints_addNewConfig
+  /json-attribute-constraints/{json-attribute-constraints-name}:
+    delete: Jsonattributeconstraints_deleteJsonAttributeConstraints
+    get: Jsonattributeconstraints_getSingleJsonAttributeConstraints
+    patch: Jsonattributeconstraints_updateByName
+  /json-attribute-constraints/{json-attribute-constraints-name}/json-field-constraints:
+    get: Jsonfieldconstraints_listAllJsonFieldConstraints
+    post: Jsonfieldconstraints_addNewField
+  /json-attribute-constraints/{json-attribute-constraints-name}/json-field-constraints/{json-field-constraints-name}:
+    delete: Jsonfieldconstraints_deleteFieldConstraints
+    get: Jsonfieldconstraints_getSingleFieldConstraints
+    patch: Jsonfieldconstraints_updateByName
+  /key-manager-providers:
+    get: Keymanagerprovider_listAllProviders
+    post: Keymanagerprovider_addNewProvider
+  /key-manager-providers/{key-manager-provider-name}:
+    delete: Keymanagerprovider_deleteProvider
+    get: Keymanagerprovider_getSingle
+    patch: Keymanagerprovider_updateByName
+  /key-pairs:
+    get: Keypair_listObjects
+    post: Keypair_createNewKeyPair
+  /key-pairs/{key-pair-name}:
+    delete: Keypair_deleteKeyPair
+    get: Keypair_getSingleKeyPair
+    patch: Keypair_updateByName
+  /ldap-sdk-debug-logger:
+    get: Ldapsdkdebuglogger_getSingleDebugLogger
+    patch: Ldapsdkdebuglogger_updateByName
+  /license:
+    get: License_getSingle
+    patch: License_updateByName
+  /locations:
+    get: Location_listObjects
+    post: Location_createNewLocation
+  /locations/{location-name}:
+    delete: Location_removeLocation
+    get: Location_getSingle
+    patch: Location_updateByName
+  /log-field-behaviors:
+    get: Logfieldbehavior_getAllLogFieldBehaviors
+    post: Logfieldbehavior_addNewConfig
+  /log-field-behaviors/{log-field-behavior-name}:
+    delete: Logfieldbehavior_deleteBehavior
+    get: Logfieldbehavior_getSingle
+    patch: Logfieldbehavior_updateByName
+  /log-field-mappings:
+    get: Logfieldmapping_getAllLogFieldMappings
+    post: Logfieldmapping_addNewMapping
+  /log-field-mappings/{log-field-mapping-name}:
+    delete: Logfieldmapping_deleteMappingById
+    get: Logfieldmapping_getSingle
+    patch: Logfieldmapping_updateByName
+  /log-field-syntaxes:
+    get: Logfieldsyntax_getAllLogFieldSyntaxes
+  /log-field-syntaxes/{log-field-syntax-name}:
+    get: Logfieldsyntax_getSyntaxById
+    patch: Logfieldsyntax_updateByName
+  /log-file-rotation-listeners:
+    get: Logfilerotationlistener_listLogRotationListeners
+    post: Logfilerotationlistener_addNewListener
+  /log-file-rotation-listeners/{log-file-rotation-listener-name}:
+    delete: Logfilerotationlistener_deleteLogRotationListener
+    get: Logfilerotationlistener_getSingle
+    patch: Logfilerotationlistener_updateByName
+  /log-publishers:
+    get: Logpublisher_listLogPublishers
+    post: Logpublisher_addNewPublisher
+  /log-publishers/{log-publisher-name}:
+    delete: Logpublisher_deleteLogPublisher
+    get: Logpublisher_getSinglePublisher
+    patch: Logpublisher_updateByName
+  /log-publishers/{log-publisher-name}/debug-targets:
+    get: Debugtarget_listAllDebugTargets
+    post: Debugtarget_addNewDebugTarget
+  /log-publishers/{log-publisher-name}/debug-targets/{debug-target-name}:
+    delete: Debugtarget_deleteDebugTarget
+    get: Debugtarget_getSingleDebugTarget
+    patch: Debugtarget_updateByName
+  /log-retention-policies:
+    get: Logretentionpolicy_listAllLogRetentionPolicies
+    post: Logretentionpolicy_addNewLogRetentionPolicy
+  /log-retention-policies/{log-retention-policy-name}:
+    delete: Logretentionpolicy_deleteLogRetentionPolicy
+    get: Logretentionpolicy_getSingle
+    patch: Logretentionpolicy_updateByName
+  /log-rotation-policies:
+    get: Logrotationpolicy_getAllLogRotationPolicies
+    post: Logrotationpolicy_addNewPolicy
+  /log-rotation-policies/{log-rotation-policy-name}:
+    delete: Logrotationpolicy_deletePolicy
+    get: Logrotationpolicy_getSingleLogRotationPolicy
+    patch: Logrotationpolicy_updateByName
+  /matching-rules:
+    get: Matchingrule_listMatchingRules
+  /matching-rules/{matching-rule-name}:
+    get: Matchingrule_getSingleMatchingRule
+    patch: Matchingrule_updateByName
+  /monitor-providers:
+    get: Monitorprovider_listObjects
+    post: Monitorprovider_addNewConfig
+  /monitor-providers/{monitor-provider-name}:
+    delete: Monitorprovider_deleteProvider
+    get: Monitorprovider_getSingleProvider
+    patch: Monitorprovider_updateByName
+  /monitoring-endpoints:
+    get: Monitoringendpoint_listAllObjects
+    post: Monitoringendpoint_addNewConfig
+  /monitoring-endpoints/{monitoring-endpoint-name}:
+    delete: Monitoringendpoint_deleteMonitoringEndpoint
+    get: Monitoringendpoint_getSingleEndpoint
+    patch: Monitoringendpoint_updateByName
+  /notification-managers:
+    get: Notificationmanager_listAllObjects
+    post: Notificationmanager_addNewConfig
+  /notification-managers/{notification-manager-name}:
+    delete: Notificationmanager_deleteNotificationManager
+    get: Notificationmanager_getSingle
+    patch: Notificationmanager_updateByName
+  /oauth-token-handlers:
+    get: Oauthtokenhandler_listAllHandlers
+    post: Oauthtokenhandler_addNewHandler
+  /oauth-token-handlers/{oauth-token-handler-name}:
+    delete: Oauthtokenhandler_deleteHandler
+    get: Oauthtokenhandler_getSingle
+    patch: Oauthtokenhandler_updateByName
+  /obscured-values:
+    get: Obscuredvalue_listAllObjects
+    post: Obscuredvalue_addNewToConfig
+  /obscured-values/{obscured-value-name}:
+    delete: Obscuredvalue_deleteObscuredValue
+    get: Obscuredvalue_getSingleValue
+    patch: Obscuredvalue_updateByName
+  /otp-delivery-mechanisms:
+    get: Otpdeliverymechanism_listAll
+    post: Otpdeliverymechanism_addNewMethod
+  /otp-delivery-mechanisms/{otp-delivery-mechanism-name}:
+    delete: Otpdeliverymechanism_deleteDeliveryMechanism
+    get: Otpdeliverymechanism_getSingleDeliveryMechanism
+    patch: Otpdeliverymechanism_updateByOtpDeliveryMechanismName
+  /pass-through-authentication-handlers:
+    get: Passthroughauthenticationhandler_listAllHandlers
+    post: Passthroughauthenticationhandler_addNewHandler
+  /pass-through-authentication-handlers/{pass-through-authentication-handler-name}:
+    delete: Passthroughauthenticationhandler_deleteHandler
+    get: Passthroughauthenticationhandler_getSingleHandler
+    patch: Passthroughauthenticationhandler_updateHandlerByName
+  /passphrase-providers:
+    get: Passphraseprovider_listAllProviders
+    post: Passphraseprovider_addNewProvider
+  /passphrase-providers/{passphrase-provider-name}:
+    delete: Passphraseprovider_deleteProvider
+    get: Passphraseprovider_getSingle
+    patch: Passphraseprovider_updateByName
+  /password-generators:
+    get: Passwordgenerator_listAllGenerators
+    post: Passwordgenerator_addNewToConfig
+  /password-generators/{password-generator-name}:
+    delete: Passwordgenerator_deleteGenerator
+    get: Passwordgenerator_getSingleGenerator
+    patch: Passwordgenerator_updateByName
+  /password-policies:
+    get: Passwordpolicy_listAllObjects
+    post: Passwordpolicy_addNewPolicyToConfig
+  /password-policies/{password-policy-name}:
+    delete: Passwordpolicy_deletePolicy
+    get: Passwordpolicy_getSinglePolicy
+    patch: Passwordpolicy_updateByName
+  /password-storage-schemes:
+    get: Passwordstoragescheme_listAllSchemes
+    post: Passwordstoragescheme_addNewToConfig
+  /password-storage-schemes/{password-storage-scheme-name}:
+    delete: Passwordstoragescheme_deleteScheme
+    get: Passwordstoragescheme_getSingle
+    patch: Passwordstoragescheme_updateByName
+  /password-validators:
+    get: Passwordvalidator_getAllValidators
+    post: Passwordvalidator_addNewValidatorToConfig
+  /password-validators/{password-validator-name}:
+    delete: Passwordvalidator_deleteValidator
+    get: Passwordvalidator_getValidator
+    patch: Passwordvalidator_updateByName
+  /plugin-root:
+    get: Pluginroot_getSingle
+    patch: Pluginroot_updateByName
+  /plugin-root/plugins:
+    get: Plugin_listAllObjects
+    post: Plugin_addNewConfig
+  /plugin-root/plugins/{plugin-name}:
+    delete: Plugin_deletePlugin
+    get: Plugin_getSingle
+    patch: Plugin_updateByName
+  /plugin-root/plugins/{plugin-name}/custom-logged-stats:
+    get: Customloggedstats_listAllObjects
+    post: Customloggedstats_addNewStatToConfig
+  /plugin-root/plugins/{plugin-name}/custom-logged-stats/{custom-logged-stats-name}:
+    delete: Customloggedstats_deleteStat
+    get: Customloggedstats_getSingle
+    patch: Customloggedstats_updateByName
+  /post-ldif-export-task-processors:
+    get: Postldifexporttaskprocessor_listAllObjects
+    post: Postldifexporttaskprocessor_addNewToConfig
+  /post-ldif-export-task-processors/{post-ldif-export-task-processor-name}:
+    delete: Postldifexporttaskprocessor_deleteTaskProcessor
+    get: Postldifexporttaskprocessor_getSingle
+    patch: Postldifexporttaskprocessor_updateByName
+  /recurring-task-chains:
+    get: Recurringtaskchain_listAllObjects
+    post: Recurringtaskchain_addNewToConfig
+  /recurring-task-chains/{recurring-task-chain-name}:
+    delete: Recurringtaskchain_deleteChain
+    get: Recurringtaskchain_getSingle
+    patch: Recurringtaskchain_updateByRecurringTaskChainName
+  /recurring-tasks:
+    get: Recurringtask_listObjects
+    post: Recurringtask_addNewConfig
+  /recurring-tasks/{recurring-task-name}:
+    delete: Recurringtask_deleteRecurringTask
+    get: Recurringtask_getSingleTask
+    patch: Recurringtask_updateByName
+  /replication-assurance-policies:
+    get: Replicationassurancepolicy_listAllObjects
+    post: Replicationassurancepolicy_addNew
+  /replication-assurance-policies/{replication-assurance-policy-name}:
+    delete: Replicationassurancepolicy_deletePolicy
+    get: Replicationassurancepolicy_getSinglePolicy
+    patch: Replicationassurancepolicy_updateByName
+  /request-criteria:
+    get: Requestcriteria_listAllObjects
+    post: Requestcriteria_addNewCriteriaToConfig
+  /request-criteria/{request-criteria-name}:
+    delete: Requestcriteria_deleteCriteria
+    get: Requestcriteria_getSingle
+    patch: Requestcriteria_updateByName
+  /rest-resource-types:
+    get: Restresourcetype_listAllObjects
+    post: Restresourcetype_addNewType
+  /rest-resource-types/{rest-resource-type-name}:
+    delete: Restresourcetype_deleteRestResourceType
+    get: Restresourcetype_getSingleResourceType
+    patch: Restresourcetype_updateByName
+  /rest-resource-types/{rest-resource-type-name}/delegated-admin-attributes:
+    get: Delegatedadminattribute_getListOfDelegatedAdminAttributes
+    post: Delegatedadminattribute_addNewConfig
+  /rest-resource-types/{rest-resource-type-name}/delegated-admin-attributes/{delegated-admin-attribute-name}:
+    delete: Delegatedadminattribute_deleteDelegatedAdminAttribute
+    get: Delegatedadminattribute_getSingle
+    patch: Delegatedadminattribute_updateByName
+  /rest-resource-types/{rest-resource-type-name}/delegated-admin-correlated-rest-resources:
+    get: Delegatedadmincorrelatedrestresource_listAllObjects
+    post: Delegatedadmincorrelatedrestresource_addNewToConfig
+  /rest-resource-types/{rest-resource-type-name}/delegated-admin-correlated-rest-resources/{delegated-admin-correlated-rest-resource-name}:
+    delete: Delegatedadmincorrelatedrestresource_deleteResource
+    get: Delegatedadmincorrelatedrestresource_getSingleCorrelated
+    patch: Delegatedadmincorrelatedrestresource_updateByName
+  /result-code-maps:
+    get: Resultcodemap_getAllObjects
+    post: Resultcodemap_addNewResultCodeMap
+  /result-code-maps/{result-code-map-name}:
+    delete: Resultcodemap_deleteResultCodeMap
+    get: Resultcodemap_getSingleMap
+    patch: Resultcodemap_updateByName
+  /result-criteria:
+    get: Resultcriteria_listAllObjects
+    post: Resultcriteria_addNewCriteria
+  /result-criteria/{result-criteria-name}:
+    delete: Resultcriteria_deleteCriteria
+    get: Resultcriteria_getSingleResultCriteria
+    patch: Resultcriteria_updateByName
+  /root-dn:
+    get: Rootdn_getSingle
+    patch: Rootdn_updateByName
+  /root-dn/root-dn-users:
+    get: Rootdnuser_listAllUsers
+    post: Rootdnuser_addNewUserToConfig
+  /root-dn/root-dn-users/{root-dn-user-name}:
+    delete: Rootdnuser_deleteUser
+    get: Rootdnuser_getSingleUser
+    patch: Rootdnuser_updateByName
+  /root-dse-backend:
+    get: Rootdsebackend_getSingle
+    patch: Rootdsebackend_updateByName
+  /sasl-mechanism-handlers:
+    get: Saslmechanismhandler_listAllHandlers
+    post: Saslmechanismhandler_addNewHandler
+  /sasl-mechanism-handlers/{sasl-mechanism-handler-name}:
+    delete: Saslmechanismhandler_deleteHandler
+    get: Saslmechanismhandler_getSingle
+    patch: Saslmechanismhandler_updateByName
+  /scim-resource-types:
+    get: Scimresourcetype_listAllObjects
+    post: Scimresourcetype_addNewConfig
+  /scim-resource-types/{scim-resource-type-name}:
+    delete: Scimresourcetype_deleteResourceType
+    get: Scimresourcetype_getSingle
+    patch: Scimresourcetype_updateByName
+  /scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views:
+    get: Correlatedldapdataview_getList
+    post: Correlatedldapdataview_addNewConfig
+  /scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}:
+    delete: Correlatedldapdataview_deleteCorrelatedLdapDataView
+    get: Correlatedldapdataview_getSingle
+    patch: Correlatedldapdataview_updateByName
+  /scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}/ldap-correlation-attribute-pairs:
+    get: Ldapcorrelationattributepair_listCorrelationAttributePairs
+    post: Ldapcorrelationattributepair_addNewPairToConfig
+  /scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}/ldap-correlation-attribute-pairs/{ldap-correlation-attribute-pair-name}:
+    delete: Ldapcorrelationattributepair_delete
+    get: Ldapcorrelationattributepair_getSingle
+    patch: Ldapcorrelationattributepair_updateByName
+  /scim-resource-types/{scim-resource-type-name}/scim-attribute-mappings:
+    get: Scimattributemapping_getAllMappings
+    post: Scimattributemapping_addNewMapping
+  /scim-resource-types/{scim-resource-type-name}/scim-attribute-mappings/{scim-attribute-mapping-name}:
+    delete: Scimattributemapping_deleteMapping
+    get: Scimattributemapping_getSingleScimAttributeMapping
+    patch: Scimattributemapping_updateByName
+  /scim-schemas:
+    get: Scimschema_listAllObjects
+    post: Scimschema_addNewSchema
+  /scim-schemas/{scim-schema-name}:
+    delete: Scimschema_deleteSchema
+    get: Scimschema_getSingleSchema
+    patch: Scimschema_updateByName
+  /scim-schemas/{scim-schema-name}/scim-attributes:
+    get: Scimattribute_listAllAttributes
+    post: Scimattribute_addNewAttribute
+  /scim-schemas/{scim-schema-name}/scim-attributes/{scim-attribute-name}:
+    delete: Scimattribute_deleteAttribute
+    get: Scimattribute_getSingleAttribute
+    patch: Scimattribute_updateByName
+  /scim-schemas/{scim-schema-name}/scim-attributes/{scim-attribute-name}/scim-subattributes:
+    get: Scimsubattribute_listAllSubattributes
+    post: Scimsubattribute_addNewConfig
+  /scim-schemas/{scim-schema-name}/scim-attributes/{scim-attribute-name}/scim-subattributes/{scim-subattribute-name}:
+    delete: Scimsubattribute_deleteSubattribute
+    get: Scimsubattribute_getSingleSubattribute
+    patch: Scimsubattribute_updateByName
+  /search-entry-criteria:
+    get: Searchentrycriteria_listAllObjects
+    post: Searchentrycriteria_addNewCriteria
+  /search-entry-criteria/{search-entry-criteria-name}:
+    delete: Searchentrycriteria_deleteEntryCriteria
+    get: Searchentrycriteria_getSingle
+    patch: Searchentrycriteria_updateByName
+  /search-reference-criteria:
+    get: Searchreferencecriteria_listAllObjects
+    post: Searchreferencecriteria_addNewReferenceCriteria
+  /search-reference-criteria/{search-reference-criteria-name}:
+    delete: Searchreferencecriteria_deleteCriteriaById
+    get: Searchreferencecriteria_getSingle
+    patch: Searchreferencecriteria_updateByName
+  /sensitive-attributes:
+    get: Sensitiveattribute_getAll
+    post: Sensitiveattribute_addNewConfig
+  /sensitive-attributes/{sensitive-attribute-name}:
+    delete: Sensitiveattribute_deleteSensitiveAttribute
+    get: Sensitiveattribute_getSingle
+    patch: Sensitiveattribute_updateByName
+  /server-groups:
+    get: Servergroup_listAllObjects
+    post: Servergroup_addNewServerGroup
+  /server-groups/{server-group-name}:
+    delete: Servergroup_deleteServerGroup
+    get: Servergroup_getSingle
+    patch: Servergroup_updateByName
+  /server-instances:
+    get: Serverinstance_listAllObjects
+  /server-instances/{server-instance-name}:
+    get: Serverinstance_getSingleInstance
+    patch: Serverinstance_updateByName
+  /server-instances/{server-instance-name}/cipher-secret-keys:
+    get: Ciphersecretkey_getAll
+  /server-instances/{server-instance-name}/cipher-secret-keys/{cipher-secret-key-name}:
+    get: Ciphersecretkey_getSingleKey
+    patch: Ciphersecretkey_updateByName
+  /server-instances/{server-instance-name}/mac-secret-keys:
+    get: Macsecretkey_listAll
+  /server-instances/{server-instance-name}/mac-secret-keys/{mac-secret-key-name}:
+    get: Macsecretkey_getOne
+    patch: Macsecretkey_updateByName
+  /server-instances/{server-instance-name}/server-instance-listeners:
+    get: Serverinstancelistener_listAll
+  /server-instances/{server-instance-name}/server-instance-listeners/{server-instance-listener-name}:
+    get: Serverinstancelistener_getSingleListener
+    patch: Serverinstancelistener_updateByName
+  /server-instances/{server-instance-name}/server-instance-listeners/{server-instance-listener-name}/inter-server-authentication-info:
+    get: Interserverauthenticationinfo_listInterServerAuthenticationInfo
+  /server-instances/{server-instance-name}/server-instance-listeners/{server-instance-listener-name}/inter-server-authentication-info/{inter-server-authentication-info-name}:
+    get: Interserverauthenticationinfo_getSingleAuthenticationInfo
+    patch: Interserverauthenticationinfo_updateByName
+  /soft-delete-policies:
+    get: Softdeletepolicy_listAllObjects
+    post: Softdeletepolicy_addNewPolicy
+  /soft-delete-policies/{soft-delete-policy-name}:
+    delete: Softdeletepolicy_deletePolicy
+    get: Softdeletepolicy_getSingleSoftDeletePolicy
+    patch: Softdeletepolicy_updateByName
+  /synchronization-providers:
+    get: Synchronizationprovider_listAllProviders
+  /synchronization-providers/{synchronization-provider-name}:
+    get: Synchronizationprovider_getSingle
+    patch: Synchronizationprovider_updateByName
+  /synchronization-providers/{synchronization-provider-name}/replication-domains:
+    get: Replicationdomain_listAllDomains
+  /synchronization-providers/{synchronization-provider-name}/replication-domains/{replication-domain-name}:
+    get: Replicationdomain_getSingle
+    patch: Replicationdomain_updateByName
+  /synchronization-providers/{synchronization-provider-name}/replication-server:
+    get: Replicationserver_getSingleReplicationServer
+    patch: Replicationserver_updateByName
+  /topology-admin-users:
+    get: Topologyadminuser_listAllUsers
+    post: Topologyadminuser_addNewUser
+  /topology-admin-users/{topology-admin-user-name}:
+    delete: Topologyadminuser_deleteUser
+    get: Topologyadminuser_getSingleTopologyAdminUser
+    patch: Topologyadminuser_updateByName
+  /trust-manager-providers:
+    get: Trustmanagerprovider_listAllProviders
+    post: Trustmanagerprovider_addNewProvider
+  /trust-manager-providers/{trust-manager-provider-name}:
+    delete: Trustmanagerprovider_deleteProvider
+    get: Trustmanagerprovider_getSingle
+    patch: Trustmanagerprovider_updateByName
+  /trusted-certificates:
+    get: Trustedcertificate_listAllCertificates
+    post: Trustedcertificate_addNewToConfig
+  /trusted-certificates/{trusted-certificate-name}:
+    delete: Trustedcertificate_deleteCertificate
+    get: Trustedcertificate_getSingle
+    patch: Trustedcertificate_updateByName
+  /uncached-attribute-criteria:
+    get: Uncachedattributecriteria_getAllObjects
+    post: Uncachedattributecriteria_addNewToConfig
+  /uncached-attribute-criteria/{uncached-attribute-criteria-name}:
+    delete: Uncachedattributecriteria_deleteUncachedAttributeCriteria
+    get: Uncachedattributecriteria_getSingle
+    patch: Uncachedattributecriteria_updateByName
+  /uncached-entry-criteria:
+    get: Uncachedentrycriteria_listObjects
+    post: Uncachedentrycriteria_addNewCriteria
+  /uncached-entry-criteria/{uncached-entry-criteria-name}:
+    delete: Uncachedentrycriteria_deleteUncachedEntry
+    get: Uncachedentrycriteria_getByName
+    patch: Uncachedentrycriteria_updateByName
+  /vault-authentication-methods:
+    get: Vaultauthenticationmethod_getAllObjects
+    post: Vaultauthenticationmethod_addNewMethod
+  /vault-authentication-methods/{vault-authentication-method-name}:
+    delete: Vaultauthenticationmethod_deleteMethod
+    get: Vaultauthenticationmethod_getSingle
+    patch: Vaultauthenticationmethod_updateByName
+  /virtual-attributes:
+    get: Virtualattribute_getAllObjects
+    post: Virtualattribute_addNewToConfig
+  /virtual-attributes/{virtual-attribute-name}:
+    delete: Virtualattribute_deleteVirtualAttribute
+    get: Virtualattribute_getSingle
+    patch: Virtualattribute_updateByName
+  /web-application-extensions:
+    get: Webapplicationextension_listAllObjects
+    post: Webapplicationextension_addNewExtension
+  /web-application-extensions/{web-application-extension-name}:
+    delete: Webapplicationextension_deleteExtension
+    get: Webapplicationextension_getSingle
+    patch: Webapplicationextension_updateByName
+  /work-queue:
+    get: Workqueue_getSingleWorkQueue
+    patch: Workqueue_updateByName
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  filter:
+    query: false
+validServerUrls:
+  '':
+    url: ''
