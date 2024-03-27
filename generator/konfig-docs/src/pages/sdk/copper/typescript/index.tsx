@@ -17,7 +17,7 @@ export default function CopperTypeScriptSdk() {
       companyKebabCase="copper"
       clientNameCamelCase="copper"
       homepage="copper.com"
-      lastUpdated={new Date("2024-03-27T18:50:43.231Z")}
+      lastUpdated={new Date("2024-03-27T20:13:36.016Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/copper/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -3134,7 +3134,7 @@ export default function CopperTypeScriptSdk() {
       sdkMethods={107}
       schemas={109}
       parameters={314}
-      difficulty="Hard"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/copper/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/copper/openapi.yaml"
       developerDocumentation="developer.copper.com/"

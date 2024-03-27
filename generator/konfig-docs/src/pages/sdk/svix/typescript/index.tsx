@@ -17,7 +17,7 @@ export default function SvixTypeScriptSdk() {
       companyKebabCase="svix"
       clientNameCamelCase="svix"
       homepage="svix.com"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T20:13:36.016Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -4479,7 +4479,7 @@ export default function SvixTypeScriptSdk() {
       sdkMethods={59}
       schemas={120}
       parameters={266}
-      difficulty="Hard"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/svix/openapi.yaml"
       

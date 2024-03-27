@@ -19,7 +19,7 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
       companyKebabCase="hi-bob"
       clientNameCamelCase="hiBob"
       homepage="hibob.com"
-      lastUpdated={new Date("2024-03-27T16:12:23.868Z")}
+      lastUpdated={new Date("2024-03-27T20:13:36.016Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2799,7 +2799,7 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
       sdkMethods={91}
       schemas={93}
       parameters={210}
-      difficulty="Hard"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hibob/openapi.yaml"
       developerDocumentation="apidocs.hibob.com/reference/getting-started-1"
