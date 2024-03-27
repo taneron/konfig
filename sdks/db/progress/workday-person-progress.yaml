@@ -1,0 +1,361 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /countries:
+    get: Countries_getCollectionInformation
+  /countries/{ID}:
+    get: Countries_getInfo
+  /countries/{ID}/addressComponents:
+    get: Countries_getAddressComponents
+  /countries/{ID}/nameComponents:
+    get: Countries_getNameComponents
+  /homeContactInformationChanges/{ID}:
+    get: HomeContactInformationChanges_getEventInformation
+  /homeContactInformationChanges/{ID}/addresses:
+    get: HomeContactInformationChanges_getAddressesStaged
+    post: HomeContactInformationChanges_createNewAddress
+  /homeContactInformationChanges/{ID}/addresses/{subresourceID}:
+    delete: HomeContactInformationChanges_removeAddress
+    get: HomeContactInformationChanges_getAddressAsStaged
+    put: HomeContactInformationChanges_updateAddress
+  /homeContactInformationChanges/{ID}/emailAddresses:
+    get: HomeContactInformationChanges_getStagedEmailAddresses
+    post: HomeContactInformationChanges_createEmailAddress
+  /homeContactInformationChanges/{ID}/emailAddresses/{subresourceID}:
+    delete: HomeContactInformationChanges_removeEmailAddress
+    get: HomeContactInformationChanges_getEmailAddress
+    patch: HomeContactInformationChanges_updateEmailAddress
+  /homeContactInformationChanges/{ID}/instantMessengers:
+    get: HomeContactInformationChanges_getStagedInstantMessengers
+    post: HomeContactInformationChanges_createInstantMessenger
+  /homeContactInformationChanges/{ID}/instantMessengers/{subresourceID}:
+    delete: HomeContactInformationChanges_removeInstantMessenger
+    get: HomeContactInformationChanges_getInstantMessenger
+    patch: HomeContactInformationChanges_updateInstantMessenger
+  /homeContactInformationChanges/{ID}/phoneNumbers:
+    get: HomeContactInformationChanges_getPhoneNumbers
+    post: HomeContactInformationChanges_createPhoneNumber
+  /homeContactInformationChanges/{ID}/phoneNumbers/{subresourceID}:
+    delete: HomeContactInformationChanges_removePhoneNumber
+    get: HomeContactInformationChanges_getStagedPhoneNumber
+    patch: HomeContactInformationChanges_updatePhoneNumber
+  /homeContactInformationChanges/{ID}/submit:
+    post: HomeContactInformationChanges_submitChange
+  /homeContactInformationChanges/{ID}/webAddresses:
+    get: HomeContactInformationChanges_getWebAddressesStaged
+    post: HomeContactInformationChanges_createWebAddress
+  /homeContactInformationChanges/{ID}/webAddresses/{subresourceID}:
+    delete: HomeContactInformationChanges_removeWebAddress
+    get: HomeContactInformationChanges_getWebAddress
+    patch: HomeContactInformationChanges_updateWebAddress
+  /people:
+    get: People_getPersonById
+  /people/{ID}:
+    get: People_getById
+  /people/{ID}/additionalNames:
+    get: People_getAdditionalNames
+  /people/{ID}/additionalNames/{subresourceID}:
+    get: People_getAdditionalName
+  /people/{ID}/audioNamePronunciation:
+    get: People_getNamePronunciations
+  /people/{ID}/audioNamePronunciation/{subresourceID}:
+    get: People_getNamePronunciation
+  /people/{ID}/homeAddresses:
+    get: People_getHomeAddresses
+  /people/{ID}/homeAddresses/{subresourceID}:
+    get: People_getHomeAddress
+  /people/{ID}/homeEmails:
+    get: People_getHomeEmails
+  /people/{ID}/homeEmails/{subresourceID}:
+    get: People_getHomeEmail
+  /people/{ID}/homeInstantMessengers:
+    get: People_getHomeInstantMessengers
+  /people/{ID}/homeInstantMessengers/{subresourceID}:
+    get: People_getHomeInstantMessengerUsername
+  /people/{ID}/homePhones:
+    get: People_getHomePhones
+  /people/{ID}/homePhones/{subresourceID}:
+    get: People_getHomePhone
+  /people/{ID}/homeWebAddresses:
+    get: People_getHomeWebAddresses
+  /people/{ID}/homeWebAddresses/{subresourceID}:
+    get: People_getHomeWebAddress
+  /people/{ID}/legalName:
+    get: People_getLegalName
+  /people/{ID}/legalName/{subresourceID}:
+    get: People_getLegalName
+  /people/{ID}/personalInformation:
+    get: People_getPersonalInfo
+  /people/{ID}/personalInformation/{subresourceID}:
+    get: People_getPersonalInfo
+  /people/{ID}/photos:
+    get: People_getPersonalPhotos
+  /people/{ID}/photos/{subresourceID}:
+    get: People_getPersonalPhoto
+  /people/{ID}/preferredName:
+    get: People_getPreferredName
+  /people/{ID}/preferredName/{subresourceID}:
+    get: People_getPreferredName
+  /people/{ID}/publicContactInformation:
+    get: People_getPublicContactInformation
+  /people/{ID}/publicContactInformation/{subresourceID}:
+    get: People_getPublicContactInformation
+  /people/{ID}/workAddresses:
+    get: People_getWorkAddresses
+  /people/{ID}/workAddresses/{subresourceID}:
+    get: People_getWorkAddress
+  /people/{ID}/workEmails:
+    get: People_getWorkEmails
+  /people/{ID}/workEmails/{subresourceID}:
+    get: People_getWorkEmail
+  /people/{ID}/workInstantMessengers:
+    get: People_getWorkInstantMessengerUsernames
+  /people/{ID}/workInstantMessengers/{subresourceID}:
+    get: People_getWorkInstantMessengerUsername
+  /people/{ID}/workPhones:
+    get: People_getWorkPhones
+  /people/{ID}/workPhones/{subresourceID}:
+    get: People_getWorkPhone
+  /people/{ID}/workWebAddresses:
+    get: People_getWorkWebAddresses
+  /people/{ID}/workWebAddresses/{subresourceID}:
+    get: People_getWorkWebAddress
+  /phoneValidation:
+    post: PhoneValidation_validatePhoneNumber
+  /values/commonPhone/countryPhoneCodes/:
+    get: PromptValues_getCountryPhoneCodes
+  /values/commonPhone/phoneDeviceTypes/:
+    get: PromptValues_getPhoneDeviceTypes
+  /values/countryComponents/country/:
+    get: PromptValues_getInstances
+  /values/countryComponents/countryCity/:
+    get: PromptValues_getInstances
+  /values/countryComponents/countryRegion/:
+    get: PromptValues_getInstances
+  /values/nameComponents/academic/:
+    get: PromptValues_getInstances
+  /values/nameComponents/hereditary/:
+    get: PromptValues_getHereditaryValues
+  /values/nameComponents/honorary/:
+    get: PromptValues_getInstances
+  /values/nameComponents/professional/:
+    get: PromptValues_getOptions
+  /values/nameComponents/religious/:
+    get: PromptValues_getInstances
+  /values/nameComponents/royal/:
+    get: PromptValues_getOptions
+  /values/nameComponents/salutation/:
+    get: PromptValues_getOptions
+  /values/nameComponents/social/:
+    get: PromptValues_getInstances
+  /values/nameComponents/title/:
+    get: PromptValues_getTitleComponents
+  /values/personalInformationCountry/allowedCountry/:
+    get: PromptValues_getAllowedCountryData
+  /values/personalInformationCountry/populatedCountry/:
+    get: PromptValues_listCountryData
+  /workContactInformationChanges/{ID}:
+    get: WorkContactInformationChanges_getEventInfo
+    patch: WorkContactInformationChanges_updateAlternateWorkLocation
+  /workContactInformationChanges/{ID}/addresses:
+    get: WorkContactInformationChanges_getAddressesStaged
+    post: WorkContactInformationChanges_createAddress
+  /workContactInformationChanges/{ID}/addresses/{subresourceID}:
+    delete: WorkContactInformationChanges_removeAddress
+    get: WorkContactInformationChanges_getAddressAsStaged
+    put: WorkContactInformationChanges_updateAddress
+  /workContactInformationChanges/{ID}/emailAddresses:
+    get: WorkContactInformationChanges_getStagedEmailAddresses
+    post: WorkContactInformationChanges_createEmailAddress
+  /workContactInformationChanges/{ID}/emailAddresses/{subresourceID}:
+    delete: WorkContactInformationChanges_removeEmailAddress
+    get: WorkContactInformationChanges_getEmailAddress
+    patch: WorkContactInformationChanges_updateEmailAddress
+  /workContactInformationChanges/{ID}/instantMessengers:
+    get: WorkContactInformationChanges_getStagedInstantMessengers
+    post: WorkContactInformationChanges_createInstantMessenger
+  /workContactInformationChanges/{ID}/instantMessengers/{subresourceID}:
+    delete: WorkContactInformationChanges_removeInstantMessenger
+    get: WorkContactInformationChanges_getStagedInstantMessenger
+    patch: WorkContactInformationChanges_updateInstantMessenger
+  /workContactInformationChanges/{ID}/phoneNumbers:
+    get: WorkContactInformationChanges_getPhoneNumbers
+    post: WorkContactInformationChanges_createPhoneNumber
+  /workContactInformationChanges/{ID}/phoneNumbers/{subresourceID}:
+    delete: WorkContactInformationChanges_removePhoneNumber
+    get: WorkContactInformationChanges_getPhoneNumber
+    patch: WorkContactInformationChanges_updatePhoneNumber
+  /workContactInformationChanges/{ID}/submit:
+    post: WorkContactInformationChanges_submit
+  /workContactInformationChanges/{ID}/webAddresses:
+    get: WorkContactInformationChanges_getWebAddressesStaged
+    post: WorkContactInformationChanges_createStagedWebAddress
+  /workContactInformationChanges/{ID}/webAddresses/{subresourceID}:
+    delete: WorkContactInformationChanges_removeWebAddress
+    get: WorkContactInformationChanges_getWebAddress
+    patch: WorkContactInformationChanges_updateWebAddress
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /countries:
+    get:
+      '200':
+        application/json: CountriesGetCollectionInformationResponse
+  /countries/{ID}/addressComponents:
+    get:
+      '200':
+        application/json: CountriesGetAddressComponentsResponse
+  /countries/{ID}/nameComponents:
+    get:
+      '200':
+        application/json: CountriesGetNameComponentsResponse
+  /homeContactInformationChanges/{ID}/addresses:
+    get:
+      '200':
+        application/json: HomeContactInformationChangesGetAddressesStagedResponse
+  /homeContactInformationChanges/{ID}/emailAddresses:
+    get:
+      '200':
+        application/json: HomeContactInformationChangesGetStagedEmailAddressesResponse
+  /homeContactInformationChanges/{ID}/instantMessengers:
+    get:
+      '200':
+        application/json: HomeContactInformationChangesGetStagedInstantMessengersResponse
+  /homeContactInformationChanges/{ID}/phoneNumbers:
+    get:
+      '200':
+        application/json: HomeContactInformationChangesGetPhoneNumbersResponse
+  /homeContactInformationChanges/{ID}/webAddresses:
+    get:
+      '200':
+        application/json: HomeContactInformationChangesGetWebAddressesStagedResponse
+  /people:
+    get:
+      '200':
+        application/json: PeopleGetPersonByIdResponse
+  /people/{ID}/additionalNames:
+    get:
+      '200':
+        application/json: PeopleGetAdditionalNamesResponse
+  /people/{ID}/audioNamePronunciation:
+    get:
+      '200':
+        application/json: PeopleGetNamePronunciationsResponse
+  /people/{ID}/homeAddresses:
+    get:
+      '200':
+        application/json: PeopleGetHomeAddressesResponse
+  /people/{ID}/homeEmails:
+    get:
+      '200':
+        application/json: PeopleGetHomeEmailsResponse
+  /people/{ID}/homeInstantMessengers:
+    get:
+      '200':
+        application/json: PeopleGetHomeInstantMessengersResponse
+  /people/{ID}/homePhones:
+    get:
+      '200':
+        application/json: PeopleGetHomePhonesResponse
+  /people/{ID}/homeWebAddresses:
+    get:
+      '200':
+        application/json: PeopleGetHomeWebAddressesResponse
+  /people/{ID}/legalName:
+    get:
+      '200':
+        application/json: PeopleGetLegalNameResponse
+  /people/{ID}/personalInformation:
+    get:
+      '200':
+        application/json: PeopleGetPersonalInfoResponse
+  /people/{ID}/photos:
+    get:
+      '200':
+        application/json: PeopleGetPersonalPhotosResponse
+  /people/{ID}/preferredName:
+    get:
+      '200':
+        application/json: PeopleGetPreferredNameResponse
+  /people/{ID}/publicContactInformation:
+    get:
+      '200':
+        application/json: PeopleGetPublicContactInformationResponse
+  /people/{ID}/workAddresses:
+    get:
+      '200':
+        application/json: PeopleGetWorkAddressesResponse
+  /people/{ID}/workEmails:
+    get:
+      '200':
+        application/json: PeopleGetWorkEmailsResponse
+  /people/{ID}/workInstantMessengers:
+    get:
+      '200':
+        application/json: PeopleGetWorkInstantMessengerUsernamesResponse
+  /people/{ID}/workPhones:
+    get:
+      '200':
+        application/json: PeopleGetWorkPhonesResponse
+  /people/{ID}/workWebAddresses:
+    get:
+      '200':
+        application/json: PeopleGetWorkWebAddressesResponse
+  /workContactInformationChanges/{ID}/addresses:
+    get:
+      '200':
+        application/json: WorkContactInformationChangesGetAddressesStagedResponse
+  /workContactInformationChanges/{ID}/emailAddresses:
+    get:
+      '200':
+        application/json: WorkContactInformationChangesGetStagedEmailAddressesResponse
+  /workContactInformationChanges/{ID}/instantMessengers:
+    get:
+      '200':
+        application/json: WorkContactInformationChangesGetStagedInstantMessengersResponse
+  /workContactInformationChanges/{ID}/phoneNumbers:
+    get:
+      '200':
+        application/json: WorkContactInformationChangesGetPhoneNumbersResponse
+  /workContactInformationChanges/{ID}/webAddresses:
+    get:
+      '200':
+        application/json: WorkContactInformationChangesGetWebAddressesStagedResponse
+securityParameters:
+  addressConfigurationFormat:
+    query: false
+  country:
+    query: false
+  currentAddress:
+    query: false
+  currentAudio:
+    query: false
+  currentName:
+    query: false
+  effective:
+    query: false
+  limit:
+    query: false
+  nameConfigurationFormat:
+    query: false
+  offset:
+    query: false
+  primaryOnly:
+    query: false
+  publicOnly:
+    query: false
+  universal_ID:
+    query: false
+  usageType:
+    query: false
+  useWesternScript:
+    query: false
+  usedFor:
+    query: false
+validServerUrls:
+  https://<tenantHostname>/person/v4:
+    url: https://<tenantHostname>/person/v4

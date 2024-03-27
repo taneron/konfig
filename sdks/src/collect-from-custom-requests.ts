@@ -1487,6 +1487,18 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "workday.com_Staffing": {
+    type: "GET",
+    url: "https://community.workday.com/sites/default/files/file-hosting/restapi/staffing_v6_20240323_oas2.json",
+  },
+  "workday.com_PerformanceEnablement": {
+    type: "GET",
+    url: "https://community.workday.com/sites/default/files/file-hosting/restapi/performanceEnablement_v5_20240323_oas2.json",
+  },
+  "workday.com_Person": {
+    type: "GET",
+    url: "https://community.workday.com/sites/default/files/file-hosting/restapi/person_v4_20240323_oas2.json",
+  },
   // "squareup.com": {
   //   lambda: async () => {
   //     const url =

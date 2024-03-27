@@ -1,0 +1,91 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /feedbackBadges:
+    get: FeedbackBadges_getCollection
+  /feedbackBadges/{ID}:
+    get: FeedbackBadges_getById
+  /giveRequestedFeedbackEvents:
+    get: GiveRequestedFeedbackEvents_getCollectionFeedbackEvents
+  /giveRequestedFeedbackEvents/{ID}:
+    get: GiveRequestedFeedbackEvents_getInstance
+    patch: GiveRequestedFeedbackEvents_updateEvent
+  /values/feedbackOnWorker/feedbackOnWorker/:
+    get: PromptValues_getInstances
+  /values/feedbackResponder/feedbackResponder/:
+    get: PromptValues_getInstances
+  /values/feedbackTemplate/feedbackTemplate/:
+    get: PromptValues_getInstances
+  /values/relatesTo/relatesTo/:
+    get: PromptValues_getInstances
+  /values/workersToNotify/workersToNotify/:
+    get: PromptValues_getInstances
+  /workers:
+    get: Workers_getCollectionStaffing
+  /workers/{ID}:
+    get: Workers_getStaffingInformation
+  /workers/{ID}/anytimeFeedbackEvents:
+    get: Workers_getFeedbackEvents
+    post: Workers_createFeedbackEvent
+  /workers/{ID}/anytimeFeedbackEvents/{subresourceID}:
+    get: Workers_getFeedbackEvent
+  /workers/{ID}/goals:
+    get: Workers_getGoals
+  /workers/{ID}/goals/{subresourceID}:
+    get: Workers_getSingleGoal
+  /workers/{ID}/requestedFeedbackOnSelfEvents:
+    get: Workers_getSelfRequestedFeedback
+    post: Workers_requestFeedbackOnSelfEvents
+  /workers/{ID}/requestedFeedbackOnSelfEvents/{subresourceID}:
+    get: Workers_getSelfRequestedFeedbackEvent
+  /workers/{ID}/requestedFeedbackOnWorkerEvents:
+    get: Workers_getRequestedFeedbackEvents
+    post: Workers_requestFeedbackOnWorkerEvents
+  /workers/{ID}/requestedFeedbackOnWorkerEvents/{subresourceID}:
+    get: Workers_getRequestedEvent
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /feedbackBadges:
+    get:
+      '200':
+        application/json: FeedbackBadgesGetCollectionResponse
+  /giveRequestedFeedbackEvents:
+    get:
+      '200':
+        application/json: GiveRequestedFeedbackEventsGetCollectionFeedbackEventsResponse
+  /workers:
+    get:
+      '200':
+        application/json: WorkersGetCollectionStaffingResponse
+  /workers/{ID}/anytimeFeedbackEvents:
+    get:
+      '200':
+        application/json: WorkersGetFeedbackEventsResponse
+  /workers/{ID}/goals:
+    get:
+      '200':
+        application/json: WorkersGetGoalsResponse
+  /workers/{ID}/requestedFeedbackOnSelfEvents:
+    get:
+      '200':
+        application/json: WorkersGetSelfRequestedFeedbackResponse
+  /workers/{ID}/requestedFeedbackOnWorkerEvents:
+    get:
+      '200':
+        application/json: WorkersGetRequestedFeedbackEventsResponse
+securityParameters:
+  includeTerminatedWorkers:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  search:
+    query: false
+validServerUrls:
+  https://<tenantHostname>/performanceEnablement/v5:
+    url: https://<tenantHostname>/performanceEnablement/v5

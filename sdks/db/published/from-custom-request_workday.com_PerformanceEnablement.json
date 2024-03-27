@@ -1,0 +1,1105 @@
+{
+  "securitySchemes": {
+    "OAuth2": {
+      "type": "oauth2",
+      "flows": {
+        "implicit": {
+          "authorizationUrl": "https://<tenantAuthorizationHostname>",
+          "scopes": {}
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://<tenantHostname>/performanceEnablement/v5",
+  "apiVersion": "v5",
+  "apiDescription": "The Performance Management service enables applications to access and create feedback about workers in the system.",
+  "apiTitle": "performanceEnablement",
+  "endpoints": 19,
+  "sdkMethods": 32,
+  "schemas": 88,
+  "parameters": 35,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://community.workday.com/sites/default/files/file-hosting/restapi/performanceEnablement_v5_20240323_oas2.json"
+  },
+  "customRequestSpecFilename": "workday.com_PerformanceEnablement.yaml",
+  "difficultyScore": 81.25,
+  "difficulty": "Easy",
+  "company": "Workday",
+  "serviceName": "PerformanceEnablement",
+  "sdkName": "workday-performance-enablement-{language}-sdk",
+  "clientName": "WorkdayPerformanceEnablement",
+  "metaDescription": "Workday is a leading provider of enterprise cloud applications for finance and human resources, helping customers adapt and thrive in a changing world. Workday applications for financial management, human resources, planning, spend management, and analytics are built with artificial intelligence and machine learning at the core to help organizations around the world embrace the future of work. Workday is used by more than 10,000 organizations around the world and across industries – from medium-sized businesses to more than 50% of the Fortune 500.",
+  "apiStatusUrls": false,
+  "homepage": "workday.com",
+  "developerDocumentation": "community.workday.com/sites/default/files/file-hosting/restapi",
+  "categories": [
+    "hr"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/feedbackBadges",
+      "method": "getCollection",
+      "httpMethod": "get",
+      "tag": "feedbackBadges",
+      "typeScriptTag": "feedbackBadges",
+      "description": "Retrieves a collection of active Feedback Badges.",
+      "parameters": [
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        {
+          "name": "offset",
+          "schema": "integer",
+          "required": false,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/requestedFeedbackOnSelfEvents/{subresourceID}",
+      "method": "getSelfRequestedFeedbackEvent",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a single self-requested feedback event instance for the specified worker.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        },
+        {
+          "name": "subresourceId",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the subresource.",
+          "example": "SUBRESOURCEID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/giveRequestedFeedbackEvents",
+      "method": "getCollectionFeedbackEvents",
+      "httpMethod": "get",
+      "tag": "giveRequestedFeedbackEvents",
+      "typeScriptTag": "giveRequestedFeedbackEvents",
+      "description": "Retrieves a collection of feedback given events about the user that responded to the feedback request.",
+      "parameters": [
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        {
+          "name": "offset",
+          "schema": "integer",
+          "required": false,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/feedbackBadges/{ID}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "feedbackBadges",
+      "typeScriptTag": "feedbackBadges",
+      "description": "Retrieves a Feedback Badge with the specified ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/goals",
+      "method": "getGoals",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a collection of goals for a specific worker.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        {
+          "name": "offset",
+          "schema": "integer",
+          "required": false,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/requestedFeedbackOnSelfEvents",
+      "method": "getSelfRequestedFeedback",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a collection of self-requested feedback events for the specified worker.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        {
+          "name": "offset",
+          "schema": "integer",
+          "required": false,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/requestedFeedbackOnSelfEvents",
+      "method": "requestFeedbackOnSelfEvents",
+      "httpMethod": "post",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Secured by: Get Feedback on Self REST+TG\n\nScope: Performance Enablement, Worker Profile and Skills",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/requestedFeedbackOnWorkerEvents/{subresourceID}",
+      "method": "getRequestedEvent",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a single requested feedback event instance for the specified worker.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        },
+        {
+          "name": "subresourceId",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the subresource.",
+          "example": "SUBRESOURCEID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/goals/{subresourceID}",
+      "method": "getSingleGoal",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a single goal instance for a specific worker.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        },
+        {
+          "name": "subresourceId",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the subresource.",
+          "example": "SUBRESOURCEID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/anytimeFeedbackEvents/{subresourceID}",
+      "method": "getFeedbackEvent",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a feedback given event instance with the specified ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        },
+        {
+          "name": "subresourceId",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the subresource.",
+          "example": "SUBRESOURCEID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}",
+      "method": "getStaffingInformation",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a collection of workers and current staffing information.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/requestedFeedbackOnWorkerEvents",
+      "method": "getRequestedFeedbackEvents",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a collection of requested feedback events for the specified worker.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        {
+          "name": "offset",
+          "schema": "integer",
+          "required": false,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/requestedFeedbackOnWorkerEvents",
+      "method": "requestFeedbackOnWorkerEvents",
+      "httpMethod": "post",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Not applicable.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers",
+      "method": "getCollectionStaffing",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a collection of workers and current staffing information.",
+      "parameters": [
+        {
+          "name": "includeTerminatedWorkers",
+          "schema": "boolean",
+          "required": false,
+          "description": "Include terminated workers in the output"
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        {
+          "name": "offset",
+          "schema": "integer",
+          "required": false,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        },
+        {
+          "name": "search",
+          "schema": "string",
+          "required": false,
+          "description": "Searches workers by name or worker ID. The search is case-insensitive. You can include space-delimited search strings for an OR search."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/anytimeFeedbackEvents",
+      "method": "getFeedbackEvents",
+      "httpMethod": "get",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Retrieves a collection of feedback given events about the specified worker.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        {
+          "name": "offset",
+          "schema": "integer",
+          "required": false,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/workers/{ID}/anytimeFeedbackEvents",
+      "method": "createFeedbackEvent",
+      "httpMethod": "post",
+      "tag": "workers",
+      "typeScriptTag": "workers",
+      "description": "Creates a single feedback given event instance about the specified worker.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/giveRequestedFeedbackEvents/{ID}",
+      "method": "getInstance",
+      "httpMethod": "get",
+      "tag": "giveRequestedFeedbackEvents",
+      "typeScriptTag": "giveRequestedFeedbackEvents",
+      "description": "Retrieves a single requested feedback given event instance with the specified ID of the user that responded to the feedback request.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/giveRequestedFeedbackEvents/{ID}",
+      "method": "updateEvent",
+      "httpMethod": "patch",
+      "tag": "giveRequestedFeedbackEvents",
+      "typeScriptTag": "giveRequestedFeedbackEvents",
+      "description": "Updates the Give Requested Feedback Event that matches the WID in the url, and the current authenticated user is a responder for the event.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The Workday ID of the resource.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/values/workersToNotify/workersToNotify",
+      "method": "getInstances",
+      "httpMethod": "get",
+      "tag": "Prompt Values",
+      "typeScriptTag": "promptValues",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/values/feedbackTemplate/feedbackTemplate",
+      "method": "getInstances",
+      "httpMethod": "get",
+      "tag": "Prompt Values",
+      "typeScriptTag": "promptValues",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/values/feedbackOnWorker/feedbackOnWorker",
+      "method": "getInstances",
+      "httpMethod": "get",
+      "tag": "Prompt Values",
+      "typeScriptTag": "promptValues",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/values/feedbackResponder/feedbackResponder",
+      "method": "getInstances",
+      "httpMethod": "get",
+      "tag": "Prompt Values",
+      "typeScriptTag": "promptValues",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/values/relatesTo/relatesTo",
+      "method": "getInstances",
+      "httpMethod": "get",
+      "tag": "Prompt Values",
+      "typeScriptTag": "promptValues",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Workday provides innovative enterprise cloud applications for finance and HR, incorporating AI and machine learning to drive business success globally. Workday's {language} SDK for PerformanceEnablement API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/workday/performance-enablement/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/workday/performance-enablement/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/workday/performance-enablement/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/workday/performance-enablement/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/workday/performance-enablement/favicon.png",
+  "clientNameCamelCase": "workdayPerformanceEnablement",
+  "lastUpdated": "2024-03-27T18:00:59.706Z",
+  "typescriptSdkUsageCode": "import { WorkdayPerformanceEnablement } from 'workday-performance-enablement-typescript-sdk';\n\nconst workdayPerformanceEnablement = new WorkdayPerformanceEnablement({\n    clientId: \"CLIENT_ID\",\n    redirectUri: \"REDIRECT_URI\"\n})",
+  "typescriptSdkFirstRequestCode": "// Retrieves a collection of active Feedback Badges.\nconst getCollectionResponse = workdayPerformanceEnablement.feedbackBadges.getCollection()",
+  "fixedSpecFileName": "workday-performance-enablement-fixed-spec.yaml"
+}

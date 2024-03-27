@@ -1,0 +1,4392 @@
+hash: b9027a999e30cd803110b066c5ec653fab728399046901e9758e7d68dbe81e61
+methodObjects:
+  - url: /jobChanges/{ID}/location
+    method: getLocationInfo
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Returns the location information for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/organizationAssignmentChanges
+    method: initiateOrganizationAssignmentChange
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: Initiates an organization assignment change for a specific worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/skillItems
+    method: getSkillItems
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: |-
+      Secured by: Person Data: Skills, Self-Service: Skills
+
+      Scope: Worker Profile and Skills
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/skillItems
+    method: createSkillItem
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: |-
+      Secured by: Person Data: Skills, Self-Service: Skills
+
+      Scope: Worker Profile and Skills
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/startDetails/{subresourceID}
+    method: getStartDetails
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves the start details for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/startDetails/{subresourceID}
+    method: updateStartDetails
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: >-
+      Partially updates the startDetails options for the specified change job
+      ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/region
+    method: getRegion
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: Retrieves a region for the specified organization assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/workContactInformationChanges
+    method: createWorkContactInformationChanges
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Creates a new Home Contact Change business process event for the parent
+      Person.
+
+
+      Secured by: Change Work Contact Information (REST Service)
+
+
+      Scope: Contact Information
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/administrative
+    method: getAdministrativeOptions
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves the administrative options for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/jobProfile/{subresourceID}
+    method: getProfile
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a job profile for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/jobProfile/{subresourceID}
+    method: updateJobProfileOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Partially updates the jobProfile options for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/location/{subresourceID}
+    method: getLocationInfo
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Returns the location information for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/location/{subresourceID}
+    method: partialUpdateLocationOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Partially updates the location options for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkInTopics
+    method: getCheckInTopics
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a collection of Check-Ins topics.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkInTopics
+    method: createCheckInTopic
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: Creates Check-In topics.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/comment
+    method: getComment
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves the comment information for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}
+    method: getInstance
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: Retrieves a single organization assignment change event instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/customOrganizations/{subresourceID}
+    method: getCustomOrganizations
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves the custom organizations for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/customOrganizations/{subresourceID}
+    method: updateCustomOrganizations
+    httpMethod: patch
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Partially updates the custom organizations for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/businessUnit/{subresourceID}
+    method: getBusinessUnit
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves a business unit for the specified organization assignment change
+      ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/businessUnit/{subresourceID}
+    method: updateBusinessUnit
+    httpMethod: patch
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Partially updates the business unit for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /supervisoryOrganizations/{ID}
+    method: getInstance
+    httpMethod: get
+    tag: supervisoryOrganizations
+    typeScriptTag: supervisoryOrganizations
+    description: Retrieves a single supervisory organization instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/position
+    method: getPositionById
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a position for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/startDetails
+    method: getStartDetails
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves the start details for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /supervisoryOrganizations/{ID}/orgChart
+    method: getOrgChart
+    httpMethod: get
+    tag: supervisoryOrganizations
+    typeScriptTag: supervisoryOrganizations
+    description: >-
+      Retrieves information about an organization chart of the specified
+      supervisory organization id.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkInTopics/{subresourceID}?type=archive
+    method: updateCheckInTopicState
+    httpMethod: patch
+    tag: workers
+    typeScriptTag: workers
+    description: Partially updates an existing Check-In topic to archived or un-archived.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/skillItems/{subresourceID}
+    method: getSkillItemsById
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: |-
+      Secured by: Person Data: Skills, Self-Service: Skills
+
+      Scope: Worker Profile and Skills
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/externalSkillLevel/{subresourceID}
+    method: getExternalSkillLevels
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Retrieves all external skill level information for a worker. You can
+      filter the external skill levels by externalSkillId.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/externalSkillLevel/{subresourceID}
+    method: updateExternalSkillLevel
+    httpMethod: put
+    tag: workers
+    typeScriptTag: workers
+    description: Updates external skill levels.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/startDetails/{subresourceID}
+    method: getStartDetails
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves the start details for the specified organization assignment
+      change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/startDetails/{subresourceID}
+    method: partiallyUpdateStartDetails
+    httpMethod: patch
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Partially updates the start details for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/moveTeam/{subresourceID}
+    method: getMoveTeamOption
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a move team option from the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/moveTeam/{subresourceID}
+    method: updateMoveTeamOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Partially updates the moveTeam options for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/homeContactInformationChanges
+    method: createHomeContactChangeProcess
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Creates a new Home Contact Change business process event for the parent
+      Person.
+
+
+      Secured by: Change Home Contact Information (REST Service)
+
+
+      Scope: Contact Information
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/position/{subresourceID}
+    method: getPositionBySubresourceId
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a position for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/position/{subresourceID}
+    method: updatePositionOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Partially updates the position options for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/comment
+    method: getCommentById
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Returns the comment information for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobProfiles
+    method: listCollection
+    httpMethod: get
+    tag: jobProfiles
+    typeScriptTag: jobProfiles
+    description: Retrieves a collection of job profiles.
+    parameters:
+      - name: includeInactive
+        schema: boolean
+        required: false
+        description: If true, the method returns inactive job profiles. Default is false.
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/businessTitle/{subresourceID}
+    method: getBusinessTitle
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a business title for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/businessTitle/{subresourceID}
+    method: updateBusinessTitleOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: >-
+      Partially updates the businessTitle options for the specified change job
+      ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkIns/{subresourceID}
+    method: deleteCheckIn
+    httpMethod: delete
+    tag: workers
+    typeScriptTag: workers
+    description: Deletes an existing Check-In instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: >-
+          Successful response. A successful response can return no matched data.
+          Deleting resource.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkIns/{subresourceID}
+    method: getCheckIn
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a single Check-In instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkIns/{subresourceID}
+    method: updateCheckIn
+    httpMethod: patch
+    tag: workers
+    typeScriptTag: workers
+    description: Partially updates an existing Check-In instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/jobClassification
+    method: getJobClassification
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a job classification for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/administrative/{subresourceID}
+    method: getAdminOptions
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves the administrative options for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/administrative/{subresourceID}
+    method: updateAdministrativeOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: >-
+      Partially updates the administrative options for the specified job change
+      ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/moveTeam
+    method: getMoveTeamOption
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a move team option from the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/opening
+    method: getOpeningOptions
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves the opening options for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/explicitSkills
+    method: getExplicitSkills
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Get Explicit Skills for Skill Enabled
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+      - name: skill
+        schema: string
+        required: false
+        description: Retrieves the skills for the specified skill name.
+      - name: skillSource
+        schema: string
+        required: false
+        description: >-
+          The Workday ID of the skill source. Returns skills associated with the
+          skill source.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/explicitSkills
+    method: saveUserSkills
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: Save skills a user has
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/businessTitle
+    method: getBusinessTitle
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a business title for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/explicitSkills/{subresourceID}
+    method: getExplicitSkillsForSkillEnabled
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Get Explicit Skills for Skill Enabled
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/company/{subresourceID}
+    method: getCompanyById
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: Retrieves a company for the specified organization assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/company/{subresourceID}
+    method: partiallyUpdateCompany
+    httpMethod: patch
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Partially updates the company for the specified organization assignment
+      change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobFamilies
+    method: list
+    httpMethod: get
+    tag: jobFamilies
+    typeScriptTag: jobFamilies
+    description: Retrieves a collection of job families.
+    parameters:
+      - name: inactive
+        schema: boolean
+        required: false
+        description: If true, the method returns inactive job families. Default is false.
+      - name: jobFamilyGroup
+        schema: array
+        required: false
+        description: >-
+          The job family group for the job family. You can specify more than 1
+          jobFamilyGroup query parameter.
+      - name: jobProfile
+        schema: array
+        required: false
+        description: >-
+          The job profile for the job family. You can specify more than 1
+          jobFamilyGroup query parameter. For possible values, you can use a
+          returned id from GET /jobProfiles.
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/costing/{subresourceID}
+    method: getCostingOrganizations
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves the costing organizations for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/costing/{subresourceID}
+    method: partiallyUpdateCostingOptions
+    httpMethod: patch
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Partially updates the costing organization options for the specified
+      organization assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkInTopics/{subresourceID}
+    method: deleteCheckInTopic
+    httpMethod: delete
+    tag: workers
+    typeScriptTag: workers
+    description: Deletes an existing Check-In topic instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: >-
+          Successful response. A successful response can return no matched data.
+          Deleting resource.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkInTopics/{subresourceID}
+    method: getCheckInTopic
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a single Check-In topic instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkInTopics/{subresourceID}
+    method: partiallyUpdateCheckInTopic
+    httpMethod: patch
+    tag: workers
+    typeScriptTag: workers
+    description: Partially updates an existing Check-In topic instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/homeContactInformationChanges/{subresourceID}
+    method: getHomeContactChange
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves an existing Home Contact Change event for the Person.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobs/{ID}/workspace
+    method: getWorkspaces
+    httpMethod: get
+    tag: jobs
+    typeScriptTag: jobs
+    description: Retrieves a collection of workspaces for the specified job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/contract
+    method: getContractOptions
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves the contract options for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/startDetails
+    method: getStartDetails
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves the start details for the specified organization assignment
+      change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/region/{subresourceID}
+    method: getRegionById
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: Retrieves a region for the specified organization assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/region/{subresourceID}
+    method: updateRegion
+    httpMethod: patch
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Partially updates the region for the specified organization assignment
+      change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/workContactInformationChanges/{subresourceID}
+    method: getWorkContactChange
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves an existing Work Contact Change event for the Person.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobs/{ID}
+    method: getJobById
+    httpMethod: get
+    tag: jobs
+    typeScriptTag: jobs
+    description: Retrieves a single job instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}
+    method: getById
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a single change job event instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkIns
+    method: getCheckIns
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a collection of Check-Ins.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkIns
+    method: createCheckIn
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: Creates Check-Ins.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers
+    method: getCollectionStaffing
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a collection of workers and current staffing information.
+    parameters:
+      - name: includeTerminatedWorkers
+        schema: boolean
+        required: false
+        description: Include terminated workers in the output
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+      - name: search
+        schema: string
+        required: false
+        description: >-
+          Searches workers by name or worker ID. The search is case-insensitive.
+          You can include space-delimited search strings for an OR search.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobFamilies/{ID}
+    method: getById
+    httpMethod: get
+    tag: jobFamilies
+    typeScriptTag: jobFamilies
+    description: Retrieves a single job family instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/customOrganizations
+    method: getCustomOrganizations
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves the custom organizations for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/submit
+    method: submitChangeJob
+    httpMethod: post
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Submit the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/jobClassification/{subresourceID}
+    method: getJobClassification
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a job classification for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/jobClassification/{subresourceID}
+    method: updateJobClassificationOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: >-
+      Partially updates the jobClassification options for the specified change
+      job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /supervisoryOrganizations/{ID}/members/{subresourceID}
+    method: getMember
+    httpMethod: get
+    tag: supervisoryOrganizations
+    typeScriptTag: supervisoryOrganizations
+    description: Retrieves a single member instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/jobChanges
+    method: initiateJobChange
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: Initiates a job change request for a specific worker
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/opening/{subresourceID}
+    method: getOpeningOptions
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves the opening options for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/opening/{subresourceID}
+    method: updateOpeningOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Partially updates the opening options for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /supervisoryOrganizations
+    method: getById
+    httpMethod: get
+    tag: supervisoryOrganizations
+    typeScriptTag: supervisoryOrganizations
+    description: Retrieves a supervisory organization for the specified ID.
+    parameters:
+      - name: includeInactive
+        schema: boolean
+        required: false
+        description: >-
+          If true, this method returns the inactive organizations. Default is
+          false.
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/costing
+    method: getCostingOrganizations
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves the costing organizations for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}
+    method: getStaffingInformation
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a collection of workers and current staffing information.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/serviceDates/{subresourceID}
+    method: getServiceDate
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a single service date information instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/submit
+    method: submitChangeRequest
+    httpMethod: post
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Submits the organization changes request for the specified ID, and
+      initiates the Change Organization Assignment business process.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/costCenter/{subresourceID}
+    method: getCostCenter
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves a cost center for the specified organization assignment change
+      ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/costCenter/{subresourceID}
+    method: updateCostCenter
+    httpMethod: patch
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Partially updates the cost center for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/comment/{subresourceID}
+    method: getCommentInfo
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves the comment information for the specified organization
+      assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/comment/{subresourceID}
+    method: updateComment
+    httpMethod: patch
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: Partially updates  the comment for the organization assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/serviceDates
+    method: getServiceDates
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a collection of service dates for the specified worker id.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/contract/{subresourceID}
+    method: getContractOptions
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves the contract options for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/contract/{subresourceID}
+    method: partiallyUpdateContractOptions
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Partially updates the contract options for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobs
+    method: getCollection
+    httpMethod: get
+    tag: jobs
+    typeScriptTag: jobs
+    description: Retrieves a collection of jobs.
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/checkIns/{subresourceID}?type=archive
+    method: partiallyUpdateCheckIn
+    httpMethod: patch
+    tag: workers
+    typeScriptTag: workers
+    description: Partially updates an existing Check-In to archived or un-archived.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/jobProfile
+    method: getJobProfile
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Retrieves a job profile for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobProfiles/{ID}
+    method: getById
+    httpMethod: get
+    tag: jobProfiles
+    typeScriptTag: jobProfiles
+    description: Retrieves a single job profile instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/externalSkillLevel
+    method: getExternalSkillLevel
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Retrieves all external skill level information for a worker. You can
+      filter the external skill levels by externalSkillId.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: externalSkillId
+        schema: string
+        required: false
+        description: >-
+          All External Skills. If passed, the External Skill Level associated
+          with the External Skill ID.
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/externalSkillLevel
+    method: createExternalSkillLevels
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: Creates external skill levels.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges
+    method: createChangeEvent
+    httpMethod: post
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Creates a new change organization assignment event for a specific filled
+      or unfilled position.
+    parameters: []
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /supervisoryOrganizations/{ID}/members
+    method: getMembers
+    httpMethod: get
+    tag: supervisoryOrganizations
+    typeScriptTag: supervisoryOrganizations
+    description: >-
+      Retrieves a collection of members for the specified supervisory
+      organization ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobs/{ID}/workspace/{subresourceID}
+    method: getWorkspace
+    httpMethod: get
+    tag: jobs
+    typeScriptTag: jobs
+    description: Retrieves a single workspace instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/businessUnit
+    method: getBusinessUnit
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves a business unit for the specified organization assignment change
+      ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/company
+    method: getCompany
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: Retrieves a company for the specified organization assignment change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /supervisoryOrganizations/{ID}/orgChart/{subresourceID}
+    method: getOrgChart
+    httpMethod: get
+    tag: supervisoryOrganizations
+    typeScriptTag: supervisoryOrganizations
+    description: Retrieves a single organization chart instance.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/comment/{subresourceID}
+    method: getCommentInfo
+    httpMethod: get
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Returns the comment information for the specified job change ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /jobChanges/{ID}/comment/{subresourceID}
+    method: updateComment
+    httpMethod: patch
+    tag: jobChanges
+    typeScriptTag: jobChanges
+    description: Partially updates the comment for the specified change job ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /organizationAssignmentChanges/{ID}/costCenter
+    method: getCostCenter
+    httpMethod: get
+    tag: organizationAssignmentChanges
+    typeScriptTag: organizationAssignmentChanges
+    description: >-
+      Retrieves a cost center for the specified organization assignment change
+      ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/regions
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/reason
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/customs
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/supervisoryOrganization
+    method: getSupervisoryOrgValues
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/programs
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/jobs
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/funds
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/workersCompensationCodeOverrides
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/timeTypes
+    method: getTimeTypes
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/workShifts
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/costCenters
+    method: getAssignmentChangeGroupCostCenters
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/businessUnits
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/frequencies
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/employeeTypes
+    method: getEmployeeTypes
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/payRateTypes
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/templates
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/workers
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/contingentWorkerTypes
+    method: getContingentWorkerTypes
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/currencies
+    method: getCurrencyInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/proposedPosition
+    method: getProposedPositions
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/jobs
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/companyInsiderTypes
+    method: getCompanyInsiderTypes
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/headcountOptions
+    method: getOptions
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/grants
+    method: getGrants
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/workerTypes
+    method: getWorkerTypes
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/workers
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/workStudyAwards
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/locations
+    method: availableLocations
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/positions
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/jobRequisitions
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/jobProfiles
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/companies
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/workSpaces
+    method: getWorkspaceInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/assignmentTypes
+    method: getAssignmentTypes
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/jobChangesGroup/jobClassifications
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/organizationAssignmentChangesGroup/gifts
+    method: getGiftInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+numberOfSchemas: 214
+apiDescription: >-
+  The Staffing REST APIs enable you to get and manage staffing information, such
+  as jobs, job families, job profiles, supervisory organizations, worker
+  check-ins, and job changes. The Staffing service also includes the /workers
+  resource to access staffing information for non-terminated workers.
+
+
+
+
+  Related Information:
+
+  - Administrator Guide: Setup Considerations: Job Changes

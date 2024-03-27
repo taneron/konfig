@@ -1,0 +1,426 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /jobChanges/{ID}:
+    get: JobChanges_getById
+  /jobChanges/{ID}/administrative:
+    get: JobChanges_getAdministrativeOptions
+  /jobChanges/{ID}/administrative/{subresourceID}:
+    get: JobChanges_getAdminOptions
+    patch: JobChanges_updateAdministrativeOptions
+  /jobChanges/{ID}/businessTitle:
+    get: JobChanges_getBusinessTitle
+  /jobChanges/{ID}/businessTitle/{subresourceID}:
+    get: JobChanges_getBusinessTitle
+    patch: JobChanges_updateBusinessTitleOptions
+  /jobChanges/{ID}/comment:
+    get: JobChanges_getCommentById
+  /jobChanges/{ID}/comment/{subresourceID}:
+    get: JobChanges_getCommentInfo
+    patch: JobChanges_updateComment
+  /jobChanges/{ID}/contract:
+    get: JobChanges_getContractOptions
+  /jobChanges/{ID}/contract/{subresourceID}:
+    get: JobChanges_getContractOptions
+    patch: JobChanges_partiallyUpdateContractOptions
+  /jobChanges/{ID}/jobClassification:
+    get: JobChanges_getJobClassification
+  /jobChanges/{ID}/jobClassification/{subresourceID}:
+    get: JobChanges_getJobClassification
+    patch: JobChanges_updateJobClassificationOptions
+  /jobChanges/{ID}/jobProfile:
+    get: JobChanges_getJobProfile
+  /jobChanges/{ID}/jobProfile/{subresourceID}:
+    get: JobChanges_getProfile
+    patch: JobChanges_updateJobProfileOptions
+  /jobChanges/{ID}/location:
+    get: JobChanges_getLocationInfo
+  /jobChanges/{ID}/location/{subresourceID}:
+    get: JobChanges_getLocationInfo
+    patch: JobChanges_partialUpdateLocationOptions
+  /jobChanges/{ID}/moveTeam:
+    get: JobChanges_getMoveTeamOption
+  /jobChanges/{ID}/moveTeam/{subresourceID}:
+    get: JobChanges_getMoveTeamOption
+    patch: JobChanges_updateMoveTeamOptions
+  /jobChanges/{ID}/opening:
+    get: JobChanges_getOpeningOptions
+  /jobChanges/{ID}/opening/{subresourceID}:
+    get: JobChanges_getOpeningOptions
+    patch: JobChanges_updateOpeningOptions
+  /jobChanges/{ID}/position:
+    get: JobChanges_getPositionById
+  /jobChanges/{ID}/position/{subresourceID}:
+    get: JobChanges_getPositionBySubresourceId
+    patch: JobChanges_updatePositionOptions
+  /jobChanges/{ID}/startDetails:
+    get: JobChanges_getStartDetails
+  /jobChanges/{ID}/startDetails/{subresourceID}:
+    get: JobChanges_getStartDetails
+    patch: JobChanges_updateStartDetails
+  /jobChanges/{ID}/submit:
+    post: JobChanges_submitChangeJob
+  /jobFamilies:
+    get: JobFamilies_list
+  /jobFamilies/{ID}:
+    get: JobFamilies_getById
+  /jobProfiles:
+    get: JobProfiles_listCollection
+  /jobProfiles/{ID}:
+    get: JobProfiles_getById
+  /jobs:
+    get: Jobs_getCollection
+  /jobs/{ID}:
+    get: Jobs_getJobById
+  /jobs/{ID}/workspace:
+    get: Jobs_getWorkspaces
+  /jobs/{ID}/workspace/{subresourceID}:
+    get: Jobs_getWorkspace
+  /organizationAssignmentChanges:
+    post: OrganizationAssignmentChanges_createChangeEvent
+  /organizationAssignmentChanges/{ID}:
+    get: OrganizationAssignmentChanges_getInstance
+  /organizationAssignmentChanges/{ID}/businessUnit:
+    get: OrganizationAssignmentChanges_getBusinessUnit
+  /organizationAssignmentChanges/{ID}/businessUnit/{subresourceID}:
+    get: OrganizationAssignmentChanges_getBusinessUnit
+    patch: OrganizationAssignmentChanges_updateBusinessUnit
+  /organizationAssignmentChanges/{ID}/comment:
+    get: OrganizationAssignmentChanges_getComment
+  /organizationAssignmentChanges/{ID}/comment/{subresourceID}:
+    get: OrganizationAssignmentChanges_getCommentInfo
+    patch: OrganizationAssignmentChanges_updateComment
+  /organizationAssignmentChanges/{ID}/company:
+    get: OrganizationAssignmentChanges_getCompany
+  /organizationAssignmentChanges/{ID}/company/{subresourceID}:
+    get: OrganizationAssignmentChanges_getCompanyById
+    patch: OrganizationAssignmentChanges_partiallyUpdateCompany
+  /organizationAssignmentChanges/{ID}/costCenter:
+    get: OrganizationAssignmentChanges_getCostCenter
+  /organizationAssignmentChanges/{ID}/costCenter/{subresourceID}:
+    get: OrganizationAssignmentChanges_getCostCenter
+    patch: OrganizationAssignmentChanges_updateCostCenter
+  /organizationAssignmentChanges/{ID}/costing:
+    get: OrganizationAssignmentChanges_getCostingOrganizations
+  /organizationAssignmentChanges/{ID}/costing/{subresourceID}:
+    get: OrganizationAssignmentChanges_getCostingOrganizations
+    patch: OrganizationAssignmentChanges_partiallyUpdateCostingOptions
+  /organizationAssignmentChanges/{ID}/customOrganizations:
+    get: OrganizationAssignmentChanges_getCustomOrganizations
+  /organizationAssignmentChanges/{ID}/customOrganizations/{subresourceID}:
+    get: OrganizationAssignmentChanges_getCustomOrganizations
+    patch: OrganizationAssignmentChanges_updateCustomOrganizations
+  /organizationAssignmentChanges/{ID}/region:
+    get: OrganizationAssignmentChanges_getRegion
+  /organizationAssignmentChanges/{ID}/region/{subresourceID}:
+    get: OrganizationAssignmentChanges_getRegionById
+    patch: OrganizationAssignmentChanges_updateRegion
+  /organizationAssignmentChanges/{ID}/startDetails:
+    get: OrganizationAssignmentChanges_getStartDetails
+  /organizationAssignmentChanges/{ID}/startDetails/{subresourceID}:
+    get: OrganizationAssignmentChanges_getStartDetails
+    patch: OrganizationAssignmentChanges_partiallyUpdateStartDetails
+  /organizationAssignmentChanges/{ID}/submit:
+    post: OrganizationAssignmentChanges_submitChangeRequest
+  /supervisoryOrganizations:
+    get: SupervisoryOrganizations_getById
+  /supervisoryOrganizations/{ID}:
+    get: SupervisoryOrganizations_getInstance
+  /supervisoryOrganizations/{ID}/members:
+    get: SupervisoryOrganizations_getMembers
+  /supervisoryOrganizations/{ID}/members/{subresourceID}:
+    get: SupervisoryOrganizations_getMember
+  /supervisoryOrganizations/{ID}/orgChart:
+    get: SupervisoryOrganizations_getOrgChart
+  /supervisoryOrganizations/{ID}/orgChart/{subresourceID}:
+    get: SupervisoryOrganizations_getOrgChart
+  /values/jobChangesGroup/assignmentTypes/:
+    get: PromptValues_getAssignmentTypes
+  /values/jobChangesGroup/companyInsiderTypes/:
+    get: PromptValues_getCompanyInsiderTypes
+  /values/jobChangesGroup/contingentWorkerTypes/:
+    get: PromptValues_getContingentWorkerTypes
+  /values/jobChangesGroup/currencies/:
+    get: PromptValues_getCurrencyInstances
+  /values/jobChangesGroup/employeeTypes/:
+    get: PromptValues_getEmployeeTypes
+  /values/jobChangesGroup/frequencies/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/headcountOptions/:
+    get: PromptValues_getOptions
+  /values/jobChangesGroup/jobClassifications/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/jobProfiles/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/jobRequisitions/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/jobs/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/locations/:
+    get: PromptValues_availableLocations
+  /values/jobChangesGroup/payRateTypes/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/proposedPosition/:
+    get: PromptValues_getProposedPositions
+  /values/jobChangesGroup/reason/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/supervisoryOrganization/:
+    get: PromptValues_getSupervisoryOrgValues
+  /values/jobChangesGroup/templates/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/timeTypes/:
+    get: PromptValues_getTimeTypes
+  /values/jobChangesGroup/workShifts/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/workSpaces/:
+    get: PromptValues_getWorkspaceInstances
+  /values/jobChangesGroup/workStudyAwards/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/workerTypes/:
+    get: PromptValues_getWorkerTypes
+  /values/jobChangesGroup/workers/:
+    get: PromptValues_getInstances
+  /values/jobChangesGroup/workersCompensationCodeOverrides/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/businessUnits/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/companies/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/costCenters/:
+    get: PromptValues_getAssignmentChangeGroupCostCenters
+  /values/organizationAssignmentChangesGroup/customs/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/funds/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/gifts/:
+    get: PromptValues_getGiftInstances
+  /values/organizationAssignmentChangesGroup/grants/:
+    get: PromptValues_getGrants
+  /values/organizationAssignmentChangesGroup/jobs/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/positions/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/programs/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/regions/:
+    get: PromptValues_getInstances
+  /values/organizationAssignmentChangesGroup/workers/:
+    get: PromptValues_getInstances
+  /workers:
+    get: Workers_getCollectionStaffing
+  /workers/{ID}:
+    get: Workers_getStaffingInformation
+  /workers/{ID}/checkInTopics:
+    get: Workers_getCheckInTopics
+    post: Workers_createCheckInTopic
+  /workers/{ID}/checkInTopics/{subresourceID}:
+    delete: Workers_deleteCheckInTopic
+    get: Workers_getCheckInTopic
+    patch: Workers_partiallyUpdateCheckInTopic
+  /workers/{ID}/checkInTopics/{subresourceID}?type=archive:
+    patch: Workers_updateCheckInTopicState
+  /workers/{ID}/checkIns:
+    get: Workers_getCheckIns
+    post: Workers_createCheckIn
+  /workers/{ID}/checkIns/{subresourceID}:
+    delete: Workers_deleteCheckIn
+    get: Workers_getCheckIn
+    patch: Workers_updateCheckIn
+  /workers/{ID}/checkIns/{subresourceID}?type=archive:
+    patch: Workers_partiallyUpdateCheckIn
+  /workers/{ID}/explicitSkills:
+    get: Workers_getExplicitSkills
+    post: Workers_saveUserSkills
+  /workers/{ID}/explicitSkills/{subresourceID}:
+    get: Workers_getExplicitSkillsForSkillEnabled
+  /workers/{ID}/externalSkillLevel:
+    get: Workers_getExternalSkillLevel
+    post: Workers_createExternalSkillLevels
+  /workers/{ID}/externalSkillLevel/{subresourceID}:
+    get: Workers_getExternalSkillLevels
+    put: Workers_updateExternalSkillLevel
+  /workers/{ID}/homeContactInformationChanges:
+    post: Workers_createHomeContactChangeProcess
+  /workers/{ID}/homeContactInformationChanges/{subresourceID}:
+    get: Workers_getHomeContactChange
+  /workers/{ID}/jobChanges:
+    post: Workers_initiateJobChange
+  /workers/{ID}/organizationAssignmentChanges:
+    post: Workers_initiateOrganizationAssignmentChange
+  /workers/{ID}/serviceDates:
+    get: Workers_getServiceDates
+  /workers/{ID}/serviceDates/{subresourceID}:
+    get: Workers_getServiceDate
+  /workers/{ID}/skillItems:
+    get: Workers_getSkillItems
+    post: Workers_createSkillItem
+  /workers/{ID}/skillItems/{subresourceID}:
+    get: Workers_getSkillItemsById
+  /workers/{ID}/workContactInformationChanges:
+    post: Workers_createWorkContactInformationChanges
+  /workers/{ID}/workContactInformationChanges/{subresourceID}:
+    get: Workers_getWorkContactChange
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /jobChanges/{ID}/administrative:
+    get:
+      '200':
+        application/json: JobChangesGetAdministrativeOptionsResponse
+  /jobChanges/{ID}/businessTitle:
+    get:
+      '200':
+        application/json: JobChangesGetBusinessTitleResponse
+  /jobChanges/{ID}/comment:
+    get:
+      '200':
+        application/json: JobChangesGetCommentByIdResponse
+  /jobChanges/{ID}/contract:
+    get:
+      '200':
+        application/json: JobChangesGetContractOptionsResponse
+  /jobChanges/{ID}/jobClassification:
+    get:
+      '200':
+        application/json: JobChangesGetJobClassificationResponse
+  /jobChanges/{ID}/jobProfile:
+    get:
+      '200':
+        application/json: JobChangesGetJobProfileResponse
+  /jobChanges/{ID}/location:
+    get:
+      '200':
+        application/json: JobChangesGetLocationInfoResponse
+  /jobChanges/{ID}/moveTeam:
+    get:
+      '200':
+        application/json: JobChangesGetMoveTeamOptionResponse
+  /jobChanges/{ID}/opening:
+    get:
+      '200':
+        application/json: JobChangesGetOpeningOptionsResponse
+  /jobChanges/{ID}/position:
+    get:
+      '200':
+        application/json: JobChangesGetPositionByIdResponse
+  /jobChanges/{ID}/startDetails:
+    get:
+      '200':
+        application/json: JobChangesGetStartDetailsResponse
+  /jobFamilies:
+    get:
+      '200':
+        application/json: JobFamiliesListResponse
+  /jobProfiles:
+    get:
+      '200':
+        application/json: JobProfilesListCollectionResponse
+  /jobs:
+    get:
+      '200':
+        application/json: JobsGetCollectionResponse
+  /jobs/{ID}/workspace:
+    get:
+      '200':
+        application/json: JobsGetWorkspacesResponse
+  /organizationAssignmentChanges/{ID}/businessUnit:
+    get:
+      '200':
+        application/json: OrganizationAssignmentChangesGetBusinessUnitResponse
+  /organizationAssignmentChanges/{ID}/comment:
+    get:
+      '200':
+        application/json: OrganizationAssignmentChangesGetCommentResponse
+  /organizationAssignmentChanges/{ID}/company:
+    get:
+      '200':
+        application/json: OrganizationAssignmentChangesGetCompanyResponse
+  /organizationAssignmentChanges/{ID}/costCenter:
+    get:
+      '200':
+        application/json: OrganizationAssignmentChangesGetCostCenterResponse
+  /organizationAssignmentChanges/{ID}/costing:
+    get:
+      '200':
+        application/json: OrganizationAssignmentChangesGetCostingOrganizationsResponse
+  /organizationAssignmentChanges/{ID}/customOrganizations:
+    get:
+      '200':
+        application/json: OrganizationAssignmentChangesGetCustomOrganizationsResponse
+  /organizationAssignmentChanges/{ID}/region:
+    get:
+      '200':
+        application/json: OrganizationAssignmentChangesGetRegionResponse
+  /organizationAssignmentChanges/{ID}/startDetails:
+    get:
+      '200':
+        application/json: OrganizationAssignmentChangesGetStartDetailsResponse
+  /supervisoryOrganizations:
+    get:
+      '200':
+        application/json: SupervisoryOrganizationsGetByIdResponse
+  /supervisoryOrganizations/{ID}/members:
+    get:
+      '200':
+        application/json: SupervisoryOrganizationsGetMembersResponse
+  /supervisoryOrganizations/{ID}/orgChart:
+    get:
+      '200':
+        application/json: SupervisoryOrganizationsGetOrgChartResponse
+  /workers:
+    get:
+      '200':
+        application/json: WorkersGetCollectionStaffingResponse
+  /workers/{ID}/checkInTopics:
+    get:
+      '200':
+        application/json: WorkersGetCheckInTopicsResponse
+  /workers/{ID}/checkIns:
+    get:
+      '200':
+        application/json: WorkersGetCheckInsResponse
+  /workers/{ID}/explicitSkills:
+    get:
+      '200':
+        application/json: WorkersGetExplicitSkillsResponse
+  /workers/{ID}/externalSkillLevel:
+    get:
+      '200':
+        application/json: WorkersGetExternalSkillLevelResponse
+  /workers/{ID}/serviceDates:
+    get:
+      '200':
+        application/json: WorkersGetServiceDatesResponse
+  /workers/{ID}/skillItems:
+    get:
+      '200':
+        application/json: WorkersGetSkillItemsResponse
+securityParameters:
+  externalSkillId:
+    query: false
+  inactive:
+    query: false
+  includeInactive:
+    query: false
+  includeTerminatedWorkers:
+    query: false
+  jobFamilyGroup:
+    query: false
+  jobProfile:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  search:
+    query: false
+  skill:
+    query: false
+  skillSource:
+    query: false
+validServerUrls:
+  https://<tenantHostname>/staffing/v6:
+    url: https://<tenantHostname>/staffing/v6

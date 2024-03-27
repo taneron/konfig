@@ -1,0 +1,705 @@
+hash: 875ffb0f2d44561722a7063dad07398ccaa823ba0d74c7b6a2c3ce758977161b
+methodObjects:
+  - url: /feedbackBadges
+    method: getCollection
+    httpMethod: get
+    tag: feedbackBadges
+    typeScriptTag: feedbackBadges
+    description: Retrieves a collection of active Feedback Badges.
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/requestedFeedbackOnSelfEvents/{subresourceID}
+    method: getSelfRequestedFeedbackEvent
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Retrieves a single self-requested feedback event instance for the
+      specified worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /giveRequestedFeedbackEvents
+    method: getCollectionFeedbackEvents
+    httpMethod: get
+    tag: giveRequestedFeedbackEvents
+    typeScriptTag: giveRequestedFeedbackEvents
+    description: >-
+      Retrieves a collection of feedback given events about the user that
+      responded to the feedback request.
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /feedbackBadges/{ID}
+    method: getById
+    httpMethod: get
+    tag: feedbackBadges
+    typeScriptTag: feedbackBadges
+    description: Retrieves a Feedback Badge with the specified ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/goals
+    method: getGoals
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a collection of goals for a specific worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/requestedFeedbackOnSelfEvents
+    method: getSelfRequestedFeedback
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Retrieves a collection of self-requested feedback events for the specified
+      worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/requestedFeedbackOnSelfEvents
+    method: requestFeedbackOnSelfEvents
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: |-
+      Secured by: Get Feedback on Self REST+TG
+
+      Scope: Performance Enablement, Worker Profile and Skills
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/requestedFeedbackOnWorkerEvents/{subresourceID}
+    method: getRequestedEvent
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Retrieves a single requested feedback event instance for the specified
+      worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/goals/{subresourceID}
+    method: getSingleGoal
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a single goal instance for a specific worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/anytimeFeedbackEvents/{subresourceID}
+    method: getFeedbackEvent
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a feedback given event instance with the specified ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: subresourceId
+        schema: string
+        required: true
+        description: The Workday ID of the subresource.
+        example: SUBRESOURCEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}
+    method: getStaffingInformation
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a collection of workers and current staffing information.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/requestedFeedbackOnWorkerEvents
+    method: getRequestedFeedbackEvents
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Retrieves a collection of requested feedback events for the specified
+      worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/requestedFeedbackOnWorkerEvents
+    method: requestFeedbackOnWorkerEvents
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: Not applicable.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers
+    method: getCollectionStaffing
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: Retrieves a collection of workers and current staffing information.
+    parameters:
+      - name: includeTerminatedWorkers
+        schema: boolean
+        required: false
+        description: Include terminated workers in the output
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+      - name: search
+        schema: string
+        required: false
+        description: >-
+          Searches workers by name or worker ID. The search is case-insensitive.
+          You can include space-delimited search strings for an OR search.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/anytimeFeedbackEvents
+    method: getFeedbackEvents
+    httpMethod: get
+    tag: workers
+    typeScriptTag: workers
+    description: >-
+      Retrieves a collection of feedback given events about the specified
+      worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+      - name: limit
+        schema: integer
+        required: false
+        description: >-
+          The maximum number of objects in a single response. The default is 20.
+          The maximum is 100.
+      - name: offset
+        schema: integer
+        required: false
+        description: >-
+          The zero-based index of the first object in a response collection. The
+          default is 0. Use offset with the limit parameter to control paging of
+          a response collection. Example: If limit is 5 and offset is 9, the
+          response returns a collection of 5 objects starting with the 10th
+          object.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /workers/{ID}/anytimeFeedbackEvents
+    method: createFeedbackEvent
+    httpMethod: post
+    tag: workers
+    typeScriptTag: workers
+    description: Creates a single feedback given event instance about the specified worker.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /giveRequestedFeedbackEvents/{ID}
+    method: getInstance
+    httpMethod: get
+    tag: giveRequestedFeedbackEvents
+    typeScriptTag: giveRequestedFeedbackEvents
+    description: >-
+      Retrieves a single requested feedback given event instance with the
+      specified ID of the user that responded to the feedback request.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /giveRequestedFeedbackEvents/{ID}
+    method: updateEvent
+    httpMethod: patch
+    tag: giveRequestedFeedbackEvents
+    typeScriptTag: giveRequestedFeedbackEvents
+    description: >-
+      Updates the Give Requested Feedback Event that matches the WID in the url,
+      and the current authenticated user is a responder for the event.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The Workday ID of the resource.
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/workersToNotify/workersToNotify
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/feedbackTemplate/feedbackTemplate
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/feedbackOnWorker/feedbackOnWorker
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/feedbackResponder/feedbackResponder
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /values/relatesTo/relatesTo
+    method: getInstances
+    httpMethod: get
+    tag: Prompt Values
+    typeScriptTag: promptValues
+    description: >-
+      Retrieves instances that can be used as values for other endpoint
+      parameters in this service.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+numberOfSchemas: 88
+apiDescription: >-
+  The Performance Management service enables applications to access and create
+  feedback about workers in the system.
