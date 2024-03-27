@@ -21,7 +21,7 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
       companyKebabCase="1-password"
       clientNameCamelCase="onePasswordConnect"
       homepage="1password.com"
-      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
+      lastUpdated={new Date("2024-03-27T21:10:09.481Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/connect/favicon.png"
       contactUrl="https://support.1password.com/"
       contactEmail="support@1password.com"
@@ -558,7 +558,7 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
       sdkMethods={16}
       schemas={18}
       parameters={22}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/connect/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/1-password/connect/openapi.yaml"
       developerDocumentation="developer.1password.com/docs/connect/connect-api-reference/"
