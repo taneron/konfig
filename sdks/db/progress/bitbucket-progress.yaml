@@ -1,0 +1,574 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /addon:
+    delete: Addon_deleteUserApp
+    put: Addon_updateAppInstallation
+  /addon/linkers:
+    get: Addon_listLinkers
+  /addon/linkers/{linker_key}:
+    get: Addon_getLinker
+  /addon/linkers/{linker_key}/values:
+    delete: Addon_deleteLinkerValues
+    get: Addon_listLinkerValues
+    post: Addon_createLinkerValue
+    put: Addon_updateLinkerValues
+  /addon/linkers/{linker_key}/values/{value_id}:
+    delete: Addon_deleteLinkerValue
+    get: Addon_getLinkerValue
+  /hook_events:
+    get: Webhooks_getResourceEvents
+  /hook_events/{subject_type}:
+    get: Webhooks_listSubscribableTypes
+  /pullrequests/{selected_user}:
+    get: Pullrequests_listForUser
+  /repositories:
+    get: Repositories_listPublicRepositories
+  /repositories/{workspace}:
+    get: Repositories_listInWorkspace
+  /repositories/{workspace}/{repo_slug}:
+    delete: Repositories_deleteRepository
+    get: Repositories_getRepositoryDetails
+    post: Repositories_createRepo
+    put: Repositories_createOrUpdate
+  /repositories/{workspace}/{repo_slug}/branch-restrictions:
+    get: BranchRestrictions_listBranchRestrictions
+    post: BranchRestrictions_createRule
+  /repositories/{workspace}/{repo_slug}/branch-restrictions/{id}:
+    delete: BranchRestrictions_deleteRule
+    get: BranchRestrictions_getRule
+    put: BranchRestrictions_updateRule
+  /repositories/{workspace}/{repo_slug}/branching-model:
+    get: BranchingModel_getBranchingModel
+  /repositories/{workspace}/{repo_slug}/branching-model/settings:
+    get: BranchingModel_getRepositoryBranchingSettings
+    put: BranchingModel_updateConfig
+  /repositories/{workspace}/{repo_slug}/commit/{commit}:
+    get: Commits_getCommitDetails
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/approve:
+    delete: Commits_unapproveCommit
+    post: Commits_approveCommit
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/comments:
+    get: Commits_listComments
+    post: Commits_createComment
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}:
+    delete: Commits_deleteComment
+    get: Commits_getCommitComment
+    put: Commits_updateComment
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}:
+    delete: Properties_deleteCommitApplicationProperty
+    get: Properties_getValue
+    put: Properties_updateCommitApplicationProperty
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/pullrequests:
+    get: Pullrequests_listContainingCommit
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/reports:
+    get: Reports_listLinkedReports
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}:
+    delete: Reports_deleteReport
+    get: Reports_getSingleReport
+    put: Reports_commitReportCreateOrUpdate
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations:
+    get: Reports_listAnnotations
+    post: Reports_bulkCreateOrUpdateAnnotations
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations/{annotationId}:
+    delete: Reports_deleteAnnotation
+    get: Reports_getAnnotation
+    put: Reports_commitAnnotations
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses:
+    get: CommitStatuses_listForCommit
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build:
+    post: CommitStatuses_createBuildStatus
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build/{key}:
+    get: CommitStatuses_getBuildStatus
+    put: CommitStatuses_updateBuildStatus
+  /repositories/{workspace}/{repo_slug}/commits:
+    get: Commits_list
+    post: Commits_listWithIncludeExclude
+  /repositories/{workspace}/{repo_slug}/commits/{revision}:
+    get: Commits_listForRevision
+    post: Commits_listForRevision
+  /repositories/{workspace}/{repo_slug}/components:
+    get: IssueTracker_listComponents
+  /repositories/{workspace}/{repo_slug}/components/{component_id}:
+    get: IssueTracker_getComponent
+  /repositories/{workspace}/{repo_slug}/default-reviewers:
+    get: Pullrequests_listDefaultReviewers
+  /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}:
+    delete: Pullrequests_removeDefaultReviewer
+    get: Pullrequests_getDefaultReviewer
+    put: Pullrequests_addUserToDefaultReviewers
+  /repositories/{workspace}/{repo_slug}/deploy-keys:
+    get: Deployments_listRepositoryDeployKeys
+    post: Deployments_addRepositoryDeployKey
+  /repositories/{workspace}/{repo_slug}/deploy-keys/{key_id}:
+    delete: Deployments_repositoryKeyDelete
+    get: Deployments_getDeployKey
+    put: Deployments_updateRepositoryDeployKey
+  /repositories/{workspace}/{repo_slug}/deployments:
+    get: Deployments_listDeployments
+  /repositories/{workspace}/{repo_slug}/deployments/{deployment_uuid}:
+    get: Deployments_getSingleDeployment
+  /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables:
+    get: Pipelines_listEnvironmentVariables
+    post: Pipelines_createDeploymentEnvironmentVariable
+  /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables/{variable_uuid}:
+    delete: Pipelines_deleteVariableForEnvironment
+    put: Pipelines_updateEnvironmentVariable
+  /repositories/{workspace}/{repo_slug}/diff/{spec}:
+    get: Commits_compareTwoCommitsDiff
+  /repositories/{workspace}/{repo_slug}/diffstat/{spec}:
+    get: Commits_compareDiffStats
+  /repositories/{workspace}/{repo_slug}/downloads:
+    get: Downloads_listArtifacts
+    post: Downloads_uploadArtifact
+  /repositories/{workspace}/{repo_slug}/downloads/{filename}:
+    delete: Downloads_deleteArtifact
+    get: Downloads_artifactLinkGet
+  /repositories/{workspace}/{repo_slug}/effective-branching-model:
+    get: BranchingModel_getEffectiveBranchingModel
+  /repositories/{workspace}/{repo_slug}/effective-default-reviewers:
+    get: Pullrequests_listEffectiveDefaultReviewers
+  /repositories/{workspace}/{repo_slug}/environments:
+    get: Deployments_listEnvironments
+    post: Deployments_createEnvironment
+  /repositories/{workspace}/{repo_slug}/environments/{environment_uuid}:
+    delete: Deployments_deleteEnvironment
+    get: Deployments_getEnvironment
+  /repositories/{workspace}/{repo_slug}/environments/{environment_uuid}/changes:
+    post: Deployments_updateEnvironment
+  /repositories/{workspace}/{repo_slug}/filehistory/{commit}/{path}:
+    get: Source_filehistoryListCommits
+  /repositories/{workspace}/{repo_slug}/forks:
+    get: Repositories_listForks
+    post: Repositories_forkRepository
+  /repositories/{workspace}/{repo_slug}/hooks:
+    get: Repositories_listWebhooks
+    post: Repositories_createWebhook
+  /repositories/{workspace}/{repo_slug}/hooks/{uid}:
+    delete: Repositories_deleteWebhook
+    get: Repositories_getWebhookByUid
+    put: Repositories_updateWebhookSubscription
+  /repositories/{workspace}/{repo_slug}/issues:
+    get: IssueTracker_listIssuesInWorkspace
+    post: IssueTracker_createNewIssue
+  /repositories/{workspace}/{repo_slug}/issues/export:
+    post: IssueTracker_initiateJob
+  /repositories/{workspace}/{repo_slug}/issues/export/{repo_name}-issues-{task_id}.zip:
+    get: IssueTracker_checkExportStatus
+  /repositories/{workspace}/{repo_slug}/issues/import:
+    get: IssueTracker_checkImportStatus
+    post: IssueTracker_importIssuesFromZip
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}:
+    delete: IssueTracker_deleteIssue
+    get: IssueTracker_getIssueById
+    put: IssueTracker_updateIssue
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments:
+    get: IssueTracker_listAttachmentsForIssue
+    post: IssueTracker_uploadAttachment
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments/{path}:
+    delete: IssueTracker_deleteAttachment
+    get: IssueTracker_getAttachmentContents
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes:
+    get: IssueTracker_listIssueChanges
+    post: IssueTracker_modifyIssueState
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes/{change_id}:
+    get: IssueTracker_getIssueChange
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments:
+    get: IssueTracker_listCommentsOnIssue
+    post: IssueTracker_createCommentOnIssue
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments/{comment_id}:
+    delete: IssueTracker_deleteComment
+    get: IssueTracker_getComment
+    put: IssueTracker_updateIssueCommentContent
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/vote:
+    delete: IssueTracker_removeVote
+    get: IssueTracker_checkUserVoted
+    put: IssueTracker_voteForIssue
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/watch:
+    delete: IssueTracker_stopWatchingIssue
+    get: IssueTracker_checkIfWatchingIssue
+    put: IssueTracker_watchIssue
+  /repositories/{workspace}/{repo_slug}/merge-base/{revspec}:
+    get: Commits_getMergeBase
+  /repositories/{workspace}/{repo_slug}/milestones:
+    get: IssueTracker_listMilestones
+  /repositories/{workspace}/{repo_slug}/milestones/{milestone_id}:
+    get: IssueTracker_getMilestone
+  /repositories/{workspace}/{repo_slug}/override-settings:
+    get: Repositories_inheritanceStateGet
+    put: Repositories_setInheritanceState
+  /repositories/{workspace}/{repo_slug}/patch/{spec}:
+    get: Commits_getPatchForCommits
+  /repositories/{workspace}/{repo_slug}/permissions-config/groups:
+    get: Repositories_listGroupPermissions
+  /repositories/{workspace}/{repo_slug}/permissions-config/groups/{group_slug}:
+    delete: Repositories_deleteGroupPermission
+    get: Repositories_getGroupPermissions
+    put: Repositories_updateGroupPermission
+  /repositories/{workspace}/{repo_slug}/permissions-config/users:
+    get: Repositories_listUserPermissions
+  /repositories/{workspace}/{repo_slug}/permissions-config/users/{selected_user_id}:
+    delete: Repositories_deleteUserPermission
+    get: Repositories_explicitUserPermission
+    put: Repositories_updateUserPermission
+  /repositories/{workspace}/{repo_slug}/pipelines:
+    get: Pipelines_list
+    post: Pipelines_createPipeline
+  /repositories/{workspace}/{repo_slug}/pipelines-config/caches:
+    delete: Pipelines_deleteCacheVersionByName
+    get: Pipelines_getCaches
+  /repositories/{workspace}/{repo_slug}/pipelines-config/caches/{cache_uuid}:
+    delete: Pipelines_deleteCacheById
+  /repositories/{workspace}/{repo_slug}/pipelines-config/caches/{cache_uuid}/content-uri:
+    get: Pipelines_getCacheContentUri
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}:
+    get: Pipelines_getSpecifiedPipeline
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps:
+    get: Pipelines_getPipelineSteps
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}:
+    get: Pipelines_getStep
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/log:
+    get: Pipelines_getStepLog
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/logs/{log_uuid}:
+    get: Pipelines_getStepLogs
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports:
+    get: Pipelines_getTestReportsForStep
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports/test_cases:
+    get: Pipelines_getTestCasesForStep
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports/test_cases/{test_case_uuid}/test_case_reasons:
+    get: Pipelines_getTestCaseReasons
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/stopPipeline:
+    post: Pipelines_stopPipeline
+  /repositories/{workspace}/{repo_slug}/pipelines_config:
+    get: Pipelines_getConfiguration
+    put: Pipelines_updateConfiguration
+  /repositories/{workspace}/{repo_slug}/pipelines_config/build_number:
+    put: Pipelines_updateNextBuildNumber
+  /repositories/{workspace}/{repo_slug}/pipelines_config/schedules:
+    get: Pipelines_listSchedules
+    post: Pipelines_createSchedule
+  /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}:
+    delete: Pipelines_deleteSchedule
+    get: Pipelines_getConfigSchedule
+    put: Pipelines_updateSchedule
+  /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}/executions:
+    get: Pipelines_listScheduleExecutions
+  /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/key_pair:
+    delete: Pipelines_deleteSshKeyPair
+    get: Pipelines_getKeyPair
+    put: Pipelines_updateSshKeyPair
+  /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/known_hosts:
+    get: Pipelines_listKnownHosts
+    post: Pipelines_createKnownHost
+  /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/known_hosts/{known_host_uuid}:
+    delete: Pipelines_deleteKnownHost
+    get: Pipelines_getKnownHost
+    put: Pipelines_updateKnownHost
+  /repositories/{workspace}/{repo_slug}/pipelines_config/variables:
+    get: Pipelines_listRepositoryVariables
+    post: Pipelines_createVariable
+  /repositories/{workspace}/{repo_slug}/pipelines_config/variables/{variable_uuid}:
+    delete: Pipelines_deleteVariable
+    get: Pipelines_getRepositoryVariable
+    put: Pipelines_updateVariableForRepository
+  /repositories/{workspace}/{repo_slug}/properties/{app_key}/{property_name}:
+    delete: Properties_deleteRepositoryApplicationProperty
+    get: Properties_getApplicationValue
+    put: Properties_updateApplicationProperty
+  /repositories/{workspace}/{repo_slug}/pullrequests:
+    get: Pullrequests_list
+    post: Pullrequests_create
+  /repositories/{workspace}/{repo_slug}/pullrequests/activity:
+    get: Pullrequests_listActivityLog
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}:
+    get: Pullrequests_getPullRequest
+    put: Pullrequests_updatePullRequest
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/activity:
+    get: Pullrequests_listActivityLog
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/approve:
+    delete: Pullrequests_unapprovePullRequest
+    post: Pullrequests_approveRequest
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments:
+    get: Pullrequests_listComments
+    post: Pullrequests_createComment
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}:
+    delete: Pullrequests_deleteComment
+    get: Pullrequests_getComment
+    put: Pullrequests_updateComment
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}/resolve:
+    delete: Pullrequests_reopenCommentThread
+    post: Pullrequests_resolveCommentThread
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/commits:
+    get: Pullrequests_listCommits
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/decline:
+    post: Pullrequests_declinePullRequest
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diff:
+    get: Pullrequests_listDiff
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diffstat:
+    get: Pullrequests_getDiffstat
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge:
+    post: Pullrequests_mergePullRequest
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge/task-status/{task_id}:
+    get: Pullrequests_mergeTaskStatus
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/patch:
+    get: Pullrequests_getPatch
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/request-changes:
+    delete: Pullrequests_removeChangeRequest
+    post: Pullrequests_requestChanges
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses:
+    get: Pullrequests_listCommitStatuses
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks:
+    get: Pullrequests_listTasksOnPullRequest
+    post: Pullrequests_createTask
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}:
+    delete: Pullrequests_deleteTask
+    get: Pullrequests_getTask
+    put: Pullrequests_updateTask
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}:
+    delete: Properties_deletePullRequestApplicationProperty
+    get: Properties_getPullRequestApplicationProperty
+    put: Properties_updatePullRequestApplicationProperty
+  /repositories/{workspace}/{repo_slug}/refs:
+    get: Refs_listBranchesAndTags
+  /repositories/{workspace}/{repo_slug}/refs/branches:
+    get: Refs_listOpenBranches
+    post: Refs_createBranch
+  /repositories/{workspace}/{repo_slug}/refs/branches/{name}:
+    delete: Refs_deleteBranch
+    get: Refs_getBranch
+  /repositories/{workspace}/{repo_slug}/refs/tags:
+    get: Refs_listTags
+    post: Refs_createTag
+  /repositories/{workspace}/{repo_slug}/refs/tags/{name}:
+    delete: Refs_deleteTag
+    get: Refs_tagsByNameGet
+  /repositories/{workspace}/{repo_slug}/src:
+    get: Source_getRootDirectory
+    post: Source_createCommitByUploadingFile
+  /repositories/{workspace}/{repo_slug}/src/{commit}/{path}:
+    get: Source_getRepositorySrcContent
+  /repositories/{workspace}/{repo_slug}/versions:
+    get: IssueTracker_listDefinedVersions
+  /repositories/{workspace}/{repo_slug}/versions/{version_id}:
+    get: IssueTracker_getDefinedVersionForIssues
+  /repositories/{workspace}/{repo_slug}/watchers:
+    get: Repositories_listWatchers
+  /snippets:
+    get: Snippets_list
+    post: Snippets_createSnippet
+  /snippets/{workspace}:
+    get: Snippets_listInWorkspace
+    post: Snippets_createForWorkspace
+  /snippets/{workspace}/{encoded_id}:
+    delete: Snippets_deleteSnippet
+    get: Snippets_getSingleSnippet
+    put: Snippets_updateSnippet
+  /snippets/{workspace}/{encoded_id}/comments:
+    get: Snippets_listComments
+    post: Snippets_createComment
+  /snippets/{workspace}/{encoded_id}/comments/{comment_id}:
+    delete: Snippets_deleteComment
+    get: Snippets_getComment
+    put: Snippets_updateComment
+  /snippets/{workspace}/{encoded_id}/commits:
+    get: Snippets_listChanges
+  /snippets/{workspace}/{encoded_id}/commits/{revision}:
+    get: Snippets_getPreviousSnippetChange
+  /snippets/{workspace}/{encoded_id}/files/{path}:
+    get: Snippets_getSnippetFileAtHead
+  /snippets/{workspace}/{encoded_id}/watch:
+    delete: Snippets_stopWatchingSnippet
+    get: Snippets_checkUserWatchingSnippet
+    put: Snippets_watchSnippet
+  /snippets/{workspace}/{encoded_id}/watchers:
+    get: Snippets_listWatchers
+  /snippets/{workspace}/{encoded_id}/{node_id}:
+    delete: Snippets_deletePreviousRevision
+    get: Snippets_getPreviousRevision
+    put: Snippets_updatePreviousRevision
+  /snippets/{workspace}/{encoded_id}/{node_id}/files/{path}:
+    get: Snippets_getRawFile
+  /snippets/{workspace}/{encoded_id}/{revision}/diff:
+    get: Snippets_getSnippetDiff
+  /snippets/{workspace}/{encoded_id}/{revision}/patch:
+    get: Snippets_getSnippetPatch
+  /teams/{username}/pipelines_config/variables:
+    get: Pipelines_listVariables
+    post: Pipelines_createUserVariable
+  /teams/{username}/pipelines_config/variables/{variable_uuid}:
+    delete: Pipelines_deleteTeamVariable
+    get: Pipelines_getTeamVariable
+    put: Pipelines_updateTeamVariable
+  /teams/{username}/search/code:
+    get: Search_teamCode
+  /user:
+    get: Users_getCurrentUser
+  /user/emails:
+    get: Users_listEmailAddresses
+  /user/emails/{email}:
+    get: Users_getEmailDetails
+  /user/permissions/repositories:
+    get: Repositories_listUserPermissions
+  /user/permissions/workspaces:
+    get: Workspaces_listForCurrentUser
+  /users/{selected_user}:
+    get: Users_getUserDetails
+  /users/{selected_user}/pipelines_config/variables:
+    get: Pipelines_listUserVariables
+    post: Pipelines_createUserVariable
+  /users/{selected_user}/pipelines_config/variables/{variable_uuid}:
+    delete: Pipelines_deleteUserVariable
+    get: Pipelines_getUserVariable
+    put: Pipelines_updateUserVariable
+  /users/{selected_user}/properties/{app_key}/{property_name}:
+    delete: Properties_deleteUserAppPropertyValue
+    get: Properties_getUserAppPropertyValue
+    put: Properties_updateUserAppPropertyValue
+  /users/{selected_user}/search/code:
+    get: Search_userRepositoryCode
+  /users/{selected_user}/ssh-keys:
+    get: Ssh_listSshKeys
+    post: Ssh_keyAddition
+  /users/{selected_user}/ssh-keys/{key_id}:
+    delete: Ssh_deleteKey
+    get: Ssh_getKey
+    put: Ssh_updateSshKeyComment
+  /workspaces:
+    get: Workspaces_listForUser
+  /workspaces/{workspace}:
+    get: Workspaces_getWorkspace
+  /workspaces/{workspace}/hooks:
+    get: Workspaces_listWebhooks
+    post: Workspaces_createWebhook
+  /workspaces/{workspace}/hooks/{uid}:
+    delete: Workspaces_deleteWebhook
+    get: Workspaces_getWorkspaceWebhook
+    put: Workspaces_updateWebhook
+  /workspaces/{workspace}/members:
+    get: Workspaces_listMembers
+  /workspaces/{workspace}/members/{member}:
+    get: Workspaces_getUserMembership
+  /workspaces/{workspace}/permissions:
+    get: Workspaces_listPermissions
+  /workspaces/{workspace}/permissions/repositories:
+    get: Workspaces_listRepositoryPermissions
+  /workspaces/{workspace}/permissions/repositories/{repo_slug}:
+    get: Workspaces_listRepositoryPermissions
+  /workspaces/{workspace}/pipelines-config/identity/oidc/.well-known/openid-configuration:
+    get: Pipelines_getOpenIdConfiguration
+  /workspaces/{workspace}/pipelines-config/identity/oidc/keys.json:
+    get: Pipelines_getOidcKeys
+  /workspaces/{workspace}/pipelines-config/variables:
+    get: Pipelines_listWorkspaceVariables
+    post: Pipelines_createWorkspaceVariable
+  /workspaces/{workspace}/pipelines-config/variables/{variable_uuid}:
+    delete: Pipelines_deleteWorkspaceVariable
+    get: Pipelines_getVariableForWorkspace
+    put: Pipelines_updateVariableWorkspace
+  /workspaces/{workspace}/projects:
+    get: Workspaces_listProjects
+    post: Projects_createProjectInWorkspace
+  /workspaces/{workspace}/projects/{project_key}:
+    delete: Projects_deleteWorkspaceProject
+    get: Projects_getByWorkspace
+    put: Projects_updateProjectInWorkspace
+  /workspaces/{workspace}/projects/{project_key}/branching-model:
+    get: BranchingModel_getBranchingModel
+  /workspaces/{workspace}/projects/{project_key}/branching-model/settings:
+    get: BranchingModel_getConfig
+    put: BranchingModel_updateProjectBranchingModelSettings
+  /workspaces/{workspace}/projects/{project_key}/default-reviewers:
+    get: Projects_listDefaultReviewers
+  /workspaces/{workspace}/projects/{project_key}/default-reviewers/{selected_user}:
+    delete: Projects_removeDefaultReviewer
+    get: Projects_getReviewer
+    put: Projects_addDefaultReviewer
+  /workspaces/{workspace}/projects/{project_key}/deploy-keys:
+    get: Deployments_listProjectDeployKeys
+    post: Deployments_createProjectDeployKey
+  /workspaces/{workspace}/projects/{project_key}/deploy-keys/{key_id}:
+    delete: Deployments_deleteDeployKeyFromProject
+    get: Deployments_getDeployKeyById
+  /workspaces/{workspace}/projects/{project_key}/permissions-config/groups:
+    get: Projects_listGroupPermissions
+  /workspaces/{workspace}/projects/{project_key}/permissions-config/groups/{group_slug}:
+    delete: Projects_deleteExplicitGroupPermission
+    get: Projects_getGroupPermission
+    put: Projects_updateGroupPermission
+  /workspaces/{workspace}/projects/{project_key}/permissions-config/users:
+    get: Projects_listUserPermissions
+  /workspaces/{workspace}/projects/{project_key}/permissions-config/users/{selected_user_id}:
+    delete: Projects_deleteExplicitUserPermission
+    get: Projects_getUserPermission
+    put: Projects_updateUserPermission
+  /workspaces/{workspace}/search/code:
+    get: Search_workspaceCode
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations:
+    post:
+      application/json: ReportsBulkCreateOrUpdateAnnotationsRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations:
+    post:
+      '200':
+        application/json: ReportsBulkCreateOrUpdateAnnotationsResponse
+securityParameters:
+  after:
+    query: false
+  async:
+    query: false
+  author:
+    query: false
+  binary:
+    query: false
+  branch:
+    query: false
+  context:
+    query: false
+  files:
+    query: false
+  format:
+    query: false
+  ignore_whitespace:
+    query: false
+  kind:
+    query: false
+  max_depth:
+    query: false
+  merge:
+    query: false
+  message:
+    query: false
+  name:
+    query: false
+  page:
+    query: false
+  pagelen:
+    query: false
+  parents:
+    query: false
+  path:
+    query: false
+  pattern:
+    query: false
+  q:
+    query: false
+  redirect_to:
+    query: false
+  renames:
+    query: false
+  role:
+    query: false
+  search_query:
+    query: false
+  sort:
+    query: false
+  state:
+    query: false
+  topic:
+    query: false
+validServerUrls: {}

@@ -1658,6 +1658,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "atlassian.com_BitBucket": {
+    type: "GET",
+    url: "https://dac-static.atlassian.com/cloud/bitbucket/swagger.v3.json",
+  },
   "atlassian.com_Jira": {
     type: "GET",
     url: "https://dac-static.atlassian.com/cloud/jira/platform/swagger-v3.v3.json",
