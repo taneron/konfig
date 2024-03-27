@@ -1773,6 +1773,14 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "diarupt.ai": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromMintlify({
+        url: "https://docs.diarupt.ai/api-reference",
+      });
+      return downloadOpenApiSpecFromMintlify({ urls });
+    },
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({

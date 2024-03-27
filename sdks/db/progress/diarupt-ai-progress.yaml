@@ -1,0 +1,48 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /create-session:
+    post:
+      '201':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /create-session:
+    post: Session_createInteraction
+  /faces:
+    get: Resources_getAvailableFaces
+  /profiles:
+    get: Resources_getAllAiProfiles
+  /session/{session_id}:
+    get: Session_getInteraction
+  /sessions:
+    get: Session_getAllInteractions
+  /terminate-session/{session_id}:
+    post: Session_terminateInteraction
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /create-session:
+    post:
+      '201':
+        application/json: SessionCreateInteractionResponse
+  /faces:
+    get:
+      '200':
+        application/json: ResourcesGetAvailableFacesResponse
+  /profiles:
+    get:
+      '200':
+        application/json: ResourcesGetAllAiProfilesResponse
+  /sessions:
+    get:
+      '200':
+        application/json: SessionGetAllInteractionsResponse
+securityParameters:
+  limit:
+    query: false
+  page:
+    query: false
+validServerUrls: {}

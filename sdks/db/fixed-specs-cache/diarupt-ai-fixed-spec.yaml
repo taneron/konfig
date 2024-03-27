@@ -1,0 +1,272 @@
+publishJson:
+  company: Diarupt AI
+  serviceName: false
+  sdkName: diarupt-ai-{language}-sdk
+  clientName: DiaruptAi
+  metaDescription: >-
+    Diarupt AI lets you build real-time video AI conversations into your
+    product.
+  apiStatusUrls: inherit
+  homepage: diarupt.ai/
+  developerDocumentation: docs.diarupt.ai/api-reference
+  categories:
+    - video_ai
+    - conversations
+    - ai
+rawSpecString: |
+  components:
+    schemas:
+      AIFace:
+        properties:
+          id:
+            description: AI Face identifier
+            example: obama
+            type: string
+          image:
+            description: AI Face image
+            example: https://diarupt.s3.amazonaws.com/obama.jpg
+            type: string
+          name:
+            description: AI Face name
+            example: Obama
+            type: string
+        required:
+          - id
+          - name
+          - image
+        type: object
+      AIProfile:
+        properties:
+          description:
+            description: AI Profile description
+            example: AI to acts as an Interviewer
+            type: string
+          id:
+            description: AI Profile identifier
+            example: interviewer
+            type: string
+          short_name:
+            description: AI Profile short name
+            example: Interviewer
+            type: string
+        required:
+          - id
+          - short_name
+          - description
+        type: object
+      CreateSessionRequest:
+        properties:
+          behavior:
+            description: AI behaviour extension of set profile for session
+            example: Assume the role of a doctor. You're conducting an examination.
+            type: string
+          context:
+            description: Additonal context for session, builds on top of selected profile
+            example: '- Candidate Name is Jon. - Position is Software Engineer.'
+            type: string
+          face:
+            description: AI Face for session, see /faces for available faces
+            example: obama
+            type: string
+          profile:
+            description: AI Profile for session, see /profiles for available profiles
+            example: interviewer
+            type: string
+          time_limit:
+            description: >-
+              Time limit for session in seconds, if 0 or not set then no time
+              limit
+            example: 300
+            type: number
+        required:
+          - face
+          - profile
+        type: object
+      HistoryItem:
+        properties:
+          content:
+            type: string
+          role:
+            type: string
+          timestamp:
+            type: string
+        type: object
+      Options:
+        properties:
+          behavior:
+            type: string
+          context:
+            type: string
+          face:
+            type: string
+          profile:
+            type: string
+          time_limit:
+            type: integer
+        type: object
+      Session:
+        properties:
+          created_at:
+            type: string
+          duration:
+            type: integer
+          history:
+            items:
+              $ref: '#/components/schemas/HistoryItem'
+            type: array
+          id:
+            type: string
+          options:
+            $ref: '#/components/schemas/Options'
+          status:
+            enum:
+              - IDLE
+              - ACTIVE
+              - PAUSED
+              - TERMINATED
+            type: string
+        type: object
+    securitySchemes:
+      apiKeyAuth:
+        in: header
+        name: X-API-KEY
+        type: apiKey
+  info:
+    description: Diarupt Conversation Engine API
+    title: Diarupt Engine API
+    version: 0.0.1
+  openapi: 3.0.1
+  paths:
+    /create-session:
+      post:
+        description: Creates a new Interaction Session
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSessionRequest'
+          description: Create Session options
+          required: true
+        responses:
+          '201':
+            content:
+              application/json:
+                schema:
+                  properties:
+                    session_id:
+                      description: Session ID
+                      example: 1234567890abcdef
+                      type: string
+            description: Session created
+          '401':
+            description: Unauthorized access
+        security:
+          - apiKeyAuth: []
+        tags:
+          - Session
+    /terminate-session/{session_id}:
+      post:
+        description: Terminates an Interaction Session
+        parameters:
+          - description: Session ID
+            in: path
+            name: session_id
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Session terminated
+          '401':
+            description: Unauthorized access
+        security:
+          - apiKeyAuth: []
+        tags:
+          - Session
+    /session/{session_id}:
+      get:
+        description: Gets an Interaction Session
+        parameters:
+          - description: Session ID
+            in: path
+            name: session_id
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Session'
+            description: Got Session
+          '401':
+            description: Unauthorized access
+        security:
+          - apiKeyAuth: []
+        tags:
+          - Session
+    /sessions:
+      get:
+        description: Gets all Interaction Sessions
+        parameters:
+          - in: query
+            name: limit
+            schema:
+              default: 10
+              type: string
+          - in: query
+            name: page
+            schema:
+              default: 1
+              type: string
+        responses:
+          '200':
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/Session'
+                  type: array
+            description: Got Sessions
+          '401':
+            description: Unauthorized access
+        security:
+          - apiKeyAuth: []
+        tags:
+          - Session
+    /faces:
+      get:
+        description: Gets all available AI Faces
+        responses:
+          '200':
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/AIFace'
+                  type: array
+            description: Got available faces
+          '401':
+            description: Unauthorized access
+        tags:
+          - Resources
+    /profiles:
+      get:
+        description: Gets all available AI Profiles
+        responses:
+          '200':
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/AIProfile'
+                  type: array
+            description: Got available profiles
+          '401':
+            description: Unauthorized access
+        tags:
+          - Resources
+  servers:
+    - url: https://engine.diarupt.ai
+konfigCliVersion: 1.38.34

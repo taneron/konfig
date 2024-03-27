@@ -1,0 +1,228 @@
+{
+  "securitySchemes": {
+    "apiKeyAuth": {
+      "in": "header",
+      "name": "X-API-KEY",
+      "type": "apiKey"
+    }
+  },
+  "apiBaseUrl": "https://engine.diarupt.ai",
+  "apiVersion": "0.0.1",
+  "apiDescription": "Diarupt Conversation Engine API",
+  "apiTitle": "Diarupt Engine API",
+  "endpoints": 6,
+  "sdkMethods": 6,
+  "schemas": 10,
+  "parameters": 9,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "diarupt.ai.yaml",
+  "difficultyScore": 11.25,
+  "difficulty": "Very Easy",
+  "company": "Diarupt AI",
+  "sdkName": "diarupt-ai-{language}-sdk",
+  "clientName": "DiaruptAi",
+  "metaDescription": "Diarupt AI lets you build real-time video AI conversations into your product.",
+  "apiStatusUrls": "inherit",
+  "homepage": "diarupt.ai/",
+  "developerDocumentation": "docs.diarupt.ai/api-reference",
+  "categories": [
+    "video_ai",
+    "conversations",
+    "ai"
+  ],
+  "category": "AI Tools",
+  "methods": [
+    {
+      "url": "/create-session",
+      "method": "createInteraction",
+      "httpMethod": "post",
+      "tag": "Session",
+      "typeScriptTag": "session",
+      "description": "Creates a new Interaction Session",
+      "parameters": [
+        {
+          "name": "behavior",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Assume the role of a doctor. You're conducting an examination."
+        },
+        {
+          "name": "context",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "- Candidate Name is Jon. - Position is Software Engineer."
+        },
+        {
+          "name": "face",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "obama"
+        },
+        {
+          "name": "profile",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "interviewer"
+        },
+        {
+          "name": "time_limit",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "example": 300
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized access"
+        }
+      ]
+    },
+    {
+      "url": "/terminate-session/{session_id}",
+      "method": "terminateInteraction",
+      "httpMethod": "post",
+      "tag": "Session",
+      "typeScriptTag": "session",
+      "description": "Terminates an Interaction Session",
+      "parameters": [
+        {
+          "name": "sessionId",
+          "schema": "string",
+          "required": true,
+          "description": "Session ID",
+          "example": "SESSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Session terminated"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized access"
+        }
+      ]
+    },
+    {
+      "url": "/session/{session_id}",
+      "method": "getInteraction",
+      "httpMethod": "get",
+      "tag": "Session",
+      "typeScriptTag": "session",
+      "description": "Gets an Interaction Session",
+      "parameters": [
+        {
+          "name": "sessionId",
+          "schema": "string",
+          "required": true,
+          "description": "Session ID",
+          "example": "SESSION_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized access"
+        }
+      ]
+    },
+    {
+      "url": "/sessions",
+      "method": "getAllInteractions",
+      "httpMethod": "get",
+      "tag": "Session",
+      "typeScriptTag": "session",
+      "description": "Gets all Interaction Sessions",
+      "parameters": [
+        {
+          "name": "limit",
+          "schema": "string",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "page",
+          "schema": "string",
+          "description": "",
+          "default": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized access"
+        }
+      ]
+    },
+    {
+      "url": "/faces",
+      "method": "getAvailableFaces",
+      "httpMethod": "get",
+      "tag": "Resources",
+      "typeScriptTag": "resources",
+      "description": "Gets all available AI Faces",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized access"
+        }
+      ]
+    },
+    {
+      "url": "/profiles",
+      "method": "getAllAiProfiles",
+      "httpMethod": "get",
+      "tag": "Resources",
+      "typeScriptTag": "resources",
+      "description": "Gets all available AI Profiles",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized access"
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Diarupt AI lets you build real-time video AI conversations into your product. Diarupt AI's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/diarupt-ai/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/diarupt-ai/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/diarupt-ai/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/diarupt-ai/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/diarupt-ai/favicon.png",
+  "clientNameCamelCase": "diaruptAi",
+  "lastUpdated": "2024-03-27T20:16:43.354Z",
+  "typescriptSdkUsageCode": "import { DiaruptAi } from 'diarupt-ai-typescript-sdk';\n\nconst diaruptAi = new DiaruptAi({\n    apiKeyAuth: \"X_API_KEY\"\n})",
+  "typescriptSdkFirstRequestCode": "// Creates a new Interaction Session\nconst createInteractionResponse = diaruptAi.session.createInteraction({\n    behavior: \"Assume the role of a doctor. You're conducting an examination.\"\n    context: \"- Candidate Name is Jon. - Position is Software Engineer.\"\n    face: \"obama\"\n    profile: \"interviewer\"\n    time_limit: 300\n})",
+  "fixedSpecFileName": "diarupt-ai-fixed-spec.yaml"
+}
