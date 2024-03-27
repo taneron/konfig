@@ -1,0 +1,1649 @@
+{
+  "securitySchemes": {
+    "AuthBearer": {
+      "type": "http",
+      "scheme": "bearer"
+    }
+  },
+  "apiBaseUrl": "https://api.quivr.app",
+  "apiVersion": "0.1.0",
+  "apiTitle": "FastAPI",
+  "endpoints": 42,
+  "sdkMethods": 52,
+  "schemas": 99,
+  "parameters": 102,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://api.quivr.app/openapi.json",
+    "apiBaseUrl": "https://api.quivr.app"
+  },
+  "customRequestSpecFilename": "quivr.app.yaml",
+  "difficultyScore": 99.5,
+  "difficulty": "Easy",
+  "company": "Quivr",
+  "sdkName": "quivr-{language}-sdk",
+  "clientName": "Quivr",
+  "metaDescription": "Open-source RAG Framework",
+  "apiStatusUrls": "inherit",
+  "homepage": "quivr.app",
+  "developerDocumentation": "docs.quivr.app",
+  "categories": [
+    "open_source",
+    "data_pipeline",
+    "rag",
+    "llm",
+    "conversational_ai",
+    "second_brain"
+  ],
+  "category": "AI Tools",
+  "apiDescription": "Open-source RAG Framework",
+  "methods": [
+    {
+      "url": "/brains/public",
+      "method": "getAllPublic",
+      "httpMethod": "get",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Retrieve Public Brains",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/secrets-values",
+      "method": "updateSecretsValues",
+      "httpMethod": "put",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Update Existing Brain Secrets",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/default",
+      "method": "setDefault",
+      "httpMethod": "post",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Set Brain As Default",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/documents",
+      "method": "getQuestionContext",
+      "httpMethod": "post",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Get Question Context For Brain",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        },
+        {
+          "name": "question",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "QUESTION"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat/healthz",
+      "method": "checkStatus",
+      "httpMethod": "get",
+      "tag": "Health",
+      "typeScriptTag": "health",
+      "description": "Healthz",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat",
+      "method": "getAllChats",
+      "httpMethod": "get",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Get Chats",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat",
+      "method": "createHandler",
+      "httpMethod": "post",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Create Chat Handler",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat/{chat_id}",
+      "method": "deleteChatById",
+      "httpMethod": "delete",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Delete Chat",
+      "parameters": [
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CHAT_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat/{chat_id}/metadata",
+      "method": "updateMetadataHandler",
+      "httpMethod": "put",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Update Chat Metadata Handler",
+      "parameters": [
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CHAT_ID"
+        },
+        {
+          "name": "chat_name",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat/{chat_id}/{message_id}",
+      "method": "updateMessage",
+      "httpMethod": "put",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Update Chat Message",
+      "parameters": [
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CHAT_ID"
+        },
+        {
+          "name": "messageId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MESSAGE_ID"
+        },
+        {
+          "name": "thumbs",
+          "schema": "boolean",
+          "required": true,
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat/{chat_id}/question",
+      "method": "handleQuestion",
+      "httpMethod": "post",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Create Question Handler",
+      "parameters": [
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CHAT_ID"
+        },
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "question",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "QUESTION"
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "temperature",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "max_tokens",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "brain_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "prompt_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat/{chat_id}/question/stream",
+      "method": "createStreamQuestionHandler",
+      "httpMethod": "post",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Create Stream Question Handler",
+      "parameters": [
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CHAT_ID"
+        },
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "question",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "QUESTION"
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "temperature",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "max_tokens",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "brain_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "prompt_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat/{chat_id}/history",
+      "method": "getHistory",
+      "httpMethod": "get",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Get Chat History Handler",
+      "parameters": [
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CHAT_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/chat/{chat_id}/question/answer",
+      "method": "addQuestionAndAnswer",
+      "httpMethod": "post",
+      "tag": "Chat",
+      "typeScriptTag": "chat",
+      "description": "Add Question And Answer Handler",
+      "parameters": [
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CHAT_ID"
+        },
+        {
+          "name": "question",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "QUESTION"
+        },
+        {
+          "name": "answer",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ANSWER"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/crawl/healthz",
+      "method": "checkStatus",
+      "httpMethod": "get",
+      "tag": "Health",
+      "typeScriptTag": "health",
+      "description": "Healthz",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/crawl",
+      "method": "websiteDataProcessor",
+      "httpMethod": "post",
+      "tag": "Crawl",
+      "typeScriptTag": "crawl",
+      "description": "Crawl Endpoint",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the brain",
+          "example": "BRAIN_ID"
+        },
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": false,
+          "description": "The ID of the chat"
+        },
+        {
+          "name": "url",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URL"
+        },
+        {
+          "name": "js",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "depth",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "max_pages",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "default": 100
+        },
+        {
+          "name": "max_time",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "default": 60
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/onboarding",
+      "method": "getUserInfo",
+      "httpMethod": "get",
+      "tag": "Onboarding",
+      "typeScriptTag": "onboarding",
+      "description": "Get User Onboarding Handler",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Response when getting onboarding"
+        }
+      ]
+    },
+    {
+      "url": "/onboarding",
+      "method": "updateUserOnboarding",
+      "httpMethod": "put",
+      "tag": "Onboarding",
+      "typeScriptTag": "onboarding",
+      "description": "Update User Onboarding Handler",
+      "parameters": [
+        {
+          "name": "onboarding_a",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "onboarding_b1",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "onboarding_b2",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "onboarding_b3",
+          "schema": "boolean",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Response when getting onboarding"
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/",
+      "method": "statusCheck",
+      "httpMethod": "get",
+      "tag": "Root",
+      "typeScriptTag": "root",
+      "description": "Root",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/healthz",
+      "method": "checkStatus",
+      "httpMethod": "get",
+      "tag": "Health",
+      "typeScriptTag": "health",
+      "description": "Healthz",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/upload/healthz",
+      "method": "checkStatus",
+      "httpMethod": "get",
+      "tag": "Health",
+      "typeScriptTag": "health",
+      "description": "Healthz",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/upload",
+      "method": "filePost",
+      "httpMethod": "post",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Upload File",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the brain",
+          "example": "BRAIN_ID"
+        },
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": false,
+          "description": "The ID of the chat"
+        },
+        {
+          "name": "uploadFile",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "UPLOADFILE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user",
+      "method": "getUserInformation",
+      "httpMethod": "get",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "Get User Endpoint",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user/identity",
+      "method": "getIdentityRoute",
+      "httpMethod": "get",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "Get User Identity Route",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user/identity",
+      "method": "updateIdentityRoute",
+      "httpMethod": "put",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "Update User Identity Route",
+      "parameters": [
+        {
+          "name": "username",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "company",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "onboarded",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "company_size",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "usage_purpose",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api-key",
+      "method": "createNewKey",
+      "httpMethod": "post",
+      "tag": "API Key",
+      "typeScriptTag": "apiKey",
+      "description": "Create Api Key",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api-key/{key_id}",
+      "method": "deleteKey",
+      "httpMethod": "delete",
+      "tag": "API Key",
+      "typeScriptTag": "apiKey",
+      "description": "Delete Api Key",
+      "parameters": [
+        {
+          "name": "keyId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "KEY_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api-keys",
+      "method": "getList",
+      "httpMethod": "get",
+      "tag": "API Key",
+      "typeScriptTag": "apiKey",
+      "description": "Get Api Keys",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/subscription",
+      "method": "removeUserSubscription",
+      "httpMethod": "delete",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Remove User Subscription",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/subscription",
+      "method": "getUserInvitation",
+      "httpMethod": "get",
+      "tag": "BrainSubscription",
+      "typeScriptTag": "brainSubscription",
+      "description": "Get User Invitation",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/subscription",
+      "method": "inviteUsersToBrain",
+      "httpMethod": "post",
+      "tag": "BrainSubscription",
+      "typeScriptTag": "brainSubscription",
+      "description": "Invite Users To Brain",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        },
+        {
+          "name": "origin",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/subscription",
+      "method": "updateSubscription",
+      "httpMethod": "put",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Update Brain Subscription",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        },
+        {
+          "name": "rights",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/users",
+      "method": "getUsers",
+      "httpMethod": "get",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Get Users With Brain Access",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/subscription/accept",
+      "method": "acceptInvitation",
+      "httpMethod": "post",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Accept Invitation",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/subscription/decline",
+      "method": "declineInvitation",
+      "httpMethod": "post",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Decline Invitation",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/subscribe",
+      "method": "brainHandler",
+      "httpMethod": "post",
+      "tag": "Subscription",
+      "typeScriptTag": "subscription",
+      "description": "Subscribe To Brain Handler",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}/unsubscribe",
+      "method": "unregisterHandler",
+      "httpMethod": "post",
+      "tag": "Subscription",
+      "typeScriptTag": "subscription",
+      "description": "Unsubscribe From Brain Handler",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/prompts",
+      "method": "getAllPublicPrompts",
+      "httpMethod": "get",
+      "tag": "Prompt",
+      "typeScriptTag": "prompt",
+      "description": "Get Prompts",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/prompts",
+      "method": "createPromptById",
+      "httpMethod": "post",
+      "tag": "Prompt",
+      "typeScriptTag": "prompt",
+      "description": "Create Prompt Route",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TITLE"
+        },
+        {
+          "name": "content",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CONTENT"
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/prompts/{prompt_id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Prompt",
+      "typeScriptTag": "prompt",
+      "description": "Get Prompt",
+      "parameters": [
+        {
+          "name": "promptId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROMPT_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/prompts/{prompt_id}",
+      "method": "updateById",
+      "httpMethod": "put",
+      "tag": "Prompt",
+      "typeScriptTag": "prompt",
+      "description": "Update Prompt",
+      "parameters": [
+        {
+          "name": "promptId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROMPT_ID"
+        },
+        {
+          "name": "title",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "content",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/notifications/{chat_id}",
+      "method": "getByChatId",
+      "httpMethod": "get",
+      "tag": "Notification",
+      "typeScriptTag": "notification",
+      "description": "Get Notifications",
+      "parameters": [
+        {
+          "name": "chatId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CHAT_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/knowledge",
+      "method": "getAllKnowledge",
+      "httpMethod": "get",
+      "tag": "Knowledge",
+      "typeScriptTag": "knowledge",
+      "description": "List Knowledge In Brain Endpoint",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the brain",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/knowledge/{knowledge_id}",
+      "method": "deleteSpecificBrainKnowledge",
+      "httpMethod": "delete",
+      "tag": "Knowledge",
+      "typeScriptTag": "knowledge",
+      "description": "Delete Endpoint",
+      "parameters": [
+        {
+          "name": "knowledgeId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "KNOWLEDGE_ID"
+        },
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/knowledge/{knowledge_id}/signed_download_url",
+      "method": "generateSignedUrl",
+      "httpMethod": "get",
+      "tag": "Knowledge",
+      "typeScriptTag": "knowledge",
+      "description": "Generate Signed Url Endpoint",
+      "parameters": [
+        {
+          "name": "knowledgeId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "KNOWLEDGE_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/contact",
+      "method": "createNewContact",
+      "httpMethod": "post",
+      "tag": "Contact",
+      "typeScriptTag": "contact",
+      "description": "Post Contact",
+      "parameters": [
+        {
+          "name": "customer_email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CUSTOMER_EMAIL"
+        },
+        {
+          "name": "content",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CONTENT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/integrations",
+      "method": "getDescription",
+      "httpMethod": "get",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Get Integration Brain Description",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains",
+      "method": "getAllForUser",
+      "httpMethod": "get",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Retrieve All Brains For User",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains",
+      "method": "createNewBrain",
+      "httpMethod": "post",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Create New Brain",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "description": "",
+          "default": "This is a description"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": "",
+          "default": "Default brain"
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "description": "",
+          "default": "private"
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "temperature",
+          "schema": "number",
+          "description": "",
+          "default": 0
+        },
+        {
+          "name": "max_tokens",
+          "schema": "integer",
+          "description": "",
+          "default": 2000
+        },
+        {
+          "name": "prompt_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "brain_type",
+          "schema": "string",
+          "description": "",
+          "default": "doc"
+        },
+        {
+          "name": "brain_definition",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "brain_secrets_values",
+          "schema": "object",
+          "description": "",
+          "default": {}
+        },
+        {
+          "name": "connected_brains_ids",
+          "schema": "array",
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "integration",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/default",
+      "method": "getDefaultBrain",
+      "httpMethod": "get",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Retrieve Default Brain",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Retrieve Brain By Id",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/brains/{brain_id}",
+      "method": "updateConfiguration",
+      "httpMethod": "put",
+      "tag": "Brain",
+      "typeScriptTag": "brain",
+      "description": "Update Existing Brain",
+      "parameters": [
+        {
+          "name": "brainId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BRAIN_ID"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "temperature",
+          "schema": "number",
+          "description": ""
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "max_tokens",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "prompt_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "brain_definition",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "connected_brains_ids",
+          "schema": "array",
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "integration",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Open-source RAG Framework. Quivr's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/quivr/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/quivr/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/quivr/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/quivr/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/quivr/favicon.jpg",
+  "clientNameCamelCase": "quivr",
+  "lastUpdated": "2024-03-27T04:20:23.221Z",
+  "typescriptSdkUsageCode": "import { Quivr } from 'quivr-typescript-sdk';\n\nconst quivr = new Quivr({\n    authBearer: \"AUTH_BEARER\"\n})",
+  "typescriptSdkFirstRequestCode": "// Retrieve Public Brains\nconst getAllPublicResponse = quivr.brain.getAllPublic()",
+  "fixedSpecFileName": "quivr-fixed-spec.yaml"
+}

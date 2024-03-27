@@ -1,0 +1,2554 @@
+openapi: 3.1.0
+info:
+  title: FastAPI
+  version: 0.1.0
+  description: Open-source RAG Framework
+paths:
+  /brains/integrations/:
+    get:
+      summary: Get Integration Brain Description
+      description: Retrieve the integration brain description.
+      operationId: get_integration_brain_description_brains_integrations__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IntegrationDescriptionEntity'
+                type: array
+                title: >-
+                  Response Get Integration Brain Description Brains
+                  Integrations  Get
+      security:
+        - AuthBearer: []
+  /brains/:
+    get:
+      tags:
+        - Brain
+      summary: Retrieve All Brains For User
+      description: Retrieve all brains for the current user.
+      operationId: retrieve_all_brains_for_user_brains__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+    post:
+      tags:
+        - Brain
+      summary: Create New Brain
+      description: Create a new brain for the user.
+      operationId: create_new_brain_brains__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBrainProperties'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+  /brains/public:
+    get:
+      tags:
+        - Brain
+      summary: Retrieve Public Brains
+      description: Retrieve all Quivr public brains.
+      operationId: retrieve_public_brains_brains_public_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PublicBrain'
+                type: array
+                title: Response Retrieve Public Brains Brains Public Get
+      security:
+        - AuthBearer: []
+  /brains/default/:
+    get:
+      tags:
+        - Brain
+      summary: Retrieve Default Brain
+      description: Retrieve or create the default brain for the current user.
+      operationId: retrieve_default_brain_brains_default__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+  /brains/{brain_id}/:
+    get:
+      tags:
+        - Brain
+      summary: Retrieve Brain By Id
+      description: Retrieve details of a specific brain by its ID.
+      operationId: retrieve_brain_by_id_brains__brain_id___get
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+        - Brain
+      summary: Update Existing Brain
+      description: Update an existing brain's configuration.
+      operationId: update_existing_brain_brains__brain_id___put
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrainUpdatableProperties'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /brains/{brain_id}/secrets-values:
+    put:
+      tags:
+        - Brain
+      summary: Update Existing Brain Secrets
+      description: Update an existing brain's secrets.
+      operationId: update_existing_brain_secrets_brains__brain_id__secrets_values_put
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+              title: Secrets
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /brains/{brain_id}/default:
+    post:
+      tags:
+        - Brain
+      summary: Set Brain As Default
+      description: Set a brain as the default for the current user.
+      operationId: set_brain_as_default_brains__brain_id__default_post
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /brains/{brain_id}/documents:
+    post:
+      tags:
+        - Brain
+      summary: Get Question Context For Brain
+      description: Retrieve the question context from a specific brain.
+      operationId: get_question_context_for_brain_brains__brain_id__documents_post
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrainQuestionRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /chat/healthz:
+    get:
+      tags:
+        - Health
+      summary: Healthz
+      operationId: healthz_chat_healthz_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /chat:
+    get:
+      tags:
+        - Chat
+      summary: Get Chats
+      description: >-
+        Retrieve all chats for the current user.
+
+
+        - `current_user`: The current authenticated user.
+
+        - Returns a list of all chats for the user.
+
+
+        This endpoint retrieves all the chats associated with the current
+        authenticated user. It returns a list of chat objects
+
+        containing the chat ID and chat name for each chat.
+      operationId: get_chats_chat_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+    post:
+      tags:
+        - Chat
+      summary: Create Chat Handler
+      description: Create a new chat with initial chat messages.
+      operationId: create_chat_handler_chat_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChatProperties'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+  /chat/{chat_id}:
+    delete:
+      tags:
+        - Chat
+      summary: Delete Chat
+      description: Delete a specific chat by chat ID.
+      operationId: delete_chat_chat__chat_id__delete
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: chat_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Chat Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /chat/{chat_id}/metadata:
+    put:
+      tags:
+        - Chat
+      summary: Update Chat Metadata Handler
+      description: Update chat attributes
+      operationId: update_chat_metadata_handler_chat__chat_id__metadata_put
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: chat_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Chat Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatUpdatableProperties'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /chat/{chat_id}/{message_id}:
+    put:
+      tags:
+        - Chat
+      summary: Update Chat Message
+      operationId: update_chat_message_chat__chat_id___message_id__put
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: chat_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Chat Id
+        - name: message_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Message Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatMessageProperties'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /chat/{chat_id}/question:
+    post:
+      tags:
+        - Chat
+      summary: Create Question Handler
+      operationId: create_question_handler_chat__chat_id__question_post
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: chat_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Chat Id
+        - name: brain_id
+          in: query
+          required: false
+          schema:
+            anyOf:
+              - type: string
+                format: uuid
+              - type: 'null'
+            title: Brain Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatQuestion'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /chat/{chat_id}/question/stream:
+    post:
+      tags:
+        - Chat
+      summary: Create Stream Question Handler
+      operationId: create_stream_question_handler_chat__chat_id__question_stream_post
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: chat_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Chat Id
+        - name: brain_id
+          in: query
+          required: false
+          schema:
+            anyOf:
+              - type: string
+                format: uuid
+              - type: 'null'
+            title: Brain Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatQuestion'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /chat/{chat_id}/history:
+    get:
+      tags:
+        - Chat
+      summary: Get Chat History Handler
+      operationId: get_chat_history_handler_chat__chat_id__history_get
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: chat_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Chat Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChatItem'
+                title: Response Get Chat History Handler Chat  Chat Id  History Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /chat/{chat_id}/question/answer:
+    post:
+      tags:
+        - Chat
+      summary: Add Question And Answer Handler
+      description: Add a new question and anwser to the chat.
+      operationId: add_question_and_answer_handler_chat__chat_id__question_answer_post
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: chat_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Chat Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionAndAnswer'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Chat'
+                  - type: 'null'
+                title: >-
+                  Response Add Question And Answer Handler Chat  Chat Id 
+                  Question Answer Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /crawl/healthz:
+    get:
+      tags:
+        - Health
+      summary: Healthz
+      operationId: healthz_crawl_healthz_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /crawl:
+    post:
+      tags:
+        - Crawl
+      summary: Crawl Endpoint
+      description: Crawl a website and process the crawled data.
+      operationId: crawl_endpoint_crawl_post
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+            description: The ID of the brain
+            title: Brain Id
+          description: The ID of the brain
+        - name: chat_id
+          in: query
+          required: false
+          schema:
+            anyOf:
+              - type: string
+                format: uuid
+              - type: 'null'
+            description: The ID of the chat
+            title: Chat Id
+          description: The ID of the chat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrawlWebsite'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /onboarding:
+    get:
+      tags:
+        - Onboarding
+      summary: Get User Onboarding Handler
+      description: Get user onboarding information for the current user
+      operationId: get_user_onboarding_handler_onboarding_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/OnboardingStates'
+                  - type: 'null'
+                title: Response Get User Onboarding Handler Onboarding Get
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+    put:
+      tags:
+        - Onboarding
+      summary: Update User Onboarding Handler
+      description: Update user onboarding information for the current user
+      operationId: update_user_onboarding_handler_onboarding_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnboardingUpdatableProperties'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardingStates'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+  /:
+    get:
+      summary: Root
+      description: Root endpoint to check the status of the API.
+      operationId: root__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /healthz:
+    get:
+      tags:
+        - Health
+      summary: Healthz
+      operationId: healthz_healthz_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /upload/healthz:
+    get:
+      tags:
+        - Health
+      summary: Healthz
+      operationId: healthz_upload_healthz_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /upload:
+    post:
+      tags:
+        - Upload
+      summary: Upload File
+      operationId: upload_file_upload_post
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+            description: The ID of the brain
+            title: Brain Id
+          description: The ID of the brain
+        - name: chat_id
+          in: query
+          required: false
+          schema:
+            anyOf:
+              - type: string
+                format: uuid
+              - type: 'null'
+            description: The ID of the chat
+            title: Chat Id
+          description: The ID of the chat
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_file_upload_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /user:
+    get:
+      tags:
+        - User
+      summary: Get User Endpoint
+      description: >-
+        Get user information and statistics.
+
+
+        - `current_user`: The current authenticated user.
+
+        - Returns the user's email, maximum brain size, current brain size,
+        maximum requests number, requests statistics, and the current date.
+
+
+        This endpoint retrieves information and statistics about the
+        authenticated user. It includes the user's email, maximum brain size,
+
+        current brain size, maximum requests number, requests statistics, and
+        the current date. The brain size is calculated based on the
+
+        user's uploaded vectors, and the maximum brain size is obtained from the
+        environment variables. The requests statistics provide
+
+        information about the user's API usage.
+      operationId: get_user_endpoint_user_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+  /user/identity:
+    get:
+      tags:
+        - User
+      summary: Get User Identity Route
+      description: Get user identity.
+      operationId: get_user_identity_route_user_identity_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserIdentity'
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+    put:
+      tags:
+        - User
+      summary: Update User Identity Route
+      description: Update user identity.
+      operationId: update_user_identity_route_user_identity_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdatableProperties'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserIdentity'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+  /api-key:
+    post:
+      tags:
+        - API Key
+      summary: Create Api Key
+      description: >-
+        Create new API key for the current user.
+
+
+        - `current_user`: The current authenticated user.
+
+        - Returns the newly created API key.
+
+
+        This endpoint generates a new API key for the current user. The API key
+        is stored in the database and associated with
+
+        the user. It returns the newly created API key.
+      operationId: create_api_key_api_key_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+  /api-key/{key_id}:
+    delete:
+      tags:
+        - API Key
+      summary: Delete Api Key
+      description: >-
+        Delete (deactivate) an API key for the current user.
+
+
+        - `key_id`: The ID of the API key to delete.
+
+
+        This endpoint deactivates and deletes the specified API key associated
+        with the current user. The API key is marked
+
+        as inactive in the database.
+      operationId: delete_api_key_api_key__key_id__delete
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: key_id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: Key Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api-keys:
+    get:
+      tags:
+        - API Key
+      summary: Get Api Keys
+      description: >-
+        Get all active API keys for the current user.
+
+
+        - `current_user`: The current authenticated user.
+
+        - Returns a list of active API keys with their IDs and creation times.
+
+
+        This endpoint retrieves all the active API keys associated with the
+        current user. It returns a list of API key objects
+
+        containing the key ID and creation time for each API key.
+      operationId: get_api_keys_api_keys_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiKeyInfo'
+                type: array
+                title: Response Get Api Keys Api Keys Get
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+  /brains/{brain_id}/subscription:
+    post:
+      tags:
+        - BrainSubscription
+      summary: Invite Users To Brain
+      description: |-
+        Invite multiple users to a brain by their emails. This function creates
+        or updates a brain subscription invitation for each user and sends an
+        invitation email to each user.
+      operationId: invite_users_to_brain_brains__brain_id__subscription_post
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+        - name: origin
+          in: header
+          required: false
+          schema:
+            anyOf:
+              - type: string
+              - type: 'null'
+            title: Origin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+              title: Users
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      summary: Remove User Subscription
+      description: Remove a user's subscription to a brain
+      operationId: remove_user_subscription_brains__brain_id__subscription_delete
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+        - BrainSubscription
+      summary: Get User Invitation
+      description: >-
+        Get an invitation to a brain for a user. This function checks if the
+        user
+
+        has been invited to the brain and returns the invitation status.
+      operationId: get_user_invitation_brains__brain_id__subscription_get
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      summary: Update Brain Subscription
+      operationId: update_brain_subscription_brains__brain_id__subscription_put
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrainSubscriptionUpdatableProperties'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /brains/{brain_id}/users:
+    get:
+      summary: Get Users With Brain Access
+      description: Get all users for a brain
+      operationId: get_users_with_brain_access_brains__brain_id__users_get
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /brains/{brain_id}/subscription/accept:
+    post:
+      tags:
+        - Brain
+      summary: Accept Invitation
+      description: |-
+        Accept an invitation to a brain for a user. This function removes the
+        invitation from the subscription invitations and adds the user to the
+        brain users.
+      operationId: accept_invitation_brains__brain_id__subscription_accept_post
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /brains/{brain_id}/subscription/decline:
+    post:
+      tags:
+        - Brain
+      summary: Decline Invitation
+      description: |-
+        Decline an invitation to a brain for a user. This function removes the
+        invitation from the subscription invitations.
+      operationId: decline_invitation_brains__brain_id__subscription_decline_post
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /brains/{brain_id}/subscribe:
+    post:
+      tags:
+        - Subscription
+      summary: Subscribe To Brain Handler
+      description: Subscribe to a public brain
+      operationId: subscribe_to_brain_handler_brains__brain_id__subscribe_post
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              default: {}
+              title: Secrets
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /brains/{brain_id}/unsubscribe:
+    post:
+      tags:
+        - Subscription
+      summary: Unsubscribe From Brain Handler
+      description: Unsubscribe from a brain
+      operationId: unsubscribe_from_brain_handler_brains__brain_id__unsubscribe_post
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /prompts:
+    get:
+      tags:
+        - Prompt
+      summary: Get Prompts
+      description: Retrieve all public prompt
+      operationId: get_prompts_prompts_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Prompt'
+                type: array
+                title: Response Get Prompts Prompts Get
+      security:
+        - AuthBearer: []
+    post:
+      tags:
+        - Prompt
+      summary: Create Prompt Route
+      description: Create a prompt by its id
+      operationId: create_prompt_route_prompts_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePromptProperties'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Prompt'
+                  - type: 'null'
+                title: Response Create Prompt Route Prompts Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - AuthBearer: []
+  /prompts/{prompt_id}:
+    get:
+      tags:
+        - Prompt
+      summary: Get Prompt
+      description: Retrieve a prompt by its id
+      operationId: get_prompt_prompts__prompt_id__get
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: prompt_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Prompt Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Prompt'
+                  - type: 'null'
+                title: Response Get Prompt Prompts  Prompt Id  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+        - Prompt
+      summary: Update Prompt
+      description: Update a prompt by its id
+      operationId: update_prompt_prompts__prompt_id__put
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: prompt_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Prompt Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromptUpdatableProperties'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Prompt'
+                  - type: 'null'
+                title: Response Update Prompt Prompts  Prompt Id  Put
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /notifications/{chat_id}:
+    get:
+      tags:
+        - Notification
+      summary: Get Notifications
+      description: Get notifications by chat_id
+      operationId: get_notifications_notifications__chat_id__get
+      security:
+        - AuthBearer: []
+      parameters:
+        - name: chat_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Chat Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /knowledge:
+    get:
+      tags:
+        - Knowledge
+      summary: List Knowledge In Brain Endpoint
+      description: Retrieve and list all the knowledge in a brain.
+      operationId: list_knowledge_in_brain_endpoint_knowledge_get
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: brain_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+            description: The ID of the brain
+            title: Brain Id
+          description: The ID of the brain
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /knowledge/{knowledge_id}:
+    delete:
+      tags:
+        - Knowledge
+      summary: Delete Endpoint
+      description: Delete a specific knowledge from a brain.
+      operationId: delete_endpoint_knowledge__knowledge_id__delete
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: knowledge_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Knowledge Id
+        - name: brain_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Brain Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /knowledge/{knowledge_id}/signed_download_url:
+    get:
+      tags:
+        - Knowledge
+      summary: Generate Signed Url Endpoint
+      description: Generate a signed url to download the file from storage.
+      operationId: >-
+        generate_signed_url_endpoint_knowledge__knowledge_id__signed_download_url_get
+      security:
+        - AuthBearer: []
+        - AuthBearer: []
+      parameters:
+        - name: knowledge_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            title: Knowledge Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /contact:
+    post:
+      summary: Post Contact
+      operationId: post_contact_contact_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactMessage'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ApiBrainAllowedMethods:
+      type: string
+      enum:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+      title: ApiBrainAllowedMethods
+    ApiBrainDefinitionEntity-Input:
+      properties:
+        brain_id:
+          type: string
+          format: uuid
+          title: Brain Id
+        method:
+          $ref: '#/components/schemas/ApiBrainAllowedMethods'
+        url:
+          type: string
+          title: Url
+        params:
+          $ref: '#/components/schemas/ApiBrainDefinitionSchema'
+        search_params:
+          $ref: '#/components/schemas/ApiBrainDefinitionSchema'
+        secrets:
+          items:
+            $ref: '#/components/schemas/ApiBrainDefinitionSecret'
+          type: array
+          title: Secrets
+        raw:
+          type: boolean
+          title: Raw
+          default: false
+        jq_instructions:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Jq Instructions
+      additionalProperties: false
+      type: object
+      required:
+        - brain_id
+        - method
+        - url
+        - params
+        - search_params
+        - secrets
+      title: ApiBrainDefinitionEntity
+    ApiBrainDefinitionEntity-Output:
+      properties:
+        brain_id:
+          type: string
+          format: uuid
+          title: Brain Id
+        method:
+          $ref: '#/components/schemas/ApiBrainAllowedMethods'
+        url:
+          type: string
+          title: Url
+        params:
+          $ref: '#/components/schemas/ApiBrainDefinitionSchema'
+        search_params:
+          $ref: '#/components/schemas/ApiBrainDefinitionSchema'
+        secrets:
+          items:
+            $ref: '#/components/schemas/ApiBrainDefinitionSecret'
+          type: array
+          title: Secrets
+        raw:
+          type: boolean
+          title: Raw
+          default: false
+        jq_instructions:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Jq Instructions
+      additionalProperties: false
+      type: object
+      required:
+        - brain_id
+        - method
+        - url
+        - params
+        - search_params
+        - secrets
+      title: ApiBrainDefinitionEntity
+    ApiBrainDefinitionSchema:
+      properties:
+        properties:
+          items:
+            $ref: '#/components/schemas/ApiBrainDefinitionSchemaProperty'
+          type: array
+          title: Properties
+          default: []
+        required:
+          items:
+            type: string
+          type: array
+          title: Required
+          default: []
+      additionalProperties: false
+      type: object
+      title: ApiBrainDefinitionSchema
+    ApiBrainDefinitionSchemaProperty:
+      properties:
+        type:
+          type: string
+          title: Type
+        description:
+          type: string
+          title: Description
+        enum:
+          anyOf:
+            - items: {}
+              type: array
+            - type: 'null'
+          title: Enum
+        name:
+          type: string
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+        - type
+        - description
+        - name
+      title: ApiBrainDefinitionSchemaProperty
+    ApiBrainDefinitionSecret:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          title: Type
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Description
+      additionalProperties: false
+      type: object
+      required:
+        - name
+        - type
+      title: ApiBrainDefinitionSecret
+    ApiKey:
+      properties:
+        api_key:
+          type: string
+          title: Api Key
+        key_id:
+          type: string
+          title: Key Id
+        days:
+          type: integer
+          title: Days
+        only_chat:
+          type: boolean
+          title: Only Chat
+        name:
+          type: string
+          title: Name
+        creation_time:
+          type: string
+          title: Creation Time
+        is_active:
+          type: boolean
+          title: Is Active
+      type: object
+      required:
+        - api_key
+        - key_id
+        - days
+        - only_chat
+        - name
+        - creation_time
+        - is_active
+      title: ApiKey
+    ApiKeyInfo:
+      properties:
+        key_id:
+          type: string
+          title: Key Id
+        creation_time:
+          type: string
+          title: Creation Time
+      type: object
+      required:
+        - key_id
+        - creation_time
+      title: ApiKeyInfo
+    Body_upload_file_upload_post:
+      properties:
+        uploadFile:
+          type: string
+          format: binary
+          title: Uploadfile
+      type: object
+      required:
+        - uploadFile
+      title: Body_upload_file_upload_post
+    BrainIntegrationSettings:
+      properties:
+        integration_id:
+          type: string
+          title: Integration Id
+        settings:
+          type: object
+          title: Settings
+      type: object
+      required:
+        - integration_id
+        - settings
+      title: BrainIntegrationSettings
+    BrainIntegrationUpdateSettings:
+      properties:
+        settings:
+          type: object
+          title: Settings
+      type: object
+      required:
+        - settings
+      title: BrainIntegrationUpdateSettings
+    BrainQuestionRequest:
+      properties:
+        question:
+          type: string
+          title: Question
+      type: object
+      required:
+        - question
+      title: BrainQuestionRequest
+    BrainSubscriptionUpdatableProperties:
+      properties:
+        rights:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Rights
+        email:
+          type: string
+          title: Email
+      type: object
+      required:
+        - email
+      title: BrainSubscriptionUpdatableProperties
+    BrainType:
+      type: string
+      enum:
+        - doc
+        - api
+        - composite
+        - integration
+      title: BrainType
+    BrainUpdatableProperties:
+      properties:
+        name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Name
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Description
+        temperature:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Temperature
+        model:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Model
+        max_tokens:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          title: Max Tokens
+        status:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Status
+        prompt_id:
+          anyOf:
+            - type: string
+              format: uuid
+            - type: 'null'
+          title: Prompt Id
+        brain_definition:
+          anyOf:
+            - $ref: '#/components/schemas/ApiBrainDefinitionEntity-Input'
+            - type: 'null'
+        connected_brains_ids:
+          anyOf:
+            - items:
+                type: string
+                format: uuid
+              type: array
+            - type: 'null'
+          title: Connected Brains Ids
+          default: []
+        integration:
+          anyOf:
+            - $ref: '#/components/schemas/BrainIntegrationUpdateSettings'
+            - type: 'null'
+      type: object
+      title: BrainUpdatableProperties
+    Chat:
+      properties:
+        chat_id:
+          type: string
+          title: Chat Id
+        user_id:
+          type: string
+          title: User Id
+        creation_time:
+          type: string
+          title: Creation Time
+        chat_name:
+          type: string
+          title: Chat Name
+      type: object
+      required:
+        - chat_id
+        - user_id
+        - creation_time
+        - chat_name
+      title: Chat
+    ChatItem:
+      properties:
+        item_type:
+          $ref: '#/components/schemas/ChatItemType'
+        body:
+          anyOf:
+            - $ref: '#/components/schemas/GetChatHistoryOutput'
+            - $ref: '#/components/schemas/Notification'
+          title: Body
+      type: object
+      required:
+        - item_type
+        - body
+      title: ChatItem
+    ChatItemType:
+      type: string
+      enum:
+        - MESSAGE
+        - NOTIFICATION
+      title: ChatItemType
+    ChatMessageProperties:
+      properties:
+        thumbs:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Thumbs
+      type: object
+      required:
+        - thumbs
+      title: ChatMessageProperties
+    ChatQuestion:
+      properties:
+        question:
+          type: string
+          title: Question
+        model:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Model
+        temperature:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Temperature
+        max_tokens:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          title: Max Tokens
+        brain_id:
+          anyOf:
+            - type: string
+              format: uuid
+            - type: 'null'
+          title: Brain Id
+        prompt_id:
+          anyOf:
+            - type: string
+              format: uuid
+            - type: 'null'
+          title: Prompt Id
+      type: object
+      required:
+        - question
+      title: ChatQuestion
+    ChatUpdatableProperties:
+      properties:
+        chat_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Chat Name
+      type: object
+      title: ChatUpdatableProperties
+    ContactMessage:
+      properties:
+        customer_email:
+          type: string
+          title: Customer Email
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+        - customer_email
+        - content
+      title: ContactMessage
+    CrawlWebsite:
+      properties:
+        url:
+          type: string
+          title: Url
+        js:
+          type: boolean
+          title: Js
+          default: false
+        depth:
+          type: integer
+          title: Depth
+          default: 1
+        max_pages:
+          type: integer
+          title: Max Pages
+          default: 100
+        max_time:
+          type: integer
+          title: Max Time
+          default: 60
+      type: object
+      required:
+        - url
+      title: CrawlWebsite
+    CreateApiBrainDefinition:
+      properties:
+        method:
+          $ref: '#/components/schemas/ApiBrainAllowedMethods'
+        url:
+          type: string
+          title: Url
+        params:
+          anyOf:
+            - $ref: '#/components/schemas/ApiBrainDefinitionSchema'
+            - type: 'null'
+          default:
+            properties: []
+            required: []
+        search_params:
+          allOf:
+            - $ref: '#/components/schemas/ApiBrainDefinitionSchema'
+          default:
+            properties: []
+            required: []
+        secrets:
+          anyOf:
+            - items:
+                $ref: '#/components/schemas/ApiBrainDefinitionSecret'
+              type: array
+            - type: 'null'
+          title: Secrets
+          default: []
+        raw:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Raw
+          default: false
+        jq_instructions:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Jq Instructions
+      type: object
+      required:
+        - method
+        - url
+      title: CreateApiBrainDefinition
+    CreateBrainProperties:
+      properties:
+        name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Name
+          default: Default brain
+        description:
+          type: string
+          title: Description
+          default: This is a description
+        status:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Status
+          default: private
+        model:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Model
+        temperature:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Temperature
+          default: 0
+        max_tokens:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          title: Max Tokens
+          default: 2000
+        prompt_id:
+          anyOf:
+            - type: string
+              format: uuid
+            - type: 'null'
+          title: Prompt Id
+        brain_type:
+          anyOf:
+            - $ref: '#/components/schemas/BrainType'
+            - type: 'null'
+          default: doc
+        brain_definition:
+          anyOf:
+            - $ref: '#/components/schemas/CreateApiBrainDefinition'
+            - type: 'null'
+        brain_secrets_values:
+          anyOf:
+            - type: object
+            - type: 'null'
+          title: Brain Secrets Values
+          default: {}
+        connected_brains_ids:
+          anyOf:
+            - items:
+                type: string
+                format: uuid
+              type: array
+            - type: 'null'
+          title: Connected Brains Ids
+          default: []
+        integration:
+          anyOf:
+            - $ref: '#/components/schemas/BrainIntegrationSettings'
+            - type: 'null'
+      type: object
+      title: CreateBrainProperties
+    CreateChatProperties:
+      properties:
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+        - name
+      title: CreateChatProperties
+    CreatePromptProperties:
+      properties:
+        title:
+          type: string
+          title: Title
+        content:
+          type: string
+          title: Content
+        status:
+          allOf:
+            - $ref: '#/components/schemas/PromptStatusEnum'
+          default: private
+      type: object
+      required:
+        - title
+        - content
+      title: CreatePromptProperties
+      description: Properties that can be received on prompt creation
+    GetChatHistoryOutput:
+      properties:
+        chat_id:
+          type: string
+          format: uuid
+          title: Chat Id
+        message_id:
+          anyOf:
+            - type: string
+              format: uuid
+            - type: string
+            - type: 'null'
+          title: Message Id
+        user_message:
+          type: string
+          title: User Message
+        assistant:
+          type: string
+          title: Assistant
+        message_time:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Message Time
+        prompt_title:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Prompt Title
+        brain_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Brain Name
+        brain_id:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Brain Id
+        metadata:
+          anyOf:
+            - type: object
+            - type: 'null'
+          title: Metadata
+        thumbs:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Thumbs
+      type: object
+      required:
+        - chat_id
+        - message_id
+        - user_message
+        - assistant
+      title: GetChatHistoryOutput
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    IntegrationBrainTag:
+      type: string
+      enum:
+        - new
+        - recommended
+        - most_popular
+        - premium
+        - coming_soon
+        - community
+        - deprecated
+      title: IntegrationBrainTag
+    IntegrationDescriptionEntity:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        integration_name:
+          type: string
+          title: Integration Name
+        integration_logo_url:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Integration Logo Url
+        connection_settings:
+          anyOf:
+            - type: object
+            - type: 'null'
+          title: Connection Settings
+        integration_type:
+          $ref: '#/components/schemas/IntegrationType'
+        tags:
+          anyOf:
+            - items:
+                $ref: '#/components/schemas/IntegrationBrainTag'
+              type: array
+            - type: 'null'
+          title: Tags
+          default: []
+        information:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Information
+        description:
+          type: string
+          title: Description
+        max_files:
+          type: integer
+          title: Max Files
+        allow_model_change:
+          type: boolean
+          title: Allow Model Change
+        integration_display_name:
+          type: string
+          title: Integration Display Name
+      type: object
+      required:
+        - id
+        - integration_name
+        - integration_type
+        - description
+        - max_files
+        - allow_model_change
+        - integration_display_name
+      title: IntegrationDescriptionEntity
+    IntegrationType:
+      type: string
+      enum:
+        - custom
+        - sync
+        - doc
+      title: IntegrationType
+    Notification:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        datetime:
+          type: string
+          title: Datetime
+        chat_id:
+          anyOf:
+            - type: string
+              format: uuid
+            - type: 'null'
+          title: Chat Id
+        message:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Message
+        action:
+          type: string
+          title: Action
+        status:
+          $ref: '#/components/schemas/NotificationsStatusEnum'
+      type: object
+      required:
+        - id
+        - datetime
+        - action
+        - status
+      title: Notification
+    NotificationsStatusEnum:
+      type: string
+      enum:
+        - Pending
+        - Done
+      title: NotificationsStatusEnum
+    OnboardingStates:
+      properties:
+        onboarding_a:
+          type: boolean
+          title: Onboarding A
+        onboarding_b1:
+          type: boolean
+          title: Onboarding B1
+        onboarding_b2:
+          type: boolean
+          title: Onboarding B2
+        onboarding_b3:
+          type: boolean
+          title: Onboarding B3
+      type: object
+      required:
+        - onboarding_a
+        - onboarding_b1
+        - onboarding_b2
+        - onboarding_b3
+      title: OnboardingStates
+      description: Response when getting onboarding
+    OnboardingUpdatableProperties:
+      properties:
+        onboarding_a:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Onboarding A
+        onboarding_b1:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Onboarding B1
+        onboarding_b2:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Onboarding B2
+        onboarding_b3:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Onboarding B3
+      additionalProperties: false
+      type: object
+      title: OnboardingUpdatableProperties
+      description: Properties that can be received on onboarding update
+    Prompt:
+      properties:
+        title:
+          type: string
+          title: Title
+        content:
+          type: string
+          title: Content
+        status:
+          allOf:
+            - $ref: '#/components/schemas/PromptStatusEnum'
+          default: private
+        id:
+          type: string
+          format: uuid
+          title: Id
+      type: object
+      required:
+        - title
+        - content
+        - id
+      title: Prompt
+    PromptStatusEnum:
+      type: string
+      enum:
+        - private
+        - public
+      title: PromptStatusEnum
+    PromptUpdatableProperties:
+      properties:
+        title:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Title
+        content:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Content
+        status:
+          anyOf:
+            - $ref: '#/components/schemas/PromptStatusEnum'
+            - type: 'null'
+      type: object
+      title: PromptUpdatableProperties
+      description: Properties that can be received on prompt update
+    PublicBrain:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        name:
+          type: string
+          title: Name
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Description
+        number_of_subscribers:
+          type: integer
+          title: Number Of Subscribers
+          default: 0
+        last_update:
+          type: string
+          title: Last Update
+        brain_type:
+          $ref: '#/components/schemas/BrainType'
+        brain_definition:
+          anyOf:
+            - $ref: '#/components/schemas/ApiBrainDefinitionEntity-Output'
+            - type: 'null'
+      type: object
+      required:
+        - id
+        - name
+        - last_update
+        - brain_type
+      title: PublicBrain
+    QuestionAndAnswer:
+      properties:
+        question:
+          type: string
+          title: Question
+        answer:
+          type: string
+          title: Answer
+      type: object
+      required:
+        - question
+        - answer
+      title: QuestionAndAnswer
+    UserIdentity:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        email:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Email
+        username:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Username
+        company:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Company
+        onboarded:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Onboarded
+        company_size:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Company Size
+        usage_purpose:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Usage Purpose
+      type: object
+      required:
+        - id
+      title: UserIdentity
+    UserUpdatableProperties:
+      properties:
+        username:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Username
+        company:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Company
+        onboarded:
+          anyOf:
+            - type: boolean
+            - type: 'null'
+          title: Onboarded
+        company_size:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Company Size
+        usage_purpose:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Usage Purpose
+      type: object
+      title: UserUpdatableProperties
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+              - type: string
+              - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+        - loc
+        - msg
+        - type
+      title: ValidationError
+  securitySchemes:
+    AuthBearer:
+      type: http
+      scheme: bearer
+servers:
+  - url: https://api.quivr.app

@@ -1,0 +1,444 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /:
+    get:
+      '200':
+        application/json: {}
+  /api-key/{key_id}:
+    delete:
+      '200':
+        application/json: {}
+  /brains:
+    get:
+      '200':
+        application/json: {}
+    post:
+      '200':
+        application/json: {}
+  /brains/default:
+    get:
+      '200':
+        application/json: {}
+  /brains/{brain_id}:
+    get:
+      '200':
+        application/json: {}
+    put:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/default:
+    post:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/documents:
+    post:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/secrets-values:
+    put:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/subscribe:
+    post:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/subscription:
+    delete:
+      '200':
+        application/json: {}
+    get:
+      '200':
+        application/json: {}
+    post:
+      '200':
+        application/json: {}
+    put:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/subscription/accept:
+    post:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/subscription/decline:
+    post:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/unsubscribe:
+    post:
+      '200':
+        application/json: {}
+  /brains/{brain_id}/users:
+    get:
+      '200':
+        application/json: {}
+  /chat:
+    get:
+      '200':
+        application/json: {}
+    post:
+      '200':
+        application/json: {}
+  /chat/healthz:
+    get:
+      '200':
+        application/json: {}
+  /chat/{chat_id}:
+    delete:
+      '200':
+        application/json: {}
+  /chat/{chat_id}/metadata:
+    put:
+      '200':
+        application/json: {}
+  /chat/{chat_id}/question:
+    post:
+      '200':
+        application/json: {}
+  /chat/{chat_id}/question/stream:
+    post:
+      '200':
+        application/json: {}
+  /chat/{chat_id}/{message_id}:
+    put:
+      '200':
+        application/json: {}
+  /contact:
+    post:
+      '200':
+        application/json: {}
+  /crawl:
+    post:
+      '200':
+        application/json: {}
+  /crawl/healthz:
+    get:
+      '200':
+        application/json: {}
+  /healthz:
+    get:
+      '200':
+        application/json: {}
+  /knowledge:
+    get:
+      '200':
+        application/json: {}
+  /knowledge/{knowledge_id}:
+    delete:
+      '200':
+        application/json: {}
+  /knowledge/{knowledge_id}/signed_download_url:
+    get:
+      '200':
+        application/json: {}
+  /notifications/{chat_id}:
+    get:
+      '200':
+        application/json: {}
+  /upload:
+    post:
+      '200':
+        application/json: {}
+  /upload/healthz:
+    get:
+      '200':
+        application/json: {}
+  /user:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /:
+    get: Root_statusCheck
+  /api-key:
+    post: ApiKey_createNewKey
+  /api-key/{key_id}:
+    delete: ApiKey_deleteKey
+  /api-keys:
+    get: ApiKey_getList
+  /brains/:
+    get: Brain_getAllForUser
+    post: Brain_createNewBrain
+  /brains/default/:
+    get: Brain_getDefaultBrain
+  /brains/integrations/:
+    get: Brain_getDescription
+  /brains/public:
+    get: Brain_getAllPublic
+  /brains/{brain_id}/:
+    get: Brain_getById
+    put: Brain_updateConfiguration
+  /brains/{brain_id}/default:
+    post: Brain_setDefault
+  /brains/{brain_id}/documents:
+    post: Brain_getQuestionContext
+  /brains/{brain_id}/secrets-values:
+    put: Brain_updateSecretsValues
+  /brains/{brain_id}/subscribe:
+    post: Subscription_brainHandler
+  /brains/{brain_id}/subscription:
+    delete: Brain_removeUserSubscription
+    get: BrainSubscription_getUserInvitation
+    post: BrainSubscription_inviteUsersToBrain
+    put: Brain_updateSubscription
+  /brains/{brain_id}/subscription/accept:
+    post: Brain_acceptInvitation
+  /brains/{brain_id}/subscription/decline:
+    post: Brain_declineInvitation
+  /brains/{brain_id}/unsubscribe:
+    post: Subscription_unregisterHandler
+  /brains/{brain_id}/users:
+    get: Brain_getUsers
+  /chat:
+    get: Chat_getAllChats
+    post: Chat_createHandler
+  /chat/healthz:
+    get: Health_checkStatus
+  /chat/{chat_id}:
+    delete: Chat_deleteChatById
+  /chat/{chat_id}/history:
+    get: Chat_getHistory
+  /chat/{chat_id}/metadata:
+    put: Chat_updateMetadataHandler
+  /chat/{chat_id}/question:
+    post: Chat_handleQuestion
+  /chat/{chat_id}/question/answer:
+    post: Chat_addQuestionAndAnswer
+  /chat/{chat_id}/question/stream:
+    post: Chat_createStreamQuestionHandler
+  /chat/{chat_id}/{message_id}:
+    put: Chat_updateMessage
+  /contact:
+    post: Contact_createNewContact
+  /crawl:
+    post: Crawl_websiteDataProcessor
+  /crawl/healthz:
+    get: Health_checkStatus
+  /healthz:
+    get: Health_checkStatus
+  /knowledge:
+    get: Knowledge_getAllKnowledge
+  /knowledge/{knowledge_id}:
+    delete: Knowledge_deleteSpecificBrainKnowledge
+  /knowledge/{knowledge_id}/signed_download_url:
+    get: Knowledge_generateSignedUrl
+  /notifications/{chat_id}:
+    get: Notification_getByChatId
+  /onboarding:
+    get: Onboarding_getUserInfo
+    put: Onboarding_updateUserOnboarding
+  /prompts:
+    get: Prompt_getAllPublicPrompts
+    post: Prompt_createPromptById
+  /prompts/{prompt_id}:
+    get: Prompt_getById
+    put: Prompt_updateById
+  /upload:
+    post: Upload_filePost
+  /upload/healthz:
+    get: Health_checkStatus
+  /user:
+    get: User_getUserInformation
+  /user/identity:
+    get: User_getIdentityRoute
+    put: User_updateIdentityRoute
+operationTags:
+  /:
+    get: Root
+  /brains/integrations/:
+    get: Brain
+  /brains/{brain_id}/subscription:
+    delete: Brain
+    put: Brain
+  /brains/{brain_id}/users:
+    get: Brain
+  /contact:
+    post: Contact
+renameTags: {}
+requestSchemaNames:
+  /brains/{brain_id}/secrets-values:
+    put:
+      application/json: BrainUpdateSecretsValuesRequest
+  /brains/{brain_id}/subscribe:
+    post:
+      application/json: SubscriptionBrainHandlerRequest
+  /brains/{brain_id}/subscription:
+    post:
+      application/json: BrainSubscriptionInviteUsersToBrainRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /:
+    get:
+      '200':
+        application/json: RootStatusCheckResponse
+  /api-key/{key_id}:
+    delete:
+      '200':
+        application/json: ApiKeyDeleteKeyResponse
+  /api-keys:
+    get:
+      '200':
+        application/json: ApiKeyGetListResponse
+  /brains:
+    get:
+      '200':
+        application/json: BrainGetAllForUserResponse
+    post:
+      '200':
+        application/json: BrainCreateNewBrainResponse
+  /brains/default:
+    get:
+      '200':
+        application/json: BrainGetDefaultBrainResponse
+  /brains/integrations:
+    get:
+      '200':
+        application/json: BrainGetDescriptionResponse
+  /brains/public:
+    get:
+      '200':
+        application/json: BrainGetAllPublicResponse
+  /brains/{brain_id}:
+    get:
+      '200':
+        application/json: BrainGetByIdResponse
+    put:
+      '200':
+        application/json: BrainUpdateConfigurationResponse
+  /brains/{brain_id}/default:
+    post:
+      '200':
+        application/json: BrainSetDefaultResponse
+  /brains/{brain_id}/documents:
+    post:
+      '200':
+        application/json: BrainGetQuestionContextResponse
+  /brains/{brain_id}/secrets-values:
+    put:
+      '200':
+        application/json: BrainUpdateSecretsValuesResponse
+  /brains/{brain_id}/subscribe:
+    post:
+      '200':
+        application/json: SubscriptionBrainHandlerResponse
+  /brains/{brain_id}/subscription:
+    delete:
+      '200':
+        application/json: BrainRemoveUserSubscriptionResponse
+    get:
+      '200':
+        application/json: BrainSubscriptionGetUserInvitationResponse
+    post:
+      '200':
+        application/json: BrainSubscriptionInviteUsersToBrainResponse
+    put:
+      '200':
+        application/json: BrainUpdateSubscriptionResponse
+  /brains/{brain_id}/subscription/accept:
+    post:
+      '200':
+        application/json: BrainAcceptInvitationResponse
+  /brains/{brain_id}/subscription/decline:
+    post:
+      '200':
+        application/json: BrainDeclineInvitationResponse
+  /brains/{brain_id}/unsubscribe:
+    post:
+      '200':
+        application/json: SubscriptionUnregisterHandlerResponse
+  /brains/{brain_id}/users:
+    get:
+      '200':
+        application/json: BrainGetUsersResponse
+  /chat:
+    get:
+      '200':
+        application/json: ChatGetAllChatsResponse
+    post:
+      '200':
+        application/json: ChatCreateHandlerResponse
+  /chat/healthz:
+    get:
+      '200':
+        application/json: HealthCheckStatusResponse
+  /chat/{chat_id}:
+    delete:
+      '200':
+        application/json: ChatDeleteChatByIdResponse
+  /chat/{chat_id}/history:
+    get:
+      '200':
+        application/json: ChatGetHistoryResponse
+  /chat/{chat_id}/metadata:
+    put:
+      '200':
+        application/json: ChatUpdateMetadataHandlerResponse
+  /chat/{chat_id}/question:
+    post:
+      '200':
+        application/json: ChatHandleQuestionResponse
+  /chat/{chat_id}/question/stream:
+    post:
+      '200':
+        application/json: ChatCreateStreamQuestionHandlerResponse
+  /chat/{chat_id}/{message_id}:
+    put:
+      '200':
+        application/json: ChatUpdateMessageResponse
+  /contact:
+    post:
+      '200':
+        application/json: ContactCreateNewContactResponse
+  /crawl:
+    post:
+      '200':
+        application/json: CrawlWebsiteDataProcessorResponse
+  /crawl/healthz:
+    get:
+      '200':
+        application/json: HealthCheckStatus200Response
+  /healthz:
+    get:
+      '200':
+        application/json: HealthCheckStatus200Response
+  /knowledge:
+    get:
+      '200':
+        application/json: KnowledgeGetAllKnowledgeResponse
+  /knowledge/{knowledge_id}:
+    delete:
+      '200':
+        application/json: KnowledgeDeleteSpecificBrainKnowledgeResponse
+  /knowledge/{knowledge_id}/signed_download_url:
+    get:
+      '200':
+        application/json: KnowledgeGenerateSignedUrlResponse
+  /notifications/{chat_id}:
+    get:
+      '200':
+        application/json: NotificationGetByChatIdResponse
+  /prompts:
+    get:
+      '200':
+        application/json: PromptGetAllPublicPromptsResponse
+  /upload:
+    post:
+      '200':
+        application/json: UploadFilePostResponse
+  /upload/healthz:
+    get:
+      '200':
+        application/json: HealthCheckStatus200Response
+  /user:
+    get:
+      '200':
+        application/json: UserGetUserInformationResponse
+securityParameters:
+  brain_id:
+    query: false
+  chat_id:
+    query: false
+  origin:
+    header: false
+validServerUrls: {}

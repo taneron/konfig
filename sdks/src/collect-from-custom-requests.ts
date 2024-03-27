@@ -996,6 +996,11 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "quivr.app": {
+    type: "GET",
+    url: "https://api.quivr.app/openapi.json",
+    apiBaseUrl: "https://api.quivr.app",
+  },
   "paychex.com": {
     lambda: async () => {
       // fetch HTML from url and parse for spec-url at:
