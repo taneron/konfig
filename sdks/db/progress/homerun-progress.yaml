@@ -1,0 +1,104 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /job-applications:
+    get: JobApplications_listOfApplications
+    post: JobApplications_addNewApplication
+  /job-applications/{job_application_id}:
+    delete: JobApplications_removeJobApp
+    get: JobApplications_detailedInfo
+    patch: JobApplications_updateProperties
+  /job-applications/{job_application_id}/files:
+    post: JobApplicationFiles_uploadFilesToJobApplication
+  /job-applications/{job_application_id}/notes:
+    post: JobApplicationNotes_createNewNote
+  /job-applications/{job_application_id}/photo:
+    post: JobApplicationFiles_uploadPhoto
+  /ping:
+    get: Other_dummyEndpoint
+  /vacancies:
+    get: Vacancies_listOfVacancies
+  /vacancies/{vacancy_id}:
+    get: Vacancies_detailedInfo
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /job-applications:
+    post:
+      application/json: JobApplicationsAddNewApplicationRequest
+  /job-applications/{job_application_id}:
+    patch:
+      application/json: JobApplicationsUpdatePropertiesRequest
+  /job-applications/{job_application_id}/files:
+    post:
+      multipart/form-data: JobApplicationFilesUploadFilesToJobApplicationRequest
+  /job-applications/{job_application_id}/notes:
+    post:
+      application/json: JobApplicationNotesCreateNewNoteRequest
+  /job-applications/{job_application_id}/photo:
+    post:
+      multipart/form-data: JobApplicationFilesUploadPhotoRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /job-applications:
+    get:
+      '200':
+        application/json: JobApplicationsListOfApplicationsResponse
+      '401':
+        application/json: JobApplicationsListOfApplications401Response
+      '402':
+        application/json: JobApplicationsListOfApplications402Response
+      '403':
+        application/json: JobApplicationsListOfApplications403Response
+      '429':
+        application/json: JobApplicationsListOfApplications429Response
+    post:
+      '201':
+        application/json: JobApplicationsAddNewApplicationResponse
+      '400':
+        application/json: JobApplicationsAddNewApplication400Response
+  /job-applications/{job_application_id}:
+    delete:
+      '404':
+        application/json: JobApplicationsRemoveJobAppResponse
+    get:
+      '200':
+        application/json: JobApplicationsDetailedInfoResponse
+    patch:
+      '200':
+        application/json: JobApplicationsUpdatePropertiesResponse
+  /job-applications/{job_application_id}/files:
+    post:
+      '200':
+        application/json: JobApplicationFilesUploadFilesToJobApplicationResponse
+  /job-applications/{job_application_id}/notes:
+    post:
+      '201':
+        application/json: JobApplicationNotesCreateNewNoteResponse
+  /job-applications/{job_application_id}/photo:
+    post:
+      '200':
+        application/json: JobApplicationFilesUploadPhotoResponse
+  /ping:
+    get:
+      '200':
+        application/json: OtherDummyEndpointResponse
+  /vacancies:
+    get:
+      '200':
+        application/json: VacanciesListOfVacanciesResponse
+  /vacancies/{vacancy_id}:
+    get:
+      '200':
+        application/json: VacanciesDetailedInfoResponse
+securityParameters:
+  filter:
+    query: false
+  include:
+    query: false
+  page:
+    query: false
+  perPage:
+    query: false
+validServerUrls: {}

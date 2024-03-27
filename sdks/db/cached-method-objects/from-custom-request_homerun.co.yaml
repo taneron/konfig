@@ -1,0 +1,641 @@
+hash: 172dedb69dff01746776891411784ee78e7328af83e2c300347a654d8898c9cc
+methodObjects:
+  - url: /job-applications
+    method: listOfApplications
+    httpMethod: get
+    tag: Job Applications
+    typeScriptTag: jobApplications
+    description: Get a list of job applications
+    parameters:
+      - name: filter
+        schema: object
+        required: false
+        description: Filter by one of the fields
+      - name: include
+        schema: array
+        required: false
+        description: Include additional information in the response
+      - name: page
+        schema: integer
+        required: false
+        description: Change the page number to get more results
+        default: 1
+      - name: perPage
+        schema: integer
+        required: false
+        description: Change the number of object returned per page
+        default: 15
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /job-applications
+    method: addNewApplication
+    httpMethod: post
+    tag: Job Applications
+    typeScriptTag: jobApplications
+    description: Create new job applications
+    parameters:
+      - name: first_name
+        schema: string
+        required: true
+        description: ''
+        example: FIRST_NAME
+      - name: last_name
+        schema: string
+        required: true
+        description: ''
+        example: LAST_NAME
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: date_of_birth
+        schema: string
+        required: false
+        description: ''
+        example: '1983-01-28'
+      - name: vacancy_id
+        schema: string
+        required: false
+        description: ''
+        example: job_jfGhv8FnurJalJTmp8I1
+      - name: city
+        schema: string
+        required: false
+        description: ''
+        example: Rotterdam
+      - name: country
+        schema: string
+        required: false
+        description: ''
+        example: The Netherlands
+      - name: phone_number
+        schema: string
+        required: false
+        description: ''
+        example: 012-34567890
+      - name: photo
+        schema: string
+        required: false
+        description: ''
+        example: https://static.homerun.co/images/hiring-with-homerun-dark.png
+      - name: sourced
+        schema: boolean
+        required: false
+        description: ''
+        example: true
+      - name: experience
+        schema: string
+        required: false
+        description: ''
+      - name: education
+        schema: string
+        required: false
+        description: ''
+      - name: pronouns
+        schema: string
+        required: false
+        description: ''
+      - name: skype
+        schema: string
+        required: false
+        description: ''
+      - name: facebook
+        schema: string
+        required: false
+        description: ''
+      - name: twitter
+        schema: string
+        required: false
+        description: ''
+      - name: linkedin
+        schema: string
+        required: false
+        description: ''
+      - name: github
+        schema: string
+        required: false
+        description: ''
+      - name: website
+        schema: string
+        required: false
+        description: ''
+      - name: assignment
+        schema: string
+        required: false
+        description: ''
+      - name: custom_data
+        schema: object
+        required: false
+        description: ''
+        example:
+          internal_id: hr-2131
+          driving_licence: 'yes'
+      - name: sources
+        schema: array
+        required: false
+        description: ''
+        example:
+          - Homerun Career Page
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /job-applications/{job_application_id}
+    method: removeJobApp
+    httpMethod: delete
+    tag: Job Applications
+    typeScriptTag: jobApplications
+    description: Delete a job application
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: Job application was deleted successfully.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /job-applications/{job_application_id}
+    method: detailedInfo
+    httpMethod: get
+    tag: Job Applications
+    typeScriptTag: jobApplications
+    description: Get detailed information of a job application
+    parameters:
+      - name: include
+        schema: array
+        required: false
+        description: Include additional information in the response
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /job-applications/{job_application_id}
+    method: updateProperties
+    httpMethod: patch
+    tag: Job Applications
+    typeScriptTag: jobApplications
+    description: Update job application properties
+    parameters:
+      - name: first_name
+        schema: string
+        description: ''
+      - name: last_name
+        schema: string
+        description: ''
+      - name: email
+        schema: string
+        description: ''
+      - name: date_of_birth
+        schema: string
+        description: ''
+        example: '1983-01-28'
+      - name: vacancy_id
+        schema: string
+        description: ''
+        example: job_jfGhv8FnurJalJTmp8I1
+      - name: city
+        schema: string
+        description: ''
+        example: Rotterdam
+      - name: country
+        schema: string
+        description: ''
+        example: The Netherlands
+      - name: phone_number
+        schema: string
+        description: ''
+        example: 012-34567890
+      - name: photo
+        schema: string
+        description: ''
+        example: https://d2zr9w65gdacs9.cloudfront.net/53/14da63a1435155015.jpg
+      - name: sourced
+        schema: boolean
+        description: ''
+        example: true
+      - name: experience
+        schema: string
+        description: ''
+      - name: education
+        schema: string
+        description: ''
+      - name: pronouns
+        schema: string
+        description: ''
+      - name: skype
+        schema: string
+        description: ''
+      - name: facebook
+        schema: string
+        description: ''
+      - name: twitter
+        schema: string
+        description: ''
+      - name: linkedin
+        schema: string
+        description: ''
+      - name: github
+        schema: string
+        description: ''
+      - name: website
+        schema: string
+        description: ''
+      - name: assignment
+        schema: string
+        description: ''
+      - name: stage
+        schema: object
+        description: ''
+      - name: custom_data
+        schema: object
+        description: ''
+        example:
+          internal_id: hr-2131
+          driving_licence: 'yes'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /job-applications/{job_application_id}/notes
+    method: createNewNote
+    httpMethod: post
+    tag: Job Application Notes
+    typeScriptTag: jobApplicationNotes
+    description: Create a new note
+    parameters:
+      - name: note
+        schema: string
+        required: true
+        description: ''
+        example: Excellent candidate, interview scheduled for Monday.
+      - name: display_name
+        schema: string
+        required: true
+        description: ''
+        example: Ted
+      - name: is_sensitive
+        schema: boolean
+        required: false
+        description: ''
+        example: false
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /job-applications/{job_application_id}/files
+    method: uploadFilesToJobApplication
+    httpMethod: post
+    tag: Job Application Files
+    typeScriptTag: jobApplicationFiles
+    description: Upload files to a job application
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: resume
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /job-applications/{job_application_id}/photo
+    method: uploadPhoto
+    httpMethod: post
+    tag: Job Application Files
+    typeScriptTag: jobApplicationFiles
+    description: Upload an applicant photo
+    parameters:
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /vacancies
+    method: listOfVacancies
+    httpMethod: get
+    tag: Vacancies
+    typeScriptTag: vacancies
+    description: Get a list of vacancies
+    parameters:
+      - name: filter
+        schema: object
+        required: false
+        description: Name of the vacancy status
+      - name: include
+        schema: array
+        required: false
+        description: Include additional information in the response
+      - name: page
+        schema: integer
+        required: false
+        description: Change the page number to get more results
+        default: 1
+      - name: perPage
+        schema: integer
+        required: false
+        description: Change the number of object returned per page
+        default: 15
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /vacancies/{vacancy_id}
+    method: detailedInfo
+    httpMethod: get
+    tag: Vacancies
+    typeScriptTag: vacancies
+    description: Get detailed information of a vacancy
+    parameters:
+      - name: include
+        schema: array
+        required: false
+        description: Include additional information in the response
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /ping
+    method: dummyEndpoint
+    httpMethod: get
+    tag: Other
+    typeScriptTag: other
+    description: Dummy endpoint for testing authentication
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '429'
+        description: ''
+numberOfSchemas: 30
+apiDescription: >
+  # Introduction
+
+
+  Welcome to the Homerun API! You can use our API to programmatically access
+  your jobs and applicants in Homerun.
+
+
+
+  ## Authentication
+
+
+  All API endpoints require Bearer authentication. We'll reference this
+  authentication method later in this document as `public-api-v2-key`. Example
+  authentication header:
+
+
+  ```http
+
+  Authorization: Bearer <your secret API key>
+
+  ```
+
+
+  ## Authorization
+
+
+  Your API key has scopes attached to it. Those scopes are used to authorize
+  request to each endpoint. We recommend that you only assign scopes that you
+  need to get the job done and nothing more.
+
+
+  Scopes can only be assigned once, when generating a new key on the
+  [Integrations Page](https://app.homerun.co/settings/integrations) page in the
+  Homerun App.
+
+
+  Possible scopes include:
+
+
+  * `vacancies:read`
+
+  * `job-applications:read`
+
+  * `job-applications:write`
+
+  * `job-application-notes:read`
+
+  * `job-application-notes:write`
+
+  * `job-application-files:write`
+
+
+  Check endpoint documentation below to learn which scopes are required to make
+  a specific request.
+
+
+  ## General security advice and fair use
+
+
+  Don’t share your API key in publicly accessible places such as client-side
+  code or services like Github. If you suspect unauthorized usage of your key,
+  please delete it on the [Integrations
+  Page](https://app.homerun.co/settings/integrations) in the Homerun App.
+
+
+  When assigning scopes to your API keys, follow the [principle of least
+  privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and
+  only grant the scopes that are absolutely necessary for your use-case. If you
+  want to use our API in multiple workflows, consider generating separate keys
+  with scopes tailored to the their specific needs, rather than re-using the
+  same key.
+
+
+  Consider periodically rotating your API keys. You can have up to 10 active API
+  keys, so you can generate new ones to replace old ones without forcing
+  downtime on your workflows.
+
+
+  Note that keys can have an expiry date assigned to them. You can use it for
+  keys that you know in advance you'll only need for a limited time.
+
+
+  If your workflow only involves fetching a list of vacancies, please consider
+  using our [Job XML
+  Feeds](https://help.homerun.co/en/articles/5013627-how-do-i-generate-an-xml-feed)
+  feature instead.
+
+
+  We enforce a rate limit of 60 requests per minute to our API to ensure fair
+  usage and limit abuse.
+
+
+  ## Pagination
+
+
+  All endpoints returning a list of objects are using configurable pagination
+  mechanism. You can adjust the number of items per page (through `perPage`
+  parameter). You can fetch more objects by incrementing the `page` query
+  parameter. Pagination metadata is returned in a separate, top-level `meta`
+  property, providing convenience links to following pages, current pagination
+  state and a total number of objects.
+
+
+  Example of a `meta` object:
+
+
+  ```json
+
+  {
+      "meta": {
+          "current_page": 1,
+          "from": 1,
+          "last_page": 4,
+          "links": [
+              {
+                  "url": null,
+                  "label": "&laquo; Previous",
+                  "active": false
+              },
+              {
+                  "url": "http://api.homerun.co/v2/job-applications?page=1",
+                  "label": "1",
+                  "active": true
+              },
+              {
+                  "url": "http://api.homerun.co/v2/job-applications?page=2",
+                  "label": "2",
+                  "active": false
+              },
+              {
+                  "url": "http://api.homerun.co/v2/job-applications?page=3",
+                  "label": "3",
+                  "active": false
+              },
+              {
+                  "url": "http://api.homerun.co/v2/job-applications?page=4",
+                  "label": "4",
+                  "active": false
+              },
+              {
+                  "url": "http://api.homerun.co/v2/job-applications?page=2",
+                  "label": "Next &raquo;",
+                  "active": false
+              }
+          ],
+          "path": "http://api.homerun.co/v2/job-applications",
+          "per_page": 15,
+          "to": 15,
+          "total": 46
+      }
+  }
+
+  ```
+
+
+  ## Changelog
+
+
+  ### 21.09.2023
+
+
+  * `total_candidate_count` field from `Vacancy` schema is now an optional and
+  can be added using `include[]=total_candidate_count`
+
+
+  ### 14.09.2023
+
+
+  * `is_remote` field from `Vacancy` has been deprecated in favour of the new
+  enum `location_type` field. `remote` is one of the values of the new field.

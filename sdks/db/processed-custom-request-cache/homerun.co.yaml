@@ -1,0 +1,187 @@
+processed:
+  securitySchemes:
+    public-api-v2-key:
+      type: http
+      scheme: bearer
+  apiBaseUrl: https://api.homerun.co/v2
+  apiVersion: 2.0.0
+  apiDescription: >
+    # Introduction
+
+
+    Welcome to the Homerun API! You can use our API to programmatically access
+    your jobs and applicants in Homerun.
+
+
+
+    ## Authentication
+
+
+    All API endpoints require Bearer authentication. We'll reference this
+    authentication method later in this document as `public-api-v2-key`. Example
+    authentication header:
+
+
+    ```http
+
+    Authorization: Bearer <your secret API key>
+
+    ```
+
+
+    ## Authorization
+
+
+    Your API key has scopes attached to it. Those scopes are used to authorize
+    request to each endpoint. We recommend that you only assign scopes that you
+    need to get the job done and nothing more.
+
+
+    Scopes can only be assigned once, when generating a new key on the
+    [Integrations Page](https://app.homerun.co/settings/integrations) page in
+    the Homerun App.
+
+
+    Possible scopes include:
+
+
+    * `vacancies:read`
+
+    * `job-applications:read`
+
+    * `job-applications:write`
+
+    * `job-application-notes:read`
+
+    * `job-application-notes:write`
+
+    * `job-application-files:write`
+
+
+    Check endpoint documentation below to learn which scopes are required to
+    make a specific request.
+
+
+    ## General security advice and fair use
+
+
+    Don’t share your API key in publicly accessible places such as client-side
+    code or services like Github. If you suspect unauthorized usage of your key,
+    please delete it on the [Integrations
+    Page](https://app.homerun.co/settings/integrations) in the Homerun App.
+
+
+    When assigning scopes to your API keys, follow the [principle of least
+    privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and
+    only grant the scopes that are absolutely necessary for your use-case. If
+    you want to use our API in multiple workflows, consider generating separate
+    keys with scopes tailored to the their specific needs, rather than re-using
+    the same key.
+
+
+    Consider periodically rotating your API keys. You can have up to 10 active
+    API keys, so you can generate new ones to replace old ones without forcing
+    downtime on your workflows.
+
+
+    Note that keys can have an expiry date assigned to them. You can use it for
+    keys that you know in advance you'll only need for a limited time.
+
+
+    If your workflow only involves fetching a list of vacancies, please consider
+    using our [Job XML
+    Feeds](https://help.homerun.co/en/articles/5013627-how-do-i-generate-an-xml-feed)
+    feature instead.
+
+
+    We enforce a rate limit of 60 requests per minute to our API to ensure fair
+    usage and limit abuse.
+
+
+    ## Pagination
+
+
+    All endpoints returning a list of objects are using configurable pagination
+    mechanism. You can adjust the number of items per page (through `perPage`
+    parameter). You can fetch more objects by incrementing the `page` query
+    parameter. Pagination metadata is returned in a separate, top-level `meta`
+    property, providing convenience links to following pages, current pagination
+    state and a total number of objects.
+
+
+    Example of a `meta` object:
+
+
+    ```json
+
+    {
+        "meta": {
+            "current_page": 1,
+            "from": 1,
+            "last_page": 4,
+            "links": [
+                {
+                    "url": null,
+                    "label": "&laquo; Previous",
+                    "active": false
+                },
+                {
+                    "url": "http://api.homerun.co/v2/job-applications?page=1",
+                    "label": "1",
+                    "active": true
+                },
+                {
+                    "url": "http://api.homerun.co/v2/job-applications?page=2",
+                    "label": "2",
+                    "active": false
+                },
+                {
+                    "url": "http://api.homerun.co/v2/job-applications?page=3",
+                    "label": "3",
+                    "active": false
+                },
+                {
+                    "url": "http://api.homerun.co/v2/job-applications?page=4",
+                    "label": "4",
+                    "active": false
+                },
+                {
+                    "url": "http://api.homerun.co/v2/job-applications?page=2",
+                    "label": "Next &raquo;",
+                    "active": false
+                }
+            ],
+            "path": "http://api.homerun.co/v2/job-applications",
+            "per_page": 15,
+            "to": 15,
+            "total": 46
+        }
+    }
+
+    ```
+
+
+    ## Changelog
+
+
+    ### 21.09.2023
+
+
+    * `total_candidate_count` field from `Vacancy` schema is now an optional and
+    can be added using `include[]=total_candidate_count`
+
+
+    ### 14.09.2023
+
+
+    * `is_remote` field from `Vacancy` has been deprecated in favour of the new
+    enum `location_type` field. `remote` is one of the values of the new field.
+  apiTitle: Homerun Public API
+  endpoints: 8
+  sdkMethods: 16
+  schemas: 9
+  parameters: 60
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: homerun.co.yaml
+  difficultyScore: 35.5

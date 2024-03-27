@@ -1422,6 +1422,36 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "homerun.co": {
+    lambda: async () => {
+      const url = "https://developers.homerun.co/";
+
+      // get raw HTML from url
+      const html = await fetch(url).then((res) => res.text());
+
+      // grab contents of script tag using xpath
+      const scriptMatch = html.match(/<script>(.*?)<\/script>/s);
+      const script = scriptMatch ? scriptMatch[1] : null;
+
+      // find line that includes __redoc_state and evaluate it
+      const stateMatch = script
+        ?.split("\n")
+        .find((line) => line.includes("__redoc_state"));
+      let state = stateMatch ? stateMatch : null;
+      if (!state) throw Error("Expecting state to be defined");
+
+      state = state.replace("const __redoc_state = ", "");
+      // remove last character
+      state = state.trim().slice(0, -1);
+
+      const result = JSON.parse(state).spec.data;
+
+      console.log(result);
+
+      // parse JSON from script
+      return JSON.stringify(result, null, 2);
+    },
+  },
   "dropbox.com_Sign": {
     type: "GET",
     url: "https://raw.githubusercontent.com/hellosign/hellosign-openapi/main/openapi.yaml",
