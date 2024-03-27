@@ -106,7 +106,7 @@ function generatePrefix({ operation }: { operation: Operation }) {
   const prefix = `${camelcase(filtered, { pascalCase: true })}_`
   return {
     prefix,
-    generateOperationId: (suffix: string) => `${prefix}${suffix}`,
+    generateOperationId: (suffix: string) => `${prefix}${suffix}`.trim(),
   }
 }
 
