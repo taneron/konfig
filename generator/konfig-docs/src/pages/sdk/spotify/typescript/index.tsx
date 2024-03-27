@@ -17,7 +17,7 @@ export default function SpotifyTypeScriptSdk() {
       companyKebabCase="spotify"
       clientNameCamelCase="spotify"
       homepage="developer.spotify.com"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T21:04:44.911Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/spotify/favicon.ico"
       contactUrl="https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer"
       // Missing contactEmail
@@ -775,7 +775,7 @@ export default function SpotifyTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "200",
-        "description": "Audiobook(s) have been removed from the library"
+        "description": "Audiobook(https:// have been removed from the library"
       },
       {
         "statusCode": "401",
@@ -854,7 +854,7 @@ export default function SpotifyTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "200",
-        "description": "Audiobook(s) are saved to the library"
+        "description": "Audiobook(https:// are saved to the library"
       },
       {
         "statusCode": "401",
@@ -1197,7 +1197,7 @@ export default function SpotifyTypeScriptSdk() {
         "schema": "string",
         "required": false,
         "description": "",
-        "example": "items(added_by.id,track(name,href,album(name,href)))"
+        "example": "items(https://))"
       },
       {
         "name": "additionalTypes",
@@ -1354,7 +1354,7 @@ export default function SpotifyTypeScriptSdk() {
         "schema": "string",
         "required": false,
         "description": "",
-        "example": "items(added_by.id,track(name,href,album(name,href)))"
+        "example": "items(https://))"
       },
       {
         "name": "limit",
@@ -1591,7 +1591,7 @@ export default function SpotifyTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "200",
-        "description": "Album(s) have been removed from the library"
+        "description": "Album(https:// have been removed from the library"
       },
       {
         "statusCode": "401",
@@ -4125,7 +4125,7 @@ export default function SpotifyTypeScriptSdk() {
       sdkMethods={88}
       schemas={128}
       parameters={240}
-      difficulty="Hard"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/spotify/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/spotify/openapi.yaml"
       
