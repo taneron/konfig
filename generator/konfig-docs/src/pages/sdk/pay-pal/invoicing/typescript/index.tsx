@@ -10,7 +10,7 @@ export default function PayPalInvoicingTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="pay-pal-invoicing-typescript-sdk"
-      metaDescription={`We're championing possibilities for all by making money fast, easy, and more enjoyable. Our hope is unlock opportunities for people in their everyday lives and empower the millions of people and businesses around the world who trust, rely, and use PayPal every day. 
+      metaDescription={`We're championing possibilities for all by making money fast, easy, and more enjoyable. Our hope is unlock opportunities for people in their everyday lives and empower the millions of people and businesses around the world who trust, rely, and use PayPal every day.
 
 For support, visit the PayPal Help Center. https://payp.al/help
 
@@ -21,7 +21,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
       companyKebabCase="pay-pal"
       clientNameCamelCase="payPalInvoicing"
       homepage="www.paypal.com/"
-      lastUpdated={new Date("2024-03-27T17:21:24.299Z")}
+      lastUpdated={new Date("2024-03-27T17:31:49.635Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paypal/invoicing/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -66,7 +66,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
     "responses": [
       {
         "statusCode": "200",
-        "description": "An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links) for navigation."
+        "description": "An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/https://developer.paypal.com/ for navigation."
       },
       {
         "statusCode": "400",
@@ -250,7 +250,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
     "responses": [
       {
         "statusCode": "200",
-        "description": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information."
+        "description": "The request-related [HATEOAS link](/https://developer.paypal.com/ information."
       },
       {
         "statusCode": "202",
@@ -1083,7 +1083,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
     "responses": [
       {
         "statusCode": "200",
-        "description": "An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links) for navigation."
+        "description": "An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/https://developer.paypal.com/ for navigation."
       },
       {
         "statusCode": "400",

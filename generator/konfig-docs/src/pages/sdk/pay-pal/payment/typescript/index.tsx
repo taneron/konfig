@@ -10,7 +10,7 @@ export default function PayPalPaymentTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="pay-pal-payment-typescript-sdk"
-      metaDescription={`We're championing possibilities for all by making money fast, easy, and more enjoyable. Our hope is unlock opportunities for people in their everyday lives and empower the millions of people and businesses around the world who trust, rely, and use PayPal every day. 
+      metaDescription={`We're championing possibilities for all by making money fast, easy, and more enjoyable. Our hope is unlock opportunities for people in their everyday lives and empower the millions of people and businesses around the world who trust, rely, and use PayPal every day.
 
 For support, visit the PayPal Help Center. https://payp.al/help
 
@@ -21,7 +21,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
       companyKebabCase="pay-pal"
       clientNameCamelCase="payPalPayment"
       homepage="www.paypal.com/"
-      lastUpdated={new Date("2024-03-27T17:21:24.299Z")}
+      lastUpdated={new Date("2024-03-27T17:31:49.635Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paypal/payment/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -254,7 +254,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
         "name": "payPalAuthAssertion",
         "schema": "string",
         "required": false,
-        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>"
+        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/https://developer.paypal.com/.<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>"
       },
       {
         "name": "prefer",
@@ -382,7 +382,7 @@ For employment opportunities, check out our job openings in the 'Jobs' tab. We'r
         "name": "payPalAuthAssertion",
         "schema": "string",
         "required": false,
-        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>"
+        "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/https://developer.paypal.com/.<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>"
       },
       {
         "name": "amount",

@@ -11,7 +11,6 @@ export default function SageTypeScriptSdk() {
     <SdkNew
       sdkName="sage-typescript-sdk"
       metaDescription={`At Sage, we knock down barriers with information, insights, and tools to help your business flow.
- 
 We provide businesses with software and services that are simple and easy to use, as we work with you to give you that feeling of confidence. Customers trust our Payroll, HR, and Finance software to make business flow with ease. From our local network of experts to our ever-growing partnerships, we are on hand to give you all the insights you need to thrive. 💚`}
       company="Sage"
       // Missing serviceName
@@ -19,7 +18,7 @@ We provide businesses with software and services that are simple and easy to use
       companyKebabCase="sage"
       clientNameCamelCase="sage"
       homepage="sage.com"
-      lastUpdated={new Date("2024-03-27T17:12:20.901Z")}
+      lastUpdated={new Date("2024-03-27T17:31:49.635Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sage/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

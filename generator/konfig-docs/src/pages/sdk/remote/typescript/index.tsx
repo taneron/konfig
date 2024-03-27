@@ -10,9 +10,9 @@ export default function RemoteTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="remote-typescript-sdk"
-      metaDescription={`Talent is everywhere. Opportunity is not. Remote's mission is to create opportunity everywhere, empowering employers to find and hire the best talent, and enabling individuals to build financial and personal freedom. 
+      metaDescription={`Talent is everywhere. Opportunity is not. Remote's mission is to create opportunity everywhere, empowering employers to find and hire the best talent, and enabling individuals to build financial and personal freedom.
 
-Remote is a Global HR Platform that helps companies hire, manage, and pay their entire team — and more effectively compete in the modern global economy through our comprehensive set of core solutions including, HRIS, payroll, international employment, contractor management, and more. 
+Remote is a Global HR Platform that helps companies hire, manage, and pay their entire team — and more effectively compete in the modern global economy through our comprehensive set of core solutions including, HRIS, payroll, international employment, contractor management, and more.
 
 Whether you're just starting your global journey, or looking to optimize your existing operations, sign up or book a demo - and see how Remote makes global HR simple.`}
       company="Remote"
@@ -21,7 +21,7 @@ Whether you're just starting your global journey, or looking to optimize your ex
       companyKebabCase="remote"
       clientNameCamelCase="remote"
       homepage="remote.com"
-      lastUpdated={new Date("2024-03-27T16:43:26.482Z")}
+      lastUpdated={new Date("2024-03-27T17:31:49.635Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/remote/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
