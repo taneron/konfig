@@ -1,0 +1,219 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /accruals/activity-rules/simulate:
+    post:
+      '200':
+        application/json: {}
+  /accruals/activity-rules/trigger:
+    post:
+      '200':
+        application/json: {}
+  /cohorts/{cohort_id}/loyalty-rules/activities/execute:
+    post:
+      '200':
+        application/json: {}
+  /cohorts/{cohort_id}/loyalty-rules/activities/simulate:
+    post:
+      '200':
+        application/json: {}
+  /redemptions/standard:
+    post:
+      '200':
+        application/json: {}
+  /redemptions/standard/adjust:
+    post:
+      '200':
+        application/json: {}
+  /redemptions/standard/simulate:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /accruals/activity-rules/simulate:
+    post: ActivityRules_simulateRuleExecution
+  /accruals/activity-rules/trigger:
+    post: ActivityRules_triggerRule
+  /accruals/purchase-rules/executions/{id}:
+    get: PurchaseRules_getExecution
+  /accruals/purchase-rules/executions/{id}/cancel:
+    post: PurchaseRules_cancelExecution
+  /accruals/purchase-rules/executions/{id}/retrigger:
+    post: PurchaseRules_retriggerExecution
+  /accruals/purchase-rules/simulate:
+    post: PurchaseRules_simulatePurchaseRules
+  /accruals/purchase-rules/trigger:
+    post: PurchaseRules_triggerLoyaltyRules
+  /accruals/standard:
+    post: DirectAccruals_executeStandardAccrual
+  /cohorts:
+    get: Cohorts_getList
+    post: Cohorts_createCohort
+  /cohorts/{cohort_id}:
+    get: Cohorts_getCohort
+    patch: Cohorts_updateCohortInformation
+  /cohorts/{cohort_id}/accounts:
+    get: CohortAccounts_listAccounts
+  /cohorts/{cohort_id}/loyalty-rules/activities:
+    get: CohortActivities_listActivityLoyaltyRules
+  /cohorts/{cohort_id}/loyalty-rules/activities/execute:
+    post: CohortActivities_executeActivityRule
+  /cohorts/{cohort_id}/loyalty-rules/activities/simulate:
+    post: CohortActivities_triggerLoyaltyRuleSimulation
+  /cohorts/{cohort_id}/loyalty-rules/activities/{rule_id}:
+    patch: CohortActivities_updateRule
+  /cohorts/{cohort_id}/loyalty-rules/purchases:
+    get: CohortPurchases_listLoyaltyRules
+  /cohorts/{cohort_id}/loyalty-rules/purchases/{rule_id}:
+    patch: CohortPurchases_updateLoyaltyRule
+  /exchanges/execute:
+    post: Exchanges_executeCurrencyExchange
+  /exchanges/linked-account-execute:
+    post: Exchanges_executeLinkedAccountCurrencyExchange
+  /exchanges/linked-account-simulate:
+    post: Exchanges_simulateLinkedAccountCurrencyExchange
+  /exchanges/simulate:
+    post: Exchanges_simulateCurrencyExchange
+  /loyalty-currencies/fiat-convert:
+    post: Conversions_fiatToLoyaltyCurrency
+  /loyalty-rules/{cohort_id}/purchases/execute:
+    post: CohortPurchases_executeLoyaltyRulesMatching
+  /loyalty-rules/{cohort_id}/purchases/simulate:
+    post: CohortPurchases_simulateExecution
+  /members:
+    patch: Members_updateMemberRecord
+    post: Members_createRecord
+  /members/lookup:
+    post: Members_validateMemberDetails
+  /members/transactions:
+    post: Transactions_listMemberTransactions
+  /partners:
+    get: Partners_listAllPartners
+  /partners/<api_identifier>/data/<field_name>:
+    get: Partners_getPartnerCustomData
+  /partners/currency-owners-for-issuance:
+    get: Partners_listCurrencyOwnersForIssuance
+  /partners/currency-owners-for-redemption:
+    get: Partners_listRedemptionCurrencyOwners
+  /partners/exchange-in:
+    get: Partners_listExchangeInPartners
+  /partners/exchange-out:
+    get: Partners_listExchangeOutPartners
+  /partners/issuing:
+    get: Partners_listIssuingPartners
+  /partners/redemption:
+    get: Partners_getRedemptionPartners
+  /redemptions/gift-cards:
+    get: GiftCards_getEnabledList
+  /redemptions/gift-cards/codes:
+    post: GiftCards_getIssuedCode
+  /redemptions/gift-cards/custom/cancel:
+    post: GiftCards_cancelCustomCode
+  /redemptions/gift-cards/custom/redeem:
+    post: GiftCards_redeemCustomGiftCardCode
+  /redemptions/gift-cards/custom/validate:
+    post: GiftCards_validateCustomCode
+  /redemptions/gift-cards/{id}:
+    get: GiftCards_getDetails
+  /redemptions/gift-cards/{id}/direct-issue:
+    post: GiftCards_issueCode
+  /redemptions/gift-cards/{id}/issue:
+    post: GiftCards_exchangeLoyaltyForGiftCard
+  /redemptions/gift-cards/{id}/simulate:
+    post: GiftCards_simulateExchange
+  /redemptions/standard:
+    post: StandardRedemptions_executeRedemption
+  /redemptions/standard/adjust:
+    post: StandardRedemptions_adjustRedemption
+  /redemptions/standard/cancel:
+    post: StandardRedemptions_cancelRedemption
+  /redemptions/standard/simulate:
+    post: StandardRedemptions_simulateRedemption
+  /reports/exchanges:
+    get: ExchangeReports_getCsvReport
+  /reports/gift-cards/custom:
+    get: CustomGiftCards_listIssuedCodes
+  /reports/gift-cards/custom/inventory:
+    get: CustomGiftCards_listInventory
+  /reports/gift-cards/custom/{id}/inventory:
+    get: CustomGiftCards_getInventoryStatus
+  /transactions:
+    get: Transactions_listAllTransactions
+    post: Transactions_createTransaction
+  /transactions/{id}:
+    get: Transactions_getDetails
+    patch: Transactions_updateTransactionDetails
+  /transactions/{id}/cancel:
+    post: Transactions_cancelTransaction
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /accruals/activity-rules/simulate:
+    post:
+      '200':
+        application/json: ActivityRulesSimulateRuleExecutionResponse
+  /accruals/activity-rules/trigger:
+    post:
+      '200':
+        application/json: ActivityRulesTriggerRuleResponse
+  /cohorts/{cohort_id}/loyalty-rules/activities/execute:
+    post:
+      '200':
+        application/json: CohortActivitiesExecuteActivityRuleResponse
+  /cohorts/{cohort_id}/loyalty-rules/activities/simulate:
+    post:
+      '200':
+        application/json: CohortActivitiesTriggerLoyaltyRuleSimulationResponse
+  /members:
+    patch:
+      '200':
+        application/json: MembersUpdateMemberRecordResponse
+    post:
+      '201':
+        application/json: MembersCreateRecordResponse
+  /members/lookup:
+    post:
+      '200':
+        application/json: MembersValidateMemberDetailsResponse
+  /redemptions/standard:
+    post:
+      '200':
+        application/json: StandardRedemptionsExecuteRedemptionResponse
+  /redemptions/standard/adjust:
+    post:
+      '200':
+        application/json: StandardRedemptionsAdjustRedemptionResponse
+  /redemptions/standard/simulate:
+    post:
+      '200':
+        application/json: StandardRedemptionsSimulateRedemptionResponse
+securityParameters:
+  country:
+    query: false
+  created_at__range:
+    query: false
+  fiat_currency:
+    query: false
+  gift_card_id:
+    query: false
+  gift_card_type:
+    query: false
+  language_display:
+    query: false
+  loyalty_currency:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  partner_id:
+    query: false
+  status:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

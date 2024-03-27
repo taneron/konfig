@@ -2003,6 +2003,15 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/Adatree/api-specs/main/insights.yaml",
   },
+  "currencyalliance.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://api.currencyalliance.com/api-docs/v3",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({
