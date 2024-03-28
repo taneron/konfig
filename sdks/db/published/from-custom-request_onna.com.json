@@ -1,0 +1,1653 @@
+{
+  "securitySchemes": {
+    "OAuth2": {
+      "description": "The API uses API keys to [authenticate requests](https://dev.onna.com/get-started/authentication).",
+      "flows": {
+        "clientCredentials": {
+          "scopes": {},
+          "tokenUrl": "https://api.onna.com/v1/oauth/token"
+        }
+      },
+      "type": "oauth2"
+    }
+  },
+  "apiBaseUrl": "https://api.onna.com/v1",
+  "apiVersion": "v1.1.0",
+  "apiDescription": "# Introduction\n\n![Onna](https://onna.com/wp-content/uploads/2022/02/graphic-solutions-kip-kd.png \"Diagram showing how Onna connects to various applications\")\n\nThe Onna Platform API enables you to programmatically upload your data into our Knowledge Integration Platform.\nThis unlocks the possibility to have all your data in one place\nand turn it into knowledge—even data we don't support directly with one of [our connectors](https://onna.com/connectors/ \"List of available connectors\").\n\n## Key concepts\n\nBefore starting to use the API, we recommend to become familiar with some key concepts.\nFor more information on the key concepts, see [API basics](https://dev.onna.com/fundamentals/api-basics \"Documentation about API basics\").\n\n## Requirements\n\nTo use this API, you must have an active account on an [Enterprise Plan](https://onna.com/pricing/ \"Onna pricing page\")\nand have the [Developer role assigned](https://dev.onna.com/get-started/authentication#assign-developer-role \"Sections on how to assign a developer role\").\n\nFor more information, see [Requirements](https://dev.onna.com/fundamentals/api-basics#requirements \"Section about requirements\").\n\n## Security\n\nThis API requires that all requests are made using [HTTPS](https://en.wikipedia.org/wiki/HTTPS \"Wikipedia entry for HTTPS\")\nand must be [authenticated with a valid token](https://dev.onna.com/get-started/authentication \"Article about authentication\").\n\n## Response codes\n\nA full list of the response codes returned by this API is available at [Response codes](https://dev.onna.com/fundamentals/response-codes \"List of supported response codes\").\n\n## Versioning\n\nThis API uses semantic versioning to ensure that your client doesn't break.\nThe version is declared in the URL so that you can lock to a specific one by prefix the URL.\n\nWhen the version declared in the URL is not supported, you will receive a 400 response.\n\nFor more information, see [Versioning](https://dev.onna.com/fundamentals/api-basics#versioning \"Section about versioning\").\n\n## Date and time format\n\nThis API supports dates and times in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601 \"Wikipedia entry for the IS0 8601 standard\") format.\n\n## Pagination\n\nThis API uses cursoring to divide large sets of results in multiple pages.\nFor more information, see [Pagination](https://dev.onna.com/fundamentals/api-basics/#pagination \"Section about supported pagination\").\n\n## Parameters\n\nThere are many ways to pass parameters when making requests to this API.\nFor more information, see [Parameters](https://dev.onna.com/fundamentals/api-basics#parameters \"Section about supported parameters\").\n\n## Resource types\n\nYou can ingest various type of resources. For more information, see [Resource types](https://dev.onna.com/fundamentals/resource-types \"Article about supported resource types\").",
+  "apiTitle": "Onna Platform API",
+  "endpoints": 15,
+  "sdkMethods": 29,
+  "schemas": 37,
+  "parameters": 118,
+  "contactUrl": "https://dev.onna.com/help",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/onna/platform-api/main/spec/platform-api.yaml"
+  },
+  "customRequestSpecFilename": "onna.com.yaml",
+  "difficultyScore": 77,
+  "difficulty": "Easy",
+  "company": "Onna",
+  "sdkName": "onna-{language}-sdk",
+  "clientName": "Onna",
+  "metaDescription": "Onna enables enterprises to quickly gain business value from their unstructured data. Onna's Data Management Platform provides a central workflow that spans across today's workplace applications like Slack, Google Workspace, Microsoft 365, and more, producing a unified set of actionable data. By connecting and unifying disparate data sources, legal and IT teams enhance key use cases like eDiscovery, internal investigations, and information governance. With teams across North America and Europe, Onna supports some of the world's leading companies, including Dropbox, Electronic Arts, Lyft, Carvana, and NewsCorp.\nFor more information, please visit us at www.onna.com.",
+  "apiStatusUrls": "inherit",
+  "homepage": "onna.com/",
+  "developerDocumentation": "dev.onna.com/api/",
+  "categories": [
+    "data_management",
+    "processing",
+    "data_integration",
+    "unstructured_data"
+  ],
+  "category": "Documents",
+  "methods": [
+    {
+      "url": "/customFields",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "CustomFields",
+      "typeScriptTag": "customFields",
+      "description": "List Custom Fields",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": "The API uses [cursoring for pagination.](https://dev.onna.com/fundamentals/api-basics/#pagination)",
+          "example": "2022-02-22T11:11:11.12345"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/customFields",
+      "method": "createField",
+      "httpMethod": "post",
+      "tag": "CustomFields",
+      "typeScriptTag": "customFields",
+      "description": "Create Custom Field",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "DESCRIPTION"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "required",
+          "schema": "boolean",
+          "required": true,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TYPE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/folders",
+      "method": "createNewFolder",
+      "httpMethod": "post",
+      "tag": "Folders",
+      "typeScriptTag": "folders",
+      "description": "Create Folder",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "onna_parent_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ONNA_PARENT_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/folders/{onna_id}",
+      "method": "deleteFolder",
+      "httpMethod": "delete",
+      "tag": "Folders",
+      "typeScriptTag": "folders",
+      "description": "Delete Folder",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the folder.",
+          "example": "ONNA_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/folders/{onna_id}",
+      "method": "getInfo",
+      "httpMethod": "get",
+      "tag": "Folders",
+      "typeScriptTag": "folders",
+      "description": "Retrieve Folder Info",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the folder.",
+          "example": "ONNA_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/folders/{onna_id}",
+      "method": "updateFolderName",
+      "httpMethod": "patch",
+      "tag": "Folders",
+      "typeScriptTag": "folders",
+      "description": "Update Folder",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the folder.",
+          "example": "ONNA_ID"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/health",
+      "method": "checkServiceStatus",
+      "httpMethod": "get",
+      "tag": "Utils",
+      "typeScriptTag": "utils",
+      "description": "Health Check",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/oauth/token",
+      "method": "exchangeCredentials",
+      "httpMethod": "post",
+      "tag": "Authentication",
+      "typeScriptTag": "authentication",
+      "description": "Login",
+      "parameters": [
+        {
+          "name": "client_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "client_secret",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "grant_type",
+          "schema": "string",
+          "description": "",
+          "default": "client_credentials"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/oauth/user",
+      "method": "currentUserInfo",
+      "httpMethod": "get",
+      "tag": "Authentication",
+      "typeScriptTag": "authentication",
+      "description": "Current User",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/resources/files",
+      "method": "createNewFile",
+      "httpMethod": "post",
+      "tag": "Resources: Files",
+      "typeScriptTag": "resources:Files",
+      "description": "Create File",
+      "parameters": [
+        {
+          "name": "tags",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "version",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "comment",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "creation_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "creator",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "deleter",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "deletion_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "onna_parent_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ONNA_PARENT_ID"
+        },
+        {
+          "name": "path",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "ref",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REF"
+        },
+        {
+          "name": "share_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "update_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "updater",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "url",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/resources/files/{onna_id}",
+      "method": "deleteFile",
+      "httpMethod": "delete",
+      "tag": "Resources: Files",
+      "typeScriptTag": "resources:Files",
+      "description": "Delete File",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the file.",
+          "example": "ONNA_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/resources/files/{onna_id}",
+      "method": "getFile",
+      "httpMethod": "get",
+      "tag": "Resources: Files",
+      "typeScriptTag": "resources:Files",
+      "description": "Read File",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the file.",
+          "example": "ONNA_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/resources/tickets",
+      "method": "createNewTicket",
+      "httpMethod": "post",
+      "tag": "Resources: Tickets",
+      "typeScriptTag": "resources:Tickets",
+      "description": "Create Ticket",
+      "parameters": [
+        {
+          "name": "tags",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "assignee_group",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "assignees",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "author",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "category",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "comments",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "creation_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "followers",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "onna_parent_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ONNA_PARENT_ID"
+        },
+        {
+          "name": "priority",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "reactions",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "ref",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REF"
+        },
+        {
+          "name": "requester",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "severity",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "subcategory",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "update_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "updater",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "url",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/resources/tickets/{onna_id}",
+      "method": "removeTicket",
+      "httpMethod": "delete",
+      "tag": "Resources: Tickets",
+      "typeScriptTag": "resources:Tickets",
+      "description": "Delete Ticket",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the ticket.",
+          "example": "ONNA_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/resources/tickets/{onna_id}",
+      "method": "getTicket",
+      "httpMethod": "get",
+      "tag": "Resources: Tickets",
+      "typeScriptTag": "resources:Tickets",
+      "description": "Read Ticket",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the ticket.",
+          "example": "ONNA_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/upload/{id}/tus",
+      "method": "headResourceFileResumable",
+      "httpMethod": "head",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Head Resource File Resumable Upload",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "tusResumable",
+          "schema": "string",
+          "required": false,
+          "description": "The `Tus-Resumable` header is included in every request and response.\n\n```bash\nTus-Resumable: 1.0.0\n```\n\nFor more information on the headers used by TUS, see [\"the protocol specification\"](https://tus.io/protocols/resumable-upload.html)."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "405",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "412",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/upload/{id}/tus",
+      "method": "optionsResourceFile",
+      "httpMethod": "options",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Options Resource File",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/upload/{id}/tus",
+      "method": "resumeResourceFile",
+      "httpMethod": "patch",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Resume Resource File Upload",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "contentLength",
+          "schema": "string",
+          "required": false,
+          "description": "The `Content-Length` header indicates the size of the message body, in bytes, sent to the recipient.\n\n```bash\nContent-Length: 512\n```\n\nFor more information on headers, see [\"the MDN Web Docs\"](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Length)."
+        },
+        {
+          "name": "contentType",
+          "schema": "string",
+          "required": false,
+          "description": "The `Content-Type` representation header is used to indicate the original media type of the resource (prior to any content encoding applied for sending).\n\n```bash\nContent-Type: application/json; charset=utf-8\n```\n\nFor more information on headers, see [\"the MDN Web Docs\"](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)."
+        },
+        {
+          "name": "uploadOffset",
+          "schema": "string",
+          "required": false,
+          "description": "The `Upload-Offset` request and response header indicates a byte offset within a resource. The value MUST be a non-negative integer.\n\n```bash\nUpload-Offset: 64\n```\n\nFor more information on the headers used by TUS, see [\"the protocol specification\"](https://tus.io/protocols/resumable-upload.html)."
+        },
+        {
+          "name": "tusResumable",
+          "schema": "string",
+          "required": false,
+          "description": "The `Tus-Resumable` header is included in every request and response.\n\n```bash\nTus-Resumable: 1.0.0\n```\n\nFor more information on the headers used by TUS, see [\"the protocol specification\"](https://tus.io/protocols/resumable-upload.html)."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "405",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "412",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/upload/{id}/tus",
+      "method": "resourceFileResumableUpload",
+      "httpMethod": "post",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Create Resource File Resumable Upload",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "uploadDeferLength",
+          "schema": "string",
+          "required": false,
+          "description": "The `Upload-Defer-Length` request and response header indicates that the size of the upload is not known currently and will be transferred later.\nIts value MUST be 1. If the length of an upload is not deferred, this header MUST be omitted.\n\n```bash\nUpload-Defer-Length: 1\n```\n\nFor more information on the headers used by TUS, see [\"the protocol specification\"](https://tus.io/protocols/resumable-upload.html)."
+        },
+        {
+          "name": "uploadLength",
+          "schema": "string",
+          "required": false,
+          "description": "The `Upload-Length` request and response header indicates the size of the entire upload in bytes. The value MUST be a non-negative integer.\n\n```bash\nUpload-Length: 512\n```\n\nFor more information on the headers used by TUS, see [\"the protocol specification\"](https://tus.io/protocols/resumable-upload.html)."
+        },
+        {
+          "name": "uploadMetadata",
+          "schema": "string",
+          "required": false,
+          "description": "The `Upload-Metadata` request and response header MUST consist of one or more comma-separated key-value pairs. The key and value MUST be separated by a space.\nThe key MUST NOT contain spaces and commas and MUST NOT be empty. The key SHOULD be ASCII encoded and the value MUST be Base64 encoded. All keys MUST be unique.\nThe value MAY be empty. In these cases, the space, which would normally separate the key and the value, MAY be left out.\n\n```bash\nUpload-Metadata: filename d29ybGRfZG9taW5hdGlvbl9wbGFuLnBkZg==,is_confidential\n```\n\nFor more information on the headers used by TUS, see [\"the protocol specification\"](https://tus.io/protocols/resumable-upload.html)."
+        },
+        {
+          "name": "tusResumable",
+          "schema": "string",
+          "required": false,
+          "description": "The `Tus-Resumable` header is included in every request and response.\n\n```bash\nTus-Resumable: 1.0.0\n```\n\nFor more information on the headers used by TUS, see [\"the protocol specification\"](https://tus.io/protocols/resumable-upload.html)."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "405",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "412",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/upload/{id}/tus",
+      "method": "resourceSingleRequest",
+      "httpMethod": "put",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Create Resource File Single Request",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "List Workspaces",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": "The API uses [cursoring for pagination.](https://dev.onna.com/fundamentals/api-basics/#pagination)",
+          "example": "2022-02-22T11:11:11.12345"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces",
+      "method": "create",
+      "httpMethod": "post",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "Create Workspace",
+      "parameters": [
+        {
+          "name": "tags",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces/{onna_id}",
+      "method": "removeWorkspace",
+      "httpMethod": "delete",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "Delete Workspace",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the workspace.",
+          "example": "myworkspace-ZPM9Jf4zQ"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces/{onna_id}",
+      "method": "getInfo",
+      "httpMethod": "get",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "Retrieve Workspace Info",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the workspace.",
+          "example": "myworkspace-ZPM9Jf4zQ"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces/{onna_id}",
+      "method": "updateWorkspace",
+      "httpMethod": "patch",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "Update Workspace",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the workspace.",
+          "example": "myworkspace-ZPM9Jf4zQ"
+        },
+        {
+          "name": "tags",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces/{onna_id}/customFields",
+      "method": "listCustomFields",
+      "httpMethod": "get",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "List Workspace Custom Fields",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the workspace.",
+          "example": "myworkspace-ZPM9Jf4zQ"
+        },
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": "The API uses [cursoring for pagination.](https://dev.onna.com/fundamentals/api-basics/#pagination)",
+          "example": "2022-02-22T11:11:11.12345"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces/{onna_id}/customFields",
+      "method": "enableCustomField",
+      "httpMethod": "patch",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "Enable Workspace Custom Field",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the workspace.",
+          "example": "myworkspace-ZPM9Jf4zQ"
+        },
+        {
+          "name": "onna_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ONNA_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces/{onna_id}/customFields/{field_id}",
+      "method": "readCustomValue",
+      "httpMethod": "get",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "Read Workspace Custom Value",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the workspace.",
+          "example": "myworkspace-ZPM9Jf4zQ"
+        },
+        {
+          "name": "fieldId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the field.",
+          "example": "cf-b20696ae9"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    },
+    {
+      "url": "/workspaces/{onna_id}/customFields/{field_id}",
+      "method": "updateCustomValue",
+      "httpMethod": "patch",
+      "tag": "Workspaces",
+      "typeScriptTag": "workspaces",
+      "description": "Update Workspace Custom Value",
+      "parameters": [
+        {
+          "name": "onnaId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the workspace.",
+          "example": "myworkspace-ZPM9Jf4zQ"
+        },
+        {
+          "name": "fieldId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique ID of the field.",
+          "example": "cf-b20696ae9"
+        },
+        {
+          "name": "value",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VALUE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful Response"
+        },
+        {
+          "statusCode": "401",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "403",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "404",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "422",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        },
+        {
+          "statusCode": "500",
+          "description": "JSON:API \"error object\": https://jsonapi.org/format/#errors"
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Onna accelerates enterprise value from unstructured data with a centralized workflow spanning workplace apps like Slack, Google Workspace, and Microsoft 365. Unifies data sources for legal and IT teams to improve eDiscovery, investigations, and governance. Onna's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onna/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onna/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/onna/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onna/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onna/favicon.png",
+  "clientNameCamelCase": "onna",
+  "lastUpdated": "2024-03-28T22:45:59.842Z",
+  "typescriptSdkUsageCode": "import { Onna } from 'onna-typescript-sdk';\n\nconst onna = new Onna({\n    // The API uses API keys to [authenticate requests](https://dev.onna.com/get-started/authentication).\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\"\n})",
+  "typescriptSdkFirstRequestCode": "// List Custom Fields\nconst listResponse = onna.customFields.list({\n    cursor: \"2022-02-22T11:11:11.12345\"\n})",
+  "fixedSpecFileName": "onna-fixed-spec.yaml"
+}

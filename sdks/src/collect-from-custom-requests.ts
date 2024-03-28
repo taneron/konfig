@@ -2208,6 +2208,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://rest-demo.wannme.com/integration/v2/v3/api-docs",
   },
+  "onna.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/onna/platform-api/main/spec/platform-api.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

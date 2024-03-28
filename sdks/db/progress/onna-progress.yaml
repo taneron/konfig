@@ -1,0 +1,71 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /customFields:
+    get: CustomFields_list
+    post: CustomFields_createField
+  /folders:
+    post: Folders_createNewFolder
+  /folders/{onna_id}:
+    delete: Folders_deleteFolder
+    get: Folders_getInfo
+    patch: Folders_updateFolderName
+  /health:
+    get: Utils_checkServiceStatus
+  /oauth/token:
+    post: Authentication_exchangeCredentials
+  /oauth/user:
+    get: Authentication_currentUserInfo
+  /resources/files:
+    post: ResourcesFiles_createNewFile
+  /resources/files/{onna_id}:
+    delete: ResourcesFiles_deleteFile
+    get: ResourcesFiles_getFile
+  /resources/tickets:
+    post: ResourcesTickets_createNewTicket
+  /resources/tickets/{onna_id}:
+    delete: ResourcesTickets_removeTicket
+    get: ResourcesTickets_getTicket
+  /upload/{id}/tus:
+    head: Upload_headResourceFileResumable
+    options: Upload_optionsResourceFile
+    patch: Upload_resumeResourceFile
+    post: Upload_resourceFileResumableUpload
+    put: Upload_resourceSingleRequest
+  /workspaces:
+    get: Workspaces_list
+    post: Workspaces_create
+  /workspaces/{onna_id}:
+    delete: Workspaces_removeWorkspace
+    get: Workspaces_getInfo
+    patch: Workspaces_updateWorkspace
+  /workspaces/{onna_id}/customFields:
+    get: Workspaces_listCustomFields
+    patch: Workspaces_enableCustomField
+  /workspaces/{onna_id}/customFields/{field_id}:
+    get: Workspaces_readCustomValue
+    patch: Workspaces_updateCustomValue
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  content-length:
+    header: false
+  content-type:
+    header: false
+  cursor:
+    query: false
+  tus-resumable:
+    header: false
+  upload-defer-length:
+    header: false
+  upload-length:
+    header: false
+  upload-metadata:
+    header: false
+  upload-offset:
+    header: false
+validServerUrls: {}
