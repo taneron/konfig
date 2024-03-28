@@ -21,7 +21,7 @@ Learn more at teamwork.com.`}
       companyKebabCase="teamwork"
       clientNameCamelCase="teamwork"
       homepage="teamwork.com"
-      lastUpdated={new Date("2024-03-27T21:04:44.911Z")}
+      lastUpdated={new Date("2024-03-28T21:25:19.896Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/teamwork/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -49,7 +49,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -61,7 +61,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -140,12 +140,12 @@ Learn more at teamwork.com.`}
       {
         "name": "taskId",
         "schema": "integer",
-        "description": "filter by task id (https://apidocs.teamwork.com/"
+        "description": "filter by task id (deprecated, use taskIds)"
       },
       {
         "name": "projectId",
         "schema": "integer",
-        "description": "filter by project id (https://apidocs.teamwork.com/"
+        "description": "filter by project id (deprecated, use projectIds)"
       },
       {
         "name": "pageSize",
@@ -264,7 +264,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectsFromCompanyId",
         "schema": "array",
-        "description": "filter by project company ids (https://apidocs.teamwork.com/"
+        "description": "filter by project company ids (deprecated, use projectCompanyIds)"
       },
       {
         "name": "projectTagIds",
@@ -402,7 +402,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -414,7 +414,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -454,7 +454,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -577,7 +577,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -662,7 +662,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -747,7 +747,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -832,7 +832,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -851,7 +851,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -894,7 +894,7 @@ Learn more at teamwork.com.`}
       {
         "name": "createdAfterDate",
         "schema": "string",
-        "description": "filter by created after date (https://apidocs.teamwork.com/"
+        "description": "filter by created after date (deprecated, use createdAfter)"
       },
       {
         "name": "createdAfter",
@@ -922,6 +922,11 @@ Learn more at teamwork.com.`}
         "name": "orderByCustomFieldId",
         "schema": "integer",
         "description": "order by custom field id when orderBy is equal to customfield"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -1204,12 +1209,12 @@ Learn more at teamwork.com.`}
       {
         "name": "taskId",
         "schema": "integer",
-        "description": "filter by task id (https://apidocs.teamwork.com/"
+        "description": "filter by task id (deprecated, use taskIds)"
       },
       {
         "name": "projectId",
         "schema": "integer",
-        "description": "filter by project id (https://apidocs.teamwork.com/"
+        "description": "filter by project id (deprecated, use projectIds)"
       },
       {
         "name": "pageSize",
@@ -1321,7 +1326,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectsFromCompanyId",
         "schema": "array",
-        "description": "filter by project company ids (https://apidocs.teamwork.com/"
+        "description": "filter by project company ids (deprecated, use projectCompanyIds)"
       },
       {
         "name": "projectTagIds",
@@ -1459,7 +1464,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -1471,7 +1476,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -1486,7 +1491,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -1529,7 +1534,7 @@ Learn more at teamwork.com.`}
       {
         "name": "createdAfterDate",
         "schema": "string",
-        "description": "filter by created after date (https://apidocs.teamwork.com/"
+        "description": "filter by created after date (deprecated, use createdAfter)"
       },
       {
         "name": "createdAfter",
@@ -1564,6 +1569,11 @@ Learn more at teamwork.com.`}
         "required": true,
         "description": "",
         "example": 0
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -1782,7 +1792,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -1826,6 +1836,11 @@ Learn more at teamwork.com.`}
         "name": "companyId",
         "schema": "integer",
         "description": "filter by company id"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -1924,7 +1939,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -1936,7 +1951,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -1976,7 +1991,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -2010,7 +2025,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -2022,7 +2037,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -2060,7 +2075,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -2107,7 +2122,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -2166,6 +2181,11 @@ Learn more at teamwork.com.`}
         "schema": "integer",
         "description": "page number",
         "default": "1"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -2319,7 +2339,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -2331,7 +2351,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -2354,7 +2374,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -2366,7 +2386,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -2428,6 +2448,11 @@ Learn more at teamwork.com.`}
         "required": true,
         "description": "",
         "example": 0
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -2535,7 +2560,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -2575,7 +2600,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -2619,7 +2644,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -2788,7 +2813,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -2803,7 +2828,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -2813,7 +2838,7 @@ Learn more at teamwork.com.`}
       {
         "name": "searchTerm",
         "schema": "string",
-        "description": "filter by comment content (https://apidocs.teamwork.com/"
+        "description": "filter by comment content (like v1 filterText param)"
       },
       {
         "name": "publishedStartDate",
@@ -2908,7 +2933,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3196,7 +3221,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3236,7 +3261,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3259,7 +3284,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "403",
@@ -3267,7 +3292,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3298,7 +3323,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3338,7 +3363,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -3373,7 +3398,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3409,7 +3434,7 @@ Learn more at teamwork.com.`}
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Activity",
     "typeScriptTag": "activity",
-    "description": "Latest activity (https://apidocs.teamwork.com/",
+    "description": "Latest activity (all projects)",
     "parameters": [
       {
         "name": "updatedAfter",
@@ -3424,7 +3449,7 @@ Learn more at teamwork.com.`}
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/"
+        "description": "sort by (deprecated, use orderBy)"
       },
       {
         "name": "projectStatus",
@@ -3449,7 +3474,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectId",
         "schema": "integer",
-        "description": "filter by project id (https://apidocs.teamwork.com/"
+        "description": "filter by project id (deprecated, use projectIds)"
       },
       {
         "name": "pageSize",
@@ -3598,7 +3623,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -3748,7 +3773,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -3760,7 +3785,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3800,7 +3825,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3839,7 +3864,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3874,7 +3899,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3913,7 +3938,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -3936,7 +3961,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -3948,7 +3973,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -4397,7 +4422,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -4416,7 +4441,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -4459,7 +4484,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueBeforeDate",
         "schema": "string",
-        "description": "filter by due before date (https://apidocs.teamwork.com/"
+        "description": "filter by due before date (deprecated, use dueBefore)"
       },
       {
         "name": "dueBefore",
@@ -4469,7 +4494,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueAfterDate",
         "schema": "string",
-        "description": "filter by due after date (https://apidocs.teamwork.com/"
+        "description": "filter by due after date (deprecated, use dueAfter)"
       },
       {
         "name": "dueAfter",
@@ -4518,7 +4543,7 @@ Learn more at teamwork.com.`}
       {
         "name": "progress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -4578,7 +4603,7 @@ Learn more at teamwork.com.`}
       {
         "name": "includeProgress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -4675,7 +4700,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by list of project health (https://apidocs.teamwork.com/"
+        "description": "filter by list of project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -4805,7 +4830,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -4848,7 +4873,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueBeforeDate",
         "schema": "string",
-        "description": "filter by due before date (https://apidocs.teamwork.com/"
+        "description": "filter by due before date (deprecated, use dueBefore)"
       },
       {
         "name": "dueBefore",
@@ -4858,7 +4883,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueAfterDate",
         "schema": "string",
-        "description": "filter by due after date (https://apidocs.teamwork.com/"
+        "description": "filter by due after date (deprecated, use dueAfter)"
       },
       {
         "name": "dueAfter",
@@ -4914,7 +4939,7 @@ Learn more at teamwork.com.`}
       {
         "name": "progress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -4974,7 +4999,7 @@ Learn more at teamwork.com.`}
       {
         "name": "includeProgress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -5071,7 +5096,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by list of project health (https://apidocs.teamwork.com/"
+        "description": "filter by list of project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -5191,7 +5216,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5206,7 +5231,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -5244,7 +5269,7 @@ Learn more at teamwork.com.`}
       {
         "name": "createdAfterDate",
         "schema": "string",
-        "description": "filter by created after date (https://apidocs.teamwork.com/"
+        "description": "filter by created after date (deprecated, use createdAfter)"
       },
       {
         "name": "createdAfter",
@@ -5414,7 +5439,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5437,7 +5462,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -5449,7 +5474,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5464,7 +5489,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -5551,7 +5576,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5637,7 +5662,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5672,7 +5697,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5713,7 +5738,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5736,7 +5761,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -5748,7 +5773,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5771,7 +5796,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -5783,7 +5808,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5806,7 +5831,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -5818,7 +5843,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5859,7 +5884,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5907,7 +5932,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -5954,13 +5979,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -6028,7 +6053,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "ids",
@@ -6149,7 +6174,7 @@ Learn more at teamwork.com.`}
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/",
+        "description": "sort by (deprecated, use orderBy)",
         "default": "name"
       },
       {
@@ -6276,7 +6301,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -6299,7 +6324,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -6311,7 +6336,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -6365,13 +6390,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -6439,7 +6464,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "ids",
@@ -6682,13 +6707,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -6705,6 +6730,11 @@ Learn more at teamwork.com.`}
         "name": "maxBudgetCapacityUsedPercent",
         "schema": "integer",
         "description": "filter by maximum budget capacity used"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -6877,7 +6907,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "fields[workflows]",
@@ -7127,7 +7157,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -7278,7 +7308,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -7696,13 +7726,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -7719,6 +7749,11 @@ Learn more at teamwork.com.`}
         "name": "maxBudgetCapacityUsedPercent",
         "schema": "integer",
         "description": "filter by maximum budget capacity used"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -7891,7 +7926,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "fields[workflows]",
@@ -8038,13 +8073,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -8163,13 +8198,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -8186,6 +8221,11 @@ Learn more at teamwork.com.`}
         "name": "maxBudgetCapacityUsedPercent",
         "schema": "integer",
         "description": "filter by maximum budget capacity used"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -8358,7 +8398,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "fields[workflows]",
@@ -8616,7 +8656,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by project health (https://apidocs.teamwork.com/"
+        "description": "filter by project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -8786,7 +8826,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by project health (https://apidocs.teamwork.com/"
+        "description": "filter by project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -8917,13 +8957,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -8940,6 +8980,11 @@ Learn more at teamwork.com.`}
         "name": "maxBudgetCapacityUsedPercent",
         "schema": "integer",
         "description": "filter by maximum budget capacity used"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -9112,7 +9157,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "fields[workflows]",
@@ -9220,7 +9265,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -9243,7 +9288,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -9255,7 +9300,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -9295,6 +9340,11 @@ Learn more at teamwork.com.`}
         "schema": "integer",
         "description": "page number",
         "default": "1"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -9393,7 +9443,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -9405,7 +9455,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -9445,7 +9495,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -9479,7 +9529,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -9491,7 +9541,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -9529,7 +9579,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -9576,7 +9626,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -9673,7 +9723,7 @@ Learn more at teamwork.com.`}
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/"
+        "description": "sort by (deprecated, use orderBy)"
       },
       {
         "name": "projectStatus",
@@ -9705,7 +9755,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectId",
         "schema": "integer",
-        "description": "filter by project id (https://apidocs.teamwork.com/"
+        "description": "filter by project id (deprecated, use projectIds)"
       },
       {
         "name": "pageSize",
@@ -9854,7 +9904,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -9897,7 +9947,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueBeforeDate",
         "schema": "string",
-        "description": "filter by due before date (https://apidocs.teamwork.com/"
+        "description": "filter by due before date (deprecated, use dueBefore)"
       },
       {
         "name": "dueBefore",
@@ -9907,7 +9957,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueAfterDate",
         "schema": "string",
-        "description": "filter by due after date (https://apidocs.teamwork.com/"
+        "description": "filter by due after date (deprecated, use dueAfter)"
       },
       {
         "name": "dueAfter",
@@ -9963,7 +10013,7 @@ Learn more at teamwork.com.`}
       {
         "name": "progress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -10023,7 +10073,7 @@ Learn more at teamwork.com.`}
       {
         "name": "includeProgress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -10120,7 +10170,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by list of project health (https://apidocs.teamwork.com/"
+        "description": "filter by list of project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -10345,13 +10395,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -10425,7 +10475,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "ids",
@@ -10581,13 +10631,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -10655,7 +10705,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "ids",
@@ -10724,7 +10774,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by risks updated after specified date (https://apidocs.teamwork.com/"
+        "description": "filter by risks updated after specified date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -10734,12 +10784,12 @@ Learn more at teamwork.com.`}
       {
         "name": "sortOrder",
         "schema": "string",
-        "description": "sort order (https://apidocs.teamwork.com/"
+        "description": "sort order (deprecated, use orderMode)"
       },
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/"
+        "description": "sort by (deprecated, use orderBy)"
       },
       {
         "name": "searchTerm",
@@ -10953,7 +11003,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -10965,7 +11015,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -11000,7 +11050,7 @@ Learn more at teamwork.com.`}
       {
         "name": "status",
         "schema": "string",
-        "description": "project status (https://apidocs.teamwork.com/"
+        "description": "project status (deprecated, use projectStatuses)"
       },
       {
         "name": "projectStatus",
@@ -11048,7 +11098,7 @@ Learn more at teamwork.com.`}
       {
         "name": "matchAllTags",
         "schema": "boolean",
-        "description": "enforce all tag ids must be matched (https://apidocs.teamwork.com/"
+        "description": "enforce all tag ids must be matched (deprecated, use matchAllProjectTags)"
       },
       {
         "name": "matchAllProjectTags",
@@ -11073,7 +11123,7 @@ Learn more at teamwork.com.`}
       {
         "name": "applyTaskAssigneeUsersToSince",
         "schema": "boolean",
-        "description": "the since section will only use taskAssigneeUserIds if this flag is true\n(https://apidocs.teamwork.com/"
+        "description": "the since section will only use taskAssigneeUserIds if this flag is true\n(keeps backward compatibility)"
       },
       {
         "name": "applySinceOnUnread",
@@ -11124,7 +11174,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "project health (https://apidocs.teamwork.com/\n\n0: not set\n1: bad\n2: ok\n3: good"
+        "description": "project health (deprecated, use projectHealths)\n\n0: not set\n1: bad\n2: ok\n3: good"
       },
       {
         "name": "projectCompanyIds",
@@ -11144,12 +11194,12 @@ Learn more at teamwork.com.`}
       {
         "name": "health",
         "schema": "array",
-        "description": "project healths (https://apidocs.teamwork.com/\n\n0: not set\n1: bad\n2: ok\n3: good"
+        "description": "project healths (deprecated, use projectHealths)\n\n0: not set\n1: bad\n2: ok\n3: good"
       },
       {
         "name": "filterTagIds",
         "schema": "array",
-        "description": "filter by project tag ids (https://apidocs.teamwork.com/"
+        "description": "filter by project tag ids (deprecated, use projectTagIds)"
       },
       {
         "name": "fields[unread]",
@@ -11199,7 +11249,7 @@ Learn more at teamwork.com.`}
       {
         "name": "companyIds",
         "schema": "array",
-        "description": "filter by company ids (https://apidocs.teamwork.com/"
+        "description": "filter by company ids (deprecated, use projectCompanyIds)"
       },
       {
         "name": "assigneeUserIds",
@@ -11277,6 +11327,11 @@ Learn more at teamwork.com.`}
         "schema": "integer",
         "description": "page number",
         "default": "1"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "sortActiveListsFirst",
@@ -11460,6 +11515,11 @@ Learn more at teamwork.com.`}
         "description": "filter by project"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "onlyCompletedTasks",
         "schema": "boolean",
         "description": "only completed tasks",
@@ -11577,7 +11637,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -11654,6 +11714,11 @@ Learn more at teamwork.com.`}
         "description": "filter by project"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "onlyCompletedTasks",
         "schema": "boolean",
         "description": "only completed tasks",
@@ -11771,7 +11836,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -11848,6 +11913,11 @@ Learn more at teamwork.com.`}
         "description": "filter by project"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "onlyCompletedTasks",
         "schema": "boolean",
         "description": "only completed tasks",
@@ -11965,7 +12035,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -12042,6 +12112,11 @@ Learn more at teamwork.com.`}
         "description": "filter by project"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "onlyCompletedTasks",
         "schema": "boolean",
         "description": "only completed tasks",
@@ -12159,7 +12234,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -12346,6 +12421,11 @@ Learn more at teamwork.com.`}
         "name": "useStartDatesForTodaysTasks",
         "schema": "boolean",
         "description": "use start dates for todays tasks"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "useAllProjects",
@@ -12923,7 +13003,7 @@ Learn more at teamwork.com.`}
       {
         "name": "taskId",
         "schema": "integer",
-        "description": "filter by task id (https://apidocs.teamwork.com/"
+        "description": "filter by task id (deprecated, use taskIds)"
       },
       {
         "name": "projectId",
@@ -12935,7 +13015,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectId",
         "schema": "integer",
-        "description": "filter by project id (https://apidocs.teamwork.com/"
+        "description": "filter by project id (deprecated, use projectIds)"
       },
       {
         "name": "pageSize",
@@ -13047,7 +13127,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectsFromCompanyId",
         "schema": "array",
-        "description": "filter by project company ids (https://apidocs.teamwork.com/"
+        "description": "filter by project company ids (deprecated, use projectCompanyIds)"
       },
       {
         "name": "projectTagIds",
@@ -13243,7 +13323,7 @@ Learn more at teamwork.com.`}
       {
         "name": "userId",
         "schema": "integer",
-        "description": "filter by user id (https://apidocs.teamwork.com/"
+        "description": "filter by user id (deprecated, use assignedToUserIds)"
       },
       {
         "name": "tasklistId",
@@ -13253,7 +13333,7 @@ Learn more at teamwork.com.`}
       {
         "name": "taskId",
         "schema": "integer",
-        "description": "filter by task id (https://apidocs.teamwork.com/"
+        "description": "filter by task id (deprecated, use taskIds)"
       },
       {
         "name": "projectId",
@@ -13296,7 +13376,7 @@ Learn more at teamwork.com.`}
       {
         "name": "userIds",
         "schema": "array",
-        "description": "filter by user ids (https://apidocs.teamwork.com/"
+        "description": "filter by user ids (deprecated, use assignedToUserIds)"
       },
       {
         "name": "taskIds",
@@ -13456,12 +13536,12 @@ Learn more at teamwork.com.`}
       {
         "name": "taskId",
         "schema": "integer",
-        "description": "filter by task id (https://apidocs.teamwork.com/"
+        "description": "filter by task id (deprecated, use taskIds)"
       },
       {
         "name": "projectId",
         "schema": "integer",
-        "description": "filter by project id (https://apidocs.teamwork.com/"
+        "description": "filter by project id (deprecated, use projectIds)"
       },
       {
         "name": "pageSize",
@@ -13573,7 +13653,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectsFromCompanyId",
         "schema": "array",
-        "description": "filter by project company ids (https://apidocs.teamwork.com/"
+        "description": "filter by project company ids (deprecated, use projectCompanyIds)"
       },
       {
         "name": "projectTagIds",
@@ -13772,13 +13852,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -13795,6 +13875,11 @@ Learn more at teamwork.com.`}
         "name": "maxBudgetCapacityUsedPercent",
         "schema": "integer",
         "description": "filter by maximum budget capacity used"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -13967,7 +14052,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "fields[workflows]",
@@ -14063,7 +14148,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -14155,13 +14240,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -14178,6 +14263,11 @@ Learn more at teamwork.com.`}
         "name": "maxBudgetCapacityUsedPercent",
         "schema": "integer",
         "description": "filter by maximum budget capacity used"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -14350,7 +14440,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "fields[workflows]",
@@ -14446,7 +14536,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -14538,13 +14628,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -14561,6 +14651,11 @@ Learn more at teamwork.com.`}
         "name": "maxBudgetCapacityUsedPercent",
         "schema": "integer",
         "description": "filter by maximum budget capacity used"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -14733,7 +14828,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "fields[workflows]",
@@ -14829,7 +14924,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -14921,13 +15016,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -14944,6 +15039,11 @@ Learn more at teamwork.com.`}
         "name": "maxBudgetCapacityUsedPercent",
         "schema": "integer",
         "description": "filter by maximum budget capacity used"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -15116,7 +15216,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "fields[workflows]",
@@ -15212,7 +15312,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -15235,7 +15335,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -15278,7 +15378,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueBeforeDate",
         "schema": "string",
-        "description": "filter by due before date (https://apidocs.teamwork.com/"
+        "description": "filter by due before date (deprecated, use dueBefore)"
       },
       {
         "name": "dueBefore",
@@ -15288,7 +15388,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueAfterDate",
         "schema": "string",
-        "description": "filter by due after date (https://apidocs.teamwork.com/"
+        "description": "filter by due after date (deprecated, use dueAfter)"
       },
       {
         "name": "dueAfter",
@@ -15337,7 +15437,7 @@ Learn more at teamwork.com.`}
       {
         "name": "progress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -15397,7 +15497,7 @@ Learn more at teamwork.com.`}
       {
         "name": "includeProgress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -15494,7 +15594,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by list of project health (https://apidocs.teamwork.com/"
+        "description": "filter by list of project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -15575,7 +15675,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -15594,7 +15694,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -15637,7 +15737,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueBeforeDate",
         "schema": "string",
-        "description": "filter by due before date (https://apidocs.teamwork.com/"
+        "description": "filter by due before date (deprecated, use dueBefore)"
       },
       {
         "name": "dueBefore",
@@ -15647,7 +15747,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueAfterDate",
         "schema": "string",
-        "description": "filter by due after date (https://apidocs.teamwork.com/"
+        "description": "filter by due after date (deprecated, use dueAfter)"
       },
       {
         "name": "dueAfter",
@@ -15696,7 +15796,7 @@ Learn more at teamwork.com.`}
       {
         "name": "progress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -15756,7 +15856,7 @@ Learn more at teamwork.com.`}
       {
         "name": "includeProgress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -15853,7 +15953,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by list of project health (https://apidocs.teamwork.com/"
+        "description": "filter by list of project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -15934,7 +16034,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -15953,7 +16053,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -15996,7 +16096,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueBeforeDate",
         "schema": "string",
-        "description": "filter by due before date (https://apidocs.teamwork.com/"
+        "description": "filter by due before date (deprecated, use dueBefore)"
       },
       {
         "name": "dueBefore",
@@ -16006,7 +16106,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueAfterDate",
         "schema": "string",
-        "description": "filter by due after date (https://apidocs.teamwork.com/"
+        "description": "filter by due after date (deprecated, use dueAfter)"
       },
       {
         "name": "dueAfter",
@@ -16055,7 +16155,7 @@ Learn more at teamwork.com.`}
       {
         "name": "progress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -16115,7 +16215,7 @@ Learn more at teamwork.com.`}
       {
         "name": "includeProgress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -16212,7 +16312,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by list of project health (https://apidocs.teamwork.com/"
+        "description": "filter by list of project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -16293,7 +16393,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -16312,7 +16412,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -16355,7 +16455,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueBeforeDate",
         "schema": "string",
-        "description": "filter by due before date (https://apidocs.teamwork.com/"
+        "description": "filter by due before date (deprecated, use dueBefore)"
       },
       {
         "name": "dueBefore",
@@ -16365,7 +16465,7 @@ Learn more at teamwork.com.`}
       {
         "name": "dueAfterDate",
         "schema": "string",
-        "description": "filter by due after date (https://apidocs.teamwork.com/"
+        "description": "filter by due after date (deprecated, use dueAfter)"
       },
       {
         "name": "dueAfter",
@@ -16414,7 +16514,7 @@ Learn more at teamwork.com.`}
       {
         "name": "progress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -16474,7 +16574,7 @@ Learn more at teamwork.com.`}
       {
         "name": "includeProgress",
         "schema": "boolean",
-        "description": "include percentage of tasks completed for all linked tasklists (https://apidocs.teamwork.com/",
+        "description": "include percentage of tasks completed for all linked tasklists (deprecated, use includePercentageComplete)",
         "default": "false"
       },
       {
@@ -16571,7 +16671,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "filter by list of project health (https://apidocs.teamwork.com/"
+        "description": "filter by list of project health (deprecated, use projectHealths)"
       },
       {
         "name": "projectCompanyIds",
@@ -16652,7 +16752,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -16830,6 +16930,11 @@ Learn more at teamwork.com.`}
         "description": "use start dates for todays tasks"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "useAllProjects",
         "schema": "boolean",
         "description": "filter on all projects"
@@ -17322,7 +17427,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -17500,6 +17605,11 @@ Learn more at teamwork.com.`}
         "description": "use start dates for todays tasks"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "useAllProjects",
         "schema": "boolean",
         "description": "filter on all projects"
@@ -17992,7 +18102,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -18170,6 +18280,11 @@ Learn more at teamwork.com.`}
         "description": "use start dates for todays tasks"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "useAllProjects",
         "schema": "boolean",
         "description": "filter on all projects"
@@ -18662,7 +18777,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -18840,6 +18955,11 @@ Learn more at teamwork.com.`}
         "description": "use start dates for todays tasks"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "useAllProjects",
         "schema": "boolean",
         "description": "filter on all projects"
@@ -19332,7 +19452,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -19398,13 +19518,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -19482,7 +19602,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "ids",
@@ -19605,13 +19725,13 @@ Learn more at teamwork.com.`}
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "number of items in a page (https://apidocs.teamwork.com/",
+        "description": "number of items in a page (not used when generating reports)",
         "default": "50"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": "page number (https://apidocs.teamwork.com/",
+        "description": "page number (not used when generating reports)",
         "default": "1"
       },
       {
@@ -19689,7 +19809,7 @@ Learn more at teamwork.com.`}
       {
         "name": "include",
         "schema": "array",
-        "description": "include (https://apidocs.teamwork.com/"
+        "description": "include (not used when generating reports)"
       },
       {
         "name": "ids",
@@ -19774,7 +19894,7 @@ Learn more at teamwork.com.`}
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/",
+        "description": "sort by (deprecated, use orderBy)",
         "default": "name"
       },
       {
@@ -19893,7 +20013,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -19928,7 +20048,7 @@ Learn more at teamwork.com.`}
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/",
+        "description": "sort by (deprecated, use orderBy)",
         "default": "name"
       },
       {
@@ -20047,7 +20167,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -20082,7 +20202,7 @@ Learn more at teamwork.com.`}
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/",
+        "description": "sort by (deprecated, use orderBy)",
         "default": "name"
       },
       {
@@ -20201,7 +20321,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -20236,7 +20356,7 @@ Learn more at teamwork.com.`}
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/",
+        "description": "sort by (deprecated, use orderBy)",
         "default": "name"
       },
       {
@@ -20355,7 +20475,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "200",
-        "description": "200 OK (https://apidocs.teamwork.com/"
+        "description": "200 OK (no data)"
       },
       {
         "statusCode": "400",
@@ -20374,7 +20494,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by risks updated after specified date (https://apidocs.teamwork.com/"
+        "description": "filter by risks updated after specified date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -20384,12 +20504,12 @@ Learn more at teamwork.com.`}
       {
         "name": "sortOrder",
         "schema": "string",
-        "description": "sort order (https://apidocs.teamwork.com/"
+        "description": "sort order (deprecated, use orderMode)"
       },
       {
         "name": "sort",
         "schema": "string",
-        "description": "sort by (https://apidocs.teamwork.com/"
+        "description": "sort by (deprecated, use orderBy)"
       },
       {
         "name": "searchTerm",
@@ -20759,7 +20879,7 @@ Learn more at teamwork.com.`}
       {
         "name": "status",
         "schema": "string",
-        "description": "project status (https://apidocs.teamwork.com/"
+        "description": "project status (deprecated, use projectStatuses)"
       },
       {
         "name": "projectStatus",
@@ -20800,7 +20920,7 @@ Learn more at teamwork.com.`}
       {
         "name": "matchAllTags",
         "schema": "boolean",
-        "description": "enforce all tag ids must be matched (https://apidocs.teamwork.com/"
+        "description": "enforce all tag ids must be matched (deprecated, use matchAllProjectTags)"
       },
       {
         "name": "matchAllProjectTags",
@@ -20825,7 +20945,7 @@ Learn more at teamwork.com.`}
       {
         "name": "applyTaskAssigneeUsersToSince",
         "schema": "boolean",
-        "description": "the since section will only use taskAssigneeUserIds if this flag is true\n(https://apidocs.teamwork.com/"
+        "description": "the since section will only use taskAssigneeUserIds if this flag is true\n(keeps backward compatibility)"
       },
       {
         "name": "applySinceOnUnread",
@@ -20876,7 +20996,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectHealth",
         "schema": "array",
-        "description": "project healths (https://apidocs.teamwork.com/\n\n0: not set\n1: bad\n2: ok\n3: good"
+        "description": "project healths (deprecated, use projectHealths)\n\n0: not set\n1: bad\n2: ok\n3: good"
       },
       {
         "name": "projectCompanyIds",
@@ -20896,7 +21016,7 @@ Learn more at teamwork.com.`}
       {
         "name": "filterTagIds",
         "schema": "array",
-        "description": "filter by project tag ids (https://apidocs.teamwork.com/"
+        "description": "filter by project tag ids (deprecated, use projectTagIds)"
       },
       {
         "name": "fields[unread]",
@@ -20946,7 +21066,7 @@ Learn more at teamwork.com.`}
       {
         "name": "companyIds",
         "schema": "array",
-        "description": "filter by company ids (https://apidocs.teamwork.com/"
+        "description": "filter by company ids (deprecated, use projectCompanyIds)"
       },
       {
         "name": "assigneeUserIds",
@@ -21133,7 +21253,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -21145,7 +21265,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -21168,7 +21288,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -21180,7 +21300,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -21211,7 +21331,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -21251,7 +21371,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -21311,6 +21431,11 @@ Learn more at teamwork.com.`}
         "schema": "integer",
         "description": "page number",
         "default": "1"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "sortActiveListsFirst",
@@ -21486,6 +21611,11 @@ Learn more at teamwork.com.`}
         "default": "1"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "sortActiveListsFirst",
         "schema": "boolean",
         "description": "sort active lists first",
@@ -21617,7 +21747,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -21629,7 +21759,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -21808,6 +21938,11 @@ Learn more at teamwork.com.`}
         "name": "useStartDatesForTodaysTasks",
         "schema": "boolean",
         "description": "use start dates for todays tasks"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "useAllProjects",
@@ -22578,6 +22713,11 @@ Learn more at teamwork.com.`}
         "description": "use start dates for todays tasks"
       },
       {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
+      },
+      {
         "name": "useAllProjects",
         "schema": "boolean",
         "description": "filter on all projects"
@@ -23135,7 +23275,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -23147,7 +23287,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -23178,7 +23318,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -23253,7 +23393,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -23272,7 +23412,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -23282,7 +23422,7 @@ Learn more at teamwork.com.`}
       {
         "name": "searchTerm",
         "schema": "string",
-        "description": "filter by comment content (https://apidocs.teamwork.com/"
+        "description": "filter by comment content (like v1 filterText param)"
       },
       {
         "name": "publishedStartDate",
@@ -23377,7 +23517,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -23417,6 +23557,11 @@ Learn more at teamwork.com.`}
         "schema": "integer",
         "description": "page number",
         "default": "1"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "skipCounts",
@@ -23515,7 +23660,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -23527,7 +23672,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -23567,7 +23712,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -23601,7 +23746,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -23613,7 +23758,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -23651,7 +23796,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -23698,7 +23843,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -23881,6 +24026,11 @@ Learn more at teamwork.com.`}
         "name": "useStartDatesForTodaysTasks",
         "schema": "boolean",
         "description": "use start dates for todays tasks"
+      },
+      {
+        "name": "useFormulaFields",
+        "schema": "boolean",
+        "description": "use formula fields"
       },
       {
         "name": "useAllProjects",
@@ -24536,12 +24686,12 @@ Learn more at teamwork.com.`}
       {
         "name": "taskId",
         "schema": "integer",
-        "description": "filter by task id (https://apidocs.teamwork.com/"
+        "description": "filter by task id (deprecated, use taskIds)"
       },
       {
         "name": "projectId",
         "schema": "integer",
-        "description": "filter by project id (https://apidocs.teamwork.com/"
+        "description": "filter by project id (deprecated, use projectIds)"
       },
       {
         "name": "pageSize",
@@ -24653,7 +24803,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectsFromCompanyId",
         "schema": "array",
-        "description": "filter by project company ids (https://apidocs.teamwork.com/"
+        "description": "filter by project company ids (deprecated, use projectCompanyIds)"
       },
       {
         "name": "projectTagIds",
@@ -24995,12 +25145,12 @@ Learn more at teamwork.com.`}
       {
         "name": "taskId",
         "schema": "integer",
-        "description": "filter by task id (https://apidocs.teamwork.com/"
+        "description": "filter by task id (deprecated, use taskIds)"
       },
       {
         "name": "projectId",
         "schema": "integer",
-        "description": "filter by project id (https://apidocs.teamwork.com/"
+        "description": "filter by project id (deprecated, use projectIds)"
       },
       {
         "name": "pageSize",
@@ -25112,7 +25262,7 @@ Learn more at teamwork.com.`}
       {
         "name": "projectsFromCompanyId",
         "schema": "array",
-        "description": "filter by project company ids (https://apidocs.teamwork.com/"
+        "description": "filter by project company ids (deprecated, use projectCompanyIds)"
       },
       {
         "name": "projectTagIds",
@@ -25262,7 +25412,7 @@ Learn more at teamwork.com.`}
       {
         "name": "userId",
         "schema": "integer",
-        "description": "filter by user id (https://apidocs.teamwork.com/"
+        "description": "filter by user id (deprecated, use assignedToUserIds)"
       },
       {
         "name": "tasklistId",
@@ -25272,7 +25422,7 @@ Learn more at teamwork.com.`}
       {
         "name": "taskId",
         "schema": "integer",
-        "description": "filter by task id (https://apidocs.teamwork.com/"
+        "description": "filter by task id (deprecated, use taskIds)"
       },
       {
         "name": "projectId",
@@ -25308,7 +25458,7 @@ Learn more at teamwork.com.`}
       {
         "name": "userIds",
         "schema": "array",
-        "description": "filter by user ids (https://apidocs.teamwork.com/"
+        "description": "filter by user ids (deprecated, use assignedToUserIds)"
       },
       {
         "name": "taskIds",
@@ -25412,7 +25562,7 @@ Learn more at teamwork.com.`}
     "responses": [
       {
         "statusCode": "204",
-        "description": "204 No Content (https://apidocs.teamwork.com/"
+        "description": "204 No Content (no data)"
       },
       {
         "statusCode": "400",
@@ -25424,7 +25574,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -25455,7 +25605,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -25505,7 +25655,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       },
       {
         "statusCode": "409",
@@ -25524,7 +25674,7 @@ Learn more at teamwork.com.`}
       {
         "name": "updatedAfterDate",
         "schema": "string",
-        "description": "filter by updated after date (https://apidocs.teamwork.com/"
+        "description": "filter by updated after date (deprecated, use updatedAfter)"
       },
       {
         "name": "updatedAfter",
@@ -25684,7 +25834,7 @@ Learn more at teamwork.com.`}
       },
       {
         "statusCode": "404",
-        "description": "404 Not Found (https://apidocs.teamwork.com/"
+        "description": "404 Not Found (no data)"
       }
     ]
   },
@@ -26299,7 +26449,7 @@ Learn more at teamwork.com.`}
       endpoints={147}
       sdkMethods={188}
       schemas={296}
-      parameters={4125}
+      parameters={4155}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/teamwork/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/teamwork/openapi.yaml"
