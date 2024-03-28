@@ -1,0 +1,2045 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /api/external/campaign/get-campaign-report:
+    get:
+      '200':
+        application/json:
+          data:
+            total:
+              bounced: 0
+              opened: 0
+              replied: 0
+              scheduled: 0
+              sent: 0
+            touchpoints: []
+  /api/external/campaign/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - bounces: 0
+              campaign_status_id: 3
+              created_by:
+                email: abc@def.com
+                first_name: AB
+                id: 2841
+                last_name: C
+                name: ABC
+              errors: 0
+              id: 5
+              last_twenty_four_hour_count: 0
+              name: Test Campaign
+              opens: 0
+              prospect_type_id: 1
+              replies: 0
+              schedules: 0
+              sends: 0
+              timezone: (GMT+05:30) India Standard Time
+            - bounces: 0
+              campaign_status_id: 3
+              created_by:
+                email: abc@recruiterflow.com
+                first_name: AB
+                id: 3264
+                last_name: C
+                name: AB C
+              errors: 0
+              id: 1
+              last_twenty_four_hour_count: 0
+              name: Untitled campaign
+              opens: 0
+              prospect_type_id: 1
+              replies: 0
+              schedules: 0
+              sends: 0
+              timezone: (GMT+05:30) India Standard Time
+          total_items: 2
+  /api/external/campaign/status/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 2
+              name: Active
+            - id: 1
+              name: Inactive
+            - id: 3
+              name: Stopped
+            - id: 4
+              name: Stopped - No permissions
+          total_items: 4
+  /api/external/client/add:
+    post:
+      '200':
+        application/json:
+          data:
+            id: 1
+  /api/external/client/custom-field/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 236
+              name: Is active?
+              type: yes_no
+            - choices:
+                - id: 731
+                  name: ms1
+                - id: 732
+                  name: ms2
+                - id: 733
+                  name: ms3
+                - id: 734
+                  name: ms4
+                - id: 798
+                  name: s2
+              id: 56
+              name: Multi Select
+              type: multi_select
+            - id: 40
+              name: Expected Billing
+              type: money
+          total_items: 3
+  /api/external/client/get:
+    get:
+      '200':
+        application/json:
+          added_by:
+            email: admin@recruiterflow.com
+            id: 3264
+            name: System Admin
+          added_time: null
+          careers_page: https://www.ixigo.com/about/careers/
+          closed_jobs:
+            - candidates_hired: 0
+              candidates_submitted: 0
+              client_company_contacts: []
+              department_name: Engineering
+              id: 91
+              job_visibility_id: 6
+              last_opened: 2020-10-01T05:49:51+0000
+              locations:
+                - city: Kolkata
+                  country: India
+                  id: 13
+                  iso_3166_1_alpha_2_code: IN
+                  name: Test
+                  postal_code: '700036'
+                  state: West bengal
+                  zipcode: '700036'
+              name: New Job Pipeline
+          company_size: 3
+          company_size_name: 51-200
+          complete_address: >-
+            Golf Course Road, DLF Phase 5, Sector 53, Gurugram, Haryana, India,
+            122002
+          contacts:
+            - designation: null
+              id: 154613
+              img_link: null
+              is_primary: false
+              name: Blah Ixigo
+          custom_fields:
+            - id: 43
+              name: Close By
+              value: '2020-04-16'
+          domain: gmail.com
+          files: []
+          followers: []
+          id: 1
+          img_link: >-
+            https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/client-company-logos/prod/client/db_b18c893c749e320e66fbb2f7fef6b1be/1/logo.png
+          industry_id: 13
+          industry_name: Internet
+          lead_owner:
+            email: admin@recruiterflow.com
+            id: 3264
+            img_link: >-
+              https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+            name: System Admin
+          linkedin_page: ''
+          location:
+            city: Gurugram
+            country: India
+            google_place_id: ChIJLVyTdrQYDTkRrzz-1CTXg_M
+            latitude: null
+            location: >-
+              ixigo, Golf Course Road, Parsvnath Exotica, DLF Phase 5, Sector
+              53, Gurugram, Haryana, India
+            longitude: null
+            postal_code: '122002'
+            state: Haryana
+            street_address_1: Golf Course Road
+            street_address_2: DLF Phase 5, Sector 53
+          name: Ixigo
+          notes:
+            - author:
+                email: admin@recruiterflow.com
+                first_name: System
+                id: 3264
+                img_link: >-
+                  https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+                last_name: Admin
+                name: System Admin
+              author_email: admin@recruiterflow.com
+              author_first_name: System
+              author_img_link: >-
+                https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+              author_last_name: Admin
+              content: >-
+                <div><span class="note-user-mention" data-user-id="5059"
+                data-user-email="nareshenoy@outlook.com">@Naresh Shenoy</span>
+                How are you doing?</div>
+              created_time: 2021-01-13T19:20:10+0000
+              entities:
+                - id: 154613
+                  name: Blah Ixigo
+                  type: 2
+                - id: 1
+                  name: Ixigo
+                  type: 3
+              is_pinned: false
+              replies:
+                - author:
+                    email: admin@recruiterflow.com
+                    first_name: System
+                    id: 3264
+                    img_link: >-
+                      https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+                    last_name: Admin
+                    name: System Admin
+                  author_email: admin@recruiterflow.com
+                  author_first_name: System
+                  author_img_link: >-
+                    https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+                  author_last_name: Admin
+                  content: >-
+                    <div><span class="note-user-mention" data-user-id="3264"
+                    data-user-email="admin@recruiterflow.com">@System
+                    Admin</span><span class="note-after-user-mention"> Hi there,
+                    edited</span></div>
+                  created_time: 2021-01-13T19:22:32+0000
+                  entities:
+                    - id: 154613
+                      name: Blah Ixigo
+                      type: 2
+                    - id: 1
+                      name: Ixigo
+                      type: 3
+                  is_pinned: false
+          open_jobs:
+            - candidates_hired: 0
+              candidates_submitted: 0
+              client_company_contacts: []
+              department_name: Engineering
+              id: 1115
+              job_visibility_id: 1
+              last_opened: 2021-01-04T10:02:18+0000
+              locations:
+                - city: Bangalore
+                  country: India
+                  id: 1
+                  iso_3166_1_alpha_2_code: IN
+                  name: Bengaluru
+                  postal_code: '700036'
+                  state: Karnataka
+                  zipcode: '700036'
+              name: Senior Backend Developer
+          phone_number: []
+          pipeline:
+            candidates_hired: 1
+            candidates_submitted: 0
+          revenue:
+            currency: USD
+            number: 5000000
+          status:
+            id: null
+            name: null
+          subsidiary_companies: []
+          tags: []
+  /api/external/client/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - added_by:
+                email: admin@recruiterflow.com
+                id: 3264
+                name: System Admin
+              added_time: null
+              careers_page: https://www.ixigo.com/about/careers/
+              closed_jobs:
+                - candidates_hired: 0
+                  candidates_submitted: 0
+                  client_company_contacts: []
+                  department_name: Engineering
+                  id: 91
+                  job_visibility_id: 6
+                  last_opened: 2020-10-01T05:49:51+0000
+                  locations:
+                    - city: Kolkata
+                      country: India
+                      id: 13
+                      iso_3166_1_alpha_2_code: IN
+                      name: Test
+                      postal_code: '700036'
+                      state: West bengal
+                      zipcode: '700036'
+                  name: New Job Pipeline
+              company_size: 3
+              company_size_name: 51-200
+              complete_address: >-
+                Golf Course Road, DLF Phase 5, Sector 53, Gurugram, Haryana,
+                India, 122002
+              contacts:
+                - designation: null
+                  id: 154613
+                  img_link: null
+                  is_primary: false
+                  name: Blah Ixigo
+              custom_fields:
+                - id: 43
+                  name: Close By
+                  value: '2020-04-16'
+              domain: gmail.com
+              files: []
+              followers: []
+              id: 1
+              img_link: >-
+                https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/client-company-logos/prod/client/db_b18c893c749e320e66fbb2f7fef6b1be/1/logo.png
+              industry_id: 13
+              industry_name: Internet
+              lead_owner:
+                email: admin@recruiterflow.com
+                id: 3264
+                img_link: >-
+                  https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+                name: System Admin
+              linkedin_page: ''
+              location:
+                city: Gurugram
+                country: India
+                google_place_id: ChIJLVyTdrQYDTkRrzz-1CTXg_M
+                latitude: null
+                location: >-
+                  ixigo, Golf Course Road, Parsvnath Exotica, DLF Phase 5,
+                  Sector 53, Gurugram, Haryana, India
+                longitude: null
+                postal_code: '122002'
+                state: Haryana
+                street_address_1: Golf Course Road
+                street_address_2: DLF Phase 5, Sector 53
+              name: Ixigo
+              notes:
+                - author:
+                    email: admin@recruiterflow.com
+                    first_name: System
+                    id: 3264
+                    img_link: >-
+                      https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+                    last_name: Admin
+                    name: System Admin
+                  author_email: admin@recruiterflow.com
+                  author_first_name: System
+                  author_img_link: >-
+                    https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+                  author_last_name: Admin
+                  content: >-
+                    <div><span class="note-user-mention" data-user-id="5059"
+                    data-user-email="nareshenoy@outlook.com">@Naresh
+                    Shenoy</span> How are you doing?</div>
+                  created_time: 2021-01-13T19:20:10+0000
+                  entities:
+                    - id: 154613
+                      name: Blah Ixigo
+                      type: 2
+                    - id: 1
+                      name: Ixigo
+                      type: 3
+                  is_pinned: false
+                  replies:
+                    - author:
+                        email: admin@recruiterflow.com
+                        first_name: System
+                        id: 3264
+                        img_link: >-
+                          https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+                        last_name: Admin
+                        name: System Admin
+                      author_email: admin@recruiterflow.com
+                      author_first_name: System
+                      author_img_link: >-
+                        https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/3264/profile-picture.png
+                      author_last_name: Admin
+                      content: >-
+                        <div><span class="note-user-mention" data-user-id="3264"
+                        data-user-email="admin@recruiterflow.com">@System
+                        Admin</span><span class="note-after-user-mention"> Hi
+                        there, edited</span></div>
+                      created_time: 2021-01-13T19:22:32+0000
+                      entities:
+                        - id: 154613
+                          name: Blah Ixigo
+                          type: 2
+                        - id: 1
+                          name: Ixigo
+                          type: 3
+                      is_pinned: false
+              open_jobs:
+                - candidates_hired: 0
+                  candidates_submitted: 0
+                  client_company_contacts: []
+                  department_name: Engineering
+                  id: 1115
+                  job_visibility_id: 1
+                  last_opened: 2021-01-04T10:02:18+0000
+                  locations:
+                    - city: Bangalore
+                      country: India
+                      id: 1
+                      iso_3166_1_alpha_2_code: IN
+                      name: Bengaluru
+                      postal_code: '560008'
+                      state: Karnataka
+                      zipcode: '560008'
+                  name: Senior Backend Developer
+              phone_number: []
+              pipeline:
+                candidates_hired: 1
+                candidates_submitted: 0
+              revenue:
+                currency: USD
+                number: 5000000
+              status:
+                id: null
+                name: null
+              subsidiary_companies: []
+              tags: []
+          total_items: 1
+  /api/external/client/notes/add:
+    post:
+      '200':
+        application/json:
+          note_id: 1
+  /api/external/client/update:
+    post:
+      '200':
+        application/json:
+          RESULT: SUCCESS
+  /api/external/company-size/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 1
+              name: 1-10
+            - id: 2
+              name: 11-50
+            - id: 3
+              name: 51-200
+            - id: 4
+              name: 201-500
+            - id: 5
+              name: 501-1000
+            - id: 6
+              name: 1001-5000
+            - id: 7
+              name: 5001-10,000
+            - id: 8
+              name: 10,000+
+          total_items: 8
+  /api/external/deal/custom-field/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 65
+              name: DealCFDate
+              type: date
+            - id: 64
+              name: Number field
+              type: number
+            - choices:
+                - children: []
+                  id: 8
+                  name: choice1
+                - children: []
+                  id: 8
+                  name: choice2
+              id: 52
+              name: Single Select Field
+              type: single_select
+          total_items: 3
+  /api/external/industry/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 1
+              name: Defense & Space
+            - id: 2
+              name: Civil Engineering
+            - id: 3
+              name: Non-Profit Organization Management
+            - id: 4
+              name: Computer Hardware
+            - id: 5
+              name: Aviation And Aerospace
+          total_items: 5
+  /api/external/job:
+    get:
+      '200':
+        application/json:
+          about_position: <div>Test Job</div>
+          application_form:
+            - parts:
+                - key: personal_info.name
+                  type: short_text
+              requirement: mandatory
+              text: Name
+              type: short_text
+            - parts:
+                - key: personal_info.email
+                  type: short_text
+              requirement: optional
+              text: Email
+              type: short_text
+            - parts:
+                - key: personal_info.phone
+                  type: short_text
+              requirement: optional
+              text: Phone
+              type: short_text
+            - parts:
+                - key: personal_info.location.city
+                  type: long_text
+                - key: personal_info.location.state
+                  type: long_text
+                - key: personal_info.location.country
+                  type: long_text
+                - key: personal_info.location.postal_code
+                  type: long_text
+              requirement: optional
+              text: Location
+              type: location
+          apply_link: https://rfstaging.xyz/recruiterflowstaging/jobs/1
+          bill_rate:
+            currency: INR
+            frequency:
+              display_name: hr
+              id: 1
+              name: hour
+            number: '5000'
+          company:
+            id: 1
+            name: Guarented I
+          contacts:
+            email: firstcontact@company.com
+            id: 1
+            name: First Contact
+          contract_end_date: '2022-08-31'
+          contract_start_date: '2022-08-29'
+          custom_fields:
+            - id: 64
+              name: Number field
+              value: 2
+            - id: 52
+              name: Status
+              value: Lead
+            - id: 63
+              name: Input field
+              value: edfvfd
+            - id: 38
+              name: Contract Type
+              value: 2 week contract
+          department: Engineering
+          employment_type: Contract
+          experience_range_end: 2
+          experience_range_start: 1
+          files:
+            - file_id: 48
+              filename: 8202:88.docx
+              link: >-
+                https://com-recruiterflow-document-store-eu.s3.amazonaws.com/db_b18c893c749e320e66fbb2f7fef6b1be/documents/48/8202%3A88.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJGJEHP5AAWSJVTMA%2F20210119%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20210119T084101Z&X-Amz-Expires=604700&X-Amz-SignedHeaders=host&X-Amz-Signature=260d9d5078b196fd494d0442524a34599072fbc3b5b293c99898c5e311a458d3
+              permission: 1
+              source: document store
+              upload_time: null
+          hiring_team:
+            - email: admin@rfstaging.xyz
+              first_name: Chérôme
+              img_link: >-
+                https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/10447/profile-picture.jpe
+              last_name: Shenoy
+              name: Chérôme Shenoy
+              role: Recruiter
+              role_id: 2
+              user_id: 10447
+          id: 1
+          is_open: true
+          job_type:
+            id: 3
+            name: Contract
+          job_visibility_id: 1
+          locations:
+            - city: London
+              country: United Kingdom
+              id: 4
+              iso_3166_1_alpha_2_code: GB
+              name: London
+              postal_code: SE1 9BG
+              state: null
+              zipcode: SE1 9BG
+          name: Staging Job 1
+          number_of_openings: 1
+          pay_rate:
+            currency: INR
+            frequency:
+              display_name: hr
+              id: 1
+              name: hour
+            number: '5000'
+          publish_to_careers_page: true
+          salary_range_currency: USD
+          salary_range_end: 125000
+          salary_range_start: 100000
+          skills: []
+          title: Staging Job 1
+          work_quantum:
+            frequency:
+              display_name: day
+              id: 1
+              name: day
+            is_full_time: false
+            number: '2'
+            unit:
+              display_name: hours
+              id: 1
+              name: hour
+  /api/external/job/close:
+    post:
+      '200':
+        application/json:
+          RESULT: SUCCESS
+  /api/external/job/count:
+    get:
+      '200':
+        application/json:
+          count: 70
+  /api/external/job/custom-field/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 65
+              name: JobCFDate
+              type: date
+            - id: 64
+              name: Number field
+              type: number
+            - choices:
+                - id: 683
+                  name: Active
+                - id: 684
+                  name: Lead
+                - id: 720
+                  name: New Status Stuff
+                - id: 748
+                  name: choice 1
+              id: 52
+              name: Status
+              type: single_select
+            - id: 63
+              name: Input field
+              type: long_text
+            - id: 50
+              name: Active
+              type: yes_no
+          total_items: 7
+  /api/external/job/department/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - count: 126
+              id: 1
+              name: Engineering
+            - count: 10
+              id: 2
+              name: Marketing
+            - count: 0
+              id: 8
+              name: testDepartment
+            - count: 8
+              id: 12
+              name: Data Engineer
+          total_items: 4
+  /api/external/job/engagement-type/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 1
+              name: Contingent
+            - id: 3
+              name: Contract
+            - id: 2
+              name: Retained
+            - id: 4
+              name: Temporary
+          total_items: 4
+  /api/external/job/list:
+    get:
+      '200':
+        application/json:
+          - apply_link: https://rfstaging.xyz/recruiterflowstaging/jobs/1
+            bill_rate:
+              currency: INR
+              frequency:
+                display_name: hr
+                id: 1
+                name: hour
+              number: '5000'
+            company:
+              name: Guarented I
+            contract_end_date: '2022-08-31'
+            contract_start_date: '2022-08-29'
+            current_opening: 1
+            custom_fields:
+              - id: 64
+                name: Number field
+                value: 2
+              - id: 52
+                name: Status
+                value: Lead
+              - id: 63
+                name: Input field
+                value: edfvfd
+              - id: 38
+                name: Contract Type
+                value: 2 week contract
+            department: Engineering
+            employment_type: Contract
+            experience_range_end: 2
+            experience_range_start: 1
+            files:
+              - file_id: 48
+                filename: 8202:88.docx
+                link: >-
+                  https://com-recruiterflow-document-store-eu.s3.amazonaws.com/db_b18c893c749e320e66fbb2f7fef6b1be/documents/48/8202%3A88.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJGJEHP5AAWSJVTMA%2F20210119%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20210119T084101Z&X-Amz-Expires=604700&X-Amz-SignedHeaders=host&X-Amz-Signature=260d9d5078b196fd494d0442524a34599072fbc3b5b293c99898c5e311a458d3
+                permission: 1
+                source: document store
+                upload_time: null
+            hiring_team:
+              - email: admin@rfstaging.xyz
+                first_name: Chérôme
+                img_link: >-
+                  https://s3-eu-central-1.amazonaws.com/com-recruiterflow-static-content-eu/user-profile-pictures/10447/profile-picture.jpe
+                last_name: Shenoy
+                name: Chérôme Shenoy
+                role: Recruiter
+                role_id: 2
+                user_id: 10447
+            id: 1
+            is_open: true
+            job_type:
+              id: 3
+              name: Contract
+            job_visibility_id: 1
+            locations:
+              - city: London
+                country: United Kingdom
+                id: 4
+                iso_3166_1_alpha_2_code: GB
+                name: London
+                postal_code: SE1 9BG
+                state: null
+                zipcode: SE1 9BG
+            name: Staging Job 1
+            number_of_openings: 1
+            pay_rate:
+              currency: INR
+              frequency:
+                display_name: hr
+                id: 1
+                name: hour
+              number: '5000'
+            publish_to_careers_page: true
+            salary_frequency: month
+            salary_range_currency: USD
+            salary_range_end: 5000
+            salary_range_start: 1000
+            title: Staging Job 1
+            work_quantum:
+              frequency:
+                display_name: day
+                id: 1
+                name: day
+              is_full_time: false
+              number: '2'
+              unit:
+                display_name: hours
+                id: 1
+                name: hour
+  /api/external/job/notes/add:
+    post:
+      '200':
+        application/json:
+          note_id: 1
+  /api/external/job/open:
+    post:
+      '200':
+        application/json:
+          RESULT: SUCCESS
+  /api/external/job/pipeline:
+    get:
+      '200':
+        application/json:
+          detail: []
+          summary:
+            - count: 0
+              id: 1
+              name: Sourced
+            - count: 0
+              id: 2
+              name: Applied
+            - count: 0
+              id: 3
+              name: Company Submission
+            - count: 0
+              id: 4
+              name: On-site Interview
+            - count: 0
+              id: 5
+              name: Disqualified
+            - count: 0
+              id: 6
+              name: Offer
+            - count: 0
+              id: 7
+              name: Hired
+  /api/external/job/placement-record/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - bill_rate:
+                currency: USD
+                frequency:
+                  display_name: hr
+                  id: 1
+                  name: hour
+                number: 56546
+              billing_date: null
+              bonus:
+                currency: USD
+                number: null
+              contacts:
+                - email: null
+                  id: 32
+                  img_link: null
+                  label: jhcbvjh
+                  name: jhcbvjh
+                  type: 2
+                  value: 32
+              contract_end_date: null
+              contract_start_date: null
+              id: 418
+              job:
+                client_company:
+                  id: 30860
+                  name: Test company Varun
+                id: 17114
+                job_type:
+                  id: 4
+                  name: Temporary
+                job_visibility_id: 6
+                name: ts test job
+              job_start_date: '2023-02-13'
+              note: ''
+              pay_rate:
+                currency: USD
+                frequency:
+                  display_name: hr
+                  id: 1
+                  name: hour
+                number: 56546
+              prospect:
+                id: 30
+                name: yghj
+              retainer:
+                currency: USD
+                frequency:
+                  display_name: net
+                  id: 1
+                  name: net
+                number: 4677576
+              revenue:
+                currency: USD
+                number: 0
+              revenue_split:
+                - revenue:
+                    number: 0
+                    pct: 12
+                  user:
+                    id: 1
+              salary:
+                currency: USD
+                number: null
+              success_fee:
+                currency: USD
+                number: null
+              user:
+                id: 102035
+              version:
+                id: 420
+              work_quantum:
+                frequency:
+                  display_name: week
+                  id: 2
+                  name: week
+                is_full_time: false
+                number: 1
+                unit:
+                  display_name: days
+                  id: 2
+                  name: day
+          total_items: 1
+  /api/external/job/search:
+    post:
+      '200':
+        application/json:
+          - - about_position: This is job decsription
+              apply_link: http://localhost:5000/recruiterflow/jobs/20
+              client_company_id: 15
+              client_company_name: Mindtree
+              contact: []
+              created_by:
+                email: anuj@recruiterflow.com
+                id: 3
+                name: Anuj Singh
+              custom_fields: []
+              cvlibrary_enabled: false
+              department: Marketing
+              department_id: 3
+              dice_enabled: false
+              employment_type: Full time
+              employment_type_id: 1
+              force_job_posting: false
+              glassdoor_enabled: false
+              hiring_team: []
+              id: 20
+              iimjobs_enabled: false
+              indeed_enabled: false
+              itjobs_enabled: false
+              job_id: 20
+              job_visibility_id: 1
+              jobsite_enabled: false
+              jooble_enabled: false
+              last_opened: 2021-02-16T05:58:52+0000
+              linkedin_enabled: false
+              locations:
+                - city: null
+                  country: null
+                  id: 7
+                  iso_3166_1_alpha_2_code: null
+                  name: Chennai
+                  postal_code: ''
+                  state: ''
+                  zipcode: ''
+              maildrop_suffix: recruiterflow_d91fbaec
+              my_job: false
+              name: Marketing Executive
+              salary_range_currency: USD
+              salary_range_end: null
+              salary_range_start: null
+              simplyhired_enabled: false
+              telcoprofessionals_enabled: false
+              title: Marketing Executive
+              ziprecruiter_enabled: false
+              zoek_enabled: false
+          - applied:
+              '1': 0
+              '14': 0
+              '15': 0
+              '16': 0
+              '17': 2
+              '2': 0
+              '20': 0
+              '4': 0
+              '5': 0
+              '6': 1
+            disqualified:
+              '20': 0
+            hired:
+              '20': 0
+            last_week:
+              '20': 0
+            sourced:
+              '1': 15
+              '14': 1
+              '15': 1
+              '16': 1
+              '17': 0
+              '2': 2
+              '20': 0
+              '4': 1
+              '5': 2
+              '6': 1
+            submissions:
+              '20': 0
+            total:
+              '1': 15
+              '14': 1
+              '15': 1
+              '16': 1
+              '17': 2
+              '2': 2
+              '20': 0
+              '4': 1
+              '5': 2
+              '6': 2
+  /api/external/job/stage_names:
+    get:
+      '200':
+        application/json:
+          data:
+            - Applied
+            - Company Submission
+            - Disqualified
+            - Hired
+            - Offer
+            - On-site Interview
+            - Sourced
+            - Phone Interview
+            - First Interview
+            - Onsite Interview
+  /api/external/job/update:
+    post:
+      '200':
+        application/json:
+          RESULT: SUCCESS
+  /api/external/location/create:
+    post:
+      '200':
+        application/json:
+          RESULT: SUCCESS
+          id: 1
+  /api/external/location/delete:
+    post:
+      '200':
+        application/json:
+          RESULT: SUCCESS
+  /api/external/location/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - city: null
+              country: null
+              details: null
+              id: 55
+              iso_3166_1_alpha_2_code: null
+              location_type: Physical
+              location_type_id: 1
+              name: Test loc 3
+              postal_code: 575 009
+              state: Karnataka
+              zipcode: 575 009
+            - city: Bangalore
+              country: India
+              details: null
+              id: 56
+              iso_3166_1_alpha_2_code: IN
+              location_type: Physical
+              location_type_id: 1
+              name: Test loc 4
+              postal_code: 575 000
+              state: Karnataka
+              zipcode: 575 000
+            - city: null
+              country: null
+              details: null
+              id: 30
+              iso_3166_1_alpha_2_code: null
+              location_type: Physical
+              location_type_id: 1
+              name: x
+              postal_code: ''
+              state: 'y'
+              zipcode: ''
+            - city: null
+              country: null
+              details: null
+              id: 32
+              iso_3166_1_alpha_2_code: null
+              location_type: Physical
+              location_type_id: 1
+              name: 'y'
+              postal_code: '98768'
+              state: Bangladesh
+              zipcode: '98768'
+          total_items: 4
+  /api/external/location/update:
+    post:
+      '200':
+        application/json:
+          RESULT: SUCCESS
+  /api/external/organization/employment-type/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 4
+              name: Contract
+            - id: 1
+              name: Full time
+            - id: 5
+              name: Internship
+            - id: 2
+              name: Part time
+            - id: 3
+              name: Temporary
+          total_items: 5
+  /api/external/organization/location/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - city: Bangalore
+              country: India
+              id: 43
+              iso_3166_1_alpha_2_code: IN
+              name: Test loc 1
+              state: Karnataka
+              zipcode: 575 009
+            - city: Bangalore
+              country: India
+              id: 44
+              iso_3166_1_alpha_2_code: IN
+              name: Test loc 2
+              state: Karnataka
+              zipcode: 575 009
+            - city: null
+              country: null
+              id: 55
+              iso_3166_1_alpha_2_code: null
+              name: Test loc 3
+              state: Karnataka
+              zipcode: 575 009
+            - city: Bangalore
+              country: India
+              id: 56
+              iso_3166_1_alpha_2_code: IN
+              name: Test loc 4
+              state: Karnataka
+              zipcode: 575 000
+            - city: null
+              country: null
+              id: 30
+              iso_3166_1_alpha_2_code: null
+              name: x
+              state: 'y'
+              zipcode: ''
+            - city: null
+              country: null
+              id: 32
+              iso_3166_1_alpha_2_code: null
+              name: 'y'
+              state: Bangladesh
+              zipcode: '98768'
+          total_items: 6
+  /api/external/placement-record/create:
+    post:
+      '200':
+        application/json:
+          placement_id: 1
+  /api/external/placement-record/get:
+    get:
+      '200':
+        application/json:
+          data:
+            - bill_rate:
+                currency: USD
+                frequency:
+                  display_name: hr
+                  id: 1
+                  name: hour
+                number: 56546
+              billing_date: null
+              bonus:
+                currency: USD
+                number: null
+              contacts:
+                - email: null
+                  id: 32
+                  img_link: null
+                  label: jhcbvjh
+                  name: jhcbvjh
+                  type: 2
+                  value: 32
+              contract_end_date: null
+              contract_start_date: null
+              id: 418
+              job:
+                client_company:
+                  id: 30860
+                  name: Test company Varun
+                id: 17114
+                job_type:
+                  id: 4
+                  name: Temporary
+                job_visibility_id: 6
+                name: ts test job
+              job_start_date: '2023-02-13'
+              note: ''
+              pay_rate:
+                currency: USD
+                frequency:
+                  display_name: hr
+                  id: 1
+                  name: hour
+                number: 56546
+              prospect:
+                id: 30
+                name: yghj
+              retainer:
+                currency: USD
+                frequency:
+                  display_name: net
+                  id: 1
+                  name: net
+                number: 4677576
+              revenue:
+                currency: USD
+                number: 0
+              revenue_split:
+                - revenue:
+                    number: 0
+                    pct: 12
+                  user:
+                    id: 1
+              salary:
+                currency: USD
+                number: null
+              success_fee:
+                currency: USD
+                number: null
+              user:
+                id: 102035
+              version:
+                id: 420
+              work_quantum:
+                frequency:
+                  display_name: week
+                  id: 2
+                  name: week
+                is_full_time: false
+                number: 1
+                unit:
+                  display_name: days
+                  id: 2
+                  name: day
+  /api/external/placement-record/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - bill_rate:
+                currency: USD
+                frequency:
+                  display_name: hr
+                  id: 1
+                  name: hour
+                number: 56546
+              billing_date: null
+              bonus:
+                currency: USD
+                number: null
+              contacts:
+                - email: null
+                  id: 32
+                  img_link: null
+                  label: jhcbvjh
+                  name: jhcbvjh
+                  type: 2
+                  value: 32
+              contract_end_date: null
+              contract_start_date: null
+              id: 418
+              job:
+                client_company:
+                  id: 30860
+                  name: Test company Varun
+                id: 17114
+                job_type:
+                  id: 4
+                  name: Temporary
+                job_visibility_id: 6
+                name: ts test job
+              job_start_date: '2023-02-13'
+              note: ''
+              pay_rate:
+                currency: USD
+                frequency:
+                  display_name: hr
+                  id: 1
+                  name: hour
+                number: 56546
+              prospect:
+                id: 30
+                name: yghj
+              retainer:
+                currency: USD
+                frequency:
+                  display_name: net
+                  id: 1
+                  name: net
+                number: 4677576
+              revenue:
+                currency: USD
+                number: 0
+              revenue_split:
+                - revenue:
+                    number: 0
+                    pct: 12
+                  user:
+                    id: 1
+              salary:
+                currency: USD
+                number: null
+              success_fee:
+                currency: USD
+                number: null
+              user:
+                id: 102035
+              version:
+                id: 420
+              work_quantum:
+                frequency:
+                  display_name: week
+                  id: 2
+                  name: week
+                is_full_time: false
+                number: 1
+                unit:
+                  display_name: days
+                  id: 2
+                  name: day
+          total_items: 1
+  /api/external/placement-record/update:
+    post:
+      '200':
+        application/json:
+          placement_id: 1
+  /api/external/reference/phone-types:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 2
+              name: Home
+            - id: 1
+              name: Mobile
+            - id: 4
+              name: Other
+            - id: 3
+              name: Work
+  /api/external/status/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - id: 1
+              name: Prospect
+            - id: 2
+              name: Lead
+            - id: 3
+              name: In progress
+            - id: 4
+              name: Won
+            - id: 5
+              name: Lost
+          total_items: 5
+  /api/external/user/list:
+    get:
+      '200':
+        application/json:
+          data:
+            - email: manish.kotian36@outlook.com
+              first_name: Manish
+              id: 40201
+              img_link: null
+              last_name: Kotian
+              middle_name: ''
+              name: Manish Kotian
+              roles:
+                - id: 1
+                  name: Admin
+            - email: manish+1@recruiterflow.com
+              first_name: Manish
+              id: 40626
+              img_link: null
+              last_name: Kotian
+              middle_name: ''
+              name: Manish Kotian
+              roles:
+                - id: 7
+                  name: Contact
+          total_items: 2
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/external/campaign/add-to-campaign:
+    post: CampaignApIs_addToCampaign
+  /api/external/campaign/get-campaign-report:
+    get: CampaignApIs_listCampaignCommunications
+  /api/external/campaign/list:
+    get: CampaignApIs_getAllCampaigns
+  /api/external/campaign/remove-from-campaign:
+    post: CampaignApIs_removeCandidateFromCampaign
+  /api/external/campaign/status/list:
+    get: CampaignApIs_getCampaignStatusList
+  /api/external/candidate/activities/stage-movement/list:
+    get: CandidateApIs_getStageMovements
+  /api/external/candidate/add:
+    post: CandidateApIs_addRecord
+  /api/external/candidate/add-application-form:
+    post: CandidateApIs_exportApplicationInfo
+  /api/external/candidate/add-to-job:
+    post: CandidateApIs_addToJob
+  /api/external/candidate/calendar-event/list:
+    get: CandidateApIs_getCalendarEvents
+  /api/external/candidate/calls/list:
+    get: CandidateApIs_getCallsList
+  /api/external/candidate/custom-field/list:
+    get: CandidateApIs_getCustomFieldList
+  /api/external/candidate/disqualify:
+    post: CandidateApIs_disqualifyCandidateWithReason
+  /api/external/candidate/emails/list:
+    get: CandidateApIs_getAllCandidateEmails
+  /api/external/candidate/file/add:
+    post: CandidateApIs_attachFile
+  /api/external/candidate/get:
+    get: CandidateApIs_getCandidateInfo
+  /api/external/candidate/list:
+    get: CandidateApIs_getCandidateDetails
+  /api/external/candidate/move-to-stage:
+    post: CandidateApIs_moveToStage
+  /api/external/candidate/notes/add:
+    post: CandidateApIs_addCandidateNotes
+  /api/external/candidate/placement-record/list:
+    get: CandidateApIs_getPlacementRecords
+  /api/external/candidate/profile-image/upload:
+    post: CandidateApIs_updateProfilePicture
+  /api/external/candidate/scorecard/get:
+    get: CandidateApIs_getScorecardDetails
+  /api/external/candidate/scorecard/list:
+    get: CandidateApIs_getScorecards
+  /api/external/candidate/search:
+    post: CandidateApIs_findSearchTypes
+  /api/external/candidate/task/list:
+    get: CandidateApIs_getCandidateTaskList
+  /api/external/candidate/update:
+    post: CandidateApIs_completeUpdate
+  /api/external/client/add:
+    post: ClientApIs_addCompany
+  /api/external/client/custom-field/list:
+    get: ClientApIs_getAllCompanyCustomFields
+  /api/external/client/get:
+    get: ClientApIs_companyDetailsGet
+  /api/external/client/list:
+    get: ClientApIs_listAllClients
+  /api/external/client/notes/add:
+    post: ClientApIs_addNoteToCompany
+  /api/external/client/search:
+    post: ClientApIs_searchClientTypes
+  /api/external/client/update:
+    post: ClientApIs_updateClientDetails
+  /api/external/company-size/list:
+    get: ClientApIs_listCompanySize
+  /api/external/contact/add:
+    post: ContactApIs_addContactInfo
+  /api/external/contact/calendar-event/list:
+    get: ContactApIs_getCalendarEvents
+  /api/external/contact/calls/list:
+    get: ContactApIs_getAllCallsList
+  /api/external/contact/custom-field/list:
+    get: ContactApIs_listCustomField
+  /api/external/contact/emails/list:
+    get: ContactApIs_getAllContactEmails
+  /api/external/contact/get:
+    get: ContactApIs_getContactInfo
+  /api/external/contact/list:
+    get: ContactApIs_getContactList
+  /api/external/contact/notes/add:
+    post: ContactApIs_addNotesToContact
+  /api/external/contact/profile-image/upload:
+    post: ContactApIs_updateProfilePicture
+  /api/external/contact/search:
+    post: ContactApIs_findSearchTypes
+  /api/external/contact/task/list:
+    get: ContactApIs_getAllCandidateTasks
+  /api/external/contact/update:
+    post: ContactApIs_completeUpdate
+  /api/external/deal/create:
+    post: DealApIs_createNewDeal
+  /api/external/deal/custom-field/list:
+    get: DealApIs_listCustomFields
+  /api/external/deal/get:
+    get: DealApIs_detailsGet
+  /api/external/deal/list-stages:
+    get: DealApIs_getStages
+  /api/external/deal/move-stage:
+    post: DealApIs_moveStage
+  /api/external/deal/search:
+    post: DealApIs_searchDealTypes
+  /api/external/deal/update:
+    post: DealApIs_updateDeal
+  /api/external/deals/list:
+    get: DealApIs_getList
+  /api/external/document/get:
+    get: OtherApIs_downloadDocument
+  /api/external/industry/list:
+    get: ClientApIs_getAllIndustries
+  /api/external/job:
+    get: JobApIs_getAllJobInfo
+  /api/external/job/close:
+    post: JobApIs_closeJob
+  /api/external/job/count:
+    get: JobApIs_filterOptionsList
+  /api/external/job/create:
+    post: JobApIs_createNewJob
+  /api/external/job/custom-field/list:
+    get: JobApIs_getCustomFieldList
+  /api/external/job/department/list:
+    get: JobApIs_getJobDepartmentsList
+  /api/external/job/engagement-type/list:
+    get: JobApIs_listEngagementTypes
+  /api/external/job/list:
+    get: JobApIs_listJobs
+  /api/external/job/notes/add:
+    post: JobApIs_addJobNote
+  /api/external/job/open:
+    post: JobApIs_openJobRecruiterflow
+  /api/external/job/pipeline:
+    get: JobApIs_getJobPipelineInfo
+  /api/external/job/placement-record/list:
+    get: PlacementApIs_getPlacementRecordList
+  /api/external/job/search:
+    post: JobApIs_searchJobWithFilter
+  /api/external/job/stage_names:
+    get: JobApIs_listDistinctStageNames
+  /api/external/job/update:
+    post: JobApIs_updateJobDetails
+  /api/external/location/create:
+    post: JobApIs_createJobLocation
+  /api/external/location/delete:
+    post: JobApIs_deleteLocation
+  /api/external/location/list:
+    get: JobApIs_getAllJobLocations
+  /api/external/location/update:
+    post: JobApIs_updateJobLocationDetails
+  /api/external/notes/delete:
+    post: OtherApIs_deleteNote
+  /api/external/organization/employment-type/list:
+    get: OtherApIs_getEmploymentTypesList
+  /api/external/organization/location/list:
+    get: OtherApIs_getOrganizationLocations
+  /api/external/placement-record/create:
+    post: PlacementApIs_createPlacementRecord
+  /api/external/placement-record/get:
+    get: PlacementApIs_getPlacementInfo
+  /api/external/placement-record/list:
+    get: PlacementApIs_getAllPlacementRecords
+  /api/external/placement-record/update:
+    post: PlacementApIs_updatePlacementRecord
+  /api/external/reference/phone-types:
+    get: OtherApIs_listPhoneTypes
+  /api/external/status/list:
+    get: ClientApIs_listCompanyStatuses
+  /api/external/tags/list:
+    get: OtherApIs_getTagsList
+  /api/external/user/list:
+    get: UserApIs_exportUserInformation
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/external/campaign/add-to-campaign:
+    post:
+      application/json: CampaignApIsAddToCampaignRequest
+  /api/external/campaign/remove-from-campaign:
+    post:
+      application/json: CampaignApIsRemoveCandidateFromCampaignRequest
+  /api/external/candidate/add:
+    post:
+      application/json: CandidateApIsAddRecordRequest
+  /api/external/candidate/add-application-form:
+    post:
+      application/x-www-form-urlencoded: CandidateApIsExportApplicationInfoRequest
+  /api/external/candidate/add-to-job:
+    post:
+      application/json: CandidateApIsAddToJobRequest
+  /api/external/candidate/disqualify:
+    post:
+      application/json: CandidateApIsDisqualifyCandidateWithReasonRequest
+  /api/external/candidate/file/add:
+    post:
+      multipart/form-data: CandidateApIsAttachFileRequest
+  /api/external/candidate/move-to-stage:
+    post:
+      application/json: CandidateApIsMoveToStageRequest
+  /api/external/candidate/notes/add:
+    post:
+      application/json: CandidateApIsAddCandidateNotesRequest
+  /api/external/candidate/search:
+    post:
+      application/json: CandidateApIsFindSearchTypesRequest
+  /api/external/candidate/update:
+    post:
+      application/json: CandidateApIsCompleteUpdateRequest
+  /api/external/client/add:
+    post:
+      application/json: ClientApIsAddCompanyRequest
+  /api/external/client/notes/add:
+    post:
+      application/json: ClientApIsAddNoteToCompanyRequest
+  /api/external/client/search:
+    post:
+      application/json: ClientApIsSearchClientTypesRequest
+  /api/external/client/update:
+    post:
+      application/json: ClientApIsUpdateClientDetailsRequest
+  /api/external/contact/add:
+    post:
+      application/json: ContactApIsAddContactInfoRequest
+  /api/external/contact/notes/add:
+    post:
+      application/json: ContactApIsAddNotesToContactRequest
+  /api/external/contact/search:
+    post:
+      application/json: ContactApIsFindSearchTypesRequest
+  /api/external/contact/update:
+    post:
+      application/json: ContactApIsCompleteUpdateRequest
+  /api/external/deal/create:
+    post:
+      application/json: DealApIsCreateNewDealRequest
+  /api/external/deal/move-stage:
+    post:
+      application/json: DealApIsMoveStageRequest
+  /api/external/deal/search:
+    post:
+      application/json: DealApIsSearchDealTypesRequest
+  /api/external/deal/update:
+    post:
+      application/json: DealApIsUpdateDealRequest
+  /api/external/job/close:
+    post:
+      application/json: JobApIsCloseJobRequest
+  /api/external/job/create:
+    post:
+      application/json: JobApIsCreateNewJobRequest
+  /api/external/job/notes/add:
+    post:
+      application/json: JobApIsAddJobNoteRequest
+  /api/external/job/open:
+    post:
+      application/json: JobApIsOpenJobRecruiterflowRequest
+  /api/external/job/search:
+    post:
+      application/json: JobApIsSearchJobWithFilterRequest
+  /api/external/job/update:
+    post:
+      application/json: JobApIsUpdateJobDetailsRequest
+  /api/external/location/create:
+    post:
+      application/json: JobApIsCreateJobLocationRequest
+  /api/external/location/delete:
+    post:
+      application/json: JobApIsDeleteLocationRequest
+  /api/external/location/update:
+    post:
+      application/json: JobApIsUpdateJobLocationDetailsRequest
+  /api/external/notes/delete:
+    post:
+      application/json: OtherApIsDeleteNoteRequest
+  /api/external/placement-record/create:
+    post:
+      application/json: PlacementApIsCreatePlacementRecordRequest
+  /api/external/placement-record/update:
+    post:
+      application/json: PlacementApIsUpdatePlacementRecordRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/external/campaign/add-to-campaign:
+    post:
+      '200':
+        application/json: CampaignApIsAddToCampaignResponse
+  /api/external/campaign/get-campaign-report:
+    get:
+      '200':
+        application/json: CampaignApIsListCampaignCommunicationsResponse
+  /api/external/campaign/list:
+    get:
+      '200':
+        application/json: CampaignApIsGetAllCampaignsResponse
+  /api/external/campaign/remove-from-campaign:
+    post:
+      '200':
+        application/json: CampaignApIsRemoveCandidateFromCampaignResponse
+  /api/external/campaign/status/list:
+    get:
+      '200':
+        application/json: CampaignApIsGetCampaignStatusListResponse
+  /api/external/candidate/activities/stage-movement/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetStageMovementsResponse
+  /api/external/candidate/add:
+    post:
+      '200':
+        application/json: CandidateApIsAddRecordResponse
+  /api/external/candidate/add-application-form:
+    post:
+      '200':
+        application/json: CandidateApIsExportApplicationInfoResponse
+  /api/external/candidate/add-to-job:
+    post:
+      '200':
+        application/json: CandidateApIsAddToJobResponse
+  /api/external/candidate/calendar-event/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetCalendarEventsResponse
+  /api/external/candidate/calls/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetCallsListResponse
+  /api/external/candidate/custom-field/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetCustomFieldListResponse
+  /api/external/candidate/disqualify:
+    post:
+      '200':
+        application/json: CandidateApIsDisqualifyCandidateWithReasonResponse
+  /api/external/candidate/emails/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetAllCandidateEmailsResponse
+  /api/external/candidate/file/add:
+    post:
+      '200':
+        application/json: CandidateApIsAttachFileResponse
+  /api/external/candidate/get:
+    get:
+      '200':
+        application/json: CandidateApIsGetCandidateInfoResponse
+  /api/external/candidate/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetCandidateDetailsResponse
+  /api/external/candidate/move-to-stage:
+    post:
+      '200':
+        application/json: CandidateApIsMoveToStageResponse
+  /api/external/candidate/notes/add:
+    post:
+      '200':
+        application/json: CandidateApIsAddCandidateNotesResponse
+  /api/external/candidate/placement-record/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetPlacementRecordsResponse
+  /api/external/candidate/scorecard/get:
+    get:
+      '200':
+        application/json: CandidateApIsGetScorecardDetailsResponse
+  /api/external/candidate/scorecard/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetScorecardsResponse
+  /api/external/candidate/search:
+    post:
+      '200':
+        application/json: CandidateApIsFindSearchTypesResponse
+  /api/external/candidate/task/list:
+    get:
+      '200':
+        application/json: CandidateApIsGetCandidateTaskListResponse
+  /api/external/candidate/update:
+    post:
+      '200':
+        application/json: CandidateApIsCompleteUpdateResponse
+  /api/external/client/add:
+    post:
+      '200':
+        application/json: ClientApIsAddCompanyResponse
+  /api/external/client/custom-field/list:
+    get:
+      '200':
+        application/json: ClientApIsGetAllCompanyCustomFieldsResponse
+  /api/external/client/get:
+    get:
+      '200':
+        application/json: ClientApIsCompanyDetailsGetResponse
+  /api/external/client/list:
+    get:
+      '200':
+        application/json: ClientApIsListAllClientsResponse
+  /api/external/client/notes/add:
+    post:
+      '200':
+        application/json: ClientApIsAddNoteToCompanyResponse
+  /api/external/client/search:
+    post:
+      '200':
+        application/json: ClientApIsSearchClientTypesResponse
+  /api/external/client/update:
+    post:
+      '200':
+        application/json: ClientApIsUpdateClientDetailsResponse
+  /api/external/company-size/list:
+    get:
+      '200':
+        application/json: ClientApIsListCompanySizeResponse
+  /api/external/contact/add:
+    post:
+      '200':
+        application/json: ContactApIsAddContactInfoResponse
+  /api/external/contact/calendar-event/list:
+    get:
+      '200':
+        application/json: ContactApIsGetCalendarEventsResponse
+  /api/external/contact/calls/list:
+    get:
+      '200':
+        application/json: ContactApIsGetAllCallsListResponse
+  /api/external/contact/custom-field/list:
+    get:
+      '200':
+        application/json: ContactApIsListCustomFieldResponse
+  /api/external/contact/emails/list:
+    get:
+      '200':
+        application/json: ContactApIsGetAllContactEmailsResponse
+  /api/external/contact/get:
+    get:
+      '200':
+        application/json: ContactApIsGetContactInfoResponse
+  /api/external/contact/list:
+    get:
+      '200':
+        application/json: ContactApIsGetContactListResponse
+  /api/external/contact/search:
+    post:
+      '200':
+        application/json: ContactApIsFindSearchTypesResponse
+  /api/external/contact/task/list:
+    get:
+      '200':
+        application/json: ContactApIsGetAllCandidateTasksResponse
+  /api/external/contact/update:
+    post:
+      '200':
+        application/json: ContactApIsCompleteUpdateResponse
+  /api/external/deal/create:
+    post:
+      '200':
+        application/json: DealApIsCreateNewDealResponse
+  /api/external/deal/custom-field/list:
+    get:
+      '200':
+        application/json: DealApIsListCustomFieldsResponse
+  /api/external/deal/get:
+    get:
+      '200':
+        application/json: DealApIsDetailsGetResponse
+  /api/external/deal/list-stages:
+    get:
+      '200':
+        application/json: DealApIsGetStagesResponse
+  /api/external/deal/move-stage:
+    post:
+      '200':
+        application/json: DealApIsMoveStageResponse
+  /api/external/deal/search:
+    post:
+      '200':
+        application/json: DealApIsSearchDealTypesResponse
+  /api/external/deal/update:
+    post:
+      '200':
+        application/json: DealApIsUpdateDealResponse
+  /api/external/deals/list:
+    get:
+      '200':
+        application/json: DealApIsGetListResponse
+  /api/external/industry/list:
+    get:
+      '200':
+        application/json: ClientApIsGetAllIndustriesResponse
+  /api/external/job:
+    get:
+      '200':
+        application/json: JobApIsGetAllJobInfoResponse
+  /api/external/job/close:
+    post:
+      '200':
+        application/json: JobApIsCloseJobResponse
+  /api/external/job/count:
+    get:
+      '200':
+        application/json: JobApIsFilterOptionsListResponse
+  /api/external/job/custom-field/list:
+    get:
+      '200':
+        application/json: JobApIsGetCustomFieldListResponse
+  /api/external/job/department/list:
+    get:
+      '200':
+        application/json: JobApIsGetJobDepartmentsListResponse
+  /api/external/job/engagement-type/list:
+    get:
+      '200':
+        application/json: JobApIsListEngagementTypesResponse
+  /api/external/job/list:
+    get:
+      '200':
+        application/json: JobApIsListJobsResponse
+  /api/external/job/notes/add:
+    post:
+      '200':
+        application/json: JobApIsAddJobNoteResponse
+  /api/external/job/open:
+    post:
+      '200':
+        application/json: JobApIsOpenJobRecruiterflowResponse
+  /api/external/job/pipeline:
+    get:
+      '200':
+        application/json: JobApIsGetJobPipelineInfoResponse
+  /api/external/job/placement-record/list:
+    get:
+      '200':
+        application/json: PlacementApIsGetPlacementRecordListResponse
+  /api/external/job/search:
+    post:
+      '200':
+        application/json: JobApIsSearchJobWithFilterResponse
+  /api/external/job/stage_names:
+    get:
+      '200':
+        application/json: JobApIsListDistinctStageNamesResponse
+  /api/external/job/update:
+    post:
+      '200':
+        application/json: JobApIsUpdateJobDetailsResponse
+  /api/external/location/create:
+    post:
+      '200':
+        application/json: JobApIsCreateJobLocationResponse
+  /api/external/location/delete:
+    post:
+      '200':
+        application/json: JobApIsDeleteLocationResponse
+  /api/external/location/list:
+    get:
+      '200':
+        application/json: JobApIsGetAllJobLocationsResponse
+  /api/external/location/update:
+    post:
+      '200':
+        application/json: JobApIsUpdateJobLocationDetailsResponse
+  /api/external/notes/delete:
+    post:
+      '200':
+        application/json: OtherApIsDeleteNoteResponse
+  /api/external/organization/employment-type/list:
+    get:
+      '200':
+        application/json: OtherApIsGetEmploymentTypesListResponse
+  /api/external/organization/location/list:
+    get:
+      '200':
+        application/json: OtherApIsGetOrganizationLocationsResponse
+  /api/external/placement-record/create:
+    post:
+      '200':
+        application/json: PlacementApIsCreatePlacementRecordResponse
+  /api/external/placement-record/get:
+    get:
+      '200':
+        application/json: PlacementApIsGetPlacementInfoResponse
+  /api/external/placement-record/list:
+    get:
+      '200':
+        application/json: PlacementApIsGetAllPlacementRecordsResponse
+  /api/external/placement-record/update:
+    post:
+      '200':
+        application/json: PlacementApIsUpdatePlacementRecordResponse
+  /api/external/reference/phone-types:
+    get:
+      '200':
+        application/json: OtherApIsListPhoneTypesResponse
+  /api/external/status/list:
+    get:
+      '200':
+        application/json: ClientApIsListCompanyStatusesResponse
+  /api/external/tags/list:
+    get:
+      '200':
+        application/json: OtherApIsGetTagsListResponse
+  /api/external/user/list:
+    get:
+      '200':
+        application/json: UserApIsExportUserInformationResponse
+securityParameters:
+  RF-Api-Key:
+    header: false
+  after:
+    query: false
+  before:
+    query: false
+  campaign_id:
+    query: false
+  content-type:
+    header: false
+  current_page:
+    query: false
+  departments:
+    query: false
+  detailed:
+    query: false
+  filename:
+    query: false
+  id:
+    query: false
+  img:
+    query: false
+  include_count:
+    query: false
+  include_description:
+    query: false
+  include_files:
+    query: false
+  include_notes:
+    query: false
+  include_stages:
+    query: false
+  items_per_page:
+    query: false
+  job_id:
+    query: false
+  locations:
+    query: false
+  only_open:
+    query: false
+  open_jobs_only:
+    query: false
+  placement_id:
+    query: false
+  user_id:
+    query: false
+validServerUrls: {}
