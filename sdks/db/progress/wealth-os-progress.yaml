@@ -1,0 +1,1505 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /tenant/pots/v1:
+    post:
+      '400':
+        application/json: {}
+  /tenant/pots/v1/crystallisation:
+    post:
+      '201':
+        application/json: {}
+  /tenant/transactions/v1:
+    get:
+      '400':
+        application/json: {}
+  /tenant/transactions/v1/buy:
+    post:
+      '400':
+        application/json: {}
+  /tenant/transactions/v1/sell:
+    post:
+      '400':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /tenant/bank-accounts/v1:
+    get: BankAccounts_getAll
+    post: BankAccounts_createNewAccount
+  /tenant/bank-accounts/v1/{bank_account_id}:
+    get: BankAccounts_getBankAccountById
+    patch: BankAccounts_updateDetails
+  /tenant/contributing-employers/v1:
+    get: ContributingEmployers_getByInvestor
+    post: ContributingEmployers_createNewEmployer
+  /tenant/contributing-employers/v1/{contributing_employer_id}:
+    get: ContributingEmployers_getParticularEmployer
+    patch: ContributingEmployers_updateParticularEmployer
+  /tenant/fees/v1/codes:
+    get: Fees_getFeeCodes
+  /tenant/fees/v1/exemptions:
+    get: Fees_getExemptions
+  /tenant/fees/v1/setups:
+    get: Fees_getFeeSetups
+  /tenant/financial-products/v1:
+    get: FinancialProducts_listAll
+  /tenant/investment-products/v1:
+    get: InvestmentProducts_getConfiguredProducts
+  /tenant/investment-products/v1/current-prices:
+    get: InvestmentProducts_getCurrentPrices
+  /tenant/investment-products/v1/{investment_product_id}:
+    get: InvestmentProducts_getDetails
+  /tenant/investment-products/v1/{investment_product_id}/current-price:
+    get: InvestmentProducts_getCurrentPrice
+  /tenant/investor-accounts/v1:
+    get: InvestorAccounts_getAll
+  /tenant/investor-accounts/v1/{account_id}:
+    get: InvestorAccounts_getAccountById
+    patch: InvestorAccounts_updateDetails
+  /tenant/investors/v1:
+    get: Investors_getAll
+    post: Investors_createNewInvestor
+  /tenant/investors/v1/tax-codes:
+    get: Investors_getAllTaxCodes
+  /tenant/investors/v1/{investor_id}:
+    get: Investors_getInvestorDetails
+    patch: Investors_updateInvestorDetails
+  /tenant/investors/v1/{investor_id}/fee-nominations:
+    delete: Investors_deleteFeeNomination
+    get: Investors_getFeeNomination
+    patch: Investors_updateFeeNomination
+    post: Investors_createFeeNominationForInvestor
+  /tenant/payments/v1/:
+    get: Payments_getAll
+    post: Payments_createPaymentIntent
+  /tenant/payments/v1/{transaction_id}:
+    get: Payments_getByTransactionId
+  /tenant/portfolio-templates/v1/:
+    get: PortfolioTemplates_getAllTemplates
+    post: PortfolioTemplates_createNewTemplate
+  /tenant/portfolio-templates/v1/{portfolio_template_id}:
+    get: PortfolioTemplates_getTemplateById
+    patch: PortfolioTemplates_updateTemplate
+  /tenant/pots/v1:
+    get: PotsHoldingsAndTransactions_getInvestorPots
+    post: PotsHoldingsAndTransactions_createNewPots
+  /tenant/pots/v1/crystallisation:
+    get: SippCrystallisation_getAllRequests
+    post: SippCrystallisation_createRequest
+  /tenant/pots/v1/evaluate-rebalance:
+    post: Rebalance_evaluatePortfolioDeviation
+  /tenant/pots/v1/holdings:
+    get: PotsHoldingsAndTransactions_getHoldingsByPot
+  /tenant/pots/v1/rebalance:
+    post: Rebalance_triggerRebalanceProcess
+  /tenant/pots/v1/rebalance-evaluation-status:
+    get: Rebalance_getEvaluationDetails
+  /tenant/pots/v1/rebalance-results:
+    get: Rebalance_requestDetails
+  /tenant/pots/v1/value:
+    get: PotsHoldingsAndTransactions_listTotalPotValue
+  /tenant/pots/v1/{pot_id}:
+    get: PotsHoldingsAndTransactions_getPot
+    patch: PotsHoldingsAndTransactions_updatePotDetails
+  /tenant/pots/v1/{pot_id}/holdings:
+    get: PotsHoldingsAndTransactions_getCurrentHoldings
+  /tenant/pots/v1/{pot_id}/transactions:
+    get: PotsHoldingsAndTransactions_getPotTransactions
+  /tenant/pots/v1/{pot_id}/value:
+    get: PotsHoldingsAndTransactions_getCurrentPotValue
+  /tenant/rates/v1:
+    get: Rates_getRateDetails
+  /tenant/recurring-contributions/v1:
+    get: RecurringContributions_getAllContributions
+    post: RecurringContributions_createPayment
+  /tenant/recurring-contributions/v1/{contribution_id}:
+    patch: RecurringContributions_updateRecurringPayment
+  /tenant/recurring-contributions/v1/{contribution_id}/cancel:
+    post: RecurringContributions_cancelRecurringPayment
+  /tenant/recurring-contributions/v1/{contribution_id}/pause:
+    post: RecurringContributions_pausePaymentSetup
+  /tenant/recurring-contributions/v1/{contribution_id}/resume:
+    post: RecurringContributions_resumeContribution
+  /tenant/recurring-withdrawals/v1:
+    get: RecurringWithdrawals_listAll
+    post: RecurringWithdrawals_createNewWithdrawal
+  /tenant/recurring-withdrawals/v1/{withdrawal_id}:
+    patch: RecurringWithdrawals_updateActiveWithdrawal
+  /tenant/recurring-withdrawals/v1/{withdrawal_id}/cancel:
+    post: RecurringWithdrawals_cancelRecurringWithdrawal
+  /tenant/test/hello-world-be:
+    get: TestMethods_getBEGreetings
+  /tenant/transactions/v1/:
+    get: Transactions_getAll
+  /tenant/transactions/v1/buy:
+    post: Transactions_executeBuyTransaction
+  /tenant/transactions/v1/fee:
+    post: Fees_createFeeTransaction
+  /tenant/transactions/v1/sell:
+    post: Transactions_executeSellTransaction
+  /tenant/transactions/v1/switch:
+    get: SwitchInstruction_getSwitchStatus
+    post: SwitchInstruction_executeSwitchTransaction
+  /tenant/transactions/v1/withdrawal:
+    post: Withdrawals_createSingleWithdrawal
+  /tenant/utility/v1/upload-a-file:
+    post: Utility_copyFileToInternalStore
+  /tenant/withdrawals/v1/:
+    post: Withdrawals_createSingleWithdrawal
+  /tenant/withdrawals/v1/{transaction_id}:
+    patch: LisaTransactions_updateWithdrawalPaymentDate
+  /tenant/workplace-employers/v1:
+    get: WorkplaceEmployers_getAllEmployers
+    post: WorkplaceEmployers_createEmployer
+  /tenant/workplace-employers/v1/{workplace_employer_id}:
+    get: WorkplaceEmployers_getDetails
+    patch: WorkplaceEmployers_updateEmployerDetails
+  /tenant/workplace-employers/v1/{workplace_employer_id}/investors:
+    get: WorkplaceEmployers_getAllInvestors
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /tenant/bank-accounts/v1:
+    post:
+      application/json: BankAccountsCreateNewAccountRequest
+  /tenant/bank-accounts/v1/{bank_account_id}:
+    patch:
+      application/json: BankAccountsUpdateDetailsRequest
+  /tenant/contributing-employers/v1:
+    post:
+      application/json: ContributingEmployersCreateNewEmployerRequest
+  /tenant/contributing-employers/v1/{contributing_employer_id}:
+    patch:
+      application/json: ContributingEmployersUpdateParticularEmployerRequest
+  /tenant/investor-accounts/v1/{account_id}:
+    patch:
+      application/json: InvestorAccountsUpdateDetailsRequest
+  /tenant/investors/v1:
+    post:
+      application/json: InvestorsCreateNewInvestorRequest
+  /tenant/investors/v1/{investor_id}:
+    patch:
+      application/json: InvestorsUpdateInvestorDetailsRequest
+  /tenant/investors/v1/{investor_id}/fee-nominations:
+    patch:
+      application/json: InvestorsUpdateFeeNominationRequest
+    post:
+      application/json: InvestorsCreateFeeNominationForInvestorRequest
+  /tenant/payments/v1:
+    post:
+      application/json: PaymentsCreatePaymentIntentRequest
+  /tenant/portfolio-templates/v1:
+    post:
+      application/json: PortfolioTemplatesCreateNewTemplateRequest
+  /tenant/portfolio-templates/v1/{portfolio_template_id}:
+    patch:
+      application/json: PortfolioTemplatesUpdateTemplateRequest
+  /tenant/pots/v1:
+    post:
+      application/json: PotsHoldingsAndTransactionsCreateNewPotsRequest
+  /tenant/pots/v1/crystallisation:
+    post:
+      application/json: SippCrystallisationCreateRequestRequest
+  /tenant/pots/v1/evaluate-rebalance:
+    post:
+      application/json: RebalanceEvaluatePortfolioDeviationRequest
+  /tenant/pots/v1/rebalance:
+    post:
+      application/json: RebalanceTriggerRebalanceProcessRequest
+  /tenant/pots/v1/{pot_id}:
+    patch:
+      application/json: PotsHoldingsAndTransactionsUpdatePotDetailsRequest
+  /tenant/recurring-contributions/v1:
+    post:
+      application/json: RecurringContributionsCreatePaymentRequest
+  /tenant/recurring-contributions/v1/{contribution_id}:
+    patch:
+      application/json: RecurringContributionsUpdateRecurringPaymentRequest
+  /tenant/recurring-contributions/v1/{contribution_id}/cancel:
+    post:
+      application/json: RecurringContributionsCancelRecurringPaymentRequest
+  /tenant/recurring-contributions/v1/{contribution_id}/pause:
+    post:
+      application/json: RecurringContributionsPausePaymentSetupRequest
+  /tenant/recurring-contributions/v1/{contribution_id}/resume:
+    post:
+      application/json: RecurringContributionsResumeContributionRequest
+  /tenant/recurring-withdrawals/v1:
+    post:
+      application/json: RecurringWithdrawalsCreateNewWithdrawalRequest
+  /tenant/recurring-withdrawals/v1/{withdrawal_id}:
+    patch:
+      application/json: RecurringWithdrawalsUpdateActiveWithdrawalRequest
+  /tenant/recurring-withdrawals/v1/{withdrawal_id}/cancel:
+    post:
+      application/json: RecurringWithdrawalsCancelRecurringWithdrawalRequest
+  /tenant/transactions/v1/buy:
+    post:
+      application/json: TransactionsExecuteBuyTransactionRequest
+  /tenant/transactions/v1/fee:
+    post:
+      application/json: FeesCreateFeeTransactionRequest
+  /tenant/transactions/v1/sell:
+    post:
+      application/json: TransactionsExecuteSellTransactionRequest
+  /tenant/transactions/v1/switch:
+    post:
+      application/json: SwitchInstructionExecuteSwitchTransactionRequest
+  /tenant/transactions/v1/withdrawal:
+    post:
+      application/json: WithdrawalsCreateSingleWithdrawalRequest
+  /tenant/utility/v1/upload-a-file:
+    post:
+      application/json: UtilityCopyFileToInternalStoreRequest
+  /tenant/withdrawals/v1:
+    post:
+      application/json: WithdrawalsCreateSingleWithdrawalRequest1
+  /tenant/withdrawals/v1/{transaction_id}:
+    patch:
+      application/json: LisaTransactionsUpdateWithdrawalPaymentDateRequest
+  /tenant/workplace-employers/v1:
+    post:
+      application/json: WorkplaceEmployersCreateEmployerRequest
+  /tenant/workplace-employers/v1/{workplace_employer_id}:
+    patch:
+      application/json: WorkplaceEmployersUpdateEmployerDetailsRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /tenant/bank-accounts/v1:
+    get:
+      '200':
+        application/json: BankAccountsGetAllResponse
+      '400':
+        application/json: BankAccountsGetAll400Response
+      '401':
+        application/json: BankAccountsGetAll401Response
+      '403':
+        application/json: BankAccountsGetAll403Response
+      '404':
+        application/json: BankAccountsGetAll404Response
+      '429':
+        application/json: BankAccountsGetAll429Response
+      '500':
+        application/json: BankAccountsGetAll500Response
+    post:
+      '201':
+        application/json: BankAccountsCreateNewAccountResponse
+      '400':
+        application/json: BankAccountsCreateNewAccount400Response
+      '401':
+        application/json: BankAccountsCreateNewAccount401Response
+      '403':
+        application/json: BankAccountsCreateNewAccount403Response
+      '404':
+        application/json: BankAccountsCreateNewAccount404Response
+      '429':
+        application/json: BankAccountsCreateNewAccount429Response
+      '500':
+        application/json: BankAccountsCreateNewAccount500Response
+  /tenant/bank-accounts/v1/{bank_account_id}:
+    get:
+      '200':
+        application/json: BankAccountsGetBankAccountByIdResponse
+      '400':
+        application/json: BankAccountsGetBankAccountById400Response
+      '401':
+        application/json: BankAccountsGetBankAccountById401Response
+      '403':
+        application/json: BankAccountsGetBankAccountById403Response
+      '404':
+        application/json: BankAccountsGetBankAccountById404Response
+      '429':
+        application/json: BankAccountsGetBankAccountById429Response
+      '500':
+        application/json: BankAccountsGetBankAccountById500Response
+    patch:
+      '201':
+        application/json: BankAccountsUpdateDetailsResponse
+      '400':
+        application/json: BankAccountsUpdateDetails400Response
+      '401':
+        application/json: BankAccountsUpdateDetails401Response
+      '403':
+        application/json: BankAccountsUpdateDetails403Response
+      '404':
+        application/json: BankAccountsUpdateDetails404Response
+      '429':
+        application/json: BankAccountsUpdateDetails429Response
+      '500':
+        application/json: BankAccountsUpdateDetails500Response
+  /tenant/contributing-employers/v1:
+    get:
+      '200':
+        application/json: ContributingEmployersGetByInvestorResponse
+      '400':
+        application/json: ContributingEmployersGetByInvestor400Response
+      '401':
+        application/json: ContributingEmployersGetByInvestor401Response
+      '403':
+        application/json: ContributingEmployersGetByInvestor403Response
+      '404':
+        application/json: ContributingEmployersGetByInvestor404Response
+      '429':
+        application/json: ContributingEmployersGetByInvestor429Response
+      '500':
+        application/json: ContributingEmployersGetByInvestor500Response
+    post:
+      '201':
+        application/json: ContributingEmployersCreateNewEmployerResponse
+      '400':
+        application/json: ContributingEmployersCreateNewEmployer400Response
+      '401':
+        application/json: ContributingEmployersCreateNewEmployer401Response
+      '403':
+        application/json: ContributingEmployersCreateNewEmployer403Response
+      '404':
+        application/json: ContributingEmployersCreateNewEmployer404Response
+      '429':
+        application/json: ContributingEmployersCreateNewEmployer429Response
+      '500':
+        application/json: ContributingEmployersCreateNewEmployer500Response
+  /tenant/contributing-employers/v1/{contributing_employer_id}:
+    get:
+      '200':
+        application/json: ContributingEmployersGetParticularEmployerResponse
+      '400':
+        application/json: ContributingEmployersGetParticularEmployer400Response
+      '401':
+        application/json: ContributingEmployersGetParticularEmployer401Response
+      '403':
+        application/json: ContributingEmployersGetParticularEmployer403Response
+      '404':
+        application/json: ContributingEmployersGetParticularEmployer404Response
+      '429':
+        application/json: ContributingEmployersGetParticularEmployer429Response
+      '500':
+        application/json: ContributingEmployersGetParticularEmployer500Response
+    patch:
+      '200':
+        application/json: ContributingEmployersUpdateParticularEmployerResponse
+      '400':
+        application/json: ContributingEmployersUpdateParticularEmployer400Response
+      '401':
+        application/json: ContributingEmployersUpdateParticularEmployer401Response
+      '403':
+        application/json: ContributingEmployersUpdateParticularEmployer403Response
+      '404':
+        application/json: ContributingEmployersUpdateParticularEmployer404Response
+      '429':
+        application/json: ContributingEmployersUpdateParticularEmployer429Response
+      '500':
+        application/json: ContributingEmployersUpdateParticularEmployer500Response
+  /tenant/fees/v1/codes:
+    get:
+      '200':
+        application/json: FeesGetFeeCodesResponse
+      '400':
+        application/json: FeesGetFeeCodes400Response
+      '401':
+        application/json: FeesGetFeeCodes401Response
+      '403':
+        application/json: FeesGetFeeCodes403Response
+      '404':
+        application/json: FeesGetFeeCodes404Response
+      '429':
+        application/json: FeesGetFeeCodes429Response
+      '500':
+        application/json: FeesGetFeeCodes500Response
+  /tenant/fees/v1/exemptions:
+    get:
+      '200':
+        application/json: FeesGetExemptionsResponse
+      '400':
+        application/json: FeesGetExemptions400Response
+      '401':
+        application/json: FeesGetExemptions401Response
+      '403':
+        application/json: FeesGetExemptions403Response
+      '404':
+        application/json: FeesGetExemptions404Response
+      '429':
+        application/json: FeesGetExemptions429Response
+      '500':
+        application/json: FeesGetExemptions500Response
+  /tenant/fees/v1/setups:
+    get:
+      '200':
+        application/json: FeesGetFeeSetupsResponse
+      '400':
+        application/json: FeesGetFeeSetups400Response
+      '401':
+        application/json: FeesGetFeeSetups401Response
+      '403':
+        application/json: FeesGetFeeSetups403Response
+      '404':
+        application/json: FeesGetFeeSetups404Response
+      '429':
+        application/json: FeesGetFeeSetups429Response
+      '500':
+        application/json: FeesGetFeeSetups500Response
+  /tenant/financial-products/v1:
+    get:
+      '200':
+        application/json: FinancialProductsListAllResponse
+      '400':
+        application/json: FinancialProductsListAll400Response
+      '401':
+        application/json: FinancialProductsListAll401Response
+      '403':
+        application/json: FinancialProductsListAll403Response
+      '404':
+        application/json: FinancialProductsListAll404Response
+      '429':
+        application/json: FinancialProductsListAll429Response
+      '500':
+        application/json: FinancialProductsListAll500Response
+  /tenant/investment-products/v1:
+    get:
+      '200':
+        application/json: InvestmentProductsGetConfiguredProductsResponse
+      '401':
+        application/json: InvestmentProductsGetConfiguredProducts401Response
+      '403':
+        application/json: InvestmentProductsGetConfiguredProducts403Response
+      '404':
+        application/json: InvestmentProductsGetConfiguredProducts404Response
+      '429':
+        application/json: InvestmentProductsGetConfiguredProducts429Response
+      '500':
+        application/json: InvestmentProductsGetConfiguredProducts500Response
+  /tenant/investment-products/v1/current-prices:
+    get:
+      '200':
+        application/json: InvestmentProductsGetCurrentPricesResponse
+      '401':
+        application/json: InvestmentProductsGetCurrentPrices401Response
+      '403':
+        application/json: InvestmentProductsGetCurrentPrices403Response
+      '404':
+        application/json: InvestmentProductsGetCurrentPrices404Response
+      '429':
+        application/json: InvestmentProductsGetCurrentPrices429Response
+      '500':
+        application/json: InvestmentProductsGetCurrentPrices500Response
+  /tenant/investment-products/v1/{investment_product_id}:
+    get:
+      '200':
+        application/json: InvestmentProductsGetDetailsResponse
+      '401':
+        application/json: InvestmentProductsGetDetails401Response
+      '403':
+        application/json: InvestmentProductsGetDetails403Response
+      '404':
+        application/json: InvestmentProductsGetDetails404Response
+      '429':
+        application/json: InvestmentProductsGetDetails429Response
+      '500':
+        application/json: InvestmentProductsGetDetails500Response
+  /tenant/investment-products/v1/{investment_product_id}/current-price:
+    get:
+      '200':
+        application/json: InvestmentProductsGetCurrentPriceResponse
+      '401':
+        application/json: InvestmentProductsGetCurrentPrice401Response
+      '403':
+        application/json: InvestmentProductsGetCurrentPrice403Response
+      '404':
+        application/json: InvestmentProductsGetCurrentPrice404Response
+      '429':
+        application/json: InvestmentProductsGetCurrentPrice429Response
+      '500':
+        application/json: InvestmentProductsGetCurrentPrice500Response
+  /tenant/investor-accounts/v1:
+    get:
+      '200':
+        application/json: InvestorAccountsGetAllResponse
+      '400':
+        application/json: InvestorAccountsGetAll400Response
+      '401':
+        application/json: InvestorAccountsGetAll401Response
+      '403':
+        application/json: InvestorAccountsGetAll403Response
+      '404':
+        application/json: InvestorAccountsGetAll404Response
+      '429':
+        application/json: InvestorAccountsGetAll429Response
+      '500':
+        application/json: InvestorAccountsGetAll500Response
+  /tenant/investor-accounts/v1/{account_id}:
+    get:
+      '200':
+        application/json: InvestorAccountsGetAccountByIdResponse
+      '400':
+        application/json: InvestorAccountsGetAccountById400Response
+      '401':
+        application/json: InvestorAccountsGetAccountById401Response
+      '403':
+        application/json: InvestorAccountsGetAccountById403Response
+      '404':
+        application/json: InvestorAccountsGetAccountById404Response
+      '429':
+        application/json: InvestorAccountsGetAccountById429Response
+      '500':
+        application/json: InvestorAccountsGetAccountById500Response
+    patch:
+      '200':
+        application/json: InvestorAccountsUpdateDetailsResponse
+      '400':
+        application/json: InvestorAccountsUpdateDetails400Response
+      '401':
+        application/json: InvestorAccountsUpdateDetails401Response
+      '403':
+        application/json: InvestorAccountsUpdateDetails403Response
+      '404':
+        application/json: InvestorAccountsUpdateDetails404Response
+      '429':
+        application/json: InvestorAccountsUpdateDetails429Response
+      '500':
+        application/json: InvestorAccountsUpdateDetails500Response
+  /tenant/investors/v1:
+    get:
+      '200':
+        application/json: InvestorsGetAllResponse
+      '400':
+        application/json: InvestorsGetAll400Response
+      '401':
+        application/json: InvestorsGetAll401Response
+      '403':
+        application/json: InvestorsGetAll403Response
+      '429':
+        application/json: InvestorsGetAll429Response
+      '500':
+        application/json: InvestorsGetAll500Response
+    post:
+      '201':
+        application/json: InvestorsCreateNewInvestorResponse
+      '400':
+        application/json: InvestorsCreateNewInvestor400Response
+      '401':
+        application/json: InvestorsCreateNewInvestor401Response
+      '403':
+        application/json: InvestorsCreateNewInvestor403Response
+      '429':
+        application/json: InvestorsCreateNewInvestor429Response
+      '500':
+        application/json: InvestorsCreateNewInvestor500Response
+  /tenant/investors/v1/tax-codes:
+    get:
+      '200':
+        application/json: InvestorsGetAllTaxCodesResponse
+      '400':
+        application/json: InvestorsGetAllTaxCodes400Response
+      '401':
+        application/json: InvestorsGetAllTaxCodes401Response
+      '403':
+        application/json: InvestorsGetAllTaxCodes403Response
+      '429':
+        application/json: InvestorsGetAllTaxCodes429Response
+      '500':
+        application/json: InvestorsGetAllTaxCodes500Response
+  /tenant/investors/v1/{investor_id}:
+    get:
+      '200':
+        application/json: InvestorsGetInvestorDetailsResponse
+      '400':
+        application/json: InvestorsGetInvestorDetails400Response
+      '401':
+        application/json: InvestorsGetInvestorDetails401Response
+      '403':
+        application/json: InvestorsGetInvestorDetails403Response
+      '404':
+        application/json: InvestorsGetInvestorDetails404Response
+      '429':
+        application/json: InvestorsGetInvestorDetails429Response
+      '500':
+        application/json: InvestorsGetInvestorDetails500Response
+    patch:
+      '200':
+        application/json: InvestorsUpdateInvestorDetailsResponse
+      '400':
+        application/json: InvestorsUpdateInvestorDetails400Response
+      '401':
+        application/json: InvestorsUpdateInvestorDetails401Response
+      '403':
+        application/json: InvestorsUpdateInvestorDetails403Response
+      '404':
+        application/json: InvestorsUpdateInvestorDetails404Response
+      '429':
+        application/json: InvestorsUpdateInvestorDetails429Response
+      '500':
+        application/json: InvestorsUpdateInvestorDetails500Response
+  /tenant/investors/v1/{investor_id}/fee-nominations:
+    delete:
+      '200':
+        application/json: InvestorsDeleteFeeNominationResponse
+      '400':
+        application/json: InvestorsDeleteFeeNomination400Response
+      '401':
+        application/json: InvestorsDeleteFeeNomination401Response
+      '403':
+        application/json: InvestorsDeleteFeeNomination403Response
+      '404':
+        application/json: InvestorsDeleteFeeNomination404Response
+      '429':
+        application/json: InvestorsDeleteFeeNomination429Response
+      '500':
+        application/json: InvestorsDeleteFeeNomination500Response
+    get:
+      '200':
+        application/json: InvestorsGetFeeNominationResponse
+      '400':
+        application/json: InvestorsGetFeeNomination400Response
+      '401':
+        application/json: InvestorsGetFeeNomination401Response
+      '403':
+        application/json: InvestorsGetFeeNomination403Response
+      '404':
+        application/json: InvestorsGetFeeNomination404Response
+      '429':
+        application/json: InvestorsGetFeeNomination429Response
+      '500':
+        application/json: InvestorsGetFeeNomination500Response
+    patch:
+      '200':
+        application/json: InvestorsUpdateFeeNominationResponse
+      '400':
+        application/json: InvestorsUpdateFeeNomination400Response
+      '401':
+        application/json: InvestorsUpdateFeeNomination401Response
+      '403':
+        application/json: InvestorsUpdateFeeNomination403Response
+      '404':
+        application/json: InvestorsUpdateFeeNomination404Response
+      '429':
+        application/json: InvestorsUpdateFeeNomination429Response
+      '500':
+        application/json: InvestorsUpdateFeeNomination500Response
+    post:
+      '201':
+        application/json: InvestorsCreateFeeNominationForInvestorResponse
+      '400':
+        application/json: InvestorsCreateFeeNominationForInvestor400Response
+      '401':
+        application/json: InvestorsCreateFeeNominationForInvestor401Response
+      '403':
+        application/json: InvestorsCreateFeeNominationForInvestor403Response
+      '404':
+        application/json: InvestorsCreateFeeNominationForInvestor404Response
+      '429':
+        application/json: InvestorsCreateFeeNominationForInvestor429Response
+      '500':
+        application/json: InvestorsCreateFeeNominationForInvestor500Response
+  /tenant/payments/v1:
+    get:
+      '200':
+        application/json: PaymentsGetAllResponse
+      '400':
+        application/json: PaymentsGetAll400Response
+      '401':
+        application/json: PaymentsGetAll401Response
+      '403':
+        application/json: PaymentsGetAll403Response
+      '404':
+        application/json: PaymentsGetAll404Response
+      '429':
+        application/json: PaymentsGetAll429Response
+      '500':
+        application/json: PaymentsGetAll500Response
+    post:
+      '201':
+        application/json: PaymentsCreatePaymentIntentResponse
+      '400':
+        application/json: PaymentsCreatePaymentIntent400Response
+      '401':
+        application/json: PaymentsCreatePaymentIntent401Response
+      '403':
+        application/json: PaymentsCreatePaymentIntent403Response
+      '429':
+        application/json: PaymentsCreatePaymentIntent429Response
+      '500':
+        application/json: PaymentsCreatePaymentIntent500Response
+  /tenant/payments/v1/{transaction_id}:
+    get:
+      '200':
+        application/json: PaymentsGetByTransactionIdResponse
+      '400':
+        application/json: PaymentsGetByTransactionId400Response
+      '401':
+        application/json: PaymentsGetByTransactionId401Response
+      '403':
+        application/json: PaymentsGetByTransactionId403Response
+      '404':
+        application/json: PaymentsGetByTransactionId404Response
+      '429':
+        application/json: PaymentsGetByTransactionId429Response
+      '500':
+        application/json: PaymentsGetByTransactionId500Response
+  /tenant/portfolio-templates/v1:
+    get:
+      '200':
+        application/json: PortfolioTemplatesGetAllTemplatesResponse
+      '401':
+        application/json: PortfolioTemplatesGetAllTemplates401Response
+      '403':
+        application/json: PortfolioTemplatesGetAllTemplates403Response
+      '404':
+        application/json: PortfolioTemplatesGetAllTemplates404Response
+      '429':
+        application/json: PortfolioTemplatesGetAllTemplates429Response
+      '500':
+        application/json: PortfolioTemplatesGetAllTemplates500Response
+    post:
+      '201':
+        application/json: PortfolioTemplatesCreateNewTemplateResponse
+      '400':
+        application/json: PortfolioTemplatesCreateNewTemplate400Response
+      '401':
+        application/json: PortfolioTemplatesCreateNewTemplate401Response
+      '403':
+        application/json: PortfolioTemplatesCreateNewTemplate403Response
+      '404':
+        application/json: PortfolioTemplatesCreateNewTemplate404Response
+      '429':
+        application/json: PortfolioTemplatesCreateNewTemplate429Response
+      '500':
+        application/json: PortfolioTemplatesCreateNewTemplate500Response
+  /tenant/portfolio-templates/v1/{portfolio_template_id}:
+    get:
+      '200':
+        application/json: PortfolioTemplatesGetTemplateByIdResponse
+      '401':
+        application/json: PortfolioTemplatesGetTemplateById401Response
+      '403':
+        application/json: PortfolioTemplatesGetTemplateById403Response
+      '404':
+        application/json: PortfolioTemplatesGetTemplateById404Response
+      '429':
+        application/json: PortfolioTemplatesGetTemplateById429Response
+      '500':
+        application/json: PortfolioTemplatesGetTemplateById500Response
+    patch:
+      '200':
+        application/json: PortfolioTemplatesUpdateTemplateResponse
+      '400':
+        application/json: PortfolioTemplatesUpdateTemplate400Response
+      '401':
+        application/json: PortfolioTemplatesUpdateTemplate401Response
+      '403':
+        application/json: PortfolioTemplatesUpdateTemplate403Response
+      '404':
+        application/json: PortfolioTemplatesUpdateTemplate404Response
+      '429':
+        application/json: PortfolioTemplatesUpdateTemplate429Response
+      '500':
+        application/json: PortfolioTemplatesUpdateTemplate500Response
+  /tenant/pots/v1:
+    get:
+      '200':
+        application/json: PotsHoldingsAndTransactionsGetInvestorPotsResponse
+      '400':
+        application/json: PotsHoldingsAndTransactionsGetInvestorPots400Response
+      '401':
+        application/json: PotsHoldingsAndTransactionsGetInvestorPots401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsGetInvestorPots403Response
+      '404':
+        application/json: PotsHoldingsAndTransactionsGetInvestorPots404Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsGetInvestorPots429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsGetInvestorPots500Response
+    post:
+      '201':
+        application/json: PotsHoldingsAndTransactionsCreateNewPotsResponse
+      '400':
+        application/json: PotsHoldingsAndTransactionsCreateNewPots400Response
+      '401':
+        application/json: PotsHoldingsAndTransactionsCreateNewPots401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsCreateNewPots403Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsCreateNewPots429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsCreateNewPots500Response
+  /tenant/pots/v1/crystallisation:
+    get:
+      '200':
+        application/json: SippCrystallisationGetAllRequestsResponse
+      '400':
+        application/json: SippCrystallisationGetAllRequests400Response
+      '401':
+        application/json: SippCrystallisationGetAllRequests401Response
+      '403':
+        application/json: SippCrystallisationGetAllRequests403Response
+      '404':
+        application/json: SippCrystallisationGetAllRequests404Response
+      '429':
+        application/json: SippCrystallisationGetAllRequests429Response
+      '500':
+        application/json: SippCrystallisationGetAllRequests500Response
+    post:
+      '201':
+        application/json: SippCrystallisationCreateRequestResponse
+      '400':
+        application/json: SippCrystallisationCreateRequest400Response
+      '401':
+        application/json: SippCrystallisationCreateRequest401Response
+      '403':
+        application/json: SippCrystallisationCreateRequest403Response
+      '404':
+        application/json: SippCrystallisationCreateRequest404Response
+      '429':
+        application/json: SippCrystallisationCreateRequest429Response
+      '500':
+        application/json: SippCrystallisationCreateRequest500Response
+  /tenant/pots/v1/evaluate-rebalance:
+    post:
+      '202':
+        application/json: RebalanceEvaluatePortfolioDeviationResponse
+      '400':
+        application/json: RebalanceEvaluatePortfolioDeviation400Response
+      '401':
+        application/json: RebalanceEvaluatePortfolioDeviation401Response
+      '403':
+        application/json: RebalanceEvaluatePortfolioDeviation403Response
+      '404':
+        application/json: RebalanceEvaluatePortfolioDeviation404Response
+      '429':
+        application/json: RebalanceEvaluatePortfolioDeviation429Response
+      '500':
+        application/json: RebalanceEvaluatePortfolioDeviation500Response
+  /tenant/pots/v1/holdings:
+    get:
+      '200':
+        application/json: PotsHoldingsAndTransactionsGetHoldingsByPotResponse
+      '401':
+        application/json: PotsHoldingsAndTransactionsGetHoldingsByPot401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsGetHoldingsByPot403Response
+      '404':
+        application/json: PotsHoldingsAndTransactionsGetHoldingsByPot404Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsGetHoldingsByPot429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsGetHoldingsByPot500Response
+  /tenant/pots/v1/rebalance:
+    post:
+      '202':
+        application/json: RebalanceTriggerRebalanceProcessResponse
+      '400':
+        application/json: RebalanceTriggerRebalanceProcess400Response
+      '401':
+        application/json: RebalanceTriggerRebalanceProcess401Response
+      '403':
+        application/json: RebalanceTriggerRebalanceProcess403Response
+      '404':
+        application/json: RebalanceTriggerRebalanceProcess404Response
+      '429':
+        application/json: RebalanceTriggerRebalanceProcess429Response
+      '500':
+        application/json: RebalanceTriggerRebalanceProcess500Response
+  /tenant/pots/v1/rebalance-evaluation-status:
+    get:
+      '200':
+        application/json: RebalanceGetEvaluationDetailsResponse
+      '400':
+        application/json: RebalanceGetEvaluationDetails400Response
+      '401':
+        application/json: RebalanceGetEvaluationDetails401Response
+      '403':
+        application/json: RebalanceGetEvaluationDetails403Response
+      '404':
+        application/json: RebalanceGetEvaluationDetails404Response
+      '429':
+        application/json: RebalanceGetEvaluationDetails429Response
+      '500':
+        application/json: RebalanceGetEvaluationDetails500Response
+  /tenant/pots/v1/rebalance-results:
+    get:
+      '200':
+        application/json: RebalanceRequestDetailsResponse
+      '400':
+        application/json: RebalanceRequestDetails400Response
+      '401':
+        application/json: RebalanceRequestDetails401Response
+      '403':
+        application/json: RebalanceRequestDetails403Response
+      '404':
+        application/json: RebalanceRequestDetails404Response
+      '429':
+        application/json: RebalanceRequestDetails429Response
+      '500':
+        application/json: RebalanceRequestDetails500Response
+  /tenant/pots/v1/value:
+    get:
+      '200':
+        application/json: PotsHoldingsAndTransactionsListTotalPotValueResponse
+      '400':
+        application/json: PotsHoldingsAndTransactionsListTotalPotValue400Response
+      '401':
+        application/json: PotsHoldingsAndTransactionsListTotalPotValue401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsListTotalPotValue403Response
+      '404':
+        application/json: PotsHoldingsAndTransactionsListTotalPotValue404Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsListTotalPotValue429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsListTotalPotValue500Response
+  /tenant/pots/v1/{pot_id}:
+    get:
+      '200':
+        application/json: PotsHoldingsAndTransactionsGetPotResponse
+      '401':
+        application/json: PotsHoldingsAndTransactionsGetPot401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsGetPot403Response
+      '404':
+        application/json: PotsHoldingsAndTransactionsGetPot404Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsGetPot429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsGetPot500Response
+    patch:
+      '200':
+        application/json: PotsHoldingsAndTransactionsUpdatePotDetailsResponse
+      '400':
+        application/json: PotsHoldingsAndTransactionsUpdatePotDetails400Response
+      '401':
+        application/json: PotsHoldingsAndTransactionsUpdatePotDetails401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsUpdatePotDetails403Response
+      '404':
+        application/json: PotsHoldingsAndTransactionsUpdatePotDetails404Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsUpdatePotDetails429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsUpdatePotDetails500Response
+  /tenant/pots/v1/{pot_id}/holdings:
+    get:
+      '200':
+        application/json: PotsHoldingsAndTransactionsGetCurrentHoldingsResponse
+      '400':
+        application/json: PotsHoldingsAndTransactionsGetCurrentHoldings400Response
+      '401':
+        application/json: PotsHoldingsAndTransactionsGetCurrentHoldings401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsGetCurrentHoldings403Response
+      '404':
+        application/json: PotsHoldingsAndTransactionsGetCurrentHoldings404Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsGetCurrentHoldings429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsGetCurrentHoldings500Response
+  /tenant/pots/v1/{pot_id}/transactions:
+    get:
+      '200':
+        application/json: PotsHoldingsAndTransactionsGetPotTransactionsResponse
+      '401':
+        application/json: PotsHoldingsAndTransactionsGetPotTransactions401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsGetPotTransactions403Response
+      '404':
+        application/json: PotsHoldingsAndTransactionsGetPotTransactions404Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsGetPotTransactions429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsGetPotTransactions500Response
+  /tenant/pots/v1/{pot_id}/value:
+    get:
+      '200':
+        application/json: PotsHoldingsAndTransactionsGetCurrentPotValueResponse
+      '400':
+        application/json: PotsHoldingsAndTransactionsGetCurrentPotValue400Response
+      '401':
+        application/json: PotsHoldingsAndTransactionsGetCurrentPotValue401Response
+      '403':
+        application/json: PotsHoldingsAndTransactionsGetCurrentPotValue403Response
+      '404':
+        application/json: PotsHoldingsAndTransactionsGetCurrentPotValue404Response
+      '429':
+        application/json: PotsHoldingsAndTransactionsGetCurrentPotValue429Response
+      '500':
+        application/json: PotsHoldingsAndTransactionsGetCurrentPotValue500Response
+  /tenant/rates/v1:
+    get:
+      '200':
+        application/json: RatesGetRateDetailsResponse
+      '401':
+        application/json: RatesGetRateDetails401Response
+      '403':
+        application/json: RatesGetRateDetails403Response
+      '404':
+        application/json: RatesGetRateDetails404Response
+      '429':
+        application/json: RatesGetRateDetails429Response
+      '500':
+        application/json: RatesGetRateDetails500Response
+  /tenant/recurring-contributions/v1:
+    get:
+      '200':
+        application/json: RecurringContributionsGetAllContributionsResponse
+      '400':
+        application/json: RecurringContributionsGetAllContributions400Response
+      '401':
+        application/json: RecurringContributionsGetAllContributions401Response
+      '403':
+        application/json: RecurringContributionsGetAllContributions403Response
+      '404':
+        application/json: RecurringContributionsGetAllContributions404Response
+      '429':
+        application/json: RecurringContributionsGetAllContributions429Response
+      '500':
+        application/json: RecurringContributionsGetAllContributions500Response
+    post:
+      '201':
+        application/json: RecurringContributionsCreatePaymentResponse
+      '400':
+        application/json: RecurringContributionsCreatePayment400Response
+      '401':
+        application/json: RecurringContributionsCreatePayment401Response
+      '403':
+        application/json: RecurringContributionsCreatePayment403Response
+      '429':
+        application/json: RecurringContributionsCreatePayment429Response
+      '500':
+        application/json: RecurringContributionsCreatePayment500Response
+  /tenant/recurring-contributions/v1/{contribution_id}:
+    patch:
+      '200':
+        application/json: RecurringContributionsUpdateRecurringPaymentResponse
+      '400':
+        application/json: RecurringContributionsUpdateRecurringPayment400Response
+      '401':
+        application/json: RecurringContributionsUpdateRecurringPayment401Response
+      '403':
+        application/json: RecurringContributionsUpdateRecurringPayment403Response
+      '404':
+        application/json: RecurringContributionsUpdateRecurringPayment404Response
+      '429':
+        application/json: RecurringContributionsUpdateRecurringPayment429Response
+      '500':
+        application/json: RecurringContributionsUpdateRecurringPayment500Response
+  /tenant/recurring-contributions/v1/{contribution_id}/cancel:
+    post:
+      '200':
+        application/json: RecurringContributionsCancelRecurringPaymentResponse
+      '400':
+        application/json: RecurringContributionsCancelRecurringPayment400Response
+      '401':
+        application/json: RecurringContributionsCancelRecurringPayment401Response
+      '403':
+        application/json: RecurringContributionsCancelRecurringPayment403Response
+      '429':
+        application/json: RecurringContributionsCancelRecurringPayment429Response
+      '500':
+        application/json: RecurringContributionsCancelRecurringPayment500Response
+  /tenant/recurring-contributions/v1/{contribution_id}/pause:
+    post:
+      '200':
+        application/json: RecurringContributionsPausePaymentSetupResponse
+      '400':
+        application/json: RecurringContributionsPausePaymentSetup400Response
+      '401':
+        application/json: RecurringContributionsPausePaymentSetup401Response
+      '403':
+        application/json: RecurringContributionsPausePaymentSetup403Response
+      '429':
+        application/json: RecurringContributionsPausePaymentSetup429Response
+      '500':
+        application/json: RecurringContributionsPausePaymentSetup500Response
+  /tenant/recurring-contributions/v1/{contribution_id}/resume:
+    post:
+      '200':
+        application/json: RecurringContributionsResumeContributionResponse
+      '400':
+        application/json: RecurringContributionsResumeContribution400Response
+      '401':
+        application/json: RecurringContributionsResumeContribution401Response
+      '403':
+        application/json: RecurringContributionsResumeContribution403Response
+      '429':
+        application/json: RecurringContributionsResumeContribution429Response
+      '500':
+        application/json: RecurringContributionsResumeContribution500Response
+  /tenant/recurring-withdrawals/v1:
+    get:
+      '200':
+        application/json: RecurringWithdrawalsListAllResponse
+      '400':
+        application/json: RecurringWithdrawalsListAll400Response
+      '401':
+        application/json: RecurringWithdrawalsListAll401Response
+      '403':
+        application/json: RecurringWithdrawalsListAll403Response
+      '404':
+        application/json: RecurringWithdrawalsListAll404Response
+      '429':
+        application/json: RecurringWithdrawalsListAll429Response
+      '500':
+        application/json: RecurringWithdrawalsListAll500Response
+    post:
+      '201':
+        application/json: RecurringWithdrawalsCreateNewWithdrawalResponse
+      '400':
+        application/json: RecurringWithdrawalsCreateNewWithdrawal400Response
+      '401':
+        application/json: RecurringWithdrawalsCreateNewWithdrawal401Response
+      '403':
+        application/json: RecurringWithdrawalsCreateNewWithdrawal403Response
+      '429':
+        application/json: RecurringWithdrawalsCreateNewWithdrawal429Response
+      '500':
+        application/json: RecurringWithdrawalsCreateNewWithdrawal500Response
+  /tenant/recurring-withdrawals/v1/{withdrawal_id}:
+    patch:
+      '200':
+        application/json: RecurringWithdrawalsUpdateActiveWithdrawalResponse
+      '400':
+        application/json: RecurringWithdrawalsUpdateActiveWithdrawal400Response
+      '401':
+        application/json: RecurringWithdrawalsUpdateActiveWithdrawal401Response
+      '403':
+        application/json: RecurringWithdrawalsUpdateActiveWithdrawal403Response
+      '404':
+        application/json: RecurringWithdrawalsUpdateActiveWithdrawal404Response
+      '429':
+        application/json: RecurringWithdrawalsUpdateActiveWithdrawal429Response
+      '500':
+        application/json: RecurringWithdrawalsUpdateActiveWithdrawal500Response
+  /tenant/recurring-withdrawals/v1/{withdrawal_id}/cancel:
+    post:
+      '200':
+        application/json: RecurringWithdrawalsCancelRecurringWithdrawalResponse
+      '400':
+        application/json: RecurringWithdrawalsCancelRecurringWithdrawal400Response
+      '401':
+        application/json: RecurringWithdrawalsCancelRecurringWithdrawal401Response
+      '403':
+        application/json: RecurringWithdrawalsCancelRecurringWithdrawal403Response
+      '429':
+        application/json: RecurringWithdrawalsCancelRecurringWithdrawal429Response
+      '500':
+        application/json: RecurringWithdrawalsCancelRecurringWithdrawal500Response
+  /tenant/test/hello-world-be:
+    get:
+      '200':
+        application/json: TestMethodsGetBeGreetingsResponse
+      '403':
+        application/json: TestMethodsGetBeGreetings403Response
+      '429':
+        application/json: TestMethodsGetBeGreetings429Response
+      '500':
+        application/json: TestMethodsGetBeGreetings500Response
+  /tenant/transactions/v1:
+    get:
+      '200':
+        application/json: TransactionsGetAllResponse
+      '400':
+        application/json: TransactionsGetAll400Response
+      '401':
+        application/json: TransactionsGetAll401Response
+      '403':
+        application/json: TransactionsGetAll403Response
+      '404':
+        application/json: TransactionsGetAll404Response
+      '429':
+        application/json: TransactionsGetAll429Response
+      '500':
+        application/json: TransactionsGetAll500Response
+  /tenant/transactions/v1/buy:
+    post:
+      '201':
+        application/json: TransactionsExecuteBuyTransactionResponse
+      '400':
+        application/json: TransactionsExecuteBuyTransaction400Response
+      '401':
+        application/json: TransactionsExecuteBuyTransaction401Response
+      '403':
+        application/json: TransactionsExecuteBuyTransaction403Response
+      '404':
+        application/json: TransactionsExecuteBuyTransaction404Response
+      '429':
+        application/json: TransactionsExecuteBuyTransaction429Response
+      '500':
+        application/json: TransactionsExecuteBuyTransaction500Response
+  /tenant/transactions/v1/fee:
+    post:
+      '201':
+        application/json: FeesCreateFeeTransactionResponse
+      '400':
+        application/json: FeesCreateFeeTransaction400Response
+      '401':
+        application/json: FeesCreateFeeTransaction401Response
+      '403':
+        application/json: FeesCreateFeeTransaction403Response
+      '404':
+        application/json: FeesCreateFeeTransaction404Response
+      '429':
+        application/json: FeesCreateFeeTransaction429Response
+      '500':
+        application/json: FeesCreateFeeTransaction500Response
+  /tenant/transactions/v1/sell:
+    post:
+      '201':
+        application/json: TransactionsExecuteSellTransactionResponse
+      '400':
+        application/json: TransactionsExecuteSellTransaction400Response
+      '401':
+        application/json: TransactionsExecuteSellTransaction401Response
+      '403':
+        application/json: TransactionsExecuteSellTransaction403Response
+      '404':
+        application/json: TransactionsExecuteSellTransaction404Response
+      '429':
+        application/json: TransactionsExecuteSellTransaction429Response
+      '500':
+        application/json: TransactionsExecuteSellTransaction500Response
+  /tenant/transactions/v1/switch:
+    get:
+      '200':
+        application/json: SwitchInstructionGetSwitchStatusResponse
+      '400':
+        application/json: SwitchInstructionGetSwitchStatus400Response
+      '401':
+        application/json: SwitchInstructionGetSwitchStatus401Response
+      '403':
+        application/json: SwitchInstructionGetSwitchStatus403Response
+      '404':
+        application/json: SwitchInstructionGetSwitchStatus404Response
+      '429':
+        application/json: SwitchInstructionGetSwitchStatus429Response
+      '500':
+        application/json: SwitchInstructionGetSwitchStatus500Response
+    post:
+      '200':
+        application/json: SwitchInstructionExecuteSwitchTransactionResponse
+      '400':
+        application/json: SwitchInstructionExecuteSwitchTransaction400Response
+      '401':
+        application/json: SwitchInstructionExecuteSwitchTransaction401Response
+      '403':
+        application/json: SwitchInstructionExecuteSwitchTransaction403Response
+      '404':
+        application/json: SwitchInstructionExecuteSwitchTransaction404Response
+      '429':
+        application/json: SwitchInstructionExecuteSwitchTransaction429Response
+      '500':
+        application/json: SwitchInstructionExecuteSwitchTransaction500Response
+  /tenant/transactions/v1/withdrawal:
+    post:
+      '201':
+        application/json: WithdrawalsCreateSingleWithdrawalResponse
+      '400':
+        application/json: WithdrawalsCreateSingleWithdrawal400Response
+      '401':
+        application/json: WithdrawalsCreateSingleWithdrawal401Response
+      '403':
+        application/json: WithdrawalsCreateSingleWithdrawal403Response
+      '404':
+        application/json: WithdrawalsCreateSingleWithdrawal404Response
+      '429':
+        application/json: WithdrawalsCreateSingleWithdrawal429Response
+      '500':
+        application/json: WithdrawalsCreateSingleWithdrawal500Response
+  /tenant/utility/v1/upload-a-file:
+    post:
+      '200':
+        application/json: UtilityCopyFileToInternalStoreResponse
+      '400':
+        application/json: UtilityCopyFileToInternalStore400Response
+      '401':
+        application/json: UtilityCopyFileToInternalStore401Response
+      '403':
+        application/json: UtilityCopyFileToInternalStore403Response
+      '404':
+        application/json: UtilityCopyFileToInternalStore404Response
+      '429':
+        application/json: UtilityCopyFileToInternalStore429Response
+      '500':
+        application/json: UtilityCopyFileToInternalStore500Response
+  /tenant/withdrawals/v1:
+    post:
+      '201':
+        application/json: WithdrawalsCreateSingleWithdrawal201Response
+      '400':
+        application/json: WithdrawalsCreateSingleWithdrawal400Response
+      '401':
+        application/json: WithdrawalsCreateSingleWithdrawal401Response
+      '403':
+        application/json: WithdrawalsCreateSingleWithdrawal403Response
+      '404':
+        application/json: WithdrawalsCreateSingleWithdrawal404Response
+      '429':
+        application/json: WithdrawalsCreateSingleWithdrawal429Response
+      '500':
+        application/json: WithdrawalsCreateSingleWithdrawal500Response
+  /tenant/withdrawals/v1/{transaction_id}:
+    patch:
+      '201':
+        application/json: LisaTransactionsUpdateWithdrawalPaymentDateResponse
+      '400':
+        application/json: LisaTransactionsUpdateWithdrawalPaymentDate400Response
+      '401':
+        application/json: LisaTransactionsUpdateWithdrawalPaymentDate401Response
+      '403':
+        application/json: LisaTransactionsUpdateWithdrawalPaymentDate403Response
+      '404':
+        application/json: LisaTransactionsUpdateWithdrawalPaymentDate404Response
+      '429':
+        application/json: LisaTransactionsUpdateWithdrawalPaymentDate429Response
+      '500':
+        application/json: LisaTransactionsUpdateWithdrawalPaymentDate500Response
+  /tenant/workplace-employers/v1:
+    get:
+      '200':
+        application/json: WorkplaceEmployersGetAllEmployersResponse
+      '400':
+        application/json: WorkplaceEmployersGetAllEmployers400Response
+      '401':
+        application/json: WorkplaceEmployersGetAllEmployers401Response
+      '403':
+        application/json: WorkplaceEmployersGetAllEmployers403Response
+      '404':
+        application/json: WorkplaceEmployersGetAllEmployers404Response
+      '429':
+        application/json: WorkplaceEmployersGetAllEmployers429Response
+      '500':
+        application/json: WorkplaceEmployersGetAllEmployers500Response
+    post:
+      '201':
+        application/json: WorkplaceEmployersCreateEmployerResponse
+      '400':
+        application/json: WorkplaceEmployersCreateEmployer400Response
+      '401':
+        application/json: WorkplaceEmployersCreateEmployer401Response
+      '403':
+        application/json: WorkplaceEmployersCreateEmployer403Response
+      '404':
+        application/json: WorkplaceEmployersCreateEmployer404Response
+      '429':
+        application/json: WorkplaceEmployersCreateEmployer429Response
+      '500':
+        application/json: WorkplaceEmployersCreateEmployer500Response
+  /tenant/workplace-employers/v1/{workplace_employer_id}:
+    get:
+      '200':
+        application/json: WorkplaceEmployersGetDetailsResponse
+      '400':
+        application/json: WorkplaceEmployersGetDetails400Response
+      '401':
+        application/json: WorkplaceEmployersGetDetails401Response
+      '403':
+        application/json: WorkplaceEmployersGetDetails403Response
+      '404':
+        application/json: WorkplaceEmployersGetDetails404Response
+      '429':
+        application/json: WorkplaceEmployersGetDetails429Response
+      '500':
+        application/json: WorkplaceEmployersGetDetails500Response
+    patch:
+      '200':
+        application/json: WorkplaceEmployersUpdateEmployerDetailsResponse
+      '400':
+        application/json: WorkplaceEmployersUpdateEmployerDetails400Response
+      '401':
+        application/json: WorkplaceEmployersUpdateEmployerDetails401Response
+      '403':
+        application/json: WorkplaceEmployersUpdateEmployerDetails403Response
+      '404':
+        application/json: WorkplaceEmployersUpdateEmployerDetails404Response
+      '429':
+        application/json: WorkplaceEmployersUpdateEmployerDetails429Response
+      '500':
+        application/json: WorkplaceEmployersUpdateEmployerDetails500Response
+  /tenant/workplace-employers/v1/{workplace_employer_id}/investors:
+    get:
+      '200':
+        application/json: WorkplaceEmployersGetAllInvestorsResponse
+      '400':
+        application/json: WorkplaceEmployersGetAllInvestors400Response
+      '401':
+        application/json: WorkplaceEmployersGetAllInvestors401Response
+      '403':
+        application/json: WorkplaceEmployersGetAllInvestors403Response
+      '404':
+        application/json: WorkplaceEmployersGetAllInvestors404Response
+      '429':
+        application/json: WorkplaceEmployersGetAllInvestors429Response
+      '500':
+        application/json: WorkplaceEmployersGetAllInvestors500Response
+securityParameters:
+  account_id:
+    query: false
+  aggregated_transaction_id:
+    query: false
+  assigned_to:
+    query: false
+  contribution_id:
+    query: false
+  crystallisation_id:
+    query: false
+  end_date:
+    query: false
+  fee_calculation_entity:
+    query: false
+  fee_calculation_method:
+    query: false
+  fee_codes:
+    query: false
+  fee_exemption_entity:
+    query: false
+  financial_product_id:
+    query: false
+  from:
+    query: false
+  include_details:
+    query: false
+  investor_id:
+    query: false
+  page_number:
+    query: false
+  page_size:
+    query: false
+  parent_transaction_id:
+    query: false
+  payment_type:
+    query: false
+  pot_id:
+    query: false
+  product_types:
+    query: false
+  purpose:
+    query: false
+  rate_type:
+    query: false
+  rebalance_evaluation_id:
+    query: false
+  rebalance_request_id:
+    query: false
+  service_provider:
+    query: false
+  sort:
+    query: false
+  source_id:
+    query: false
+  start_date:
+    query: false
+  status:
+    query: false
+  sub_transaction_type:
+    query: false
+  sub_type:
+    query: false
+  switch_transaction_id:
+    query: false
+  to:
+    query: false
+  transaction_id:
+    query: false
+  withdrawal_id:
+    query: false
+validServerUrls:
+  https://web_host_name:
+    url: https://web_host_name

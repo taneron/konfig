@@ -2020,7 +2020,16 @@ const customRequests: Record<string, CustomRequest> = {
         filename: "openapi.json",
       });
     },
-  }
+  },
+  "wealthos.cloud": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://wos-gb.sandbox.wealthos.cloud/admin/documentation",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
