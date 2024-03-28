@@ -18,15 +18,15 @@
   "apiBaseUrl": "https://sandbox.bluesnap.com/services/2",
   "apiVersion": "8976-Tools",
   "apiTitle": "API Settings",
-  "endpoints": 29,
-  "sdkMethods": 36,
+  "endpoints": 27,
+  "sdkMethods": 34,
   "schemas": 16,
-  "parameters": 131,
+  "parameters": 124,
   "originalCustomRequest": {
     "lambda": true
   },
   "customRequestSpecFilename": "bluesnap.com.yaml",
-  "difficultyScore": 68.75,
+  "difficultyScore": 65,
   "difficulty": "Easy",
   "company": "BlueSnap",
   "sdkName": "blue-snap-{language}-sdk",
@@ -1020,80 +1020,6 @@
       ]
     },
     {
-      "url": "/recurring/subscriptions?{parameters}",
-      "method": "listAllSubscriptions",
-      "httpMethod": "get",
-      "tag": "Subscription",
-      "typeScriptTag": "subscription",
-      "description": "Retrieve All Subscriptions",
-      "parameters": [
-        {
-          "name": "pagesize",
-          "schema": "string",
-          "description": "",
-          "default": "5"
-        },
-        {
-          "name": "after",
-          "schema": "string",
-          "description": "",
-          "default": "34567"
-        },
-        {
-          "name": "gettotal",
-          "schema": "boolean",
-          "description": "",
-          "default": true
-        },
-        {
-          "name": "fulldescription",
-          "schema": "boolean",
-          "description": "",
-          "default": false
-        }
-      ],
-      "responses": [
-        {
-          "statusCode": "200",
-          "description": "OK"
-        }
-      ]
-    },
-    {
-      "url": "/:subscriptionId/charges?{parameters}",
-      "method": "listCharges",
-      "httpMethod": "get",
-      "tag": "Subscription",
-      "typeScriptTag": "subscription",
-      "description": "Retrieve All Charges for a Subscription",
-      "parameters": [
-        {
-          "name": "pagesize",
-          "schema": "string",
-          "description": "",
-          "default": "3"
-        },
-        {
-          "name": "after",
-          "schema": "string",
-          "description": "",
-          "default": "163193"
-        },
-        {
-          "name": "fulldescription",
-          "schema": "boolean",
-          "description": "",
-          "default": false
-        }
-      ],
-      "responses": [
-        {
-          "statusCode": "200",
-          "description": "OK"
-        }
-      ]
-    },
-    {
       "url": "/recurring/subscriptions/:subscriptionId/switch-charge-amount",
       "method": "getSwitchChargeAmount",
       "httpMethod": "get",
@@ -1422,7 +1348,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/bluesnap/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/bluesnap/favicon.png",
   "clientNameCamelCase": "blueSnap",
-  "lastUpdated": "2024-03-27T18:19:15.740Z",
+  "lastUpdated": "2024-03-28T19:01:23.743Z",
   "typescriptSdkUsageCode": "import { BlueSnap } from 'blue-snap-typescript-sdk';\n\nconst blueSnap = new BlueSnap({\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n    sec1: \"AUTHORIZATION\"\n})",
   "typescriptSdkFirstRequestCode": "// Auth Only\nconst createTransactionResponse = blueSnap.authorization.createTransaction({\n    amount: 11\n    softDescriptor: \"DescTest\"\n    currency: \"USD\"\n    cardTransactionType: \"AUTH_ONLY\"\n})",
   "fixedSpecFileName": "blue-snap-fixed-spec.yaml"

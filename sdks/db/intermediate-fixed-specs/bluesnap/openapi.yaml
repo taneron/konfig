@@ -965,55 +965,6 @@ paths:
                   type: string
                   default: 048deff0-a285-47e1-bc39-42f79bf0095b
       deprecated: false
-  /recurring/subscriptions?{parameters}:
-    get:
-      summary: Retrieve All Subscriptions
-      description: ''
-      operationId: retrieve-all-subscriptions
-      parameters:
-        - name: pagesize
-          in: query
-          schema:
-            type: string
-            default: '5'
-        - name: after
-          in: query
-          schema:
-            type: string
-            default: '34567'
-        - name: gettotal
-          in: query
-          schema:
-            type: boolean
-            default: true
-        - name: fulldescription
-          in: query
-          schema:
-            type: boolean
-            default: false
-      deprecated: false
-  /:subscriptionId/charges?{parameters}:
-    get:
-      summary: Retrieve All Charges for a Subscription
-      description: ''
-      operationId: retrieve-all-subscription-charges
-      parameters:
-        - name: pagesize
-          in: query
-          schema:
-            type: string
-            default: '3'
-        - name: after
-          in: query
-          schema:
-            type: string
-            default: '163193'
-        - name: fulldescription
-          in: query
-          schema:
-            type: boolean
-            default: false
-      deprecated: false
   /recurring/subscriptions/:subscriptionId/switch-charge-amount:
     get:
       summary: Retrieve Subscription Switch Charge Amount

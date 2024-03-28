@@ -1,0 +1,275 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/apps:
+    get: Apps_getList
+    post: Apps_createAppWithTypeAndUid
+  /api/apps/init:
+    post: Apps_initAppWithUser
+  /api/apps/{app}:
+    delete: Apps_removeAppContent
+    get: Apps_getData
+    patch: Apps_updateAppById
+  /api/apps/{app}/comments:
+    get: Comments_listAppComments
+    post: Comments_createNewComment
+  /api/apps/{app}/files:
+    get: Files_listFilesInApp
+    post: Files_createNewFile
+  /api/apps/{app}/members:
+    delete: Apps_removeMultipleMembers
+    get: Apps_listMembers
+    post: Apps_addMembersToApp
+  /api/apps/{app}/members/{user}:
+    delete: Apps_removeMember
+    put: Apps_addMember
+  /api/apps/{app}/messages:
+    get: Messages_listAppMessages
+    post: Messages_createNewMessage
+  /api/apps/{app}/posts:
+    get: Posts_listAppPosts
+    post: Posts_createNewPost
+  /api/apps/{app}/restore:
+    post: Apps_restoreAppFromTrash
+  /api/apps/{app}/stars:
+    delete: Stars_removeStarFromApp
+    post: Stars_addStarToApp
+  /api/apps/{app}/subscribe:
+    post: Apps_subscribeToApp
+  /api/apps/{app}/trash:
+    post: Apps_moveToTrash
+  /api/apps/{app}/unsubscribe:
+    post: Apps_unsubscribeFromApp
+  /api/apps/{uid}:
+    put: Apps_upsertAppByUid
+  /api/blobs:
+    post: Blobs_uploadBlob
+  /api/blobs/external:
+    post: Blobs_createExternalBlob
+  /api/blobs/{id}:
+    get: Blobs_getMetadata
+  /api/comments:
+    get: Comments_listComments
+  /api/comments/{id}:
+    delete: Comments_deleteCommentById
+    get: Comments_getById
+    patch: Comments_updateById
+  /api/comments/{id}/attachments:
+    get: Files_listCommentAttachments
+  /api/comments/{id}/reactions:
+    delete: Reactions_unreactToComment
+    get: Reactions_listCommentReactions
+    post: Reactions_createForComment
+  /api/comments/{id}/restore:
+    post: Comments_restoreById
+  /api/comments/{id}/trash:
+    post: Comments_moveToTrash
+  /api/conversations:
+    get: Conversations_list
+    post: Conversations_createNewConversation
+  /api/conversations/badge:
+    get: Conversations_countUnread
+  /api/conversations/{id}:
+    get: Conversations_getById
+  /api/conversations/{id}/delivered:
+    put: Conversations_updateDeliveryStatus
+  /api/conversations/{id}/mark:
+    delete: Conversations_markUnread
+    put: Conversations_markAsRead
+  /api/conversations/{id}/pin:
+    delete: Conversations_unpinConversation
+    put: Conversations_pinConversation
+  /api/conversations/{id}/typing:
+    put: Conversations_indicateTyping
+  /api/directories:
+    get: Directories_listDirectories
+    post: Directories_createUserDirectory
+  /api/directories/{dir}:
+    delete: Directories_removeDirectory
+    get: Directories_getDirectory
+    patch: Directories_updateDirectoryName
+  /api/directories/{dir}/members:
+    get: Directories_getMembers
+  /api/embeds:
+    post: Embeds_createEmbedForUrl
+  /api/embeds/{id}:
+    get: Embeds_getById
+  /api/files:
+    get: Files_getList
+  /api/files/{id}:
+    delete: Files_deleteFile
+    get: Files_getFileMetadata
+    patch: Files_updateFileById
+  /api/files/{id}/comments:
+    get: Comments_getFileComments
+    post: Comments_createNewComment
+  /api/files/{id}/restore:
+    post: Files_restoreFileFromTrash
+  /api/files/{id}/subscribe:
+    post: Files_subscribeToFileActivity
+  /api/files/{id}/trash:
+    post: Files_moveToTrash
+  /api/files/{id}/unsubscribe:
+    post: Files_unsubscribeNotification
+  /api/files/{id}/versions:
+    get: Files_getFileVersions
+  /api/files/{id}/versions/{version}:
+    delete: Files_deleteVersion
+    get: Files_getFileVersion
+  /api/files/{id}/versions/{version}/restore:
+    post: Files_restorePreviousVersion
+  /api/meetings:
+    post: Meetings_createMeetingZoomOrTeams
+  /api/messages:
+    get: Messages_listMessages
+  /api/messages/{id}:
+    delete: Messages_deleteMessage
+    get: Messages_getMessageById
+    patch: Messages_updateById
+  /api/messages/{id}/attachments:
+    get: Files_listAttachments
+  /api/messages/{id}/reactions:
+    delete: Reactions_unreactToMessage
+    get: Reactions_getMessageReactions
+    post: Reactions_createForMessage
+  /api/messages/{id}/restore:
+    post: Messages_restoreMessageFromTrash
+  /api/messages/{id}/trash:
+    post: Messages_moveToTrash
+  /api/notifications:
+    get: Notifications_listUserNotifications
+  /api/notifications/mark:
+    put: Notifications_markAsRead
+  /api/notifications/{id}:
+    delete: Notifications_deleteNotificationById
+    get: Notifications_getById
+  /api/notifications/{id}/mark:
+    delete: Notifications_markAsUnread
+    put: Notifications_markAsRead
+  /api/options/{id}:
+    get: Options_getPollOption
+  /api/options/{id}/vote:
+    post: Options_addVoteForUser
+  /api/options/{id}/voters:
+    get: Options_listVoters
+  /api/posts:
+    get: Posts_getAll
+  /api/posts/{id}:
+    delete: Posts_deletePostById
+    get: Posts_getPostById
+    patch: Posts_updateById
+  /api/posts/{id}/attachments:
+    get: Files_listAttachments
+  /api/posts/{id}/comments:
+    get: Comments_listPostComments
+    post: Comments_createNewComment
+  /api/posts/{id}/reactions:
+    delete: Reactions_unreactToPost
+    get: Reactions_listPostReactions
+    post: Reactions_createForPost
+  /api/posts/{id}/restore:
+    post: Posts_restoreById
+  /api/posts/{id}/subscribe:
+    post: Posts_subscribeToPost
+  /api/posts/{id}/trash:
+    post: Posts_moveToTrash
+  /api/posts/{id}/unsubscribe:
+    post: Posts_unsubscribeNotification
+  /api/reactions/{id}:
+    delete: Reactions_deleteById
+    get: Reactions_getReactionById
+  /api/stars:
+    get: Stars_listItemsStarred
+  /api/user:
+    get: Users_getAuthenticatedUser
+  /api/users:
+    get: Users_listUsers
+    post: Users_createAccount
+  /api/users/autocomplete:
+    get: Users_listByAutocomplete
+  /api/users/{uid}:
+    put: Users_upsertUser
+  /api/users/{user}:
+    get: Users_getUserById
+    patch: Users_updateUser
+  /api/users/{user}/restore:
+    post: Users_restoreUserFromTrash
+  /api/users/{user}/tokens:
+    delete: Users_revokeAccessTokens
+    post: Users_createAccessToken
+  /api/users/{user}/trash:
+    post: Users_moveToTrash
+  /api/webhooks:
+    get: Webhooks_listWebhooks
+    post: Webhooks_registerWebhook
+  /api/webhooks/{id}:
+    delete: Webhooks_deleteWebhookById
+    get: Webhooks_getById
+    patch: Webhooks_updateRegistration
+  /api/webhooks/{id}/deliveries:
+    get: Webhooks_listDeliveries
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/apps/{app}/members:
+    delete:
+      application/*+json: AppsRemoveMultipleMembersRequest3
+      application/json: AppsRemoveMultipleMembersRequest1
+      application/json-patch+json: AppsRemoveMultipleMembersRequest
+      text/json: AppsRemoveMultipleMembersRequest2
+    post:
+      application/*+json: AppsAddMembersToAppRequest3
+      application/json: AppsAddMembersToAppRequest1
+      application/json-patch+json: AppsAddMembersToAppRequest
+      text/json: AppsAddMembersToAppRequest2
+responseDescriptions: {}
+responseSchemaNames:
+  /api/files/{id}/versions:
+    get:
+      '200':
+        application/json: FilesGetFileVersionsResponse
+  /api/options/{id}/voters:
+    get:
+      '200':
+        application/json: OptionsListVotersResponse
+securityParameters:
+  action:
+    query: false
+  bot:
+    query: false
+  content:
+    query: false
+  contextual:
+    query: false
+  count:
+    query: false
+  count_only:
+    query: false
+  directory_id:
+    query: false
+  id:
+    query: false
+  message_id:
+    query: false
+  order_by:
+    query: false
+  q:
+    query: false
+  skip:
+    query: false
+  suspended:
+    query: false
+  tag:
+    query: false
+  top:
+    query: false
+  trashed:
+    query: false
+  type:
+    query: false
+  unread:
+    query: false
+validServerUrls:
+  https://{WEAVY-SERVER}:
+    url: https://{WEAVY-SERVER}

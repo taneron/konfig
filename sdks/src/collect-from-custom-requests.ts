@@ -2131,6 +2131,11 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "weavy.com": {
+    type: "GET",
+    url: "https://www.weavy.com/hubfs/docs/openapi.json",
+    apiBaseUrl: "https://{WEAVY-SERVER}"
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({
@@ -2508,18 +2513,15 @@ async function processCustomRequest({
   }
 
   let apiBaseUrl = spec.spec.servers?.[0]?.url;
-  if (apiBaseUrl === undefined) {
-    if (customRequest.servers !== undefined) {
-      spec.spec.servers = customRequest.servers;
-      apiBaseUrl = customRequest.servers[0].url;
-    } else {
-      throw Error(`❌ ${key} is missing apiBaseUrl.`);
-    }
+  if (customRequest.servers !== undefined) {
+    spec.spec.servers = customRequest.servers;
+    apiBaseUrl = customRequest.servers[0].url;
   }
   if (customRequest.apiBaseUrl !== undefined) {
+    spec.spec.servers = [{ url: customRequest.apiBaseUrl }];
     apiBaseUrl = customRequest.apiBaseUrl;
-    spec.spec.servers = [{ url: apiBaseUrl }];
   }
+  if (apiBaseUrl === undefined) throw Error(`❌ ${key} is missing apiBaseUrl.`);
 
   const numberOfEndpoints = getNumberOfEndpoints(spec);
   const numberOfOperations = getNumberOfOperations(spec);

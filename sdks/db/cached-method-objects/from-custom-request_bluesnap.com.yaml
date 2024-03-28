@@ -1,4 +1,4 @@
-hash: 0d04d9101e67d66b77704e7868775dee27177920ba4934c332665d7126ffa1c0
+hash: b3a298a85b356d135b8a11dd196b406c64ee5b1331ed04a1932f10a80d08201c
 methodObjects:
   - url: /transactions
     method: createTransaction
@@ -643,54 +643,6 @@ methodObjects:
         schema: string
         description: ''
         default: 048deff0-a285-47e1-bc39-42f79bf0095b
-    responses:
-      - statusCode: '200'
-        description: OK
-  - url: /recurring/subscriptions?{parameters}
-    method: listAllSubscriptions
-    httpMethod: get
-    tag: Subscription
-    typeScriptTag: subscription
-    description: Retrieve All Subscriptions
-    parameters:
-      - name: pagesize
-        schema: string
-        description: ''
-        default: '5'
-      - name: after
-        schema: string
-        description: ''
-        default: '34567'
-      - name: gettotal
-        schema: boolean
-        description: ''
-        default: true
-      - name: fulldescription
-        schema: boolean
-        description: ''
-        default: false
-    responses:
-      - statusCode: '200'
-        description: OK
-  - url: /:subscriptionId/charges?{parameters}
-    method: listCharges
-    httpMethod: get
-    tag: Subscription
-    typeScriptTag: subscription
-    description: Retrieve All Charges for a Subscription
-    parameters:
-      - name: pagesize
-        schema: string
-        description: ''
-        default: '3'
-      - name: after
-        schema: string
-        description: ''
-        default: '163193'
-      - name: fulldescription
-        schema: boolean
-        description: ''
-        default: false
     responses:
       - statusCode: '200'
         description: OK
