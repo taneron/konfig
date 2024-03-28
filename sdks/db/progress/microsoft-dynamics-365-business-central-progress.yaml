@@ -1,0 +1,930 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /companies:
+    get: Company_getList
+  /companies({company_id}):
+    get: Company_getProperties
+  /companies({company_id})/accounts:
+    get: Account_getList
+  /companies({company_id})/accounts({account_id}):
+    get: Account_getProperties
+  /companies({company_id})/agedAccountsPayable:
+    get: AgedAccountsPayable_getList
+  /companies({company_id})/agedAccountsPayable({agedAccountsPayable_vendorId}):
+    get: AgedAccountsPayable_getProperties
+  /companies({company_id})/agedAccountsReceivable:
+    get: AgedAccountsReceivable_getList
+  /companies({company_id})/agedAccountsReceivable({agedAccountsReceivable_customerId}):
+    get: AgedAccountsReceivable_getProperties
+  /companies({company_id})/attachments:
+    get: Attachments_getList
+    post: Attachments_createDynamicsObject
+  /companies({company_id})/attachments({attachments_parentId},{attachments_id}):
+    delete: Attachments_deleteDynamicsObject
+    get: Attachments_getProperties
+    patch: Attachments_updateDynamicsObject
+  /companies({company_id})/balanceSheet:
+    get: BalanceSheet_getList
+  /companies({company_id})/balanceSheet({balanceSheet_lineNumber}):
+    get: BalanceSheet_getProperties
+  /companies({company_id})/bankAccounts:
+    get: BankAccount_getList
+    post: BankAccount_createDynamicsObject
+  /companies({company_id})/bankAccounts({bankAccount_id}):
+    delete: BankAccount_deleteDynamicsObject
+    get: BankAccount_getProperties
+    patch: BankAccount_updateDynamicsObject
+  /companies({company_id})/cashFlowStatement:
+    get: CashFlowStatement_getList
+  /companies({company_id})/cashFlowStatement({cashFlowStatement_lineNumber}):
+    get: CashFlowStatement_getProperties
+  /companies({company_id})/companyInformation:
+    get: CompanyInformation_getList
+  /companies({company_id})/companyInformation({companyInformation_id}):
+    get: CompanyInformation_getProperties
+    patch: CompanyInformation_updateDynamicsObject
+  /companies({company_id})/countriesRegions:
+    get: CountryRegion_getList
+    post: CountryRegion_createDynamicsObject
+  /companies({company_id})/countriesRegions({countryRegion_id}):
+    delete: CountryRegion_deleteDynamicsObject
+    get: CountryRegion_getProperties
+    patch: CountryRegion_updateDynamicsObject
+  /companies({company_id})/currencies:
+    get: Currency_getList
+    post: Currency_createDynamicsObject
+  /companies({company_id})/currencies({currency_id}):
+    delete: Currency_deleteDynamicsObject
+    get: Currency_getProperties
+    patch: Currency_updateDynamicsObject
+  /companies({company_id})/customerFinancialDetails:
+    get: CustomerFinancialDetail_getList
+  /companies({company_id})/customerFinancialDetails({customerFinancialDetail_id}):
+    get: CustomerFinancialDetail_getProperties
+  /companies({company_id})/customerPaymentJournals:
+    get: CustomerPaymentJournal_getList
+    post: CustomerPaymentJournal_createDynamicsObject
+  /companies({company_id})/customerPaymentJournals({customerPaymentJournal_id}):
+    delete: CustomerPaymentJournal_deleteObject
+    get: CustomerPaymentJournal_getProperties
+    patch: CustomerPaymentJournal_updateObject
+  /companies({company_id})/customerPaymentJournals({customerPaymentJournal_id})/customerPayments:
+    get: CustomerPayment_getList
+    post: CustomerPayment_createD365Object
+  /companies({company_id})/customerPaymentJournals({customerPaymentJournal_id})/customerPayments({customerPayment_id}):
+    delete: CustomerPayment_deleteObject
+    get: CustomerPayment_getProperties
+    patch: CustomerPayment_updateObject
+  /companies({company_id})/customerPayments:
+    get: CustomerPayment_getList
+    post: CustomerPayment_createDynamicsObject
+  /companies({company_id})/customerPayments({customerPayment_id}):
+    delete: CustomerPayment_deleteDynamicsObject
+    get: CustomerPayment_getProperties
+    patch: CustomerPayment_updateDynamicsObject
+  /companies({company_id})/customerSales:
+    get: CustomerSale_list
+  /companies({company_id})/customerSales({customerSale_customerId},'{customerSale_customerNumber}','{customerSale_name}'):
+    get: CustomerSale_getProperties
+  /companies({company_id})/customers:
+    get: Customer_getList
+    post: Customer_createDynamicsObject
+  /companies({company_id})/customers({customer_id}):
+    delete: Customer_deleteD365Object
+    get: Customer_getProperties
+    patch: Customer_updateDynamicsObject
+  /companies({company_id})/customers({customer_id})/customerFinancialDetails:
+    get: CustomerFinancialDetail_getList
+  /companies({company_id})/customers({customer_id})/customerFinancialDetails({customerFinancialDetail_id}):
+    get: CustomerFinancialDetail_getProperties
+  /companies({company_id})/customers({customer_id})/defaultDimensions:
+    get: DefaultDimensions_getList
+    post: DefaultDimensions_createDynamicsObject
+  /companies({company_id})/customers({customer_id})/defaultDimensions({defaultDimensions_parentId},{defaultDimensions_dimensionId}):
+    delete: DefaultDimensions_deleteObject
+    get: DefaultDimensions_getProperties
+    patch: DefaultDimensions_updateObject
+  /companies({company_id})/customers({customer_id})/picture:
+    get: Picture_getList
+  /companies({company_id})/customers({customer_id})/picture({picture_id}):
+    delete: Picture_deleteObjectById
+    get: Picture_getProperties
+    patch: Picture_updateObject
+  /companies({company_id})/defaultDimensions:
+    get: DefaultDimensions_getList
+    post: DefaultDimensions_createD365Object
+  /companies({company_id})/defaultDimensions({defaultDimensions_parentId},{defaultDimensions_dimensionId}):
+    delete: DefaultDimensions_deleteObject
+    get: DefaultDimensions_getProperties
+    patch: DefaultDimensions_updateObject
+  /companies({company_id})/dimensionLines:
+    get: DimensionLine_getList
+    post: DimensionLine_createD365Object
+  /companies({company_id})/dimensionLines({dimensionLine_parentId},{dimensionLine_id}):
+    delete: DimensionLine_deleteObject
+    get: DimensionLine_getProperties
+    patch: DimensionLine_updateObject
+  /companies({company_id})/dimensionValues:
+    get: DimensionValue_getList
+  /companies({company_id})/dimensionValues({dimensionValue_id}):
+    get: DimensionValue_getProperties
+  /companies({company_id})/dimensions:
+    get: Dimension_getList
+  /companies({company_id})/dimensions({dimension_id}):
+    get: Dimension_getProperties
+  /companies({company_id})/dimensions({dimension_id})/dimensionValues:
+    get: DimensionValue_getList
+  /companies({company_id})/dimensions({dimension_id})/dimensionValues({dimensionValue_id}):
+    get: DimensionValue_getProperties
+  /companies({company_id})/employees:
+    get: Employee_getList
+    post: Employee_createDynamicsObject
+  /companies({company_id})/employees({employee_id}):
+    delete: Employee_deleteD365Object
+    get: Employee_getProperties
+    patch: Employee_updateDynamicsObject
+  /companies({company_id})/employees({employee_id})/defaultDimensions:
+    get: DefaultDimensions_getList
+    post: DefaultDimensions_createDynamicsObject
+  /companies({company_id})/employees({employee_id})/defaultDimensions({defaultDimensions_parentId},{defaultDimensions_dimensionId}):
+    delete: DefaultDimensions_deleteD365Object
+    get: DefaultDimensions_getProperties
+    patch: DefaultDimensions_updateObject
+  /companies({company_id})/employees({employee_id})/picture:
+    get: Picture_getList
+  /companies({company_id})/employees({employee_id})/picture({picture_id}):
+    delete: Picture_deleteObjectById
+    get: Picture_getProperties
+    patch: Picture_updateDynamicsObject
+  /companies({company_id})/employees({employee_id})/timeRegistrationEntries:
+    get: TimeRegistrationEntry_getList
+    post: TimeRegistrationEntry_createDynamicsObject
+  /companies({company_id})/employees({employee_id})/timeRegistrationEntries({timeRegistrationEntry_id}):
+    delete: TimeRegistrationEntry_deleteD365Object
+    get: TimeRegistrationEntry_getProperties
+    patch: TimeRegistrationEntry_updateDynamicsObject
+  /companies({company_id})/generalLedgerEntries:
+    get: GeneralLedgerEntry_getList
+  /companies({company_id})/generalLedgerEntries({generalLedgerEntry_id}):
+    get: GeneralLedgerEntry_getProperties
+  /companies({company_id})/generalLedgerEntryAttachments:
+    get: GeneralLedgerEntryAttachments_getList
+    post: GeneralLedgerEntryAttachments_createD365Object
+  /companies({company_id})/generalLedgerEntryAttachments({generalLedgerEntryAttachments_generalLedgerEntryNumber},{generalLedgerEntryAttachments_id}):
+    delete: GeneralLedgerEntryAttachments_deleteD365Object
+    get: GeneralLedgerEntryAttachments_getProperties
+    patch: GeneralLedgerEntryAttachments_updateDynamicsObject
+  /companies({company_id})/incomeStatement:
+    get: IncomeStatement_getList
+  /companies({company_id})/incomeStatement({incomeStatement_lineNumber}):
+    get: IncomeStatement_getProperties
+  /companies({company_id})/itemCategories:
+    get: ItemCategory_getList
+    post: ItemCategory_createD365Object
+  /companies({company_id})/itemCategories({itemCategory_id}):
+    delete: ItemCategory_deleteDynamicsObject
+    get: ItemCategory_getProperties
+    patch: ItemCategory_updateDynamicsObject
+  /companies({company_id})/items:
+    get: Item_list
+    post: Item_createDynamicsObject
+  /companies({company_id})/items({item_id}):
+    delete: Item_deleteD365Object
+    get: Item_getProperties
+    patch: Item_updateDynamicsObject
+  /companies({company_id})/items({item_id})/defaultDimensions:
+    get: DefaultDimensions_getList
+    post: DefaultDimensions_createDynamicsObject
+  /companies({company_id})/items({item_id})/defaultDimensions({defaultDimensions_parentId},{defaultDimensions_dimensionId}):
+    delete: DefaultDimensions_deleteObject
+    get: DefaultDimensions_getProperties
+    patch: DefaultDimensions_updateObject
+  /companies({company_id})/items({item_id})/picture:
+    get: Picture_getList
+  /companies({company_id})/items({item_id})/picture({picture_id}):
+    delete: Picture_deleteObjectById
+    get: Picture_getProperties
+    patch: Picture_updateDynamicsObject
+  /companies({company_id})/journalLines:
+    get: JournalLine_getList
+    post: JournalLine_createD365Object
+  /companies({company_id})/journalLines({journalLine_id}):
+    delete: JournalLine_deleteDynamicsObject
+    get: JournalLine_getProperties
+    patch: JournalLine_updateDynamicsObject
+  /companies({company_id})/journalLines({journalLine_id})/attachments:
+    get: Attachments_getList
+    post: Attachments_createDynamicsObject
+  /companies({company_id})/journalLines({journalLine_id})/attachments({attachments_parentId},{attachments_id}):
+    delete: Attachments_deleteObject
+    get: Attachments_getProperties
+    patch: Attachments_updateDynamicsObject
+  /companies({company_id})/journals:
+    get: Journal_getList
+    post: Journal_createDynamicsObject
+  /companies({company_id})/journals({journal_id}):
+    delete: Journal_deleteDynamicsObject
+    get: Journal_getProperties
+    patch: Journal_updateDynamicsObject
+  /companies({company_id})/journals({journal_id})/Microsoft.NAV.post:
+    post: Journal_postAction
+  /companies({company_id})/journals({journal_id})/journalLines:
+    get: JournalLine_getList
+    post: JournalLine_createD365Object
+  /companies({company_id})/journals({journal_id})/journalLines({journalLine_id}):
+    delete: JournalLine_deleteObject
+    get: JournalLine_getProperties
+    patch: JournalLine_updateObject
+  /companies({company_id})/journals({journal_id})/journalLines({journalLine_id})/attachments:
+    get: Attachments_getList
+    post: Attachments_createD365Object
+  /companies({company_id})/journals({journal_id})/journalLines({journalLine_id})/attachments({attachments_parentId},{attachments_id}):
+    delete: Attachments_deleteObject
+    get: Attachments_getProperties
+    patch: Attachments_updateD365Object
+  /companies({company_id})/paymentMethods:
+    get: PaymentMethod_getList
+    post: PaymentMethod_createD365Object
+  /companies({company_id})/paymentMethods({paymentMethod_id}):
+    delete: PaymentMethod_deleteDynamicsObject
+    get: PaymentMethod_getProperties
+    patch: PaymentMethod_updateDynamicsObject
+  /companies({company_id})/paymentTerms:
+    get: PaymentTerm_getList
+    post: PaymentTerm_createDynamicsObject
+  /companies({company_id})/paymentTerms({paymentTerm_id}):
+    delete: PaymentTerm_deleteDynamicsObject
+    get: PaymentTerm_getProperties
+    patch: PaymentTerm_updateDynamicsObject
+  /companies({company_id})/pdfDocument:
+    get: PdfDocument_getList
+  /companies({company_id})/pdfDocument({pdfDocument_id}):
+    get: PdfDocument_getProperties
+  /companies({company_id})/picture:
+    get: Picture_getList
+  /companies({company_id})/picture({picture_id}):
+    delete: Picture_deleteD365Object
+    get: Picture_getProperties
+    patch: Picture_updateDynamicsObject
+  /companies({company_id})/projects:
+    get: Project_getList
+    post: Project_createDynamicsObject
+  /companies({company_id})/projects({project_id}):
+    delete: Project_deleteD365Object
+    get: Project_getProperties
+    patch: Project_updateDynamicsObject
+  /companies({company_id})/purchaseInvoiceLines:
+    get: PurchaseInvoiceLine_getList
+    post: PurchaseInvoiceLine_createDynamicsObject
+  /companies({company_id})/purchaseInvoiceLines('{purchaseInvoiceLine_id}'):
+    delete: PurchaseInvoiceLine_deleteObject
+    get: PurchaseInvoiceLine_getProperties
+    patch: PurchaseInvoiceLine_updateObject
+  /companies({company_id})/purchaseInvoices:
+    get: PurchaseInvoice_getList
+    post: PurchaseInvoice_createDynamicsObject
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id}):
+    delete: PurchaseInvoice_deleteDynamicsObject
+    get: PurchaseInvoice_getProperties
+    patch: PurchaseInvoice_updateDynamicsObject
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id})/Microsoft.NAV.post:
+    post: PurchaseInvoice_postAction
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id})/pdfDocument:
+    get: PdfDocument_getPdf
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id})/pdfDocument({pdfDocument_id}):
+    get: PdfDocument_getProperties
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id})/purchaseInvoiceLines:
+    get: PurchaseInvoiceLine_list
+    post: PurchaseInvoiceLine_createD365Object
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id})/purchaseInvoiceLines('{purchaseInvoiceLine_id}'):
+    delete: PurchaseInvoiceLine_delete
+    get: PurchaseInvoiceLine_getProperties
+    patch: PurchaseInvoiceLine_updateDynamicsObject
+  /companies({company_id})/retainedEarningsStatement:
+    get: RetainedEarningsStatement_getList
+  /companies({company_id})/retainedEarningsStatement({retainedEarningsStatement_lineNumber}):
+    get: RetainedEarningsStatement_getProperties
+  /companies({company_id})/salesCreditMemoLines:
+    get: SalesCreditMemoLine_getList
+    post: SalesCreditMemoLine_createD365Object
+  /companies({company_id})/salesCreditMemoLines('{salesCreditMemoLine_id}'):
+    delete: SalesCreditMemoLine_deleteDynamicsObject
+    get: SalesCreditMemoLine_getProperties
+    patch: SalesCreditMemoLine_updateDynamicsObject
+  /companies({company_id})/salesCreditMemos:
+    get: SalesCreditMemo_getList
+    post: SalesCreditMemo_createDynamicsObject
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id}):
+    delete: SalesCreditMemo_deleteObject
+    get: SalesCreditMemo_getProperties
+    patch: SalesCreditMemo_updateObject
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/Microsoft.NAV.cancel:
+    post: SalesCreditMemo_cancelAction
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/Microsoft.NAV.cancelAndSend:
+    post: SalesCreditMemo_cancelAndSend
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/Microsoft.NAV.post:
+    post: SalesCreditMemo_postAction
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/Microsoft.NAV.postAndSend:
+    post: SalesCreditMemo_postAndSend
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/Microsoft.NAV.send:
+    post: SalesCreditMemo_sendAction
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/pdfDocument:
+    get: PdfDocument_getDocument
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/pdfDocument({pdfDocument_id}):
+    get: PdfDocument_getProperties
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/salesCreditMemoLines:
+    get: SalesCreditMemoLine_getList
+    post: SalesCreditMemoLine_createD365Object
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/salesCreditMemoLines('{salesCreditMemoLine_id}'):
+    delete: SalesCreditMemoLine_delete
+    get: SalesCreditMemoLine_getProperties
+    patch: SalesCreditMemoLine_updateObject
+  /companies({company_id})/salesInvoiceLines:
+    get: SalesInvoiceLine_getList
+    post: SalesInvoiceLine_createDynamicsObject
+  /companies({company_id})/salesInvoiceLines('{salesInvoiceLine_id}'):
+    delete: SalesInvoiceLine_deleteObject
+    get: SalesInvoiceLine_getProperties
+    patch: SalesInvoiceLine_updateObject
+  /companies({company_id})/salesInvoices:
+    get: SalesInvoice_getList
+    post: SalesInvoice_createDynamicsObject
+  /companies({company_id})/salesInvoices({salesInvoice_id}):
+    delete: SalesInvoice_deleteObject
+    get: SalesInvoice_getProperties
+    patch: SalesInvoice_updateObjectById
+  /companies({company_id})/salesInvoices({salesInvoice_id})/Microsoft.NAV.cancel:
+    post: SalesInvoice_cancelAction
+  /companies({company_id})/salesInvoices({salesInvoice_id})/Microsoft.NAV.cancelAndSend:
+    post: SalesInvoice_cancelAndSendAction
+  /companies({company_id})/salesInvoices({salesInvoice_id})/Microsoft.NAV.makeCorrectiveCreditMemo:
+    post: SalesInvoice_performMakeCorrectiveCreditMemo
+  /companies({company_id})/salesInvoices({salesInvoice_id})/Microsoft.NAV.post:
+    post: SalesInvoice_postAction
+  /companies({company_id})/salesInvoices({salesInvoice_id})/Microsoft.NAV.postAndSend:
+    post: SalesInvoice_postAndSendAction
+  /companies({company_id})/salesInvoices({salesInvoice_id})/Microsoft.NAV.send:
+    post: SalesInvoice_sendAction
+  /companies({company_id})/salesInvoices({salesInvoice_id})/pdfDocument:
+    get: PdfDocument_getPdf
+  /companies({company_id})/salesInvoices({salesInvoice_id})/pdfDocument({pdfDocument_id}):
+    get: PdfDocument_getProperties
+  /companies({company_id})/salesInvoices({salesInvoice_id})/salesInvoiceLines:
+    get: SalesInvoiceLine_list
+    post: SalesInvoiceLine_createD365Object
+  /companies({company_id})/salesInvoices({salesInvoice_id})/salesInvoiceLines('{salesInvoiceLine_id}'):
+    delete: SalesInvoiceLine_delete
+    get: SalesInvoiceLine_getProperties
+    patch: SalesInvoiceLine_updateObject
+  /companies({company_id})/salesOrderLines:
+    get: SalesOrderLine_getList
+    post: SalesOrderLine_createDynamicsObject
+  /companies({company_id})/salesOrderLines('{salesOrderLine_id}'):
+    delete: SalesOrderLine_deleteObject
+    get: SalesOrderLine_getProperties
+    patch: SalesOrderLine_updateObject
+  /companies({company_id})/salesOrders:
+    get: SalesOrder_getList
+    post: SalesOrder_createDynamicsObject
+  /companies({company_id})/salesOrders({salesOrder_id}):
+    delete: SalesOrder_deleteDynamicsObject
+    get: SalesOrder_getProperties
+    patch: SalesOrder_updateDynamicsObject
+  /companies({company_id})/salesOrders({salesOrder_id})/Microsoft.NAV.shipAndInvoice:
+    post: SalesOrder_shipAndInvoice
+  /companies({company_id})/salesOrders({salesOrder_id})/salesOrderLines:
+    get: SalesOrderLine_getList
+    post: SalesOrderLine_createD365Object
+  /companies({company_id})/salesOrders({salesOrder_id})/salesOrderLines('{salesOrderLine_id}'):
+    delete: SalesOrderLine_deleteObject
+    get: SalesOrderLine_getProperties
+    patch: SalesOrderLine_updateObject
+  /companies({company_id})/salesQuoteLines:
+    get: SalesQuoteLine_getList
+    post: SalesQuoteLine_createDynamicsObject
+  /companies({company_id})/salesQuoteLines('{salesQuoteLine_id}'):
+    delete: SalesQuoteLine_deleteObject
+    get: SalesQuoteLine_getProperties
+    patch: SalesQuoteLine_updateObject
+  /companies({company_id})/salesQuotes:
+    get: SalesQuote_getList
+    post: SalesQuote_createD365Object
+  /companies({company_id})/salesQuotes({salesQuote_id}):
+    delete: SalesQuote_deleteDynamicsObject
+    get: SalesQuote_getProperties
+    patch: SalesQuote_updateDynamicsObject
+  /companies({company_id})/salesQuotes({salesQuote_id})/Microsoft.NAV.makeInvoice:
+    post: SalesQuote_createInvoice
+  /companies({company_id})/salesQuotes({salesQuote_id})/Microsoft.NAV.makeOrder:
+    post: SalesQuote_createOrder
+  /companies({company_id})/salesQuotes({salesQuote_id})/Microsoft.NAV.send:
+    post: SalesQuote_sendAction
+  /companies({company_id})/salesQuotes({salesQuote_id})/pdfDocument:
+    get: PdfDocument_getList
+  /companies({company_id})/salesQuotes({salesQuote_id})/pdfDocument({pdfDocument_id}):
+    get: PdfDocument_getProperties
+  /companies({company_id})/salesQuotes({salesQuote_id})/salesQuoteLines:
+    get: SalesQuoteLine_getList
+    post: SalesQuoteLine_createD365Object
+  /companies({company_id})/salesQuotes({salesQuote_id})/salesQuoteLines('{salesQuoteLine_id}'):
+    delete: SalesQuoteLine_deleteObject
+    get: SalesQuoteLine_getProperties
+    patch: SalesQuoteLine_updateObject
+  /companies({company_id})/shipmentMethods:
+    get: ShipmentMethod_getList
+    post: ShipmentMethod_createDynamicsObject
+  /companies({company_id})/shipmentMethods({shipmentMethod_id}):
+    delete: ShipmentMethod_deleteById
+    get: ShipmentMethod_getProperties
+    patch: ShipmentMethod_updateDynamicsObject
+  /companies({company_id})/taxAreas:
+    get: TaxArea_getList
+    post: TaxArea_createD365Object
+  /companies({company_id})/taxAreas({taxArea_id}):
+    delete: TaxArea_deleteDynamicsObject
+    get: TaxArea_getProperties
+    patch: TaxArea_updateDynamicsObject
+  /companies({company_id})/taxGroups:
+    get: TaxGroup_getList
+    post: TaxGroup_createDynamicsObject
+  /companies({company_id})/taxGroups({taxGroup_id}):
+    delete: TaxGroup_deleteDynamicsObject
+    get: TaxGroup_getProperties
+    patch: TaxGroup_updateDynamicsObject
+  /companies({company_id})/timeRegistrationEntries:
+    get: TimeRegistrationEntry_getList
+    post: TimeRegistrationEntry_createDynamicsObject
+  /companies({company_id})/timeRegistrationEntries({timeRegistrationEntry_id}):
+    delete: TimeRegistrationEntry_deleteObject
+    get: TimeRegistrationEntry_getProperties
+    patch: TimeRegistrationEntry_updateObject
+  /companies({company_id})/trialBalance:
+    get: TrialBalance_getList
+  /companies({company_id})/trialBalance('{trialBalance_number}'):
+    get: TrialBalance_getProperties
+  /companies({company_id})/unitsOfMeasure:
+    get: UnitOfMeasure_getList
+    post: UnitOfMeasure_createD365Object
+  /companies({company_id})/unitsOfMeasure({unitOfMeasure_id}):
+    delete: UnitOfMeasure_deleteObject
+    get: UnitOfMeasure_getProperties
+    patch: UnitOfMeasure_updateObject
+  /companies({company_id})/vendorPurchases:
+    get: VendorPurchase_getList
+  /companies({company_id})/vendorPurchases({vendorPurchase_vendorId},'{vendorPurchase_vendorNumber}','{vendorPurchase_name}'):
+    get: VendorPurchase_getProperties
+  /companies({company_id})/vendors:
+    get: Vendor_list
+    post: Vendor_createDynamicsObject
+  /companies({company_id})/vendors({vendor_id}):
+    delete: Vendor_deleteD365Object
+    get: Vendor_getProperties
+    patch: Vendor_updateDynamicsObject
+  /companies({company_id})/vendors({vendor_id})/defaultDimensions:
+    get: DefaultDimensions_getList
+    post: DefaultDimensions_createDynamicsObject
+  /companies({company_id})/vendors({vendor_id})/defaultDimensions({defaultDimensions_parentId},{defaultDimensions_dimensionId}):
+    delete: DefaultDimensions_deleteObject
+    get: DefaultDimensions_getProperties
+    patch: DefaultDimensions_updateObject
+  /companies({company_id})/vendors({vendor_id})/picture:
+    get: Picture_getList
+  /companies({company_id})/vendors({vendor_id})/picture({picture_id}):
+    delete: Picture_deleteObjectById
+    get: Picture_getProperties
+    patch: Picture_updateObject
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /companies({company_id})/bankAccounts:
+    post:
+      application/json: BankAccountCreateDynamicsObjectRequest
+  /companies({company_id})/companyInformation({companyInformation_id}):
+    patch:
+      application/json: CompanyInformationUpdateDynamicsObjectRequest
+  /companies({company_id})/countriesRegions:
+    post:
+      application/json: CountryRegionCreateDynamicsObjectRequest
+  /companies({company_id})/currencies:
+    post:
+      application/json: CurrencyCreateDynamicsObjectRequest
+  /companies({company_id})/customerPaymentJournals:
+    post:
+      application/json: CustomerPaymentJournalCreateDynamicsObjectRequest
+  /companies({company_id})/customerPaymentJournals({customerPaymentJournal_id})/customerPayments:
+    post:
+      application/json: CustomerPaymentCreateD365ObjectRequest
+  /companies({company_id})/customers:
+    post:
+      application/json: CustomerCreateDynamicsObjectRequest
+  /companies({company_id})/dimensionLines:
+    post:
+      application/json: DimensionLineCreateD365ObjectRequest
+  /companies({company_id})/employees:
+    post:
+      application/json: EmployeeCreateDynamicsObjectRequest
+  /companies({company_id})/employees({employee_id})/timeRegistrationEntries:
+    post:
+      application/json: TimeRegistrationEntryCreateDynamicsObjectRequest
+  /companies({company_id})/generalLedgerEntryAttachments:
+    post:
+      application/json: GeneralLedgerEntryAttachmentsCreateD365ObjectRequest
+  /companies({company_id})/itemCategories:
+    post:
+      application/json: ItemCategoryCreateD365ObjectRequest
+  /companies({company_id})/items:
+    post:
+      application/json: ItemCreateDynamicsObjectRequest
+  /companies({company_id})/items({item_id})/defaultDimensions:
+    post:
+      application/json: DefaultDimensionsCreateDynamicsObjectRequest
+  /companies({company_id})/items({item_id})/picture({picture_id}):
+    patch:
+      application/json: PictureUpdateDynamicsObjectRequest
+  /companies({company_id})/journals:
+    post:
+      application/json: JournalCreateDynamicsObjectRequest
+  /companies({company_id})/journals({journal_id})/journalLines:
+    post:
+      application/json: JournalLineCreateD365ObjectRequest
+  /companies({company_id})/journals({journal_id})/journalLines({journalLine_id})/attachments:
+    post:
+      application/json: AttachmentsCreateD365ObjectRequest
+  /companies({company_id})/paymentMethods:
+    post:
+      application/json: PaymentMethodCreateD365ObjectRequest
+  /companies({company_id})/paymentTerms:
+    post:
+      application/json: PaymentTermCreateDynamicsObjectRequest
+  /companies({company_id})/projects:
+    post:
+      application/json: ProjectCreateDynamicsObjectRequest
+  /companies({company_id})/purchaseInvoices:
+    post:
+      application/json: PurchaseInvoiceCreateDynamicsObjectRequest
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id})/purchaseInvoiceLines:
+    post:
+      application/json: PurchaseInvoiceLineCreateD365ObjectRequest
+  /companies({company_id})/salesCreditMemos:
+    post:
+      application/json: SalesCreditMemoCreateDynamicsObjectRequest
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/salesCreditMemoLines:
+    post:
+      application/json: SalesCreditMemoLineCreateD365ObjectRequest
+  /companies({company_id})/salesInvoices:
+    post:
+      application/json: SalesInvoiceCreateDynamicsObjectRequest
+  /companies({company_id})/salesInvoices({salesInvoice_id})/salesInvoiceLines:
+    post:
+      application/json: SalesInvoiceLineCreateD365ObjectRequest
+  /companies({company_id})/salesOrders:
+    post:
+      application/json: SalesOrderCreateDynamicsObjectRequest
+  /companies({company_id})/salesOrders({salesOrder_id})/salesOrderLines:
+    post:
+      application/json: SalesOrderLineCreateD365ObjectRequest
+  /companies({company_id})/salesQuotes:
+    post:
+      application/json: SalesQuoteCreateD365ObjectRequest
+  /companies({company_id})/salesQuotes({salesQuote_id})/salesQuoteLines:
+    post:
+      application/json: SalesQuoteLineCreateD365ObjectRequest
+  /companies({company_id})/shipmentMethods:
+    post:
+      application/json: ShipmentMethodCreateDynamicsObjectRequest
+  /companies({company_id})/taxAreas:
+    post:
+      application/json: TaxAreaCreateD365ObjectRequest
+  /companies({company_id})/taxGroups:
+    post:
+      application/json: TaxGroupCreateDynamicsObjectRequest
+  /companies({company_id})/unitsOfMeasure:
+    post:
+      application/json: UnitOfMeasureCreateD365ObjectRequest
+  /companies({company_id})/vendors:
+    post:
+      application/json: VendorCreateDynamicsObjectRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /companies:
+    get:
+      '200':
+        application/json: CompanyGetListResponse
+  /companies({company_id})/accounts:
+    get:
+      '200':
+        application/json: AccountGetListResponse
+  /companies({company_id})/agedAccountsPayable:
+    get:
+      '200':
+        application/json: AgedAccountsPayableGetListResponse
+  /companies({company_id})/agedAccountsReceivable:
+    get:
+      '200':
+        application/json: AgedAccountsReceivableGetListResponse
+  /companies({company_id})/attachments:
+    get:
+      '200':
+        application/json: AttachmentsGetList200Response
+  /companies({company_id})/balanceSheet:
+    get:
+      '200':
+        application/json: BalanceSheetGetListResponse
+  /companies({company_id})/bankAccounts:
+    get:
+      '200':
+        application/json: BankAccountGetListResponse
+  /companies({company_id})/cashFlowStatement:
+    get:
+      '200':
+        application/json: CashFlowStatementGetListResponse
+  /companies({company_id})/companyInformation:
+    get:
+      '200':
+        application/json: CompanyInformationGetListResponse
+  /companies({company_id})/countriesRegions:
+    get:
+      '200':
+        application/json: CountryRegionGetListResponse
+  /companies({company_id})/currencies:
+    get:
+      '200':
+        application/json: CurrencyGetListResponse
+  /companies({company_id})/customerFinancialDetails:
+    get:
+      '200':
+        application/json: CustomerFinancialDetailGetList200Response
+  /companies({company_id})/customerPaymentJournals:
+    get:
+      '200':
+        application/json: CustomerPaymentJournalGetListResponse
+  /companies({company_id})/customerPaymentJournals({customerPaymentJournal_id})/customerPayments:
+    get:
+      '200':
+        application/json: CustomerPaymentGetListResponse
+  /companies({company_id})/customerPayments:
+    get:
+      '200':
+        application/json: CustomerPaymentGetList200Response
+  /companies({company_id})/customerSales:
+    get:
+      '200':
+        application/json: CustomerSaleListResponse
+  /companies({company_id})/customers:
+    get:
+      '200':
+        application/json: CustomerGetListResponse
+  /companies({company_id})/customers({customer_id})/customerFinancialDetails:
+    get:
+      '200':
+        application/json: CustomerFinancialDetailGetListResponse
+  /companies({company_id})/customers({customer_id})/defaultDimensions:
+    get:
+      '200':
+        application/json: DefaultDimensionsGetList200Response
+  /companies({company_id})/customers({customer_id})/picture:
+    get:
+      '200':
+        application/json: PictureGetList200Response
+  /companies({company_id})/defaultDimensions:
+    get:
+      '200':
+        application/json: DefaultDimensionsGetList200Response
+  /companies({company_id})/dimensionLines:
+    get:
+      '200':
+        application/json: DimensionLineGetListResponse
+  /companies({company_id})/dimensionValues:
+    get:
+      '200':
+        application/json: DimensionValueGetList200Response
+  /companies({company_id})/dimensions:
+    get:
+      '200':
+        application/json: DimensionGetListResponse
+  /companies({company_id})/dimensions({dimension_id})/dimensionValues:
+    get:
+      '200':
+        application/json: DimensionValueGetListResponse
+  /companies({company_id})/employees:
+    get:
+      '200':
+        application/json: EmployeeGetListResponse
+  /companies({company_id})/employees({employee_id})/defaultDimensions:
+    get:
+      '200':
+        application/json: DefaultDimensionsGetList200Response
+  /companies({company_id})/employees({employee_id})/picture:
+    get:
+      '200':
+        application/json: PictureGetList200Response
+  /companies({company_id})/employees({employee_id})/timeRegistrationEntries:
+    get:
+      '200':
+        application/json: TimeRegistrationEntryGetListResponse
+  /companies({company_id})/generalLedgerEntries:
+    get:
+      '200':
+        application/json: GeneralLedgerEntryGetListResponse
+  /companies({company_id})/generalLedgerEntryAttachments:
+    get:
+      '200':
+        application/json: GeneralLedgerEntryAttachmentsGetListResponse
+  /companies({company_id})/incomeStatement:
+    get:
+      '200':
+        application/json: IncomeStatementGetListResponse
+  /companies({company_id})/itemCategories:
+    get:
+      '200':
+        application/json: ItemCategoryGetListResponse
+  /companies({company_id})/items:
+    get:
+      '200':
+        application/json: ItemListResponse
+  /companies({company_id})/items({item_id})/defaultDimensions:
+    get:
+      '200':
+        application/json: DefaultDimensionsGetListResponse
+  /companies({company_id})/items({item_id})/picture:
+    get:
+      '200':
+        application/json: PictureGetListResponse
+  /companies({company_id})/journalLines:
+    get:
+      '200':
+        application/json: JournalLineGetList200Response
+  /companies({company_id})/journalLines({journalLine_id})/attachments:
+    get:
+      '200':
+        application/json: AttachmentsGetList200Response
+  /companies({company_id})/journals:
+    get:
+      '200':
+        application/json: JournalGetListResponse
+  /companies({company_id})/journals({journal_id})/journalLines:
+    get:
+      '200':
+        application/json: JournalLineGetListResponse
+  /companies({company_id})/journals({journal_id})/journalLines({journalLine_id})/attachments:
+    get:
+      '200':
+        application/json: AttachmentsGetListResponse
+  /companies({company_id})/paymentMethods:
+    get:
+      '200':
+        application/json: PaymentMethodGetListResponse
+  /companies({company_id})/paymentTerms:
+    get:
+      '200':
+        application/json: PaymentTermGetListResponse
+  /companies({company_id})/pdfDocument:
+    get:
+      '200':
+        application/json: PdfDocumentGetListResponse
+  /companies({company_id})/picture:
+    get:
+      '200':
+        application/json: PictureGetList200Response
+  /companies({company_id})/projects:
+    get:
+      '200':
+        application/json: ProjectGetListResponse
+  /companies({company_id})/purchaseInvoiceLines:
+    get:
+      '200':
+        application/json: PurchaseInvoiceLineGetListResponse
+  /companies({company_id})/purchaseInvoices:
+    get:
+      '200':
+        application/json: PurchaseInvoiceGetListResponse
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id})/pdfDocument:
+    get:
+      '200':
+        application/json: PdfDocumentGetPdf200Response
+  /companies({company_id})/purchaseInvoices({purchaseInvoice_id})/purchaseInvoiceLines:
+    get:
+      '200':
+        application/json: PurchaseInvoiceLineListResponse
+  /companies({company_id})/retainedEarningsStatement:
+    get:
+      '200':
+        application/json: RetainedEarningsStatementGetListResponse
+  /companies({company_id})/salesCreditMemoLines:
+    get:
+      '200':
+        application/json: SalesCreditMemoLineGetList200Response
+  /companies({company_id})/salesCreditMemos:
+    get:
+      '200':
+        application/json: SalesCreditMemoGetListResponse
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/pdfDocument:
+    get:
+      '200':
+        application/json: PdfDocumentGetDocumentResponse
+  /companies({company_id})/salesCreditMemos({salesCreditMemo_id})/salesCreditMemoLines:
+    get:
+      '200':
+        application/json: SalesCreditMemoLineGetListResponse
+  /companies({company_id})/salesInvoiceLines:
+    get:
+      '200':
+        application/json: SalesInvoiceLineGetListResponse
+  /companies({company_id})/salesInvoices:
+    get:
+      '200':
+        application/json: SalesInvoiceGetListResponse
+  /companies({company_id})/salesInvoices({salesInvoice_id})/pdfDocument:
+    get:
+      '200':
+        application/json: PdfDocumentGetPdfResponse
+  /companies({company_id})/salesInvoices({salesInvoice_id})/salesInvoiceLines:
+    get:
+      '200':
+        application/json: SalesInvoiceLineListResponse
+  /companies({company_id})/salesOrderLines:
+    get:
+      '200':
+        application/json: SalesOrderLineGetList200Response
+  /companies({company_id})/salesOrders:
+    get:
+      '200':
+        application/json: SalesOrderGetListResponse
+  /companies({company_id})/salesOrders({salesOrder_id})/salesOrderLines:
+    get:
+      '200':
+        application/json: SalesOrderLineGetListResponse
+  /companies({company_id})/salesQuoteLines:
+    get:
+      '200':
+        application/json: SalesQuoteLineGetList200Response
+  /companies({company_id})/salesQuotes:
+    get:
+      '200':
+        application/json: SalesQuoteGetListResponse
+  /companies({company_id})/salesQuotes({salesQuote_id})/pdfDocument:
+    get:
+      '200':
+        application/json: PdfDocumentGetList200Response
+  /companies({company_id})/salesQuotes({salesQuote_id})/salesQuoteLines:
+    get:
+      '200':
+        application/json: SalesQuoteLineGetListResponse
+  /companies({company_id})/shipmentMethods:
+    get:
+      '200':
+        application/json: ShipmentMethodGetListResponse
+  /companies({company_id})/taxAreas:
+    get:
+      '200':
+        application/json: TaxAreaGetListResponse
+  /companies({company_id})/taxGroups:
+    get:
+      '200':
+        application/json: TaxGroupGetListResponse
+  /companies({company_id})/timeRegistrationEntries:
+    get:
+      '200':
+        application/json: TimeRegistrationEntryGetList200Response
+  /companies({company_id})/trialBalance:
+    get:
+      '200':
+        application/json: TrialBalanceGetListResponse
+  /companies({company_id})/unitsOfMeasure:
+    get:
+      '200':
+        application/json: UnitOfMeasureGetListResponse
+  /companies({company_id})/vendorPurchases:
+    get:
+      '200':
+        application/json: VendorPurchaseGetListResponse
+  /companies({company_id})/vendors:
+    get:
+      '200':
+        application/json: VendorListResponse
+  /companies({company_id})/vendors({vendor_id})/defaultDimensions:
+    get:
+      '200':
+        application/json: DefaultDimensionsGetList200Response
+  /companies({company_id})/vendors({vendor_id})/picture:
+    get:
+      '200':
+        application/json: PictureGetList200Response
+securityParameters:
+  $expand:
+    query: false
+  $filter:
+    query: false
+  $limit:
+    query: false
+  $select:
+    query: false
+  $skip:
+    query: false
+  $top:
+    query: false
+  If-Match:
+    header: false
+validServerUrls: {}
