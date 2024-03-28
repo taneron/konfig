@@ -2204,6 +2204,14 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://sales.app.redkik.com/api/v2/apidoc/doc/userservice.json",
     apiBaseUrl: "https://sales.app.redkik.com/api/v2/",
   },
+  "podium.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.podium.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "tramitapp.com": {
     type: "GET",
     url: "https://rrhh.tramitapp.com/public/assets/tramitapp-api.yaml",

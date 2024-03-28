@@ -1,0 +1,727 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v4/appointments:
+    post: Appointment_createNewAppointment
+  /v4/campaign_interactions:
+    get: CampaignInteraction_listInteractions
+  /v4/campaigns:
+    get: Campaign_listAll
+    post: Campaign_createNewCampaign
+  /v4/campaigns/{uid}:
+    delete: Campaign_removeCampaign
+    get: Campaign_getByUid
+    put: Campaign_updateCampaign
+  /v4/campaigns/{uid}/messages:
+    post: Message_createForCampaign
+  /v4/contact_attributes:
+    get: ContactAttribute_listAttributes
+    post: ContactAttribute_createNewAttribute
+  /v4/contact_attributes/{uid}:
+    delete: ContactAttribute_deleteByUid
+    get: ContactAttribute_getAttributeByUid
+    patch: ContactAttribute_updateAttribute
+  /v4/contact_tags:
+    get: ContactTag_listAll
+    post: ContactTag_createOrganizationLevelTag
+  /v4/contact_tags/{uid}:
+    get: ContactTag_getByUid
+    patch: ContactTag_updateOrganizationLevelTag
+  /v4/contacts:
+    get: Contact_listAllContacts
+    post: Contact_createOrUpdate
+  /v4/contacts/campaigns/opt_in:
+    post: Contact_optInContact
+  /v4/contacts/campaigns/opt_out:
+    post: Contact_optOutContact
+  /v4/contacts/{identifier}:
+    delete: Contact_deleteByIdentifier
+    get: Contact_getByIdentifier
+    patch: Contact_updateWithUid
+  /v4/contacts/{identifier}/attributes/{uid}:
+    delete: Contact_removeAttribute
+    patch: Contact_updateAttribute
+    post: Contact_addAttributeToContact
+  /v4/contacts/{identifier}/tags/{uid}:
+    delete: Contact_removeTag
+    post: Contact_addExistingTagToContact
+  /v4/conversations:
+    get: Conversation_listConversations
+  /v4/conversations/{conversation_uid}/messages/{uid}:
+    get: Message_getFromConversation
+  /v4/conversations/{uid}:
+    get: Conversation_getById
+    put: Conversation_updateByUid
+  /v4/conversations/{uid}/lead_writeback:
+    post: Conversation_writeLead
+  /v4/conversations/{uid}/notes:
+    post: Conversation_createNote
+  /v4/dataFeeds/{uid}/events:
+    post: DataFeedEvent_processEvent
+  /v4/data_stream/{location_uid}/{integration_uid}/{data_mapping_name}:
+    post: DataStream_sendIntegrationPayload
+  /v4/feedback:
+    get: Feedback_listSurveys
+    post: Feedback_createSurvey
+  /v4/import/messages:
+    post: Message_importFromExternalSystem
+  /v4/invoices:
+    get: Invoice_listAllInvoices
+    post: Invoice_createCardInvoice
+  /v4/invoices/{uid}:
+    get: Invoice_getByUid
+  /v4/invoices/{uid}/cancel:
+    post: Invoice_cancelInvoice
+  /v4/invoices/{uid}/refund:
+    post: Invoice_refundById
+  /v4/locations:
+    get: Location_listAllLocations
+  /v4/locations/{uid}:
+    get: Location_getByUid
+    patch: Location_updateByUid
+  /v4/messages:
+    post: Message_sendWithAttachment
+  /v4/messages/attachment:
+    post: Message_sendWithAttachment
+  /v4/organizations/{uid}:
+    get: Organization_getByUid
+  /v4/payments/{uid}:
+    get: Payment_getByUid
+  /v4/readers/{uid}:
+    get: Reader_getByUid
+  /v4/refunds:
+    post: Refund_createUnlinked
+  /v4/refunds/{uid}:
+    get: Refund_getById
+  /v4/reviews:
+    get: Review_listAll
+  /v4/reviews/invites:
+    get: ReviewInvite_listAll
+    post: ReviewInvite_createLink
+  /v4/reviews/invites/{uid}:
+    get: ReviewInvite_getByUid
+  /v4/reviews/sites/summary:
+    get: ReviewSitesSummary_getGroupedReviews
+  /v4/reviews/summary:
+    get: ReviewSummary_getAllReviewsSummary
+  /v4/reviews/{review_uid}/responses/{uid}:
+    patch: ReviewResponse_updateForReview
+  /v4/reviews/{uid}:
+    get: Review_getByUid
+  /v4/reviews/{uid}/attributions:
+    delete: ReviewAttribution_removeUserAttribution
+    post: ReviewAttribution_assignUserToReview
+  /v4/reviews/{uid}/responses:
+    get: ReviewResponse_listByUid
+    post: ReviewResponse_createForReview
+  /v4/templates:
+    get: Template_listAllTemplates
+    post: Template_createMessageTemplate
+  /v4/templates/{uid}:
+    delete: Template_removeByUid
+    put: Template_updateMessageTemplate
+  /v4/users:
+    get: User_listAllUsers
+  /v4/users/{uid}:
+    get: User_getDetails
+  /v4/webhooks:
+    get: Webhook_listWebhooks
+    post: Webhook_createWebhook
+  /v4/webhooks/{uid}:
+    delete: Webhook_deleteWebhook
+    get: Webhook_getByUid
+    put: Webhook_updateWebhook
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v4/appointments:
+    post:
+      application/json: AppointmentCreateNewAppointmentRequest
+  /v4/campaigns:
+    post:
+      application/json: CampaignCreateNewCampaignRequest
+  /v4/campaigns/{uid}:
+    put:
+      application/json: CampaignUpdateCampaignRequest
+  /v4/campaigns/{uid}/messages:
+    post:
+      application/json: MessageCreateForCampaignRequest
+  /v4/contact_attributes:
+    post:
+      application/json: ContactAttributeCreateNewAttributeRequest
+  /v4/contact_attributes/{uid}:
+    patch:
+      application/json: ContactAttributeUpdateAttributeRequest
+  /v4/contact_tags:
+    post:
+      application/json: ContactTagCreateOrganizationLevelTagRequest
+  /v4/contact_tags/{uid}:
+    patch:
+      application/json: ContactTagUpdateOrganizationLevelTagRequest
+  /v4/contacts:
+    post:
+      application/json: ContactCreateOrUpdateRequest
+  /v4/contacts/campaigns/opt_in:
+    post:
+      application/json: ContactOptInContactRequest
+  /v4/contacts/campaigns/opt_out:
+    post:
+      application/json: ContactOptOutContactRequest
+  /v4/contacts/{identifier}:
+    patch:
+      application/json: ContactUpdateWithUidRequest
+  /v4/contacts/{identifier}/attributes/{uid}:
+    patch:
+      application/json: ContactUpdateAttributeRequest
+    post:
+      application/json: ContactAddAttributeToContactRequest
+  /v4/conversations/{uid}:
+    put:
+      application/json: ConversationUpdateByUidRequest
+  /v4/conversations/{uid}/notes:
+    post:
+      application/json: ConversationCreateNoteRequest
+  /v4/dataFeeds/{uid}/events:
+    post:
+      application/json: DataFeedEventProcessEventRequest
+  /v4/data_stream/{location_uid}/{integration_uid}/{data_mapping_name}:
+    post:
+      application/json: DataStreamSendIntegrationPayloadRequest
+  /v4/feedback:
+    post:
+      application/json: FeedbackCreateSurveyRequest
+  /v4/import/messages:
+    post:
+      application/json: MessageImportFromExternalSystemRequest
+  /v4/invoices:
+    post:
+      application/json: InvoiceCreateCardInvoiceRequest
+  /v4/invoices/{uid}/cancel:
+    post:
+      application/json: InvoiceCancelInvoiceRequest
+  /v4/invoices/{uid}/refund:
+    post:
+      application/json: InvoiceRefundByIdRequest
+  /v4/locations/{uid}:
+    patch:
+      application/json: LocationUpdateByUidRequest
+  /v4/messages:
+    post:
+      application/json: MessageSendWithAttachmentRequest
+  /v4/messages/attachment:
+    post:
+      multipart/form-data: MessageSendWithAttachmentRequest1
+  /v4/refunds:
+    post:
+      application/json: RefundCreateUnlinkedRequest
+  /v4/reviews/invites:
+    post:
+      application/json: ReviewInviteCreateLinkRequest
+  /v4/reviews/{review_uid}/responses/{uid}:
+    patch:
+      application/json: ReviewResponseUpdateForReviewRequest
+  /v4/reviews/{uid}/attributions:
+    delete:
+      application/json: ReviewAttributionRemoveUserAttributionRequest
+    post:
+      application/json: ReviewAttributionAssignUserToReviewRequest
+  /v4/reviews/{uid}/responses:
+    post:
+      application/json: ReviewResponseCreateForReviewRequest
+  /v4/templates:
+    post:
+      application/json: TemplateCreateMessageTemplateRequest
+  /v4/templates/{uid}:
+    put:
+      application/json: TemplateUpdateMessageTemplateRequest
+  /v4/webhooks:
+    post:
+      application/json: WebhookCreateWebhookRequest
+  /v4/webhooks/{uid}:
+    put:
+      application/json: WebhookUpdateWebhookRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v4/appointments:
+    post:
+      '200':
+        application/json: AppointmentCreateNewAppointment200Response
+      default:
+        application/json: AppointmentCreateNewAppointmentResponse
+  /v4/campaign_interactions:
+    get:
+      '200':
+        application/json: CampaignInteractionListInteractions200Response
+      default:
+        application/json: CampaignInteractionListInteractionsResponse
+  /v4/campaigns:
+    get:
+      '200':
+        application/json: CampaignListAll200Response
+      default:
+        application/json: CampaignListAllResponse
+    post:
+      '200':
+        application/json: CampaignCreateNewCampaign200Response
+      default:
+        application/json: CampaignCreateNewCampaignResponse
+  /v4/campaigns/{uid}:
+    delete:
+      '200':
+        application/json: CampaignRemoveCampaign200Response
+      default:
+        application/json: CampaignRemoveCampaignResponse
+    get:
+      '200':
+        application/json: CampaignGetByUid200Response
+      default:
+        application/json: CampaignGetByUidResponse
+    put:
+      '200':
+        application/json: CampaignUpdateCampaign200Response
+      default:
+        application/json: CampaignUpdateCampaignResponse
+  /v4/campaigns/{uid}/messages:
+    post:
+      '200':
+        application/json: MessageCreateForCampaign200Response
+      default:
+        application/json: MessageCreateForCampaignResponse
+  /v4/contact_attributes:
+    get:
+      '200':
+        application/json: ContactAttributeListAttributes200Response
+      default:
+        application/json: ContactAttributeListAttributesResponse
+    post:
+      '200':
+        application/json: ContactAttributeCreateNewAttribute200Response
+      default:
+        application/json: ContactAttributeCreateNewAttributeResponse
+  /v4/contact_attributes/{uid}:
+    delete:
+      '200':
+        application/json: ContactAttributeDeleteByUid200Response
+      default:
+        application/json: ContactAttributeDeleteByUidResponse
+    get:
+      '200':
+        application/json: ContactAttributeGetAttributeByUid200Response
+      default:
+        application/json: ContactAttributeGetAttributeByUidResponse
+    patch:
+      '200':
+        application/json: ContactAttributeUpdateAttribute200Response
+      default:
+        application/json: ContactAttributeUpdateAttributeResponse
+  /v4/contact_tags:
+    get:
+      '200':
+        application/json: ContactTagListAll200Response
+      default:
+        application/json: ContactTagListAllResponse
+    post:
+      '200':
+        application/json: ContactTagCreateOrganizationLevelTag200Response
+      default:
+        application/json: ContactTagCreateOrganizationLevelTagResponse
+  /v4/contact_tags/{uid}:
+    get:
+      '200':
+        application/json: ContactTagGetByUid200Response
+      default:
+        application/json: ContactTagGetByUidResponse
+    patch:
+      '200':
+        application/json: ContactTagUpdateOrganizationLevelTag200Response
+      default:
+        application/json: ContactTagUpdateOrganizationLevelTagResponse
+  /v4/contacts:
+    get:
+      '200':
+        application/json: ContactListAllContacts200Response
+      default:
+        application/json: ContactListAllContactsResponse
+    post:
+      '202':
+        application/json: ContactCreateOrUpdate202Response
+      default:
+        application/json: ContactCreateOrUpdateResponse
+  /v4/contacts/campaigns/opt_in:
+    post:
+      '200':
+        application/json: ContactOptInContact200Response
+      default:
+        application/json: ContactOptInContactResponse
+  /v4/contacts/campaigns/opt_out:
+    post:
+      '200':
+        application/json: ContactOptOutContact200Response
+      default:
+        application/json: ContactOptOutContactResponse
+  /v4/contacts/{identifier}:
+    delete:
+      '202':
+        application/json: ContactDeleteByIdentifier202Response
+      default:
+        application/json: ContactDeleteByIdentifierResponse
+    get:
+      '200':
+        application/json: ContactGetByIdentifier200Response
+      default:
+        application/json: ContactGetByIdentifierResponse
+    patch:
+      '202':
+        application/json: ContactUpdateWithUid202Response
+      default:
+        application/json: ContactUpdateWithUidResponse
+  /v4/contacts/{identifier}/attributes/{uid}:
+    delete:
+      '202':
+        application/json: ContactRemoveAttribute202Response
+      default:
+        application/json: ContactRemoveAttributeResponse
+    patch:
+      '202':
+        application/json: ContactUpdateAttribute202Response
+      default:
+        application/json: ContactUpdateAttributeResponse
+    post:
+      '202':
+        application/json: ContactAddAttributeToContact202Response
+      default:
+        application/json: ContactAddAttributeToContactResponse
+  /v4/contacts/{identifier}/tags/{uid}:
+    delete:
+      '202':
+        application/json: ContactRemoveTag202Response
+      default:
+        application/json: ContactRemoveTagResponse
+    post:
+      '202':
+        application/json: ContactAddExistingTagToContact202Response
+      default:
+        application/json: ContactAddExistingTagToContactResponse
+  /v4/conversations:
+    get:
+      '200':
+        application/json: ConversationListConversations200Response
+      default:
+        application/json: ConversationListConversationsResponse
+  /v4/conversations/{conversation_uid}/messages/{uid}:
+    get:
+      '200':
+        application/json: MessageGetFromConversation200Response
+      default:
+        application/json: MessageGetFromConversationResponse
+  /v4/conversations/{uid}:
+    get:
+      '200':
+        application/json: ConversationGetById200Response
+      default:
+        application/json: ConversationGetByIdResponse
+    put:
+      '200':
+        application/json: ConversationUpdateByUid200Response
+      default:
+        application/json: ConversationUpdateByUidResponse
+  /v4/conversations/{uid}/lead_writeback:
+    post:
+      '200':
+        application/json: ConversationWriteLead200Response
+      default:
+        application/json: ConversationWriteLeadResponse
+  /v4/conversations/{uid}/notes:
+    post:
+      '200':
+        application/json: ConversationCreateNote200Response
+      default:
+        application/json: ConversationCreateNoteResponse
+  /v4/dataFeeds/{uid}/events:
+    post:
+      '200':
+        application/json: DataFeedEventProcessEvent200Response
+      default:
+        application/json: DataFeedEventProcessEventResponse
+  /v4/data_stream/{location_uid}/{integration_uid}/{data_mapping_name}:
+    post:
+      '202':
+        application/json: DataStreamSendIntegrationPayload202Response
+      default:
+        application/json: DataStreamSendIntegrationPayloadResponse
+  /v4/feedback:
+    get:
+      '200':
+        application/json: FeedbackListSurveys200Response
+      default:
+        application/json: FeedbackListSurveysResponse
+    post:
+      '202':
+        application/json: FeedbackCreateSurvey202Response
+      default:
+        application/json: FeedbackCreateSurveyResponse
+  /v4/import/messages:
+    post:
+      '200':
+        application/json: MessageImportFromExternalSystem200Response
+      default:
+        application/json: MessageImportFromExternalSystemResponse
+  /v4/invoices:
+    get:
+      '200':
+        application/json: InvoiceListAllInvoices200Response
+      default:
+        application/json: InvoiceListAllInvoicesResponse
+    post:
+      '200':
+        application/json: InvoiceCreateCardInvoice200Response
+      default:
+        application/json: InvoiceCreateCardInvoiceResponse
+  /v4/invoices/{uid}:
+    get:
+      '200':
+        application/json: InvoiceGetByUid200Response
+      default:
+        application/json: InvoiceGetByUidResponse
+  /v4/invoices/{uid}/cancel:
+    post:
+      '200':
+        application/json: InvoiceCancelInvoice200Response
+      default:
+        application/json: InvoiceCancelInvoiceResponse
+  /v4/invoices/{uid}/refund:
+    post:
+      '200':
+        application/json: InvoiceRefundById200Response
+      default:
+        application/json: InvoiceRefundByIdResponse
+  /v4/locations:
+    get:
+      '200':
+        application/json: LocationListAllLocations200Response
+      default:
+        application/json: LocationListAllLocationsResponse
+  /v4/locations/{uid}:
+    get:
+      '200':
+        application/json: LocationGetByUid200Response
+      default:
+        application/json: LocationGetByUidResponse
+    patch:
+      '200':
+        application/json: LocationUpdateByUid200Response
+      default:
+        application/json: LocationUpdateByUidResponse
+  /v4/messages:
+    post:
+      '200':
+        application/json: MessageSendWithAttachment200Response
+      default:
+        application/json: MessageSendWithAttachmentResponse
+  /v4/messages/attachment:
+    post:
+      '200':
+        application/json: MessageSendWithAttachment200Response
+      default:
+        application/json: MessageSendWithAttachmentdefaultResponse
+  /v4/organizations/{uid}:
+    get:
+      '200':
+        application/json: OrganizationGetByUid200Response
+      default:
+        application/json: OrganizationGetByUidResponse
+  /v4/payments/{uid}:
+    get:
+      '200':
+        application/json: PaymentGetByUid200Response
+      default:
+        application/json: PaymentGetByUidResponse
+  /v4/readers/{uid}:
+    get:
+      '200':
+        application/json: ReaderGetByUid200Response
+      default:
+        application/json: ReaderGetByUidResponse
+  /v4/refunds:
+    post:
+      '200':
+        application/json: RefundCreateUnlinked200Response
+      default:
+        application/json: RefundCreateUnlinkedResponse
+  /v4/refunds/{uid}:
+    get:
+      '200':
+        application/json: RefundGetById200Response
+      default:
+        application/json: RefundGetByIdResponse
+  /v4/reviews:
+    get:
+      '200':
+        application/json: ReviewListAll200Response
+      default:
+        application/json: ReviewListAllResponse
+  /v4/reviews/invites:
+    get:
+      '200':
+        application/json: ReviewInviteListAll200Response
+      default:
+        application/json: ReviewInviteListAllResponse
+    post:
+      '200':
+        application/json: ReviewInviteCreateLink200Response
+      default:
+        application/json: ReviewInviteCreateLinkResponse
+  /v4/reviews/invites/{uid}:
+    get:
+      '200':
+        application/json: ReviewInviteGetByUid200Response
+      default:
+        application/json: ReviewInviteGetByUidResponse
+  /v4/reviews/sites/summary:
+    get:
+      '200':
+        application/json: ReviewSitesSummaryGetGroupedReviews200Response
+      default:
+        application/json: ReviewSitesSummaryGetGroupedReviewsResponse
+  /v4/reviews/summary:
+    get:
+      '200':
+        application/json: ReviewSummaryGetAllReviewsSummary200Response
+      default:
+        application/json: ReviewSummaryGetAllReviewsSummaryResponse
+  /v4/reviews/{review_uid}/responses/{uid}:
+    patch:
+      '200':
+        application/json: ReviewResponseUpdateForReview200Response
+      default:
+        application/json: ReviewResponseUpdateForReviewResponse
+  /v4/reviews/{uid}:
+    get:
+      '200':
+        application/json: ReviewGetByUid200Response
+      default:
+        application/json: ReviewGetByUidResponse
+  /v4/reviews/{uid}/attributions:
+    delete:
+      '200':
+        application/json: ReviewAttributionRemoveUserAttribution200Response
+      default:
+        application/json: ReviewAttributionRemoveUserAttributionResponse
+    post:
+      '200':
+        application/json: ReviewAttributionAssignUserToReview200Response
+      default:
+        application/json: ReviewAttributionAssignUserToReviewResponse
+  /v4/reviews/{uid}/responses:
+    get:
+      '200':
+        application/json: ReviewResponseListByUid200Response
+      default:
+        application/json: ReviewResponseListByUidResponse
+    post:
+      '200':
+        application/json: ReviewResponseCreateForReview200Response
+      default:
+        application/json: ReviewResponseCreateForReviewResponse
+  /v4/templates:
+    get:
+      '200':
+        application/json: TemplateListAllTemplates200Response
+      default:
+        application/json: TemplateListAllTemplatesResponse
+    post:
+      '200':
+        application/json: TemplateCreateMessageTemplate200Response
+      default:
+        application/json: TemplateCreateMessageTemplateResponse
+  /v4/templates/{uid}:
+    delete:
+      '200':
+        application/json: TemplateRemoveByUid200Response
+      default:
+        application/json: TemplateRemoveByUidResponse
+    put:
+      '200':
+        application/json: TemplateUpdateMessageTemplate200Response
+      default:
+        application/json: TemplateUpdateMessageTemplateResponse
+  /v4/users:
+    get:
+      '200':
+        application/json: UserListAllUsers200Response
+      default:
+        application/json: UserListAllUsersResponse
+  /v4/users/{uid}:
+    get:
+      '200':
+        application/json: UserGetDetails200Response
+      default:
+        application/json: UserGetDetailsResponse
+  /v4/webhooks:
+    get:
+      '200':
+        application/json: WebhookListWebhooks200Response
+      default:
+        application/json: WebhookListWebhooksResponse
+    post:
+      '200':
+        application/json: WebhookCreateWebhook200Response
+      default:
+        application/json: WebhookCreateWebhookResponse
+  /v4/webhooks/{uid}:
+    delete:
+      '200':
+        application/json: WebhookDeleteWebhook200Response
+      default:
+        application/json: WebhookDeleteWebhookResponse
+    get:
+      '200':
+        application/json: WebhookGetByUid200Response
+      default:
+        application/json: WebhookGetByUidResponse
+    put:
+      '200':
+        application/json: WebhookUpdateWebhook200Response
+      default:
+        application/json: WebhookUpdateWebhookResponse
+securityParameters:
+  campaignUid:
+    query: false
+  contactUid:
+    query: false
+  createdAt:
+    query: false
+  cursor:
+    query: false
+  dateCreated:
+    query: false
+  datePaid:
+    query: false
+  dateRefunded:
+    query: false
+  interactionType:
+    query: false
+  limit:
+    query: false
+  locationUid:
+    query: false
+  locationUids:
+    query: false
+  search:
+    query: false
+  searchFields:
+    query: false
+  senderUid:
+    query: false
+  status:
+    query: false
+  types:
+    query: false
+  updatedAt:
+    query: false
+  userUid:
+    query: false
+validServerUrls: {}
