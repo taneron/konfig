@@ -1452,6 +1452,14 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(result, null, 2);
     },
   },
+  "pinpointhq.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.pinpointhq.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "jobsoid.com": {
     type: "GET",
     url: "https://apidocs.jobsoid.com/swagger.json",
