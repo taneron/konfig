@@ -249,10 +249,10 @@ const customRequests: Record<string, CustomRequest> = {
       { url: "https://us.cloud.langfuse.com", description: "US" },
     ],
   },
-  "retellai.com": {
-    type: "GET",
-    url: "https://raw.githubusercontent.com/RetellAI/docs/HEAD/openapi.yaml",
-  },
+  // "retellai.com": {
+  //   type: "GET",
+  //   url: "https://raw.githubusercontent.com/RetellAI/docs/HEAD/openapi.yaml",
+  // },
   "meilisearch.com": {
     type: "GET",
     url: "https://bump.sh/meilisearch/doc/meilisearch.yaml",
@@ -359,6 +359,10 @@ const customRequests: Record<string, CustomRequest> = {
       });
       return JSON.stringify(openapi);
     },
+  },
+  "xero.com_Accounting": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/XeroAPI/Xero-OpenAPI/master/xero_accounting.yaml",
   },
   "beehiiv.com": {
     type: "GET",
@@ -2138,19 +2142,19 @@ const customRequests: Record<string, CustomRequest> = {
   "weavy.com": {
     type: "GET",
     url: "https://www.weavy.com/hubfs/docs/openapi.json",
-    apiBaseUrl: "https://{WEAVY-SERVER}"
+    apiBaseUrl: "https://{WEAVY-SERVER}",
   },
   "vegapay.tech": {
     type: "GET",
-    url: "https://www.vegapay.tech/docs/openapi.yaml"
+    url: "https://www.vegapay.tech/docs/openapi.yaml",
   },
   "textrequest.com": {
     type: "GET",
-    url: "https://www.textrequest.com/dist/swagger/apiv3docs.yml"
+    url: "https://www.textrequest.com/dist/swagger/apiv3docs.yml",
   },
   "starkbank.com": {
     type: "GET",
-    url: "https://www.starkbank.com/static/openapi-v2.yml"
+    url: "https://www.starkbank.com/static/openapi-v2.yml",
   },
 };
 
