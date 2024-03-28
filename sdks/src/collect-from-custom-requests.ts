@@ -2236,6 +2236,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://portfoliopilot.com/static/external_api/external_api.yaml",
   },
+  "epidemicsound.com": {
+    type: "GET",
+    url: "https://partner-content-api.epidemicsound.com/docs/spec.json",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

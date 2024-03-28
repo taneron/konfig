@@ -1,0 +1,114 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v0/analytics/report:
+    post: Reporting_epidemicEventSubmission
+  /v0/genres:
+    get: BrowseSearch_genreCatalog
+  /v0/genres/{genreId}:
+    get: BrowseSearch_genreDetails
+  /v0/moods:
+    get: BrowseSearch_moodsList
+  /v0/moods/{moodId}:
+    get: BrowseSearch_moodDetails
+  /v0/partner-token:
+    post: Authentication_requestPartnerToken
+  /v0/sound-effects/categories:
+    get: SoundEffects_listCategories
+  /v0/sound-effects/categories/{categoryId}:
+    get: SoundEffects_getCategoryById
+  /v0/sound-effects/categories/{categoryId}/tracks:
+    get: SoundEffects_getByCategoryTracks
+  /v0/sound-effects/search:
+    get: SoundEffects_searchSoundEffects
+  /v0/sound-effects/{trackId}/download:
+    get: SoundEffects_downloadSoundEffect
+  /v0/token:
+    post: Authentication_requestUserToken
+  /v0/tracks/matching-image/{imageId}:
+    get: Tracks_matchingImageGet
+  /v0/tracks/parameters:
+    get: Tracks_listParameters
+  /v0/tracks/search:
+    get: BrowseSearch_tracksSearchList
+  /v0/tracks/search/suggestions:
+    get: BrowseSearch_trackSuggestionsGet
+  /v0/tracks/similar-sections:
+    get: Tracks_getSimilarSegments
+  /v0/tracks/{trackId}/beats:
+    get: Tracks_getBeatsData
+  /v0/tracks/{trackId}/highlights:
+    get: Tracks_recommendSection
+  /v0/tracks/{trackId}/hls:
+    get: Tracks_previewUsingCookies
+  /v0/tracks/{trackId}/similar:
+    get: Tracks_getSimilar
+  /v0/tracks/{trackId}/similar-sections:
+    get: Tracks_findSimilarSegments
+  /v0/uploads/audio:
+    post: Assets_uploadAudioFile
+  /v0/uploads/audio/{audioIdOrChecksum}:
+    delete: Assets_deleteAudioFile
+  /v0/uploads/audio/{checksum}:
+    get: Assets_byChecksumGet
+  /v0/uploads/images:
+    delete: Assets_removeAllImages
+    post: Assets_uploadImageForRecommendation
+  /v0/uploads/images/{imageId}:
+    delete: Assets_deleteImage
+  /v0/users/me:
+    get: Users_getDetails
+  /v0/users/me/liked/tracks:
+    get: Users_listLikedTracks
+  /v0/users/me/subscription:
+    get: Users_getSubscriptionDetails
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v0/uploads/audio:
+    post:
+      multipart/form-data: AssetsUploadAudioFileRequest
+  /v0/uploads/images:
+    post:
+      multipart/form-data: AssetsUploadImageForRecommendationRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  audioUploadId:
+    query: false
+  bpmMax:
+    query: false
+  bpmMin:
+    query: false
+  duration:
+    query: false
+  end:
+    query: false
+  excludeField:
+    query: false
+  expand:
+    query: false
+  format:
+    query: false
+  genre:
+    query: false
+  limit:
+    query: false
+  mood:
+    query: false
+  offset:
+    query: false
+  order:
+    query: false
+  quality:
+    query: false
+  sort:
+    query: false
+  start:
+    query: false
+  term:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

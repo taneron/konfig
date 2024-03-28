@@ -1,0 +1,39 @@
+{
+  "securitySchemes": {
+    "PartnerAuth": {
+      "type": "http",
+      "description": "Partner authentication is handled with short lived partner access tokens.\nUse your api credentials to request these tokens.\nThe access token is of JWT format and should be passed in a header with your API requests:\n\n> **Example Header:** `Authorization: Bearer your-partner-token`",
+      "scheme": "Bearer"
+    },
+    "UserAuth": {
+      "type": "http",
+      "description": "User authentication is handled with short lived user access tokens.\n Use a partner token to request these tokens.\n The access token is of JWT format and should be passed in a header with your API requests:\n \n > **Example Header:** `Authorization: Bearer a-user-token`",
+      "scheme": "Bearer"
+    },
+    "EpidemicSoundConnectAuth": {
+      "type": "oauth2",
+      "description": "For users signing in with an Epidemic Sound account, user authentication is\nhandled with OpenID Connect, which is a layer on top of OAuth 2.0.\n\n> **Example Header:** `Authorization: Bearer es-connect-token`",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "https://login.epidemicsound.com/auth/realms/accounts/protocol/openid-connect/auth",
+          "tokenUrl": "https://login.epidemicsound.com/auth/realms/accounts/protocol/openid-connect/token",
+          "scopes": {}
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://partner-content-api.epidemicsound.com",
+  "apiVersion": "0.1.17",
+  "apiTitle": "Partner Content API",
+  "endpoints": 36,
+  "sdkMethods": 37,
+  "schemas": 63,
+  "parameters": 96,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://partner-content-api.epidemicsound.com/docs/spec.json"
+  },
+  "customRequestSpecFilename": "epidemicsound.com.yaml",
+  "difficultyScore": 92.5,
+  "difficulty": "Easy"
+}
