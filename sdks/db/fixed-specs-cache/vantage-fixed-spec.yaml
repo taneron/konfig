@@ -58,6 +58,10 @@ rawSpecString: |
       description: Operations about BusinessMetrics
     - name: Prices
       description: Operations about Prices
+    - name: ResourceReports
+      description: Operations about ResourceReports
+    - name: FinancialCommitmentReports
+      description: Operations about FinancialCommitmentReports
     - name: Ping
       description: Operations about Pings
   paths:
@@ -2741,6 +2745,250 @@ rawSpecString: |
         tags:
           - Prices
         operationId: getPrice
+    /resource_reports:
+      get:
+        description: Return all ResourceReports.
+        parameters:
+          - in: query
+            name: page
+            description: The page of results to return.
+            required: false
+            schema:
+              type: integer
+              format: int32
+          - in: query
+            name: limit
+            description: The number of results to return. The maximum is 1000.
+            required: false
+            schema:
+              type: integer
+              format: int32
+        security:
+          - oauth2:
+              - read
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResourceReports'
+                examples:
+                  response:
+                    value:
+                      links:
+                        self: https://api.vantage.com/v2/provider_resource_reports
+                        first: >-
+                          https://api.vantage.com/v2/provider_resource_reports?page=1
+                        next: null
+                        last: >-
+                          https://api.vantage.com/v2/provider_resource_reports?page=1
+                        prev: null
+                      provider_resource_reports:
+                        - token: prvdr_rsrc_rprt_c013a8c9280ed485
+                          title: Resource Report 098e130a
+                          default: false
+                          created_at: '2024-03-19T22:09:43Z'
+                          workspace_token: wrkspc_5a15339e6128797f
+                          report_token: null
+                          user_token: null
+                          recommendation_service: null
+                          recommendation_category: null
+        tags:
+          - ResourceReports
+        operationId: getResourceReports
+    /resource_reports/{resource_report_token}:
+      delete:
+        description: Delete a ResourceReport.
+        parameters:
+          - in: path
+            name: resource_report_token
+            required: true
+            schema:
+              type: string
+        security:
+          - oauth2:
+              - write
+        responses:
+          '204':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResourceReport'
+          '404':
+            description: NotFound
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Errors'
+        tags:
+          - ResourceReports
+        operationId: deleteResourceReport
+      get:
+        description: Return a ResourceReport.
+        parameters:
+          - in: path
+            name: resource_report_token
+            required: true
+            schema:
+              type: string
+        security:
+          - oauth2:
+              - read
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResourceReport'
+                examples:
+                  response:
+                    value:
+                      token: prvdr_rsrc_rprt_b4b9884d0bb2e121
+                      title: Resource Report 46d7371d
+                      default: false
+                      created_at: '2024-03-19T22:09:43Z'
+                      workspace_token: wrkspc_3b72a68131df0d33
+                      report_token: null
+                      user_token: null
+                      recommendation_service: null
+                      recommendation_category: null
+          '404':
+            description: NotFound
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Errors'
+        tags:
+          - ResourceReports
+        operationId: getResourceReport
+    /financial_commitment_reports:
+      get:
+        description: Return all FinancialCommitmentReports.
+        parameters:
+          - in: query
+            name: page
+            description: The page of results to return.
+            required: false
+            schema:
+              type: integer
+              format: int32
+          - in: query
+            name: limit
+            description: The amount of results to return. The maximum is 1000.
+            required: false
+            schema:
+              type: integer
+              format: int32
+        security:
+          - oauth2:
+              - read
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/FinancialCommitmentReports'
+                examples:
+                  response:
+                    value:
+                      links:
+                        self: https://api.vantage.com/v2/financial_commitment_reports
+                        first: >-
+                          https://api.vantage.com/v2/financial_commitment_reports?page=1
+                        next: null
+                        last: >-
+                          https://api.vantage.com/v2/financial_commitment_reports?page=1
+                        prev: null
+                      financial_commitment_reports:
+                        - token: fncl_cmnt_rprt_8856c4e96c5a7a0e
+                          title: All Financial Commitments
+                          default: false
+                          created_at: '2024-03-28T18:26:26Z'
+                          workspace_token: wrkspc_1ca9ae316e86906f
+                          user_token: null
+                          start_date: '2023-12-01'
+                          end_date: '2024-03-26'
+                          date_interval: last_3_months
+                          date_bucket: month
+                          groupings: cost_type
+                          on_demand_costs_scope: discountable
+        tags:
+          - FinancialCommitmentReports
+        operationId: getFinancialCommitmentReports
+    /financial_commitment_reports/{financial_commitment_report_token}:
+      delete:
+        description: Delete a FinancialCommitmentReport.
+        parameters:
+          - in: path
+            name: financial_commitment_report_token
+            required: true
+            schema:
+              type: string
+        security:
+          - oauth2:
+              - write
+        responses:
+          '204':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/FinancialCommitmentReport'
+          '404':
+            description: NotFound
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Errors'
+        tags:
+          - FinancialCommitmentReports
+        operationId: deleteFinancialCommitmentReport
+      get:
+        description: Return a FinancialCommitmentReport.
+        parameters:
+          - in: path
+            name: financial_commitment_report_token
+            required: true
+            schema:
+              type: string
+        security:
+          - oauth2:
+              - read
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/FinancialCommitmentReport'
+                examples:
+                  response:
+                    value:
+                      token: fncl_cmnt_rprt_674cf1d6ef5f55e5
+                      title: All Financial Commitments
+                      default: false
+                      created_at: '2024-03-28T18:26:26Z'
+                      workspace_token: wrkspc_075ac35ab0dc1b4a
+                      user_token: null
+                      start_date: '2023-12-01'
+                      end_date: '2024-03-26'
+                      date_interval: last_3_months
+                      date_bucket: month
+                      groupings: cost_type
+                      on_demand_costs_scope: discountable
+          '404':
+            description: NotFound
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Errors'
+        tags:
+          - FinancialCommitmentReports
+        operationId: getFinancialCommitmentReport
     /ping:
       get:
         description: >-
@@ -4257,4 +4505,113 @@ rawSpecString: |
               lifecycle: on-demand
             description: Service specific metadata.
         description: Price model
+      ResourceReports:
+        type: object
+        properties:
+          links:
+            type: object
+          resource_reports:
+            type: array
+            items:
+              $ref: '#/components/schemas/ResourceReport'
+        description: ResourceReports model
+      ResourceReport:
+        type: object
+        properties:
+          token:
+            type: string
+          title:
+            type: string
+            example: Acme123 Active Resources
+            description: The title of the ResourceReport.
+          default:
+            type: boolean
+            description: Indicates whether the ResourceReport is the default report.
+          created_at:
+            type: string
+            example: '2024-03-19T00:00:00Z'
+            description: >-
+              The date and time, in UTC, the report was created. ISO 8601
+              Formatted.
+          workspace_token:
+            type: string
+            description: The token for the Workspace the ResourceReport is a part of.
+          segment_token:
+            type: string
+            description: The token for the Segment the ResourceReport is a part of.
+          user_token:
+            type: string
+            description: The token for the User who created this ResourceReport.
+        description: ResourceReport model
+      FinancialCommitmentReports:
+        type: object
+        properties:
+          links:
+            type: object
+          financial_commitment_reports:
+            type: array
+            items:
+              $ref: '#/components/schemas/FinancialCommitmentReport'
+        description: FinancialCommitmentReports model
+      FinancialCommitmentReport:
+        type: object
+        properties:
+          token:
+            type: string
+          title:
+            type: string
+            example: Acme123 Financial Commitment Report
+            description: The title of the FinancialCommitmentReport.
+          default:
+            type: boolean
+            description: >-
+              Indicates whether the FinancialCommitmentReport is the default
+              report.
+          created_at:
+            type: string
+            example: '2024-03-19T00:00:00Z'
+            description: >-
+              The date and time, in UTC, the report was created. ISO 8601
+              Formatted.
+          workspace_token:
+            type: string
+            description: >-
+              The token for the Workspace the FinancialCommitmentReport is a part
+              of.
+          user_token:
+            type: string
+            description: The token for the User who created this FinancialCommitmentReport.
+          start_date:
+            type: string
+            example: '2024-03-01'
+            description: >-
+              The start date for the FinancialCommitmentReport. Only set for
+              custom date ranges. ISO 8601 Formatted.
+          end_date:
+            type: string
+            example: '2024-03-20'
+            description: >-
+              The end date for the FinancialCommitmentReport. Only set for custom
+              date ranges. ISO 8601 Formatted.
+          date_interval:
+            type: string
+            example: last_month
+            description: >-
+              The date range for the FinancialCommitmentReport. Only present if a
+              custom date range is not specified.
+          date_bucket:
+            type: string
+            example: month
+            description: >-
+              How costs are grouped and displayed in the
+              FinancialCommitmentReport. Possible values: day, week, month.
+          groupings:
+            type: string
+            example: cost_type, tag:account
+            description: The grouping aggregations applied to the filtered data.
+          on_demand_costs_scope:
+            type: string
+            example: discountable
+            description: 'The scope for the costs. Possible values: discountable, all.'
+        description: FinancialCommitmentReport model
 konfigCliVersion: 1.38.34

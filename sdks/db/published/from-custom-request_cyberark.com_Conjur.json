@@ -31,7 +31,7 @@
   },
   "customRequestSpecFilename": "cyberark.com_Conjur.yaml",
   "difficultyScore": 115,
-  "difficulty": "Medium",
+  "difficulty": "Easy",
   "company": "CyberArk",
   "serviceName": "Conjur",
   "sdkName": "cyber-ark-conjur-{language}-sdk",
@@ -109,7 +109,7 @@
       "httpMethod": "post",
       "tag": "authentication",
       "typeScriptTag": "authentication",
-      "description": "For applications running in Kubernetes; sends Conjur a certificate\nsigning request (CSR) and requests a client certificate injected into\nthe application's Kubernetes pod.\n",
+      "description": "For applications running in Kubernetes; sends Conjur a certificate\nsigning request (https://docs.cyberark.com and requests a client certificate injected into\nthe application's Kubernetes pod.\n",
       "parameters": [
         {
           "name": "serviceId",
@@ -538,7 +538,7 @@
       "httpMethod": "post",
       "tag": "authentication",
       "typeScriptTag": "authentication",
-      "description": "Gets a short-lived access token for applications using OpenID\nConnect (OIDC) to access the Conjur API.\n",
+      "description": "Gets a short-lived access token for applications using OpenID\nConnect (https://docs.cyberark.com to access the Conjur API.\n",
       "parameters": [
         {
           "name": "serviceId",
@@ -585,7 +585,7 @@
       "httpMethod": "post",
       "tag": "authentication",
       "typeScriptTag": "authentication",
-      "description": "Gets a short-lived access token for applications using JSON Web Token (JWT)\nto access the Conjur API.\n",
+      "description": "Gets a short-lived access token for applications using JSON Web Token (https://docs.cyberark.com\nto access the Conjur API.\n",
       "parameters": [
         {
           "name": "account",
@@ -636,7 +636,7 @@
       "httpMethod": "post",
       "tag": "authentication",
       "typeScriptTag": "authentication",
-      "description": "Gets a short-lived access token for applications using JSON Web Token (JWT)\nto access the Conjur API. Covers the case of use of optional URL parameter \"ID\"\n",
+      "description": "Gets a short-lived access token for applications using JSON Web Token (https://docs.cyberark.com\nto access the Conjur API. Covers the case of use of optional URL parameter \"ID\"\n",
       "parameters": [
         {
           "name": "account",
@@ -2210,7 +2210,7 @@
         },
         {
           "statusCode": "403",
-          "description": "Either          \n- The authenticated role is not a Host role,\n- The authenticated Host does not have `sign` privilege for the CA service, or\n- The authenticated Host ID does not match the of the CSR Common Name (CN).\n"
+          "description": "Either          \n- The authenticated role is not a Host role,\n- The authenticated Host does not have `sign` privilege for the CA service, or\n- The authenticated Host ID does not match the of the CSR Common Name (https://docs.cyberark.com.\n"
         },
         {
           "statusCode": "404",
@@ -2226,7 +2226,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/cyberark/conjur/imagePreview.webp",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/cyberark/conjur/favicon.png",
   "clientNameCamelCase": "cyberArkConjur",
-  "lastUpdated": "2024-03-25T23:49:11.494Z",
+  "lastUpdated": "2024-03-28T20:59:16.525Z",
   "typescriptSdkUsageCode": "import { CyberArkConjur } from 'cyber-ark-conjur-typescript-sdk';\n\nconst cyberArkConjur = new CyberArkConjur({\n    /*\n     * Basic authentication with Conjur username and password (users only)\n     * or API key (hosts and users).\n     * \n     */\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n    // Conjur access token in `Token token=<base64_encoded_token>` format.\n    conjurAuth: \"AUTHORIZATION\",\n    /*\n     * Conjur Kubernetes authenticator mutual TLS authentication.\n     * To authenticate using this method, you must provide a trusted client\n     * certificate\n     * \n     */\n})",
   "typescriptSdkFirstRequestCode": "// Gets the API key of a user given the username and password\nvia HTTP Basic Authentication.\nconst getUserApiKeyResponse = cyberArkConjur.authentication.getUserApiKey({\n    account: \"default\"\n})",
   "fixedSpecFileName": "cyber-ark-conjur-fixed-spec.yaml"

@@ -1,6 +1,10 @@
 examples: {}
 examples_2: {}
-examples_3: {}
+examples_3:
+  /object-query/{custom-object-name}/{key}:
+    get:
+      '200':
+        application/json: {}
 ignoreObjectsWithNoProperties: true
 ignorePotentialIncorrectType: true
 operationIds:
@@ -36,6 +40,166 @@ operationIds:
     put: Notifications_updateNotificationDefinition
   /oauth/token:
     post: OAuth_createToken
+  /object-query/accounts:
+    get: ObjectQueries_listAccounts
+  /object-query/accounts/{key}:
+    get: ObjectQueries_getAccountDetails
+  /object-query/amendments:
+    get: ObjectQueries_listAmendments
+  /object-query/amendments/{key}:
+    get: ObjectQueries_getAmendment
+  /object-query/billing-runs:
+    get: ObjectQueries_listBillRuns
+  /object-query/billing-runs/{key}:
+    get: ObjectQueries_getBillRun
+  /object-query/contacts:
+    get: ObjectQueries_listContacts
+  /object-query/contacts/{key}:
+    get: ObjectQueries_getContactDetails
+  /object-query/credit-memo-applications:
+    get: ObjectQueries_listCreditMemoApplications
+  /object-query/credit-memo-applications/{key}:
+    get: ObjectQueries_getCreditMemoApplication
+  /object-query/credit-memo-items:
+    get: ObjectQueries_listCreditMemoItems
+  /object-query/credit-memo-items/{key}:
+    get: ObjectQueries_getCreditMemoItem
+  /object-query/credit-memos:
+    get: ObjectQueries_listCreditMemos
+  /object-query/credit-memos/{key}:
+    get: ObjectQueries_getCreditMemo
+  /object-query/debit-memo-items:
+    get: ObjectQueries_listDebitMemoItems
+  /object-query/debit-memo-items/{key}:
+    get: ObjectQueries_getDebitMemoItem
+  /object-query/debit-memos:
+    get: ObjectQueries_listDebitMemos
+  /object-query/debit-memos/{key}:
+    get: ObjectQueries_getDebitMemo
+  /object-query/invoice-items:
+    get: ObjectQueries_listInvoiceItems
+  /object-query/invoice-items/{key}:
+    get: ObjectQueries_getInvoiceItem
+  /object-query/invoices:
+    get: ObjectQueries_listInvoices
+  /object-query/invoices/{key}:
+    get: ObjectQueries_getInvoiceDetails
+  /object-query/order-actions:
+    get: ObjectQueries_listOrderActions
+  /object-query/order-actions/{key}:
+    get: ObjectQueries_getOrderAction
+  /object-query/order-line-items:
+    get: ObjectQueries_listOrderLineItems
+  /object-query/order-line-items/{key}:
+    get: ObjectQueries_getOrderLineItem
+  /object-query/orders:
+    get: ObjectQueries_listOrders
+  /object-query/orders/{key}:
+    get: ObjectQueries_getOrderDetails
+  /object-query/payment-applications:
+    get: ObjectQueries_listPaymentApplications
+  /object-query/payment-applications/{key}:
+    get: ObjectQueries_getPaymentApplication
+  /object-query/payment-method-snapshots:
+    get: ObjectQueries_listPaymentMethodSnapshots
+  /object-query/payment-method-snapshots/{key}:
+    get: ObjectQueries_getPaymentMethodSnapshot
+  /object-query/payment-methods:
+    get: ObjectQueries_listPaymentMethods
+  /object-query/payment-methods/{key}:
+    get: ObjectQueries_getPaymentMethod
+  /object-query/payment-runs:
+    get: ObjectQueries_listPaymentRuns
+  /object-query/payment-runs/{key}:
+    get: ObjectQueries_getPaymentRun
+  /object-query/payment-schedule-items:
+    get: ObjectQueries_listPaymentScheduleItems
+  /object-query/payment-schedule-items/{key}:
+    get: ObjectQueries_getPaymentScheduleItem
+  /object-query/payment-schedules:
+    get: ObjectQueries_listPaymentSchedules
+  /object-query/payment-schedules/{key}:
+    get: ObjectQueries_getPaymentSchedule
+  /object-query/payments:
+    get: ObjectQueries_listPayments
+  /object-query/payments/{key}:
+    get: ObjectQueries_getPaymentDetails
+  /object-query/prepaid-balance-funds:
+    get: ObjectQueries_listPrepaidBalanceFunds
+  /object-query/prepaid-balance-funds/{key}:
+    get: ObjectQueries_getPrepaidBalanceFund
+  /object-query/prepaid-balance-transactions:
+    get: ObjectQueries_listPrepaidBalanceTransactions
+  /object-query/prepaid-balance-transactions/{key}:
+    get: ObjectQueries_getPrepaidBalanceTransaction
+  /object-query/prepaid-balances:
+    get: ObjectQueries_listPrepaidBalances
+  /object-query/prepaid-balances/{key}:
+    get: ObjectQueries_getPrepaidBalance
+  /object-query/processed-usages:
+    get: ObjectQueries_listProcessedUsages
+  /object-query/processed-usages/{key}:
+    get: ObjectQueries_getProcessedUsage
+  /object-query/product-rate-plan-charge-tiers:
+    get: ObjectQueries_listProductRatePlanChargeTiers
+  /object-query/product-rate-plan-charge-tiers/{key}:
+    get: ObjectQueries_getProductRatePlanChargeTier
+  /object-query/product-rate-plan-charges:
+    get: ObjectQueries_listProductRatePlanCharges
+  /object-query/product-rate-plan-charges/{key}:
+    get: ObjectQueries_getProductRatePlanCharge
+  /object-query/product-rate-plans:
+    get: ObjectQueries_listProductRatePlans
+  /object-query/product-rate-plans/{key}:
+    get: ObjectQueries_getProductRatePlan
+  /object-query/products:
+    get: ObjectQueries_listProducts
+  /object-query/products/{key}:
+    get: ObjectQueries_getProductDetails
+  /object-query/rate-plan-charges:
+    get: ObjectQueries_listRatePlanCharges
+  /object-query/rate-plan-charges/{key}:
+    get: ObjectQueries_getRatePlanCharge
+  /object-query/rate-plans:
+    get: ObjectQueries_listRatePlans
+  /object-query/rate-plans/{key}:
+    get: ObjectQueries_getRatePlan
+  /object-query/rating-results:
+    get: ObjectQueries_listRatingResults
+  /object-query/rating-results/{key}:
+    get: ObjectQueries_getRatingResult
+  /object-query/refund-application-items:
+    get: ObjectQueries_listRefundApplicationItems
+  /object-query/refund-application-items/{key}:
+    get: ObjectQueries_getRefundApplicationItem
+  /object-query/refund-applications:
+    get: ObjectQueries_listRefundApplications
+  /object-query/refund-applications/{key}:
+    get: ObjectQueries_getRefundApplication
+  /object-query/refunds:
+    get: ObjectQueries_listRefunds
+  /object-query/refunds/{key}:
+    get: ObjectQueries_getRefundDetails
+  /object-query/subscriptions:
+    get: ObjectQueries_listSubscriptions
+  /object-query/subscriptions/{key}:
+    get: ObjectQueries_getSubscriptionDetails
+  /object-query/taxation-items:
+    get: ObjectQueries_listTaxationItems
+  /object-query/taxation-items/{key}:
+    get: ObjectQueries_getTaxationItem
+  /object-query/usages:
+    get: ObjectQueries_listUsages
+  /object-query/usages/{key}:
+    get: ObjectQueries_getUsageRecord
+  /object-query/validity-period-summaries:
+    get: ObjectQueries_listValidityPeriodSummaries
+  /object-query/validity-period-summaries/{key}:
+    get: ObjectQueries_getValidityPeriodSummary
+  /object-query/{custom-object-name}:
+    get: ObjectQueries_listCustomObjects
+  /object-query/{custom-object-name}/{key}:
+    get: ObjectQueries_getCustomObjectDetails
   /v1/adjustments:
     get: DeliveryAdjustments_listSubscriptionDeliveryAdjustments
   /v1/creditmemos/{creditMemoKey}/taxationitems:
@@ -166,6 +330,170 @@ responseSchemaNames:
     get:
       '200':
         application/json: NotificationsQueryNotificationDefinitionsResponse
+  /object-query/accounts:
+    get:
+      '200':
+        application/json: ObjectQueriesListAccountsResponse
+  /object-query/amendments:
+    get:
+      '200':
+        application/json: ObjectQueriesListAmendmentsResponse
+  /object-query/billing-runs:
+    get:
+      '200':
+        application/json: ObjectQueriesListBillRunsResponse
+  /object-query/contacts:
+    get:
+      '200':
+        application/json: ObjectQueriesListContactsResponse
+  /object-query/credit-memo-applications:
+    get:
+      '200':
+        application/json: ObjectQueriesListCreditMemoApplicationsResponse
+  /object-query/credit-memo-items:
+    get:
+      '200':
+        application/json: ObjectQueriesListCreditMemoItemsResponse
+  /object-query/credit-memos:
+    get:
+      '200':
+        application/json: ObjectQueriesListCreditMemosResponse
+  /object-query/debit-memo-items:
+    get:
+      '200':
+        application/json: ObjectQueriesListDebitMemoItemsResponse
+  /object-query/debit-memos:
+    get:
+      '200':
+        application/json: ObjectQueriesListDebitMemosResponse
+  /object-query/invoice-items:
+    get:
+      '200':
+        application/json: ObjectQueriesListInvoiceItemsResponse
+  /object-query/invoices:
+    get:
+      '200':
+        application/json: ObjectQueriesListInvoicesResponse
+  /object-query/order-actions:
+    get:
+      '200':
+        application/json: ObjectQueriesListOrderActionsResponse
+  /object-query/order-line-items:
+    get:
+      '200':
+        application/json: ObjectQueriesListOrderLineItemsResponse
+  /object-query/orders:
+    get:
+      '200':
+        application/json: ObjectQueriesListOrdersResponse
+  /object-query/payment-applications:
+    get:
+      '200':
+        application/json: ObjectQueriesListPaymentApplicationsResponse
+  /object-query/payment-method-snapshots:
+    get:
+      '200':
+        application/json: ObjectQueriesListPaymentMethodSnapshotsResponse
+  /object-query/payment-methods:
+    get:
+      '200':
+        application/json: ObjectQueriesListPaymentMethodsResponse
+  /object-query/payment-runs:
+    get:
+      '200':
+        application/json: ObjectQueriesListPaymentRunsResponse
+  /object-query/payment-schedule-items:
+    get:
+      '200':
+        application/json: ObjectQueriesListPaymentScheduleItemsResponse
+  /object-query/payment-schedules:
+    get:
+      '200':
+        application/json: ObjectQueriesListPaymentSchedulesResponse
+  /object-query/payments:
+    get:
+      '200':
+        application/json: ObjectQueriesListPaymentsResponse
+  /object-query/prepaid-balance-funds:
+    get:
+      '200':
+        application/json: ObjectQueriesListPrepaidBalanceFundsResponse
+  /object-query/prepaid-balance-transactions:
+    get:
+      '200':
+        application/json: ObjectQueriesListPrepaidBalanceTransactionsResponse
+  /object-query/prepaid-balances:
+    get:
+      '200':
+        application/json: ObjectQueriesListPrepaidBalancesResponse
+  /object-query/processed-usages:
+    get:
+      '200':
+        application/json: ObjectQueriesListProcessedUsagesResponse
+  /object-query/product-rate-plan-charge-tiers:
+    get:
+      '200':
+        application/json: ObjectQueriesListProductRatePlanChargeTiersResponse
+  /object-query/product-rate-plan-charges:
+    get:
+      '200':
+        application/json: ObjectQueriesListProductRatePlanChargesResponse
+  /object-query/product-rate-plans:
+    get:
+      '200':
+        application/json: ObjectQueriesListProductRatePlansResponse
+  /object-query/products:
+    get:
+      '200':
+        application/json: ObjectQueriesListProductsResponse
+  /object-query/rate-plan-charges:
+    get:
+      '200':
+        application/json: ObjectQueriesListRatePlanChargesResponse
+  /object-query/rate-plans:
+    get:
+      '200':
+        application/json: ObjectQueriesListRatePlansResponse
+  /object-query/rating-results:
+    get:
+      '200':
+        application/json: ObjectQueriesListRatingResultsResponse
+  /object-query/refund-application-items:
+    get:
+      '200':
+        application/json: ObjectQueriesListRefundApplicationItemsResponse
+  /object-query/refund-applications:
+    get:
+      '200':
+        application/json: ObjectQueriesListRefundApplicationsResponse
+  /object-query/refunds:
+    get:
+      '200':
+        application/json: ObjectQueriesListRefundsResponse
+  /object-query/subscriptions:
+    get:
+      '200':
+        application/json: ObjectQueriesListSubscriptionsResponse
+  /object-query/taxation-items:
+    get:
+      '200':
+        application/json: ObjectQueriesListTaxationItemsResponse
+  /object-query/usages:
+    get:
+      '200':
+        application/json: ObjectQueriesListUsagesResponse
+  /object-query/validity-period-summaries:
+    get:
+      '200':
+        application/json: ObjectQueriesListValidityPeriodSummariesResponse
+  /object-query/{custom-object-name}:
+    get:
+      '200':
+        application/json: ObjectQueriesListCustomObjectsResponse
+  /object-query/{custom-object-name}/{key}:
+    get:
+      '200':
+        application/json: ObjectQueriesGetCustomObjectDetailsResponse
   /objects/definitions/default/{object}:
     delete:
       '200':
@@ -382,9 +710,13 @@ securityParameters:
     query: false
   excludeUsage:
     query: false
+  expand[]:
+    query: false
   failedOnly:
     query: false
   fields:
+    query: false
+  filter[]:
     query: false
   forRevenueRecollect:
     query: false
@@ -448,6 +780,8 @@ securityParameters:
     query: false
   page_length:
     query: false
+  page_size:
+    query: false
   path:
     query: false
   paymentGatewayType:
@@ -495,6 +829,8 @@ securityParameters:
   skuName:
     query: false
   sort:
+    query: false
+  sort[]:
     query: false
   sourceItemId:
     query: false

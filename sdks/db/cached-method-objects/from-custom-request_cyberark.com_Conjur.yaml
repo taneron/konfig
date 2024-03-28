@@ -1,4 +1,4 @@
-hash: bd8bdbc21617f3b7402e7d159bc91791c93e2bf5e53e5114e54f1ada4b2ea04d
+hash: 98ea10d0e7c042f40362bcbe51de45390bdbb43f0112f6e6f6fc1f3bb478add3
 methodObjects:
   - url: /authn/{account}/login
     method: getUserApiKey
@@ -32,9 +32,12 @@ methodObjects:
     httpMethod: post
     tag: authentication
     typeScriptTag: authentication
-    description: |
+    description: >
       For applications running in Kubernetes; sends Conjur a certificate
-      signing request (CSR) and requests a client certificate injected into
+
+      signing request (https://docs.cyberark.com and requests a client
+      certificate injected into
+
       the application's Kubernetes pod.
     parameters:
       - name: serviceId
@@ -332,7 +335,7 @@ methodObjects:
     typeScriptTag: authentication
     description: |
       Gets a short-lived access token for applications using OpenID
-      Connect (OIDC) to access the Conjur API.
+      Connect (https://docs.cyberark.com to access the Conjur API.
     parameters:
       - name: serviceId
         schema: string
@@ -363,7 +366,7 @@ methodObjects:
     typeScriptTag: authentication
     description: >
       Gets a short-lived access token for applications using JSON Web Token
-      (JWT)
+      (https://docs.cyberark.com
 
       to access the Conjur API.
     parameters:
@@ -398,7 +401,7 @@ methodObjects:
     typeScriptTag: authentication
     description: >
       Gets a short-lived access token for applications using JSON Web Token
-      (JWT)
+      (https://docs.cyberark.com
 
       to access the Conjur API. Covers the case of use of optional URL parameter
       "ID"
@@ -1423,7 +1426,7 @@ methodObjects:
           service, or
 
           - The authenticated Host ID does not match the of the CSR Common Name
-          (CN).
+          (https://docs.cyberark.com.
       - statusCode: '404'
         description: CA Service with the given ID does not exist
 numberOfSchemas: 41

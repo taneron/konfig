@@ -1,4 +1,4 @@
-hash: a3564a3cbfa381ff51330d3318da1ad4710b2c9635573a0cf1111eed6d998706
+hash: deea595297d03caa1eaa1d642ad18963f6f4af6e7d661bde230c7e8f8a735cad
 methodObjects:
   - url: /workspaces
     method: listAccessible
@@ -700,11 +700,12 @@ methodObjects:
         schema: array
         required: false
         description: >-
-          Group the results by specific field(s). Defaults to provider, service,
-          account_id. Valid groupings: account_id, billing_account_id,
-          charge_type, cost_category, cost_subcategory, provider, region,
-          resource_id, service, tagged, tag:<tag_value>. If providing multiple
-          groupings, join as comma separated values:
+          Group the results by specific
+          field(https://vantage.readme.io/reference/general. Defaults to
+          provider, service, account_id. Valid groupings: account_id,
+          billing_account_id, charge_type, cost_category, cost_subcategory,
+          provider, region, resource_id, service, tagged, tag:<tag_value>. If
+          providing multiple groupings, join as comma separated values:
           groupings=provider,service,region
       - name: order
         schema: string
@@ -1391,6 +1392,110 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: Price model
+  - url: /resource_reports
+    method: getAll
+    httpMethod: get
+    tag: ResourceReports
+    typeScriptTag: resourceReports
+    description: Return all ResourceReports.
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: The page of results to return.
+      - name: limit
+        schema: integer
+        required: false
+        description: The number of results to return. The maximum is 1000.
+    responses:
+      - statusCode: '200'
+        description: ResourceReports model
+  - url: /resource_reports/{resource_report_token}
+    method: removeReport
+    httpMethod: delete
+    tag: ResourceReports
+    typeScriptTag: resourceReports
+    description: Delete a ResourceReport.
+    parameters:
+      - name: resourceReportToken
+        schema: string
+        required: true
+        description: ''
+        example: RESOURCE_REPORT_TOKEN
+    responses:
+      - statusCode: '204'
+        description: ResourceReport model
+      - statusCode: '404'
+        description: Errors model
+  - url: /resource_reports/{resource_report_token}
+    method: getResourceReport
+    httpMethod: get
+    tag: ResourceReports
+    typeScriptTag: resourceReports
+    description: Return a ResourceReport.
+    parameters:
+      - name: resourceReportToken
+        schema: string
+        required: true
+        description: ''
+        example: RESOURCE_REPORT_TOKEN
+    responses:
+      - statusCode: '200'
+        description: ResourceReport model
+      - statusCode: '404'
+        description: Errors model
+  - url: /financial_commitment_reports
+    method: getAllReports
+    httpMethod: get
+    tag: FinancialCommitmentReports
+    typeScriptTag: financialCommitmentReports
+    description: Return all FinancialCommitmentReports.
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: The page of results to return.
+      - name: limit
+        schema: integer
+        required: false
+        description: The amount of results to return. The maximum is 1000.
+    responses:
+      - statusCode: '200'
+        description: FinancialCommitmentReports model
+  - url: /financial_commitment_reports/{financial_commitment_report_token}
+    method: deleteReport
+    httpMethod: delete
+    tag: FinancialCommitmentReports
+    typeScriptTag: financialCommitmentReports
+    description: Delete a FinancialCommitmentReport.
+    parameters:
+      - name: financialCommitmentReportToken
+        schema: string
+        required: true
+        description: ''
+        example: FINANCIAL_COMMITMENT_REPORT_TOKEN
+    responses:
+      - statusCode: '204'
+        description: FinancialCommitmentReport model
+      - statusCode: '404'
+        description: Errors model
+  - url: /financial_commitment_reports/{financial_commitment_report_token}
+    method: get
+    httpMethod: get
+    tag: FinancialCommitmentReports
+    typeScriptTag: financialCommitmentReports
+    description: Return a FinancialCommitmentReport.
+    parameters:
+      - name: financialCommitmentReportToken
+        schema: string
+        required: true
+        description: ''
+        example: FINANCIAL_COMMITMENT_REPORT_TOKEN
+    responses:
+      - statusCode: '200'
+        description: FinancialCommitmentReport model
+      - statusCode: '404'
+        description: Errors model
   - url: /ping
     method: healthCheck
     httpMethod: get
@@ -1405,5 +1510,5 @@ methodObjects:
         description: >-
           This is a health check endpoint that can be used to determine Vantage
           API healthiness. It will return 200 if everything is running smoothly.
-numberOfSchemas: 48
+numberOfSchemas: 52
 apiDescription: Vantage API

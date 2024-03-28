@@ -1,0 +1,632 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+fixOnlyOneTagName: false
+operationIds:
+  /Accounts:
+    get: Accounting_getFullChartOfAccounts
+    put: Accounting_createChartOfAccounts
+  /Accounts/{AccountID}:
+    delete: Accounting_deleteChartOfAccounts
+    get: Accounting_getChartOfAccountsById
+    post: Accounting_updateChartOfAccounts
+  /Accounts/{AccountID}/Attachments:
+    get: Accounting_getAttachments
+  /Accounts/{AccountID}/Attachments/{AttachmentID}:
+    get: Accounting_getAttachmentById
+  /Accounts/{AccountID}/Attachments/{FileName}:
+    get: Accounting_getAttachmentByFilename
+    post: Accounting_updateAttachmentByFilename
+    put: Accounting_createAttachment
+  /BankTransactions:
+    get: Accounting_getMoneyTransactions
+    post: Accounting_updateBankTransactions
+    put: Accounting_createBankTransactions
+  /BankTransactions/{BankTransactionID}:
+    get: Accounting_getBankTransactionById
+    post: Accounting_updateBankTransaction
+  /BankTransactions/{BankTransactionID}/Attachments:
+    get: Accounting_getBankTransactionAttachments
+  /BankTransactions/{BankTransactionID}/Attachments/{AttachmentID}:
+    get: Accounting_getAttachment
+  /BankTransactions/{BankTransactionID}/Attachments/{FileName}:
+    get: Accounting_getAttachmentByFileName
+    post: Accounting_updateBankTransactionAttachment
+    put: Accounting_createBankTransactionAttachmentByFilename
+  /BankTransactions/{BankTransactionID}/History:
+    get: Accounting_getBankTransactionHistory
+    put: Accounting_createBankTransactionHistory
+  /BankTransfers:
+    get: Accounting_getBankTransfers
+    put: Accounting_createBankTransfer
+  /BankTransfers/{BankTransferID}:
+    get: Accounting_getBankTransferById
+  /BankTransfers/{BankTransferID}/Attachments:
+    get: Accounting_getBankTransferAttachments
+  /BankTransfers/{BankTransferID}/Attachments/{AttachmentID}:
+    get: Accounting_getAttachment
+  /BankTransfers/{BankTransferID}/Attachments/{FileName}:
+    get: Accounting_getSpecificAttachment
+    post: Accounting_uploadBankTransferAttachment
+    put: Accounting_updateBankTransferAttachment
+  /BankTransfers/{BankTransferID}/History:
+    get: Accounting_getBankTransferHistory
+    put: Accounting_createBankTransferHistory
+  /BatchPayments:
+    get: Accounting_getBatchPayments
+    post: Accounting_updateBatchPayment
+    put: Accounting_createBatchPayments
+  /BatchPayments/{BatchPaymentID}:
+    get: Accounting_getBatchPayment
+    post: Accounting_updateBatchPayment
+  /BatchPayments/{BatchPaymentID}/History:
+    get: Accounting_getBatchPaymentHistory
+    put: Accounting_recordBatchPaymentHistory
+  /BrandingThemes:
+    get: Accounting_getBrandingThemes
+  /BrandingThemes/{BrandingThemeID}:
+    get: Accounting_getBrandingThemeById
+  /BrandingThemes/{BrandingThemeID}/PaymentServices:
+    get: Accounting_getPaymentServices
+    post: Accounting_createPaymentService
+  /Budgets:
+    get: Accounting_getBudgetsList
+  /Budgets/{BudgetID}:
+    get: Accounting_getBudget
+  /ContactGroups:
+    get: Accounting_getContactGroupDetails
+    put: Accounting_createContactGroup
+  /ContactGroups/{ContactGroupID}:
+    get: Accounting_getContactGroupById
+    post: Accounting_updateContactGroup
+  /ContactGroups/{ContactGroupID}/Contacts:
+    delete: Accounting_deleteContactsFromGroup
+    put: Accounting_addContactsToGroup
+  /ContactGroups/{ContactGroupID}/Contacts/{ContactID}:
+    delete: Accounting_deleteContactFromGroup
+  /Contacts:
+    get: Accounting_listContacts
+    post: Accounting_updateOrCreateContacts
+    put: Accounting_createMultipleContacts
+  /Contacts/{ContactID}:
+    get: Accounting_getContactById
+    post: Accounting_updateContact
+  /Contacts/{ContactID}/Attachments:
+    get: Accounting_getContactAttachments
+  /Contacts/{ContactID}/Attachments/{AttachmentID}:
+    get: Accounting_getSpecificAttachment
+  /Contacts/{ContactID}/Attachments/{FileName}:
+    get: Accounting_getAttachmentByFileName
+    post: Accounting_uploadAttachment
+    put: Accounting_uploadAttachment
+  /Contacts/{ContactID}/CISSettings:
+    get: Accounting_getCisSettings
+  /Contacts/{ContactID}/History:
+    get: Accounting_getContactHistory
+    put: Accounting_createContactHistory
+  /Contacts/{ContactNumber}:
+    get: Accounting_getContactByNumber
+  /CreditNotes:
+    get: Accounting_getCreditNotes
+    post: Accounting_updateOrCreateCreditNotes
+    put: Accounting_createCreditNote
+  /CreditNotes/{CreditNoteID}:
+    get: Accounting_getCreditNoteById
+    post: Accounting_updateCreditNote
+  /CreditNotes/{CreditNoteID}/Allocations:
+    put: Accounting_createCreditNoteAllocations
+  /CreditNotes/{CreditNoteID}/Allocations/{AllocationID}:
+    delete: Accounting_deleteAllocationFromCreditNote
+  /CreditNotes/{CreditNoteID}/Attachments:
+    get: Accounting_getCreditNoteAttachments
+  /CreditNotes/{CreditNoteID}/Attachments/{AttachmentID}:
+    get: Accounting_getCreditNoteAttachment
+  /CreditNotes/{CreditNoteID}/Attachments/{FileName}:
+    get: Accounting_getSpecificAttachment
+    post: Accounting_updateAttachmentsByFileName
+    put: Accounting_updateCreditNoteAttachment
+  /CreditNotes/{CreditNoteID}/History:
+    get: Accounting_getCreditNoteHistory
+    put: Accounting_getCreditNoteHistory
+  /CreditNotes/{CreditNoteID}/pdf:
+    get: Accounting_getCreditNotePdf
+  /Currencies:
+    get: Accounting_getCurrencies
+    put: Accounting_createCurrency
+  /Employees:
+    get: Accounting_getPayrunEmployees
+    post: Accounting_createXeroPayrunEmployee
+    put: Accounting_createPayrunEmployees
+  /Employees/{EmployeeID}:
+    get: Accounting_getEmployeeById
+  /ExpenseClaims:
+    get: Accounting_getExpenseClaims
+    put: Accounting_createExpenseClaims
+  /ExpenseClaims/{ExpenseClaimID}:
+    get: Accounting_getExpenseClaimById
+    post: Accounting_updateExpenseClaims
+  /ExpenseClaims/{ExpenseClaimID}/History:
+    get: Accounting_getExpenseClaimHistory
+    put: Accounting_recordExpenseClaimHistory
+  /InvoiceReminders/Settings:
+    get: Accounting_getInvoiceReminderSettings
+  /Invoices:
+    get: Accounting_getSalesInvoices
+    post: Accounting_updateOrCreateInvoices
+    put: Accounting_createInvoices
+  /Invoices/{InvoiceID}:
+    get: Accounting_getInvoiceById
+    post: Accounting_updateSpecificInvoice
+  /Invoices/{InvoiceID}/Attachments:
+    get: Accounting_getInvoiceAttachments
+  /Invoices/{InvoiceID}/Attachments/{AttachmentID}:
+    get: Accounting_getAttachment
+  /Invoices/{InvoiceID}/Attachments/{FileName}:
+    get: Accounting_getAttachmentByFileName
+    post: Accounting_updateAttachment
+    put: Accounting_createAttachment
+  /Invoices/{InvoiceID}/Email:
+    post: Accounting_sendInvoiceByEmail
+  /Invoices/{InvoiceID}/History:
+    get: Accounting_getInvoiceHistory
+    put: Accounting_createInvoiceHistory
+  /Invoices/{InvoiceID}/OnlineInvoice:
+    get: Accounting_getOnlineInvoiceUrl
+  /Invoices/{InvoiceID}/pdf:
+    get: Accounting_getInvoicePdf
+  /Items:
+    get: Accounting_getItems
+    post: Accounting_updateItems
+    put: Accounting_createItems
+  /Items/{ItemID}:
+    delete: Accounting_deleteItem
+    get: Accounting_getItemById
+    post: Accounting_updateItem
+  /Items/{ItemID}/History:
+    get: Accounting_getItemHistory
+    put: Accounting_createItemHistoryRecord
+  /Journals:
+    get: Accounting_getJournals
+  /Journals/{JournalID}:
+    get: Accounting_getJournalById
+  /Journals/{JournalNumber}:
+    get: Accounting_getJournalByNumber
+  /LinkedTransactions:
+    get: Accounting_getLinkedTransactions
+    put: Accounting_createLinkedTransactions
+  /LinkedTransactions/{LinkedTransactionID}:
+    delete: Accounting_deleteLinkedTransaction
+    get: Accounting_getLinkedTransaction
+    post: Accounting_updateLinkedTransaction
+  /ManualJournals:
+    get: Accounting_getManualJournals
+    post: Accounting_updateOrCreateManualJournal
+    put: Accounting_createManualJournals
+  /ManualJournals/{ManualJournalID}:
+    get: Accounting_getManualJournal
+    post: Accounting_updateManualJournal
+  /ManualJournals/{ManualJournalID}/Attachments:
+    get: Accounting_getManualJournalAttachments
+  /ManualJournals/{ManualJournalID}/Attachments/{AttachmentID}:
+    get: Accounting_getAttachment
+  /ManualJournals/{ManualJournalID}/Attachments/{FileName}:
+    get: Accounting_getSpecificAttachment
+    post: Accounting_updateSpecificAttachment
+    put: Accounting_createSpecificAttachment
+  /ManualJournals/{ManualJournalID}/History:
+    get: Accounting_getManualJournalHistory
+    put: Accounting_createManualJournalHistoryRecord
+  /Organisation:
+    get: Accounting_getOrganisationDetails
+  /Organisation/Actions:
+    get: Accounting_getOrganisationActions
+  /Organisation/{OrganisationID}/CISSettings:
+    get: Accounting_getCisSettings
+  /Overpayments:
+    get: Accounting_getOverpayments
+  /Overpayments/{OverpaymentID}:
+    get: Accounting_getOverpaymentById
+  /Overpayments/{OverpaymentID}/Allocations:
+    put: Accounting_createSingleAllocation
+  /Overpayments/{OverpaymentID}/Allocations/{AllocationID}:
+    delete: Accounting_deleteAllocationFromOverpayment
+  /Overpayments/{OverpaymentID}/History:
+    get: Accounting_getOverpaymentHistory
+    put: Accounting_recordOverpaymentHistory
+  /PaymentServices:
+    get: Accounting_getPaymentServices
+    put: Accounting_createPaymentService
+  /Payments:
+    get: Accounting_getPaymentsForInvoicesAndCreditNotes
+    post: Accounting_createSinglePayment
+    put: Accounting_createMultiplePayments
+  /Payments/{PaymentID}:
+    get: Accounting_getPaymentById
+    post: Accounting_updatePaymentForInvoicesAndCreditNotes
+  /Payments/{PaymentID}/History:
+    get: Accounting_getPaymentHistory
+    put: Accounting_createPaymentHistoryRecord
+  /Prepayments:
+    get: Accounting_getPrepayments
+  /Prepayments/{PrepaymentID}:
+    get: Accounting_getPrepayment
+  /Prepayments/{PrepaymentID}/Allocations:
+    put: Accounting_createPrepaymentAllocations
+  /Prepayments/{PrepaymentID}/Allocations/{AllocationID}:
+    delete: Accounting_deleteAllocationFromPrepayment
+  /Prepayments/{PrepaymentID}/History:
+    get: Accounting_getPrepaymentHistory
+    put: Accounting_createPrepaymentHistory
+  /PurchaseOrders:
+    get: Accounting_getPurchaseOrders
+    post: Accounting_updateOrCreatePurchaseOrders
+    put: Accounting_createPurchaseOrders
+  /PurchaseOrders/{PurchaseOrderID}:
+    get: Accounting_getPurchaseOrderById
+    post: Accounting_updatePurchaseOrder
+  /PurchaseOrders/{PurchaseOrderID}/Attachments:
+    get: Accounting_getPurchaseOrderAttachments
+  /PurchaseOrders/{PurchaseOrderID}/Attachments/{AttachmentID}:
+    get: Accounting_getAttachment
+  /PurchaseOrders/{PurchaseOrderID}/Attachments/{FileName}:
+    get: Accounting_getAttachmentByFileName
+    post: Accounting_updatePurchaseOrderAttachment
+    put: Accounting_createPurchaseOrderAttachment
+  /PurchaseOrders/{PurchaseOrderID}/History:
+    get: Accounting_getPurchaseOrderHistory
+    put: Accounting_recordPurchaseOrderHistory
+  /PurchaseOrders/{PurchaseOrderID}/pdf:
+    get: Accounting_getPurchaseOrderPdf
+  /PurchaseOrders/{PurchaseOrderNumber}:
+    get: Accounting_getPurchaseOrderByNumber
+  /Quotes:
+    get: Accounting_getSalesQuotes
+    post: Accounting_updateOrCreateQuotes
+    put: Accounting_createQuotes
+  /Quotes/{QuoteID}:
+    get: Accounting_getQuoteById
+    post: Accounting_updateSpecificQuote
+  /Quotes/{QuoteID}/Attachments:
+    get: Accounting_getQuoteAttachments
+  /Quotes/{QuoteID}/Attachments/{AttachmentID}:
+    get: Accounting_getSpecificAttachment
+  /Quotes/{QuoteID}/Attachments/{FileName}:
+    get: Accounting_getQuoteAttachment
+    post: Accounting_updateQuoteAttachment
+    put: Accounting_createQuoteAttachment
+  /Quotes/{QuoteID}/History:
+    get: Accounting_getQuoteHistory
+    put: Accounting_createQuoteHistoryRecord
+  /Quotes/{QuoteID}/pdf:
+    get: Accounting_getQuotePdf
+  /Receipts:
+    get: Accounting_getDraftExpenseClaimsReceipts
+    put: Accounting_createDraftExpenseClaimsReceipts
+  /Receipts/{ReceiptID}:
+    get: Accounting_getSpecificDraftExpenseClaimReceiptByReceiptId
+    post: Accounting_updateDraftClaimReceipt
+  /Receipts/{ReceiptID}/Attachments:
+    get: Accounting_getReceiptAttachments
+  /Receipts/{ReceiptID}/Attachments/{AttachmentID}:
+    get: Accounting_getExpenseClaimsAttachment
+  /Receipts/{ReceiptID}/Attachments/{FileName}:
+    get: Accounting_getSpecificAttachment
+    post: Accounting_updateSpecificAttachment
+    put: Accounting_createReceiptAttachmentByFileName
+  /Receipts/{ReceiptID}/History:
+    get: Accounting_getReceiptHistory
+    put: Accounting_createReceiptHistory
+  /RepeatingInvoices:
+    get: Accounting_getRepeatingInvoices
+    post: Accounting_manageRepeatingInvoices
+    put: Accounting_createRepeatingInvoices
+  /RepeatingInvoices/{RepeatingInvoiceID}:
+    get: Accounting_getRepeatingInvoiceById
+    post: Accounting_deleteRepeatingInvoiceTemplate
+  /RepeatingInvoices/{RepeatingInvoiceID}/Attachments:
+    get: Accounting_getRepeatingInvoiceAttachments
+  /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{AttachmentID}:
+    get: Accounting_getSpecificAttachment
+  /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{FileName}:
+    get: Accounting_getRepeatingInvoiceAttachment
+    post: Accounting_updateRepeatingInvoiceAttachment
+    put: Accounting_createRepeatingInvoiceAttachment
+  /RepeatingInvoices/{RepeatingInvoiceID}/History:
+    get: Accounting_getRepeatingInvoiceHistory
+    put: Accounting_createHistoryRecord
+  /Reports:
+    get: Accounting_getUniqueReportsByUuid
+  /Reports/AgedPayablesByContact:
+    get: Accounting_getAgedPayablesByContact
+  /Reports/AgedReceivablesByContact:
+    get: Accounting_getAgedReceivablesByContact
+  /Reports/BalanceSheet:
+    get: Accounting_getBalanceSheetReport
+  /Reports/BankSummary:
+    get: Accounting_getBankSummary
+  /Reports/BudgetSummary:
+    get: Accounting_getBudgetSummaryReport
+  /Reports/ExecutiveSummary:
+    get: Accounting_getExecutiveSummaryReport
+  /Reports/ProfitAndLoss:
+    get: Accounting_getProfitAndLossReport
+  /Reports/TenNinetyNine:
+    get: Accounting_get1099Reports
+  /Reports/TrialBalance:
+    get: Accounting_getTrialBalanceReport
+  /Reports/{ReportID}:
+    get: Accounting_getReportByReportId
+  /Setup:
+    post: Accounting_setConversionDetails
+  /TaxRates:
+    get: Accounting_getTaxRates
+    post: Accounting_updateTaxRates
+    put: Accounting_updateTaxRates
+  /TaxRates/{TaxType}:
+    get: Accounting_getTaxRateByType
+  /TrackingCategories:
+    get: Accounting_getTrackingCategoriesOptions
+    put: Accounting_createTrackingCategories
+  /TrackingCategories/{TrackingCategoryID}:
+    delete: Accounting_deleteTrackingCategory
+    get: Accounting_getTrackingCategoriesById
+    post: Accounting_updateTrackingCategory
+  /TrackingCategories/{TrackingCategoryID}/Options:
+    put: Accounting_createOptions
+  /TrackingCategories/{TrackingCategoryID}/Options/{TrackingOptionID}:
+    delete: Accounting_deleteTrackingOption
+    post: Accounting_updateTrackingOption
+  /Users:
+    get: Accounting_getUsers
+  /Users/{UserID}:
+    get: Accounting_getSpecificUser
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /Accounts/{AccountID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdateAttachmentByFilenameRequest
+    put:
+      application/octet-stream: AccountingCreateAttachmentRequest
+  /BankTransactions/{BankTransactionID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdateBankTransactionAttachmentRequest
+    put:
+      application/octet-stream: AccountingCreateBankTransactionAttachmentByFilenameRequest
+  /BankTransfers/{BankTransferID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUploadBankTransferAttachmentRequest
+    put:
+      application/octet-stream: AccountingUpdateBankTransferAttachmentRequest
+  /Contacts/{ContactID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUploadAttachmentRequest
+    put:
+      application/octet-stream: AccountingUploadAttachmentRequest1
+  /CreditNotes/{CreditNoteID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdateAttachmentsByFileNameRequest
+    put:
+      application/octet-stream: AccountingUpdateCreditNoteAttachmentRequest
+  /Invoices/{InvoiceID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdateAttachmentRequest
+    put:
+      application/octet-stream: AccountingCreateAttachmentRequest1
+  /ManualJournals/{ManualJournalID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdateSpecificAttachmentRequest
+    put:
+      application/octet-stream: AccountingCreateSpecificAttachmentRequest
+  /PurchaseOrders/{PurchaseOrderID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdatePurchaseOrderAttachmentRequest
+    put:
+      application/octet-stream: AccountingCreatePurchaseOrderAttachmentRequest
+  /Quotes/{QuoteID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdateQuoteAttachmentRequest
+    put:
+      application/octet-stream: AccountingCreateQuoteAttachmentRequest
+  /Receipts/{ReceiptID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdateSpecificAttachmentRequest1
+    put:
+      application/octet-stream: AccountingCreateReceiptAttachmentByFileNameRequest
+  /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{FileName}:
+    post:
+      application/octet-stream: AccountingUpdateRepeatingInvoiceAttachmentRequest
+    put:
+      application/octet-stream: AccountingCreateRepeatingInvoiceAttachmentRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /Accounts/{AccountID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachmentByIdResponse
+  /Accounts/{AccountID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachmentByFilenameResponse
+  /BankTransactions/{BankTransactionID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachmentResponse
+  /BankTransactions/{BankTransactionID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachmentByFileNameResponse
+  /BankTransfers/{BankTransferID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachment200Response
+  /BankTransfers/{BankTransferID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetSpecificAttachmentResponse
+  /Contacts/{ContactID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetSpecificAttachment200Response
+  /Contacts/{ContactID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachmentByFileName200Response
+  /CreditNotes/{CreditNoteID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetCreditNoteAttachmentResponse
+  /CreditNotes/{CreditNoteID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetSpecificAttachment200Response
+  /CreditNotes/{CreditNoteID}/pdf:
+    get:
+      '200':
+        application/pdf: AccountingGetCreditNotePdfResponse
+  /Invoices/{InvoiceID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachment200Response
+  /Invoices/{InvoiceID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachmentByFileName200Response
+  /Invoices/{InvoiceID}/pdf:
+    get:
+      '200':
+        application/pdf: AccountingGetInvoicePdfResponse
+  /ManualJournals/{ManualJournalID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachment200Response
+  /ManualJournals/{ManualJournalID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetSpecificAttachment200Response
+  /PurchaseOrders/{PurchaseOrderID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachment200Response
+  /PurchaseOrders/{PurchaseOrderID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetAttachmentByFileName200Response
+  /PurchaseOrders/{PurchaseOrderID}/pdf:
+    get:
+      '200':
+        application/pdf: AccountingGetPurchaseOrderPdfResponse
+  /Quotes/{QuoteID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetSpecificAttachment200Response
+  /Quotes/{QuoteID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetQuoteAttachmentResponse
+  /Quotes/{QuoteID}/pdf:
+    get:
+      '200':
+        application/pdf: AccountingGetQuotePdfResponse
+  /Receipts/{ReceiptID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetExpenseClaimsAttachmentResponse
+  /Receipts/{ReceiptID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetSpecificAttachment200Response
+  /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{AttachmentID}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetSpecificAttachment200Response
+  /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{FileName}:
+    get:
+      '200':
+        application/octet-stream: AccountingGetRepeatingInvoiceAttachmentResponse
+securityParameters:
+  ContactID:
+    query: false
+  ContactIDs:
+    query: false
+  DateFrom:
+    query: false
+  DateTo:
+    query: false
+  ExpiryDateFrom:
+    query: false
+  ExpiryDateTo:
+    query: false
+  IDs:
+    query: false
+  Idempotency-Key:
+    header: false
+  If-Modified-Since:
+    header: false
+  IncludeOnline:
+    query: false
+  InvoiceNumbers:
+    query: false
+  LinkedTransactionID:
+    query: false
+  QuoteNumber:
+    query: false
+  SourceTransactionID:
+    query: false
+  Status:
+    query: false
+  Statuses:
+    query: false
+  TargetTransactionID:
+    query: false
+  contactId:
+    query: false
+  contentType:
+    header: false
+  createdByMyApp:
+    query: false
+  date:
+    query: false
+  fromDate:
+    query: false
+  includeArchived:
+    query: false
+  offset:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  paymentsOnly:
+    query: false
+  periods:
+    query: false
+  reportYear:
+    query: false
+  searchTerm:
+    query: false
+  standardLayout:
+    query: false
+  summarizeErrors:
+    query: false
+  summaryOnly:
+    query: false
+  timeframe:
+    query: false
+  toDate:
+    query: false
+  trackingCategoryID:
+    query: false
+  trackingCategoryID2:
+    query: false
+  trackingOptionID:
+    query: false
+  trackingOptionID1:
+    query: false
+  trackingOptionID2:
+    query: false
+  unitdp:
+    query: false
+  where:
+    query: false
+validServerUrls: {}

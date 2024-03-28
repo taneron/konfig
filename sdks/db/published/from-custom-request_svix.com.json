@@ -14,12 +14,12 @@
   "endpoints": 40,
   "sdkMethods": 59,
   "schemas": 120,
-  "parameters": 266,
+  "parameters": 267,
   "originalCustomRequest": {
     "lambda": true
   },
   "customRequestSpecFilename": "svix.com.yaml",
-  "difficultyScore": 185.5,
+  "difficultyScore": 185.75,
   "difficulty": "Medium",
   "company": "Svix",
   "sdkName": "svix-{language}-sdk",
@@ -4032,6 +4032,11 @@
           "schema": "string",
           "description": "The iterator returned from a prior invocation",
           "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
+        },
+        {
+          "name": "order",
+          "schema": "string",
+          "description": "The sorting order of the returned items"
         }
       ],
       "responses": [
@@ -4314,12 +4319,12 @@
       ]
     },
     {
-      "url": "/api/v1/app/{app_id}/integration/{integ_id}/key",
-      "method": "getKey",
-      "httpMethod": "get",
+      "url": "/api/v1/app/{app_id}/integration/{integ_id}/key/rotate",
+      "method": "rotateKey",
+      "httpMethod": "post",
       "tag": "Integration",
       "typeScriptTag": "integration",
-      "description": "Get Integration Key",
+      "description": "Rotate Integration Key",
       "parameters": [
         {
           "name": "appId",
@@ -4334,6 +4339,11 @@
           "required": true,
           "description": "The integ's ID",
           "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
+        },
+        {
+          "name": "idempotencyKey",
+          "schema": "string",
+          "description": "The request's idempotency key"
         }
       ],
       "responses": [
@@ -4372,12 +4382,12 @@
       ]
     },
     {
-      "url": "/api/v1/app/{app_id}/integration/{integ_id}/key/rotate",
-      "method": "rotateKey",
-      "httpMethod": "post",
+      "url": "/api/v1/app/{app_id}/integration/{integ_id}/key",
+      "method": "getKey",
+      "httpMethod": "get",
       "tag": "Integration",
       "typeScriptTag": "integration",
-      "description": "Rotate Integration Key",
+      "description": "Get Integration Key",
       "parameters": [
         {
           "name": "appId",
@@ -4392,11 +4402,6 @@
           "required": true,
           "description": "The integ's ID",
           "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
-        },
-        {
-          "name": "idempotencyKey",
-          "schema": "string",
-          "description": "The request's idempotency key"
         }
       ],
       "responses": [
@@ -4485,7 +4490,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/favicon.png",
   "clientNameCamelCase": "svix",
-  "lastUpdated": "2024-03-27T20:13:36.016Z",
+  "lastUpdated": "2024-03-28T20:59:16.525Z",
   "typescriptSdkUsageCode": "import { Svix } from 'svix-typescript-sdk';\n\nconst svix = new Svix({\n    // HTTP Bearer token passed in the `Authorization` header\n    httpBearer: \"HTTP_BEARER\"\n})",
   "typescriptSdkFirstRequestCode": "// Get Consumer App Portal Access\nconst generateMagicLinksResponse = svix.authentication.generateMagicLinks({\n    appId: \"unique-app-identifier\"\n    featureFlags: []\n    expiry: 604800\n})",
   "fixedSpecFileName": "svix-fixed-spec.yaml"

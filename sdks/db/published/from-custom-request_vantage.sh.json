@@ -17,10 +17,10 @@
   "apiVersion": "2.0.0",
   "apiDescription": "Vantage API",
   "apiTitle": "Vantage",
-  "endpoints": 29,
-  "sdkMethods": 56,
-  "schemas": 48,
-  "parameters": 162,
+  "endpoints": 33,
+  "sdkMethods": 62,
+  "schemas": 52,
+  "parameters": 170,
   "contactUrl": "https://www.vantage.sh",
   "contactEmail": "support@vantage.sh",
   "originalCustomRequest": {
@@ -28,7 +28,7 @@
     "url": "https://api.vantage.sh/v2/swagger.json"
   },
   "customRequestSpecFilename": "vantage.sh.yaml",
-  "difficultyScore": 120,
+  "difficultyScore": 130,
   "difficulty": "Medium",
   "company": "Vantage",
   "sdkName": "vantage-{language}-sdk",
@@ -1144,7 +1144,7 @@
           "name": "groupings",
           "schema": "array",
           "required": false,
-          "description": "Group the results by specific field(s). Defaults to provider, service, account_id. Valid groupings: account_id, billing_account_id, charge_type, cost_category, cost_subcategory, provider, region, resource_id, service, tagged, tag:<tag_value>. If providing multiple groupings, join as comma separated values: groupings=provider,service,region"
+          "description": "Group the results by specific field(https://vantage.readme.io/reference/general. Defaults to provider, service, account_id. Valid groupings: account_id, billing_account_id, charge_type, cost_category, cost_subcategory, provider, region, resource_id, service, tagged, tag:<tag_value>. If providing multiple groupings, join as comma separated values: groupings=provider,service,region"
         },
         {
           "name": "order",
@@ -2231,6 +2231,170 @@
       ]
     },
     {
+      "url": "/resource_reports",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "ResourceReports",
+      "typeScriptTag": "resourceReports",
+      "description": "Return all ResourceReports.",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "required": false,
+          "description": "The page of results to return."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The number of results to return. The maximum is 1000."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "ResourceReports model"
+        }
+      ]
+    },
+    {
+      "url": "/resource_reports/{resource_report_token}",
+      "method": "removeReport",
+      "httpMethod": "delete",
+      "tag": "ResourceReports",
+      "typeScriptTag": "resourceReports",
+      "description": "Delete a ResourceReport.",
+      "parameters": [
+        {
+          "name": "resourceReportToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "RESOURCE_REPORT_TOKEN"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "ResourceReport model"
+        },
+        {
+          "statusCode": "404",
+          "description": "Errors model"
+        }
+      ]
+    },
+    {
+      "url": "/resource_reports/{resource_report_token}",
+      "method": "getResourceReport",
+      "httpMethod": "get",
+      "tag": "ResourceReports",
+      "typeScriptTag": "resourceReports",
+      "description": "Return a ResourceReport.",
+      "parameters": [
+        {
+          "name": "resourceReportToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "RESOURCE_REPORT_TOKEN"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "ResourceReport model"
+        },
+        {
+          "statusCode": "404",
+          "description": "Errors model"
+        }
+      ]
+    },
+    {
+      "url": "/financial_commitment_reports",
+      "method": "getAllReports",
+      "httpMethod": "get",
+      "tag": "FinancialCommitmentReports",
+      "typeScriptTag": "financialCommitmentReports",
+      "description": "Return all FinancialCommitmentReports.",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "required": false,
+          "description": "The page of results to return."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "The amount of results to return. The maximum is 1000."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "FinancialCommitmentReports model"
+        }
+      ]
+    },
+    {
+      "url": "/financial_commitment_reports/{financial_commitment_report_token}",
+      "method": "deleteReport",
+      "httpMethod": "delete",
+      "tag": "FinancialCommitmentReports",
+      "typeScriptTag": "financialCommitmentReports",
+      "description": "Delete a FinancialCommitmentReport.",
+      "parameters": [
+        {
+          "name": "financialCommitmentReportToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FINANCIAL_COMMITMENT_REPORT_TOKEN"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "FinancialCommitmentReport model"
+        },
+        {
+          "statusCode": "404",
+          "description": "Errors model"
+        }
+      ]
+    },
+    {
+      "url": "/financial_commitment_reports/{financial_commitment_report_token}",
+      "method": "get",
+      "httpMethod": "get",
+      "tag": "FinancialCommitmentReports",
+      "typeScriptTag": "financialCommitmentReports",
+      "description": "Return a FinancialCommitmentReport.",
+      "parameters": [
+        {
+          "name": "financialCommitmentReportToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FINANCIAL_COMMITMENT_REPORT_TOKEN"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "FinancialCommitmentReport model"
+        },
+        {
+          "statusCode": "404",
+          "description": "Errors model"
+        }
+      ]
+    },
+    {
       "url": "/ping",
       "method": "healthCheck",
       "httpMethod": "get",
@@ -2253,7 +2417,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vantage/imagePreview.jpg",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vantage/favicon.png",
   "clientNameCamelCase": "vantage",
-  "lastUpdated": "2024-03-24T21:41:22.682Z",
+  "lastUpdated": "2024-03-28T20:59:16.525Z",
   "typescriptSdkUsageCode": "import { Vantage } from 'vantage-typescript-sdk';\n\nconst vantage = new Vantage({\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\"\n})",
   "typescriptSdkFirstRequestCode": "// Return all Workspaces that the current API token has access to.\nconst listAccessibleResponse = vantage.workspaces.listAccessible()",
   "fixedSpecFileName": "vantage-fixed-spec.yaml"

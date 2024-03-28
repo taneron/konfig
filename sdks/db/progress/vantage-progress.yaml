@@ -35,6 +35,11 @@ operationIds:
     delete: Dashboards_deleteDashboard
     get: Dashboards_getSpecificDashboard
     put: Dashboards_updateDashboard
+  /financial_commitment_reports:
+    get: FinancialCommitmentReports_getAllReports
+  /financial_commitment_reports/{financial_commitment_report_token}:
+    delete: FinancialCommitmentReports_deleteReport
+    get: FinancialCommitmentReports_get
   /folders:
     get: Folders_listCostReports
     post: Folders_createFolderForCostReports
@@ -59,6 +64,11 @@ operationIds:
     delete: Notifications_deleteReportNotification
     get: Notifications_getReportNotification
     put: Notifications_updateReportNotification
+  /resource_reports:
+    get: ResourceReports_getAll
+  /resource_reports/{resource_report_token}:
+    delete: ResourceReports_removeReport
+    get: ResourceReports_getResourceReport
   /saved_filters:
     get: Filters_getCostReportFilters
     post: Filters_createSavedFilterForCostReports

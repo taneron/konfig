@@ -1,4 +1,4 @@
-hash: 7d749c576e47b278f3d11c95d5628d55510bde1bc4beb475e9d30907daf772d3
+hash: 70ad800002fde34662400fbc6ecd1199778d127feeba8a9b2ddac5ee92a64ba9
 methodObjects:
   - url: /api/v1/auth/app-portal-access/{app_id}
     method: generateMagicLinks
@@ -2426,6 +2426,9 @@ methodObjects:
         schema: string
         description: The iterator returned from a prior invocation
         example: integ_1srOrx2ZWZBpBUvZwXKQmoEYga2
+      - name: order
+        schema: string
+        description: The sorting order of the returned items
     responses:
       - statusCode: '200'
         description: ''
@@ -2587,40 +2590,6 @@ methodObjects:
         description: ''
       - statusCode: '429'
         description: ''
-  - url: /api/v1/app/{app_id}/integration/{integ_id}/key
-    method: getKey
-    httpMethod: get
-    tag: Integration
-    typeScriptTag: integration
-    description: Get Integration Key
-    parameters:
-      - name: appId
-        schema: string
-        required: true
-        description: The app's ID or UID
-        example: unique-app-identifier
-      - name: integId
-        schema: string
-        required: true
-        description: The integ's ID
-        example: integ_1srOrx2ZWZBpBUvZwXKQmoEYga2
-    responses:
-      - statusCode: '200'
-        description: ''
-      - statusCode: '400'
-        description: ''
-      - statusCode: '401'
-        description: ''
-      - statusCode: '403'
-        description: ''
-      - statusCode: '404'
-        description: ''
-      - statusCode: '409'
-        description: ''
-      - statusCode: '422'
-        description: ''
-      - statusCode: '429'
-        description: ''
   - url: /api/v1/app/{app_id}/integration/{integ_id}/key/rotate
     method: rotateKey
     httpMethod: post
@@ -2641,6 +2610,40 @@ methodObjects:
       - name: idempotencyKey
         schema: string
         description: The request's idempotency key
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v1/app/{app_id}/integration/{integ_id}/key
+    method: getKey
+    httpMethod: get
+    tag: Integration
+    typeScriptTag: integration
+    description: Get Integration Key
+    parameters:
+      - name: appId
+        schema: string
+        required: true
+        description: The app's ID or UID
+        example: unique-app-identifier
+      - name: integId
+        schema: string
+        required: true
+        description: The integ's ID
+        example: integ_1srOrx2ZWZBpBUvZwXKQmoEYga2
     responses:
       - statusCode: '200'
         description: ''
