@@ -1,0 +1,688 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /tf/vasps/{vaspDID}/documents/ddq:
+    get:
+      '200':
+        application/json: {}
+  /v1/addresses:
+    delete:
+      '202':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /address/registerCustomer:
+    post: AddressBook_registerCustomer
+  /address/upload/{vaspDID}:
+    get: AddressBook_requestUploadUrl
+  /auth/addusertovasp:
+    post: VaspAdmin_addUserToVasp
+  /auth/credentials/{vaspDID}:
+    delete: Credentials_deleteAuth0ApiCredentials
+    get: Credentials_getAuth0Credentials
+    post: Credentials_createNewApi
+  /auth/customer:
+    post: Customer_createNewCustomer
+  /auth/customer/{vaspDID}/{customerDID}:
+    get: Customer_getByDids
+  /auth/customerToken:
+    post: Authentication_getCustomerAccessToken
+  /auth/removeuserfromvasp:
+    post: VaspAdmin_removeUserFromVasp
+  /auth/userinfo/update:
+    post: Authentication_updateUser
+  /auth/vaspUsers/{vaspDID}:
+    get: VaspAdmin_listVaspUsers
+  /integrations/bitgo/addressinfo:
+    post: Bitgo_getAddressInfo
+  /integrations/bitgo/credentials:
+    delete: Bitgo_deleteCredentials
+    get: Bitgo_checkCredentials
+    put: Bitgo_setCredentials
+  /integrations/chainalysis/addressinfo:
+    post: Chainalysis_getAddressInfo
+  /integrations/chainalysis/credentials:
+    delete: Chainalysis_deleteCredentials
+    get: Chainalysis_checkCredentials
+    put: Chainalysis_setCredentials
+  /integrations/chainalysis2/addressinfo:
+    post: Chainalysis2_getAddressInfo
+  /integrations/chainalysis2/credentials:
+    delete: Chainalysis_deleteCredentials
+    get: Chainalysis_checkCredentials
+    put: Chainalysis_setCredentials
+  /integrations/coinfirm/addressinfo:
+    post: Coinfirm_getAddressInfo
+  /integrations/coinfirm/credentials:
+    delete: Coinfirm_deleteCredentials
+    get: Coinfirm_checkCredentials
+    put: Coinfirm_setCredentials
+  /integrations/complyadvantage/credentials:
+    delete: ComplyAdvantage_deleteCredentials
+    get: ComplyAdvantage_checkCredentials
+    put: ComplyAdvantage_setCredentials
+  /integrations/complyadvantage/sanctions:
+    post: ComplyAdvantage_sanctionsCheck
+  /integrations/config/txnotification:
+    post: TransactionWebhook_createCallbackUrl
+  /integrations/elliptic/addressinfo:
+    post: Elliptic_getAddressInfo
+  /integrations/elliptic/credentials:
+    delete: Elliptic_deleteCredentials
+    get: Elliptic_checkCredentials
+    put: Elliptic_setCredentials
+  /integrations/lexisnexis/credentials:
+    delete: LexisNexis_deleteCredentials
+    get: LexisNexis_checkCredentials
+    put: LexisNexis_setCredentials
+  /integrations/lexisnexis/sanctions:
+    post: LexisNexis_performSanctionsCheck
+  /integrations/merklescience/addressinfo:
+    post: MerkleScience_getAddressInfo
+  /integrations/merklescience/credentials:
+    delete: MerkleScience_deleteCredentials
+    get: MerkleScience_checkCredentials
+    put: MerkleScience_setCredentials
+  /integrations/providers/{vaspDID}:
+    get: Providers_getConfigured
+  /integrations/refinitiv/credentials:
+    delete: Refinitiv_deleteCredentials
+    get: Refinitiv_checkCredentials
+    put: Refinitiv_setCredentials
+  /integrations/refinitiv/sanctions:
+    post: Refinitiv_sanctionsCheck
+  /integrations/trm/addressinfo:
+    post: Trm_getAddressInfo
+  /integrations/trm/credentials:
+    delete: Trm_deleteCredentials
+    get: Trm_checkCredentials
+    put: Trm_setCredentials
+  /integrations/trmsanctions/credentials:
+    delete: TrmSanctions_deleteCredentials
+    get: TrmSanctions_checkCredentials
+    put: TrmSanctions_setCredentials
+  /integrations/trmsanctions/sanctions:
+    post: TrmSanctions_sanctionsCheck
+  /integrations/txnotification/{vaspDID}:
+    get: TransactionWebhook_getNotificationWebhook
+  /integrations/{vaspDID}/address-query-webhook:
+    delete: AddressWebhook_deleteWebhook
+    post: AddressWebhook_registerQuery
+  /jurisdictions:
+    get: Jurisdictions_listAll
+  /protocol-agents:
+    delete: ProtocolAgents_unregisterVasp
+    get: ProtocolAgents_getConfiguredProtocolAgents
+    post: ProtocolAgents_registerForVasp
+  /protocol-agents-message-handler:
+    post: ProtocolAgents_handleAgentMessage
+  /protocol-gateways/callbacks/address-confirmation/{transactionId}:
+    post: ProtocolGateways_addressConfirmationResolution
+  /protocol-gateways/callbacks/receive-transfer/{transactionId}:
+    post: ProtocolGateways_receiveTransferCallback
+  /rules/delete:
+    post: Rules_deleteByIds
+  /rules/get:
+    get: Rules_getList
+  /rules/set/direction:
+    post: Rules_setDirection
+  /tf/simple/vasps:
+    get: TrustFramework_listVasps
+  /tf/simple/vasps/{vaspDID}:
+    get: TrustFramework_getVaspInformation
+  /tf/vasps/create:
+    post: TrustFramework_initiateVaspCreation
+  /tf/vasps/delete/{vaspDID}:
+    get: TrustFramework_deleteVasp
+  /tf/vasps/did:
+    post: TrustFramework_createVaspDid
+  /tf/vasps/document/delete/{vaspDID}:
+    post: Documents_deleteDocument
+  /tf/vasps/download/{vaspDID}:
+    get: Documents_getLocation
+  /tf/vasps/top-counterparties:
+    get: TrustFramework_getTopCounterpartyData
+  /tf/vasps/update:
+    post: TrustFramework_updateVasp
+  /tf/vasps/upload/{vaspDID}:
+    get: Documents_getUploadUrl
+  /tf/vasps/userVASPList:
+    get: TrustFramework_getUserVaspList
+  /tf/vasps/{vaspDID}/VASPTravelRuleProtocols:
+    get: TrustFramework_getTravelRuleProtocols
+  /tf/vasps/{vaspDID}/documents/ddq:
+    get: Documents_getDdqDocument
+  /tf/vasps/{vaspDID}/documents/requests:
+    get: Documents_listRequests
+    post: Documents_requestAccess
+  /tf/vasps/{vaspDID}/getSettings:
+    get: Settings_get
+  /tf/vasps/{vaspDID}/review:
+    post: TrustFramework_markVaspReview
+  /tf/vasps/{vaspDID}/settings:
+    put: Settings_updateVaspSettings
+  /tx/accept:
+    post: Transactions_acceptTransfer
+  /tx/approve:
+    post: Transactions_approveTransfer
+  /tx/bulk:
+    post: Transactions_bulkEditTransfers
+  /tx/cancel:
+    post: Transactions_cancelTransfer
+  /tx/confirm:
+    post: Transactions_confirmTransfer
+  /tx/create:
+    post: Transactions_createTransfer
+  /tx/decline:
+    post: Transactions_declineTransfer
+  /tx/info:
+    get: Transactions_getTransferDetails
+  /tx/list:
+    get: Transactions_getList
+  /tx/listBeneficiaryOriginator:
+    get: Transactions_listBeneficiaryOriginator
+  /tx/notReady:
+    post: Transactions_markNotReady
+  /tx/notify:
+    post: Transactions_notifyTransfer
+  /tx/query:
+    get: Transactions_searchTransfer
+  /tx/receive:
+    post: Transactions_receiveTransfer
+  /tx/redirect:
+    post: Transactions_redirectTransfer
+  /tx/reject:
+    post: Transactions_transferReject
+  /tx/update:
+    post: Transactions_updateTransferDetails
+  /tx/updateTR:
+    post: Transactions_updatePendingData
+  /tx/validate:
+    post: Transactions_validateTransferFields
+  /tx/validate/full:
+    post: Transactions_fullyValidateTransfer
+  /v1/addresses:
+    delete: AddressBook_removeAddress
+    get: AddressBook_getRegisteredAddresses
+  /v1/addresses/address-ownerships/{address}:
+    get: AddressBook_getOwnershipInfo
+  /webhook:
+    delete: Webhooks_unregisterVasp
+    get: Webhooks_getRegistrationUrl
+    post: Webhooks_registerMultiMessageUrl
+operationTags:
+  /auth/credentials/{vaspDID}:
+    delete: Credentials
+    get: Credentials
+    post: Credentials
+renameTags: {}
+requestSchemaNames:
+  /auth/credentials/{vaspDID}:
+    post:
+      application/json: CredentialsCreateNewApiRequest
+  /integrations/bitgo/addressinfo:
+    post:
+      application/json: BitgoGetAddressInfoRequest
+  /integrations/bitgo/credentials:
+    put:
+      application/json: BitgoSetCredentialsRequest
+  /integrations/chainalysis/addressinfo:
+    post:
+      application/json: ChainalysisGetAddressInfoRequest
+  /integrations/chainalysis/credentials:
+    put:
+      application/json: ChainalysisSetCredentialsRequest
+  /integrations/chainalysis2/addressinfo:
+    post:
+      application/json: Chainalysis2GetAddressInfoRequest
+  /integrations/chainalysis2/credentials:
+    put:
+      application/json: ChainalysisSetCredentialsRequest1
+  /integrations/coinfirm/addressinfo:
+    post:
+      application/json: CoinfirmGetAddressInfoRequest
+  /integrations/coinfirm/credentials:
+    put:
+      application/json: CoinfirmSetCredentialsRequest
+  /integrations/complyadvantage/credentials:
+    put:
+      application/json: ComplyAdvantageSetCredentialsRequest
+  /integrations/complyadvantage/sanctions:
+    post:
+      application/json: ComplyAdvantageSanctionsCheckRequest
+  /integrations/elliptic/addressinfo:
+    post:
+      application/json: EllipticGetAddressInfoRequest
+  /integrations/elliptic/credentials:
+    put:
+      application/json: EllipticSetCredentialsRequest
+  /integrations/lexisnexis/credentials:
+    put:
+      application/json: LexisNexisSetCredentialsRequest
+  /integrations/lexisnexis/sanctions:
+    post:
+      application/json: LexisNexisPerformSanctionsCheckRequest
+  /integrations/merklescience/addressinfo:
+    post:
+      application/json: MerkleScienceGetAddressInfoRequest
+  /integrations/merklescience/credentials:
+    put:
+      application/json: MerkleScienceSetCredentialsRequest
+  /integrations/refinitiv/credentials:
+    put:
+      application/json: RefinitivSetCredentialsRequest
+  /integrations/refinitiv/sanctions:
+    post:
+      application/json: RefinitivSanctionsCheckRequest
+  /integrations/trm/addressinfo:
+    post:
+      application/json: TrmGetAddressInfoRequest
+  /integrations/trm/credentials:
+    put:
+      application/json: TrmSetCredentialsRequest
+  /integrations/trmsanctions/credentials:
+    put:
+      application/json: TrmSanctionsSetCredentialsRequest
+  /integrations/trmsanctions/sanctions:
+    post:
+      application/json: TrmSanctionsSanctionsCheckRequest
+  /protocol-gateways/callbacks/address-confirmation/{transactionId}:
+    post:
+      application/json: ProtocolGatewaysAddressConfirmationResolutionRequest
+  /protocol-gateways/callbacks/receive-transfer/{transactionId}:
+    post:
+      application/json: ProtocolGatewaysReceiveTransferCallbackRequest
+  /rules/delete:
+    post:
+      application/json: RulesDeleteByIdsRequest
+  /tf/vasps/{vaspDID}/review:
+    post:
+      application/json: TrustFrameworkMarkVaspReviewRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /auth/credentials/{vaspDID}:
+    get:
+      '200':
+        application/json: CredentialsGetAuth0CredentialsResponse
+    post:
+      '200':
+        application/json: CredentialsCreateNewApiResponse
+  /auth/customerToken:
+    post:
+      '200':
+        application/json: AuthenticationGetCustomerAccessTokenResponse
+  /auth/vaspUsers/{vaspDID}:
+    get:
+      '200':
+        application/json: VaspAdminListVaspUsersResponse
+  /integrations/bitgo/addressinfo:
+    post:
+      '200':
+        application/json: BitgoGetAddressInfoResponse
+  /integrations/bitgo/credentials:
+    delete:
+      '200':
+        application/json: BitgoDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: BitgoCheckCredentialsResponse
+    put:
+      '200':
+        application/json: BitgoSetCredentialsResponse
+  /integrations/chainalysis/addressinfo:
+    post:
+      '200':
+        application/json: ChainalysisGetAddressInfoResponse
+  /integrations/chainalysis/credentials:
+    delete:
+      '200':
+        application/json: ChainalysisDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: ChainalysisCheckCredentialsResponse
+    put:
+      '200':
+        application/json: ChainalysisSetCredentialsResponse
+  /integrations/chainalysis2/addressinfo:
+    post:
+      '200':
+        application/json: Chainalysis2GetAddressInfoResponse
+  /integrations/chainalysis2/credentials:
+    delete:
+      '200':
+        application/json: ChainalysisDeleteCredentials200Response
+    get:
+      '200':
+        application/json: ChainalysisCheckCredentials200Response
+    put:
+      '200':
+        application/json: ChainalysisSetCredentials200Response
+  /integrations/coinfirm/addressinfo:
+    post:
+      '200':
+        application/json: CoinfirmGetAddressInfoResponse
+  /integrations/coinfirm/credentials:
+    delete:
+      '200':
+        application/json: CoinfirmDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: CoinfirmCheckCredentialsResponse
+    put:
+      '200':
+        application/json: CoinfirmSetCredentialsResponse
+  /integrations/complyadvantage/credentials:
+    delete:
+      '200':
+        application/json: ComplyAdvantageDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: ComplyAdvantageCheckCredentialsResponse
+    put:
+      '200':
+        application/json: ComplyAdvantageSetCredentialsResponse
+  /integrations/complyadvantage/sanctions:
+    post:
+      '200':
+        application/json: ComplyAdvantageSanctionsCheckResponse
+  /integrations/elliptic/addressinfo:
+    post:
+      '200':
+        application/json: EllipticGetAddressInfoResponse
+  /integrations/elliptic/credentials:
+    delete:
+      '200':
+        application/json: EllipticDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: EllipticCheckCredentialsResponse
+    put:
+      '200':
+        application/json: EllipticSetCredentialsResponse
+  /integrations/lexisnexis/credentials:
+    delete:
+      '200':
+        application/json: LexisNexisDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: LexisNexisCheckCredentialsResponse
+    put:
+      '200':
+        application/json: LexisNexisSetCredentialsResponse
+  /integrations/lexisnexis/sanctions:
+    post:
+      '200':
+        application/json: LexisNexisPerformSanctionsCheckResponse
+  /integrations/merklescience/addressinfo:
+    post:
+      '200':
+        application/json: MerkleScienceGetAddressInfoResponse
+  /integrations/merklescience/credentials:
+    delete:
+      '200':
+        application/json: MerkleScienceDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: MerkleScienceCheckCredentialsResponse
+    put:
+      '200':
+        application/json: MerkleScienceSetCredentialsResponse
+  /integrations/refinitiv/credentials:
+    delete:
+      '200':
+        application/json: RefinitivDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: RefinitivCheckCredentialsResponse
+    put:
+      '200':
+        application/json: RefinitivSetCredentialsResponse
+  /integrations/refinitiv/sanctions:
+    post:
+      '200':
+        application/json: RefinitivSanctionsCheckResponse
+  /integrations/trm/addressinfo:
+    post:
+      '200':
+        application/json: TrmGetAddressInfoResponse
+  /integrations/trm/credentials:
+    delete:
+      '200':
+        application/json: TrmDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: TrmCheckCredentialsResponse
+    put:
+      '200':
+        application/json: TrmSetCredentialsResponse
+  /integrations/trmsanctions/credentials:
+    delete:
+      '200':
+        application/json: TrmSanctionsDeleteCredentialsResponse
+    get:
+      '200':
+        application/json: TrmSanctionsCheckCredentialsResponse
+    put:
+      '200':
+        application/json: TrmSanctionsSetCredentialsResponse
+  /integrations/trmsanctions/sanctions:
+    post:
+      '200':
+        application/json: TrmSanctionsSanctionsCheckResponse
+  /rules/delete:
+    post:
+      '400':
+        application/json: RulesDeleteByIdsResponse
+  /tf/vasps/delete/{vaspDID}:
+    get:
+      '200':
+        application/json: TrustFrameworkDeleteVaspResponse
+  /tf/vasps/did:
+    post:
+      '200':
+        application/json: TrustFrameworkCreateVaspDidResponse
+  /tf/vasps/document/delete/{vaspDID}:
+    post:
+      '400':
+        application/json: DocumentsDeleteDocumentResponse
+      '401':
+        application/json: DocumentsDeleteDocument401Response
+      '404':
+        application/json: DocumentsDeleteDocument404Response
+      '503':
+        application/json: DocumentsDeleteDocument503Response
+  /tf/vasps/download/{vaspDID}:
+    get:
+      '200':
+        application/pdf: DocumentsGetLocationResponse
+      '400':
+        application/json: DocumentsGetLocation400Response
+      '401':
+        application/json: DocumentsGetLocation401Response
+      '404':
+        application/json: DocumentsGetLocation404Response
+      '503':
+        application/json: DocumentsGetLocation503Response
+  /tf/vasps/top-counterparties:
+    get:
+      '200':
+        application/json: TrustFrameworkGetTopCounterpartyDataResponse
+  /tf/vasps/userVASPList:
+    get:
+      '400':
+        application/json: TrustFrameworkGetUserVaspListResponse
+      '401':
+        application/json: TrustFrameworkGetUserVaspList401Response
+  /tf/vasps/{vaspDID}/documents/ddq:
+    get:
+      '200':
+        application/json: DocumentsGetDdqDocumentResponse
+  /tf/vasps/{vaspDID}/documents/requests:
+    get:
+      '200':
+        application/json: DocumentsListRequestsResponse
+    post:
+      '200':
+        application/json: DocumentsRequestAccessResponse
+  /tf/vasps/{vaspDID}/review:
+    post:
+      '200':
+        application/json: TrustFrameworkMarkVaspReviewResponse
+      '401':
+        application/json: TrustFrameworkMarkVaspReview401Response
+  /tx/approve:
+    post:
+      '400':
+        application/json: TransactionsApproveTransferResponse
+  /tx/bulk:
+    post:
+      '200':
+        application/json: TransactionsBulkEditTransfersResponse
+      '202':
+        application/json: TransactionsBulkEditTransfers202Response
+  /tx/create:
+    post:
+      '400':
+        application/json: TransactionsCreateTransferResponse
+  /tx/query:
+    get:
+      '200':
+        application/json: TransactionsSearchTransferResponse
+  /tx/redirect:
+    post:
+      '400':
+        application/json: TransactionsRedirectTransferResponse
+  /tx/update:
+    post:
+      '400':
+        application/json: TransactionsUpdateTransferDetailsResponse
+  /tx/validate:
+    post:
+      '400':
+        application/json: TransactionsValidateTransferFieldsResponse
+  /tx/validate/full:
+    post:
+      '400':
+        application/json: TransactionsFullyValidateTransferResponse
+  /v1/addresses:
+    delete:
+      '202':
+        application/json: AddressBookRemoveAddressResponse
+securityParameters:
+  accessAction:
+    query: false
+  addresses:
+    query: false
+  all:
+    query: false
+  asset:
+    query: false
+  badge:
+    query: false
+  chainalysisName:
+    query: false
+  challengeToken:
+    query: false
+  clientid:
+    query: false
+  countryCode:
+    query: false
+  csv:
+    query: false
+  decrypt:
+    query: false
+  destination:
+    query: false
+  division:
+    query: false
+  documentType:
+    query: false
+  emailDomain:
+    query: false
+  end:
+    query: false
+  fallbackToFATF:
+    query: false
+  fields:
+    query: false
+  filterByJurisdictionStatus:
+    query: false
+  hasAdmin:
+    query: false
+  id:
+    query: false
+  includeActions:
+    query: false
+  includeActiveReceiversOnly:
+    query: false
+  includeActiveSendersOnly:
+    query: false
+  includeSubsidiaries:
+    query: false
+  includeUncheckedVASPs:
+    query: false
+  jurisdictions:
+    query: false
+  listingType:
+    query: false
+  metadata:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  q:
+    query: false
+  redirectDID:
+    query: false
+  regulatoryStatus:
+    query: false
+  requestingVASPdid:
+    query: false
+  resultsPerPage:
+    query: false
+  reviewValue:
+    query: false
+  reviewedByVaspDID:
+    query: false
+  s3URL:
+    query: false
+  showJurisdictionStatus:
+    query: false
+  sort:
+    query: false
+  source:
+    query: false
+  source_type:
+    query: false
+  start:
+    query: false
+  status:
+    query: false
+  to:
+    query: false
+  transactionAsset:
+    query: false
+  transactionRef:
+    query: false
+  transactionType:
+    query: false
+  txDirection:
+    query: false
+  txGroup:
+    query: false
+  txHash:
+    query: false
+  vaspDID:
+    query: false
+  vasp_did:
+    query: false
+  vasps:
+    query: false
+  vout:
+    query: false
+  wallet:
+    query: false
+validServerUrls: {}

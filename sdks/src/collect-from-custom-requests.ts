@@ -2118,6 +2118,15 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://api.wink.travel/v3/api-docs/affiliate",
   },
+  "notabene.id": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://doc.notabene.id/",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
