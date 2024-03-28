@@ -17,7 +17,7 @@ export default function PersonioDataTypeScriptSdk() {
       companyKebabCase="personio"
       clientNameCamelCase="personioData"
       homepage="personio.com"
-      lastUpdated={new Date("2024-03-27T16:19:34.951Z")}
+      lastUpdated={new Date("2024-03-28T17:19:02.555Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/personio/data/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -223,7 +223,7 @@ export default function PersonioDataTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Employees",
     "typeScriptTag": "employees",
-    "description": "Lists all the allowed atrributes per API credentials including custom (dynamic) attributes.",
+    "description": "Lists all the allowed atrributes per API credentials including custom (https://developer.personio.de/reference attributes.",
     "parameters": [
       {
         "name": "xPersonioPartnerId",
@@ -1340,7 +1340,7 @@ export default function PersonioDataTypeScriptSdk() {
       sdkMethods={43}
       schemas={110}
       parameters={100}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/personio/data/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/personio/data/openapi.yaml"
       developerDocumentation="developer.personio.de/reference"
