@@ -2135,6 +2135,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://www.weavy.com/hubfs/docs/openapi.json",
     apiBaseUrl: "https://{WEAVY-SERVER}"
+  },
+  "vegapay.tech": {
+    type: "GET",
+    url: "https://www.vegapay.tech/docs/openapi.yaml"
   }
 };
 

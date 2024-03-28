@@ -1,0 +1,2523 @@
+publishJson:
+  company: Vegapay
+  serviceName: false
+  sdkName: vegapay-{language}-sdk
+  clientName: Vegapay
+  metaDescription: >-
+    Vegapay is creating the credit card stack for regulated entities across
+    globe
+  apiStatusUrls: false
+  homepage: www.vegapay.tech/
+  developerDocumentation: www.vegapay.tech/docs/index.html
+  categories:
+    - fintech
+    - banking
+    - payments
+    - financial_services
+    - global_banking
+rawSpecString: |
+  openapi: 3.0.3
+  info:
+    title: SBM - CMS
+    version: 1.0.0
+    contact: {}
+  servers:
+    - url: '{{program_service}}'
+    - url: '{{program_policy_client_customer}}'
+    - url: '{{api-gateway-prod}}'
+    - url: '{{audit_service}}'
+    - url: '{{los}}'
+    - url: '{{account_management_service}}'
+    - url: '{{forex_account}}'
+    - url: '{{card_processor}}'
+    - url: '{{transaction_service}}'
+    - url: '{{dispute_service}}'
+    - url: '{{installment_service}}'
+    - url: '{{rewards_service}}'
+    - url: '{{collection_service}}'
+    - url: '{{policy_impl_service}}'
+    - url: '{{credential_manager}}'
+    - url: '{{webhook_service}}'
+  paths:
+    /program:
+      post:
+        tags:
+          - Program Management
+        summary: Create Program
+        description: Create Program
+        operationId: createProgram
+        parameters:
+          - name: jwt_token
+            in: header
+            schema:
+              type: string
+              example: allow
+        requestBody:
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  agreement:
+                    type: string
+                    format: binary
+                  clientId:
+                    type: string
+                    example: b11f9424-7d12-4592-bf77-7b64a163e64e
+                  email:
+                    type: string
+                    example: contact@gmail.com
+                  mobile:
+                    type: string
+                    example: '7282696272'
+                  name:
+                    type: string
+                    example: CreditCardProgram
+                  tnc:
+                    type: string
+                    format: binary
+        responses:
+          '200':
+            description: Create
+            headers:
+              Connection:
+                schema:
+                  type: string
+                  example: keep-alive
+              Date:
+                schema:
+                  type: string
+                  example: Wed, 14 Sep 2022 14:32:24 GMT
+              Keep-Alive:
+                schema:
+                  type: string
+                  example: timeout=60
+              Transfer-Encoding:
+                schema:
+                  type: string
+                  example: chunked
+              Vary:
+                schema:
+                  type: string
+                  example: Access-Control-Request-Headers
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    agreement:
+                      type: string
+                      example: >-
+                        https://s3.ap-south-1.amazonaws.com/api-uploaded-files/program/agreement/b11f9424-7d12-4592-bf77-7b64a163e64e
+                    clientId:
+                      type: string
+                      example: b11f9424-7d12-4592-bf77-7b64a163e64e
+                    createdAt:
+                      type: string
+                      example: '2022-09-14T14:32:24.172+00:00'
+                    email:
+                      type: string
+                      example: contact@gmail.com
+                    mobile:
+                      type: string
+                      example: '7282696272'
+                    name:
+                      type: string
+                      example: CreditCardProgram
+                    programId:
+                      type: string
+                      example: ede9081e-eecb-4de7-9b11-6e8b41ea9f16
+                    programPolicyUrl:
+                      nullable: true
+                      example: null
+                    status:
+                      type: string
+                      example: INACTIVE
+                    tnc:
+                      type: string
+                      example: >-
+                        https://s3.ap-south-1.amazonaws.com/api-uploaded-files/program/tnc/b11f9424-7d12-4592-bf77-7b64a163e64e
+                    updatedAt:
+                      type: string
+                      example: '2022-09-14T14:32:24.172+00:00'
+                examples:
+                  Create:
+                    value:
+                      agreement: >-
+                        https://s3.ap-south-1.amazonaws.com/api-uploaded-files/program/agreement/b11f9424-7d12-4592-bf77-7b64a163e64e
+                      clientId: b11f9424-7d12-4592-bf77-7b64a163e64e
+                      createdAt: '2022-09-14T14:32:24.172+00:00'
+                      email: contact@gmail.com
+                      mobile: '7282696272'
+                      name: CreditCardProgram
+                      programId: ede9081e-eecb-4de7-9b11-6e8b41ea9f16
+                      programPolicyUrl: null
+                      status: INACTIVE
+                      tnc: >-
+                        https://s3.ap-south-1.amazonaws.com/api-uploaded-files/program/tnc/b11f9424-7d12-4592-bf77-7b64a163e64e
+                      updatedAt: '2022-09-14T14:32:24.172+00:00'
+    /program/{programId}:
+      get:
+        tags:
+          - Program Management
+        summary: Get Program
+        description: Get Program
+        operationId: getProgram
+        parameters:
+          - name: jwt_token
+            in: header
+            schema:
+              type: string
+              example: allow
+        requestBody:
+          content:
+            application/json:
+              examples:
+                Get Program:
+                  value: ''
+        responses:
+          '200':
+            description: ''
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: a8f9a67e-cddb-4b68-a84a-e266bf0b7574
+    /program/list:
+      get:
+        tags:
+          - Program Management
+        summary: List Programs
+        description: List Programs
+        operationId: listPrograms
+        parameters:
+          - name: page
+            in: query
+            schema:
+              type: string
+              example: '0'
+          - name: pageSize
+            in: query
+            schema:
+              type: string
+              example: '10'
+          - name: clientId
+            in: query
+            schema:
+              type: string
+              example: 6c26d34b-fe1a-446f-9668-6b7cb5515ef1
+        requestBody:
+          content:
+            application/json:
+              examples:
+                List Programs:
+                  value: ''
+        responses:
+          '200':
+            description: ''
+    /customer:
+      post:
+        tags:
+          - User
+        summary: Create Customer
+        description: Create Customer
+        operationId: createCustomer
+        parameters:
+          - name: jwt_token
+            in: header
+            schema:
+              type: string
+              example: allow
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  branchId:
+                    type: string
+                    example: 9e346848-888e-4d24-8a8a-1c70abeb3f2f
+                  clientId:
+                    type: string
+                    example: 6c26d34b-fe1a-446f-9668-6b7cb5515ef1
+                  countryCode:
+                    type: string
+                    example: '+91'
+                  currentAddress:
+                    type: object
+                    properties:
+                      city:
+                        type: string
+                        example: '{{$randomCity}}'
+                      country:
+                        type: string
+                        example: India
+                      line1:
+                        type: string
+                        example: '{{$randomBs}}'
+                      line2:
+                        type: string
+                        example: '{{$randomStreetAddress}}'
+                      pincode:
+                        type: string
+                        example: '123456'
+                      state:
+                        type: string
+                        example: Karnataka
+                  customerType:
+                    type: string
+                    example: INDIVIDUAL
+                  dob:
+                    type: string
+                    example: '1997-05-01'
+                  emailId:
+                    type: string
+                    example: '{{$randomExampleEmail}}'
+                  firstName:
+                    type: string
+                    example: '{{$randomFirstName}}'
+                  gender:
+                    type: string
+                    example: M
+                  identity:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        idNumber:
+                          type: string
+                          example: AAPPU{{random4DigitNumber}}L
+                        idType:
+                          type: string
+                          example: PAN
+                        idVerified:
+                          type: string
+                          example: 'true'
+                    example:
+                      - idNumber: AAPPU{{random4DigitNumber}}L
+                        idType: PAN
+                        idVerified: 'true'
+                      - idNumber: SWFUF2463{{random4DigitNumber}}L
+                        idType: PASSPORT
+                        idVerified: 'true'
+                  isCurrentAddressPermanent:
+                    type: boolean
+                    example: true
+                  kycStatus:
+                    type: string
+                    example: VERIFIED
+                  lastName:
+                    type: string
+                    example: '{{$randomLastName}}'
+                  middleName:
+                    type: string
+                    example: ''
+                  mobileNumber:
+                    type: string
+                    example: '9111994598'
+                  nationality:
+                    type: string
+                    example: Indian
+                  status:
+                    type: string
+                    example: ACTIVE
+                  title:
+                    type: string
+                    example: Mr
+              examples:
+                Create Customer:
+                  value:
+                    branchId: 9e346848-888e-4d24-8a8a-1c70abeb3f2f
+                    clientId: 6c26d34b-fe1a-446f-9668-6b7cb5515ef1
+                    countryCode: '+91'
+                    currentAddress:
+                      city: '{{$randomCity}}'
+                      country: India
+                      line1: '{{$randomBs}}'
+                      line2: '{{$randomStreetAddress}}'
+                      pincode: '123456'
+                      state: Karnataka
+                    customerType: INDIVIDUAL
+                    dob: '1997-05-01'
+                    emailId: '{{$randomExampleEmail}}'
+                    firstName: '{{$randomFirstName}}'
+                    gender: M
+                    identity:
+                      - idNumber: AAPPU{{random4DigitNumber}}L
+                        idType: PAN
+                        idVerified: 'true'
+                      - idNumber: SWFUF2463{{random4DigitNumber}}L
+                        idType: PASSPORT
+                        idVerified: 'true'
+                    isCurrentAddressPermanent: true
+                    kycStatus: VERIFIED
+                    lastName: '{{$randomLastName}}'
+                    middleName: ''
+                    mobileNumber: '9111994598'
+                    nationality: Indian
+                    status: ACTIVE
+                    title: Mr
+        responses:
+          '200':
+            description: ''
+    /customer/status:
+      patch:
+        tags:
+          - User
+        summary: Update Status
+        description: Update Status
+        operationId: updateStatus
+        parameters:
+          - name: jwt_token
+            in: header
+            schema:
+              type: string
+              example: allow
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customerId:
+                    type: string
+                    example: 90fcc52f-8167-4887-9f4a-22e27e57c4f0
+                  status:
+                    type: string
+                    example: INACTIVE
+              examples:
+                Update Status:
+                  value:
+                    customerId: 90fcc52f-8167-4887-9f4a-22e27e57c4f0
+                    status: INACTIVE
+        responses:
+          '200':
+            description: ''
+    /customer/list/{programId}:
+      get:
+        tags:
+          - User
+        summary: List by clientId
+        description: List by clientId
+        operationId: listByClientid
+        parameters:
+          - name: page
+            in: query
+            schema:
+              type: string
+              example: '0'
+          - name: pageSize
+            in: query
+            schema:
+              type: string
+              example: '10'
+            description: optional
+        responses:
+          '200':
+            description: ''
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 8dece149-ff6a-48b7-8e62-c00623ac5673
+    /customer/list/withAccount:
+      get:
+        tags:
+          - User
+        summary: List with accountInfo for programId
+        description: List with accountInfo for programId
+        operationId: listWithAccountinfoForProgramid
+        parameters:
+          - name: programId
+            in: query
+            schema:
+              type: string
+              example: a4187c32-2774-4b38-b616-2221c9cb7641
+          - name: clientId
+            in: query
+            schema:
+              type: string
+              example: 3fbca97f-a4c3-4a0a-8d4f-a29ade5fd01c
+          - name: page
+            in: query
+            schema:
+              type: string
+              example: '1'
+          - name: pageSize
+            in: query
+            schema:
+              type: string
+              example: '10'
+          - name: allAccounts
+            in: query
+            schema:
+              type: string
+              example: 'false'
+        responses:
+          '200':
+            description: ''
+    /audit:
+      get:
+        tags:
+          - User
+        summary: Get Customer Audit
+        description: Get Customer Audit
+        operationId: getCustomerAudit
+        parameters:
+          - name: programId
+            in: query
+            schema:
+              type: string
+              example: ''
+          - name: customerId
+            in: query
+            schema:
+              type: string
+              example: 003a1dbd-562d-4de6-8e6f-d875c042edd5
+          - name: accountId
+            in: query
+            schema:
+              type: string
+              example: eaa4fd2e-d036-452e-8904-a710c3e1f107
+          - name: eventName
+            in: query
+            schema:
+              type: string
+              example: PER_TRANSACTION_LIMIT_CHANGE
+        responses:
+          '200':
+            description: ''
+    /customer/{customerId}:
+      get:
+        tags:
+          - User
+        summary: Get Customer
+        description: Get Customer
+        operationId: getCustomer
+        responses:
+          '200':
+            description: Get
+            headers:
+              Connection:
+                schema:
+                  type: string
+                  example: keep-alive
+              Date:
+                schema:
+                  type: string
+                  example: Tue, 10 Jan 2023 12:44:27 GMT
+              Keep-Alive:
+                schema:
+                  type: string
+                  example: timeout=60
+              Transfer-Encoding:
+                schema:
+                  type: string
+                  example: chunked
+              Vary:
+                schema:
+                  type: string
+                  example: Access-Control-Request-Headers
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    countryCode:
+                      type: string
+                      example: '+91'
+                    createdAt:
+                      type: string
+                      example: '2023-01-10T12:43:57.267+00:00'
+                    creationVector:
+                      nullable: true
+                      example: null
+                    currentAddress:
+                      type: object
+                      properties:
+                        city:
+                          type: string
+                          example: Indio
+                        country:
+                          type: string
+                          example: India
+                        id:
+                          type: number
+                          example: 3462
+                        line1:
+                          type: string
+                          example: reintermediate interactive schemas
+                        line2:
+                          type: string
+                          example: 8284 Frami Wall
+                        pincode:
+                          type: string
+                          example: '123456'
+                        state:
+                          type: string
+                          example: Karnataka
+                    customerId:
+                      type: string
+                      example: 90fcc52f-8167-4887-9f4a-22e27e57c4f0
+                    dob:
+                      type: string
+                      example: '1997-05-01'
+                    emailId:
+                      type: string
+                      example: Rachel_Bradtke@example.net
+                    firstName:
+                      type: string
+                      example: Constance
+                    gender:
+                      type: string
+                      example: M
+                    identity:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: 90fcc52f-8167-4887-9f4a-22e27e57c4f0
+                          id:
+                            type: number
+                            example: 3464
+                          idNumber:
+                            type: string
+                            example: AAPPH9007L
+                          idType:
+                            type: string
+                            example: PAN
+                          idVerified:
+                            type: string
+                            example: 'true'
+                          programId:
+                            type: string
+                            example: 25b11f98-e795-49f5-b0d2-5c04c2479ee6
+                      example:
+                        - customerId: 90fcc52f-8167-4887-9f4a-22e27e57c4f0
+                          id: 3464
+                          idNumber: AAPPH9007L
+                          idType: PAN
+                          idVerified: 'true'
+                          programId: 25b11f98-e795-49f5-b0d2-5c04c2479ee6
+                    isCurrentAddressPermanent:
+                      type: string
+                      example: 'true'
+                    kycStatus:
+                      type: string
+                      example: VERIFIED
+                    lastName:
+                      type: string
+                      example: Senger
+                    middleName:
+                      type: string
+                      example: ''
+                    mobileNumber:
+                      type: string
+                      example: '9007999007'
+                    nationality:
+                      type: string
+                      example: Indian
+                    permanentAddress:
+                      type: object
+                      properties:
+                        city:
+                          type: string
+                          example: Indio
+                        country:
+                          type: string
+                          example: India
+                        id:
+                          type: number
+                          example: 3463
+                        line1:
+                          type: string
+                          example: reintermediate interactive schemas
+                        line2:
+                          type: string
+                          example: 8284 Frami Wall
+                        pincode:
+                          type: string
+                          example: '123456'
+                        state:
+                          type: string
+                          example: Karnataka
+                    programId:
+                      type: string
+                      example: 25b11f98-e795-49f5-b0d2-5c04c2479ee6
+                    selfieUrl:
+                      nullable: true
+                      example: null
+                    status:
+                      type: string
+                      example: ACTIVE
+                    title:
+                      type: string
+                      example: Mr
+                    updatedAt:
+                      type: string
+                      example: '2023-01-10T12:43:57.470+00:00'
+                examples:
+                  Get:
+                    value:
+                      countryCode: '+91'
+                      createdAt: '2023-01-10T12:43:57.267+00:00'
+                      creationVector: null
+                      currentAddress:
+                        city: Indio
+                        country: India
+                        id: 3462
+                        line1: reintermediate interactive schemas
+                        line2: 8284 Frami Wall
+                        pincode: '123456'
+                        state: Karnataka
+                      customerId: 90fcc52f-8167-4887-9f4a-22e27e57c4f0
+                      dob: '1997-05-01'
+                      emailId: Rachel_Bradtke@example.net
+                      firstName: Constance
+                      gender: M
+                      identity:
+                        - customerId: 90fcc52f-8167-4887-9f4a-22e27e57c4f0
+                          id: 3464
+                          idNumber: AAPPH9007L
+                          idType: PAN
+                          idVerified: 'true'
+                          programId: 25b11f98-e795-49f5-b0d2-5c04c2479ee6
+                      isCurrentAddressPermanent: 'true'
+                      kycStatus: VERIFIED
+                      lastName: Senger
+                      middleName: ''
+                      mobileNumber: '9007999007'
+                      nationality: Indian
+                      permanentAddress:
+                        city: Indio
+                        country: India
+                        id: 3463
+                        line1: reintermediate interactive schemas
+                        line2: 8284 Frami Wall
+                        pincode: '123456'
+                        state: Karnataka
+                      programId: 25b11f98-e795-49f5-b0d2-5c04c2479ee6
+                      selfieUrl: null
+                      status: ACTIVE
+                      title: Mr
+                      updatedAt: '2023-01-10T12:43:57.470+00:00'
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 4206e707-ea80-4f8f-8507-fcc75ba992b8
+    /los/v2/application/create:
+      post:
+        tags:
+          - Application Managment
+        summary: Create Application
+        description: Create Application
+        operationId: createApplication
+        requestBody:
+          content:
+            application/json:
+              examples:
+                Create Application:
+                  value: |-
+                    {
+                        "programId" : "3121b045-2f0b-46f4-ba26-9a4a6cf97d61",
+                        "customerId" : "50ce4773-d7e8-45d9-9bf6-085be0d669b8"
+                        // "leadId" : "cfa80413-8733-48a4-8a19-573043e6fa34"
+                    }
+        responses:
+          '200':
+            description: ''
+    /los/v2/flow/nextStep/get:
+      get:
+        tags:
+          - Application Managment
+        summary: Get Next Step
+        description: Get Next Step
+        operationId: getNextStep
+        parameters:
+          - name: applicationId
+            in: query
+            schema:
+              type: string
+              example: a4e65cae-bdd4-4d54-9e6b-0905bff5bc10
+          - name: status
+            in: query
+            schema:
+              type: string
+              example: FAIL
+        requestBody:
+          content:
+            application/json:
+              examples:
+                Get Next Step:
+                  value: ''
+        responses:
+          '200':
+            description: ''
+    /los/v2/application/18848a09-74d3-4326-8ce0-84452887f656:
+      get:
+        tags:
+          - Application Managment
+        summary: Get Application
+        description: Get Application
+        operationId: getApplication
+        responses:
+          '200':
+            description: ''
+    /account/limitoffer:
+      post:
+        tags:
+          - Account Managment
+        summary: Create Limit Offer
+        description: Create Limit Offer
+        operationId: createLimitOffer
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: 6c923cc1-a948-4602-b266-a4e4d3bf7288
+                  limitType:
+                    type: string
+                    example: ACCOUNT_LIMIT
+                  newLimit:
+                    type: number
+                    example: 15000
+                  offerActivationTime:
+                    type: string
+                    example: '2022-11-04'
+                  offerExpiryTime:
+                    type: string
+                    example: '2026-10-01'
+              examples:
+                Create Limit Offer:
+                  value:
+                    accountId: 6c923cc1-a948-4602-b266-a4e4d3bf7288
+                    limitType: ACCOUNT_LIMIT
+                    newLimit: 15000
+                    offerActivationTime: '2022-11-04'
+                    offerExpiryTime: '2026-10-01'
+        responses:
+          '200':
+            description: ''
+    /account/limitoffer/updateStatus:
+      patch:
+        tags:
+          - Account Managment
+        summary: Update Limit Offer Status
+        description: Update Limit Offer Status
+        operationId: updateLimitOfferStatus
+        parameters:
+          - name: limitOfferId
+            in: query
+            schema:
+              type: string
+              example: 6c923cc1-a948-4602-b266-a4e4d3bf7288
+          - name: status
+            in: query
+            schema:
+              type: string
+              example: ACCEPTED
+            description: ACCEPTED, REJECTED
+        responses:
+          '200':
+            description: ''
+    /account:
+      post:
+        tags:
+          - Account Managment
+        summary: Create Credit Account
+        description: Create Credit Account
+        operationId: createCreditAccount
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountLimit:
+                    type: number
+                    example: 10000
+                  activationDate:
+                    type: string
+                    example: '2022-07-21'
+                  agreement:
+                    type: string
+                    example: xyz
+                  availableLimit:
+                    type: number
+                    example: 10000
+                  currency:
+                    type: string
+                    example: INR
+                  customerId:
+                    type: string
+                    example: 7df5b5df-bfe3-4ac1-9976-fb0ae25329fc
+                  kycStatus:
+                    type: string
+                    example: VERIFIED
+                  lenderId:
+                    type: string
+                    example: 6a087119-bad0-417b-8511-9658bd4d8945
+                  perTransactionLimit:
+                    type: number
+                    example: 1000
+                  programId:
+                    type: string
+                    example: 6bbe5970-0b78-4072-b1f1-854a13a0a0df
+                  status:
+                    type: string
+                    example: INACTIVE
+              examples:
+                Create Credit Account:
+                  value:
+                    accountLimit: 10000
+                    activationDate: '2022-07-21'
+                    agreement: xyz
+                    availableLimit: 10000
+                    currency: INR
+                    customerId: 7df5b5df-bfe3-4ac1-9976-fb0ae25329fc
+                    kycStatus: VERIFIED
+                    lenderId: 6a087119-bad0-417b-8511-9658bd4d8945
+                    perTransactionLimit: 1000
+                    programId: 6bbe5970-0b78-4072-b1f1-854a13a0a0df
+                    status: INACTIVE
+        responses:
+          '200':
+            description: create
+            headers:
+              Connection:
+                schema:
+                  type: string
+                  example: keep-alive
+              Date:
+                schema:
+                  type: string
+                  example: Wed, 14 Sep 2022 15:50:04 GMT
+              Keep-Alive:
+                schema:
+                  type: string
+                  example: timeout=60
+              Transfer-Encoding:
+                schema:
+                  type: string
+                  example: chunked
+              Vary:
+                schema:
+                  type: string
+                  example: Access-Control-Request-Headers
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    accountId:
+                      type: string
+                      example: bd44dda3-1d5e-4c12-99a8-c01c0f47d67f
+                    accountLimit:
+                      type: number
+                      example: 10000
+                    activationDate:
+                      type: string
+                      example: '2022-07-21T00:00:00.000+00:00'
+                    agreement:
+                      type: string
+                      example: xyz
+                    availableLimit:
+                      type: number
+                      example: 10000
+                    charge:
+                      type: number
+                      example: 0
+                    createdAt:
+                      type: string
+                      example: '2022-09-14T15:50:04.795+00:00'
+                    currency:
+                      type: string
+                      example: INR
+                    customerId:
+                      type: string
+                      example: 7df5b5df-bfe3-4ac1-9976-fb0ae25329fc
+                    interest:
+                      type: number
+                      example: 0
+                    lenderId:
+                      type: string
+                      example: 6a087119-bad0-417b-8511-9658bd4d8945
+                    perTransactionLimit:
+                      type: number
+                      example: 1000
+                    principal:
+                      type: number
+                      example: 0
+                    programId:
+                      type: string
+                      example: 6bbe5970-0b78-4072-b1f1-854a13a0a0df
+                    status:
+                      type: string
+                      example: INACTIVE
+                    surplus:
+                      type: number
+                      example: 0
+                    updatedAt:
+                      type: string
+                      example: '2022-09-14T15:50:04.795+00:00'
+                examples:
+                  create:
+                    value:
+                      accountId: bd44dda3-1d5e-4c12-99a8-c01c0f47d67f
+                      accountLimit: 10000
+                      activationDate: '2022-07-21T00:00:00.000+00:00'
+                      agreement: xyz
+                      availableLimit: 10000
+                      charge: 0
+                      createdAt: '2022-09-14T15:50:04.795+00:00'
+                      currency: INR
+                      customerId: 7df5b5df-bfe3-4ac1-9976-fb0ae25329fc
+                      interest: 0
+                      lenderId: 6a087119-bad0-417b-8511-9658bd4d8945
+                      perTransactionLimit: 1000
+                      principal: 0
+                      programId: 6bbe5970-0b78-4072-b1f1-854a13a0a0df
+                      status: INACTIVE
+                      surplus: 0
+                      updatedAt: '2022-09-14T15:50:04.795+00:00'
+    /forex/account:
+      post:
+        tags:
+          - Account Managment
+        summary: Create Forex Account
+        description: Create Forex Account
+        operationId: createForexAccount
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountLimit:
+                    type: number
+                    example: 10000
+                  branchId:
+                    type: string
+                    example: 4c8dd74e-7277-4fe5-b08b-901a26902be4
+                  corporateCustomerId:
+                    type: string
+                    example: 3ed803a4-0177-46b2-a082-96d57afc5ece
+                  customerId:
+                    type: string
+                    example: 06fe4e8f-4817-40bf-92b0-90ba5b720546
+                  programId:
+                    type: string
+                    example: 55b642d9-c44a-4b9f-ac8e-9e3bb7f17bdd
+              examples:
+                Create Forex Account:
+                  value:
+                    accountLimit: 10000
+                    branchId: 4c8dd74e-7277-4fe5-b08b-901a26902be4
+                    corporateCustomerId: 3ed803a4-0177-46b2-a082-96d57afc5ece
+                    customerId: 06fe4e8f-4817-40bf-92b0-90ba5b720546
+                    programId: 55b642d9-c44a-4b9f-ac8e-9e3bb7f17bdd
+        responses:
+          '200':
+            description: Create Account for a corporate customer
+            headers:
+              Connection:
+                schema:
+                  type: string
+                  example: keep-alive
+              Date:
+                schema:
+                  type: string
+                  example: Wed, 12 Apr 2023 07:41:56 GMT
+              Keep-Alive:
+                schema:
+                  type: string
+                  example: timeout=60
+              Transfer-Encoding:
+                schema:
+                  type: string
+                  example: chunked
+              Vary:
+                schema:
+                  type: string
+                  example: Access-Control-Request-Headers
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    accountLimit:
+                      nullable: true
+                      example: null
+                    branchId:
+                      type: string
+                      example: 4c8dd74e-7277-4fe5-b08b-901a26902be4
+                    customerId:
+                      type: string
+                      example: 06fe4e8f-4817-40bf-92b0-90ba5b720546
+                    id:
+                      type: string
+                      example: 1ee59bae-7904-4ccc-93b2-fef0e8a06b8f
+                    primaryCardId:
+                      type: string
+                      example: c8622f4a-fc85-49f9-973f-eb4fa7f478fc
+                    programId:
+                      type: string
+                      example: 55b642d9-c44a-4b9f-ac8e-9e3bb7f17bdd
+                    status:
+                      type: string
+                      example: ACTIVE
+                    walletId:
+                      type: string
+                      example: 2514a447-a094-4967-b2d5-f6d8a7b045f8
+                examples:
+                  Create Account for a corporate customer:
+                    value:
+                      accountLimit: null
+                      branchId: 4c8dd74e-7277-4fe5-b08b-901a26902be4
+                      customerId: 06fe4e8f-4817-40bf-92b0-90ba5b720546
+                      id: 1ee59bae-7904-4ccc-93b2-fef0e8a06b8f
+                      primaryCardId: c8622f4a-fc85-49f9-973f-eb4fa7f478fc
+                      programId: 55b642d9-c44a-4b9f-ac8e-9e3bb7f17bdd
+                      status: ACTIVE
+                      walletId: 2514a447-a094-4967-b2d5-f6d8a7b045f8
+    /account/closure:
+      post:
+        tags:
+          - Support
+        summary: Account Closure request
+        description: Account Closure request
+        operationId: accountClosureRequest
+        parameters:
+          - name: Cookie
+            in: header
+            schema:
+              type: string
+              example: token=
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: 013bc1f1-0e31-4def-a29a-4dec177cd729
+                  reason:
+                    type: string
+                    example: InActive
+                  remarks:
+                    type: string
+                    example: InActive
+                  type:
+                    type: string
+                    example: MANUAL
+              examples:
+                Account Closure Request:
+                  value:
+                    accountId: 013bc1f1-0e31-4def-a29a-4dec177cd729
+                    reason: InActive
+                    remarks: InActive
+                    type: MANUAL
+                Account Closure request:
+                  value:
+                    accountId: 013bc1f1-0e31-4def-a29a-4dec177cd729
+                    reason: InActive
+                    remarks: InActive
+                    type: MANUAL
+        responses:
+          '200':
+            description: ''
+    /card/updateCardStatus:
+      patch:
+        tags:
+          - Card Issuance
+          - Card Controls
+        summary: Update Card Status
+        description: Update Card Status
+        operationId: updateCardStatus
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cardId:
+                    type: string
+                    example: f5be4bd7-997e-454e-875c-d2f87950eae5
+                  cardStatus:
+                    type: string
+                    example: PERM_BLOCKED
+              examples:
+                Update Card Status:
+                  value:
+                    cardId: f5be4bd7-997e-454e-875c-d2f87950eae5
+                    cardStatus: PERM_BLOCKED
+        responses:
+          '200':
+            description: ''
+    /card/updateCustomerPreference:
+      post:
+        tags:
+          - Card Issuance
+          - Card Controls
+        summary: Update Customer Preference
+        description: Update Customer Preference
+        operationId: updateCustomerPreference
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cardId:
+                    type: string
+                    example: 0e99ca41-b172-4241-adfc-f69bc86fb25e
+                  customerPreferenceStatus:
+                    type: string
+                    example: ENABLED
+                  limit:
+                    type: number
+                    example: 100
+                  locationType:
+                    type: string
+                    example: INTERNATIONAL
+                  type:
+                    type: string
+                    example: ECOM
+              examples:
+                Update Customer Preference:
+                  value:
+                    cardId: 0e99ca41-b172-4241-adfc-f69bc86fb25e
+                    customerPreferenceStatus: ENABLED
+                    limit: 100
+                    locationType: INTERNATIONAL
+                    type: ECOM
+        responses:
+          '200':
+            description: ''
+    /card/addCard:
+      post:
+        tags:
+          - Card Issuance
+        summary: Add Card
+        description: Add Card
+        operationId: addCard
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: a66794d7-6dc5-4593-8257-a120501af1j3
+                  address:
+                    type: object
+                    properties:
+                      city:
+                        type: string
+                        example: Bangalore
+                      country:
+                        type: string
+                        example: India
+                      line1:
+                        type: string
+                        example: Manpur
+                      line2:
+                        type: string
+                        example: Vilaspur
+                      pincode:
+                        type: string
+                        example: '123456'
+                      state:
+                        type: string
+                        example: Karnataka
+                  binId:
+                    type: number
+                    example: 1000000084
+                  cardName:
+                    type: string
+                    example: My Vacation Card
+                  cardType:
+                    type: string
+                    example: PHYSICAL_PERSONALISED
+                  countryCode:
+                    type: string
+                    example: '+91'
+                  dob:
+                    type: string
+                    example: '1997-05-01'
+                  domesticCurrency:
+                    type: string
+                    example: USD
+                  emailId:
+                    type: string
+                    example: shivansh.dubey@vegapay.tech
+                  entityId:
+                    type: string
+                    example: 3fbca97f-a4c3-4a0a-8d4f-a29ade5fd01c
+                  entityLevel:
+                    type: string
+                    example: CLIENT
+                  firstName:
+                    type: string
+                    example: Shivansh
+                  gender:
+                    type: string
+                    example: M
+                  identity:
+                    type: object
+                    properties:
+                      idNumber:
+                        type: string
+                        example: AAYOU9696L
+                      idType:
+                        type: string
+                        example: PAN
+                  lastName:
+                    type: string
+                    example: Singh
+                  middleName:
+                    type: string
+                    example: Kumar
+                  mobileNumber:
+                    type: string
+                    example: '9110964483'
+                  nameOnCard:
+                    type: string
+                    example: Shivansh Dubey
+                  otp:
+                    type: string
+                    example: ''
+                  programId:
+                    type: string
+                    example: 2eb8c5b1-b7f5-4802-8551-336cad5a6abf
+                  title:
+                    type: string
+                    example: Mr
+              examples:
+                Add Card:
+                  value:
+                    accountId: a66794d7-6dc5-4593-8257-a120501af1j3
+                    address:
+                      city: Bangalore
+                      country: India
+                      line1: Manpur
+                      line2: Vilaspur
+                      pincode: '123456'
+                      state: Karnataka
+                    binId: 1000000084
+                    cardName: My Vacation Card
+                    cardType: PHYSICAL_PERSONALISED
+                    countryCode: '+91'
+                    dob: '1997-05-01'
+                    domesticCurrency: USD
+                    emailId: shivansh.dubey@vegapay.tech
+                    entityId: 3fbca97f-a4c3-4a0a-8d4f-a29ade5fd01c
+                    entityLevel: CLIENT
+                    firstName: Shivansh
+                    gender: M
+                    identity:
+                      idNumber: AAYOU9696L
+                      idType: PAN
+                    lastName: Singh
+                    middleName: Kumar
+                    mobileNumber: '9110964483'
+                    nameOnCard: Shivansh Dubey
+                    otp: ''
+                    programId: 2eb8c5b1-b7f5-4802-8551-336cad5a6abf
+                    title: Mr
+        responses:
+          '200':
+            description: ''
+    /card/replaceCard:
+      post:
+        tags:
+          - Card Issuance
+        summary: Replace Card
+        description: Replace Card
+        operationId: replaceCard
+        requestBody:
+          content:
+            application/json:
+              examples:
+                Replace Card:
+                  value: >
+                    {
+                        "cardId": "f5be4bd7-997e-454e-875c-d2f87950eae5",
+                        "replacementReason": "BROKEN",
+                        "entityLevel": "CLIENT",
+                        "entityId": "3fbca97f-a4c3-4a0a-8d4f-a29ade5fd01c"
+                    }
+
+                    // Pismo Reasons: BROKEN, RENAME, CLIENT_ORDER, SHAVED,
+                    RELIEF_LOSS
+
+                    // LOST, ROBBED, THEFT, UNRECEIVED, DAMAGED, DEFECT,
+                    INCORRECT_NAME
+        responses:
+          '200':
+            description: ''
+    /card/addSupplementCard:
+      post:
+        tags:
+          - Card Issuance
+        summary: Add Supplement Card
+        description: Add Supplement Card
+        operationId: addSupplementCard
+        requestBody:
+          content:
+            application/json:
+              examples:
+                Add Supplement Card:
+                  value: |-
+                    {
+                        "binId": 1000000084,
+                        "accountId": "a66794d7-6dc5-4593-8257-a120501af1j2",
+                        "entityLevel": "CLIENT",
+                        "entityId": "3fbca97f-a4c3-4a0a-8d4f-a29ade5fd01c",
+                        "cardType": "VIRTUAL",
+                        "nameOnCard": "S Dubey",
+                        "mobileNumber": "9110964483",
+                        "countryCode": "+91"
+                    }
+
+                    // only VIRTUAL for Pismo
+        responses:
+          '200':
+            description: ''
+    /card/getCard:
+      get:
+        tags:
+          - Card Issuance
+        summary: Get Card by Id
+        description: Get Card by Id
+        operationId: getCardById
+        parameters:
+          - name: cardId
+            in: query
+            schema:
+              type: string
+              example: e6d8e876-7261-4fe3-b173-378efbff761b
+        responses:
+          '200':
+            description: ''
+    /transaction/payment/rewards:
+      post:
+        tags:
+          - Transactions
+          - Payments
+        summary: Payment By Rewards
+        description: Payment By Rewards
+        operationId: paymentByRewards
+        parameters:
+          - name: authorizationToken
+            in: header
+            schema:
+              type: string
+              example: '{{authToken}}'
+          - name: x-api-key
+            in: header
+            schema:
+              type: string
+              example: '{{salil-api-key}}'
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: 07885e38-c809-4a34-b17d-b37f8155bceb
+                  description:
+                    type: string
+                    example: REWARDS PAYMENT
+                  rewardPoints:
+                    type: number
+                    example: 100
+              examples:
+                Payment By Rewards:
+                  value:
+                    accountId: 07885e38-c809-4a34-b17d-b37f8155bceb
+                    description: REWARDS PAYMENT
+                    rewardPoints: 100
+        responses:
+          '200':
+            description: ''
+    /transaction/payment:
+      post:
+        tags:
+          - Transactions
+          - Payments
+        summary: Create Payment
+        description: Create Payment
+        operationId: createPayment
+        parameters:
+          - name: authorizationToken
+            in: header
+            schema:
+              type: string
+              example: '{{authToken}}'
+          - name: x-api-key
+            in: header
+            schema:
+              type: string
+              example: '{{salil-api-key}}'
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: '{{latestAccountId}}'
+                  amount:
+                    type: number
+                    example: 100
+                  currency:
+                    type: string
+                    example: INR
+                  description:
+                    type: string
+                    example: PAYMENT
+                  paymentMode:
+                    type: string
+                    example: ONLINE
+                  transactionCode:
+                    type: string
+                    example: REPAYMENT
+              examples:
+                Create Payment:
+                  value:
+                    accountId: '{{latestAccountId}}'
+                    amount: 100
+                    currency: INR
+                    description: PAYMENT
+                    paymentMode: ONLINE
+                    transactionCode: REPAYMENT
+        responses:
+          '200':
+            description: ''
+    /transaction:
+      post:
+        tags:
+          - Transactions
+        summary: Create Txn
+        description: Create Txn
+        operationId: createTxn
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: 523477dc-60af-4bf9-90d2-054c1b374ebc
+                  amount:
+                    type: number
+                    example: 500
+                  cardId:
+                    type: string
+                    example: bddba430-3f8a-47b4-8edc-bbfa307b8e9c
+                  cardProcessor:
+                    type: string
+                    example: PISMO
+                  currency:
+                    type: string
+                    example: INR
+                  description:
+                    type: string
+                    example: Pismo Txn Test from Postman
+                  lat:
+                    type: number
+                    example: 10
+                  lng:
+                    type: number
+                    example: 12
+                  mcc:
+                    type: number
+                    example: 3501
+                  merchantLocation:
+                    type: string
+                    example: India
+                  merchantName:
+                    type: string
+                    example: Postman
+                  mid:
+                    type: string
+                    example: '345'
+                  providerAttributesJson:
+                    type: string
+                    example: '{}'
+                  transactionCategory:
+                    type: string
+                    example: CARD
+                  transactionCode:
+                    type: string
+                    example: CARD_ECOM
+                  transactionIndicator:
+                    type: string
+                    example: DEBIT
+              examples:
+                Create Txn:
+                  value:
+                    accountId: 523477dc-60af-4bf9-90d2-054c1b374ebc
+                    amount: 500
+                    cardId: bddba430-3f8a-47b4-8edc-bbfa307b8e9c
+                    cardProcessor: PISMO
+                    currency: INR
+                    description: Pismo Txn Test from Postman
+                    lat: 10
+                    lng: 12
+                    mcc: 3501
+                    merchantLocation: India
+                    merchantName: Postman
+                    mid: '345'
+                    providerAttributesJson: '{}'
+                    transactionCategory: CARD
+                    transactionCode: CARD_ECOM
+                    transactionIndicator: DEBIT
+        responses:
+          '200':
+            description: ''
+    /transaction/list:
+      get:
+        tags:
+          - Transactions
+        summary: List transactions for account
+        description: List transactions for account
+        operationId: listTransactionsForAccount
+        parameters:
+          - name: accountId
+            in: query
+            schema:
+              type: string
+              example: 523477dc-60af-4bf9-90d2-054c1b374ebc
+            description: Mandatory
+          - name: page
+            in: query
+            schema:
+              type: string
+              example: '0'
+          - name: pageSize
+            in: query
+            schema:
+              type: string
+              example: '10'
+          - name: category
+            in: query
+            schema:
+              type: string
+              example: REPAYMENT
+          - name: status
+            in: query
+            schema:
+              type: string
+              example: FAILED
+          - name: startTime
+            in: query
+            schema:
+              type: string
+              example: ''
+            description: '"yyyy-MM-dd HH:mm:ss.SSS"'
+          - name: endTime
+            in: query
+            schema:
+              type: string
+              example: ''
+            description: '"yyyy-MM-dd HH:mm:ss.SSS"'
+          - name: statementDate
+            in: query
+            schema:
+              type: string
+              example: '2023-10-10'
+            description: '"yyyy-MM-dd HH:mm:ss"'
+          - name: includeMetaData
+            in: query
+            schema:
+              type: string
+              example: 'true'
+          - name: parentTransactionId
+            in: query
+            schema:
+              type: string
+              example: 99583d3f-a9ff-4f6c-8ce0-c4eb57850c4d
+        responses:
+          '200':
+            description: ''
+    /dispute:
+      post:
+        tags:
+          - Support
+        summary: Dispute Txn
+        description: Dispute Txn
+        operationId: disputeTxn
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: 79a0f535-9e4b-4681-9c33-d528b4f59bb6
+                  reason:
+                    type: string
+                    example: Credit not Processed
+                  transactionId:
+                    type: string
+                    example: e8c0d5b2-7c9b-48f0-bf0c-761413a22a2e
+              examples:
+                Create Dispute Request:
+                  value:
+                    accountId: 79a0f535-9e4b-4681-9c33-d528b4f59bb6
+                    reason: Credit not Processed
+                    transactionId: e8c0d5b2-7c9b-48f0-bf0c-761413a22a2e
+                Dispute Txn:
+                  value:
+                    accountId: 79a0f535-9e4b-4681-9c33-d528b4f59bb6
+                    reason: Credit not Processed
+                    transactionId: e8c0d5b2-7c9b-48f0-bf0c-761413a22a2e
+        responses:
+          '200':
+            description: ''
+    /installment/list/account/{accountId}:
+      get:
+        tags:
+          - Installment
+        summary: List loans for account
+        description: List loans for account
+        operationId: listLoansForAccount
+        responses:
+          '200':
+            description: ''
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0b047d21-fc52-4760-b0df-9ec893e4a06d
+    /installment/convert/bill:
+      post:
+        tags:
+          - Installment
+        summary: Bill to EMI
+        description: Bill to EMI
+        operationId: billToEmi
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  billId:
+                    type: string
+                    example: b22557e3-1856-4144-94de-34f0c6e03900
+              examples:
+                Bill to EMI:
+                  value:
+                    billId: b22557e3-1856-4144-94de-34f0c6e03900
+        responses:
+          '200':
+            description: ''
+    /installment/preview/transaction:
+      post:
+        tags:
+          - Installment
+        summary: Txn to EMI
+        description: Txn to EMI
+        operationId: txnToEmi
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    example: 421a1867-0e0d-410f-8d6d-77da7355383b
+              examples:
+                Txn to EMI:
+                  value:
+                    transactionId: 421a1867-0e0d-410f-8d6d-77da7355383b
+        responses:
+          '200':
+            description: ''
+    /installment/preview/bill:
+      post:
+        tags:
+          - Installment
+        summary: Bill To EMI preview
+        description: Bill To EMI preview
+        operationId: billToEmiPreview
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  billId:
+                    type: string
+                    example: b5b3925d-503c-4990-a6fd-687ee69e3fac
+              examples:
+                Bill To EMI preview:
+                  value:
+                    billId: b5b3925d-503c-4990-a6fd-687ee69e3fac
+        responses:
+          '200':
+            description: ''
+    /installment/convert/transaction:
+      post:
+        tags:
+          - Installment
+        summary: Txn to EMI preview
+        description: Txn to EMI preview
+        operationId: txnToEmiPreview
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tenure:
+                    type: number
+                    example: 5
+                  transactionId:
+                    type: string
+                    example: 4fe6e5b4-a050-4750-88c1-92ed3d392c7b
+              examples:
+                Txn to EMI preview:
+                  value:
+                    tenure: 5
+                    transactionId: 4fe6e5b4-a050-4750-88c1-92ed3d392c7b
+        responses:
+          '200':
+            description: ''
+    /installment/preclosure/{installmentLoanId}/{quotationDate}:
+      get:
+        tags:
+          - Installment
+        summary: Foreclose Loan Quotation
+        description: Foreclose Loan Quotation
+        operationId: forecloseLoanQuotation
+        responses:
+          '200':
+            description: ''
+      post:
+        tags:
+          - Installment
+        summary: Foreclose Loan
+        description: Foreclose Loan
+        operationId: forecloseLoan
+        responses:
+          '200':
+            description: ''
+      parameters:
+        - name: installmentLoanId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: quotationDate
+          in: path
+          required: true
+          schema:
+            type: string
+    /rewards/balance/{accountId}:
+      get:
+        tags:
+          - Rewards
+        summary: Rewards Balance
+        description: Rewards Balance
+        operationId: rewardsBalance
+        responses:
+          '200':
+            description: ''
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+    /rewards/list:
+      get:
+        tags:
+          - Rewards
+        summary: List Rewards
+        description: List Rewards
+        operationId: listRewards
+        parameters:
+          - name: accountId
+            in: query
+            schema:
+              type: string
+              example: 053e08b7-34c5-4c42-8297-2ad8c299609d
+          - name: page
+            in: query
+            schema:
+              type: string
+              example: '0'
+          - name: pageSize
+            in: query
+            schema:
+              type: string
+              example: '10'
+        responses:
+          '200':
+            description: ''
+    /collection/getAgents:
+      get:
+        tags:
+          - Collections
+        summary: List Agents
+        description: List Agents
+        operationId: listAgents
+        responses:
+          '200':
+            description: ''
+    /collection/getProgramDelinquencies/{programId}:
+      get:
+        tags:
+          - Collections
+        summary: List Program Delinquencies
+        description: List Program Delinquencies
+        operationId: listProgramDelinquencies
+        responses:
+          '200':
+            description: ''
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: b6a924c4-6304-4eb3-b3ba-5a1399852abc
+    /delinquency/history/{accountId}:
+      get:
+        tags:
+          - Collections
+        summary: Account Delinquency History
+        description: Account Delinquency History
+        operationId: accountDelinquencyHistory
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: 945943b4-a16d-4bb5-9a97-188edd68712f
+                  billAmount:
+                    type: number
+                    example: 12500
+                  billDate:
+                    type: string
+                    example: '2022-10-04T23:59:59.999+00:00'
+                  billDueDate:
+                    type: string
+                    example: '2022-10-14T23:59:59.999+00:00'
+                  billEndDate:
+                    type: string
+                    example: '2022-10-04T23:59:59.999+00:00'
+                  billMetaData:
+                    type: string
+                    example: '{mad=425.0, fee=0.0}'
+                  billPaidDate:
+                    nullable: true
+                    example: null
+                  billPdfLink:
+                    type: string
+                    example: >-
+                      https://bill-invoice-pdfs.s3.ap-south-1.amazonaws.com/invoice_bill_id_0f37f1dc-c05c-47a6-8a0e-7584c5f1fb48.pdf
+                  billStartDate:
+                    type: string
+                    example: '2022-09-05T00:00:00.000+00:00'
+                  createdAt:
+                    type: string
+                    example: '2022-10-05T12:23:39.885+00:00'
+                  creditAmount:
+                    type: number
+                    example: 0
+                  creditTxnCount:
+                    type: number
+                    example: 0
+                  debitAmount:
+                    type: number
+                    example: 12500
+                  debitTxnCount:
+                    type: number
+                    example: 5
+                  dueAmount:
+                    type: number
+                    example: 12500
+                  dueCash:
+                    type: number
+                    example: 0
+                  dueCharge:
+                    type: number
+                    example: 20000
+                  dueInterest:
+                    type: number
+                    example: 1000
+                  dueRetail:
+                    type: number
+                    example: 100000
+                  id:
+                    type: string
+                    example: 0f37f1dc-c05c-47a6-8a0e-7584c5f1fb48
+                  installmentCount:
+                    type: number
+                    example: 0
+                  installmentInterest:
+                    type: number
+                    example: 0
+                  installmentLoanId:
+                    nullable: true
+                    example: null
+                  installmentPrincipal:
+                    type: number
+                    example: 0
+                  paidAmount:
+                    type: number
+                    example: 0
+                  paidCharge:
+                    type: number
+                    example: 0
+                  previousBillId:
+                    nullable: true
+                    example: null
+                  previousPendingBillAmount:
+                    type: number
+                    example: 0
+                  status:
+                    type: string
+                    example: UNPAID
+                  updatedAt:
+                    type: string
+                    example: '2022-10-05T12:23:41.579+00:00'
+              examples:
+                Account Delinquency History:
+                  value:
+                    accountId: 945943b4-a16d-4bb5-9a97-188edd68712f
+                    billAmount: 12500
+                    billDate: '2022-10-04T23:59:59.999+00:00'
+                    billDueDate: '2022-10-14T23:59:59.999+00:00'
+                    billEndDate: '2022-10-04T23:59:59.999+00:00'
+                    billMetaData: '{mad=425.0, fee=0.0}'
+                    billPaidDate: null
+                    billPdfLink: >-
+                      https://bill-invoice-pdfs.s3.ap-south-1.amazonaws.com/invoice_bill_id_0f37f1dc-c05c-47a6-8a0e-7584c5f1fb48.pdf
+                    billStartDate: '2022-09-05T00:00:00.000+00:00'
+                    createdAt: '2022-10-05T12:23:39.885+00:00'
+                    creditAmount: 0
+                    creditTxnCount: 0
+                    debitAmount: 12500
+                    debitTxnCount: 5
+                    dueAmount: 12500
+                    dueCash: 0
+                    dueCharge: 20000
+                    dueInterest: 1000
+                    dueRetail: 100000
+                    id: 0f37f1dc-c05c-47a6-8a0e-7584c5f1fb48
+                    installmentCount: 0
+                    installmentInterest: 0
+                    installmentLoanId: null
+                    installmentPrincipal: 0
+                    paidAmount: 0
+                    paidCharge: 0
+                    previousBillId: null
+                    previousPendingBillAmount: 0
+                    status: UNPAID
+                    updatedAt: '2022-10-05T12:23:41.579+00:00'
+        responses:
+          '200':
+            description: ''
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: bbbcb13a-fe76-4436-ac99-3c6c71730111
+    /roleManagement/addUser:
+      post:
+        tags:
+          - User Access Management
+        summary: Add User
+        description: Add User
+        operationId: addUser
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                    example: ABC DCF hjaj ahsj
+                  clientId:
+                    type: string
+                    example: d0b02ff1-14a4-4c43-9287-92718f5e8ed3
+                  email:
+                    type: string
+                    example: diham36672@larland.com
+                  idNumber:
+                    type: string
+                    example: AXGDH8920P
+                  idType:
+                    type: string
+                    example: PAN
+                  mobileNumber:
+                    type: string
+                    example: '9898989811'
+                  name:
+                    type: string
+                    example: Test User
+                  officialEmailId:
+                    type: string
+                    example: test1121@vegapay.tech
+                  platformId:
+                    type: string
+                    example: 71ae69b8-595e-405f-bc5f-57623cf39808
+                  platformName:
+                    type: string
+                    example: FOREX_CORPORATE
+                  status:
+                    type: string
+                    example: ACTIVE
+                  team:
+                    type: string
+                    example: OPERATIONS
+              examples:
+                Add User:
+                  value:
+                    address: ABC DCF hjaj ahsj
+                    clientId: d0b02ff1-14a4-4c43-9287-92718f5e8ed3
+                    email: diham36672@larland.com
+                    idNumber: AXGDH8920P
+                    idType: PAN
+                    mobileNumber: '9898989811'
+                    name: Test User
+                    officialEmailId: test1121@vegapay.tech
+                    platformId: 71ae69b8-595e-405f-bc5f-57623cf39808
+                    platformName: FOREX_CORPORATE
+                    status: ACTIVE
+                    team: OPERATIONS
+        responses:
+          '200':
+            description: ''
+    /roleManagement/listUsers:
+      post:
+        tags:
+          - User Access Management
+        summary: List Users
+        description: List Users
+        operationId: listUsers
+        requestBody:
+          content:
+            application/json:
+              examples:
+                List Users:
+                  value: |-
+                    {
+                        "clientId" : "05977dbf-8d5d-4c8f-9f99-e9f9bf12704c",
+                        "page" : 0,
+                        "size" : 100
+                    }
+
+                        // "levelHierarchy" : {
+                        //     "clientId": "82ba886a-fbca-4145-83a7-be682be4969e"
+                        // }
+        responses:
+          '200':
+            description: ''
+    /roleManagement/addRole:
+      post:
+        tags:
+          - User Access Management
+        summary: Add Role
+        description: Add Role
+        operationId: addRole
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessFeatures:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entityRoles:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              entityId:
+                                type: string
+                                example: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                              roles:
+                                type: array
+                                items:
+                                  type: string
+                                  example: EDIT
+                                example:
+                                  - EDIT
+                          example:
+                            - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                              roles:
+                                - EDIT
+                        feature:
+                          type: string
+                          example: FOREX_CORPORATE_CARD_ANALYTICS
+                    example:
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_CARD_ANALYTICS
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_CARD_TRANSACTION
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_INVOICES
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_CARD_SALE
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_APPLICATION_MANAGEMENT
+                  clientId:
+                    type: string
+                    example: 3fbca97f-a4c3-4a0a-8d4f-a29ade5fd01c
+                  createdBy:
+                    type: string
+                    example: test
+                  roleName:
+                    type: string
+                    example: FOREX_CORPORATE
+                  status:
+                    type: string
+                    example: ACTIVE
+                  teamName:
+                    type: string
+                    example: Supports
+              examples:
+                Add Role:
+                  value:
+                    accessFeatures:
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_CARD_ANALYTICS
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_CARD_TRANSACTION
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_INVOICES
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_CARD_SALE
+                      - entityRoles:
+                          - entityId: 2b1c044c-5c0d-493d-bb55-c8ba5081496a
+                            roles:
+                              - EDIT
+                        feature: FOREX_CORPORATE_APPLICATION_MANAGEMENT
+                    clientId: 3fbca97f-a4c3-4a0a-8d4f-a29ade5fd01c
+                    createdBy: test
+                    roleName: FOREX_CORPORATE
+                    status: ACTIVE
+                    teamName: Supports
+        responses:
+          '200':
+            description: ''
+    /roleManagement/listRolesForClient/{clientId}:
+      get:
+        tags:
+          - User Access Management
+        summary: List Roles
+        description: List Roles
+        operationId: listRoles
+        responses:
+          '200':
+            description: ''
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: efa858ea-d133-4a40-932d-c57097e3f067
+    /roleManagement/user/status:
+      patch:
+        tags:
+          - User Access Management
+        summary: Update User Status
+        description: Update User Status
+        operationId: updateUserStatus
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ACTIVE
+                  userId:
+                    type: string
+                    example: da28968b-c52a-4e02-80b8-2760e5e25ba5
+              examples:
+                Update User Status:
+                  value:
+                    status: ACTIVE
+                    userId: da28968b-c52a-4e02-80b8-2760e5e25ba5
+        responses:
+          '200':
+            description: ''
+    /roleManagement/addRoleForUser:
+      post:
+        tags:
+          - User Access Management
+        summary: Add Role for User
+        description: Add Role for User
+        operationId: addRoleForUser
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checkerMakerFlag:
+                    type: boolean
+                    example: false
+                  roleId:
+                    type: string
+                    example: 0783a033-fd97-413e-afff-4ebe167895a6
+                  roleName:
+                    type: string
+                    example: CIMS_ADMIN_HQ
+                  status:
+                    type: string
+                    example: ACTIVE
+                  userId:
+                    type: string
+                    example: 5b1c7259-35ad-4272-8722-b21d4ae0e652
+              examples:
+                Add Role for User:
+                  value:
+                    checkerMakerFlag: false
+                    roleId: 0783a033-fd97-413e-afff-4ebe167895a6
+                    roleName: CIMS_ADMIN_HQ
+                    status: ACTIVE
+                    userId: 5b1c7259-35ad-4272-8722-b21d4ae0e652
+        responses:
+          '200':
+            description: ''
+    /roleManagement/updateRoleForUser:
+      put:
+        tags:
+          - User Access Management
+        summary: Update Role for User
+        description: Update Role for User
+        operationId: updateRoleForUser
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roleId:
+                    type: string
+                    example: 00a43429-5d27-42aa-9789-4bf3fe9b3184
+                  roleName:
+                    type: string
+                    example: support_and_collection_4
+                  status:
+                    type: string
+                    example: INACTIVE
+                  userId:
+                    type: string
+                    example: 867c5cf1-8544-460f-9b35-9b946621aa44
+              examples:
+                Update Role for User:
+                  value:
+                    roleId: 00a43429-5d27-42aa-9789-4bf3fe9b3184
+                    roleName: support_and_collection_4
+                    status: INACTIVE
+                    userId: 867c5cf1-8544-460f-9b35-9b946621aa44
+        responses:
+          '200':
+            description: ''
+    /webhook:
+      post:
+        tags:
+          - Webhook
+        summary: Subscribe
+        description: Subscribe
+        operationId: subscribe
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  event:
+                    type: string
+                    example: CUSTOMER_AUDIT
+                  programId:
+                    type: string
+                    example: 864ea6df-fcb1-4238-8659-d833e7748986
+                  secret:
+                    type: string
+                    example: abcabascsessesds
+                  url:
+                    type: string
+                    example: https://www.google.com
+              examples:
+                Subscribe:
+                  value:
+                    event: CUSTOMER_AUDIT
+                    programId: 864ea6df-fcb1-4238-8659-d833e7748986
+                    secret: abcabascsessesds
+                    url: https://www.google.com
+        responses:
+          '200':
+            description: ''
+  tags:
+    - name: Program Management
+      description: >-
+        Program is a concept that bundles financial products. It is a way in which
+        different financial products are packaged together. In simple terms,
+        Program is just a collection of financial products.
+    - name: Accounts Holder Group
+      description: >-
+        The account holder group is a concept that allows you to configure
+        multiple account holders (user and/or business resources) as a group. It
+        allows certain settings to be selectively applied.
+    - name: Application Managment
+      description: >-
+        Application invloves several steps that are essential to onboard a
+        customer
+    - name: User
+      description: The users represents a person who accesses credit products
+    - name: Business
+      description: >-
+        A business is a type of account holder that cannot directly hold cards,
+        but can have parent/child relationships with card-holding users. A
+        business can monitor and control card use by a specified group of users.
+    - name: Account Managment
+      description: >-
+        A credit account that centers around a single credit line with one or more
+        cards and cardholders. A credit account derives some of its
+        characteristics from an associated credit product.
+    - name: Statement
+      description: >-
+        The statement summary, which is a summary of account activity on a
+        statement, provides account holders with a synopsis of activity that
+        occurred on the account during a specified billing cycle.
+    - name: Card Issuance
+      description: Create a card for an existing credit account.
+    - name: Card Controls
+      description: Provides different controls over existing issued cards
+    - name: Transactions
+      description: >-
+        It represents the electronic messages that carry information used for
+        payment processing. A transaction usually originates when a cardholder
+        attempts to make a payment, either online or at a physical point of sale.
+    - name: Payments
+      description: A payment to apply toward a credit account's balance.
+    - name: Installment
+      description: Convert a Txn or Bill to EMI and fetch necessary details.
+    - name: Rewards
+      description: View or User rewards earned by a user for transactions
+    - name: Collections
+      description: Provides delinquency information at program and account level
+    - name: User Access Management
+      description: Allows creation of serverl users with defined access on the resources
+    - name: Support
+      description: Support apis
+    - name: Webhook
+      description: Subscribe to an event, to get webhook callbacks on event occurance
+    - name: Authorization
+      description: >-
+        Authorize a payment request going out to a merchant based on risk,
+        compliance, and policies.
+  x-tagGroups:
+    - name: Program Management
+      tags:
+        - Program Management
+    - name: Customer Onboarding
+      tags:
+        - User
+        - Application Managment
+    - name: Accounts
+      tags:
+        - Account Managment
+        - Statement
+    - name: Cards
+      tags:
+        - Card Issuance
+        - Card Controls
+    - name: Transaction
+      tags:
+        - Transactions
+        - Payments
+    - name: Installment
+      tags:
+        - Installment
+    - name: Rewards
+      tags:
+        - Rewards
+    - name: Collections
+      tags:
+        - Collections
+    - name: User Access Management
+      tags:
+        - User Access Management
+    - name: Support
+      tags:
+        - Support
+    - name: Support
+      tags:
+        - Support
+    - name: Interceptor
+      tags:
+        - Authorization
+konfigCliVersion: 1.38.34

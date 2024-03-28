@@ -1,0 +1,274 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /account:
+    post: AccountManagment_createCreditAccount
+  /account/closure:
+    post: Support_requestClosure
+  /account/limitoffer:
+    post: AccountManagment_offerCreation
+  /account/limitoffer/updateStatus:
+    patch: AccountManagment_updateLimitOfferStatus
+  /audit:
+    get: User_getCustomerAudit
+  /card/addCard:
+    post: CardIssuance_createCard
+  /card/addSupplementCard:
+    post: CardIssuance_addSupplementCard
+  /card/getCard:
+    get: CardIssuance_getById
+  /card/replaceCard:
+    post: CardIssuance_replaceCard
+  /card/updateCardStatus:
+    patch: CardIssuance_updateStatus
+  /card/updateCustomerPreference:
+    post: CardIssuance_updateCustomerPreference
+  /collection/getAgents:
+    get: Collections_getAgents
+  /collection/getProgramDelinquencies/{programId}:
+    get: Collections_listProgramDelinquencies
+  /customer:
+    post: User_createCustomerPost
+  /customer/list/withAccount:
+    get: User_listWithAccountInfoForProgramId
+  /customer/list/{programId}:
+    get: User_listByClientId
+  /customer/status:
+    patch: User_updateCustomerStatus
+  /customer/{customerId}:
+    get: User_getCustomer
+  /delinquency/history/{accountId}:
+    get: Collections_accountDelinquencyHistoryGet
+  /dispute:
+    post: Support_transactionDispute
+  /forex/account:
+    post: AccountManagment_createForexAccount
+  /installment/convert/bill:
+    post: Installment_convertBillToEmi
+  /installment/convert/transaction:
+    post: Installment_previewTransactionToEmi
+  /installment/list/account/{accountId}:
+    get: Installment_accountLoansList
+  /installment/preclosure/{installmentLoanId}/{quotationDate}:
+    get: Installment_forecloseQuotation
+    post: Installment_forecloseLoan
+  /installment/preview/bill:
+    post: Installment_previewBillToEmi
+  /installment/preview/transaction:
+    post: Installment_convertTxnToEmi
+  /los/v2/application/18848a09-74d3-4326-8ce0-84452887f656:
+    get: ApplicationManagment_getApplication
+  /los/v2/application/create:
+    post: ApplicationManagment_createApplicationPost
+  /los/v2/flow/nextStep/get:
+    get: ApplicationManagment_getNextStep
+  /program:
+    post: ProgramManagement_createProgram
+  /program/list:
+    get: ProgramManagement_getPrograms
+  /program/{programId}:
+    get: ProgramManagement_getProgram
+  /rewards/balance/{accountId}:
+    get: Rewards_getBalance
+  /rewards/list:
+    get: Rewards_getList
+  /roleManagement/addRole:
+    post: UserAccessManagement_createRole
+  /roleManagement/addRoleForUser:
+    post: UserAccessManagement_assignRoleToUser
+  /roleManagement/addUser:
+    post: UserAccessManagement_createUser
+  /roleManagement/listRolesForClient/{clientId}:
+    get: UserAccessManagement_listRolesForClient
+  /roleManagement/listUsers:
+    post: UserAccessManagement_getUserList
+  /roleManagement/updateRoleForUser:
+    put: UserAccessManagement_assignRoleToUser
+  /roleManagement/user/status:
+    patch: UserAccessManagement_updateUserStatus
+  /transaction:
+    post: Transactions_createTransaction
+  /transaction/list:
+    get: Transactions_listForAccount
+  /transaction/payment:
+    post: Transactions_createPayment
+  /transaction/payment/rewards:
+    post: Transactions_submitPaymentRewards
+  /webhook:
+    post: Webhook_subscribeEvent
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /account:
+    post:
+      application/json: AccountManagmentCreateCreditAccountRequest
+  /account/closure:
+    post:
+      application/json: SupportRequestClosureRequest
+  /account/limitoffer:
+    post:
+      application/json: AccountManagmentOfferCreationRequest
+  /card/addCard:
+    post:
+      application/json: CardIssuanceCreateCardRequest
+  /card/updateCardStatus:
+    patch:
+      application/json: CardIssuanceUpdateStatusRequest
+  /card/updateCustomerPreference:
+    post:
+      application/json: CardIssuanceUpdateCustomerPreferenceRequest
+  /customer:
+    post:
+      application/json: UserCreateCustomerPostRequest
+  /customer/status:
+    patch:
+      application/json: UserUpdateCustomerStatusRequest
+  /delinquency/history/{accountId}:
+    get:
+      application/json: CollectionsAccountDelinquencyHistoryGetRequest
+  /dispute:
+    post:
+      application/json: SupportTransactionDisputeRequest
+  /forex/account:
+    post:
+      application/json: AccountManagmentCreateForexAccountRequest
+  /installment/convert/bill:
+    post:
+      application/json: InstallmentConvertBillToEmiRequest
+  /installment/convert/transaction:
+    post:
+      application/json: InstallmentPreviewTransactionToEmiRequest
+  /installment/preview/bill:
+    post:
+      application/json: InstallmentPreviewBillToEmiRequest
+  /installment/preview/transaction:
+    post:
+      application/json: InstallmentConvertTxnToEmiRequest
+  /program:
+    post:
+      multipart/form-data: ProgramManagementCreateProgramRequest
+  /roleManagement/addRole:
+    post:
+      application/json: UserAccessManagementCreateRoleRequest
+  /roleManagement/addRoleForUser:
+    post:
+      application/json: UserAccessManagementAssignRoleToUserRequest
+  /roleManagement/addUser:
+    post:
+      application/json: UserAccessManagementCreateUserRequest
+  /roleManagement/updateRoleForUser:
+    put:
+      application/json: UserAccessManagementAssignRoleToUserRequest1
+  /roleManagement/user/status:
+    patch:
+      application/json: UserAccessManagementUpdateUserStatusRequest
+  /transaction:
+    post:
+      application/json: TransactionsCreateTransactionRequest
+  /transaction/payment:
+    post:
+      application/json: TransactionsCreatePaymentRequest
+  /transaction/payment/rewards:
+    post:
+      application/json: TransactionsSubmitPaymentRewardsRequest
+  /webhook:
+    post:
+      application/json: WebhookSubscribeEventRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /account:
+    post:
+      '200':
+        application/json: AccountManagmentCreateCreditAccountResponse
+  /customer/{customerId}:
+    get:
+      '200':
+        application/json: UserGetCustomerResponse
+  /forex/account:
+    post:
+      '200':
+        application/json: AccountManagmentCreateForexAccountResponse
+  /program:
+    post:
+      '200':
+        application/json: ProgramManagementCreateProgramResponse
+securityParameters:
+  Cookie:
+    header: false
+  accountId:
+    query: false
+  allAccounts:
+    query: false
+  applicationId:
+    query: false
+  authorizationToken:
+    header: false
+  cardId:
+    query: false
+  category:
+    query: false
+  clientId:
+    query: false
+  customerId:
+    query: false
+  endTime:
+    query: false
+  eventName:
+    query: false
+  includeMetaData:
+    query: false
+  jwt_token:
+    header: false
+  limitOfferId:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  parentTransactionId:
+    query: false
+  programId:
+    query: false
+  startTime:
+    query: false
+  statementDate:
+    query: false
+  status:
+    query: false
+  x-api-key:
+    header: false
+validServerUrls:
+  '{{account_management_service}}':
+    url: '{{account_management_service}}'
+  '{{api-gateway-prod}}':
+    url: '{{api-gateway-prod}}'
+  '{{audit_service}}':
+    url: '{{audit_service}}'
+  '{{card_processor}}':
+    url: '{{card_processor}}'
+  '{{collection_service}}':
+    url: '{{collection_service}}'
+  '{{credential_manager}}':
+    url: '{{credential_manager}}'
+  '{{dispute_service}}':
+    url: '{{dispute_service}}'
+  '{{forex_account}}':
+    url: '{{forex_account}}'
+  '{{installment_service}}':
+    url: '{{installment_service}}'
+  '{{los}}':
+    url: '{{los}}'
+  '{{policy_impl_service}}':
+    url: '{{policy_impl_service}}'
+  '{{program_policy_client_customer}}':
+    url: '{{program_policy_client_customer}}'
+  '{{program_service}}':
+    url: '{{program_service}}'
+  '{{rewards_service}}':
+    url: '{{rewards_service}}'
+  '{{transaction_service}}':
+    url: '{{transaction_service}}'
+  '{{webhook_service}}':
+    url: '{{webhook_service}}'
