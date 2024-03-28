@@ -2191,6 +2191,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://www.pappers.fr/api_v2.yaml?20231125",
   },
+  "ducky.eco": {
+    type: "GET",
+    url: "https://storage.googleapis.com/doc.api.ducky.eco/api-v3.json",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

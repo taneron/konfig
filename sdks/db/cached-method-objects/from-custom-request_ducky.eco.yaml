@@ -1,0 +1,780 @@
+hash: caf8c09d54f8266cad283bb005c3f137cd808cb1a97b8ada055eaa2923ceaa3b
+methodObjects:
+  - url: /calculate/finance
+    method: financialFootprintForTransactions
+    httpMethod: post
+    tag: calculate
+    typeScriptTag: calculate
+    description: Get kgCO2e per monetary transaction
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: categoryMapping
+        schema: string
+        description: Format output based on a custom mapping
+        default: ducky
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: habits
+        schema: object
+        required: false
+        description: ''
+      - name: transactions
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+          Consumption for each transaction.
+      - statusCode: '400'
+        description: ''
+  - url: /calculate/food-and-drink
+    method: foodAndDrinkMetrics
+    httpMethod: post
+    tag: calculate
+    typeScriptTag: calculate
+    description: Get kgCO2e, weight, waste, and money spent per food category.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: food
+        schema: object
+        description: ''
+      - name: user
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /calculator
+    method: annualFootprintByCategories
+    httpMethod: post
+    tag: calculate
+    typeScriptTag: calculate
+    description: Calculate annual footprint by categories
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: categories
+        schema: array
+        description: Categories to include in response
+        default: '["public","consumption","transport","food","energy"]'
+      - name: subCategories
+        schema: boolean
+        description: Include subcategories
+        default: false
+      - name: scope
+        schema: string
+        description: Is the footprint for an individual or a household
+        default: household
+      - name: precision
+        schema: boolean
+        description: Prevent rounding of percentages
+        default: false
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: consumption
+        schema: object
+        description: ''
+      - name: energy
+        schema: object
+        description: ''
+      - name: food
+        schema: object
+        description: ''
+      - name: household
+        schema: object
+        description: ''
+      - name: transport
+        schema: object
+        description: ''
+      - name: user
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /change
+    method: improveBehaviourTips
+    httpMethod: post
+    tag: change
+    typeScriptTag: change
+    description: Get tips for improving behaviour.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Region of the requested data set
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'.
+
+
+          We provide historical data only for the values of the returned
+          indicators.
+
+
+          [See detailed user documentation
+          here](https://support.ducky.eco/en/change-general)
+
+          Please note that some indicators have "static" values and do not
+          support historical data.
+      - name: language
+        schema: string
+        description: Language of the text returned
+        default: 'no'
+      - name: orderBy
+        schema: string
+        description: >
+          Order the results using the specified attribute.
+
+          The attributes of type "indicator" (co2, points, moneySaved) are
+          sorted by descending order.
+
+          The attributes of type "investment" (financialCost, timeRequirement,
+          socialDifficulty) are sorted by ascending order.
+        default: co2
+      - name: returnLegacyTipId
+        schema: boolean
+        description: |
+          Choose whether the legacy tipID should be outputted.
+        default: false
+      - name: ignoreZeroOrNegativeTips
+        schema: boolean
+        description: >
+          Choose whether to ignore tips that would produce a zero or negative
+          impact in terms of CO2 footprint.
+
+          Such cases will happen if a user already has good habits on some area,
+          and the tip concerns improving behaviour exactly on this subject, but
+          to a lesser extent than the user is already doing.
+
+          Tips where this is the case are by default removed to avoid crowding
+          the output with tips that are not helpful.
+        default: true
+      - name: filteringCriteria
+        schema: object
+        description: ''
+      - name: habits
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /compare/food-and-drink
+    method: averageFootprintByFilteringCriteria
+    httpMethod: post
+    tag: compare
+    typeScriptTag: compare
+    description: Fetch an average food-and-drink footprint based on filtering criteria.
+    parameters:
+      - name: filters
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /compare/general
+    method: averageCategoryFootprint
+    httpMethod: post
+    tag: compare
+    typeScriptTag: compare
+    description: Fetch an average category-based footprint based on filtering criteria.
+    parameters:
+      - name: filters
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /compare/transport
+    method: transportFootprint
+    httpMethod: post
+    tag: compare
+    typeScriptTag: compare
+    description: Fetch transport footprint for a given area.
+    parameters:
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: areaId
+        schema: string
+        required: true
+        description: >
+          Area code of the area for which transport footprint is requested. [See
+          detailed area ID
+          documentation](https://doc.api.ducky.eco/area-ids-mapping) for mapping
+          between area names and their codes.
+        example: no-3024
+      - name: timeRange
+        schema: string
+        description: >
+          Choose which time range you wish to receive data for. Currently the
+          most granular data available is per month, which means that if a
+          monthly range is requested, you will directly receive the data for the
+          requested month. If you choose a yearly range, the values are a sum of
+          all monthly values accross the given year.
+        default: monthly
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /convert/energy
+    method: kgCo2EPerKwhUsed
+    httpMethod: post
+    tag: convert
+    typeScriptTag: convert
+    description: Get kgCO2e per kWh used.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: categories
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >
+          A mapping with the categories provided in the input.
+
+          Other categories are not included.
+
+
+          Each category contains the amount of CO2 equivalent, both in
+          kilograms.
+      - statusCode: '400'
+        description: ''
+  - url: /convert/finance
+    method: financialFootprintByCategory
+    httpMethod: post
+    tag: convert
+    typeScriptTag: convert
+    description: |
+      Get footprint in kilograms of CO2-equivalents for financial transactions
+      by category.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: categories
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >
+          A mapping with the categories provided in the input.
+
+          Other categories are not included.
+
+
+          Each category contains the amount of CO2 equivalent, both in
+          kilograms.
+      - statusCode: '400'
+        description: ''
+  - url: /convert/food-and-drink
+    method: foodAndDrinkFootprint
+    httpMethod: post
+    tag: convert
+    typeScriptTag: convert
+    description: Get kgCO2e per calory or weight of Food and Drink.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: categories
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >
+          A mapping with the categories provided in the input.
+
+          Other categories are not included.
+
+
+          Each category contains the weight and the amount of CO2 equivalent,
+          both in kilograms.
+      - statusCode: '400'
+        description: ''
+  - url: /convert/goods-and-services
+    method: itemFootprintAndSavings
+    httpMethod: post
+    tag: convert
+    typeScriptTag: convert
+    description: >-
+      Get footprint of an item and optionally the avoided emissions obtained by
+      choosing to rent, repair or buy an item used instead of new.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: items
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /convert/goods-and-services/list-items
+    method: goodsAndServicesListItems
+    httpMethod: get
+    tag: convert
+    typeScriptTag: convert
+    description: Get a list of all valid items for the convert/goods-and-services endpoint.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /convert/transport
+    method: transportEmissions
+    httpMethod: post
+    tag: convert
+    typeScriptTag: convert
+    description: Get kgCO2e per distance travelled.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: categories
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >
+          A mapping with the categories provided in the input.
+
+          Other categories are not included.
+
+
+          Each category contains the amount of CO2 equivalent, both in
+          kilograms.
+      - statusCode: '400'
+        description: ''
+  - url: /ping
+    method: statusCheck
+    httpMethod: get
+    tag: ping
+    typeScriptTag: ping
+    description: Check if the API is running
+    parameters: []
+    responses: []
+  - url: /ping/protected
+    method: checkTokenValidity
+    httpMethod: get
+    tag: ping
+    typeScriptTag: ping
+    description: Check if the API is running and if your authentication token is valid
+    parameters: []
+    responses: []
+  - url: /report/scope-1
+    method: computeScope1Emissions
+    httpMethod: post
+    tag: reporting
+    typeScriptTag: reporting
+    description: Compute Scope 1 GHG emissions.
+    parameters:
+      - name: dataSource
+        schema: string
+        required: false
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        required: false
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+        default: today
+      - name: entries
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /report/scope-2
+    method: computeScope2Emissions
+    httpMethod: post
+    tag: reporting
+    typeScriptTag: reporting
+    description: Compute Scope 2 GHG emissions.
+    parameters:
+      - name: dataSource
+        schema: string
+        required: false
+        description: Data Source to use for calculation
+        default: norway
+      - name: dataFromDate
+        schema: string
+        required: false
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+        default: today
+      - name: entries
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /track/transport
+    method: transportIndicators
+    httpMethod: post
+    tag: track
+    typeScriptTag: track
+    description: Get indicators for a certain administrative area.
+    parameters:
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: timeRange
+        schema: string
+        description: >
+          Choose which time range you wish to receive data for. Currently the
+          most granular data available is per month, which means that if a
+          monthly range is requested, you will directly receive the data for the
+          requested month. If you choose a yearly range, the values are an
+          average of all monthly values accross the given year
+        default: monthly
+      - name: areaId
+        schema: string
+        required: true
+        description: ''
+        example: no-5001
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /translate/car
+    method: co2EToCarDistance
+    httpMethod: post
+    tag: translate
+    typeScriptTag: translate
+    description: Translate kilograms CO2 equivalent to distance travelled by car
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Region of the requested data set
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: kgco2e
+        schema: number
+        required: true
+        description: ''
+        example: 100
+    responses:
+      - statusCode: '200'
+        description: |
+          A list of valid translations
+      - statusCode: '400'
+        description: ''
+  - url: /translate/energy
+    method: co2EToEnergyUsage
+    httpMethod: post
+    tag: translate
+    typeScriptTag: translate
+    description: >-
+      Translate kilograms CO2 equivalent to the usage of an electrical
+      appliance.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Region of the requested data set
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: kgco2e
+        schema: number
+        required: true
+        description: ''
+        example: 100
+    responses:
+      - statusCode: '200'
+        description: |
+          A list of valid translations
+      - statusCode: '400'
+        description: ''
+  - url: /translate/plane
+    method: co2EToPlaneDistance
+    httpMethod: post
+    tag: translate
+    typeScriptTag: translate
+    description: Translate kilograms CO2 equivalent to distance flown by an airplane.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Region of the requested data set
+        default: norway
+      - name: dataFromDate
+        schema: string
+        description: >
+          You can choose to use data from any date for which we have data
+
+          in our database. If you do not submit a date, the current (and thereby
+          the
+
+          most updated data) will be used. Must be of format 'yyyy-mm-dd'
+      - name: kgco2e
+        schema: number
+        required: true
+        description: ''
+        example: 100
+    responses:
+      - statusCode: '200'
+        description: |
+          A list of valid translations
+      - statusCode: '400'
+        description: ''
+  - url: /translate/tree
+    method: co2EToTreeArea
+    httpMethod: post
+    tag: translate
+    typeScriptTag: translate
+    description: >-
+      Translate kilograms CO2 equivalent to how quickly it can be absorbed by a
+      number of trees.
+    parameters:
+      - name: dataSource
+        schema: string
+        description: Region of the requested data set
+        default: norway
+      - name: kgco2e
+        schema: number
+        required: true
+        description: ''
+        example: 100
+    responses:
+      - statusCode: '200'
+        description: |
+          An area of trees absorbing the given amount of kg CO2e per year
+      - statusCode: '400'
+        description: ''
+numberOfSchemas: 80
+apiDescription: >
+  Ducky Data's APIs provide footprint data for a wide variety of products and
+  circular services, as well as individuals, and consumption-based emissions for
+  municipalities and other administrative units.
+
+
+  The endpoints are divided by functionality. 
+
+  The Calculate endpoints compute the footprint of an individual based on their
+  habits and other lifestyle data. 
+
+  The Change endpoint generates climate friendly tips based on the user's
+  habits, and can be used to nudge the user towards sutainable behavioral
+  change.
+
+  The Compare endpoints return the average footprint of a citizen in a given
+  area (municipality or BSU).
+
+  The Convert endpoints turn physical data like energy use or transaction amount
+  into climate footprint.
+
+  Reporting endpoints are for calculating scope 1 & 2 emissions according to the
+  GHG protocol.
+
+  The Track endpoints returns the values of indicators (drivers of footprint)
+  for a given area (municipality or BSU).
+
+  The Translate endpoints contextualize a given quantity of CO2e by expressing
+  them in something more tangible, like a flight trip.
+
+
+  In the description of each endpoint, you will find the link to a user
+  documentation page detailing the sources and calculation principles.
+
+  All of our user documentation pages can be found
+  [here](https://support.ducky.eco/en/ducky-insights#introduction-to-ducky-insights).
+
+
+  ### Base URL
+
+  The API is served over HTTPS.
+
+  The section [API Servers](https://storage.googleapis.com) indicates the base
+  URLs for all requests in the documentation.
+
+
+  ### Authentication
+
+  The API requires [authentication](https://storage.googleapis.com). You have to
+  negotiate an `access_token` and send it with every request, in the
+  `authorization` header.
+
+
+  Step-by-step:
+
+  1. [Email Ducky to request](mailto:api@ducky.eco) a `CLIENT_ID` and a
+  `CLIENT_SECRET`
+
+  2. Negotiate an `access_token` with Auth0
+
+  3. Send authenticated requests to Ducky API
+
+
+  Learn in detail how to negotiate and use an `access_token` in the
+  [Authentication section](https://storage.googleapis.com).

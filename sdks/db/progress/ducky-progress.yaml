@@ -1,0 +1,89 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /calculate/finance:
+    post: Calculate_financialFootprintForTransactions
+  /calculate/food-and-drink:
+    post: Calculate_foodAndDrinkMetrics
+  /calculator:
+    post: Calculate_annualFootprintByCategories
+  /change:
+    post: Change_improveBehaviourTips
+  /compare/food-and-drink:
+    post: Compare_averageFootprintByFilteringCriteria
+  /compare/general:
+    post: Compare_averageCategoryFootprint
+  /compare/transport:
+    post: Compare_transportFootprint
+  /convert/energy:
+    post: Convert_kgCo2ePerKwhUsed
+  /convert/finance:
+    post: Convert_financialFootprintByCategory
+  /convert/food-and-drink:
+    post: Convert_foodAndDrinkFootprint
+  /convert/goods-and-services:
+    post: Convert_itemFootprintAndSavings
+  /convert/goods-and-services/list-items:
+    get: Convert_goodsAndServicesListItems
+  /convert/transport:
+    post: Convert_transportEmissions
+  /ping:
+    get: Ping_statusCheck
+  /ping/protected:
+    get: Ping_checkTokenValidity
+  /report/scope-1:
+    post: Reporting_computeScope1Emissions
+  /report/scope-2:
+    post: Reporting_computeScope2Emissions
+  /track/transport:
+    post: Track_transportIndicators
+  /translate/car:
+    post: Translate_co2eToCarDistance
+  /translate/energy:
+    post: Translate_co2eToEnergyUsage
+  /translate/plane:
+    post: Translate_co2eToPlaneDistance
+  /translate/tree:
+    post: Translate_co2eToTreeArea
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /report/scope-1:
+    post:
+      '200':
+        application/json: ReportingComputeScope1EmissionsResponse
+  /report/scope-2:
+    post:
+      '200':
+        application/json: ReportingComputeScope2EmissionsResponse
+securityParameters:
+  areaId:
+    query: false
+  categories:
+    query: false
+  categoryMapping:
+    query: false
+  dataFromDate:
+    query: false
+  dataSource:
+    query: false
+  ignoreZeroOrNegativeTips:
+    query: false
+  language:
+    query: false
+  orderBy:
+    query: false
+  precision:
+    query: false
+  returnLegacyTipId:
+    query: false
+  scope:
+    query: false
+  subCategories:
+    query: false
+  timeRange:
+    query: false
+validServerUrls: {}
