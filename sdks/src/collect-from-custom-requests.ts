@@ -2064,6 +2064,10 @@ const customRequests: Record<string, CustomRequest> = {
         filename: "openapi.json",
       });
     },
+  },
+  "wink.travel": {
+    type: "GET",
+    url: "https://api.wink.travel/v3/api-docs/affiliate"
   }
 };
 

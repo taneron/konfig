@@ -1,0 +1,2238 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/application:
+    post: Application_createNewApplication
+  /api/application/list:
+    get: Application_listApplications
+  /api/application/{id}:
+    delete: Application_remove
+    get: Application_showSpecific
+    patch: Application_updateExisting
+  /api/application/{id}/revoke:
+    get: Application_refreshCredentials
+  /api/company:
+    post: Company_createNewCompany
+  /api/company/list:
+    get: Company_listOwnedCompanies
+  /api/company/unique:
+    post: Company_checkUniqueness
+  /api/company/{companyIdentifier}:
+    delete: Company_deleteCompanyByIdentifier
+    get: Company_getByIdentifier
+    patch: Company_updateExistingCompany
+  /api/company/{companyIdentifier}/booking/engine/configuration/list:
+    get: Bookings_showCustomizationsList
+  /api/company/{companyIdentifier}/booking/engine/list:
+    get: Bookings_showBookedApplicationsList
+  /api/company/{companyIdentifier}/booking/grid:
+    post: Bookings_getGrid
+  /api/company/{companyIdentifier}/booking/hotel/list:
+    get: Bookings_showBookedHotels
+  /api/company/{companyIdentifier}/booking/roomrate/list:
+    get: Bookings_showMasterRates
+  /api/company/{companyIdentifier}/booking/{bookingIdentifier}:
+    get: Bookings_showByIdentifier
+  /api/company/{companyIdentifier}/configuration:
+    get: Customization_showPrimaryCustomization
+    post: Customization_createNewCustomization
+  /api/company/{companyIdentifier}/configuration/list:
+    get: Customization_getCompanyCustomizations
+  /api/company/{companyIdentifier}/configuration/{engineConfigurationIdentifier}:
+    delete: Customization_removeExisting
+    get: Customization_getPrimaryCustomization
+    put: Customization_updateExisting
+  /api/company/{companyIdentifier}/dynamic/list:
+    get: InventoryGrids_getSavedSearches
+  /api/company/{companyIdentifier}/inventory/campaign/list:
+    get: Campaign_showInventoryList
+  /api/company/{companyIdentifier}/inventory/city/list:
+    get: Discover_inventoryCityList
+  /api/company/{companyIdentifier}/inventory/country/list:
+    get: Discover_inventoryCountryList
+  /api/company/{companyIdentifier}/inventory/grid:
+    post: Discover_inventorySearch
+  /api/company/{companyIdentifier}/inventory/grid/{dynamicListIdentifier}:
+    get: Discover_inventorySearchByList
+  /api/company/{companyIdentifier}/inventory/item:
+    post: InventoryCards_createNewCard
+  /api/company/{companyIdentifier}/inventory/item/inventory/{channelInventoryIdentifier}/media/list:
+    get: InventoryCards_showMediaList
+  /api/company/{companyIdentifier}/inventory/item/list:
+    get: InventoryCards_getAllCards
+  /api/company/{companyIdentifier}/inventory/item/supplier:
+    post: InventoryCards_createSupplierCard
+  /api/company/{companyIdentifier}/inventory/item/syndication/entry:
+    post: InventoryCards_createSyndicationEntry
+  /api/company/{companyIdentifier}/inventory/item/{inventoryIdentifier}:
+    delete: InventoryCards_removeItem
+    get: InventoryCards_getSingleCard
+    put: InventoryCards_updateCard
+  /api/company/{companyIdentifier}/inventory/list:
+    get: Discover_latestInventoryList
+    post: InventoryGrids_createCuratedList
+  /api/company/{companyIdentifier}/inventory/list/list:
+    get: InventoryGrids_getCuratedSearches
+  /api/company/{companyIdentifier}/inventory/list/syndication/entry:
+    post: InventoryGrids_createWinkLinksGrid
+  /api/company/{companyIdentifier}/inventory/list/{listIdentifier}:
+    delete: InventoryGrids_removeCuratedList
+    get: InventoryGrids_getSpecificCuratedList
+    put: InventoryGrids_updateCuratedList
+  /api/company/{companyIdentifier}/inventory/ranked/list:
+    post: InventoryGrids_createRankedGrid
+  /api/company/{companyIdentifier}/inventory/ranked/list/list:
+    get: InventoryGrids_showRankedGridsList
+  /api/company/{companyIdentifier}/inventory/ranked/list/syndication/entry:
+    post: InventoryGrids_createNewWinkLinksGrid
+  /api/company/{companyIdentifier}/inventory/ranked/list/{listIdentifier}:
+    delete: InventoryGrids_deleteRankedGrid
+    get: InventoryGrids_getSpecificRankedGrid
+    put: InventoryGrids_updateRankedGrid
+  /api/company/{companyIdentifier}/inventory/supplier/city/list:
+    get: Discover_inventorySupplierCitiesList
+  /api/company/{companyIdentifier}/inventory/supplier/country/list:
+    get: Discover_inventorySupplierCountriesList
+  /api/company/{companyIdentifier}/inventory/supplier/grid:
+    post: Discover_supplierGridPost
+  /api/company/{companyIdentifier}/inventory/supplier/grid/{dynamicListIdentifier}:
+    get: Discover_inventoryListSearch
+  /api/company/{companyIdentifier}/inventory/supplier/list:
+    get: Discover_latestInventorySuppliersList
+  /api/company/{companyIdentifier}/inventory/supplier/{supplierIdentifier}/sales-channel/{salesChannelIdentifier}:
+    get: Discover_inventorySupplierList
+  /api/company/{companyIdentifier}/lead:
+    post: AffiliateLead_createLeadFromGoogle
+  /api/company/{companyIdentifier}/lead/{leadIdentifier}:
+    delete: AffiliateLead_removeLead
+  /api/company/{companyIdentifier}/manager/invite:
+    patch: Company_inviteManager
+  /api/company/{companyIdentifier}/manager/{email}:
+    delete: Company_removeManager
+  /api/company/{companyIdentifier}/map:
+    get: Maps_listMaps
+    post: Maps_createAdvancedMap
+  /api/company/{companyIdentifier}/map/marker/{channelInventoryIdentifier}:
+    get: Maps_showMarkerForChannelInventory
+  /api/company/{companyIdentifier}/map/markers/{listType}/{listIdentifier}:
+    get: Maps_getMarkersByType
+  /api/company/{companyIdentifier}/map/supplier:
+    post: Maps_createSupplierMap
+  /api/company/{companyIdentifier}/map/syndication/entry:
+    post: Maps_createWinkLinksMap
+  /api/company/{companyIdentifier}/map/{mapIdentifier}:
+    delete: Maps_deleteMapConfiguration
+    get: Maps_getRecord
+    put: Maps_updateAdvancedConfiguration
+  /api/company/{companyIdentifier}/marketplace/customer/invoice/list:
+    get: Invoice_getCompanyInvoices
+  /api/company/{companyIdentifier}/marketplace/customer/invoice/upcoming:
+    get: Invoice_getUpcoming
+  /api/company/{companyIdentifier}/marketplace/customer/invoice/upcoming/items:
+    get: Invoice_getUpcomingItems
+  /api/company/{companyIdentifier}/message/count:
+    get: Notification_showUnreadMessageCount
+  /api/company/{companyIdentifier}/message/list:
+    get: Notification_getMessages
+  /api/company/{companyIdentifier}/message/{identifier}:
+    delete: Notification_deleteByIdentifier
+    get: Notification_getMessagesByCompany
+    patch: Notification_markAsRead
+  /api/company/{companyIdentifier}/sales/channel/grid:
+    post: SalesChannel_getPageOfSalesChannels
+  /api/company/{companyIdentifier}/sales/channel/supplier/{supplierIdentifier}:
+    get: SalesChannel_getById
+  /api/company/{companyIdentifier}/sales/request:
+    post: HotelRelationshipRequests_createRequest
+  /api/company/{companyIdentifier}/sales/request/list:
+    get: HotelRelationshipRequests_getList
+  /api/company/{companyIdentifier}/sales/request/supplier/{supplierIdentifier}:
+    get: HotelRelationshipRequests_getSpecific
+  /api/company/{companyIdentifier}/sales/request/{salesChannelRequestIdentifier}:
+    delete: HotelRelationshipRequests_deleteRequest
+  /api/company/{companyIdentifier}/sales/request/{salesChannelRequestIdentifier}/re-apply:
+    get: HotelRelationshipRequests_reapplySalesChannelRequest
+  /api/company/{companyIdentifier}/sales/supplier/city/list:
+    get: Supplier_showSupplierCitiesList
+  /api/company/{companyIdentifier}/sales/supplier/country/list:
+    get: Supplier_listSupplierCountries
+  /api/company/{companyIdentifier}/sales/supplier/grid:
+    post: Supplier_getPageOfSuppliers
+  /api/company/{companyIdentifier}/sales/supplier/list:
+    get: Supplier_getLatestInventory
+  /api/company/{companyIdentifier}/sales/supplier/{supplierIdentifier}:
+    get: Supplier_getInformation
+  /api/company/{companyIdentifier}/search/category/list:
+    get: SearchCategories_getList
+  /api/company/{companyIdentifier}/seller-url:
+    post: ShareableLinks_generateNewLink
+  /api/company/{companyIdentifier}/seller-url/inventory/{channelInventoryIdentifier}/media/list:
+    get: ShareableLinks_getInventoryMediaList
+  /api/company/{companyIdentifier}/seller-url/list:
+    get: ShareableLinks_getSellerUrls
+  /api/company/{companyIdentifier}/seller-url/syndication/entry:
+    post: ShareableLinks_createSyndicationCard
+  /api/company/{companyIdentifier}/seller-url/{sellerUrlIdentifier}:
+    delete: ShareableLinks_deleteLink
+    get: ShareableLinks_getSpecificUrl
+    put: ShareableLinks_modifyLink
+  /api/company/{companyIdentifier}/static/list:
+    get: InventoryGrids_showCuratedLists
+    post: InventoryGrids_createCuratedList
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}:
+    delete: InventoryGrids_removeCuratedList
+    put: InventoryGrids_updateCuratedListByIdentifier
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}/item:
+    post: InventoryGrids_addTravelInventoryToListItem
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}/item/supplier:
+    post: InventoryGrids_addSupplierToListItem
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}/item/{itemIdentifier}:
+    delete: InventoryGrids_deleteListItemByIdentifier
+    post: InventoryGrids_copyItemToList
+    put: InventoryGrids_moveListItem
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}/sort:
+    patch: InventoryGrids_reorderListItems
+  /api/company/{companyIdentifier}/status:
+    patch: Company_toggleStatus
+  /api/company/{companyIdentifier}/supplier-url:
+    post: SupplierLinks_createShareableLink
+  /api/company/{companyIdentifier}/supplier-url/list:
+    get: SupplierLinks_getUrlList
+  /api/company/{companyIdentifier}/supplier-url/syndication/entry:
+    post: SupplierLinks_createSyndicationCard
+  /api/company/{companyIdentifier}/supplier-url/{supplierUrlIdentifier}:
+    delete: SupplierLinks_deleteLink
+    get: SupplierLinks_getShareableUrl
+    put: SupplierLinks_modifyUrlLink
+  /api/company/{companyIdentifier}/syndication/category:
+    post: SyndicationEntryPublisher_createCategory
+  /api/company/{companyIdentifier}/syndication/category/list:
+    get: SyndicationEntryPublisher_showCategoryList
+  /api/company/{companyIdentifier}/syndication/category/{syndicationCategoryIdentifier}:
+    delete: SyndicationEntryPublisher_deleteCategory
+    get: SyndicationEntryPublisher_getCategory
+    put: SyndicationEntryPublisher_updateCategory
+  /api/company/{companyIdentifier}/syndication/entry:
+    post: SyndicationEntryPublisher_createNewEntry
+  /api/company/{companyIdentifier}/syndication/entry/consume-url:
+    post: SyndicationEntryPublisher_consumeUrl
+  /api/company/{companyIdentifier}/syndication/entry/list:
+    get: SyndicationEntryPublisher_showList
+  /api/company/{companyIdentifier}/syndication/entry/list/sort:
+    patch: SyndicationEntryPublisher_sortList
+  /api/company/{companyIdentifier}/syndication/entry/{syndicationEntryIdentifier}:
+    delete: SyndicationEntryPublisher_deleteEntry
+    get: SyndicationEntryPublisher_showEntry
+    put: SyndicationEntryPublisher_updateSyndicationEntry
+  /api/company/{companyIdentifier}/syndication/settings:
+    get: SyndicationEntryPublisher_getWinkLinksSettings
+    put: SyndicationEntryPublisher_upsertSettings
+  /api/hello:
+    get: Test_pingEndpoint
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/company/{companyIdentifier}/syndication/entry/list/sort:
+    patch:
+      application/json: SyndicationEntryPublisherSortListRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/application:
+    post:
+      '400':
+        '*/*': ApplicationCreateNewApplication400Response1
+        application/json: ApplicationCreateNewApplicationResponse
+        application/xml: ApplicationCreateNewApplication400Response
+        text/plain: ApplicationCreateNewApplication400Response
+        text/xml: ApplicationCreateNewApplication400Response
+      '415':
+        application/json: ApplicationCreateNewApplication415Response
+        application/xml: ApplicationCreateNewApplication415Response
+        text/plain: ApplicationCreateNewApplication415Response
+        text/xml: ApplicationCreateNewApplication415Response
+      '503':
+        '*/*': ApplicationCreateNewApplication503Response
+  /api/application/list:
+    get:
+      '200':
+        application/json: ApplicationListApplicationsResponse
+      '400':
+        '*/*': ApplicationListApplications400Response1
+        application/json: ApplicationListApplications400Response
+        application/xml: ApplicationListApplications400Response
+        text/plain: ApplicationListApplications400Response
+        text/xml: ApplicationListApplications400Response
+      '415':
+        application/json: ApplicationListApplications415Response
+        application/xml: ApplicationListApplications415Response
+        text/plain: ApplicationListApplications415Response
+        text/xml: ApplicationListApplications415Response
+      '503':
+        '*/*': ApplicationListApplications503Response
+  /api/application/{id}:
+    delete:
+      '400':
+        '*/*': ApplicationRemove400Response1
+        application/json: ApplicationRemoveResponse
+        application/xml: ApplicationRemove400Response
+        text/plain: ApplicationRemove400Response
+        text/xml: ApplicationRemove400Response
+      '415':
+        application/json: ApplicationRemove415Response
+        application/xml: ApplicationRemove415Response
+        text/plain: ApplicationRemove415Response
+        text/xml: ApplicationRemove415Response
+      '503':
+        '*/*': ApplicationRemove503Response
+    get:
+      '400':
+        '*/*': ApplicationShowSpecific400Response1
+        application/json: ApplicationShowSpecificResponse
+        application/xml: ApplicationShowSpecific400Response
+        text/plain: ApplicationShowSpecific400Response
+        text/xml: ApplicationShowSpecific400Response
+      '415':
+        application/json: ApplicationShowSpecific415Response
+        application/xml: ApplicationShowSpecific415Response
+        text/plain: ApplicationShowSpecific415Response
+        text/xml: ApplicationShowSpecific415Response
+      '503':
+        '*/*': ApplicationShowSpecific503Response
+    patch:
+      '400':
+        '*/*': ApplicationUpdateExisting400Response1
+        application/json: ApplicationUpdateExistingResponse
+        application/xml: ApplicationUpdateExisting400Response
+        text/plain: ApplicationUpdateExisting400Response
+        text/xml: ApplicationUpdateExisting400Response
+      '415':
+        application/json: ApplicationUpdateExisting415Response
+        application/xml: ApplicationUpdateExisting415Response
+        text/plain: ApplicationUpdateExisting415Response
+        text/xml: ApplicationUpdateExisting415Response
+      '503':
+        '*/*': ApplicationUpdateExisting503Response
+  /api/application/{id}/revoke:
+    get:
+      '400':
+        '*/*': ApplicationRefreshCredentials400Response1
+        application/json: ApplicationRefreshCredentialsResponse
+        application/xml: ApplicationRefreshCredentials400Response
+        text/plain: ApplicationRefreshCredentials400Response
+        text/xml: ApplicationRefreshCredentials400Response
+      '415':
+        application/json: ApplicationRefreshCredentials415Response
+        application/xml: ApplicationRefreshCredentials415Response
+        text/plain: ApplicationRefreshCredentials415Response
+        text/xml: ApplicationRefreshCredentials415Response
+      '503':
+        '*/*': ApplicationRefreshCredentials503Response
+  /api/company:
+    post:
+      '400':
+        '*/*': CompanyCreateNewCompany400Response1
+        application/json: CompanyCreateNewCompanyResponse
+        application/xml: CompanyCreateNewCompany400Response
+        text/plain: CompanyCreateNewCompany400Response
+        text/xml: CompanyCreateNewCompany400Response
+      '415':
+        application/json: CompanyCreateNewCompany415Response
+        application/xml: CompanyCreateNewCompany415Response
+        text/plain: CompanyCreateNewCompany415Response
+        text/xml: CompanyCreateNewCompany415Response
+      '503':
+        '*/*': CompanyCreateNewCompany503Response
+  /api/company/list:
+    get:
+      '200':
+        application/json: CompanyListOwnedCompaniesResponse
+      '400':
+        '*/*': CompanyListOwnedCompanies400Response1
+        application/json: CompanyListOwnedCompanies400Response
+        application/xml: CompanyListOwnedCompanies400Response
+        text/plain: CompanyListOwnedCompanies400Response
+        text/xml: CompanyListOwnedCompanies400Response
+      '415':
+        application/json: CompanyListOwnedCompanies415Response
+        application/xml: CompanyListOwnedCompanies415Response
+        text/plain: CompanyListOwnedCompanies415Response
+        text/xml: CompanyListOwnedCompanies415Response
+      '503':
+        '*/*': CompanyListOwnedCompanies503Response
+  /api/company/unique:
+    post:
+      '400':
+        '*/*': CompanyCheckUniqueness400Response1
+        application/json: CompanyCheckUniquenessResponse
+        application/xml: CompanyCheckUniqueness400Response
+        text/plain: CompanyCheckUniqueness400Response
+        text/xml: CompanyCheckUniqueness400Response
+      '415':
+        application/json: CompanyCheckUniqueness415Response
+        application/xml: CompanyCheckUniqueness415Response
+        text/plain: CompanyCheckUniqueness415Response
+        text/xml: CompanyCheckUniqueness415Response
+      '503':
+        '*/*': CompanyCheckUniqueness503Response
+  /api/company/{companyIdentifier}:
+    delete:
+      '400':
+        '*/*': CompanyDeleteCompanyByIdentifier400Response1
+        application/json: CompanyDeleteCompanyByIdentifierResponse
+        application/xml: CompanyDeleteCompanyByIdentifier400Response
+        text/plain: CompanyDeleteCompanyByIdentifier400Response
+        text/xml: CompanyDeleteCompanyByIdentifier400Response
+      '415':
+        application/json: CompanyDeleteCompanyByIdentifier415Response
+        application/xml: CompanyDeleteCompanyByIdentifier415Response
+        text/plain: CompanyDeleteCompanyByIdentifier415Response
+        text/xml: CompanyDeleteCompanyByIdentifier415Response
+      '503':
+        '*/*': CompanyDeleteCompanyByIdentifier503Response
+    get:
+      '400':
+        '*/*': CompanyGetByIdentifier400Response1
+        application/json: CompanyGetByIdentifierResponse
+        application/xml: CompanyGetByIdentifier400Response
+        text/plain: CompanyGetByIdentifier400Response
+        text/xml: CompanyGetByIdentifier400Response
+      '415':
+        application/json: CompanyGetByIdentifier415Response
+        application/xml: CompanyGetByIdentifier415Response
+        text/plain: CompanyGetByIdentifier415Response
+        text/xml: CompanyGetByIdentifier415Response
+      '503':
+        '*/*': CompanyGetByIdentifier503Response
+    patch:
+      '400':
+        '*/*': CompanyUpdateExistingCompany400Response1
+        application/json: CompanyUpdateExistingCompanyResponse
+        application/xml: CompanyUpdateExistingCompany400Response
+        text/plain: CompanyUpdateExistingCompany400Response
+        text/xml: CompanyUpdateExistingCompany400Response
+      '415':
+        application/json: CompanyUpdateExistingCompany415Response
+        application/xml: CompanyUpdateExistingCompany415Response
+        text/plain: CompanyUpdateExistingCompany415Response
+        text/xml: CompanyUpdateExistingCompany415Response
+      '503':
+        '*/*': CompanyUpdateExistingCompany503Response
+  /api/company/{companyIdentifier}/booking/engine/configuration/list:
+    get:
+      '200':
+        application/json: BookingsShowCustomizationsListResponse
+      '400':
+        '*/*': BookingsShowCustomizationsList400Response1
+        application/json: BookingsShowCustomizationsList400Response
+        application/xml: BookingsShowCustomizationsList400Response
+        text/plain: BookingsShowCustomizationsList400Response
+        text/xml: BookingsShowCustomizationsList400Response
+      '415':
+        application/json: BookingsShowCustomizationsList415Response
+        application/xml: BookingsShowCustomizationsList415Response
+        text/plain: BookingsShowCustomizationsList415Response
+        text/xml: BookingsShowCustomizationsList415Response
+      '503':
+        '*/*': BookingsShowCustomizationsList503Response
+  /api/company/{companyIdentifier}/booking/engine/list:
+    get:
+      '200':
+        application/json: BookingsShowBookedApplicationsListResponse
+      '400':
+        '*/*': BookingsShowBookedApplicationsList400Response1
+        application/json: BookingsShowBookedApplicationsList400Response
+        application/xml: BookingsShowBookedApplicationsList400Response
+        text/plain: BookingsShowBookedApplicationsList400Response
+        text/xml: BookingsShowBookedApplicationsList400Response
+      '415':
+        application/json: BookingsShowBookedApplicationsList415Response
+        application/xml: BookingsShowBookedApplicationsList415Response
+        text/plain: BookingsShowBookedApplicationsList415Response
+        text/xml: BookingsShowBookedApplicationsList415Response
+      '503':
+        '*/*': BookingsShowBookedApplicationsList503Response
+  /api/company/{companyIdentifier}/booking/grid:
+    post:
+      '400':
+        '*/*': BookingsGetGrid400Response1
+        application/json: BookingsGetGridResponse
+        application/xml: BookingsGetGrid400Response
+        text/plain: BookingsGetGrid400Response
+        text/xml: BookingsGetGrid400Response
+      '415':
+        application/json: BookingsGetGrid415Response
+        application/xml: BookingsGetGrid415Response
+        text/plain: BookingsGetGrid415Response
+        text/xml: BookingsGetGrid415Response
+      '503':
+        '*/*': BookingsGetGrid503Response
+  /api/company/{companyIdentifier}/booking/hotel/list:
+    get:
+      '200':
+        application/json: BookingsShowBookedHotelsResponse
+      '400':
+        '*/*': BookingsShowBookedHotels400Response1
+        application/json: BookingsShowBookedHotels400Response
+        application/xml: BookingsShowBookedHotels400Response
+        text/plain: BookingsShowBookedHotels400Response
+        text/xml: BookingsShowBookedHotels400Response
+      '415':
+        application/json: BookingsShowBookedHotels415Response
+        application/xml: BookingsShowBookedHotels415Response
+        text/plain: BookingsShowBookedHotels415Response
+        text/xml: BookingsShowBookedHotels415Response
+      '503':
+        '*/*': BookingsShowBookedHotels503Response
+  /api/company/{companyIdentifier}/booking/roomrate/list:
+    get:
+      '200':
+        application/json: BookingsShowMasterRatesResponse
+      '400':
+        '*/*': BookingsShowMasterRates400Response1
+        application/json: BookingsShowMasterRates400Response
+        application/xml: BookingsShowMasterRates400Response
+        text/plain: BookingsShowMasterRates400Response
+        text/xml: BookingsShowMasterRates400Response
+      '415':
+        application/json: BookingsShowMasterRates415Response
+        application/xml: BookingsShowMasterRates415Response
+        text/plain: BookingsShowMasterRates415Response
+        text/xml: BookingsShowMasterRates415Response
+      '503':
+        '*/*': BookingsShowMasterRates503Response
+  /api/company/{companyIdentifier}/booking/{bookingIdentifier}:
+    get:
+      '400':
+        '*/*': BookingsShowByIdentifier400Response1
+        application/json: BookingsShowByIdentifierResponse
+        application/xml: BookingsShowByIdentifier400Response
+        text/plain: BookingsShowByIdentifier400Response
+        text/xml: BookingsShowByIdentifier400Response
+      '415':
+        application/json: BookingsShowByIdentifier415Response
+        application/xml: BookingsShowByIdentifier415Response
+        text/plain: BookingsShowByIdentifier415Response
+        text/xml: BookingsShowByIdentifier415Response
+      '503':
+        '*/*': BookingsShowByIdentifier503Response
+  /api/company/{companyIdentifier}/configuration:
+    get:
+      '400':
+        '*/*': CustomizationShowPrimaryCustomization400Response1
+        application/json: CustomizationShowPrimaryCustomizationResponse
+        application/xml: CustomizationShowPrimaryCustomization400Response
+        text/plain: CustomizationShowPrimaryCustomization400Response
+        text/xml: CustomizationShowPrimaryCustomization400Response
+      '415':
+        application/json: CustomizationShowPrimaryCustomization415Response
+        application/xml: CustomizationShowPrimaryCustomization415Response
+        text/plain: CustomizationShowPrimaryCustomization415Response
+        text/xml: CustomizationShowPrimaryCustomization415Response
+      '503':
+        '*/*': CustomizationShowPrimaryCustomization503Response
+    post:
+      '400':
+        '*/*': CustomizationCreateNewCustomization400Response1
+        application/json: CustomizationCreateNewCustomizationResponse
+        application/xml: CustomizationCreateNewCustomization400Response
+        text/plain: CustomizationCreateNewCustomization400Response
+        text/xml: CustomizationCreateNewCustomization400Response
+      '415':
+        application/json: CustomizationCreateNewCustomization415Response
+        application/xml: CustomizationCreateNewCustomization415Response
+        text/plain: CustomizationCreateNewCustomization415Response
+        text/xml: CustomizationCreateNewCustomization415Response
+      '503':
+        '*/*': CustomizationCreateNewCustomization503Response
+  /api/company/{companyIdentifier}/configuration/list:
+    get:
+      '200':
+        application/json: CustomizationGetCompanyCustomizationsResponse
+      '400':
+        '*/*': CustomizationGetCompanyCustomizations400Response1
+        application/json: CustomizationGetCompanyCustomizations400Response
+        application/xml: CustomizationGetCompanyCustomizations400Response
+        text/plain: CustomizationGetCompanyCustomizations400Response
+        text/xml: CustomizationGetCompanyCustomizations400Response
+      '415':
+        application/json: CustomizationGetCompanyCustomizations415Response
+        application/xml: CustomizationGetCompanyCustomizations415Response
+        text/plain: CustomizationGetCompanyCustomizations415Response
+        text/xml: CustomizationGetCompanyCustomizations415Response
+      '503':
+        '*/*': CustomizationGetCompanyCustomizations503Response
+  /api/company/{companyIdentifier}/configuration/{engineConfigurationIdentifier}:
+    delete:
+      '400':
+        '*/*': CustomizationRemoveExisting400Response1
+        application/json: CustomizationRemoveExistingResponse
+        application/xml: CustomizationRemoveExisting400Response
+        text/plain: CustomizationRemoveExisting400Response
+        text/xml: CustomizationRemoveExisting400Response
+      '415':
+        application/json: CustomizationRemoveExisting415Response
+        application/xml: CustomizationRemoveExisting415Response
+        text/plain: CustomizationRemoveExisting415Response
+        text/xml: CustomizationRemoveExisting415Response
+      '503':
+        '*/*': CustomizationRemoveExisting503Response
+    get:
+      '400':
+        '*/*': CustomizationGetPrimaryCustomization400Response1
+        application/json: CustomizationGetPrimaryCustomizationResponse
+        application/xml: CustomizationGetPrimaryCustomization400Response
+        text/plain: CustomizationGetPrimaryCustomization400Response
+        text/xml: CustomizationGetPrimaryCustomization400Response
+      '415':
+        application/json: CustomizationGetPrimaryCustomization415Response
+        application/xml: CustomizationGetPrimaryCustomization415Response
+        text/plain: CustomizationGetPrimaryCustomization415Response
+        text/xml: CustomizationGetPrimaryCustomization415Response
+      '503':
+        '*/*': CustomizationGetPrimaryCustomization503Response
+    put:
+      '400':
+        '*/*': CustomizationUpdateExisting400Response1
+        application/json: CustomizationUpdateExistingResponse
+        application/xml: CustomizationUpdateExisting400Response
+        text/plain: CustomizationUpdateExisting400Response
+        text/xml: CustomizationUpdateExisting400Response
+      '415':
+        application/json: CustomizationUpdateExisting415Response
+        application/xml: CustomizationUpdateExisting415Response
+        text/plain: CustomizationUpdateExisting415Response
+        text/xml: CustomizationUpdateExisting415Response
+      '503':
+        '*/*': CustomizationUpdateExisting503Response
+  /api/company/{companyIdentifier}/dynamic/list:
+    get:
+      '200':
+        application/json: InventoryGridsGetSavedSearchesResponse
+      '400':
+        '*/*': InventoryGridsGetSavedSearches400Response1
+        application/json: InventoryGridsGetSavedSearches400Response
+        application/xml: InventoryGridsGetSavedSearches400Response
+        text/plain: InventoryGridsGetSavedSearches400Response
+        text/xml: InventoryGridsGetSavedSearches400Response
+      '415':
+        application/json: InventoryGridsGetSavedSearches415Response
+        application/xml: InventoryGridsGetSavedSearches415Response
+        text/plain: InventoryGridsGetSavedSearches415Response
+        text/xml: InventoryGridsGetSavedSearches415Response
+      '503':
+        '*/*': InventoryGridsGetSavedSearches503Response
+  /api/company/{companyIdentifier}/inventory/campaign/list:
+    get:
+      '200':
+        application/json: CampaignShowInventoryListResponse
+      '400':
+        '*/*': CampaignShowInventoryList400Response1
+        application/json: CampaignShowInventoryList400Response
+        application/xml: CampaignShowInventoryList400Response
+        text/plain: CampaignShowInventoryList400Response
+        text/xml: CampaignShowInventoryList400Response
+      '415':
+        application/json: CampaignShowInventoryList415Response
+        application/xml: CampaignShowInventoryList415Response
+        text/plain: CampaignShowInventoryList415Response
+        text/xml: CampaignShowInventoryList415Response
+      '503':
+        '*/*': CampaignShowInventoryList503Response
+  /api/company/{companyIdentifier}/inventory/city/list:
+    get:
+      '200':
+        application/json: DiscoverInventoryCityListResponse
+      '400':
+        '*/*': DiscoverInventoryCityList400Response1
+        application/json: DiscoverInventoryCityList400Response
+        application/xml: DiscoverInventoryCityList400Response
+        text/plain: DiscoverInventoryCityList400Response
+        text/xml: DiscoverInventoryCityList400Response
+      '415':
+        application/json: DiscoverInventoryCityList415Response
+        application/xml: DiscoverInventoryCityList415Response
+        text/plain: DiscoverInventoryCityList415Response
+        text/xml: DiscoverInventoryCityList415Response
+      '503':
+        '*/*': DiscoverInventoryCityList503Response
+  /api/company/{companyIdentifier}/inventory/country/list:
+    get:
+      '200':
+        application/json: DiscoverInventoryCountryListResponse
+      '400':
+        '*/*': DiscoverInventoryCountryList400Response1
+        application/json: DiscoverInventoryCountryList400Response
+        application/xml: DiscoverInventoryCountryList400Response
+        text/plain: DiscoverInventoryCountryList400Response
+        text/xml: DiscoverInventoryCountryList400Response
+      '415':
+        application/json: DiscoverInventoryCountryList415Response
+        application/xml: DiscoverInventoryCountryList415Response
+        text/plain: DiscoverInventoryCountryList415Response
+        text/xml: DiscoverInventoryCountryList415Response
+      '503':
+        '*/*': DiscoverInventoryCountryList503Response
+  /api/company/{companyIdentifier}/inventory/grid:
+    post:
+      '400':
+        '*/*': DiscoverInventorySearch400Response1
+        application/json: DiscoverInventorySearchResponse
+        application/xml: DiscoverInventorySearch400Response
+        text/plain: DiscoverInventorySearch400Response
+        text/xml: DiscoverInventorySearch400Response
+      '415':
+        application/json: DiscoverInventorySearch415Response
+        application/xml: DiscoverInventorySearch415Response
+        text/plain: DiscoverInventorySearch415Response
+        text/xml: DiscoverInventorySearch415Response
+      '503':
+        '*/*': DiscoverInventorySearch503Response
+  /api/company/{companyIdentifier}/inventory/grid/{dynamicListIdentifier}:
+    get:
+      '400':
+        '*/*': DiscoverInventorySearchByList400Response1
+        application/json: DiscoverInventorySearchByListResponse
+        application/xml: DiscoverInventorySearchByList400Response
+        text/plain: DiscoverInventorySearchByList400Response
+        text/xml: DiscoverInventorySearchByList400Response
+      '415':
+        application/json: DiscoverInventorySearchByList415Response
+        application/xml: DiscoverInventorySearchByList415Response
+        text/plain: DiscoverInventorySearchByList415Response
+        text/xml: DiscoverInventorySearchByList415Response
+      '503':
+        '*/*': DiscoverInventorySearchByList503Response
+  /api/company/{companyIdentifier}/inventory/item:
+    post:
+      '400':
+        '*/*': InventoryCardsCreateNewCard400Response1
+        application/json: InventoryCardsCreateNewCardResponse
+        application/xml: InventoryCardsCreateNewCard400Response
+        text/plain: InventoryCardsCreateNewCard400Response
+        text/xml: InventoryCardsCreateNewCard400Response
+      '415':
+        application/json: InventoryCardsCreateNewCard415Response
+        application/xml: InventoryCardsCreateNewCard415Response
+        text/plain: InventoryCardsCreateNewCard415Response
+        text/xml: InventoryCardsCreateNewCard415Response
+      '503':
+        '*/*': InventoryCardsCreateNewCard503Response
+  /api/company/{companyIdentifier}/inventory/item/inventory/{channelInventoryIdentifier}/media/list:
+    get:
+      '200':
+        application/json: InventoryCardsShowMediaListResponse
+      '400':
+        '*/*': InventoryCardsShowMediaList400Response1
+        application/json: InventoryCardsShowMediaList400Response
+        application/xml: InventoryCardsShowMediaList400Response
+        text/plain: InventoryCardsShowMediaList400Response
+        text/xml: InventoryCardsShowMediaList400Response
+      '415':
+        application/json: InventoryCardsShowMediaList415Response
+        application/xml: InventoryCardsShowMediaList415Response
+        text/plain: InventoryCardsShowMediaList415Response
+        text/xml: InventoryCardsShowMediaList415Response
+      '503':
+        '*/*': InventoryCardsShowMediaList503Response
+  /api/company/{companyIdentifier}/inventory/item/list:
+    get:
+      '200':
+        application/json: InventoryCardsGetAllCardsResponse
+      '400':
+        '*/*': InventoryCardsGetAllCards400Response1
+        application/json: InventoryCardsGetAllCards400Response
+        application/xml: InventoryCardsGetAllCards400Response
+        text/plain: InventoryCardsGetAllCards400Response
+        text/xml: InventoryCardsGetAllCards400Response
+      '415':
+        application/json: InventoryCardsGetAllCards415Response
+        application/xml: InventoryCardsGetAllCards415Response
+        text/plain: InventoryCardsGetAllCards415Response
+        text/xml: InventoryCardsGetAllCards415Response
+      '503':
+        '*/*': InventoryCardsGetAllCards503Response
+  /api/company/{companyIdentifier}/inventory/item/supplier:
+    post:
+      '400':
+        '*/*': InventoryCardsCreateSupplierCard400Response1
+        application/json: InventoryCardsCreateSupplierCardResponse
+        application/xml: InventoryCardsCreateSupplierCard400Response
+        text/plain: InventoryCardsCreateSupplierCard400Response
+        text/xml: InventoryCardsCreateSupplierCard400Response
+      '415':
+        application/json: InventoryCardsCreateSupplierCard415Response
+        application/xml: InventoryCardsCreateSupplierCard415Response
+        text/plain: InventoryCardsCreateSupplierCard415Response
+        text/xml: InventoryCardsCreateSupplierCard415Response
+      '503':
+        '*/*': InventoryCardsCreateSupplierCard503Response
+  /api/company/{companyIdentifier}/inventory/item/syndication/entry:
+    post:
+      '400':
+        '*/*': InventoryCardsCreateSyndicationEntry400Response1
+        application/json: InventoryCardsCreateSyndicationEntryResponse
+        application/xml: InventoryCardsCreateSyndicationEntry400Response
+        text/plain: InventoryCardsCreateSyndicationEntry400Response
+        text/xml: InventoryCardsCreateSyndicationEntry400Response
+      '415':
+        application/json: InventoryCardsCreateSyndicationEntry415Response
+        application/xml: InventoryCardsCreateSyndicationEntry415Response
+        text/plain: InventoryCardsCreateSyndicationEntry415Response
+        text/xml: InventoryCardsCreateSyndicationEntry415Response
+      '503':
+        '*/*': InventoryCardsCreateSyndicationEntry503Response
+  /api/company/{companyIdentifier}/inventory/item/{inventoryIdentifier}:
+    delete:
+      '400':
+        '*/*': InventoryCardsRemoveItem400Response1
+        application/json: InventoryCardsRemoveItemResponse
+        application/xml: InventoryCardsRemoveItem400Response
+        text/plain: InventoryCardsRemoveItem400Response
+        text/xml: InventoryCardsRemoveItem400Response
+      '415':
+        application/json: InventoryCardsRemoveItem415Response
+        application/xml: InventoryCardsRemoveItem415Response
+        text/plain: InventoryCardsRemoveItem415Response
+        text/xml: InventoryCardsRemoveItem415Response
+      '503':
+        '*/*': InventoryCardsRemoveItem503Response
+    get:
+      '400':
+        '*/*': InventoryCardsGetSingleCard400Response1
+        application/json: InventoryCardsGetSingleCardResponse
+        application/xml: InventoryCardsGetSingleCard400Response
+        text/plain: InventoryCardsGetSingleCard400Response
+        text/xml: InventoryCardsGetSingleCard400Response
+      '415':
+        application/json: InventoryCardsGetSingleCard415Response
+        application/xml: InventoryCardsGetSingleCard415Response
+        text/plain: InventoryCardsGetSingleCard415Response
+        text/xml: InventoryCardsGetSingleCard415Response
+      '503':
+        '*/*': InventoryCardsGetSingleCard503Response
+    put:
+      '400':
+        '*/*': InventoryCardsUpdateCard400Response1
+        application/json: InventoryCardsUpdateCardResponse
+        application/xml: InventoryCardsUpdateCard400Response
+        text/plain: InventoryCardsUpdateCard400Response
+        text/xml: InventoryCardsUpdateCard400Response
+      '415':
+        application/json: InventoryCardsUpdateCard415Response
+        application/xml: InventoryCardsUpdateCard415Response
+        text/plain: InventoryCardsUpdateCard415Response
+        text/xml: InventoryCardsUpdateCard415Response
+      '503':
+        '*/*': InventoryCardsUpdateCard503Response
+  /api/company/{companyIdentifier}/inventory/list:
+    get:
+      '200':
+        application/json: DiscoverLatestInventoryListResponse
+      '400':
+        '*/*': DiscoverLatestInventoryList400Response1
+        application/json: DiscoverLatestInventoryList400Response
+        application/xml: DiscoverLatestInventoryList400Response
+        text/plain: DiscoverLatestInventoryList400Response
+        text/xml: DiscoverLatestInventoryList400Response
+      '415':
+        application/json: DiscoverLatestInventoryList415Response
+        application/xml: DiscoverLatestInventoryList415Response
+        text/plain: DiscoverLatestInventoryList415Response
+        text/xml: DiscoverLatestInventoryList415Response
+      '503':
+        '*/*': DiscoverLatestInventoryList503Response
+    post:
+      '400':
+        '*/*': InventoryGridsCreateCuratedList400Response2
+        application/json: InventoryGridsCreateCuratedList400Response
+        application/xml: InventoryGridsCreateCuratedList400Response
+        text/plain: InventoryGridsCreateCuratedList400Response
+        text/xml: InventoryGridsCreateCuratedList400Response
+      '415':
+        application/json: InventoryGridsCreateCuratedList415Response
+        application/xml: InventoryGridsCreateCuratedList415Response
+        text/plain: InventoryGridsCreateCuratedList415Response
+        text/xml: InventoryGridsCreateCuratedList415Response
+      '503':
+        '*/*': InventoryGridsCreateCuratedList503Response
+  /api/company/{companyIdentifier}/inventory/list/list:
+    get:
+      '200':
+        application/json: InventoryGridsGetCuratedSearchesResponse
+      '400':
+        '*/*': InventoryGridsGetCuratedSearches400Response1
+        application/json: InventoryGridsGetCuratedSearches400Response
+        application/xml: InventoryGridsGetCuratedSearches400Response
+        text/plain: InventoryGridsGetCuratedSearches400Response
+        text/xml: InventoryGridsGetCuratedSearches400Response
+      '415':
+        application/json: InventoryGridsGetCuratedSearches415Response
+        application/xml: InventoryGridsGetCuratedSearches415Response
+        text/plain: InventoryGridsGetCuratedSearches415Response
+        text/xml: InventoryGridsGetCuratedSearches415Response
+      '503':
+        '*/*': InventoryGridsGetCuratedSearches503Response
+  /api/company/{companyIdentifier}/inventory/list/syndication/entry:
+    post:
+      '400':
+        '*/*': InventoryGridsCreateWinkLinksGrid400Response1
+        application/json: InventoryGridsCreateWinkLinksGridResponse
+        application/xml: InventoryGridsCreateWinkLinksGrid400Response
+        text/plain: InventoryGridsCreateWinkLinksGrid400Response
+        text/xml: InventoryGridsCreateWinkLinksGrid400Response
+      '415':
+        application/json: InventoryGridsCreateWinkLinksGrid415Response
+        application/xml: InventoryGridsCreateWinkLinksGrid415Response
+        text/plain: InventoryGridsCreateWinkLinksGrid415Response
+        text/xml: InventoryGridsCreateWinkLinksGrid415Response
+      '503':
+        '*/*': InventoryGridsCreateWinkLinksGrid503Response
+  /api/company/{companyIdentifier}/inventory/list/{listIdentifier}:
+    delete:
+      '400':
+        '*/*': InventoryGridsRemoveCuratedList400Response2
+        application/json: InventoryGridsRemoveCuratedList400Response
+        application/xml: InventoryGridsRemoveCuratedList400Response
+        text/plain: InventoryGridsRemoveCuratedList400Response
+        text/xml: InventoryGridsRemoveCuratedList400Response
+      '415':
+        application/json: InventoryGridsRemoveCuratedList415Response
+        application/xml: InventoryGridsRemoveCuratedList415Response
+        text/plain: InventoryGridsRemoveCuratedList415Response
+        text/xml: InventoryGridsRemoveCuratedList415Response
+      '503':
+        '*/*': InventoryGridsRemoveCuratedList503Response
+    get:
+      '400':
+        '*/*': InventoryGridsGetSpecificCuratedList400Response1
+        application/json: InventoryGridsGetSpecificCuratedListResponse
+        application/xml: InventoryGridsGetSpecificCuratedList400Response
+        text/plain: InventoryGridsGetSpecificCuratedList400Response
+        text/xml: InventoryGridsGetSpecificCuratedList400Response
+      '415':
+        application/json: InventoryGridsGetSpecificCuratedList415Response
+        application/xml: InventoryGridsGetSpecificCuratedList415Response
+        text/plain: InventoryGridsGetSpecificCuratedList415Response
+        text/xml: InventoryGridsGetSpecificCuratedList415Response
+      '503':
+        '*/*': InventoryGridsGetSpecificCuratedList503Response
+    put:
+      '400':
+        '*/*': InventoryGridsUpdateCuratedList400Response1
+        application/json: InventoryGridsUpdateCuratedListResponse
+        application/xml: InventoryGridsUpdateCuratedList400Response
+        text/plain: InventoryGridsUpdateCuratedList400Response
+        text/xml: InventoryGridsUpdateCuratedList400Response
+      '415':
+        application/json: InventoryGridsUpdateCuratedList415Response
+        application/xml: InventoryGridsUpdateCuratedList415Response
+        text/plain: InventoryGridsUpdateCuratedList415Response
+        text/xml: InventoryGridsUpdateCuratedList415Response
+      '503':
+        '*/*': InventoryGridsUpdateCuratedList503Response
+  /api/company/{companyIdentifier}/inventory/ranked/list:
+    post:
+      '400':
+        '*/*': InventoryGridsCreateRankedGrid400Response1
+        application/json: InventoryGridsCreateRankedGridResponse
+        application/xml: InventoryGridsCreateRankedGrid400Response
+        text/plain: InventoryGridsCreateRankedGrid400Response
+        text/xml: InventoryGridsCreateRankedGrid400Response
+      '415':
+        application/json: InventoryGridsCreateRankedGrid415Response
+        application/xml: InventoryGridsCreateRankedGrid415Response
+        text/plain: InventoryGridsCreateRankedGrid415Response
+        text/xml: InventoryGridsCreateRankedGrid415Response
+      '503':
+        '*/*': InventoryGridsCreateRankedGrid503Response
+  /api/company/{companyIdentifier}/inventory/ranked/list/list:
+    get:
+      '200':
+        application/json: InventoryGridsShowRankedGridsListResponse
+      '400':
+        '*/*': InventoryGridsShowRankedGridsList400Response1
+        application/json: InventoryGridsShowRankedGridsList400Response
+        application/xml: InventoryGridsShowRankedGridsList400Response
+        text/plain: InventoryGridsShowRankedGridsList400Response
+        text/xml: InventoryGridsShowRankedGridsList400Response
+      '415':
+        application/json: InventoryGridsShowRankedGridsList415Response
+        application/xml: InventoryGridsShowRankedGridsList415Response
+        text/plain: InventoryGridsShowRankedGridsList415Response
+        text/xml: InventoryGridsShowRankedGridsList415Response
+      '503':
+        '*/*': InventoryGridsShowRankedGridsList503Response
+  /api/company/{companyIdentifier}/inventory/ranked/list/syndication/entry:
+    post:
+      '400':
+        '*/*': InventoryGridsCreateNewWinkLinksGrid400Response1
+        application/json: InventoryGridsCreateNewWinkLinksGridResponse
+        application/xml: InventoryGridsCreateNewWinkLinksGrid400Response
+        text/plain: InventoryGridsCreateNewWinkLinksGrid400Response
+        text/xml: InventoryGridsCreateNewWinkLinksGrid400Response
+      '415':
+        application/json: InventoryGridsCreateNewWinkLinksGrid415Response
+        application/xml: InventoryGridsCreateNewWinkLinksGrid415Response
+        text/plain: InventoryGridsCreateNewWinkLinksGrid415Response
+        text/xml: InventoryGridsCreateNewWinkLinksGrid415Response
+      '503':
+        '*/*': InventoryGridsCreateNewWinkLinksGrid503Response
+  /api/company/{companyIdentifier}/inventory/ranked/list/{listIdentifier}:
+    delete:
+      '400':
+        '*/*': InventoryGridsDeleteRankedGrid400Response1
+        application/json: InventoryGridsDeleteRankedGridResponse
+        application/xml: InventoryGridsDeleteRankedGrid400Response
+        text/plain: InventoryGridsDeleteRankedGrid400Response
+        text/xml: InventoryGridsDeleteRankedGrid400Response
+      '415':
+        application/json: InventoryGridsDeleteRankedGrid415Response
+        application/xml: InventoryGridsDeleteRankedGrid415Response
+        text/plain: InventoryGridsDeleteRankedGrid415Response
+        text/xml: InventoryGridsDeleteRankedGrid415Response
+      '503':
+        '*/*': InventoryGridsDeleteRankedGrid503Response
+    get:
+      '400':
+        '*/*': InventoryGridsGetSpecificRankedGrid400Response1
+        application/json: InventoryGridsGetSpecificRankedGridResponse
+        application/xml: InventoryGridsGetSpecificRankedGrid400Response
+        text/plain: InventoryGridsGetSpecificRankedGrid400Response
+        text/xml: InventoryGridsGetSpecificRankedGrid400Response
+      '415':
+        application/json: InventoryGridsGetSpecificRankedGrid415Response
+        application/xml: InventoryGridsGetSpecificRankedGrid415Response
+        text/plain: InventoryGridsGetSpecificRankedGrid415Response
+        text/xml: InventoryGridsGetSpecificRankedGrid415Response
+      '503':
+        '*/*': InventoryGridsGetSpecificRankedGrid503Response
+    put:
+      '400':
+        '*/*': InventoryGridsUpdateRankedGrid400Response1
+        application/json: InventoryGridsUpdateRankedGridResponse
+        application/xml: InventoryGridsUpdateRankedGrid400Response
+        text/plain: InventoryGridsUpdateRankedGrid400Response
+        text/xml: InventoryGridsUpdateRankedGrid400Response
+      '415':
+        application/json: InventoryGridsUpdateRankedGrid415Response
+        application/xml: InventoryGridsUpdateRankedGrid415Response
+        text/plain: InventoryGridsUpdateRankedGrid415Response
+        text/xml: InventoryGridsUpdateRankedGrid415Response
+      '503':
+        '*/*': InventoryGridsUpdateRankedGrid503Response
+  /api/company/{companyIdentifier}/inventory/supplier/city/list:
+    get:
+      '200':
+        application/json: DiscoverInventorySupplierCitiesListResponse
+      '400':
+        '*/*': DiscoverInventorySupplierCitiesList400Response1
+        application/json: DiscoverInventorySupplierCitiesList400Response
+        application/xml: DiscoverInventorySupplierCitiesList400Response
+        text/plain: DiscoverInventorySupplierCitiesList400Response
+        text/xml: DiscoverInventorySupplierCitiesList400Response
+      '415':
+        application/json: DiscoverInventorySupplierCitiesList415Response
+        application/xml: DiscoverInventorySupplierCitiesList415Response
+        text/plain: DiscoverInventorySupplierCitiesList415Response
+        text/xml: DiscoverInventorySupplierCitiesList415Response
+      '503':
+        '*/*': DiscoverInventorySupplierCitiesList503Response
+  /api/company/{companyIdentifier}/inventory/supplier/country/list:
+    get:
+      '200':
+        application/json: DiscoverInventorySupplierCountriesListResponse
+      '400':
+        '*/*': DiscoverInventorySupplierCountriesList400Response1
+        application/json: DiscoverInventorySupplierCountriesList400Response
+        application/xml: DiscoverInventorySupplierCountriesList400Response
+        text/plain: DiscoverInventorySupplierCountriesList400Response
+        text/xml: DiscoverInventorySupplierCountriesList400Response
+      '415':
+        application/json: DiscoverInventorySupplierCountriesList415Response
+        application/xml: DiscoverInventorySupplierCountriesList415Response
+        text/plain: DiscoverInventorySupplierCountriesList415Response
+        text/xml: DiscoverInventorySupplierCountriesList415Response
+      '503':
+        '*/*': DiscoverInventorySupplierCountriesList503Response
+  /api/company/{companyIdentifier}/inventory/supplier/grid:
+    post:
+      '400':
+        '*/*': DiscoverSupplierGridPost400Response1
+        application/json: DiscoverSupplierGridPostResponse
+        application/xml: DiscoverSupplierGridPost400Response
+        text/plain: DiscoverSupplierGridPost400Response
+        text/xml: DiscoverSupplierGridPost400Response
+      '415':
+        application/json: DiscoverSupplierGridPost415Response
+        application/xml: DiscoverSupplierGridPost415Response
+        text/plain: DiscoverSupplierGridPost415Response
+        text/xml: DiscoverSupplierGridPost415Response
+      '503':
+        '*/*': DiscoverSupplierGridPost503Response
+  /api/company/{companyIdentifier}/inventory/supplier/grid/{dynamicListIdentifier}:
+    get:
+      '400':
+        '*/*': DiscoverInventoryListSearch400Response1
+        application/json: DiscoverInventoryListSearchResponse
+        application/xml: DiscoverInventoryListSearch400Response
+        text/plain: DiscoverInventoryListSearch400Response
+        text/xml: DiscoverInventoryListSearch400Response
+      '415':
+        application/json: DiscoverInventoryListSearch415Response
+        application/xml: DiscoverInventoryListSearch415Response
+        text/plain: DiscoverInventoryListSearch415Response
+        text/xml: DiscoverInventoryListSearch415Response
+      '503':
+        '*/*': DiscoverInventoryListSearch503Response
+  /api/company/{companyIdentifier}/inventory/supplier/list:
+    get:
+      '200':
+        application/json: DiscoverLatestInventorySuppliersListResponse
+      '400':
+        '*/*': DiscoverLatestInventorySuppliersList400Response1
+        application/json: DiscoverLatestInventorySuppliersList400Response
+        application/xml: DiscoverLatestInventorySuppliersList400Response
+        text/plain: DiscoverLatestInventorySuppliersList400Response
+        text/xml: DiscoverLatestInventorySuppliersList400Response
+      '415':
+        application/json: DiscoverLatestInventorySuppliersList415Response
+        application/xml: DiscoverLatestInventorySuppliersList415Response
+        text/plain: DiscoverLatestInventorySuppliersList415Response
+        text/xml: DiscoverLatestInventorySuppliersList415Response
+      '503':
+        '*/*': DiscoverLatestInventorySuppliersList503Response
+  /api/company/{companyIdentifier}/inventory/supplier/{supplierIdentifier}/sales-channel/{salesChannelIdentifier}:
+    get:
+      '400':
+        '*/*': DiscoverInventorySupplierList400Response1
+        application/json: DiscoverInventorySupplierListResponse
+        application/xml: DiscoverInventorySupplierList400Response
+        text/plain: DiscoverInventorySupplierList400Response
+        text/xml: DiscoverInventorySupplierList400Response
+      '415':
+        application/json: DiscoverInventorySupplierList415Response
+        application/xml: DiscoverInventorySupplierList415Response
+        text/plain: DiscoverInventorySupplierList415Response
+        text/xml: DiscoverInventorySupplierList415Response
+      '503':
+        '*/*': DiscoverInventorySupplierList503Response
+  /api/company/{companyIdentifier}/lead:
+    post:
+      '400':
+        '*/*': AffiliateLeadCreateLeadFromGoogle400Response1
+        application/json: AffiliateLeadCreateLeadFromGoogleResponse
+        application/xml: AffiliateLeadCreateLeadFromGoogle400Response
+        text/plain: AffiliateLeadCreateLeadFromGoogle400Response
+        text/xml: AffiliateLeadCreateLeadFromGoogle400Response
+      '415':
+        application/json: AffiliateLeadCreateLeadFromGoogle415Response
+        application/xml: AffiliateLeadCreateLeadFromGoogle415Response
+        text/plain: AffiliateLeadCreateLeadFromGoogle415Response
+        text/xml: AffiliateLeadCreateLeadFromGoogle415Response
+      '503':
+        '*/*': AffiliateLeadCreateLeadFromGoogle503Response
+  /api/company/{companyIdentifier}/lead/{leadIdentifier}:
+    delete:
+      '400':
+        '*/*': AffiliateLeadRemoveLead400Response1
+        application/json: AffiliateLeadRemoveLeadResponse
+        application/xml: AffiliateLeadRemoveLead400Response
+        text/plain: AffiliateLeadRemoveLead400Response
+        text/xml: AffiliateLeadRemoveLead400Response
+      '415':
+        application/json: AffiliateLeadRemoveLead415Response
+        application/xml: AffiliateLeadRemoveLead415Response
+        text/plain: AffiliateLeadRemoveLead415Response
+        text/xml: AffiliateLeadRemoveLead415Response
+      '503':
+        '*/*': AffiliateLeadRemoveLead503Response
+  /api/company/{companyIdentifier}/manager/invite:
+    patch:
+      '400':
+        '*/*': CompanyInviteManager400Response1
+        application/json: CompanyInviteManagerResponse
+        application/xml: CompanyInviteManager400Response
+        text/plain: CompanyInviteManager400Response
+        text/xml: CompanyInviteManager400Response
+      '415':
+        application/json: CompanyInviteManager415Response
+        application/xml: CompanyInviteManager415Response
+        text/plain: CompanyInviteManager415Response
+        text/xml: CompanyInviteManager415Response
+      '503':
+        '*/*': CompanyInviteManager503Response
+  /api/company/{companyIdentifier}/manager/{email}:
+    delete:
+      '400':
+        '*/*': CompanyRemoveManager400Response1
+        application/json: CompanyRemoveManagerResponse
+        application/xml: CompanyRemoveManager400Response
+        text/plain: CompanyRemoveManager400Response
+        text/xml: CompanyRemoveManager400Response
+      '415':
+        application/json: CompanyRemoveManager415Response
+        application/xml: CompanyRemoveManager415Response
+        text/plain: CompanyRemoveManager415Response
+        text/xml: CompanyRemoveManager415Response
+      '503':
+        '*/*': CompanyRemoveManager503Response
+  /api/company/{companyIdentifier}/map:
+    get:
+      '200':
+        application/json: MapsListMapsResponse
+      '400':
+        '*/*': MapsListMaps400Response1
+        application/json: MapsListMaps400Response
+        application/xml: MapsListMaps400Response
+        text/plain: MapsListMaps400Response
+        text/xml: MapsListMaps400Response
+      '415':
+        application/json: MapsListMaps415Response
+        application/xml: MapsListMaps415Response
+        text/plain: MapsListMaps415Response
+        text/xml: MapsListMaps415Response
+      '503':
+        '*/*': MapsListMaps503Response
+    post:
+      '400':
+        '*/*': MapsCreateAdvancedMap400Response1
+        application/json: MapsCreateAdvancedMapResponse
+        application/xml: MapsCreateAdvancedMap400Response
+        text/plain: MapsCreateAdvancedMap400Response
+        text/xml: MapsCreateAdvancedMap400Response
+      '415':
+        application/json: MapsCreateAdvancedMap415Response
+        application/xml: MapsCreateAdvancedMap415Response
+        text/plain: MapsCreateAdvancedMap415Response
+        text/xml: MapsCreateAdvancedMap415Response
+      '503':
+        '*/*': MapsCreateAdvancedMap503Response
+  /api/company/{companyIdentifier}/map/marker/{channelInventoryIdentifier}:
+    get:
+      '400':
+        '*/*': MapsShowMarkerForChannelInventory400Response1
+        application/json: MapsShowMarkerForChannelInventoryResponse
+        application/xml: MapsShowMarkerForChannelInventory400Response
+        text/plain: MapsShowMarkerForChannelInventory400Response
+        text/xml: MapsShowMarkerForChannelInventory400Response
+      '415':
+        application/json: MapsShowMarkerForChannelInventory415Response
+        application/xml: MapsShowMarkerForChannelInventory415Response
+        text/plain: MapsShowMarkerForChannelInventory415Response
+        text/xml: MapsShowMarkerForChannelInventory415Response
+      '503':
+        '*/*': MapsShowMarkerForChannelInventory503Response
+  /api/company/{companyIdentifier}/map/markers/{listType}/{listIdentifier}:
+    get:
+      '200':
+        application/json: MapsGetMarkersByTypeResponse
+      '400':
+        '*/*': MapsGetMarkersByType400Response1
+        application/json: MapsGetMarkersByType400Response
+        application/xml: MapsGetMarkersByType400Response
+        text/plain: MapsGetMarkersByType400Response
+        text/xml: MapsGetMarkersByType400Response
+      '415':
+        application/json: MapsGetMarkersByType415Response
+        application/xml: MapsGetMarkersByType415Response
+        text/plain: MapsGetMarkersByType415Response
+        text/xml: MapsGetMarkersByType415Response
+      '503':
+        '*/*': MapsGetMarkersByType503Response
+  /api/company/{companyIdentifier}/map/supplier:
+    post:
+      '400':
+        '*/*': MapsCreateSupplierMap400Response1
+        application/json: MapsCreateSupplierMapResponse
+        application/xml: MapsCreateSupplierMap400Response
+        text/plain: MapsCreateSupplierMap400Response
+        text/xml: MapsCreateSupplierMap400Response
+      '415':
+        application/json: MapsCreateSupplierMap415Response
+        application/xml: MapsCreateSupplierMap415Response
+        text/plain: MapsCreateSupplierMap415Response
+        text/xml: MapsCreateSupplierMap415Response
+      '503':
+        '*/*': MapsCreateSupplierMap503Response
+  /api/company/{companyIdentifier}/map/syndication/entry:
+    post:
+      '400':
+        '*/*': MapsCreateWinkLinksMap400Response1
+        application/json: MapsCreateWinkLinksMapResponse
+        application/xml: MapsCreateWinkLinksMap400Response
+        text/plain: MapsCreateWinkLinksMap400Response
+        text/xml: MapsCreateWinkLinksMap400Response
+      '415':
+        application/json: MapsCreateWinkLinksMap415Response
+        application/xml: MapsCreateWinkLinksMap415Response
+        text/plain: MapsCreateWinkLinksMap415Response
+        text/xml: MapsCreateWinkLinksMap415Response
+      '503':
+        '*/*': MapsCreateWinkLinksMap503Response
+  /api/company/{companyIdentifier}/map/{mapIdentifier}:
+    delete:
+      '400':
+        '*/*': MapsDeleteMapConfiguration400Response1
+        application/json: MapsDeleteMapConfigurationResponse
+        application/xml: MapsDeleteMapConfiguration400Response
+        text/plain: MapsDeleteMapConfiguration400Response
+        text/xml: MapsDeleteMapConfiguration400Response
+      '415':
+        application/json: MapsDeleteMapConfiguration415Response
+        application/xml: MapsDeleteMapConfiguration415Response
+        text/plain: MapsDeleteMapConfiguration415Response
+        text/xml: MapsDeleteMapConfiguration415Response
+      '503':
+        '*/*': MapsDeleteMapConfiguration503Response
+    get:
+      '400':
+        '*/*': MapsGetRecord400Response1
+        application/json: MapsGetRecordResponse
+        application/xml: MapsGetRecord400Response
+        text/plain: MapsGetRecord400Response
+        text/xml: MapsGetRecord400Response
+      '415':
+        application/json: MapsGetRecord415Response
+        application/xml: MapsGetRecord415Response
+        text/plain: MapsGetRecord415Response
+        text/xml: MapsGetRecord415Response
+      '503':
+        '*/*': MapsGetRecord503Response
+    put:
+      '400':
+        '*/*': MapsUpdateAdvancedConfiguration400Response1
+        application/json: MapsUpdateAdvancedConfigurationResponse
+        application/xml: MapsUpdateAdvancedConfiguration400Response
+        text/plain: MapsUpdateAdvancedConfiguration400Response
+        text/xml: MapsUpdateAdvancedConfiguration400Response
+      '415':
+        application/json: MapsUpdateAdvancedConfiguration415Response
+        application/xml: MapsUpdateAdvancedConfiguration415Response
+        text/plain: MapsUpdateAdvancedConfiguration415Response
+        text/xml: MapsUpdateAdvancedConfiguration415Response
+      '503':
+        '*/*': MapsUpdateAdvancedConfiguration503Response
+  /api/company/{companyIdentifier}/marketplace/customer/invoice/list:
+    get:
+      '400':
+        '*/*': InvoiceGetCompanyInvoices400Response1
+        application/json: InvoiceGetCompanyInvoicesResponse
+        application/xml: InvoiceGetCompanyInvoices400Response
+        text/plain: InvoiceGetCompanyInvoices400Response
+        text/xml: InvoiceGetCompanyInvoices400Response
+      '415':
+        application/json: InvoiceGetCompanyInvoices415Response
+        application/xml: InvoiceGetCompanyInvoices415Response
+        text/plain: InvoiceGetCompanyInvoices415Response
+        text/xml: InvoiceGetCompanyInvoices415Response
+      '503':
+        '*/*': InvoiceGetCompanyInvoices503Response
+  /api/company/{companyIdentifier}/marketplace/customer/invoice/upcoming:
+    get:
+      '400':
+        '*/*': InvoiceGetUpcoming400Response1
+        application/json: InvoiceGetUpcomingResponse
+        application/xml: InvoiceGetUpcoming400Response
+        text/plain: InvoiceGetUpcoming400Response
+        text/xml: InvoiceGetUpcoming400Response
+      '415':
+        application/json: InvoiceGetUpcoming415Response
+        application/xml: InvoiceGetUpcoming415Response
+        text/plain: InvoiceGetUpcoming415Response
+        text/xml: InvoiceGetUpcoming415Response
+      '503':
+        '*/*': InvoiceGetUpcoming503Response
+  /api/company/{companyIdentifier}/marketplace/customer/invoice/upcoming/items:
+    get:
+      '400':
+        '*/*': InvoiceGetUpcomingItems400Response1
+        application/json: InvoiceGetUpcomingItemsResponse
+        application/xml: InvoiceGetUpcomingItems400Response
+        text/plain: InvoiceGetUpcomingItems400Response
+        text/xml: InvoiceGetUpcomingItems400Response
+      '415':
+        application/json: InvoiceGetUpcomingItems415Response
+        application/xml: InvoiceGetUpcomingItems415Response
+        text/plain: InvoiceGetUpcomingItems415Response
+        text/xml: InvoiceGetUpcomingItems415Response
+      '503':
+        '*/*': InvoiceGetUpcomingItems503Response
+  /api/company/{companyIdentifier}/message/count:
+    get:
+      '400':
+        '*/*': NotificationShowUnreadMessageCount400Response1
+        application/json: NotificationShowUnreadMessageCountResponse
+        application/xml: NotificationShowUnreadMessageCount400Response
+        text/plain: NotificationShowUnreadMessageCount400Response
+        text/xml: NotificationShowUnreadMessageCount400Response
+      '415':
+        application/json: NotificationShowUnreadMessageCount415Response
+        application/xml: NotificationShowUnreadMessageCount415Response
+        text/plain: NotificationShowUnreadMessageCount415Response
+        text/xml: NotificationShowUnreadMessageCount415Response
+      '503':
+        '*/*': NotificationShowUnreadMessageCount503Response
+  /api/company/{companyIdentifier}/message/list:
+    get:
+      '200':
+        application/json: NotificationGetMessagesResponse
+      '400':
+        '*/*': NotificationGetMessages400Response1
+        application/json: NotificationGetMessages400Response
+        application/xml: NotificationGetMessages400Response
+        text/plain: NotificationGetMessages400Response
+        text/xml: NotificationGetMessages400Response
+      '415':
+        application/json: NotificationGetMessages415Response
+        application/xml: NotificationGetMessages415Response
+        text/plain: NotificationGetMessages415Response
+        text/xml: NotificationGetMessages415Response
+      '503':
+        '*/*': NotificationGetMessages503Response
+  /api/company/{companyIdentifier}/message/{identifier}:
+    delete:
+      '400':
+        '*/*': NotificationDeleteByIdentifier400Response1
+        application/json: NotificationDeleteByIdentifierResponse
+        application/xml: NotificationDeleteByIdentifier400Response
+        text/plain: NotificationDeleteByIdentifier400Response
+        text/xml: NotificationDeleteByIdentifier400Response
+      '415':
+        application/json: NotificationDeleteByIdentifier415Response
+        application/xml: NotificationDeleteByIdentifier415Response
+        text/plain: NotificationDeleteByIdentifier415Response
+        text/xml: NotificationDeleteByIdentifier415Response
+      '503':
+        '*/*': NotificationDeleteByIdentifier503Response
+    get:
+      '400':
+        '*/*': NotificationGetMessagesByCompany400Response1
+        application/json: NotificationGetMessagesByCompanyResponse
+        application/xml: NotificationGetMessagesByCompany400Response
+        text/plain: NotificationGetMessagesByCompany400Response
+        text/xml: NotificationGetMessagesByCompany400Response
+      '415':
+        application/json: NotificationGetMessagesByCompany415Response
+        application/xml: NotificationGetMessagesByCompany415Response
+        text/plain: NotificationGetMessagesByCompany415Response
+        text/xml: NotificationGetMessagesByCompany415Response
+      '503':
+        '*/*': NotificationGetMessagesByCompany503Response
+    patch:
+      '400':
+        '*/*': NotificationMarkAsRead400Response1
+        application/json: NotificationMarkAsReadResponse
+        application/xml: NotificationMarkAsRead400Response
+        text/plain: NotificationMarkAsRead400Response
+        text/xml: NotificationMarkAsRead400Response
+      '415':
+        application/json: NotificationMarkAsRead415Response
+        application/xml: NotificationMarkAsRead415Response
+        text/plain: NotificationMarkAsRead415Response
+        text/xml: NotificationMarkAsRead415Response
+      '503':
+        '*/*': NotificationMarkAsRead503Response
+  /api/company/{companyIdentifier}/sales/channel/grid:
+    post:
+      '400':
+        '*/*': SalesChannelGetPageOfSalesChannels400Response1
+        application/json: SalesChannelGetPageOfSalesChannelsResponse
+        application/xml: SalesChannelGetPageOfSalesChannels400Response
+        text/plain: SalesChannelGetPageOfSalesChannels400Response
+        text/xml: SalesChannelGetPageOfSalesChannels400Response
+      '415':
+        application/json: SalesChannelGetPageOfSalesChannels415Response
+        application/xml: SalesChannelGetPageOfSalesChannels415Response
+        text/plain: SalesChannelGetPageOfSalesChannels415Response
+        text/xml: SalesChannelGetPageOfSalesChannels415Response
+      '503':
+        '*/*': SalesChannelGetPageOfSalesChannels503Response
+  /api/company/{companyIdentifier}/sales/channel/supplier/{supplierIdentifier}:
+    get:
+      '400':
+        '*/*': SalesChannelGetById400Response1
+        application/json: SalesChannelGetByIdResponse
+        application/xml: SalesChannelGetById400Response
+        text/plain: SalesChannelGetById400Response
+        text/xml: SalesChannelGetById400Response
+      '415':
+        application/json: SalesChannelGetById415Response
+        application/xml: SalesChannelGetById415Response
+        text/plain: SalesChannelGetById415Response
+        text/xml: SalesChannelGetById415Response
+      '503':
+        '*/*': SalesChannelGetById503Response
+  /api/company/{companyIdentifier}/sales/request:
+    post:
+      '400':
+        '*/*': HotelRelationshipRequestsCreateRequest400Response1
+        application/json: HotelRelationshipRequestsCreateRequestResponse
+        application/xml: HotelRelationshipRequestsCreateRequest400Response
+        text/plain: HotelRelationshipRequestsCreateRequest400Response
+        text/xml: HotelRelationshipRequestsCreateRequest400Response
+      '415':
+        application/json: HotelRelationshipRequestsCreateRequest415Response
+        application/xml: HotelRelationshipRequestsCreateRequest415Response
+        text/plain: HotelRelationshipRequestsCreateRequest415Response
+        text/xml: HotelRelationshipRequestsCreateRequest415Response
+      '503':
+        '*/*': HotelRelationshipRequestsCreateRequest503Response
+  /api/company/{companyIdentifier}/sales/request/list:
+    get:
+      '200':
+        application/json: HotelRelationshipRequestsGetListResponse
+      '400':
+        '*/*': HotelRelationshipRequestsGetList400Response1
+        application/json: HotelRelationshipRequestsGetList400Response
+        application/xml: HotelRelationshipRequestsGetList400Response
+        text/plain: HotelRelationshipRequestsGetList400Response
+        text/xml: HotelRelationshipRequestsGetList400Response
+      '415':
+        application/json: HotelRelationshipRequestsGetList415Response
+        application/xml: HotelRelationshipRequestsGetList415Response
+        text/plain: HotelRelationshipRequestsGetList415Response
+        text/xml: HotelRelationshipRequestsGetList415Response
+      '503':
+        '*/*': HotelRelationshipRequestsGetList503Response
+  /api/company/{companyIdentifier}/sales/request/supplier/{supplierIdentifier}:
+    get:
+      '400':
+        '*/*': HotelRelationshipRequestsGetSpecific400Response1
+        application/json: HotelRelationshipRequestsGetSpecificResponse
+        application/xml: HotelRelationshipRequestsGetSpecific400Response
+        text/plain: HotelRelationshipRequestsGetSpecific400Response
+        text/xml: HotelRelationshipRequestsGetSpecific400Response
+      '415':
+        application/json: HotelRelationshipRequestsGetSpecific415Response
+        application/xml: HotelRelationshipRequestsGetSpecific415Response
+        text/plain: HotelRelationshipRequestsGetSpecific415Response
+        text/xml: HotelRelationshipRequestsGetSpecific415Response
+      '503':
+        '*/*': HotelRelationshipRequestsGetSpecific503Response
+  /api/company/{companyIdentifier}/sales/request/{salesChannelRequestIdentifier}:
+    delete:
+      '400':
+        '*/*': HotelRelationshipRequestsDeleteRequest400Response1
+        application/json: HotelRelationshipRequestsDeleteRequestResponse
+        application/xml: HotelRelationshipRequestsDeleteRequest400Response
+        text/plain: HotelRelationshipRequestsDeleteRequest400Response
+        text/xml: HotelRelationshipRequestsDeleteRequest400Response
+      '415':
+        application/json: HotelRelationshipRequestsDeleteRequest415Response
+        application/xml: HotelRelationshipRequestsDeleteRequest415Response
+        text/plain: HotelRelationshipRequestsDeleteRequest415Response
+        text/xml: HotelRelationshipRequestsDeleteRequest415Response
+      '503':
+        '*/*': HotelRelationshipRequestsDeleteRequest503Response
+  /api/company/{companyIdentifier}/sales/request/{salesChannelRequestIdentifier}/re-apply:
+    get:
+      '400':
+        '*/*': HotelRelationshipRequestsReapplySalesChannelRequest400Response1
+        application/json: HotelRelationshipRequestsReapplySalesChannelRequestResponse
+        application/xml: HotelRelationshipRequestsReapplySalesChannelRequest400Response
+        text/plain: HotelRelationshipRequestsReapplySalesChannelRequest400Response
+        text/xml: HotelRelationshipRequestsReapplySalesChannelRequest400Response
+      '415':
+        application/json: HotelRelationshipRequestsReapplySalesChannelRequest415Response
+        application/xml: HotelRelationshipRequestsReapplySalesChannelRequest415Response
+        text/plain: HotelRelationshipRequestsReapplySalesChannelRequest415Response
+        text/xml: HotelRelationshipRequestsReapplySalesChannelRequest415Response
+      '503':
+        '*/*': HotelRelationshipRequestsReapplySalesChannelRequest503Response
+  /api/company/{companyIdentifier}/sales/supplier/city/list:
+    get:
+      '200':
+        application/json: SupplierShowSupplierCitiesListResponse
+      '400':
+        '*/*': SupplierShowSupplierCitiesList400Response1
+        application/json: SupplierShowSupplierCitiesList400Response
+        application/xml: SupplierShowSupplierCitiesList400Response
+        text/plain: SupplierShowSupplierCitiesList400Response
+        text/xml: SupplierShowSupplierCitiesList400Response
+      '415':
+        application/json: SupplierShowSupplierCitiesList415Response
+        application/xml: SupplierShowSupplierCitiesList415Response
+        text/plain: SupplierShowSupplierCitiesList415Response
+        text/xml: SupplierShowSupplierCitiesList415Response
+      '503':
+        '*/*': SupplierShowSupplierCitiesList503Response
+  /api/company/{companyIdentifier}/sales/supplier/country/list:
+    get:
+      '200':
+        application/json: SupplierListSupplierCountriesResponse
+      '400':
+        '*/*': SupplierListSupplierCountries400Response1
+        application/json: SupplierListSupplierCountries400Response
+        application/xml: SupplierListSupplierCountries400Response
+        text/plain: SupplierListSupplierCountries400Response
+        text/xml: SupplierListSupplierCountries400Response
+      '415':
+        application/json: SupplierListSupplierCountries415Response
+        application/xml: SupplierListSupplierCountries415Response
+        text/plain: SupplierListSupplierCountries415Response
+        text/xml: SupplierListSupplierCountries415Response
+      '503':
+        '*/*': SupplierListSupplierCountries503Response
+  /api/company/{companyIdentifier}/sales/supplier/grid:
+    post:
+      '400':
+        '*/*': SupplierGetPageOfSuppliers400Response1
+        application/json: SupplierGetPageOfSuppliersResponse
+        application/xml: SupplierGetPageOfSuppliers400Response
+        text/plain: SupplierGetPageOfSuppliers400Response
+        text/xml: SupplierGetPageOfSuppliers400Response
+      '415':
+        application/json: SupplierGetPageOfSuppliers415Response
+        application/xml: SupplierGetPageOfSuppliers415Response
+        text/plain: SupplierGetPageOfSuppliers415Response
+        text/xml: SupplierGetPageOfSuppliers415Response
+      '503':
+        '*/*': SupplierGetPageOfSuppliers503Response
+  /api/company/{companyIdentifier}/sales/supplier/list:
+    get:
+      '200':
+        application/json: SupplierGetLatestInventoryResponse
+      '400':
+        '*/*': SupplierGetLatestInventory400Response1
+        application/json: SupplierGetLatestInventory400Response
+        application/xml: SupplierGetLatestInventory400Response
+        text/plain: SupplierGetLatestInventory400Response
+        text/xml: SupplierGetLatestInventory400Response
+      '415':
+        application/json: SupplierGetLatestInventory415Response
+        application/xml: SupplierGetLatestInventory415Response
+        text/plain: SupplierGetLatestInventory415Response
+        text/xml: SupplierGetLatestInventory415Response
+      '503':
+        '*/*': SupplierGetLatestInventory503Response
+  /api/company/{companyIdentifier}/sales/supplier/{supplierIdentifier}:
+    get:
+      '400':
+        '*/*': SupplierGetInformation400Response1
+        application/json: SupplierGetInformationResponse
+        application/xml: SupplierGetInformation400Response
+        text/plain: SupplierGetInformation400Response
+        text/xml: SupplierGetInformation400Response
+      '415':
+        application/json: SupplierGetInformation415Response
+        application/xml: SupplierGetInformation415Response
+        text/plain: SupplierGetInformation415Response
+        text/xml: SupplierGetInformation415Response
+      '503':
+        '*/*': SupplierGetInformation503Response
+  /api/company/{companyIdentifier}/search/category/list:
+    get:
+      '200':
+        application/json: SearchCategoriesGetListResponse
+      '400':
+        '*/*': SearchCategoriesGetList400Response1
+        application/json: SearchCategoriesGetList400Response
+        application/xml: SearchCategoriesGetList400Response
+        text/plain: SearchCategoriesGetList400Response
+        text/xml: SearchCategoriesGetList400Response
+      '415':
+        application/json: SearchCategoriesGetList415Response
+        application/xml: SearchCategoriesGetList415Response
+        text/plain: SearchCategoriesGetList415Response
+        text/xml: SearchCategoriesGetList415Response
+      '503':
+        '*/*': SearchCategoriesGetList503Response
+  /api/company/{companyIdentifier}/seller-url:
+    post:
+      '400':
+        '*/*': ShareableLinksGenerateNewLink400Response1
+        application/json: ShareableLinksGenerateNewLinkResponse
+        application/xml: ShareableLinksGenerateNewLink400Response
+        text/plain: ShareableLinksGenerateNewLink400Response
+        text/xml: ShareableLinksGenerateNewLink400Response
+      '415':
+        application/json: ShareableLinksGenerateNewLink415Response
+        application/xml: ShareableLinksGenerateNewLink415Response
+        text/plain: ShareableLinksGenerateNewLink415Response
+        text/xml: ShareableLinksGenerateNewLink415Response
+      '503':
+        '*/*': ShareableLinksGenerateNewLink503Response
+  /api/company/{companyIdentifier}/seller-url/inventory/{channelInventoryIdentifier}/media/list:
+    get:
+      '200':
+        application/json: ShareableLinksGetInventoryMediaListResponse
+      '400':
+        '*/*': ShareableLinksGetInventoryMediaList400Response1
+        application/json: ShareableLinksGetInventoryMediaList400Response
+        application/xml: ShareableLinksGetInventoryMediaList400Response
+        text/plain: ShareableLinksGetInventoryMediaList400Response
+        text/xml: ShareableLinksGetInventoryMediaList400Response
+      '415':
+        application/json: ShareableLinksGetInventoryMediaList415Response
+        application/xml: ShareableLinksGetInventoryMediaList415Response
+        text/plain: ShareableLinksGetInventoryMediaList415Response
+        text/xml: ShareableLinksGetInventoryMediaList415Response
+      '503':
+        '*/*': ShareableLinksGetInventoryMediaList503Response
+  /api/company/{companyIdentifier}/seller-url/list:
+    get:
+      '200':
+        application/json: ShareableLinksGetSellerUrlsResponse
+      '400':
+        '*/*': ShareableLinksGetSellerUrls400Response1
+        application/json: ShareableLinksGetSellerUrls400Response
+        application/xml: ShareableLinksGetSellerUrls400Response
+        text/plain: ShareableLinksGetSellerUrls400Response
+        text/xml: ShareableLinksGetSellerUrls400Response
+      '415':
+        application/json: ShareableLinksGetSellerUrls415Response
+        application/xml: ShareableLinksGetSellerUrls415Response
+        text/plain: ShareableLinksGetSellerUrls415Response
+        text/xml: ShareableLinksGetSellerUrls415Response
+      '503':
+        '*/*': ShareableLinksGetSellerUrls503Response
+  /api/company/{companyIdentifier}/seller-url/syndication/entry:
+    post:
+      '400':
+        '*/*': ShareableLinksCreateSyndicationCard400Response1
+        application/json: ShareableLinksCreateSyndicationCardResponse
+        application/xml: ShareableLinksCreateSyndicationCard400Response
+        text/plain: ShareableLinksCreateSyndicationCard400Response
+        text/xml: ShareableLinksCreateSyndicationCard400Response
+      '415':
+        application/json: ShareableLinksCreateSyndicationCard415Response
+        application/xml: ShareableLinksCreateSyndicationCard415Response
+        text/plain: ShareableLinksCreateSyndicationCard415Response
+        text/xml: ShareableLinksCreateSyndicationCard415Response
+      '503':
+        '*/*': ShareableLinksCreateSyndicationCard503Response
+  /api/company/{companyIdentifier}/seller-url/{sellerUrlIdentifier}:
+    delete:
+      '400':
+        '*/*': ShareableLinksDeleteLink400Response1
+        application/json: ShareableLinksDeleteLinkResponse
+        application/xml: ShareableLinksDeleteLink400Response
+        text/plain: ShareableLinksDeleteLink400Response
+        text/xml: ShareableLinksDeleteLink400Response
+      '415':
+        application/json: ShareableLinksDeleteLink415Response
+        application/xml: ShareableLinksDeleteLink415Response
+        text/plain: ShareableLinksDeleteLink415Response
+        text/xml: ShareableLinksDeleteLink415Response
+      '503':
+        '*/*': ShareableLinksDeleteLink503Response
+    get:
+      '400':
+        '*/*': ShareableLinksGetSpecificUrl400Response1
+        application/json: ShareableLinksGetSpecificUrlResponse
+        application/xml: ShareableLinksGetSpecificUrl400Response
+        text/plain: ShareableLinksGetSpecificUrl400Response
+        text/xml: ShareableLinksGetSpecificUrl400Response
+      '415':
+        application/json: ShareableLinksGetSpecificUrl415Response
+        application/xml: ShareableLinksGetSpecificUrl415Response
+        text/plain: ShareableLinksGetSpecificUrl415Response
+        text/xml: ShareableLinksGetSpecificUrl415Response
+      '503':
+        '*/*': ShareableLinksGetSpecificUrl503Response
+    put:
+      '400':
+        '*/*': ShareableLinksModifyLink400Response1
+        application/json: ShareableLinksModifyLinkResponse
+        application/xml: ShareableLinksModifyLink400Response
+        text/plain: ShareableLinksModifyLink400Response
+        text/xml: ShareableLinksModifyLink400Response
+      '415':
+        application/json: ShareableLinksModifyLink415Response
+        application/xml: ShareableLinksModifyLink415Response
+        text/plain: ShareableLinksModifyLink415Response
+        text/xml: ShareableLinksModifyLink415Response
+      '503':
+        '*/*': ShareableLinksModifyLink503Response
+  /api/company/{companyIdentifier}/static/list:
+    get:
+      '200':
+        application/json: InventoryGridsShowCuratedListsResponse
+      '400':
+        '*/*': InventoryGridsShowCuratedLists400Response1
+        application/json: InventoryGridsShowCuratedLists400Response
+        application/xml: InventoryGridsShowCuratedLists400Response
+        text/plain: InventoryGridsShowCuratedLists400Response
+        text/xml: InventoryGridsShowCuratedLists400Response
+      '415':
+        application/json: InventoryGridsShowCuratedLists415Response
+        application/xml: InventoryGridsShowCuratedLists415Response
+        text/plain: InventoryGridsShowCuratedLists415Response
+        text/xml: InventoryGridsShowCuratedLists415Response
+      '503':
+        '*/*': InventoryGridsShowCuratedLists503Response
+    post:
+      '400':
+        '*/*': InventoryGridsCreateCuratedList400Response1
+        application/json: InventoryGridsCreateCuratedListResponse
+        application/xml: InventoryGridsCreateCuratedList400Response
+        text/plain: InventoryGridsCreateCuratedList400Response
+        text/xml: InventoryGridsCreateCuratedList400Response
+      '415':
+        application/json: InventoryGridsCreateCuratedList415Response
+        application/xml: InventoryGridsCreateCuratedList415Response
+        text/plain: InventoryGridsCreateCuratedList415Response
+        text/xml: InventoryGridsCreateCuratedList415Response
+      '503':
+        '*/*': InventoryGridsCreateCuratedList503Response
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}:
+    delete:
+      '400':
+        '*/*': InventoryGridsRemoveCuratedList400Response1
+        application/json: InventoryGridsRemoveCuratedListResponse
+        application/xml: InventoryGridsRemoveCuratedList400Response
+        text/plain: InventoryGridsRemoveCuratedList400Response
+        text/xml: InventoryGridsRemoveCuratedList400Response
+      '415':
+        application/json: InventoryGridsRemoveCuratedList415Response
+        application/xml: InventoryGridsRemoveCuratedList415Response
+        text/plain: InventoryGridsRemoveCuratedList415Response
+        text/xml: InventoryGridsRemoveCuratedList415Response
+      '503':
+        '*/*': InventoryGridsRemoveCuratedList503Response
+    put:
+      '400':
+        '*/*': InventoryGridsUpdateCuratedListByIdentifier400Response1
+        application/json: InventoryGridsUpdateCuratedListByIdentifierResponse
+        application/xml: InventoryGridsUpdateCuratedListByIdentifier400Response
+        text/plain: InventoryGridsUpdateCuratedListByIdentifier400Response
+        text/xml: InventoryGridsUpdateCuratedListByIdentifier400Response
+      '415':
+        application/json: InventoryGridsUpdateCuratedListByIdentifier415Response
+        application/xml: InventoryGridsUpdateCuratedListByIdentifier415Response
+        text/plain: InventoryGridsUpdateCuratedListByIdentifier415Response
+        text/xml: InventoryGridsUpdateCuratedListByIdentifier415Response
+      '503':
+        '*/*': InventoryGridsUpdateCuratedListByIdentifier503Response
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}/item:
+    post:
+      '400':
+        '*/*': InventoryGridsAddTravelInventoryToListItem400Response1
+        application/json: InventoryGridsAddTravelInventoryToListItemResponse
+        application/xml: InventoryGridsAddTravelInventoryToListItem400Response
+        text/plain: InventoryGridsAddTravelInventoryToListItem400Response
+        text/xml: InventoryGridsAddTravelInventoryToListItem400Response
+      '415':
+        application/json: InventoryGridsAddTravelInventoryToListItem415Response
+        application/xml: InventoryGridsAddTravelInventoryToListItem415Response
+        text/plain: InventoryGridsAddTravelInventoryToListItem415Response
+        text/xml: InventoryGridsAddTravelInventoryToListItem415Response
+      '503':
+        '*/*': InventoryGridsAddTravelInventoryToListItem503Response
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}/item/supplier:
+    post:
+      '400':
+        '*/*': InventoryGridsAddSupplierToListItem400Response1
+        application/json: InventoryGridsAddSupplierToListItemResponse
+        application/xml: InventoryGridsAddSupplierToListItem400Response
+        text/plain: InventoryGridsAddSupplierToListItem400Response
+        text/xml: InventoryGridsAddSupplierToListItem400Response
+      '415':
+        application/json: InventoryGridsAddSupplierToListItem415Response
+        application/xml: InventoryGridsAddSupplierToListItem415Response
+        text/plain: InventoryGridsAddSupplierToListItem415Response
+        text/xml: InventoryGridsAddSupplierToListItem415Response
+      '503':
+        '*/*': InventoryGridsAddSupplierToListItem503Response
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}/item/{itemIdentifier}:
+    delete:
+      '400':
+        '*/*': InventoryGridsDeleteListItemByIdentifier400Response1
+        application/json: InventoryGridsDeleteListItemByIdentifierResponse
+        application/xml: InventoryGridsDeleteListItemByIdentifier400Response
+        text/plain: InventoryGridsDeleteListItemByIdentifier400Response
+        text/xml: InventoryGridsDeleteListItemByIdentifier400Response
+      '415':
+        application/json: InventoryGridsDeleteListItemByIdentifier415Response
+        application/xml: InventoryGridsDeleteListItemByIdentifier415Response
+        text/plain: InventoryGridsDeleteListItemByIdentifier415Response
+        text/xml: InventoryGridsDeleteListItemByIdentifier415Response
+      '503':
+        '*/*': InventoryGridsDeleteListItemByIdentifier503Response
+    post:
+      '400':
+        '*/*': InventoryGridsCopyItemToList400Response1
+        application/json: InventoryGridsCopyItemToListResponse
+        application/xml: InventoryGridsCopyItemToList400Response
+        text/plain: InventoryGridsCopyItemToList400Response
+        text/xml: InventoryGridsCopyItemToList400Response
+      '415':
+        application/json: InventoryGridsCopyItemToList415Response
+        application/xml: InventoryGridsCopyItemToList415Response
+        text/plain: InventoryGridsCopyItemToList415Response
+        text/xml: InventoryGridsCopyItemToList415Response
+      '503':
+        '*/*': InventoryGridsCopyItemToList503Response
+    put:
+      '400':
+        '*/*': InventoryGridsMoveListItem400Response1
+        application/json: InventoryGridsMoveListItemResponse
+        application/xml: InventoryGridsMoveListItem400Response
+        text/plain: InventoryGridsMoveListItem400Response
+        text/xml: InventoryGridsMoveListItem400Response
+      '415':
+        application/json: InventoryGridsMoveListItem415Response
+        application/xml: InventoryGridsMoveListItem415Response
+        text/plain: InventoryGridsMoveListItem415Response
+        text/xml: InventoryGridsMoveListItem415Response
+      '503':
+        '*/*': InventoryGridsMoveListItem503Response
+  /api/company/{companyIdentifier}/static/list/{listIdentifier}/sort:
+    patch:
+      '400':
+        '*/*': InventoryGridsReorderListItems400Response1
+        application/json: InventoryGridsReorderListItemsResponse
+        application/xml: InventoryGridsReorderListItems400Response
+        text/plain: InventoryGridsReorderListItems400Response
+        text/xml: InventoryGridsReorderListItems400Response
+      '415':
+        application/json: InventoryGridsReorderListItems415Response
+        application/xml: InventoryGridsReorderListItems415Response
+        text/plain: InventoryGridsReorderListItems415Response
+        text/xml: InventoryGridsReorderListItems415Response
+      '503':
+        '*/*': InventoryGridsReorderListItems503Response
+  /api/company/{companyIdentifier}/status:
+    patch:
+      '400':
+        '*/*': CompanyToggleStatus400Response1
+        application/json: CompanyToggleStatusResponse
+        application/xml: CompanyToggleStatus400Response
+        text/plain: CompanyToggleStatus400Response
+        text/xml: CompanyToggleStatus400Response
+      '415':
+        application/json: CompanyToggleStatus415Response
+        application/xml: CompanyToggleStatus415Response
+        text/plain: CompanyToggleStatus415Response
+        text/xml: CompanyToggleStatus415Response
+      '503':
+        '*/*': CompanyToggleStatus503Response
+  /api/company/{companyIdentifier}/supplier-url:
+    post:
+      '400':
+        '*/*': SupplierLinksCreateShareableLink400Response1
+        application/json: SupplierLinksCreateShareableLinkResponse
+        application/xml: SupplierLinksCreateShareableLink400Response
+        text/plain: SupplierLinksCreateShareableLink400Response
+        text/xml: SupplierLinksCreateShareableLink400Response
+      '415':
+        application/json: SupplierLinksCreateShareableLink415Response
+        application/xml: SupplierLinksCreateShareableLink415Response
+        text/plain: SupplierLinksCreateShareableLink415Response
+        text/xml: SupplierLinksCreateShareableLink415Response
+      '503':
+        '*/*': SupplierLinksCreateShareableLink503Response
+  /api/company/{companyIdentifier}/supplier-url/list:
+    get:
+      '200':
+        application/json: SupplierLinksGetUrlListResponse
+      '400':
+        '*/*': SupplierLinksGetUrlList400Response1
+        application/json: SupplierLinksGetUrlList400Response
+        application/xml: SupplierLinksGetUrlList400Response
+        text/plain: SupplierLinksGetUrlList400Response
+        text/xml: SupplierLinksGetUrlList400Response
+      '415':
+        application/json: SupplierLinksGetUrlList415Response
+        application/xml: SupplierLinksGetUrlList415Response
+        text/plain: SupplierLinksGetUrlList415Response
+        text/xml: SupplierLinksGetUrlList415Response
+      '503':
+        '*/*': SupplierLinksGetUrlList503Response
+  /api/company/{companyIdentifier}/supplier-url/syndication/entry:
+    post:
+      '400':
+        '*/*': SupplierLinksCreateSyndicationCard400Response1
+        application/json: SupplierLinksCreateSyndicationCardResponse
+        application/xml: SupplierLinksCreateSyndicationCard400Response
+        text/plain: SupplierLinksCreateSyndicationCard400Response
+        text/xml: SupplierLinksCreateSyndicationCard400Response
+      '415':
+        application/json: SupplierLinksCreateSyndicationCard415Response
+        application/xml: SupplierLinksCreateSyndicationCard415Response
+        text/plain: SupplierLinksCreateSyndicationCard415Response
+        text/xml: SupplierLinksCreateSyndicationCard415Response
+      '503':
+        '*/*': SupplierLinksCreateSyndicationCard503Response
+  /api/company/{companyIdentifier}/supplier-url/{supplierUrlIdentifier}:
+    delete:
+      '400':
+        '*/*': SupplierLinksDeleteLink400Response1
+        application/json: SupplierLinksDeleteLinkResponse
+        application/xml: SupplierLinksDeleteLink400Response
+        text/plain: SupplierLinksDeleteLink400Response
+        text/xml: SupplierLinksDeleteLink400Response
+      '415':
+        application/json: SupplierLinksDeleteLink415Response
+        application/xml: SupplierLinksDeleteLink415Response
+        text/plain: SupplierLinksDeleteLink415Response
+        text/xml: SupplierLinksDeleteLink415Response
+      '503':
+        '*/*': SupplierLinksDeleteLink503Response
+    get:
+      '400':
+        '*/*': SupplierLinksGetShareableUrl400Response1
+        application/json: SupplierLinksGetShareableUrlResponse
+        application/xml: SupplierLinksGetShareableUrl400Response
+        text/plain: SupplierLinksGetShareableUrl400Response
+        text/xml: SupplierLinksGetShareableUrl400Response
+      '415':
+        application/json: SupplierLinksGetShareableUrl415Response
+        application/xml: SupplierLinksGetShareableUrl415Response
+        text/plain: SupplierLinksGetShareableUrl415Response
+        text/xml: SupplierLinksGetShareableUrl415Response
+      '503':
+        '*/*': SupplierLinksGetShareableUrl503Response
+    put:
+      '400':
+        '*/*': SupplierLinksModifyUrlLink400Response1
+        application/json: SupplierLinksModifyUrlLinkResponse
+        application/xml: SupplierLinksModifyUrlLink400Response
+        text/plain: SupplierLinksModifyUrlLink400Response
+        text/xml: SupplierLinksModifyUrlLink400Response
+      '415':
+        application/json: SupplierLinksModifyUrlLink415Response
+        application/xml: SupplierLinksModifyUrlLink415Response
+        text/plain: SupplierLinksModifyUrlLink415Response
+        text/xml: SupplierLinksModifyUrlLink415Response
+      '503':
+        '*/*': SupplierLinksModifyUrlLink503Response
+  /api/company/{companyIdentifier}/syndication/category:
+    post:
+      '400':
+        '*/*': SyndicationEntryPublisherCreateCategory400Response1
+        application/json: SyndicationEntryPublisherCreateCategoryResponse
+        application/xml: SyndicationEntryPublisherCreateCategory400Response
+        text/plain: SyndicationEntryPublisherCreateCategory400Response
+        text/xml: SyndicationEntryPublisherCreateCategory400Response
+      '415':
+        application/json: SyndicationEntryPublisherCreateCategory415Response
+        application/xml: SyndicationEntryPublisherCreateCategory415Response
+        text/plain: SyndicationEntryPublisherCreateCategory415Response
+        text/xml: SyndicationEntryPublisherCreateCategory415Response
+      '503':
+        '*/*': SyndicationEntryPublisherCreateCategory503Response
+  /api/company/{companyIdentifier}/syndication/category/list:
+    get:
+      '200':
+        application/json: SyndicationEntryPublisherShowCategoryListResponse
+      '400':
+        '*/*': SyndicationEntryPublisherShowCategoryList400Response1
+        application/json: SyndicationEntryPublisherShowCategoryList400Response
+        application/xml: SyndicationEntryPublisherShowCategoryList400Response
+        text/plain: SyndicationEntryPublisherShowCategoryList400Response
+        text/xml: SyndicationEntryPublisherShowCategoryList400Response
+      '415':
+        application/json: SyndicationEntryPublisherShowCategoryList415Response
+        application/xml: SyndicationEntryPublisherShowCategoryList415Response
+        text/plain: SyndicationEntryPublisherShowCategoryList415Response
+        text/xml: SyndicationEntryPublisherShowCategoryList415Response
+      '503':
+        '*/*': SyndicationEntryPublisherShowCategoryList503Response
+  /api/company/{companyIdentifier}/syndication/category/{syndicationCategoryIdentifier}:
+    delete:
+      '400':
+        '*/*': SyndicationEntryPublisherDeleteCategory400Response1
+        application/json: SyndicationEntryPublisherDeleteCategoryResponse
+        application/xml: SyndicationEntryPublisherDeleteCategory400Response
+        text/plain: SyndicationEntryPublisherDeleteCategory400Response
+        text/xml: SyndicationEntryPublisherDeleteCategory400Response
+      '415':
+        application/json: SyndicationEntryPublisherDeleteCategory415Response
+        application/xml: SyndicationEntryPublisherDeleteCategory415Response
+        text/plain: SyndicationEntryPublisherDeleteCategory415Response
+        text/xml: SyndicationEntryPublisherDeleteCategory415Response
+      '503':
+        '*/*': SyndicationEntryPublisherDeleteCategory503Response
+    get:
+      '400':
+        '*/*': SyndicationEntryPublisherGetCategory400Response1
+        application/json: SyndicationEntryPublisherGetCategoryResponse
+        application/xml: SyndicationEntryPublisherGetCategory400Response
+        text/plain: SyndicationEntryPublisherGetCategory400Response
+        text/xml: SyndicationEntryPublisherGetCategory400Response
+      '415':
+        application/json: SyndicationEntryPublisherGetCategory415Response
+        application/xml: SyndicationEntryPublisherGetCategory415Response
+        text/plain: SyndicationEntryPublisherGetCategory415Response
+        text/xml: SyndicationEntryPublisherGetCategory415Response
+      '503':
+        '*/*': SyndicationEntryPublisherGetCategory503Response
+    put:
+      '400':
+        '*/*': SyndicationEntryPublisherUpdateCategory400Response1
+        application/json: SyndicationEntryPublisherUpdateCategoryResponse
+        application/xml: SyndicationEntryPublisherUpdateCategory400Response
+        text/plain: SyndicationEntryPublisherUpdateCategory400Response
+        text/xml: SyndicationEntryPublisherUpdateCategory400Response
+      '415':
+        application/json: SyndicationEntryPublisherUpdateCategory415Response
+        application/xml: SyndicationEntryPublisherUpdateCategory415Response
+        text/plain: SyndicationEntryPublisherUpdateCategory415Response
+        text/xml: SyndicationEntryPublisherUpdateCategory415Response
+      '503':
+        '*/*': SyndicationEntryPublisherUpdateCategory503Response
+  /api/company/{companyIdentifier}/syndication/entry:
+    post:
+      '400':
+        '*/*': SyndicationEntryPublisherCreateNewEntry400Response1
+        application/json: SyndicationEntryPublisherCreateNewEntryResponse
+        application/xml: SyndicationEntryPublisherCreateNewEntry400Response
+        text/plain: SyndicationEntryPublisherCreateNewEntry400Response
+        text/xml: SyndicationEntryPublisherCreateNewEntry400Response
+      '415':
+        application/json: SyndicationEntryPublisherCreateNewEntry415Response
+        application/xml: SyndicationEntryPublisherCreateNewEntry415Response
+        text/plain: SyndicationEntryPublisherCreateNewEntry415Response
+        text/xml: SyndicationEntryPublisherCreateNewEntry415Response
+      '503':
+        '*/*': SyndicationEntryPublisherCreateNewEntry503Response
+  /api/company/{companyIdentifier}/syndication/entry/consume-url:
+    post:
+      '400':
+        '*/*': SyndicationEntryPublisherConsumeUrl400Response1
+        application/json: SyndicationEntryPublisherConsumeUrlResponse
+        application/xml: SyndicationEntryPublisherConsumeUrl400Response
+        text/plain: SyndicationEntryPublisherConsumeUrl400Response
+        text/xml: SyndicationEntryPublisherConsumeUrl400Response
+      '415':
+        application/json: SyndicationEntryPublisherConsumeUrl415Response
+        application/xml: SyndicationEntryPublisherConsumeUrl415Response
+        text/plain: SyndicationEntryPublisherConsumeUrl415Response
+        text/xml: SyndicationEntryPublisherConsumeUrl415Response
+      '503':
+        '*/*': SyndicationEntryPublisherConsumeUrl503Response
+  /api/company/{companyIdentifier}/syndication/entry/list:
+    get:
+      '200':
+        application/json: SyndicationEntryPublisherShowListResponse
+      '400':
+        '*/*': SyndicationEntryPublisherShowList400Response1
+        application/json: SyndicationEntryPublisherShowList400Response
+        application/xml: SyndicationEntryPublisherShowList400Response
+        text/plain: SyndicationEntryPublisherShowList400Response
+        text/xml: SyndicationEntryPublisherShowList400Response
+      '415':
+        application/json: SyndicationEntryPublisherShowList415Response
+        application/xml: SyndicationEntryPublisherShowList415Response
+        text/plain: SyndicationEntryPublisherShowList415Response
+        text/xml: SyndicationEntryPublisherShowList415Response
+      '503':
+        '*/*': SyndicationEntryPublisherShowList503Response
+  /api/company/{companyIdentifier}/syndication/entry/list/sort:
+    patch:
+      '400':
+        '*/*': SyndicationEntryPublisherSortList400Response1
+        application/json: SyndicationEntryPublisherSortListResponse
+        application/xml: SyndicationEntryPublisherSortList400Response
+        text/plain: SyndicationEntryPublisherSortList400Response
+        text/xml: SyndicationEntryPublisherSortList400Response
+      '415':
+        application/json: SyndicationEntryPublisherSortList415Response
+        application/xml: SyndicationEntryPublisherSortList415Response
+        text/plain: SyndicationEntryPublisherSortList415Response
+        text/xml: SyndicationEntryPublisherSortList415Response
+      '503':
+        '*/*': SyndicationEntryPublisherSortList503Response
+  /api/company/{companyIdentifier}/syndication/entry/{syndicationEntryIdentifier}:
+    delete:
+      '400':
+        '*/*': SyndicationEntryPublisherDeleteEntry400Response1
+        application/json: SyndicationEntryPublisherDeleteEntryResponse
+        application/xml: SyndicationEntryPublisherDeleteEntry400Response
+        text/plain: SyndicationEntryPublisherDeleteEntry400Response
+        text/xml: SyndicationEntryPublisherDeleteEntry400Response
+      '415':
+        application/json: SyndicationEntryPublisherDeleteEntry415Response
+        application/xml: SyndicationEntryPublisherDeleteEntry415Response
+        text/plain: SyndicationEntryPublisherDeleteEntry415Response
+        text/xml: SyndicationEntryPublisherDeleteEntry415Response
+      '503':
+        '*/*': SyndicationEntryPublisherDeleteEntry503Response
+    get:
+      '400':
+        '*/*': SyndicationEntryPublisherShowEntry400Response1
+        application/json: SyndicationEntryPublisherShowEntryResponse
+        application/xml: SyndicationEntryPublisherShowEntry400Response
+        text/plain: SyndicationEntryPublisherShowEntry400Response
+        text/xml: SyndicationEntryPublisherShowEntry400Response
+      '415':
+        application/json: SyndicationEntryPublisherShowEntry415Response
+        application/xml: SyndicationEntryPublisherShowEntry415Response
+        text/plain: SyndicationEntryPublisherShowEntry415Response
+        text/xml: SyndicationEntryPublisherShowEntry415Response
+      '503':
+        '*/*': SyndicationEntryPublisherShowEntry503Response
+    put:
+      '400':
+        '*/*': SyndicationEntryPublisherUpdateSyndicationEntry400Response1
+        application/json: SyndicationEntryPublisherUpdateSyndicationEntryResponse
+        application/xml: SyndicationEntryPublisherUpdateSyndicationEntry400Response
+        text/plain: SyndicationEntryPublisherUpdateSyndicationEntry400Response
+        text/xml: SyndicationEntryPublisherUpdateSyndicationEntry400Response
+      '415':
+        application/json: SyndicationEntryPublisherUpdateSyndicationEntry415Response
+        application/xml: SyndicationEntryPublisherUpdateSyndicationEntry415Response
+        text/plain: SyndicationEntryPublisherUpdateSyndicationEntry415Response
+        text/xml: SyndicationEntryPublisherUpdateSyndicationEntry415Response
+      '503':
+        '*/*': SyndicationEntryPublisherUpdateSyndicationEntry503Response
+  /api/company/{companyIdentifier}/syndication/settings:
+    get:
+      '400':
+        '*/*': SyndicationEntryPublisherGetWinkLinksSettings400Response1
+        application/json: SyndicationEntryPublisherGetWinkLinksSettingsResponse
+        application/xml: SyndicationEntryPublisherGetWinkLinksSettings400Response
+        text/plain: SyndicationEntryPublisherGetWinkLinksSettings400Response
+        text/xml: SyndicationEntryPublisherGetWinkLinksSettings400Response
+      '415':
+        application/json: SyndicationEntryPublisherGetWinkLinksSettings415Response
+        application/xml: SyndicationEntryPublisherGetWinkLinksSettings415Response
+        text/plain: SyndicationEntryPublisherGetWinkLinksSettings415Response
+        text/xml: SyndicationEntryPublisherGetWinkLinksSettings415Response
+      '503':
+        '*/*': SyndicationEntryPublisherGetWinkLinksSettings503Response
+    put:
+      '400':
+        '*/*': SyndicationEntryPublisherUpsertSettings400Response1
+        application/json: SyndicationEntryPublisherUpsertSettingsResponse
+        application/xml: SyndicationEntryPublisherUpsertSettings400Response
+        text/plain: SyndicationEntryPublisherUpsertSettings400Response
+        text/xml: SyndicationEntryPublisherUpsertSettings400Response
+      '415':
+        application/json: SyndicationEntryPublisherUpsertSettings415Response
+        application/xml: SyndicationEntryPublisherUpsertSettings415Response
+        text/plain: SyndicationEntryPublisherUpsertSettings415Response
+        text/xml: SyndicationEntryPublisherUpsertSettings415Response
+      '503':
+        '*/*': SyndicationEntryPublisherUpsertSettings503Response
+  /api/hello:
+    get:
+      '200':
+        '*/*': TestPingEndpointResponse
+      '400':
+        '*/*': TestPingEndpoint400Response1
+        application/json: TestPingEndpoint400Response
+        application/xml: TestPingEndpoint400Response
+        text/plain: TestPingEndpoint400Response
+        text/xml: TestPingEndpoint400Response
+      '415':
+        application/json: TestPingEndpoint415Response
+        application/xml: TestPingEndpoint415Response
+        text/plain: TestPingEndpoint415Response
+        text/xml: TestPingEndpoint415Response
+      '503':
+        '*/*': TestPingEndpoint503Response
+securityParameters:
+  Wink-Version:
+    header: false
+  page:
+    query: false
+  size:
+    query: false
+  withItems:
+    query: false
+validServerUrls: {}

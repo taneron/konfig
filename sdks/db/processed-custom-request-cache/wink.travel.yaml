@@ -1,0 +1,145 @@
+processed:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: >-
+        ## Retrieve access token
+
+        Make a POST (`Content-Type: application/x-www-form-urlencoded`) request
+        to the Token URL below. Include one POST key/value entry:
+        `grant_type=client_credentials` and include your clientID / secretKey
+        credentials in a Basic Auth header. E.g. `Authorization: Basic
+        base64_encode($clientId + ':' + $secretKey)`.
+
+        ## Add Bearer access token to all API requests
+
+        Once you have the access token, you can pass that along on all API
+        requests in the authentication header: `'Authorization: Bearer
+        $accessToken`.
+
+        Note: Tokens expire after 3 hours. Please make sure you refresh your
+        token before that time.
+      flows:
+        clientCredentials:
+          authorizationUrl: https://iam.wink.travel/oauth2/authorize
+          tokenUrl: https://iam.wink.travel/oauth2/token
+          refreshUrl: https://iam.wink.travel/oauth2/refresh
+          scopes:
+            inventory.read: Read wink data
+            inventory.write: Create wink data
+            inventory.remove: Remove wink data
+  apiBaseUrl: https://api.wink.travel
+  apiVersion: 29.50.1
+  apiDescription: >-
+    ## APIs
+
+    Not every integrator needs every APIs. For that reason, we have separated
+    APIs into context.
+
+
+    - [Affiliate](https://api.wink.travel): All APIs related to selling travel
+    inventory as an affiliate.
+
+    - [Analytics](https://api.wink.travel): All APIs related to tracking metrics
+    across a wide variety of data source segments including, more entertaining,
+    leaderboard metrics.
+
+    - [Booking](https://api.wink.travel): All APIs related to creating platform
+    bookings.
+
+    - [Channel Manager](https://api.wink.travel): All APIs related to channel
+    managers who want to integrate with our platform.
+
+    - [Extranet](https://api.wink.travel): All APIs related to managing travel
+    inventory and suppliers.
+
+    - [Inventory](https://api.wink.travel): All APIs related to retrieve known
+    travel inventory as it was found using the Lookup API..
+
+    - [Lookup](https://api.wink.travel): All APIs related to locating inventory
+    by region, locale and property flags.
+
+    - [Reference](https://api.wink.travel): All APIs related to retrieving
+    platform-supported taxonomies.
+
+    - [TripPay Acquiring](https://api.wink.travel): All APIs related to capture
+    payment details such as a Stripe payment intent.
+
+    - [TripPay](https://api.wink.travel): All APIs related to TripPay account
+    management, booking, mapping and integration features.
+
+
+    ## SDKs
+
+    We are actively working on supporting the most used languages out there. If
+    you don't see your language here, reach out to us with a request to
+    officially add your language. In the meantime, if you want to roll your own
+    SDK, you can do so by downloading the OpenAPI spec and using one of the many
+    available OpenAPI generators available:
+    [https://openapi-generator.tech/docs/generators](https://openapi-generator.tech/docs/generators).
+
+
+    - Java SDK
+    [https://github.com/wink-travel/wink-sdk-java](https://github.com/wink-travel/wink-sdk-java)
+
+
+    ## Usage
+
+    These features are made available to you via a [REST
+    API](https://en.wikipedia.org/wiki/Representational_state_transfer). This
+    API is language agnostic.
+
+
+    ## Versioning
+
+    We chose to version our endpoints in a way that we hope affects your
+    integration with us the least. You request the version of our API you wish
+    to work with via the `Wink-Version` header. When it's time for you to
+    upgrade, you only have to change the version number to get access to our
+    updated endpoints.
+
+
+    ## Release history
+
+    - 2022-10-15: v2.0 - Removed HATEOAS and added Wink-Version header
+
+    - 2022-05-08: v1 - Exposed channel manager API
+
+    - 2021-07-01: v1 - Initial release
+
+
+    # Affiliate API
+
+    Welcome to the Affiliate API - A programmer-friendly way to search for and
+    display bespoke travel inventory for your audience. Use this API to help you
+    prepare travel inventory for sale.
+
+
+    # Intended Audience
+
+    Programmers are a requirement to start integrating with wink. You will
+    benefit from an API integration if you are new or existing travel related
+    company that want easy access to great inventory.## Examples:
+
+    - Hotel brands / chains that want to make their own booking engine
+
+    - Travel tech companies that want to create the next hot mobile travel app
+
+    - Destination sites that want to make their own booking engine
+
+    - Bloggers and influencers who want to sell travel inventory to their
+    audience
+
+    - OTAs that want access direct relationships with suppliers and better
+    quality hotel inventory
+  apiTitle: Wink API
+  endpoints: 98
+  sdkMethods: 130
+  schemas: 232
+  parameters: 649
+  contactEmail: bjorn@wink.travel
+  originalCustomRequest:
+    type: GET
+    url: https://api.wink.travel/v3/api-docs/affiliate
+  customRequestSpecFilename: wink.travel.yaml
+  difficultyScore: 408.25
