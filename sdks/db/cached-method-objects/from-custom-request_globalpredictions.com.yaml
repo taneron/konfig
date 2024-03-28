@@ -1,0 +1,232 @@
+hash: 77693daad9c9e763217e927807831b04f85aa9896e285285fb5fb1a617ccc70c
+methodObjects:
+  - url: /v1/influential_drivers
+    method: getTopDriversBySeries
+    httpMethod: get
+    tag: Knowledge Graph
+    typeScriptTag: knowledgeGraph
+    description: Influential Drivers
+    parameters:
+      - name: seriesName
+        schema: string
+        required: true
+        description: Series name for which the most influential drivers will be returned
+        example: SERIES_NAME
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/history
+    method: getFullHistory
+    httpMethod: get
+    tag: Data Series
+    typeScriptTag: dataSeries
+    description: History
+    parameters:
+      - name: seriesName
+        schema: string
+        description: The series name to get the history
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/forecast
+    method: getForecastData
+    httpMethod: get
+    tag: Data Series
+    typeScriptTag: dataSeries
+    description: Forecast
+    parameters:
+      - name: seriesName
+        schema: string
+        description: The series name to get the forecast
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/anomalies
+    method: listEconomicAnomalies
+    httpMethod: get
+    tag: World Monitoring
+    typeScriptTag: worldMonitoring
+    description: Anomalies
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/all_series_types
+    method: getAllTypes
+    httpMethod: get
+    tag: Data Series
+    typeScriptTag: dataSeries
+    description: Series Types
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/all_series_names
+    method: getAllNames
+    httpMethod: get
+    tag: Data Series
+    typeScriptTag: dataSeries
+    description: Series Names
+    parameters:
+      - name: seriesType
+        schema: string
+        description: The series type for which the series names are returned
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/get_portfolio
+    method: getSecuritiesAmounts
+    httpMethod: get
+    tag: Portfolio Management
+    typeScriptTag: portfolioManagement
+    description: Get Portfolio
+    parameters:
+      - name: portfolioId
+        schema: integer
+        required: true
+        description: The portfolio id for the portfolio to retrieve
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: portfolio for the user
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/update_portfolio
+    method: updatePortfolio
+    httpMethod: post
+    tag: Portfolio Management
+    typeScriptTag: portfolioManagement
+    description: Update portfolio
+    parameters:
+      - name: portfolio
+        schema: array
+        description: ''
+      - name: portfolio_id
+        schema: number
+        description: ''
+      - name: investor_preference
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/get_recommendations
+    method: computeRecommendations
+    httpMethod: get
+    tag: Portfolio Management
+    typeScriptTag: portfolioManagement
+    description: Portfolio Recommendations
+    parameters:
+      - name: portfolioId
+        schema: integer
+        required: true
+        description: The portfolio id for the portfolio to get recommendations for
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: Recommendations
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/get_portfolio_score
+    method: computePortfolioScore
+    httpMethod: get
+    tag: Portfolio Management
+    typeScriptTag: portfolioManagement
+    description: Portfolio Score
+    parameters:
+      - name: portfolioDict
+        schema: string
+        required: true
+        description: >-
+          A stringified
+          (https://portfoliopilot.com/static/external_api/documentation.html
+          portfolio dict (key=ticker, value=amount) to calculate the portfolio
+          score for
+        example: PORTFOLIO_DICT
+    responses:
+      - statusCode: '200'
+        description: Portfolio Score
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/get_portfolio_performance_stats
+    method: computePerformanceStats
+    httpMethod: get
+    tag: Portfolio Management
+    typeScriptTag: portfolioManagement
+    description: Portfolio Performance Stats
+    parameters:
+      - name: portfolioDict
+        schema: string
+        required: true
+        description: >-
+          A stringified
+          (https://portfoliopilot.com/static/external_api/documentation.html
+          portfolio dict (key=ticker, value=amount) to calculate the portfolio
+          score for
+        example: PORTFOLIO_DICT
+    responses:
+      - statusCode: '200'
+        description: Portfolio Performance Stats
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/get_portfolio_assessment
+    method: getAssessmentData
+    httpMethod: get
+    tag: Portfolio Management
+    typeScriptTag: portfolioManagement
+    description: Get Portfolio Assessment
+    parameters:
+      - name: portfolioDict
+        schema: string
+        required: true
+        description: >-
+          A stringified
+          (https://portfoliopilot.com/static/external_api/documentation.html
+          portfolio dict (key=ticker, value=amount) to calculate the portfolio
+          score for
+        example: PORTFOLIO_DICT
+      - name: targetRisk
+        schema: string
+        required: false
+        description: The target risk level for the portfolio.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /v1/get_portfolio_insights
+    method: getInsights
+    httpMethod: get
+    tag: Portfolio Management
+    typeScriptTag: portfolioManagement
+    description: Get Portfolio Insights
+    parameters:
+      - name: portfolioDict
+        schema: string
+        required: true
+        description: >-
+          A stringified
+          (https://portfoliopilot.com/static/external_api/documentation.html
+          portfolio dict (key=ticker, value=amount) to generate insights
+        example: PORTFOLIO_DICT
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+numberOfSchemas: 24
+apiDescription: Global Predictions external api

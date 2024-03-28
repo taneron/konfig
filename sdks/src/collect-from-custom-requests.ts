@@ -2232,6 +2232,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/onna/platform-api/main/spec/platform-api.yaml",
   },
+  "globalpredictions.com": {
+    type: "GET",
+    url: "https://portfoliopilot.com/static/external_api/external_api.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

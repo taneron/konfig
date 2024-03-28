@@ -1,0 +1,395 @@
+{
+  "securitySchemes": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "query"
+    }
+  },
+  "apiBaseUrl": "https://portfoliopilot.com/api",
+  "apiVersion": "1.0.0",
+  "apiDescription": "Global Predictions external api",
+  "apiTitle": "Global Predictions API",
+  "endpoints": 13,
+  "sdkMethods": 14,
+  "schemas": 24,
+  "parameters": 27,
+  "contactEmail": "support@globalpredictions.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://portfoliopilot.com/static/external_api/external_api.yaml"
+  },
+  "customRequestSpecFilename": "globalpredictions.com.yaml",
+  "difficultyScore": 31.75,
+  "difficulty": "Very Easy",
+  "company": "Global Predictions Inc",
+  "sdkName": "global-predictions-inc-{language}-sdk",
+  "clientName": "GlobalPredictionsInc",
+  "metaDescription": "Global Predictions is building an AI-powered WealthOS, a full-stack solution for financial advice and personalized recommendations built on top of our proprietary Economic Insights Engine. We power fintech solutions for millions of people through the GP API and customized insights. Our flagship product is PortfolioPilot for individuals, the world's best financial advisor, with over $6.2B assets on platform.\n\nPlease read our important disclosures: https://www.globalpredictions.com/disclosures",
+  "apiStatusUrls": "inherit",
+  "homepage": "www.globalpredictions.com/",
+  "developerDocumentation": "portfoliopilot.com/static/external_api/documentation.html",
+  "categories": [
+    "ai",
+    "financial_services",
+    "fintech",
+    "financial_technology"
+  ],
+  "category": "AI Tools",
+  "methods": [
+    {
+      "url": "/v1/influential_drivers",
+      "method": "getTopDriversBySeries",
+      "httpMethod": "get",
+      "tag": "Knowledge Graph",
+      "typeScriptTag": "knowledgeGraph",
+      "description": "Influential Drivers",
+      "parameters": [
+        {
+          "name": "seriesName",
+          "schema": "string",
+          "required": true,
+          "description": "Series name for which the most influential drivers will be returned",
+          "example": "SERIES_NAME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/history",
+      "method": "getFullHistory",
+      "httpMethod": "get",
+      "tag": "Data Series",
+      "typeScriptTag": "dataSeries",
+      "description": "History",
+      "parameters": [
+        {
+          "name": "seriesName",
+          "schema": "string",
+          "description": "The series name to get the history"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/forecast",
+      "method": "getForecastData",
+      "httpMethod": "get",
+      "tag": "Data Series",
+      "typeScriptTag": "dataSeries",
+      "description": "Forecast",
+      "parameters": [
+        {
+          "name": "seriesName",
+          "schema": "string",
+          "description": "The series name to get the forecast"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/anomalies",
+      "method": "listEconomicAnomalies",
+      "httpMethod": "get",
+      "tag": "World Monitoring",
+      "typeScriptTag": "worldMonitoring",
+      "description": "Anomalies",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/all_series_types",
+      "method": "getAllTypes",
+      "httpMethod": "get",
+      "tag": "Data Series",
+      "typeScriptTag": "dataSeries",
+      "description": "Series Types",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/all_series_names",
+      "method": "getAllNames",
+      "httpMethod": "get",
+      "tag": "Data Series",
+      "typeScriptTag": "dataSeries",
+      "description": "Series Names",
+      "parameters": [
+        {
+          "name": "seriesType",
+          "schema": "string",
+          "description": "The series type for which the series names are returned"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/get_portfolio",
+      "method": "getSecuritiesAmounts",
+      "httpMethod": "get",
+      "tag": "Portfolio Management",
+      "typeScriptTag": "portfolioManagement",
+      "description": "Get Portfolio",
+      "parameters": [
+        {
+          "name": "portfolioId",
+          "schema": "integer",
+          "required": true,
+          "description": "The portfolio id for the portfolio to retrieve",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "portfolio for the user"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/update_portfolio",
+      "method": "updatePortfolio",
+      "httpMethod": "post",
+      "tag": "Portfolio Management",
+      "typeScriptTag": "portfolioManagement",
+      "description": "Update portfolio",
+      "parameters": [
+        {
+          "name": "portfolio",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "portfolio_id",
+          "schema": "number",
+          "description": ""
+        },
+        {
+          "name": "investor_preference",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/get_recommendations",
+      "method": "computeRecommendations",
+      "httpMethod": "get",
+      "tag": "Portfolio Management",
+      "typeScriptTag": "portfolioManagement",
+      "description": "Portfolio Recommendations",
+      "parameters": [
+        {
+          "name": "portfolioId",
+          "schema": "integer",
+          "required": true,
+          "description": "The portfolio id for the portfolio to get recommendations for",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Recommendations"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/get_portfolio_score",
+      "method": "computePortfolioScore",
+      "httpMethod": "get",
+      "tag": "Portfolio Management",
+      "typeScriptTag": "portfolioManagement",
+      "description": "Portfolio Score",
+      "parameters": [
+        {
+          "name": "portfolioDict",
+          "schema": "string",
+          "required": true,
+          "description": "A stringified (https://portfoliopilot.com/static/external_api/documentation.html portfolio dict (key=ticker, value=amount) to calculate the portfolio score for",
+          "example": "PORTFOLIO_DICT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Portfolio Score"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/get_portfolio_performance_stats",
+      "method": "computePerformanceStats",
+      "httpMethod": "get",
+      "tag": "Portfolio Management",
+      "typeScriptTag": "portfolioManagement",
+      "description": "Portfolio Performance Stats",
+      "parameters": [
+        {
+          "name": "portfolioDict",
+          "schema": "string",
+          "required": true,
+          "description": "A stringified (https://portfoliopilot.com/static/external_api/documentation.html portfolio dict (key=ticker, value=amount) to calculate the portfolio score for",
+          "example": "PORTFOLIO_DICT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Portfolio Performance Stats"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/get_portfolio_assessment",
+      "method": "getAssessmentData",
+      "httpMethod": "get",
+      "tag": "Portfolio Management",
+      "typeScriptTag": "portfolioManagement",
+      "description": "Get Portfolio Assessment",
+      "parameters": [
+        {
+          "name": "portfolioDict",
+          "schema": "string",
+          "required": true,
+          "description": "A stringified (https://portfoliopilot.com/static/external_api/documentation.html portfolio dict (key=ticker, value=amount) to calculate the portfolio score for",
+          "example": "PORTFOLIO_DICT"
+        },
+        {
+          "name": "targetRisk",
+          "schema": "string",
+          "required": false,
+          "description": "The target risk level for the portfolio."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    },
+    {
+      "url": "/v1/get_portfolio_insights",
+      "method": "getInsights",
+      "httpMethod": "get",
+      "tag": "Portfolio Management",
+      "typeScriptTag": "portfolioManagement",
+      "description": "Get Portfolio Insights",
+      "parameters": [
+        {
+          "name": "portfolioDict",
+          "schema": "string",
+          "required": true,
+          "description": "A stringified (https://portfoliopilot.com/static/external_api/documentation.html portfolio dict (key=ticker, value=amount) to generate insights",
+          "example": "PORTFOLIO_DICT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Building AI-powered WealthOS for financial advice with Economic Insights Engine. Providing fintech solutions through GP API and PortfolioPilot, the world's best financial advisor. Global Predictions Inc's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/global-predictions-inc/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/global-predictions-inc/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/global-predictions-inc/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/global-predictions-inc/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/global-predictions-inc/favicon.jpg",
+  "clientNameCamelCase": "globalPredictionsInc",
+  "lastUpdated": "2024-03-28T23:24:57.727Z",
+  "typescriptSdkUsageCode": "import { GlobalPredictionsInc } from 'global-predictions-inc-typescript-sdk';\n\nconst globalPredictionsInc = new GlobalPredictionsInc({\n    apiKey: \"API_KEY\"\n})",
+  "typescriptSdkFirstRequestCode": "// Influential Drivers\nconst getTopDriversBySeriesResponse = globalPredictionsInc.knowledgeGraph.getTopDriversBySeries({\n    seriesName: \"SERIES_NAME\"\n})",
+  "fixedSpecFileName": "global-predictions-inc-fixed-spec.yaml"
+}

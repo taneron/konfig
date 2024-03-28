@@ -1,0 +1,54 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1/all_series_names:
+    get: DataSeries_getAllNames
+  /v1/all_series_types:
+    get: DataSeries_getAllTypes
+  /v1/anomalies:
+    get: WorldMonitoring_listEconomicAnomalies
+  /v1/forecast:
+    get: DataSeries_getForecastData
+  /v1/get_portfolio:
+    get: PortfolioManagement_getSecuritiesAmounts
+  /v1/get_portfolio_assessment:
+    get: PortfolioManagement_getAssessmentData
+  /v1/get_portfolio_insights:
+    get: PortfolioManagement_getInsights
+  /v1/get_portfolio_performance_stats:
+    get: PortfolioManagement_computePerformanceStats
+  /v1/get_portfolio_score:
+    get: PortfolioManagement_computePortfolioScore
+  /v1/get_recommendations:
+    get: PortfolioManagement_computeRecommendations
+  /v1/history:
+    get: DataSeries_getFullHistory
+  /v1/influential_drivers:
+    get: KnowledgeGraph_getTopDriversBySeries
+  /v1/update_portfolio:
+    post: PortfolioManagement_updatePortfolio
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/update_portfolio:
+    post:
+      application/json: PortfolioManagementUpdatePortfolioRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/update_portfolio:
+    post:
+      '200':
+        application/json: PortfolioManagementUpdatePortfolioResponse
+securityParameters:
+  portfolio_dict:
+    query: false
+  portfolio_id:
+    query: false
+  series_name:
+    query: false
+  series_type:
+    query: false
+  target_risk:
+    query: false
+validServerUrls: {}
