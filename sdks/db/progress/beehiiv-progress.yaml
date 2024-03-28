@@ -1,0 +1,280 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /publications/{publicationId}/segments/{segmentId}:
+    delete:
+      '204':
+        application/json: {}
+  /publications/{publicationId}/subscriptions/{subscriptionId}:
+    delete:
+      '204':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /publications:
+    get: Publications_getAll
+  /publications/{publicationId}:
+    get: Publications_getSingle
+  /publications/{publicationId}/automations:
+    get: Automations_index
+  /publications/{publicationId}/automations/{automationId}:
+    get: Automations_showDetails
+  /publications/{publicationId}/automations/{automationId}/journeys:
+    get: AutomationJourneys_getAll
+    post: AutomationJourneys_addExistingSubscription
+  /publications/{publicationId}/automations/{automationId}/journeys/{automationJourneyId}:
+    get: AutomationJourneys_showJourneyDetails
+  /publications/{publicationId}/bulk_subscription_updates:
+    get: BulkSubscriptionUpdates_listSubscriptionUpdates
+  /publications/{publicationId}/bulk_subscription_updates/{id}:
+    get: BulkSubscriptionUpdates_getSingleUpdate
+  /publications/{publicationId}/custom_fields:
+    get: CustomFields_getAll
+    post: CustomFields_createPublicationCustomField
+  /publications/{publicationId}/custom_fields/{id}:
+    delete: CustomFields_deletePublicationCustomField
+    get: CustomFields_showSpecific
+    patch: CustomFields_updatePublicationCustomField
+    put: CustomFields_updatePublicationCustomField
+  /publications/{publicationId}/email_blasts:
+    get: EmailBlasts_getAll
+  /publications/{publicationId}/email_blasts/{emailBlastId}:
+    get: EmailBlasts_getEmailBlast
+  /publications/{publicationId}/posts:
+    get: Posts_getAll
+  /publications/{publicationId}/posts/{postId}:
+    delete: Posts_destroyPost
+    get: Posts_getSingle
+  /publications/{publicationId}/referral_program:
+    get: ReferralProgram_detailsRetrieve
+  /publications/{publicationId}/segments:
+    get: Segments_getAll
+  /publications/{publicationId}/segments/{segmentId}:
+    delete: Segments_deleteSegment
+    get: Segments_getSingle
+  /publications/{publicationId}/segments/{segmentId}/results:
+    get: Segments_getSubscriberIds
+  /publications/{publicationId}/subscriptions:
+    get: Subscriptions_getAll
+    patch: Subscriptions_bulkUpdateStatus
+    post: Subscriptions_createNew
+    put: Subscriptions_bulkUpdateStatus
+  /publications/{publicationId}/subscriptions/bulk_actions:
+    patch: Subscriptions_bulkUpdateFields
+    put: Subscriptions_bulkUpdateFields
+  /publications/{publicationId}/subscriptions/by_email/{email}:
+    get: Subscriptions_getSingleByEmail
+  /publications/{publicationId}/subscriptions/by_subscriber_id/{subscriberId}:
+    get: Subscriptions_showSingleBySubscriberId
+  /publications/{publicationId}/subscriptions/{subscriptionId}:
+    delete: Subscriptions_deleteSubscription
+    get: Subscriptions_getSingle
+    patch: Subscriptions_updateSubscriber
+    put: Subscriptions_updateSubscriber
+  /publications/{publicationId}/subscriptions/{subscriptionId}/tags:
+    post: SubscriptionTags_createNew
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /publications/{publicationId}/automations/{automationId}/journeys:
+    post:
+      application/json: AutomationJourneysAddExistingSubscriptionRequest
+  /publications/{publicationId}/custom_fields:
+    post:
+      application/json: CustomFieldsCreatePublicationCustomFieldRequest
+  /publications/{publicationId}/custom_fields/{id}:
+    patch:
+      application/json: CustomFieldsUpdatePublicationCustomFieldRequest
+    put:
+      application/json: CustomFieldsUpdatePublicationCustomFieldRequest1
+  /publications/{publicationId}/subscriptions:
+    patch:
+      application/json: SubscriptionsBulkUpdateStatusRequest
+    post:
+      application/json: SubscriptionsCreateNewRequest
+    put:
+      application/json: SubscriptionsBulkUpdateStatusRequest1
+  /publications/{publicationId}/subscriptions/bulk_actions:
+    patch:
+      application/json: SubscriptionsBulkUpdateFieldsRequest
+    put:
+      application/json: SubscriptionsBulkUpdateFieldsRequest1
+  /publications/{publicationId}/subscriptions/{subscriptionId}:
+    patch:
+      application/json: SubscriptionsUpdateSubscriberRequest
+  /publications/{publicationId}/subscriptions/{subscriptionId}/tags:
+    post:
+      application/json: SubscriptionTagsCreateNewRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /publications:
+    get:
+      '200':
+        application/json: PublicationsGetAllResponse
+  /publications/{publicationId}:
+    get:
+      '200':
+        application/json: PublicationsGetSingleResponse
+  /publications/{publicationId}/automations:
+    get:
+      '200':
+        application/json: AutomationsIndexResponse
+  /publications/{publicationId}/automations/{automationId}:
+    get:
+      '200':
+        application/json: AutomationsShowDetailsResponse
+  /publications/{publicationId}/automations/{automationId}/journeys:
+    get:
+      '200':
+        application/json: AutomationJourneysGetAllResponse
+    post:
+      '201':
+        application/json: AutomationJourneysAddExistingSubscriptionResponse
+  /publications/{publicationId}/automations/{automationId}/journeys/{automationJourneyId}:
+    get:
+      '200':
+        application/json: AutomationJourneysShowJourneyDetailsResponse
+  /publications/{publicationId}/bulk_subscription_updates:
+    get:
+      '200':
+        application/json: BulkSubscriptionUpdatesListSubscriptionUpdatesResponse
+  /publications/{publicationId}/bulk_subscription_updates/{id}:
+    get:
+      '200':
+        application/json: BulkSubscriptionUpdatesGetSingleUpdateResponse
+  /publications/{publicationId}/custom_fields:
+    get:
+      '200':
+        application/json: CustomFieldsGetAllResponse
+    post:
+      '200':
+        application/json: CustomFieldsCreatePublicationCustomFieldResponse
+  /publications/{publicationId}/custom_fields/{id}:
+    delete:
+      '200':
+        application/json: CustomFieldsDeletePublicationCustomFieldResponse
+    get:
+      '200':
+        application/json: CustomFieldsShowSpecificResponse
+    patch:
+      '200':
+        application/json: CustomFieldsUpdatePublicationCustomFieldResponse
+    put:
+      '200':
+        application/json: CustomFieldsUpdatePublicationCustomField200Response
+  /publications/{publicationId}/email_blasts:
+    get:
+      '200':
+        application/json: EmailBlastsGetAllResponse
+  /publications/{publicationId}/email_blasts/{emailBlastId}:
+    get:
+      '200':
+        application/json: EmailBlastsGetEmailBlastResponse
+  /publications/{publicationId}/posts:
+    get:
+      '200':
+        application/json: PostsGetAllResponse
+  /publications/{publicationId}/posts/{postId}:
+    delete:
+      '204':
+        application/json: PostsDestroyPostResponse
+    get:
+      '200':
+        application/json: PostsGetSingleResponse
+  /publications/{publicationId}/referral_program:
+    get:
+      '200':
+        application/json: ReferralProgramDetailsRetrieveResponse
+  /publications/{publicationId}/segments:
+    get:
+      '200':
+        application/json: SegmentsGetAllResponse
+  /publications/{publicationId}/segments/{segmentId}:
+    delete:
+      '204':
+        application/json: SegmentsDeleteSegmentResponse
+    get:
+      '200':
+        application/json: SegmentsGetSingleResponse
+  /publications/{publicationId}/segments/{segmentId}/results:
+    get:
+      '200':
+        application/json: SegmentsGetSubscriberIdsResponse
+  /publications/{publicationId}/subscriptions:
+    get:
+      '200':
+        application/json: SubscriptionsGetAllResponse
+    patch:
+      '200':
+        application/json: SubscriptionsBulkUpdateStatusResponse
+    post:
+      '200':
+        application/json: SubscriptionsCreateNewResponse
+    put:
+      '200':
+        application/json: SubscriptionsBulkUpdateStatus200Response
+  /publications/{publicationId}/subscriptions/bulk_actions:
+    patch:
+      '200':
+        application/json: SubscriptionsBulkUpdateFieldsResponse
+    put:
+      '200':
+        application/json: SubscriptionsBulkUpdateFields200Response
+  /publications/{publicationId}/subscriptions/by_email/{email}:
+    get:
+      '200':
+        application/json: SubscriptionsGetSingleByEmailResponse
+  /publications/{publicationId}/subscriptions/by_subscriber_id/{subscriberId}:
+    get:
+      '200':
+        application/json: SubscriptionsShowSingleBySubscriberIdResponse
+  /publications/{publicationId}/subscriptions/{subscriptionId}:
+    delete:
+      '204':
+        application/json: SubscriptionsDeleteSubscriptionResponse
+    get:
+      '200':
+        application/json: SubscriptionsGetSingleResponse
+    patch:
+      '200':
+        application/json: SubscriptionsUpdateSubscriberResponse
+    put:
+      '200':
+        application/json: SubscriptionsUpdateSubscriber200Response
+  /publications/{publicationId}/subscriptions/{subscriptionId}/tags:
+    post:
+      '200':
+        application/json: SubscriptionTagsCreateNewResponse
+securityParameters:
+  audience:
+    query: false
+  content_tags[]:
+    query: false
+  direction:
+    query: false
+  email:
+    query: false
+  expand[]:
+    query: false
+  hidden_from_feed:
+    query: false
+  limit:
+    query: false
+  order_by:
+    query: false
+  page:
+    query: false
+  platform:
+    query: false
+  status:
+    query: false
+  subscription_id:
+    query: false
+  tier:
+    query: false
+  type:
+    query: false
+  undefined:
+    query: false
+validServerUrls: {}

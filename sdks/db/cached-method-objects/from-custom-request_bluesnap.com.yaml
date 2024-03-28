@@ -1,4 +1,4 @@
-hash: b3a298a85b356d135b8a11dd196b406c64ee5b1331ed04a1932f10a80d08201c
+hash: 8c4ea2ca56981039781e5321804b5ffbac2f996049676ab8252a4d1bda418c83
 methodObjects:
   - url: /transactions
     method: createTransaction
@@ -71,7 +71,7 @@ methodObjects:
     httpMethod: post
     tag: Transaction
     typeScriptTag: transaction
-    description: Create Sofort Transaction
+    description: Create SEPA DD Transaction
     parameters:
       - name: ecpTransaction
         schema: object
@@ -79,7 +79,7 @@ methodObjects:
       - name: amount
         schema: number
         description: ''
-        default: 42
+        default: 9.65
       - name: payerInfo
         schema: object
         description: ''
@@ -90,7 +90,7 @@ methodObjects:
       - name: currency
         schema: string
         description: ''
-        default: GBP
+        default: EUR
       - name: authorizedByShopper
         schema: boolean
         description: ''
@@ -111,9 +111,6 @@ methodObjects:
         schema: object
         description: ''
       - name: sepaDirectDebitTransaction
-        schema: object
-        description: ''
-      - name: sofortTransaction
         schema: object
         description: ''
     responses:
@@ -262,22 +259,6 @@ methodObjects:
       - name: batchTransaction
         schema: object
         description: ''
-    responses:
-      - statusCode: '200'
-        description: OK
-  - url: /batch-transactions/{batchId}
-    method: getBatchTransaction
-    httpMethod: get
-    tag: Transaction
-    typeScriptTag: transaction
-    description: Retrieve Batch Transaction
-    parameters:
-      - name: batchId
-        schema: string
-        required: true
-        description: batch ID sent in the Create Batch Transaction request
-        example: BATCHID
-        default: '567890'
     responses:
       - statusCode: '200'
         description: OK
@@ -842,20 +823,6 @@ methodObjects:
       - name: vendorAgreement
         schema: object
         description: ''
-    responses:
-      - statusCode: '200'
-        description: OK
-  - url: /vendors?{parameters}
-    method: getAllVendors
-    httpMethod: get
-    tag: Vendor
-    typeScriptTag: vendor
-    description: Retrieve All Vendors
-    parameters:
-      - name: gettotal
-        schema: boolean
-        description: ''
-        default: true
     responses:
       - statusCode: '200'
         description: OK

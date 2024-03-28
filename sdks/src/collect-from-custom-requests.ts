@@ -360,6 +360,10 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(openapi);
     },
   },
+  "beehiiv.com": {
+    type: "GET",
+    url: "https://stoplight.io/api/v1/projects/beehiiv/v2/nodes/reference/Swarm-Public-API.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
+  },
   "microsoft.com_Dynamics365BusinessCentral": {
     type: "GET",
     url: "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v1.0/contracts/bcoas1.0.yaml",

@@ -139,9 +139,9 @@ paths:
       deprecated: false
   /alt-transactions:
     post:
-      summary: Create Sofort Transaction
+      summary: Create SEPA DD Transaction
       description: ''
-      operationId: create-sofort-transaction
+      operationId: create-sepa-dd-transaction
       requestBody:
         content:
           application/json:
@@ -163,7 +163,7 @@ paths:
                       format: int32
                 amount:
                   type: number
-                  default: 42
+                  default: 9.65
                   format: float
                 payerInfo:
                   type: object
@@ -182,13 +182,13 @@ paths:
                       default: '1234567890'
                     country:
                       type: string
-                      default: uk
+                      default: CA
                 softDescriptor:
                   type: string
                   default: ABC COMPANY
                 currency:
                   type: string
-                  default: GBP
+                  default: EUR
                 authorizedByShopper:
                   type: boolean
                   default: true
@@ -260,12 +260,6 @@ paths:
                     iban:
                       type: string
                       default: DE09100100101234567893
-                sofortTransaction:
-                  type: object
-                  properties:
-                    returnUrl:
-                      type: string
-                      default: http://www.returnURL.com
       deprecated: false
     put:
       summary: Update PayPal Transaction
@@ -465,20 +459,6 @@ paths:
                               '':
                                 type: string
                         type: object
-      deprecated: false
-  /batch-transactions/{batchId}:
-    get:
-      summary: Retrieve Batch Transaction
-      description: ''
-      operationId: retrieve-batch-transaction
-      parameters:
-        - name: batchId
-          in: path
-          description: batch ID sent in the Create Batch Transaction request
-          required: true
-          schema:
-            type: string
-            default: '567890'
       deprecated: false
   /transactions/refund/{transactionId}:
     post:
@@ -1268,18 +1248,6 @@ paths:
             type: integer
             format: int32
             default: 837389
-      deprecated: false
-  /vendors?{parameters}:
-    get:
-      summary: Retrieve All Vendors
-      description: ''
-      operationId: retrieve-all-vendors
-      parameters:
-        - name: gettotal
-          in: query
-          schema:
-            type: boolean
-            default: true
       deprecated: false
 x-readme:
   headers:
