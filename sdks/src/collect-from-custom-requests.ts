@@ -1035,6 +1035,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "workable.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://workable.readme.io/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "radix.ai": {
     type: "GET",
     url: "https://api.talentapi.com/openapi.json",

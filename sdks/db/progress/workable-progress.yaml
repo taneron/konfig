@@ -1,0 +1,671 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /accounts:
+    get: Account_listAccessible
+  /accounts/{subdomain}:
+    get: Account_getPublicJobs
+  /accounts/{subdomain}/departments:
+    get: Account_getDepartmentCollection
+  /accounts/{subdomain}/locations:
+    get: Account_publicJobLocationsGet
+  /candidates:
+    get: Candidate_listCandidates
+    patch: Candidate_updatePartialCandidate
+  /candidates/{id}:
+    get: Candidate_getCandidateById
+  /candidates/{id}/activities:
+    get: Candidate_getActivityStream
+  /candidates/{id}/comments:
+    post: Candidate_createComment
+  /candidates/{id}/copy:
+    post: Candidate_copyToJob
+  /candidates/{id}/disqualify:
+    post: Candidate_disqualifyCandidate
+  /candidates/{id}/move:
+    post: Candidate_moveToStage
+  /candidates/{id}/offer:
+    get: Candidate_getOfferData
+  /candidates/{id}/ratings:
+    post: Candidate_createRating
+  /candidates/{id}/relocate:
+    post: Candidate_relocateCandidateToJob
+  /candidates/{id}/revert:
+    post: Candidate_revertDisqualification
+  /candidates/{id}/tags:
+    put: Candidate_updateTags
+  /candidates/{id}/update_custom_attribute_value:
+    patch: Candidate_updateCustomAttributeValue
+  /departments:
+    get: Department_listDepartments
+  /employees:
+    get: Employee_list
+    post: Employee_createNewEmployee
+  /employees/{id}:
+    get: Employee_getDetails
+    patch: Employee_updateExistingEmployee
+  /employees/{id}/documents:
+    get: Employee_getDocuments
+    post: Employee_uploadDocuments
+  /events:
+    get: Event_collectionGet
+  /events/{id}:
+    get: Event_getById
+  /jobs:
+    get: Job_collectionGet
+  /jobs/{shortcode}:
+    get: Job_getDetails
+  /jobs/{shortcode}/activities:
+    get: Job_getActivityStream
+  /jobs/{shortcode}/candidates:
+    post: Job_createCandidateAtJob
+  /jobs/{shortcode}/custom_attributes:
+    get: Job_getCustomAttributes
+  /jobs/{shortcode}/members:
+    get: Member_getMembers
+  /jobs/{shortcode}/questions:
+    get: Job_getQuestions
+  /jobs/{shortcode}/recruiters:
+    get: Job_getRecruiters
+  /jobs/{shortcode}/stages:
+    get: Job_getStages
+  /members:
+    get: Member_listOfMembers
+  /offers/{id}:
+    get: Offer_get
+  /offers/{id}/approve (COPY):
+    patch: Offer_approveAction
+  /recruiters:
+    get: Recruiter_listExternalRecruiters
+  /requisitions:
+    get: Requisition_list
+  /requisitions/{code}:
+    get: Requisition_getById
+  /requisitions/{code}/approve:
+    patch: Requisition_approveRequisition
+  /requisitions/{code}/reject:
+    patch: Requisition_rejectRequest
+  /stages:
+    get: Stage_collectionGet
+  /subscriptions:
+    get: Subscription_listAccessible
+    post: Subscription_registerEventSubscription
+  /subscriptions/{id}:
+    delete: Subscription_unsubscribeEvent
+  /talent_pool/{stage}/candidates:
+    post: Stage_createCandidate
+operationTags:
+  /accounts:
+    get: Account
+  /accounts/{subdomain}:
+    get: Account
+  /accounts/{subdomain}/departments:
+    get: Account
+  /accounts/{subdomain}/locations:
+    get: Account
+  /candidates:
+    get: Candidate
+    patch: Candidate
+  /candidates/{id}:
+    get: Candidate
+  /candidates/{id}/activities:
+    get: Candidate
+  /candidates/{id}/comments:
+    post: Candidate
+  /candidates/{id}/copy:
+    post: Candidate
+  /candidates/{id}/disqualify:
+    post: Candidate
+  /candidates/{id}/move:
+    post: Candidate
+  /candidates/{id}/offer:
+    get: Candidate
+  /candidates/{id}/ratings:
+    post: Candidate
+  /candidates/{id}/relocate:
+    post: Candidate
+  /candidates/{id}/revert:
+    post: Candidate
+  /candidates/{id}/tags:
+    put: Candidate
+  /candidates/{id}/update_custom_attribute_value:
+    patch: Candidate
+  /departments:
+    get: Department
+  /employees:
+    get: Employee
+    post: Employee
+  /employees/{id}:
+    get: Employee
+    patch: Employee
+  /employees/{id}/documents:
+    get: Employee
+    post: Employee
+  /events:
+    get: Event
+  /events/{id}:
+    get: Event
+  /jobs:
+    get: Job
+  /jobs/{shortcode}:
+    get: Job
+  /jobs/{shortcode}/activities:
+    get: Job
+  /jobs/{shortcode}/candidates:
+    post: Job
+  /jobs/{shortcode}/custom_attributes:
+    get: Job
+  /jobs/{shortcode}/members:
+    get: Member
+  /jobs/{shortcode}/questions:
+    get: Job
+  /jobs/{shortcode}/recruiters:
+    get: Job
+  /jobs/{shortcode}/stages:
+    get: Job
+  /members:
+    get: Member
+  /offers/{id}:
+    get: Offer
+  /offers/{id}/approve (COPY):
+    patch: Offer
+  /recruiters:
+    get: Recruiter
+  /requisitions:
+    get: Requisition
+  /requisitions/{code}:
+    get: Requisition
+  /requisitions/{code}/approve:
+    patch: Requisition
+  /requisitions/{code}/reject:
+    patch: Requisition
+  /stages:
+    get: Stage
+  /subscriptions:
+    get: Subscription
+    post: Subscription
+  /subscriptions/{id}:
+    delete: Subscription
+  /talent_pool/{stage}/candidates:
+    post: Stage
+renameTags: {}
+requestSchemaNames:
+  /candidates/{id}/comments:
+    post:
+      application/json: CandidateCreateCommentRequest
+  /candidates/{id}/copy:
+    post:
+      application/json: CandidateCopyToJobRequest
+  /candidates/{id}/disqualify:
+    post:
+      application/json: CandidateDisqualifyCandidateRequest
+  /candidates/{id}/move:
+    post:
+      application/json: CandidateMoveToStageRequest
+  /candidates/{id}/ratings:
+    post:
+      application/json: CandidateCreateRatingRequest
+  /candidates/{id}/relocate:
+    post:
+      application/json: CandidateRelocateCandidateToJobRequest
+  /candidates/{id}/revert:
+    post:
+      application/json: CandidateRevertDisqualificationRequest
+  /candidates/{id}/tags:
+    put:
+      application/json: CandidateUpdateTagsRequest
+  /candidates/{id}/update_custom_attribute_value:
+    patch:
+      application/json: CandidateUpdateCustomAttributeValueRequest
+  /jobs/{shortcode}/candidates:
+    post:
+      application/json: JobCreateCandidateAtJobRequest
+  /requisitions/{code}/reject:
+    patch:
+      application/json: RequisitionRejectRequestRequest
+  /subscriptions:
+    post:
+      application/json: SubscriptionRegisterEventSubscriptionRequest
+  /talent_pool/{stage}/candidates:
+    post:
+      application/json: StageCreateCandidateRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /accounts:
+    get:
+      '200':
+        application/json: AccountListAccessibleResponse
+      '401':
+        application/json: AccountListAccessible401Response
+  /accounts/{subdomain}:
+    get:
+      '200':
+        application/json: AccountGetPublicJobsResponse
+      '404':
+        application/json: AccountGetPublicJobs404Response
+  /accounts/{subdomain}/departments:
+    get:
+      '200':
+        application/json: AccountGetDepartmentCollectionResponse
+      '404':
+        application/json: AccountGetDepartmentCollection404Response
+  /accounts/{subdomain}/locations:
+    get:
+      '200':
+        application/json: AccountPublicJobLocationsGetResponse
+      '404':
+        application/json: AccountPublicJobLocationsGet404Response
+  /candidates:
+    get:
+      '200':
+        application/json: CandidateListCandidatesResponse
+      '401':
+        application/json: CandidateListCandidates401Response
+      '404':
+        application/json: CandidateListCandidates404Response
+    patch:
+      '200':
+        application/json: CandidateUpdatePartialCandidateResponse
+      '401':
+        application/json: CandidateUpdatePartialCandidate401Response
+      '404':
+        application/json: CandidateUpdatePartialCandidate404Response
+      '422':
+        application/json: CandidateUpdatePartialCandidate422Response
+  /candidates/{id}:
+    get:
+      '200':
+        application/json: CandidateGetCandidateByIdResponse
+      '401':
+        text/plain: CandidateGetCandidateById401Response
+      '404':
+        application/json: CandidateGetCandidateById404Response
+  /candidates/{id}/activities:
+    get:
+      '200':
+        application/json: CandidateGetActivityStreamResponse
+      '401':
+        application/json: CandidateGetActivityStream401Response
+      '404':
+        application/json: CandidateGetActivityStream404Response
+  /candidates/{id}/comments:
+    post:
+      '401':
+        application/json: CandidateCreateCommentResponse
+      '404':
+        application/json: CandidateCreateComment404Response
+  /candidates/{id}/copy:
+    post:
+      '201':
+        application/json: CandidateCopyToJobResponse
+      '401':
+        application/json: CandidateCopyToJob401Response
+      '404':
+        application/json: CandidateCopyToJob404Response
+  /candidates/{id}/disqualify:
+    post:
+      '401':
+        application/json: CandidateDisqualifyCandidateResponse
+      '404':
+        application/json: CandidateDisqualifyCandidate404Response
+  /candidates/{id}/move:
+    post:
+      '401':
+        application/json: CandidateMoveToStageResponse
+      '404':
+        application/json: CandidateMoveToStage404Response
+  /candidates/{id}/offer:
+    get:
+      '200':
+        application/json: CandidateGetOfferDataResponse
+      '401':
+        application/json: CandidateGetOfferData401Response
+      '404':
+        application/json: CandidateGetOfferData404Response
+  /candidates/{id}/ratings:
+    post:
+      '401':
+        application/json: CandidateCreateRatingResponse
+      '404':
+        application/json: CandidateCreateRating404Response
+  /candidates/{id}/relocate:
+    post:
+      '201':
+        application/json: CandidateRelocateCandidateToJobResponse
+      '401':
+        application/json: CandidateRelocateCandidateToJob401Response
+      '404':
+        application/json: CandidateRelocateCandidateToJob404Response
+  /candidates/{id}/revert:
+    post:
+      '401':
+        application/json: CandidateRevertDisqualificationResponse
+      '404':
+        application/json: CandidateRevertDisqualification404Response
+  /candidates/{id}/tags:
+    put:
+      '202':
+        application/json: CandidateUpdateTagsResponse
+      '401':
+        application/json: CandidateUpdateTags401Response
+      '404':
+        application/json: CandidateUpdateTags404Response
+  /candidates/{id}/update_custom_attribute_value:
+    patch:
+      '201':
+        application/json: CandidateUpdateCustomAttributeValueResponse
+      '401':
+        application/json: CandidateUpdateCustomAttributeValue401Response
+      '404':
+        application/json: CandidateUpdateCustomAttributeValue404Response
+  /custom_attributes:
+    get:
+      '200':
+        application/json: CustomAttributesResponse
+      '401':
+        application/json: CustomAttributes401Response
+      '404':
+        application/json: CustomAttributes404Response
+  /departments:
+    get:
+      '200':
+        application/json: DepartmentListDepartmentsResponse
+      '400':
+        application/json: DepartmentListDepartments400Response
+      '404':
+        application/json: DepartmentListDepartments404Response
+  /employee_fields:
+    get:
+      '200':
+        application/json: EmployeeFieldsResponse
+      '400':
+        application/json: EmployeeFields400Response
+      '404':
+        application/json: EmployeeFields404Response
+  /employees:
+    get:
+      '200':
+        application/json: EmployeeListResponse
+      '400':
+        application/json: EmployeeList400Response
+      '404':
+        application/json: EmployeeList404Response
+    post:
+      '201':
+        application/json: EmployeeCreateNewEmployeeResponse
+      '400':
+        application/json: EmployeeCreateNewEmployee400Response
+  /employees/{id}:
+    get:
+      '200':
+        application/json: EmployeeGetDetailsResponse
+      '400':
+        application/json: EmployeeGetDetails400Response
+    patch:
+      '201':
+        application/json: EmployeeUpdateExistingEmployeeResponse
+      '400':
+        application/json: EmployeeUpdateExistingEmployee400Response
+  /employees/{id}/documents:
+    get:
+      '200':
+        application/json: EmployeeGetDocumentsResponse
+      '400':
+        application/json: EmployeeGetDocuments400Response
+    post:
+      '201':
+        application/json: EmployeeUploadDocumentsResponse
+      '400':
+        application/json: EmployeeUploadDocuments400Response
+  /events:
+    get:
+      '200':
+        application/json: EventCollectionGetResponse
+      '401':
+        application/json: EventCollectionGet401Response
+      '404':
+        application/json: EventCollectionGet404Response
+  /events/{id}:
+    get:
+      '200':
+        application/json: EventGetByIdResponse
+      '401':
+        application/json: EventGetById401Response
+      '404':
+        application/json: EventGetById404Response
+  /jobs:
+    get:
+      '200':
+        application/json: JobCollectionGetResponse
+      '401':
+        application/json: JobCollectionGet401Response
+      '404':
+        application/json: JobCollectionGet404Response
+  /jobs/{shortcode}:
+    get:
+      '200':
+        application/json: JobGetDetailsResponse
+      '401':
+        application/json: JobGetDetails401Response
+      '404':
+        application/json: JobGetDetails404Response
+  /jobs/{shortcode}/activities:
+    get:
+      '200':
+        application/json: JobGetActivityStreamResponse
+      '401':
+        application/json: JobGetActivityStream401Response
+      '404':
+        application/json: JobGetActivityStream404Response
+  /jobs/{shortcode}/application_form:
+    get:
+      '200':
+        application/json: JobsshortcodeapplicationFormResponse
+      '401':
+        application/json: JobsshortcodeapplicationForm401Response
+      '404':
+        application/json: JobsshortcodeapplicationForm404Response
+  /jobs/{shortcode}/candidates:
+    post:
+      '201':
+        application/json: JobCreateCandidateAtJobResponse
+      '401':
+        application/json: JobCreateCandidateAtJob401Response
+      '404':
+        application/json: JobCreateCandidateAtJob404Response
+      '422':
+        application/json: JobCreateCandidateAtJob422Response
+  /jobs/{shortcode}/custom_attributes:
+    get:
+      '200':
+        application/json: JobGetCustomAttributesResponse
+      '401':
+        application/json: JobGetCustomAttributes401Response
+  /jobs/{shortcode}/members:
+    get:
+      '200':
+        application/json: MemberGetMembersResponse
+      '401':
+        application/json: MemberGetMembers401Response
+  /jobs/{shortcode}/questions:
+    get:
+      '200':
+        application/json: JobGetQuestionsResponse
+      '401':
+        application/json: JobGetQuestions401Response
+      '404':
+        application/json: JobGetQuestions404Response
+  /jobs/{shortcode}/recruiters:
+    get:
+      '200':
+        application/json: JobGetRecruitersResponse
+      '401':
+        application/json: JobGetRecruiters401Response
+  /jobs/{shortcode}/stages:
+    get:
+      '200':
+        application/json: JobGetStagesResponse
+      '401':
+        application/json: JobGetStages401Response
+  /legal_entities:
+    get:
+      '200':
+        application/json: LegalEntitiesResponse
+      '400':
+        application/json: LegalEntities400Response
+  /members:
+    get:
+      '200':
+        application/json: MemberListOfMembersResponse
+      '401':
+        application/json: MemberListOfMembers401Response
+  /offers/{id}:
+    get:
+      '200':
+        application/json: OfferGetResponse
+      '401':
+        application/json: OfferGet401Response
+      '404':
+        application/json: OfferGet404Response
+  /offers/{id}/approve (COPY):
+    patch:
+      '200':
+        application/json: OfferApproveActionResponse
+      '401':
+        application/json: OfferApproveAction401Response
+      '404':
+        application/json: OfferApproveAction404Response
+  /recruiters:
+    get:
+      '200':
+        application/json: RecruiterListExternalRecruitersResponse
+      '401':
+        application/json: RecruiterListExternalRecruiters401Response
+  /requisitions:
+    get:
+      '200':
+        application/json: RequisitionListResponse
+      '401':
+        application/json: RequisitionList401Response
+      '404':
+        application/json: RequisitionList404Response
+  /requisitions/{code}:
+    get:
+      '200':
+        application/json: RequisitionGetByIdResponse
+      '401':
+        application/json: RequisitionGetById401Response
+      '404':
+        application/json: RequisitionGetById404Response
+  /requisitions/{code}/approve:
+    patch:
+      '200':
+        application/json: RequisitionApproveRequisitionResponse
+      '401':
+        application/json: RequisitionApproveRequisition401Response
+      '404':
+        application/json: RequisitionApproveRequisition404Response
+  /requisitions/{code}/reject:
+    patch:
+      '200':
+        application/json: RequisitionRejectRequestResponse
+      '401':
+        application/json: RequisitionRejectRequest401Response
+      '404':
+        application/json: RequisitionRejectRequest404Response
+  /stages:
+    get:
+      '200':
+        application/json: StageCollectionGetResponse
+      '401':
+        application/json: StageCollectionGet401Response
+  /subscriptions:
+    get:
+      '200':
+        application/json: SubscriptionListAccessibleResponse
+      '404':
+        application/json: SubscriptionListAccessible404Response
+    post:
+      '201':
+        application/json: SubscriptionRegisterEventSubscriptionResponse
+      '400':
+        application/json: SubscriptionRegisterEventSubscription400Response
+      '409':
+        application/json: SubscriptionRegisterEventSubscription409Response
+  /subscriptions/{id}:
+    delete:
+      '200':
+        application/json: SubscriptionUnsubscribeEventResponse
+      '404':
+        application/json: SubscriptionUnsubscribeEvent404Response
+  /talent_pool/{stage}/candidates:
+    post:
+      '201':
+        application/json: StageCreateCandidateResponse
+      '401':
+        application/json: StageCreateCandidate401Response
+      '404':
+        application/json: StageCreateCandidate404Response
+      '422':
+        application/json: StageCreateCandidate422Response
+  /work_schedules:
+    get:
+      '200':
+        application/json: WorkSchedulesResponse
+      '400':
+        application/json: WorkSchedules400Response
+securityParameters:
+  candidate_id:
+    query: false
+  context:
+    query: false
+  created_after:
+    query: false
+  details:
+    query: false
+  email:
+    query: false
+  end_date:
+    query: false
+  include_cancelled:
+    query: false
+  include_fields:
+    query: false
+  job_id:
+    query: false
+  limit:
+    query: false
+  max_id:
+    query: false
+  member_id:
+    query: false
+  offset:
+    query: false
+  order_by:
+    query: false
+  plan_date_from:
+    query: false
+  plan_date_to:
+    query: false
+  query:
+    query: false
+  role:
+    query: false
+  shortcode:
+    query: false
+  since_id:
+    query: false
+  stage:
+    query: false
+  start_date:
+    query: false
+  state:
+    query: false
+  type:
+    query: false
+  updated_after:
+    query: false
+validServerUrls: {}
