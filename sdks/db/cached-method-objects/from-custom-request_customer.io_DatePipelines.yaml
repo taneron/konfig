@@ -1,0 +1,1194 @@
+hash: 357e3421f13be7908cd00522707722e992c80afa8086472b6908c13fead2ffaa
+methodObjects:
+  - url: /identify
+    method: personTraitsAssignment
+    httpMethod: post
+    tag: Identification
+    typeScriptTag: identification
+    description: Identify
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A successful request returns an empty object response.
+  - url: /track
+    method: eventSubmission
+    httpMethod: post
+    tag: Tracking
+    typeScriptTag: tracking
+    description: Track
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A successful request returns an empty object response.
+  - url: /page
+    method: recordPageView
+    httpMethod: post
+    tag: Page
+    typeScriptTag: page
+    description: Page
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A successful request returns an empty object response.
+  - url: /screen
+    method: eventCreate
+    httpMethod: post
+    tag: Screenshot
+    typeScriptTag: screenshot
+    description: Screen
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A successful request returns an empty object response.
+  - url: /group
+    method: addPeopleToGroup
+    httpMethod: post
+    tag: Group
+    typeScriptTag: group
+    description: Group
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A successful request returns an empty object response.
+  - url: /alias
+    method: reconcileIdentities
+    httpMethod: post
+    tag: Alias
+    typeScriptTag: alias
+    description: Alias
+    parameters:
+      - name: type
+        schema: string
+        required: false
+        description: ''
+      - name: previousId
+        schema: string
+        required: true
+        description: ''
+        example: PREVIOUSID
+      - name: userId
+        schema: string
+        required: true
+        description: ''
+        example: USERID
+    responses:
+      - statusCode: '200'
+        description: A successful request returns an empty object response.
+  - url: /batch
+    method: executeRequests
+    httpMethod: post
+    tag: Batch
+    typeScriptTag: batch
+    description: Batch
+    parameters:
+      - name: batch
+        schema: array
+        description: ''
+      - name: context
+        schema: undefined
+        description: ''
+      - name: integrations
+        schema: object
+        description: ''
+        example:
+          All: true
+          Salesforce: false
+    responses:
+      - statusCode: '200'
+        description: A successful request returns an empty object response.
+numberOfSchemas: 173
+apiDescription: >
+  This is a reference for the Data Pipelines API. In general, you'll consume
+  this API through one of our source libraries—our JavaScript client library or
+  any of our server packages. But you can also integrate directly with our REST
+  API if you don't want to install one of our libraries or you want to support a
+  source that we don't have a native integration with.
+
+
+  **All endpoints begin with: `https://cdp.customer.io/v1`**
+
+
+  <div class="fly-panel fly-light regionUS">
+
+  <div class="fly-panel-body us-server">
+
+  <p class="text--bold">You're looking at our US regional endpoints</p>
+
+  <p>The only difference in our US and European Union (EU) regions is the
+  subdomain—e.g. <code>cdp-eu</code> for the EU region; there are no other
+  differences between the two regions. If your account is based in the European
+  Union (EU) data center, <a id='eu-anchor'
+  onClick="anchorToRegion(this.id)">click here</a> to show EU endpoints in our
+  code samples and documentation below.</p>
+
+  <p>If you don't know your region, you can <b>find your account region</b> on
+  <a href="https://fly.customer.io/settings/privacy">your account's privacy
+  page</a>, or <a href="#operation/getRegion">get your region using the
+  API</a>.</p>
+
+  </div>
+
+  <div class="fly-panel-body eu-server">
+
+  <p class="text--bold">You're looking at our EU regional endpoints</p>
+
+  <p>The only difference in our US and European Union (EU) regions is the
+  subdomain—e.g. <code>cdp</code> for our US region rather than
+  <code>cdp-eu</code> for the EU; there are no other differences between the two
+  regions. If your account is based in the European Union (EU) data center, you
+  can <a id='us-anchor' onClick="anchorToRegion(this.id)">click here</a> to to
+  show US endpoints in our code samples and documentation below.</p>
+
+  <p>If you don't know your region, you can <b>find your account region</b> on
+  <a href="https://fly.customer.io/settings/privacy">your account's privacy
+  page</a>, or <a href="#operation/getRegion">get your region using the
+  API</a>.</p>
+
+  </div></div>
+
+
+  # API region
+
+
+  We host services in the United States (US) and European Union (EU, host
+  subdomains are suffixed with `-eu`). Select the appropriate region for server
+  addresses that apply to your region. 
+
+
+  If you're in our EU region, you'll need to specify the EU URL when you
+  initialize our server-side libraries. If you use our JavaScript client
+  library, we'll set your region and route data/calls automatically.
+
+
+  # Set up a REST API source
+
+
+  After you add a Rest API source, you'll use endpoints at
+  `https://cdp.customer.io/v1/{method}`
+
+
+  1. Go to the <svg class="icon"><use href="#connection" /></svg> tab and click
+  **Sources**.
+
+  1. Click **Add Source**, pick **HTTP**, and click **Next**.
+
+  1. Give the source a *Name* and copy your *API Key*. You'll use this key to
+  authenticate with our API. If you don't copy the key now, you can always get
+  it later from the *Settings* tab when you're done setting up your source. 
+
+  1. (Optional) Test your connection by sending a test call. You can copy your
+  API key into an app like Postman or send a CURL request. If your request is
+  successful, and then you click *Test Connection* we'll let you know if your
+  request was successful and you've set up your HTTP implementation
+  successfully.
+
+  1. Click **Submit**.
+    
+  Now you can connect your REST API source to destinations.
+
+
+  # Try out our postman collection
+
+
+  We've generated a Postman collection with all of the endpoints organized as
+  you'll find them on this page, with a starter environment (mainly to contain
+  your API key). For our API endpoints, **your API key is your username and your
+  password is blank**.
+
+
+  You'll notice that payloads on this page can contain significantly more
+  information than the payloads that appear in our collection. We've limited our
+  collections to the fields that you'll _typically_ use when you send calls to
+  our APIs and libraries, so it's easier to get started. But you can add
+  additional fields to payloads—like `context`, `integrations`, and so on—if you
+  want.
+
+
+  If you fork this collection, you might want to disable the *Watch original
+  collection* option. We automatically update our Postman collection whenever we
+  release changes to our documentation, even if we don't change our APIs—which
+  happens daily! Rather than being flooded with Postman notifications, you can
+  check out our [Release Notes](https://customer.io/docs/api/cdp/) for updates
+  to our APIs.
+
+
+  <div class="postman-run-button"
+
+  data-postman-action="collection/fork"
+
+  data-postman-visibility="public"
+
+  data-postman-var-1="23697545-287dd370-3d8b-4a71-80fe-75d6b7c7ff61"
+
+  data-postman-collection-url="entityId=23697545-287dd370-3d8b-4a71-80fe-75d6b7c7ff61&entityType=collection&workspaceId=35e4a70d-66bd-4b3e-8a0c-57f9e32080dc"
+
+  data-postman-param="env%5BCustomer.io%20Data%20Pipelines%20API%20Environment%5D=W3sia2V5IjoiY2RwX2FwaV91cmwiLCJ0eXBlIjoiZGVmYXVsdCIsInZhbHVlIjoiY2RwLmN1c3RvbWVyLmlvIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJ3cml0ZV9rZXkiLCJ0eXBlIjoic2VjcmV0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0="></div>
+
+  <script type="text/javascript">
+    (function (p,o,s,t,m,a,n) {
+      !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+      !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+        (n = o.createElement("script")),
+        (n.id = s+t), (n.async = 1), (n.src = m), n
+      ));
+    }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+  </script>
+
+
+  # Authentication 
+
+
+  Our API uses basic authorization with an API Key provided when you set up a
+  source. If you use Postman or another platform that helps you send API calls,
+  this API key is the *Username*, and the *Password* is blank.
+
+
+  Our sources are all authenticated using a **API Key** that we generate when
+  you create a source.
+
+
+  <SecurityDefinitions />
+
+
+  # API limits
+
+
+  A request is limited to 32KB. A batch request is limited to 500KB total and
+  32KB per call in the request. If a request exceeds these limits, you will
+  receive a 200 response, but the request will not go through.
+
+
+  # Backfilling data
+
+
+  By default, Customer.io records a `timestamp` when we receive requests. If
+  you're sending data to Customer.io in real time, you don't need to worry about
+  the timestamp.
+
+
+  If you want to backfill requests, you can send a `timestamp`—an ISO 8601
+  date-time string—telling us when the request occurred. This provides a way to
+  log `track` and `page` calls when the activities _actually_ took place. 
+
+
+  # Schemas
+
+
+  You only need to populate a few fields when you send data to Customer.io. Our
+  JavaScript client and server libraries populate additional information for
+  each call, which you'll see when you look at individual events in Customer.io.
+
+
+  The information below shows the complete list of information reported to
+  Customer.io with each event. 
+
+
+  See the endpoints below this section for the much smaller list of fields
+  you'll actually set when you invoke methods in our client and server-side
+  libraries.
+
+
+  ## Identify Schema
+
+
+  When you send an identify call, you'll typically include a `userId` and
+  `traits`. Most other fields are populated by Customer.io—either by a source
+  library or our servers.
+
+
+  If you provide an `anonymousId`, we'll attribute traits to an anonymous user.
+  If you provide both an `anonymousId` and `userId`, we'll associate anonymous
+  activity to the `userId`.
+
+
+  Traits are the same as *Attributes* in Customer.io. If Customer.io Messaging
+  is your destination, you'll see that traits map 1-to-1 with attributes. But
+  not all systems call the things you know about people `traits` or
+  `attributes`. You'll need to check with your destination to understand what
+  your destination calls people-data!
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/identify" />
+
+
+  ## Track Schema
+
+
+  When you send a track call, you'll typically include the event name and
+  additional properties you want to track. You can provide either an
+  `anonymousId` or a `userId`. If you provide both, we attribute the activity to
+  the `userId` and ignore the `anonymousId`.
+
+
+  Most other fields are populated by Customer.io—either by a source library or
+  our servers.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/track" />
+
+
+  ## Page Schema
+
+
+  A `page` call represents a pageview.
+
+
+  Page events are automatically sent whenever you load our JavaScript library,
+  which is typically every page. Customer.io automatically gathers the page name
+  and URL, but you can pass additional properties, like the `category`. 
+
+
+  Most other fields are populated by Customer.io—either by a source library or
+  our servers.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/page" />
+
+
+  ## Screen Schema
+
+
+  A `scren` call indicates that someone went to a screen in your mobile app.
+
+
+  We don't have mobile libraries supporting the `screen` method just yet, but
+  we'll still accept calls with `type: "screen"` if you want to set up your own
+  calls.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/screen" />
+
+
+  ## Group Schema
+
+
+  Group events assign the identified person to a group. You'll typically pass
+  the `groupId` that you want to associate a person with, and any `traits` that
+  you want to assign to the group.
+
+
+  Most other fields are populated by Customer.io—either by a source library or
+  our servers.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/group" />
+
+
+  ## Common fields
+
+
+  These are the fields that we augment incoming data with. The shape of this
+  data may change depending on the type of call you make (identify, track, etc),
+  and the source medium (client side javascript, mobile library, etc). We
+  collect many of these values automatically, though you can override some of
+  them. See individual methods below for information about which fields are
+  accepted in requests.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/all_common_fields" />
+
+
+  ## The Context object
+
+
+  These are fields that we collect automatically with requests—context for the
+  request—but you can override these values.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/context" />
+
+
+  # Customer.io semantic event schemas
+
+
+  ```javascript
+
+  analytics.track("Device Created or Updated", {
+    device: {
+      token: "string",
+      type: "ios"
+    }
+  });
+
+  ```
+
+
+  Journeys, our messaging automation tool, supports a number of actions that
+  aren't immediately apparent from the API. For example, I can add a person
+  using the `identify` function, but what if I want to remove a person? 
+
+
+  That's what semantic events are for: they let you send `track` calls with a
+  specific event name and payload to perform actions in Journeys. In general,
+  the event names map directly to the thing you want to do: like `Create Device`
+  or `Delete Person`.
+
+
+  ## Delete person
+
+
+  Remove a person from your Customer.io environment. You might do this when
+  someone cancels their subscription with you or otherwise leaves your service.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/delete_person" />
+
+
+  ## Create or Update a Device
+
+
+  Add or update a device. If a device (represented by the
+  `context.device.token`) exists, does not exist, we'll create it. If the device
+  token already exists, we'll update the it.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/create_update_device" />
+
+
+  ## Delete a Device
+
+
+  Delete a device. You might do this when someone logs out of your app or
+  otherwise removes a device.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/delete_device" />
+
+
+  ## Delete a relationship
+
+
+  Remove a relationship between a person and an object in Customer.io. This is
+  basically the opposite of a `group` operation. Where objects represent things
+  like accounts, companies, or online classes, you might delete a relationship
+  when a person is no longer on an account, leaves a company, or drops a class.
+
+
+  This event requires a `groupId` and an `objectTypeId`. If you don't provide an
+  `objectTypeId`, we'll assume it's `1`, but if the `groupId` with the
+  associated objectTypeId` (defaulting to 1) does not exist, the event will
+  _not_ remove a person from the group.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/relationship_deleted" />
+
+
+  ## Delete a group (object)
+
+
+  Remove a group (also called an "object") from Customer.io Journeys.
+  Groups/objects represent things like accounts, companies, and online
+  classes—non-people entities that people can be related to. You might delete a
+  group when an account is closed, a company is acquired, or you stop offering a
+  class.
+
+
+  This event requires a `groupId` and an `objectTypeId`. If you don't provide an
+  `objectTypeId`, we'll assume it's `1`, but if the `groupId` with the
+  associated `objectTypeId` (defaulting to 1) does not exist, the event will
+  _not_ find and delete the `groupId`.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/group_deleted" />
+
+
+  ## Suppress a person
+
+
+  Remove a person from your Customer.io workspace _and_ prevent them from being
+  added back to your workspace using the same identifier. In general you should
+  **only send this event for compliance reasons**, like when someone invokes
+  their right to be forgotten in accordance with GDPR or CAN-SPAM regulations.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/suppress_person" />
+
+
+  ## Unsuppress a person
+
+
+  Allow a userId to be added back to your Customer.io workspace. This does not
+  restore information from a person you previously suppressed. It only allows
+  you to add a person back to your workspace using the same identifier.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/unsuppress_person" />
+
+
+  ## Report a message delivery
+
+
+  Reports delivery events for messages. In general, we use this event with our
+  JavaScript snippet to report delivery events for in-app messages back to your
+  Customer.io workspace.
+
+
+  While Customer.io knows about messages that are sent, we use this event to
+  determine when an in-app message is delivered, clicked, and so on. Each
+  message contains a unique `deliveryId` that we trace back to the person,
+  campaign/broadcast, and other items in your Customer.io workspace. 
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/report_delivery_event" />
+
+
+  # A/B test event schemas
+
+   ```javascript
+  analytics.track('Experiment Viewed', {
+    experiment_id: "12345",
+    experiment_name: "Homepage Hero",
+    variant_id: "67890",
+    variant_name: "Hero B"
+  })
+
+  ```
+
+  If you `track` A/B tests, we recommend that you use the event name `Experiment
+  Viewed` and `properties` listed below. Sending uniform events that conform to
+  the schema defined here helps ensure that you can use any default actions that
+  we set up for destinations that rely on A/B test events—now or with
+  destinations we add in the future.
+
+
+  <div style="height: 140px;"></div>
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/experiment_viewed" />
+
+
+  # Ecommerce event schemas
+
+   ```javascript
+  analytics.track('Product Viewed', {
+    product_id: "coolshoes-123"
+    sku: "abc-123-xyz"
+    category: "shoes"
+    name: "Cool Shoes"
+    brand: "A Shoe Brand"
+    variant: "red"
+    price: 139.99
+    quantity: 1
+    coupon: "NEWUSER20"
+    position: 3
+    url: "https://www.example.com/product/123"
+    image_url: "https://www.example.com/product/123.jpg"
+    currency: "USD"
+    value: 119.99
+  })
+
+  ```
+
+
+  We've defined a set of `track` events that you can use to send ecommerce
+  activity from your sources. Our default actions and data structures assume
+  that you send ecommerce events in the shapes below. [Learn more about our
+  ecommerce specification](https://customer.io/docs/api/cdp/).
+
+
+  If you send an event with a matching name and structure defined below (where
+  the schemas below represents the `properties` object), destinations that rely
+  on ecommerce events (like "ad" destinations) will already be set up with
+  actions to handle your ecommerce source events. For example, sending the
+  following `Product Viewed` event would automatically trigger an action in most
+  of our "ad" destinations and handle all the fields in the event.
+
+
+  **The title of each schema below is the name of the event you should pass in a
+  `track` call**. 
+
+
+  While you can map ecommerce events however you want, we recommend that you use
+  the events below to take advantage of our default actions and data structures.
+  These events make it easy to send uniform data through data pipelines to your
+  destinations.
+
+
+  <div style="height: 140px;"></div>
+
+
+  ## Products Searched
+
+
+  Send `Products Searched` when a user searches for products.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/products_searched" />
+
+
+  ## Product List Viewed
+
+
+  Send the `Product List Viewed` event when a user views a product.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_viewed" />
+
+
+  ## Product List Filtered
+
+
+  Send the `Product List Filtered` event when a user filters a list of products.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_list_filtered" />
+
+
+  ## Product Clicked
+
+
+  Send the `Product Clicked` event when a user clicks a product.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_clicked" />
+
+
+  ## Product Viewed
+
+
+  Send the `Product Viewed` event when a user viewed a product. This might
+  happen on a page, in a modal window, etc.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_clicked" />
+
+
+  ## Product Added
+
+
+  Send the `Product Added` event when a user adds a product to their cart.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_added" />
+
+
+  ## Product Removed
+
+
+  Send the `Product Removed` event when a user removes a product from their
+  cart.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_removed" />
+
+
+  ## Cart Viewed
+
+
+  Send the `Cart Viewed` event when a user views their cart.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/cart_viewed" />
+
+
+  ## Checkout Started
+
+
+  Send the `Checkout Started` event when a user starts the checkout process.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/checkout_started" />
+
+
+  ## Checkout Step Viewed
+
+
+  Send the `Checkout Step Viewed` event when a user views a step in the checkout
+  process.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/checkout_step_viewed" />
+
+
+  ## Checkout Step Completed
+
+
+  Send the `Checkout Step Completed` event when a user completes a step in the
+  checkout process.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/checkout_step_completed" />
+
+
+  ## Payment Info Entered
+
+
+  Send the `Payment Info Entered` event when a user enters their payment
+  information.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/payment_info_entered" />
+
+
+  ## Order Completed
+
+
+  Send the `Order Completed` event when a user completes an order.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/order_completed" />
+
+
+  ## Order Updated
+
+
+  Send the `Order Updated` event when a user updates an order.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/order_updated" />
+
+
+  ## Order Refunded
+
+
+  Send the `Order Refunded` event when you refund an order.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/order_refunded" />
+
+
+  ## Order Cancelled
+
+
+  Send the `Order Cancelled` event when a customer cancels an order.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/order_cancelled" />
+
+
+  ## Promotion Viewed
+
+
+  Send the `Promotion Viewed` event when a user views a promotion.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/promotion_viewed" />
+
+
+  ## Promotion Clicked
+
+
+  Send the `Promotion Clicked` event when a user clicks a promotion.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/promotion_clicked" />
+
+
+  ## Coupon Entered
+
+
+  Send the `Coupon Entered` event when a user enters a coupon.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/coupon_entered" />
+
+
+  ## Coupon Applied
+
+
+  Send the `Coupon Applied` event when you apply a coupon the customer entered
+  to their order/transaction.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/coupon_applied" />
+
+
+  ## Coupon Denied
+
+
+  Send the `Coupon Denied` event when you deny a user's coupon. This might
+  happen because the coupon code is invalid, expired, etc.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/coupon_denied" />
+
+
+  ## Coupon Removed
+
+
+  Send the `Coupon Removed` event when a user revmoes a coupon from their cart
+  or order.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/coupon_removed" />
+
+
+  ## Product Added to Wishlist
+
+
+  Send the `Product Added to Wishlist` event when a user adds a product to their
+  wishlist.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_added_to_wishlist"
+  />
+
+
+  ## Product Removed from Wishlist
+
+
+  Send the `Product Removed from Wishlist` event when a user removes a product
+  from their wishlist.
+
+
+  <SchemaDefinition
+  schemaRef="#/components/schemas/product_removed_from_wishlist" />
+
+
+  ## Wishlist Product Added to Cart
+
+
+  Send the `Wishlist Product Added to Cart` event when a user adds a product
+  from their wishlist to their cart.
+
+
+  <SchemaDefinition
+  schemaRef="#/components/schemas/wishlist_product_added_to_cart" />
+
+
+  ## Product Shared
+
+
+  Send the `Product Shared` event when a user shares a product.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_shared" />
+
+
+  ## Cart Shared
+
+
+  Send the `Cart Shared` event when a user shares their cart.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/cart_shared" />
+
+
+  ## Product Reviewed
+
+
+  Send the `Product Reviewed` event when a user submits a review of a product.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/product_reviewed" />    
+
+
+  # Email event schemas
+
+
+  If you send events from an email service provider or another application that
+  sends and tracks email, we recommend that you use events with the names and
+  `properties` specified below. Sending uniform events that conform to the
+  schemas defined here ensures that you can use any default actions that we set
+  up for destinations that rely on email events—now or with destinations we add
+  in the future.
+
+
+  ```json
+
+  {
+    "user_id": "020ba8yf4r",
+    "action": "track",
+    "event": "Email Delivered",
+    "context": {
+      "traits": {
+        "email": "cool.person@example.com"
+      }
+    },
+    "properties": {
+      "email_id": "18vzF7u3z",
+      "email_subject": "20% off: A token of our appreciation!",
+      "campaign_id": "abc123",
+      "campaign_name": "New Customer Discount"
+    }
+  }
+
+  ```
+
+
+  <div style="height: 140px;"></div>
+
+
+  ## Email Bounced
+
+
+  This event indicates that your email server/service provider couldn’t deliver
+  a message to the recipient.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/email_event_bounced" />
+
+
+  ## Email Delivered
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/email_event_delivered"
+  />    
+
+
+  ## Email Opened
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/email_event_opened" />    
+
+
+  ## Email Link Clicked
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/email_event_link_clicked"
+  />    
+
+
+  ## Email Marked as Spam
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/email_event_marked_as_spam"
+  />    
+
+
+  ## Email Unsubscribed
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/email_event_unsubscribed"
+  />    
+
+
+  # Live chat event schemas
+
+
+  ```javascript
+
+  analytics.track('Experiment Viewed', {
+    experiment_id: "12345",
+    experiment_name: "Homepage Hero",
+    variant_id: "67890",
+    variant_name: "Hero B"
+  })
+
+  ```
+
+  If you send events from a live chat application, we recommend that you use
+  events with the names and `properties` specified below. Sending uniform events
+  that conform to the schemas defined here ensures that you can use any default
+  actions that we set up for destinations that rely on Live Chat events—now or
+  with destinations we add in the future.
+
+
+  <div style="height: 140px;"></div>
+
+
+  ## Live Chat Conversation Started
+
+
+  Send this event when a user begins a conversation with you or your team (the
+  "agent").
+
+
+  <SchemaDefinition
+  schemaRef="#/components/schemas/live_chat_conversation_started" />
+
+
+  ## Live Chat Conversation Ended
+
+
+  Send this event when you or a user ends a conversation.
+
+
+  <SchemaDefinition
+  schemaRef="#/components/schemas/live_chat_conversation_ended" />
+
+
+  ## Live Chat Message Sent
+
+
+  Send this event when an agent sends a message to a customer/user.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/live_chat_message_sent" />
+
+
+  ## Live Chat Message Received
+
+
+  Send this event when you receive a message from a customer/user.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/live_chat_message_received"
+  />
+
+
+  # Video events
+
+
+  ```javascript
+
+  analytics.track('Experiment Viewed', {
+    experiment_id: "12345",
+    experiment_name: "Homepage Hero",
+    variant_id: "67890",
+    variant_name: "Hero B"
+  })
+
+  ```
+
+  If you send events from a live chat application, we recommend that you use
+  events with the names and `properties` specified below. Sending uniform events
+  that conform to the schemas defined here ensures that you can use any default
+  actions that we set up for destinations that rely on Live Chat events—now or
+  with destinations we add in the future.
+
+
+  ## Video playback started
+
+
+  When a user presses Play; after the last user action required for playback to
+  begin (for example, after user login/authentication).
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_playback_started" />
+
+
+  ## Video playback paused
+
+
+  When a user pauses playback.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_playback_paused" />
+
+
+  ## Video playback interrupted
+    
+  When a user is watching a video and playback is interrupted by an error,
+  network loss, or buffering. With this event, you can send a `method` to
+  indicate the reason for the interruption.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_playback_interrupted"
+  />
+
+
+  ## Video playback buffer started
+
+
+  Send this event when playback begins buffering content or an ad.
+
+
+  <SchemaDefinition
+  schemaRef="#/components/schemas/video_playback_buffer_started" />
+
+
+  ## Video playback buffer completed
+
+
+  Send this event when buffering finishes.
+
+
+  <SchemaDefinition
+  schemaRef="#/components/schemas/video_playback_buffer_completed" />
+
+
+  ## Video playback seek started
+
+
+  Send this event when a user begins seeking to a new position in the video. Use
+  `position` to show where the user begins seeking from and `seek_position` to
+  capture where the user ends.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_playback_seek_started"
+  />
+
+
+  ## Video playback seek completed
+
+
+  After a user manually seeks to a certain position of the content or ad in the
+  playback. Pass in the position property to denote where the user desires to
+  begin the playback from.
+
+
+  <SchemaDefinition
+  schemaRef="#/components/schemas/video_playback_seek_completed" />
+
+
+  ## Video playback resumed
+
+
+  Send this event when a user resumes playback after they previously paused
+  playback.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_playback_resumed" />
+
+
+  ## Video playback completed
+
+
+  Send this event when a user finishes a playback session.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_playback_completed" />
+
+
+  ## Video playback exited
+
+
+  Send this event when a user navigates away from a playback/stream (scrolls out
+  of view, goes to a different page, etc).
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_playback_exited" />
+
+
+  ## Video content started
+
+
+  Send this event when a user begins watching a video content within a playback
+  session.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_content_started" />
+
+
+  ## Video content playing
+
+
+  Send this event as a heartbeat on a regular interval to track how far into the
+  video a person is (indicated by the `position`).
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_content_playing" />
+
+
+  ## Video content completed
+
+
+  Send this event when a user finishes watching a video content within a
+  playback session—`position` and `total_length` are equal.
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_content_completed" />
+
+
+  ## Video ad started 
+
+
+  Send this event when a user begins watching an ad within a playback session.
+
+
+  ## Video ad playing
+
+
+  Send this event as a heartbeat on a regular interval to track how far into the
+  ad a person is (indicated by the `position`).
+
+
+  <SchemaDefinition schemaRef="#/components/schemas/video_ad_playing" />
+
+
+  ## Video ad completed
+
+
+  Send this event when a user finishes watching an ad within a playback
+  session—`position` and `total_length` are equal.

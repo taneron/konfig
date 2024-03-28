@@ -1,0 +1,2316 @@
+hash: 69654d0d731cec1be5ea25ee3af3f906a1ec8a56881a1be6ffe4b3827b1d2739
+methodObjects:
+  - url: /v1/campaigns/{broadcast_id}/triggers
+    method: triggerBroadcast
+    httpMethod: post
+    tag: Send Messages
+    typeScriptTag: sendMessages
+    description: Trigger a broadcast
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: >-
+          Unauthorized request. Make sure that you provided the right
+          credentials.
+      - statusCode: '404'
+        description: The `broadcast_id` does not exist.
+      - statusCode: '422'
+        description: ''
+  - url: /v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors
+    method: getBroadcastErrors
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get broadcast error descriptions
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: >-
+          Unauthorized request. Make sure that you provided the right
+          credentials.
+      - statusCode: '404'
+        description: The campaign ID or trigger ID from your request do not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/send/email
+    method: transactionalEmail
+    httpMethod: post
+    tag: Send Messages
+    typeScriptTag: sendMessages
+    description: Send a transactional email
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/send/push
+    method: transactionalPush
+    httpMethod: post
+    tag: Send Messages
+    typeScriptTag: sendMessages
+    description: Send a transactional push
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/activities
+    method: list
+    httpMethod: get
+    tag: Activities
+    typeScriptTag: activities
+    description: List activities
+    parameters:
+      - name: start
+        schema: string
+        required: false
+        description: >-
+          The token for the page of results you want to return. Responses
+          contain a `next` property. Use this property as the `start` value to
+          return the next page of results.
+      - name: type
+        schema: string
+        required: false
+        description: The type of activity you want to search for.
+        example: sent_email
+      - name: name
+        schema: string
+        required: false
+        description: The name of the event or attribute you want to return.
+        example: something_happened
+      - name: deleted
+        schema: boolean
+        required: false
+        description: If true, return results for deleted people.
+        default: false
+      - name: customerId
+        schema: string
+        required: false
+        description: >
+          The `identifier` of the person you want to look up. By default, this
+          is a person's `id`. You can use the `id_type` parameter to look up a
+          person by `email` or `cio_id`.
+
+
+          If you use a person's `cio_id`, you must prefix the value value with
+          `cio_` when using it to find or reference a person (i.e.
+          `cio_03000010` for a `cio_id` value of 03000010).
+      - name: idType
+        schema: string
+        required: false
+        description: >-
+          The type of `customer_id` you want to use to reference a person. If
+          you don't provide this parameter, we assume that the `customer_id` in
+          your request is a person's `id`.
+      - name: limit
+        schema: integer
+        required: false
+        description: The maximum number of results you want to retrieve per page.
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts
+    method: list
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: List broadcasts
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}
+    method: getMetadata
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get a broadcast
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The broadcast you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{broadcast_id}/triggers/{trigger_id}
+    method: getStatus
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get the status of a broadcast
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: >-
+          You can get triggers to know when you triggered a broadcast and
+          whether or not it's been processed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/metrics
+    method: getMetrics
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get broadcast metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The broadcast you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/metrics/links
+    method: getLinkMetrics
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get broadcast link metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The broadcast you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/actions
+    method: getActions
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: List broadcast actions
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The broadcast you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/messages
+    method: getMessages
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get messages for a broadcast
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The broadcast you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/actions/{action_id}
+    method: getActionDetails
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get a broadcast action
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist for this action.
+      - statusCode: '404'
+        description: The broadcast or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/actions/{action_id}
+    method: updateActionContents
+    httpMethod: put
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Update a broadcast action
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist for this action.
+      - statusCode: '404'
+        description: The broadcast or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}
+    method: getTranslationMessage
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get a translation of a broadcast message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist for this action.
+      - statusCode: '404'
+        description: The broadcast or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}
+    method: updateTranslation
+    httpMethod: put
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Update a translation of a broadcast message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist for this action.
+      - statusCode: '404'
+        description: The broadcast or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcast/{broadcast_id}/actions/{action_id}/metrics
+    method: getActionMetrics
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get broadcast action metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The broadcast and/or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics/links
+    method: getActionLinkMetrics
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get broadcast action link metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The broadcast and/or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/broadcasts/{broadcast_id}/triggers
+    method: getTriggers
+    httpMethod: get
+    tag: Broadcasts
+    typeScriptTag: broadcasts
+    description: Get broadcast triggers
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The broadcast does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns
+    method: getList
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: List campaigns
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}
+    method: getMetadata
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get a campaign
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The campaign you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/metrics
+    method: getMetrics
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get campaign metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The campaign you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/metrics/links
+    method: getLinkMetrics
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get campaign link metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The campaign you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/actions
+    method: listActions
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: List campaign actions
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The campaign you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/messages
+    method: getMessageMetadata
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get campaign message metadata
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The campaign you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/actions/{action_id}
+    method: getActionInfo
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get a campaign action
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist for this action.
+      - statusCode: '404'
+        description: The campaign or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/actions/{action_id}
+    method: updateActionContents
+    httpMethod: put
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Update a campaign action
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist for this action.
+      - statusCode: '404'
+        description: The campaign or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/actions/{action_id}/language/{language}
+    method: getMessageTranslation
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get a translation of a campaign message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist for this action.
+      - statusCode: '404'
+        description: The campaign or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/actions/{action_id}/language/{language}
+    method: updateTranslation
+    httpMethod: put
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Update a translation of a campaign message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist for this action.
+      - statusCode: '404'
+        description: The campaign or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/actions/{action_id}/metrics
+    method: getActionMetrics
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get campaign action metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The campaign and/or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/actions/{action_id}/metrics/links
+    method: getLinkMetricsForAction
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get link metrics for an action
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The campaign and/or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/campaigns/{campaign_id}/journey_metrics
+    method: getJourneyMetrics
+    httpMethod: get
+    tag: Campaigns
+    typeScriptTag: campaigns
+    description: Get campaign journey metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          You may have omitted query parameters or the `start` time occurred
+          after the `end` time.
+      - statusCode: '404'
+        description: The campaign and/or action does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/collections
+    method: list
+    httpMethod: get
+    tag: Collections
+    typeScriptTag: collections
+    description: List your collections
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/collections
+    method: createNew
+    httpMethod: post
+    tag: Collections
+    typeScriptTag: collections
+    description: Create a collection
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Your request was malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/collections/{collection_id}
+    method: removeCollection
+    httpMethod: delete
+    tag: Collections
+    typeScriptTag: collections
+    description: Delete a collection
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: The collection is deleted.
+      - statusCode: '404'
+        description: The collection `id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/collections/{collection_id}
+    method: getDetails
+    httpMethod: get
+    tag: Collections
+    typeScriptTag: collections
+    description: Lookup a collection
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The collection `id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/collections/{collection_id}
+    method: updateCollection
+    httpMethod: put
+    tag: Collections
+    typeScriptTag: collections
+    description: Update a collection
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Your request was malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/collections/{collection_id}/content
+    method: getContents
+    httpMethod: get
+    tag: Collections
+    typeScriptTag: collections
+    description: Lookup collection contents
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The collection `id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/collections/{collection_id}/content
+    method: updateContents
+    httpMethod: put
+    tag: Collections
+    typeScriptTag: collections
+    description: Update the contents of a collection
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The collection `id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers
+    method: findByEmail
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Get customers by email
+    parameters:
+      - name: email
+        schema: string
+        required: true
+        description: The email address you want to search for.
+        example: EMAIL
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: >-
+          Unauthorized request. Make sure that you provided the right
+          credentials.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers
+    method: searchFilter
+    httpMethod: post
+    tag: Customers
+    typeScriptTag: customers
+    description: Search for customers
+    parameters:
+      - name: start
+        schema: string
+        required: false
+        description: >-
+          The token for the page of results you want to return. Responses
+          contain a `next` property. Use this property as the `start` value to
+          return the next page of results.
+      - name: limit
+        schema: integer
+        required: false
+        description: The maximum number of results you want to retrieve per page.
+        default: 50
+      - name: filter
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: >-
+          Unauthorized request. Make sure that you provided the right
+          credentials.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers/{customer_id}/attributes
+    method: getAttributes
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Lookup a customer's attributes
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The `customer_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers/{customer_id}/relationships
+    method: lookupRelationships
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Lookup a customer's relationships
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The `customer_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers/attributes
+    method: listAttributesDevices
+    httpMethod: post
+    tag: Customers
+    typeScriptTag: customers
+    description: List customers, attributes, and devices
+    parameters:
+      - name: ids
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request is malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers/{customer_id}/segments
+    method: lookupSegments
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Lookup a customer's segments
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The `customer_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers/{customer_id}/messages
+    method: getMessages
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Lookup messages sent to a customer
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The `customer_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers/{customer_id}/activities
+    method: getActivities
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Lookup a customer's activities
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request parameters are malformed.
+      - statusCode: '404'
+        description: The `customer_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/customers/{customer_id}/subscription_preferences
+    method: getSubscriptionPreferences
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Lookup a customer's subscription preferences
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: The `customer_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/esp/search_suppression/{email_address}
+    method: lookupAddress
+    httpMethod: get
+    tag: ESP Suppression
+    typeScriptTag: espSuppression
+    description: Look up an ESP-suppressed address
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/esp/suppression/{suppression_type}
+    method: getEmailsByType
+    httpMethod: get
+    tag: ESP Suppression
+    typeScriptTag: espSuppression
+    description: Get ESP-suppressed emails by type
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/esp/suppression/{suppression_type}/{email_address}
+    method: unSuppressAddress
+    httpMethod: delete
+    tag: ESP Suppression
+    typeScriptTag: espSuppression
+    description: Un-suppress an ESP-suppressed address
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: A successful request produces no content.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/esp/suppression/{suppression_type}/{email_address}
+    method: emailAddress
+    httpMethod: post
+    tag: ESP Suppression
+    typeScriptTag: espSuppression
+    description: Suppress an email at the ESP
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/exports
+    method: listMetrics
+    httpMethod: get
+    tag: Exports
+    typeScriptTag: exports
+    description: List exports
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/exports/{export_id}
+    method: getExportInfo
+    httpMethod: get
+    tag: Exports
+    typeScriptTag: exports
+    description: Get an export
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The export ID does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/exports/{export_id}/download
+    method: downloadExportSignedLink
+    httpMethod: get
+    tag: Exports
+    typeScriptTag: exports
+    description: Download an export
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The export ID does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/exports/customers
+    method: createCustomerExport
+    httpMethod: post
+    tag: Exports
+    typeScriptTag: exports
+    description: Export customer data
+    parameters:
+      - name: filters
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request is malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/exports/deliveries
+    method: exportDeliveriesInfo
+    httpMethod: post
+    tag: Exports
+    typeScriptTag: exports
+    description: Export information about deliveries
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request is malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/imports
+    method: bulkUploadCsv
+    httpMethod: post
+    tag: Imports
+    typeScriptTag: imports
+    description: Import items in bulk
+    parameters:
+      - name: import
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/imports/{import_id}
+    method: getBulkImport
+    httpMethod: get
+    tag: Imports
+    typeScriptTag: imports
+    description: Retrieve a bulk import
+    parameters:
+      - name: importId
+        schema: integer
+        required: true
+        description: >-
+          The `id` of the import you want to lookup. This value is [returned
+          from a successful import](https://customer.io/docs/api/app/).
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/info/ip_addresses
+    method: listIpAddresses
+    httpMethod: get
+    tag: Info
+    typeScriptTag: info
+    description: List IP addresses
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/messages
+    method: listDeliveries
+    httpMethod: get
+    tag: Messages
+    typeScriptTag: messages
+    description: List messages
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request was malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/messages/{message_id}
+    method: getMessageMetrics
+    httpMethod: get
+    tag: Messages
+    typeScriptTag: messages
+    description: Get a message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: >-
+          Describes an individual message delivery. The object contains keys for
+          all possible parents of the message (`newsletter_id`, `broadcast_id`,
+          etc) but only the parents of the delivery are populated. Other parent
+          IDs are null.
+      - statusCode: '404'
+        description: The message does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/messages/{message_id}/archived_message
+    method: getArchivedMessage
+    httpMethod: get
+    tag: Messages
+    typeScriptTag: messages
+    description: Get an archived message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: Describes an archived message delivery.
+      - statusCode: '404'
+        description: The message does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters
+    method: listNewsletters
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: List newsletters
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/newsletters/{newsletter_id}
+    method: getMetadata
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get a newsletter
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/metrics
+    method: getMetrics
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get newsletter metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/metrics/links
+    method: getLinkMetrics
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get newsletter link metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/contents
+    method: listVariants
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: List newsletter variants
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/messages
+    method: getMessageMetadata
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get newsletter message metadata
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/contents/{content_id}
+    method: getVariantInfo
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get a newsletter variant
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/contents/{content_id}
+    method: updateVariantContents
+    httpMethod: put
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Update a newsletter variant
+    parameters:
+      - name: id
+        schema: integer
+        description: ''
+      - name: newsletter_id
+        schema: integer
+        description: ''
+        example: 10
+      - name: deduplicate_id
+        schema: string
+        description: ''
+        example: '15:1492548073'
+      - name: name
+        schema: string
+        description: ''
+        example: newsletter variant A
+      - name: layout
+        schema: string
+        description: ''
+        example: <html><body>{{ content }}</body></html>
+      - name: body
+        schema: string
+        description: ''
+        example: <strong>Hello from the API</strong>
+      - name: body_amp
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+        example: fr
+      - name: type
+        schema: string
+        description: ''
+        example: email
+      - name: from
+        schema: string
+        description: ''
+        example: sentFrom@example.com
+      - name: from_id
+        schema: integer
+        description: ''
+        example: 1
+      - name: reply_to
+        schema: string
+        description: ''
+        example: replyto@example.com
+      - name: reply_to_id
+        schema: integer
+        description: ''
+        example: 38
+      - name: preprocessor
+        schema: string
+        description: ''
+      - name: recipient
+        schema: string
+        description: ''
+        example: '{{customer.email}}'
+      - name: subject
+        schema: string
+        description: ''
+        example: Did you get that thing I sent you?
+      - name: bcc
+        schema: string
+        description: ''
+      - name: fake_bcc
+        schema: boolean
+        description: ''
+      - name: preheader_text
+        schema: string
+        description: ''
+      - name: headers
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request is malformed.
+      - statusCode: '404'
+        description: The newsletter or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/language/{language}
+    method: getTranslation
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get a translation of a newsletter variant
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist.
+      - statusCode: '404'
+        description: The newsletter or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/language/{language}
+    method: updateTranslation
+    httpMethod: put
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Update a translation of a newsletter variant
+    parameters:
+      - name: id
+        schema: integer
+        description: ''
+      - name: newsletter_id
+        schema: integer
+        description: ''
+        example: 10
+      - name: deduplicate_id
+        schema: string
+        description: ''
+        example: '15:1492548073'
+      - name: name
+        schema: string
+        description: ''
+        example: newsletter variant A
+      - name: layout
+        schema: string
+        description: ''
+        example: <html><body>{{ content }}</body></html>
+      - name: body
+        schema: string
+        description: ''
+        example: <strong>Hello from the API</strong>
+      - name: body_amp
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+        example: fr
+      - name: type
+        schema: string
+        description: ''
+        example: email
+      - name: from
+        schema: string
+        description: ''
+        example: sentFrom@example.com
+      - name: from_id
+        schema: integer
+        description: ''
+        example: 1
+      - name: reply_to
+        schema: string
+        description: ''
+        example: replyto@example.com
+      - name: reply_to_id
+        schema: integer
+        description: ''
+        example: 38
+      - name: preprocessor
+        schema: string
+        description: ''
+      - name: recipient
+        schema: string
+        description: ''
+        example: '{{customer.email}}'
+      - name: subject
+        schema: string
+        description: ''
+        example: Did you get that thing I sent you?
+      - name: bcc
+        schema: string
+        description: ''
+      - name: fake_bcc
+        schema: boolean
+        description: ''
+      - name: preheader_text
+        schema: string
+        description: ''
+      - name: headers
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist.
+      - statusCode: '404'
+        description: The newsletter or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/test_groups
+    method: listTestGroups
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: List A/B test groups in a newsletter
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: >-
+      /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}
+    method: getTranslationInfo
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get a translation in a newsletter test group
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist.
+      - statusCode: '404'
+        description: The newsletter or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: >-
+      /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}
+    method: updateTranslation
+    httpMethod: put
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Update a translation in a newsletter test group
+    parameters:
+      - name: id
+        schema: integer
+        description: ''
+      - name: newsletter_id
+        schema: integer
+        description: ''
+        example: 10
+      - name: deduplicate_id
+        schema: string
+        description: ''
+        example: '15:1492548073'
+      - name: name
+        schema: string
+        description: ''
+        example: newsletter variant A
+      - name: layout
+        schema: string
+        description: ''
+        example: <html><body>{{ content }}</body></html>
+      - name: body
+        schema: string
+        description: ''
+        example: <strong>Hello from the API</strong>
+      - name: body_amp
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+        example: fr
+      - name: type
+        schema: string
+        description: ''
+        example: email
+      - name: from
+        schema: string
+        description: ''
+        example: sentFrom@example.com
+      - name: from_id
+        schema: integer
+        description: ''
+        example: 1
+      - name: reply_to
+        schema: string
+        description: ''
+        example: replyto@example.com
+      - name: reply_to_id
+        schema: integer
+        description: ''
+        example: 38
+      - name: preprocessor
+        schema: string
+        description: ''
+      - name: recipient
+        schema: string
+        description: ''
+        example: '{{customer.email}}'
+      - name: subject
+        schema: string
+        description: ''
+        example: Did you get that thing I sent you?
+      - name: bcc
+        schema: string
+        description: ''
+      - name: fake_bcc
+        schema: boolean
+        description: ''
+      - name: preheader_text
+        schema: string
+        description: ''
+      - name: headers
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` does not exist.
+      - statusCode: '404'
+        description: The newsletter or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/contents/{content_id}/metrics
+    method: getVariantMetrics
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get metrics for a variant
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter and/or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/newsletters/{newsletter_id}/contents/{content_id}/metrics/links
+    method: getNewsletterVariantLinkMetrics
+    httpMethod: get
+    tag: Newsletters
+    typeScriptTag: newsletters
+    description: Get newsletter variant link metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The newsletter and/or variant does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/object_types
+    method: getAllObjectTypes
+    httpMethod: get
+    tag: Objects
+    typeScriptTag: objects
+    description: List object types
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: >-
+          Unauthorized request. Make sure that you provided the right
+          credentials.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/objects
+    method: findObjectsFilter
+    httpMethod: post
+    tag: Objects
+    typeScriptTag: objects
+    description: Find objects
+    parameters:
+      - name: start
+        schema: string
+        required: false
+        description: >-
+          The token for the page of results you want to return. Responses
+          contain a `next` property. Use this property as the `start` value to
+          return the next page of results.
+      - name: limit
+        schema: integer
+        required: false
+        description: The maximum number of results you want to retrieve per page.
+      - name: object_type_id
+        schema: string
+        required: true
+        description: ''
+        example: '1'
+      - name: filter
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/objects/{object_type_id}/{object_id}/relationships
+    method: getObjectRelationships
+    httpMethod: get
+    tag: Objects
+    typeScriptTag: objects
+    description: Get Object Relationships
+    parameters:
+      - name: objectTypeId
+        schema: integer
+        required: true
+        description: >-
+          The object type an object belongs to—like "Companies" or "Accounts".
+          Object type IDs begin at `1` and increment for each new type.
+        example: 1
+      - name: objectId
+        schema: string
+        required: true
+        description: >-
+          The `object_id` or `cio_object_id` of an object, depending on the
+          `id_type` specified in query params. `id_type` defaults to
+          `object_id`.
+        example: abc123
+      - name: start
+        schema: string
+        required: false
+        description: >-
+          The token for the page of results you want to return. Responses
+          contain a `next` property. Use this property as the `start` value to
+          return the next page of results.
+      - name: limit
+        schema: integer
+        required: false
+        description: The maximum number of results you want to retrieve per page.
+      - name: idType
+        schema: string
+        required: false
+        description: ''
+        default: object_id
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/objects/{object_type_id}/{object_id}/attributes
+    method: getAttributes
+    httpMethod: get
+    tag: Objects
+    typeScriptTag: objects
+    description: Get Object Attributes
+    parameters:
+      - name: objectTypeId
+        schema: integer
+        required: true
+        description: >-
+          The object type an object belongs to—like "Companies" or "Accounts".
+          Object type IDs begin at `1` and increment for each new type.
+        example: 1
+      - name: objectId
+        schema: string
+        required: true
+        description: >-
+          The `object_id` or `cio_object_id` of an object, depending on the
+          `id_type` specified in query params. `id_type` defaults to
+          `object_id`.
+        example: abc123
+      - name: idType
+        schema: string
+        required: false
+        description: ''
+        default: object_id
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: >-
+          Unauthorized request. Make sure that you provided the right
+          credentials.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/reporting_webhooks
+    method: listReportingWebhooks
+    httpMethod: get
+    tag: Reporting Webhooks
+    typeScriptTag: reportingWebhooks
+    description: List reporting webhooks
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/reporting_webhooks
+    method: createWebhookConfig
+    httpMethod: post
+    tag: Reporting Webhooks
+    typeScriptTag: reportingWebhooks
+    description: Create a reporting webhook
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: my cool webhook
+      - name: id
+        schema: integer
+        required: false
+        description: ''
+        example: 4
+      - name: endpoint
+        schema: string
+        required: true
+        description: ''
+        example: http://example.com/webhook
+      - name: disabled
+        schema: boolean
+        required: false
+        description: ''
+        example: false
+      - name: full_resolution
+        schema: boolean
+        required: false
+        description: ''
+        example: true
+        default: false
+      - name: with_content
+        schema: boolean
+        required: false
+        description: ''
+        example: false
+      - name: events
+        schema: array
+        required: true
+        description: ''
+        example:
+          - email_failed
+          - webhook_failed
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request was malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/reporting_webhooks/{webhook_id}
+    method: deleteWebhookConfiguration
+    httpMethod: delete
+    tag: Reporting Webhooks
+    typeScriptTag: reportingWebhooks
+    description: Delete a reporting webhook
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A successful request has no response.
+      - statusCode: '404'
+        description: The webhook ID does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/reporting_webhooks/{webhook_id}
+    method: getWebhookInfo
+    httpMethod: get
+    tag: Reporting Webhooks
+    typeScriptTag: reportingWebhooks
+    description: Get a reporting webhook
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The webhook ID does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/reporting_webhooks/{webhook_id}
+    method: updateConfiguration
+    httpMethod: put
+    tag: Reporting Webhooks
+    typeScriptTag: reportingWebhooks
+    description: Update a webhook configuration
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: my cool webhook
+      - name: id
+        schema: integer
+        required: false
+        description: ''
+        example: 4
+      - name: endpoint
+        schema: string
+        required: true
+        description: ''
+        example: http://example.com/webhook
+      - name: disabled
+        schema: boolean
+        required: false
+        description: ''
+        example: false
+      - name: full_resolution
+        schema: boolean
+        required: false
+        description: ''
+        example: true
+        default: false
+      - name: with_content
+        schema: boolean
+        required: false
+        description: ''
+        example: false
+      - name: events
+        schema: array
+        required: true
+        description: ''
+        example:
+          - email_failed
+          - webhook_failed
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request was malformed.
+      - statusCode: '404'
+        description: The webhook ID does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/segments
+    method: list
+    httpMethod: get
+    tag: Segments
+    typeScriptTag: segments
+    description: List segments
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/segments
+    method: createManualSegment
+    httpMethod: post
+    tag: Segments
+    typeScriptTag: segments
+    description: Create a manual segment
+    parameters:
+      - name: segment
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request was malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/segments/{segment_id}
+    method: deleteManualSegment
+    httpMethod: delete
+    tag: Segments
+    typeScriptTag: segments
+    description: Delete a segment
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: The segment is deleted.
+      - statusCode: '404'
+        description: The `segment_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/segments/{segment_id}
+    method: getSegmentInfo
+    httpMethod: get
+    tag: Segments
+    typeScriptTag: segments
+    description: Get a segment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The `segment_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/segments/{segment_id}/used_by
+    method: getDependencies
+    httpMethod: get
+    tag: Segments
+    typeScriptTag: segments
+    description: Get a segment's dependencies
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The `segment_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/segments/{segment_id}/customer_count
+    method: getCustomerCount
+    httpMethod: get
+    tag: Segments
+    typeScriptTag: segments
+    description: Get a segment customer count
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The `segment_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/segments/{segment_id}/membership
+    method: listMembership
+    httpMethod: get
+    tag: Segments
+    typeScriptTag: segments
+    description: List customers in a segment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The `segment_id` does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/sender_identities
+    method: list
+    httpMethod: get
+    tag: Sender Identities
+    typeScriptTag: senderIdentities
+    description: List sender identities
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/sender_identities/{sender_id}
+    method: getSenderInfo
+    httpMethod: get
+    tag: Sender Identities
+    typeScriptTag: senderIdentities
+    description: Get a sender
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The sender does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/sender_identities/{sender_id}/used_by
+    method: getUsageData
+    httpMethod: get
+    tag: Sender Identities
+    typeScriptTag: senderIdentities
+    description: Get sender usage data
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The sender does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/snippets
+    method: list
+    httpMethod: get
+    tag: Snippets
+    typeScriptTag: snippets
+    description: List snippets
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/snippets
+    method: createOrUpdate
+    httpMethod: put
+    tag: Snippets
+    typeScriptTag: snippets
+    description: Create or update snippets
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: value
+        schema: string
+        required: true
+        description: ''
+        example: VALUE
+      - name: updated_at
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The request is malformed.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/snippets/{snippet_name}
+    method: removeSnippet
+    httpMethod: delete
+    tag: Snippets
+    typeScriptTag: snippets
+    description: Delete a snippet
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: A successful delete operation returns no content.
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: The snippet does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/subscription_topics
+    method: listTopics
+    httpMethod: get
+    tag: Subscription Center
+    typeScriptTag: subscriptionCenter
+    description: List subscription topics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/transactional
+    method: listMessages
+    httpMethod: get
+    tag: Transactional
+    typeScriptTag: transactional
+    description: List transactional messages
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/transactional/{transactional_id}
+    method: getMessageInfo
+    httpMethod: get
+    tag: Transactional
+    typeScriptTag: transactional
+    description: Get a transactional message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The transactional message does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/transactional/{transactional_id}/contents
+    method: listContentVariants
+    httpMethod: get
+    tag: Transactional
+    typeScriptTag: transactional
+    description: List all variants of a transactional message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: The `transactional_id` or `content_id` in your request do not exist.
+  - url: /v1/transactional/{transactional_id}/content/{content_id}
+    method: updateMessageContent
+    httpMethod: put
+    tag: Transactional
+    typeScriptTag: transactional
+    description: Update a transactional message
+    parameters:
+      - name: id
+        schema: integer
+        description: ''
+        example: 96
+      - name: name
+        schema: string
+        description: ''
+        example: Receipt
+      - name: created
+        schema: integer
+        description: ''
+        example: 1552341937
+      - name: updated
+        schema: integer
+        description: ''
+        example: 1552341937
+      - name: body
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+        example: fr
+      - name: type
+        schema: string
+        description: ''
+      - name: from
+        schema: string
+        description: ''
+        example: sentFrom@example.com
+      - name: from_id
+        schema: integer
+        description: ''
+        example: 1
+      - name: reply_to
+        schema: string
+        description: ''
+        example: replyto@example.com
+      - name: reply_to_id
+        schema: integer
+        description: ''
+        example: 38
+      - name: preprocessor
+        schema: string
+        description: ''
+      - name: recipient
+        schema: string
+        description: ''
+        example: '{{customer.email}}'
+      - name: subject
+        schema: string
+        description: ''
+        example: Did you get that thing I sent you?
+      - name: bcc
+        schema: string
+        description: ''
+      - name: fake_bcc
+        schema: boolean
+        description: ''
+      - name: preheader_text
+        schema: string
+        description: ''
+      - name: headers
+        schema: array
+        description: ''
+      - name: body_amp
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: The `transactional_id` or `content_id` in your request do not exist
+  - url: /v1/transactional/{transactional_id}/language/{language}
+    method: getMessageTranslation
+    httpMethod: get
+    tag: Transactional
+    typeScriptTag: transactional
+    description: Get a translation of a transactional message
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: The `language` in your request does not exist.
+      - statusCode: '404'
+        description: The transactional message does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/transactional/{transactional_id}/language/{language}
+    method: updateTranslation
+    httpMethod: put
+    tag: Transactional
+    typeScriptTag: transactional
+    description: Update a translation of a transactional message
+    parameters:
+      - name: id
+        schema: integer
+        description: ''
+        example: 96
+      - name: name
+        schema: string
+        description: ''
+        example: Receipt
+      - name: created
+        schema: integer
+        description: ''
+        example: 1552341937
+      - name: updated
+        schema: integer
+        description: ''
+        example: 1552341937
+      - name: body
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+        example: fr
+      - name: type
+        schema: string
+        description: ''
+      - name: from
+        schema: string
+        description: ''
+        example: sentFrom@example.com
+      - name: from_id
+        schema: integer
+        description: ''
+        example: 1
+      - name: reply_to
+        schema: string
+        description: ''
+        example: replyto@example.com
+      - name: reply_to_id
+        schema: integer
+        description: ''
+        example: 38
+      - name: preprocessor
+        schema: string
+        description: ''
+      - name: recipient
+        schema: string
+        description: ''
+        example: '{{customer.email}}'
+      - name: subject
+        schema: string
+        description: ''
+        example: Did you get that thing I sent you?
+      - name: bcc
+        schema: string
+        description: ''
+      - name: fake_bcc
+        schema: boolean
+        description: ''
+      - name: preheader_text
+        schema: string
+        description: ''
+      - name: headers
+        schema: array
+        description: ''
+      - name: body_amp
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/transactional/{transactional_id}/metrics
+    method: getMessageMetrics
+    httpMethod: get
+    tag: Transactional
+    typeScriptTag: transactional
+    description: Get transactional message metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The transactional message you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/transactional/{transactional_id}/metrics/links
+    method: getMessageLinkMetrics
+    httpMethod: get
+    tag: Transactional
+    typeScriptTag: transactional
+    description: Get transactional message link metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The transactional message you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/transactional/{transactional_id}/messages
+    method: getMessageDeliveries
+    httpMethod: get
+    tag: Transactional
+    typeScriptTag: transactional
+    description: Get transactional message deliveries
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: The transactional message you requested does not exist.
+      - statusCode: '429'
+        description: Your request is over the 10-per-second limit.
+  - url: /v1/workspaces
+    method: listWorkspaces
+    httpMethod: get
+    tag: Workspaces
+    typeScriptTag: workspaces
+    description: List workspaces
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 439
+apiDescription: >
+  Our App API provides ways to trigger messages and retrieve information about
+  people, campaigns, broadcasts, and more.
+
+
+  # Overview
+
+
+  The App API provides methods to send transactional messages and trigger
+  broadcasts. In both cases, your payload acts as a message "trigger" and can
+  contain `data` that you reference in your messages using
+  liquid—`{{trigger.<data>}}`.
+
+
+  The other endpoints help you retrieve information about people, segments,
+  campaigns, broadcasts, etc; it also lets you update campaign actions,
+  messages, newsletter variants, etc. Aside from the [API-triggered
+  broadcast](https://customer.io/docs/api/app/) (1 per 10 seconds) and
+  [Transactional](https://customer.io/docs/api/app/) (100 per second) endpoints,
+  requests are limited to 10 per second.
+
+
+  <div class="fly-panel fly-light regionUS">
+
+  <div class="fly-panel-body us-server">
+
+  <p class="text--bold">You're looking at our US regional endpoints</p>
+
+  <p>The only difference in our US and European Union (EU) regions is the
+  subdomain—<code>api-eu</code> for our EU region as rather than
+  <code>app.customer.io/v1</code> for the US; there are no other differences
+  between the two regions. If your account is based in the European Union (EU)
+  data center, <a id='eu-anchor' onClick="anchorToRegion(this.id)">click
+  here</a> to show EU endpoints in our code samples and documentation below.</p>
+
+  <p>If you don't know your region, you can <b>find your account region</b> on
+  <a href="https://fly.customer.io/settings/privacy">your account's privacy
+  page</a>, or <a href="#operation/getRegion">get your region using the
+  API</a>.</p>
+
+  </div>
+
+  <div class="fly-panel-body eu-server">
+
+  <p class="text--bold">You're looking at our EU regional endpoints</p>
+
+  <p>The only difference in our US and European Union (EU) regions is the
+  subdomain—<code>api</code> for our US region rather than
+  <code>api-eu.customer.io/v1</code> for our EU region; there are no other
+  differences between the two regions. If your account is based in the European
+  Union (EU) data center, you can <a id='us-anchor'
+  onClick="anchorToRegion(this.id)">click here</a> to to show US endpoints in
+  our code samples and documentation below.</p>
+
+  <p>Note that if your account is based in the United States (US) data center
+  and you send requests to the EU region (the <code>track-eu</code> subdomain),
+  your requests will fail. If you don't know your region, you can <b>find your
+  account region</b> on <a href="https://fly.customer.io/settings/privacy">your
+  account's privacy page</a>, or <a href="#operation/getRegion">get your region
+  using the API</a>.</p>
+
+  </div></div>
+
+
+
+  Customer.io hosts services in the United States (US) and European Union (EU,
+  host subdomains are suffixed with `-eu`). Select the appropriate region for
+  server addresses that apply to your region.
+
+
+  <table id="hosts">
+    <tr><th>Host/Server</th><th>Purpose</th></tr>
+    <tr><td class='server-url'><a href='#tag/appOverview'><code>https://api.customer.io/</code></a></td><td>Use the <b>App API</b> to send Transactional messages and API triggered broadcasts. This API uses bearer token authorization, helping you control who uses it. Most requests to this API are limited to 10 pers second. The exceptions are <a href="#triggerBroadcast">API-triggered broadcasts</a>, which are limited to 1 request every 10 seconds, and <a href="#sendEmail">Transactional messages</a> which are limited to 100 per second.</td></tr> 
+  </table>
+
+
+  # Use our Postman collection
+
+
+  We've generated a Postman collection with **all** of our APIs—not just the
+  ones on this page—with a starter environment (called "CIO Env") containing
+  variables for authorization and path parameters.
+
+
+  If you fork this collection, you might want to disable the *Watch original
+  collection* option. We automatically update our Postman collection whenever we
+  release changes to our documentation, even if we don't change our APIs—which
+  happens daily! Rather than being flooded with Postman notifications, you can
+  check out our [Release Notes](https://customer.io/docs/api/app/) for updates
+  to our APIs.
+
+
+  **NOTE**: Postman endpoints default to our US APIs. If you're in our European
+  (EU) region, you'll need to add `-eu` server variables (*track_api_url* and
+  *app_api_url*).
+
+
+  <div class="postman-run-button primary-btn"
+
+  data-postman-action="collection/fork"
+
+  data-postman-visibility="public"
+
+  data-postman-var-1="23697545-2931c004-e63d-4cdc-bf4b-e685ba6da42d"
+
+  data-postman-collection-url="entityId=23697545-2931c004-e63d-4cdc-bf4b-e685ba6da42d&entityType=collection&workspaceId=b886877f-fc09-475f-84fe-6221a98f4d18"
+
+  data-postman-param="env%5BCIO%20Env%5D=W3sia2V5IjoidXNlcm5hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjowfSx7ImtleSI6InBhc3N3b3JkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxfSx7ImtleSI6ImJlYXJlciIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjJ9LHsia2V5IjoiaW1wb3J0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6M30seyJrZXkiOiJlbWFpbF9hZGRyZXNzIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6NH0seyJrZXkiOiJzdXBwcmVzc2lvbl90eXBlIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6NX0seyJrZXkiOiJjb2xsZWN0aW9uX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6Nn0seyJrZXkiOiJzbmlwcGV0X25hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4Ijo3fSx7ImtleSI6IndlYmhvb2tfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4Ijo4fSx7ImtleSI6InNlbmRlcl9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjl9LHsia2V5IjoiZXhwb3J0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTB9LHsia2V5IjoibWVzc2FnZV9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjExfSx7ImtleSI6InNlZ21lbnRfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxMn0seyJrZXkiOiJuZXdzbGV0dGVyX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTN9LHsia2V5IjoiY29udGVudF9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjE0fSx7ImtleSI6ImNhbXBhaWduX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTV9LHsia2V5IjoiYWN0aW9uX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTZ9LHsia2V5IjoiY3VzdG9tZXJfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxN30seyJrZXkiOiJ0cmFuc2FjdGlvbmFsX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTh9LHsia2V5IjoiYnJvYWRjYXN0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTl9LHsia2V5IjoidHJpZ2dlcl9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjIwfSx7ImtleSI6ImZvcm1faWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoyMX0seyJrZXkiOiJpZGVudGlmaWVyIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MjJ9LHsia2V5IjoiZGV2aWNlX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MjN9LHsia2V5IjoiZGVsaXZlcnlfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoyNH1d"></div>
+
+  <script type="text/javascript">
+    (function (p,o,s,t,m,a,n) {
+      !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+      !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+        (n = o.createElement("script")),
+        (n.id = s+t), (n.async = 1), (n.src = m), n
+      ));
+    }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+  </script>
+
+
+  # Authentication 
+
+
+  All requests to the Customer.io App API use an [App API
+  Key](https://customer.io/docs/api/app/).
+
+
+  To authenticate, provide your key as a Bearer token in a HTTP Authorization
+  header. You can create and manage your API keys—including keys with different
+  scopes—in [your account settings
+  page](https://fly.customer.io/settings/api_credentials?keyType=app). Each
+  operation on this page references the authorization header it requires.
+
+
+
+  <!-- ReDoc-Inject: <security-definitions> -->
+
+
+  # App API limits
+
+
+  Aside from Transactional and Broadcast trigger endpoints, this API is limited
+  to 10 requests per second. The [transactional
+  email](https://customer.io/docs/api/app/) endpoint is limited to 100 requests
+  per second. The [API-triggered broadcast
+  endpoint](https://customer.io/docs/api/app/) is limited to 1 request every 10
+  seconds. 

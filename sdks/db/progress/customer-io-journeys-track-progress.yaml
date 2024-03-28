@@ -1,0 +1,120 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v1/accounts/region:
+    get: TrackRegion_findAccountRegion
+  /api/v1/customers/{identifier}:
+    delete: TrackCustomers_removeCustomer
+    put: TrackCustomers_addOrUpdatePerson
+  /api/v1/customers/{identifier}/events:
+    post: TrackEvents_postCustomerEvent
+  /api/v1/customers/{identifier}/suppress:
+    post: TrackCustomers_suppressCustomerProfile
+  /api/v1/customers/{identifier}/unsuppress:
+    post: TrackCustomers_unsuppressProfile
+  /api/v1/events:
+    post: TrackEvents_createAnonymousEvent
+  /api/v1/forms/{form_id}/submit:
+    post: Forms_submitFormResponse
+  /api/v1/merge_customers:
+    post: TrackCustomers_mergePeople
+  /api/v1/metrics:
+    post: TrackEvents_reportMetrics
+  /api/v1/push/events:
+    post: TrackEvents_reportPushMetrics
+  /api/v1/segments/{segment_id}/add_customers:
+    post: TrackSegments_addCustomersToManualSegment
+  /api/v1/segments/{segment_id}/remove_customers:
+    post: TrackSegments_removeCustomers
+  /api/v2/batch:
+    post: Trackv2_sendMultipleRequests
+  /api/v2/entity:
+    post: Trackv2_createEntity
+  /unsubscribe/{delivery_id}:
+    post: TrackCustomers_handleUnsubscribe
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/customers/{identifier}:
+    put:
+      application/json: TrackCustomersAddOrUpdatePersonRequest
+  /api/v1/customers/{identifier}/devices:
+    put:
+      application/json: AddDeviceRequest
+  /api/v1/customers/{identifier}/events:
+    post:
+      application/json: TrackEventsPostCustomerEventRequest
+  /api/v1/events:
+    post:
+      application/json: TrackEventsCreateAnonymousEventRequest
+  /api/v1/forms/{form_id}/submit:
+    post:
+      application/json: FormsSubmitFormResponseRequest
+  /api/v1/merge_customers:
+    post:
+      application/json: TrackCustomersMergePeopleRequest
+  /api/v1/metrics:
+    post:
+      application/json: TrackEventsReportMetricsRequest
+  /api/v1/push/events:
+    post:
+      application/json: TrackEventsReportPushMetricsRequest
+  /api/v1/segments/{segment_id}/add_customers:
+    post:
+      application/json: TrackSegmentsAddCustomersToManualSegmentRequest
+  /api/v1/segments/{segment_id}/remove_customers:
+    post:
+      application/json: TrackSegmentsRemoveCustomersRequest
+  /api/v2/batch:
+    post:
+      application/json: Trackv2SendMultipleRequestsRequest
+  /api/v2/entity:
+    post:
+      application/json: Trackv2CreateEntityRequest
+  /unsubscribe/{delivery_id}:
+    post:
+      application/json: TrackCustomersHandleUnsubscribeRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/accounts/region:
+    get:
+      '200':
+        application/json: TrackRegionFindAccountRegionResponse
+  /api/v1/customers/{identifier}/devices:
+    put:
+      '400':
+        application/json: AddDeviceResponse
+  /api/v1/customers/{identifier}/devices/{device_id}:
+    delete:
+      '400':
+        application/json: DeleteDeviceResponse
+  /api/v1/forms/{form_id}/submit:
+    post:
+      '400':
+        application/json: FormsSubmitFormResponseResponse
+  /api/v1/merge_customers:
+    post:
+      '400':
+        application/json: TrackCustomersMergePeopleResponse
+  /api/v1/segments/{segment_id}/add_customers:
+    post:
+      '404':
+        application/json: TrackSegmentsAddCustomersToManualSegmentResponse
+  /api/v1/segments/{segment_id}/remove_customers:
+    post:
+      '404':
+        application/json: TrackSegmentsRemoveCustomersResponse
+  /api/v2/batch:
+    post:
+      '207':
+        application/json: Trackv2SendMultipleRequestsResponse
+      '400':
+        application/json: Trackv2SendMultipleRequests400Response
+  /api/v2/entity:
+    post:
+      '400':
+        application/json: Trackv2CreateEntityResponse
+securityParameters: {}
+validServerUrls: {}

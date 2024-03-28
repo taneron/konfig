@@ -1,0 +1,736 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/esp/suppression/{suppression_type}/{email_address}:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/activities:
+    get: Activities_list
+  /v1/broadcast/{broadcast_id}/actions/{action_id}/metrics:
+    get: Broadcasts_getActionMetrics
+  /v1/broadcasts:
+    get: Broadcasts_list
+  /v1/broadcasts/{broadcast_id}:
+    get: Broadcasts_getMetadata
+  /v1/broadcasts/{broadcast_id}/actions:
+    get: Broadcasts_getActions
+  /v1/broadcasts/{broadcast_id}/actions/{action_id}:
+    get: Broadcasts_getActionDetails
+    put: Broadcasts_updateActionContents
+  /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}:
+    get: Broadcasts_getTranslationMessage
+    put: Broadcasts_updateTranslation
+  /v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics/links:
+    get: Broadcasts_getActionLinkMetrics
+  /v1/broadcasts/{broadcast_id}/messages:
+    get: Broadcasts_getMessages
+  /v1/broadcasts/{broadcast_id}/metrics:
+    get: Broadcasts_getMetrics
+  /v1/broadcasts/{broadcast_id}/metrics/links:
+    get: Broadcasts_getLinkMetrics
+  /v1/broadcasts/{broadcast_id}/triggers:
+    get: Broadcasts_getTriggers
+  /v1/campaigns:
+    get: Campaigns_getList
+  /v1/campaigns/{broadcast_id}/triggers:
+    post: SendMessages_triggerBroadcast
+  /v1/campaigns/{broadcast_id}/triggers/{trigger_id}:
+    get: Broadcasts_getStatus
+  /v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors:
+    get: Broadcasts_getBroadcastErrors
+  /v1/campaigns/{campaign_id}:
+    get: Campaigns_getMetadata
+  /v1/campaigns/{campaign_id}/actions:
+    get: Campaigns_listActions
+  /v1/campaigns/{campaign_id}/actions/{action_id}:
+    get: Campaigns_getActionInfo
+    put: Campaigns_updateActionContents
+  /v1/campaigns/{campaign_id}/actions/{action_id}/language/{language}:
+    get: Campaigns_getMessageTranslation
+    put: Campaigns_updateTranslation
+  /v1/campaigns/{campaign_id}/actions/{action_id}/metrics:
+    get: Campaigns_getActionMetrics
+  /v1/campaigns/{campaign_id}/actions/{action_id}/metrics/links:
+    get: Campaigns_getLinkMetricsForAction
+  /v1/campaigns/{campaign_id}/journey_metrics:
+    get: Campaigns_getJourneyMetrics
+  /v1/campaigns/{campaign_id}/messages:
+    get: Campaigns_getMessageMetadata
+  /v1/campaigns/{campaign_id}/metrics:
+    get: Campaigns_getMetrics
+  /v1/campaigns/{campaign_id}/metrics/links:
+    get: Campaigns_getLinkMetrics
+  /v1/collections:
+    get: Collections_list
+    post: Collections_createNew
+  /v1/collections/{collection_id}:
+    delete: Collections_removeCollection
+    get: Collections_getDetails
+    put: Collections_updateCollection
+  /v1/collections/{collection_id}/content:
+    get: Collections_getContents
+    put: Collections_updateContents
+  /v1/customers:
+    get: Customers_findByEmail
+    post: Customers_searchFilter
+  /v1/customers/attributes:
+    post: Customers_listAttributesDevices
+  /v1/customers/{customer_id}/activities:
+    get: Customers_getActivities
+  /v1/customers/{customer_id}/attributes:
+    get: Customers_getAttributes
+  /v1/customers/{customer_id}/messages:
+    get: Customers_getMessages
+  /v1/customers/{customer_id}/relationships:
+    get: Customers_lookupRelationships
+  /v1/customers/{customer_id}/segments:
+    get: Customers_lookupSegments
+  /v1/customers/{customer_id}/subscription_preferences:
+    get: Customers_getSubscriptionPreferences
+  /v1/esp/search_suppression/{email_address}:
+    get: EspSuppression_lookupAddress
+  /v1/esp/suppression/{suppression_type}:
+    get: EspSuppression_getEmailsByType
+  /v1/esp/suppression/{suppression_type}/{email_address}:
+    delete: EspSuppression_unSuppressAddress
+    post: EspSuppression_emailAddress
+  /v1/exports:
+    get: Exports_listMetrics
+  /v1/exports/customers:
+    post: Exports_createCustomerExport
+  /v1/exports/deliveries:
+    post: Exports_exportDeliveriesInfo
+  /v1/exports/{export_id}:
+    get: Exports_getExportInfo
+  /v1/exports/{export_id}/download:
+    get: Exports_downloadExportSignedLink
+  /v1/imports:
+    post: Imports_bulkUploadCsv
+  /v1/imports/{import_id}:
+    get: Imports_getBulkImport
+  /v1/info/ip_addresses:
+    get: Info_listIpAddresses
+  /v1/messages:
+    get: Messages_listDeliveries
+  /v1/messages/{message_id}:
+    get: Messages_getMessageMetrics
+  /v1/messages/{message_id}/archived_message:
+    get: Messages_getArchivedMessage
+  /v1/newsletters:
+    get: Newsletters_listNewsletters
+  /v1/newsletters/{newsletter_id}:
+    get: Newsletters_getMetadata
+  /v1/newsletters/{newsletter_id}/contents:
+    get: Newsletters_listVariants
+  /v1/newsletters/{newsletter_id}/contents/{content_id}:
+    get: Newsletters_getVariantInfo
+    put: Newsletters_updateVariantContents
+  /v1/newsletters/{newsletter_id}/contents/{content_id}/metrics:
+    get: Newsletters_getVariantMetrics
+  /v1/newsletters/{newsletter_id}/contents/{content_id}/metrics/links:
+    get: Newsletters_getNewsletterVariantLinkMetrics
+  /v1/newsletters/{newsletter_id}/language/{language}:
+    get: Newsletters_getTranslation
+    put: Newsletters_updateTranslation
+  /v1/newsletters/{newsletter_id}/messages:
+    get: Newsletters_getMessageMetadata
+  /v1/newsletters/{newsletter_id}/metrics:
+    get: Newsletters_getMetrics
+  /v1/newsletters/{newsletter_id}/metrics/links:
+    get: Newsletters_getLinkMetrics
+  /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}:
+    get: Newsletters_getTranslationInfo
+    put: Newsletters_updateTranslation
+  /v1/newsletters/{newsletter_id}/test_groups:
+    get: Newsletters_listTestGroups
+  /v1/object_types:
+    get: Objects_getAllObjectTypes
+  /v1/objects:
+    post: Objects_findObjectsFilter
+  /v1/objects/{object_type_id}/{object_id}/attributes:
+    get: Objects_getAttributes
+  /v1/objects/{object_type_id}/{object_id}/relationships:
+    get: Objects_getObjectRelationships
+  /v1/reporting_webhooks:
+    get: ReportingWebhooks_listReportingWebhooks
+    post: ReportingWebhooks_createWebhookConfig
+  /v1/reporting_webhooks/{webhook_id}:
+    delete: ReportingWebhooks_deleteWebhookConfiguration
+    get: ReportingWebhooks_getWebhookInfo
+    put: ReportingWebhooks_updateConfiguration
+  /v1/segments:
+    get: Segments_list
+    post: Segments_createManualSegment
+  /v1/segments/{segment_id}:
+    delete: Segments_deleteManualSegment
+    get: Segments_getSegmentInfo
+  /v1/segments/{segment_id}/customer_count:
+    get: Segments_getCustomerCount
+  /v1/segments/{segment_id}/membership:
+    get: Segments_listMembership
+  /v1/segments/{segment_id}/used_by:
+    get: Segments_getDependencies
+  /v1/send/email:
+    post: SendMessages_transactionalEmail
+  /v1/send/push:
+    post: SendMessages_transactionalPush
+  /v1/sender_identities:
+    get: SenderIdentities_list
+  /v1/sender_identities/{sender_id}:
+    get: SenderIdentities_getSenderInfo
+  /v1/sender_identities/{sender_id}/used_by:
+    get: SenderIdentities_getUsageData
+  /v1/snippets:
+    get: Snippets_list
+    put: Snippets_createOrUpdate
+  /v1/snippets/{snippet_name}:
+    delete: Snippets_removeSnippet
+  /v1/subscription_topics:
+    get: SubscriptionCenter_listTopics
+  /v1/transactional:
+    get: Transactional_listMessages
+  /v1/transactional/{transactional_id}:
+    get: Transactional_getMessageInfo
+  /v1/transactional/{transactional_id}/content/{content_id}:
+    put: Transactional_updateMessageContent
+  /v1/transactional/{transactional_id}/contents:
+    get: Transactional_listContentVariants
+  /v1/transactional/{transactional_id}/language/{language}:
+    get: Transactional_getMessageTranslation
+    put: Transactional_updateTranslation
+  /v1/transactional/{transactional_id}/messages:
+    get: Transactional_getMessageDeliveries
+  /v1/transactional/{transactional_id}/metrics:
+    get: Transactional_getMessageMetrics
+  /v1/transactional/{transactional_id}/metrics/links:
+    get: Transactional_getMessageLinkMetrics
+  /v1/workspaces:
+    get: Workspaces_listWorkspaces
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/broadcasts/{broadcast_id}/actions/{action_id}:
+    put:
+      application/json: BroadcastsUpdateActionContentsRequest
+  /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}:
+    put:
+      application/json: BroadcastsUpdateTranslationRequest
+  /v1/campaigns/{broadcast_id}/triggers:
+    post:
+      application/json: SendMessagesTriggerBroadcastRequest
+  /v1/campaigns/{campaign_id}/actions/{action_id}:
+    put:
+      application/json: CampaignsUpdateActionContentsRequest
+  /v1/campaigns/{campaign_id}/actions/{action_id}/language/{language}:
+    put:
+      application/json: CampaignsUpdateTranslationRequest
+  /v1/collections:
+    post:
+      application/json: CollectionsCreateNewRequest
+  /v1/collections/{collection_id}:
+    put:
+      application/json: CollectionsUpdateCollectionRequest
+  /v1/collections/{collection_id}/content:
+    put:
+      application/json: CollectionsUpdateContentsRequest
+  /v1/customers:
+    post:
+      application/json: CustomersSearchFilterRequest
+  /v1/customers/attributes:
+    post:
+      application/json: CustomersListAttributesDevicesRequest
+  /v1/exports/customers:
+    post:
+      application/json: ExportsCreateCustomerExportRequest
+  /v1/exports/deliveries:
+    post:
+      application/json: ExportsExportDeliveriesInfoRequest
+  /v1/imports:
+    post:
+      application/json: ImportsBulkUploadCsvRequest
+  /v1/newsletters/{newsletter_id}/contents/{content_id}:
+    put:
+      application/json: NewslettersUpdateVariantContentsRequest
+  /v1/newsletters/{newsletter_id}/language/{language}:
+    put:
+      application/json: NewslettersUpdateTranslationRequest
+  /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}:
+    put:
+      application/json: NewslettersUpdateTranslationRequest1
+  /v1/objects:
+    post:
+      application/json: ObjectsFindObjectsFilterRequest
+  /v1/reporting_webhooks:
+    post:
+      application/json: ReportingWebhooksCreateWebhookConfigRequest
+  /v1/reporting_webhooks/{webhook_id}:
+    put:
+      application/json: ReportingWebhooksUpdateConfigurationRequest
+  /v1/segments:
+    post:
+      application/json: SegmentsCreateManualSegmentRequest
+  /v1/send/email:
+    post:
+      application/json: SendMessagesTransactionalEmailRequest
+  /v1/send/push:
+    post:
+      application/json: SendMessagesTransactionalPushRequest
+  /v1/snippets:
+    put:
+      application/json: SnippetsCreateOrUpdateRequest
+  /v1/transactional/{transactional_id}/content/{content_id}:
+    put:
+      application/json: TransactionalUpdateMessageContentRequest
+  /v1/transactional/{transactional_id}/language/{language}:
+    put:
+      application/json: TransactionalUpdateTranslationRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/activities:
+    get:
+      '200':
+        application/json: ActivitiesListResponse
+  /v1/broadcast/{broadcast_id}/actions/{action_id}/metrics:
+    get:
+      '200':
+        application/json: BroadcastsGetActionMetricsResponse
+  /v1/broadcasts:
+    get:
+      '200':
+        application/json: BroadcastsListResponse
+  /v1/broadcasts/{broadcast_id}:
+    get:
+      '200':
+        application/json: BroadcastsGetMetadataResponse
+  /v1/broadcasts/{broadcast_id}/actions:
+    get:
+      '200':
+        application/json: BroadcastsGetActionsResponse
+  /v1/broadcasts/{broadcast_id}/actions/{action_id}:
+    get:
+      '200':
+        application/json: BroadcastsGetActionDetailsResponse
+    put:
+      '200':
+        application/json: BroadcastsUpdateActionContentsResponse
+  /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}:
+    get:
+      '200':
+        application/json: BroadcastsGetTranslationMessageResponse
+    put:
+      '200':
+        application/json: BroadcastsUpdateTranslationResponse
+  /v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics/links:
+    get:
+      '200':
+        application/json: BroadcastsGetActionLinkMetricsResponse
+  /v1/broadcasts/{broadcast_id}/messages:
+    get:
+      '200':
+        application/json: BroadcastsGetMessagesResponse
+  /v1/broadcasts/{broadcast_id}/metrics:
+    get:
+      '200':
+        application/json: BroadcastsGetMetricsResponse
+  /v1/broadcasts/{broadcast_id}/metrics/links:
+    get:
+      '200':
+        application/json: BroadcastsGetLinkMetricsResponse
+  /v1/broadcasts/{broadcast_id}/triggers:
+    get:
+      '200':
+        application/json: BroadcastsGetTriggersResponse
+  /v1/campaigns:
+    get:
+      '200':
+        application/json: CampaignsGetListResponse
+  /v1/campaigns/{broadcast_id}/triggers:
+    post:
+      '200':
+        application/json: SendMessagesTriggerBroadcastResponse
+      '422':
+        application/json: SendMessagesTriggerBroadcast422Response
+  /v1/campaigns/{broadcast_id}/triggers/{trigger_id}:
+    get:
+      '200':
+        application/json: BroadcastsGetStatusResponse
+  /v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors:
+    get:
+      '200':
+        application/json: BroadcastsGetBroadcastErrorsResponse
+  /v1/campaigns/{campaign_id}:
+    get:
+      '200':
+        application/json: CampaignsGetMetadataResponse
+  /v1/campaigns/{campaign_id}/actions:
+    get:
+      '200':
+        application/json: CampaignsListActionsResponse
+  /v1/campaigns/{campaign_id}/actions/{action_id}:
+    get:
+      '200':
+        application/json: CampaignsGetActionInfoResponse
+    put:
+      '200':
+        application/json: CampaignsUpdateActionContentsResponse
+  /v1/campaigns/{campaign_id}/actions/{action_id}/language/{language}:
+    get:
+      '200':
+        application/json: CampaignsGetMessageTranslationResponse
+    put:
+      '200':
+        application/json: CampaignsUpdateTranslationResponse
+  /v1/campaigns/{campaign_id}/actions/{action_id}/metrics:
+    get:
+      '200':
+        application/json: CampaignsGetActionMetricsResponse
+  /v1/campaigns/{campaign_id}/actions/{action_id}/metrics/links:
+    get:
+      '200':
+        application/json: CampaignsGetLinkMetricsForActionResponse
+  /v1/campaigns/{campaign_id}/journey_metrics:
+    get:
+      '200':
+        application/json: CampaignsGetJourneyMetricsResponse
+  /v1/campaigns/{campaign_id}/messages:
+    get:
+      '200':
+        application/json: CampaignsGetMessageMetadataResponse
+  /v1/campaigns/{campaign_id}/metrics:
+    get:
+      '200':
+        application/json: CampaignsGetMetricsResponse
+  /v1/campaigns/{campaign_id}/metrics/links:
+    get:
+      '200':
+        application/json: CampaignsGetLinkMetricsResponse
+  /v1/collections:
+    get:
+      '200':
+        application/json: CollectionsListResponse
+    post:
+      '200':
+        application/json: CollectionsCreateNewResponse
+  /v1/collections/{collection_id}:
+    get:
+      '200':
+        application/json: CollectionsGetDetailsResponse
+    put:
+      '200':
+        application/json: CollectionsUpdateCollectionResponse
+  /v1/collections/{collection_id}/content:
+    get:
+      '200':
+        application/json: CollectionsGetContentsResponse
+    put:
+      '200':
+        application/json: CollectionsUpdateContentsResponse
+  /v1/customers:
+    get:
+      '200':
+        application/json: CustomersFindByEmailResponse
+    post:
+      '200':
+        application/json: CustomersSearchFilterResponse
+  /v1/customers/attributes:
+    post:
+      '200':
+        application/json: CustomersListAttributesDevicesResponse
+  /v1/customers/{customer_id}/activities:
+    get:
+      '200':
+        application/json: CustomersGetActivitiesResponse
+  /v1/customers/{customer_id}/attributes:
+    get:
+      '200':
+        application/json: CustomersGetAttributesResponse
+  /v1/customers/{customer_id}/messages:
+    get:
+      '200':
+        application/json: CustomersGetMessagesResponse
+  /v1/customers/{customer_id}/relationships:
+    get:
+      '200':
+        application/json: CustomersLookupRelationshipsResponse
+  /v1/customers/{customer_id}/segments:
+    get:
+      '200':
+        application/json: CustomersLookupSegmentsResponse
+  /v1/customers/{customer_id}/subscription_preferences:
+    get:
+      '200':
+        application/json: CustomersGetSubscriptionPreferencesResponse
+      '400':
+        application/json: CustomersGetSubscriptionPreferences400Response
+  /v1/esp/search_suppression/{email_address}:
+    get:
+      '200':
+        application/json: EspSuppressionLookupAddressResponse
+  /v1/esp/suppression/{suppression_type}:
+    get:
+      '200':
+        application/json: EspSuppressionGetEmailsByTypeResponse
+  /v1/esp/suppression/{suppression_type}/{email_address}:
+    post:
+      '200':
+        application/json: EspSuppressionEmailAddressResponse
+  /v1/exports:
+    get:
+      '200':
+        application/json: ExportsListMetricsResponse
+  /v1/exports/customers:
+    post:
+      '200':
+        application/json: ExportsCreateCustomerExportResponse
+  /v1/exports/deliveries:
+    post:
+      '200':
+        application/json: ExportsExportDeliveriesInfoResponse
+  /v1/exports/{export_id}:
+    get:
+      '200':
+        application/json: ExportsGetExportInfoResponse
+  /v1/exports/{export_id}/download:
+    get:
+      '200':
+        application/json: ExportsDownloadExportSignedLinkResponse
+  /v1/imports:
+    post:
+      '200':
+        application/json: ImportsBulkUploadCsvResponse
+  /v1/imports/{import_id}:
+    get:
+      '200':
+        application/json: ImportsGetBulkImportResponse
+  /v1/info/ip_addresses:
+    get:
+      '200':
+        application/json: InfoListIpAddressesResponse
+  /v1/messages:
+    get:
+      '200':
+        application/json: MessagesListDeliveriesResponse
+  /v1/messages/{message_id}:
+    get:
+      '200':
+        application/json: MessagesGetMessageMetricsResponse
+  /v1/messages/{message_id}/archived_message:
+    get:
+      '200':
+        application/json: MessagesGetArchivedMessageResponse
+  /v1/newsletters:
+    get:
+      '200':
+        application/json: NewslettersListNewslettersResponse
+  /v1/newsletters/{newsletter_id}:
+    get:
+      '200':
+        application/json: NewslettersGetMetadataResponse
+  /v1/newsletters/{newsletter_id}/contents:
+    get:
+      '200':
+        application/json: NewslettersListVariantsResponse
+  /v1/newsletters/{newsletter_id}/contents/{content_id}:
+    get:
+      '200':
+        application/json: NewslettersGetVariantInfoResponse
+    put:
+      '200':
+        application/json: NewslettersUpdateVariantContentsResponse
+  /v1/newsletters/{newsletter_id}/contents/{content_id}/metrics:
+    get:
+      '200':
+        application/json: NewslettersGetVariantMetricsResponse
+  /v1/newsletters/{newsletter_id}/contents/{content_id}/metrics/links:
+    get:
+      '200':
+        application/json: NewslettersGetNewsletterVariantLinkMetricsResponse
+  /v1/newsletters/{newsletter_id}/language/{language}:
+    get:
+      '200':
+        application/json: NewslettersGetTranslationResponse
+    put:
+      '200':
+        application/json: NewslettersUpdateTranslationResponse
+  /v1/newsletters/{newsletter_id}/messages:
+    get:
+      '200':
+        application/json: NewslettersGetMessageMetadataResponse
+  /v1/newsletters/{newsletter_id}/metrics:
+    get:
+      '200':
+        application/json: NewslettersGetMetricsResponse
+  /v1/newsletters/{newsletter_id}/metrics/links:
+    get:
+      '200':
+        application/json: NewslettersGetLinkMetricsResponse
+  /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}:
+    get:
+      '200':
+        application/json: NewslettersGetTranslationInfoResponse
+    put:
+      '200':
+        application/json: NewslettersUpdateTranslation200Response
+  /v1/newsletters/{newsletter_id}/test_groups:
+    get:
+      '200':
+        application/json: NewslettersListTestGroupsResponse
+  /v1/object_types:
+    get:
+      '200':
+        application/json: ObjectsGetAllObjectTypesResponse
+  /v1/objects:
+    post:
+      '200':
+        application/json: ObjectsFindObjectsFilterResponse
+  /v1/objects/{object_type_id}/{object_id}/attributes:
+    get:
+      '200':
+        application/json: ObjectsGetAttributesResponse
+  /v1/objects/{object_type_id}/{object_id}/relationships:
+    get:
+      '200':
+        application/json: ObjectsGetObjectRelationshipsResponse
+  /v1/reporting_webhooks:
+    get:
+      '200':
+        application/json: ReportingWebhooksListReportingWebhooksResponse
+    post:
+      '200':
+        application/json: ReportingWebhooksCreateWebhookConfigResponse
+  /v1/reporting_webhooks/{webhook_id}:
+    get:
+      '200':
+        application/json: ReportingWebhooksGetWebhookInfoResponse
+    put:
+      '200':
+        application/json: ReportingWebhooksUpdateConfigurationResponse
+  /v1/segments:
+    get:
+      '200':
+        application/json: SegmentsListResponse
+    post:
+      '200':
+        application/json: SegmentsCreateManualSegmentResponse
+  /v1/segments/{segment_id}:
+    get:
+      '200':
+        application/json: SegmentsGetSegmentInfoResponse
+  /v1/segments/{segment_id}/customer_count:
+    get:
+      '200':
+        application/json: SegmentsGetCustomerCountResponse
+  /v1/segments/{segment_id}/membership:
+    get:
+      '200':
+        application/json: SegmentsListMembershipResponse
+  /v1/segments/{segment_id}/used_by:
+    get:
+      '200':
+        application/json: SegmentsGetDependenciesResponse
+  /v1/send/email:
+    post:
+      '200':
+        application/json: SendMessagesTransactionalEmailResponse
+      '400':
+        application/json: SendMessagesTransactionalEmail400Response
+  /v1/send/push:
+    post:
+      '200':
+        application/json: SendMessagesTransactionalPushResponse
+      '400':
+        application/json: SendMessagesTransactionalPush400Response
+  /v1/sender_identities:
+    get:
+      '200':
+        application/json: SenderIdentitiesListResponse
+  /v1/sender_identities/{sender_id}:
+    get:
+      '200':
+        application/json: SenderIdentitiesGetSenderInfoResponse
+  /v1/sender_identities/{sender_id}/used_by:
+    get:
+      '200':
+        application/json: SenderIdentitiesGetUsageDataResponse
+  /v1/snippets:
+    get:
+      '200':
+        application/json: SnippetsListResponse
+    put:
+      '200':
+        application/json: SnippetsCreateOrUpdateResponse
+  /v1/snippets/{snippet_name}:
+    delete:
+      '400':
+        application/json: SnippetsRemoveSnippetResponse
+  /v1/subscription_topics:
+    get:
+      '200':
+        application/json: SubscriptionCenterListTopicsResponse
+  /v1/transactional:
+    get:
+      '200':
+        application/json: TransactionalListMessagesResponse
+  /v1/transactional/{transactional_id}:
+    get:
+      '200':
+        application/json: TransactionalGetMessageInfoResponse
+  /v1/transactional/{transactional_id}/content/{content_id}:
+    put:
+      '200':
+        application/json: TransactionalUpdateMessageContentResponse
+      '400':
+        application/json: TransactionalUpdateMessageContent400Response
+  /v1/transactional/{transactional_id}/contents:
+    get:
+      '200':
+        application/json: TransactionalListContentVariantsResponse
+      '400':
+        application/json: TransactionalListContentVariants400Response
+  /v1/transactional/{transactional_id}/language/{language}:
+    get:
+      '200':
+        application/json: TransactionalGetMessageTranslationResponse
+    put:
+      '200':
+        application/json: TransactionalUpdateTranslationResponse
+      '400':
+        application/json: TransactionalUpdateTranslation400Response
+  /v1/transactional/{transactional_id}/messages:
+    get:
+      '200':
+        application/json: TransactionalGetMessageDeliveriesResponse
+  /v1/transactional/{transactional_id}/metrics:
+    get:
+      '200':
+        application/json: TransactionalGetMessageMetricsResponse
+  /v1/transactional/{transactional_id}/metrics/links:
+    get:
+      '200':
+        application/json: TransactionalGetMessageLinkMetricsResponse
+  /v1/workspaces:
+    get:
+      '200':
+        application/json: WorkspacesListWorkspacesResponse
+securityParameters:
+  customer_id:
+    query: false
+  deleted:
+    query: false
+  email:
+    query: false
+  id_type:
+    query: false
+  limit:
+    query: false
+  name:
+    query: false
+  start:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

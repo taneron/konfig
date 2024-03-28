@@ -1,0 +1,555 @@
+{
+  "securitySchemes": {
+    "Tracking-API-Key": {
+      "type": "http",
+      "scheme": "basic",
+      "description": "The Track API uses a basic authentication scheme. Your credentials are your **Site ID** and your **API key**, **Base-64 encoded** in the format `site_id:api_key`.\n\nYou can find your Site ID and API key on the [Track API Keys page](https://fly.customer.io/settings/api_credentials).\n"
+    }
+  },
+  "apiBaseUrl": "https://track.customer.io",
+  "apiVersion": "1.0.0",
+  "apiDescription": "Our Track API provides ways to send real-time customer data to your Customer.io workspace.\n\n# Overview\n\n<div class=\"fly-panel fly-light regionUS\">\n<div class=\"fly-panel-body us-server\">\n<p class=\"text--bold\">You're looking at our US regional endpoints</p>\n<p>The only difference in our US and European Union (EU) regions is the subdomain—<code>track-eu</code> for the EU region rather than just <code>track</code>; there are no other differences between the two regions. If your account is based in the European Union (EU) data center, <a id='eu-anchor' onClick=\"anchorToRegion(this.id)\">click here</a> to show EU endpoints in our code samples and documentation below. Note that if your account is in the EU region and you send traffic to our US endpoints, we'll redirect it accordingly but this traffic still passes through US servers and data could be logged in the US.</p>\n<p>If you don't know your region, you can <b>find your account region</b> on <a href=\"https://fly.customer.io/settings/privacy\">your account's privacy page</a>, or <a href=\"#operation/getRegion\">get your region using the API</a>.</p>\n</div>\n<div class=\"fly-panel-body eu-server\">\n<p class=\"text--bold\">You're looking at our EU regional endpoints</p>\n<p>The only difference in our US and European Union (EU) regions is the subdomain—<code>track</code> for our US region rather than <code>track-eu</code>; there are no other differences between the two regions. If your account is based in the European Union (EU) data center, you can <a id='us-anchor' onClick=\"anchorToRegion(this.id)\">click here</a> to to show US endpoints in our code samples and documentation below.</p>\n<p>Note that if your account is based in the United States (US) data center and you send requests to the EU region, your requests will fail. If you don't know your region, you can <b>find your account region</b> on <a href=\"https://fly.customer.io/settings/privacy\">your account's privacy page</a>, or <a href=\"#operation/getRegion\">get your region using the API</a>.</p>\n</div></div>\n\n\nCustomer.io hosts services in the United States (US) and European Union (EU, host subdomains are suffixed with `-eu`). Select the appropriate region for server addresses that apply to your region.\n\n<table id=\"hosts\">\n  <tr><th>Host/Server</th><th>Purpose</th></tr>\n  <tr><td class='server-url'><a href='#tag/trackOverview'><code>https://track.customer.io/api/</code></a></td><td>Use the <b>Track API</b> to report customer attributes and track customer events/activity. You cannot retrieve data using this API. Track endpoints support minimal validation to ensure as close to real-time processing as possible.</td></tr> \n</table>\n\n# Use our Postman collection\n\nWe've generated a Postman collection with **all** of our APIs—not just the ones on this page—with a starter environment (called \"CIO Env\") containing variables for authorization and path parameters.\n\nIf you fork this collection, you might want to disable the *Watch original collection* option. We automatically update our Postman collection whenever we release changes to our documentation, even if we don't change our APIs—which happens daily! Rather than being flooded with Postman notifications, you can check out our [Release Notes](https://customer.io/docs/api/track/) for updates to our APIs.\n\n**NOTE**: Postman endpoints default to our US APIs. If you're in our European (EU) region, you'll need to add `-eu` server variables (*track_api_url* and *app_api_url*).\n\n<div class=\"postman-run-button primary-btn\"\ndata-postman-action=\"collection/fork\"\ndata-postman-var-1=\"23697545-0f7ae1e8-8177-46fc-808a-2fd363dd52b9\"\ndata-postman-collection-url=\"entityId=23697545-0f7ae1e8-8177-46fc-808a-2fd363dd52b9&entityType=collection&workspaceId=b886877f-fc09-475f-84fe-6221a98f4d18\"\ndata-postman-param=\"env%5BCIO%20Env%5D=W3sia2V5IjoidXNlcm5hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjowfSx7ImtleSI6InBhc3N3b3JkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxfSx7ImtleSI6ImJlYXJlciIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjJ9LHsia2V5IjoiaW1wb3J0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6M30seyJrZXkiOiJlbWFpbF9hZGRyZXNzIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6NH0seyJrZXkiOiJzdXBwcmVzc2lvbl90eXBlIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6NX0seyJrZXkiOiJjb2xsZWN0aW9uX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6Nn0seyJrZXkiOiJzbmlwcGV0X25hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4Ijo3fSx7ImtleSI6IndlYmhvb2tfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4Ijo4fSx7ImtleSI6InNlbmRlcl9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjl9LHsia2V5IjoiZXhwb3J0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTB9LHsia2V5IjoibWVzc2FnZV9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjExfSx7ImtleSI6InNlZ21lbnRfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxMn0seyJrZXkiOiJuZXdzbGV0dGVyX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTN9LHsia2V5IjoiY29udGVudF9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjE0fSx7ImtleSI6ImNhbXBhaWduX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTV9LHsia2V5IjoiYWN0aW9uX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTZ9LHsia2V5IjoiY3VzdG9tZXJfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxN30seyJrZXkiOiJ0cmFuc2FjdGlvbmFsX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTh9LHsia2V5IjoiYnJvYWRjYXN0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTl9LHsia2V5IjoidHJpZ2dlcl9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjIwfSx7ImtleSI6ImZvcm1faWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoyMX0seyJrZXkiOiJpZGVudGlmaWVyIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MjJ9LHsia2V5IjoiZGV2aWNlX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MjN9LHsia2V5IjoiZGVsaXZlcnlfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoyNH1d\"></div>\n<script type=\"text/javascript\">\n  (function (p,o,s,t,m,a,n) {\n    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });\n    !o.getElementById(s+t) && o.getElementsByTagName(\"head\")[0].appendChild((\n      (n = o.createElement(\"script\")),\n      (n.id = s+t), (n.async = 1), (n.src = m), n\n    ));\n  }(window, document, \"_pm\", \"PostmanRunObject\", \"https://run.pstmn.io/button.js\"));\n</script>\n\n\n# Authentication \n\nYou can find all of your API authentication information in your [Account Settings](https://fly.customer.io/settings/api_credentials). Our Tracking API uses HTTP basic authorization. The App API uses bearer authorization, and you can generate tokens supporting different scopes. Each operation in this document references the authorization header it requires.\n\n\n<!-- ReDoc-Inject: <security-definitions> -->\n\n# Track API limits\n\nThe Behavioral Tracking API (`track.customer.io`) has a fair-use rate limit of 100/requests per second for both active data integrations and historical backfill scripts; these limits apply to both our v1 and v2 APIs. However, there is no strictly enforced rate limit at which point Customer.io will drop your data.\n\nIf track.customer.io calls unexpectedly exceed 100 requests per second, we may reach out to help you correct your integration. We also reserve the right to block your API calls if your integration exceeds this limit in a way that degrades performance for our other customers. \n\nBelow are the payload size limits for the Track API. If any of these limits are too restrictive for your needs, contact support to let us know your situation as we may be able to accommodate special circumstances. \n\n## Customer limits\n\nThese limits apply to people and their attributes, often referred to as \"customers\" in our APIs.\n\n| Data Type | Limit | Description |\n| -- | -- | -- |\n| ID | 150 bytes | Max length of a person's ID value |\n| Attribute Name | 150 bytes | Max length of each attribute name |\n| Attribute Value | 1000 bytes | Max length of attribute values |\n| Unique attributes | 300 | Max number of attributes allowed per person or Identify call |\n\n## Object and relationship limits\n\nObjects (groups) and relationships between people and objects can have their own attributes. Their limits are similar to people (customers).\n\n| Data Type | Limit | Description |\n| -- | -- | -- |\n| Object ID | 150 bytes | Max length of a object's ID |\n| Attribute Names | 150 bytes | Max length of each attribute name |\n| Attribute Values | 1000 bytes | Max length of attribute values |\n| Unique attributes | 300 | Max number of attributes allowed per object or relationship |\n| Total attribute size | 100 Kilobytes | Max size of all attributes associated with an object or relationship |\n\n## Track API Event limits\n\nThese limits apply to events that you'll send with the `/v1/track` call.\n\n| Data Type | Limit | Description |\n| -- | -- | -- |\n| Event Name | 100 bytes | Max length of each event name |\n| Event Data | 100000 bytes | Max length of each event data |\n\n\n## v2 API Limits\n\nThe v2 API has two endpoints, both of which have limits on the total size of requests. \n* `/single` is limited to requests 32kb or smaller. \n* `/batch` is limited to requests 500kb or smaller.\n",
+  "apiTitle": "Journeys Track API",
+  "endpoints": 17,
+  "sdkMethods": 26,
+  "schemas": 236,
+  "parameters": 23,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "customer.io_JourneysTrack.yaml",
+  "difficultyScore": 138.25,
+  "difficulty": "Medium",
+  "company": "Customer.io",
+  "serviceName": "Journeys Track",
+  "sdkName": "customer-io-journeys-track-{language}-sdk",
+  "clientName": "CustomerIoJourneysTrack",
+  "metaDescription": "Customer.io is a versatile marketing automation tool for sending relevant messages based on behavior across web and mobile products. \n\nImpersonal messages lead to bad experiences. That's why we use real-time data to help you deliver the right message, exactly when it's needed — like sending an event reminder over SMS or the perfect onboarding email.\n\nOur robust platform enables you to:\n- Automate your product messaging, with the ability to build, test, and send messages from one platform. \n- Create and manage newsletters, transactional messages, and behavioral messages \n- Do more with your behavior and data -- connect our powerful segmentation and automation engine with other apps to drive user behavior and save time. \n\nLearn more: https://customer.io",
+  "apiStatusUrls": "inherit",
+  "homepage": "customer.io",
+  "developerDocumentation": "customer.io/docs/api/track/",
+  "categories": [
+    "automation",
+    "marketing",
+    "messaging"
+  ],
+  "category": "Marketing Automation",
+  "methods": [
+    {
+      "url": "/api/v1/accounts/region",
+      "method": "findAccountRegion",
+      "httpMethod": "get",
+      "tag": "trackRegion",
+      "typeScriptTag": "trackRegion",
+      "description": "Find your account region",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Your credentials are not valid."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/customers/{identifier}",
+      "method": "removeCustomer",
+      "httpMethod": "delete",
+      "tag": "Track Customers",
+      "typeScriptTag": "trackCustomers",
+      "description": "Delete a customer",
+      "parameters": [
+        {
+          "name": "identifier",
+          "schema": "undefined",
+          "required": true,
+          "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/customers/{identifier}",
+      "method": "addOrUpdatePerson",
+      "httpMethod": "put",
+      "tag": "Track Customers",
+      "typeScriptTag": "trackCustomers",
+      "description": "Add or update a customer",
+      "parameters": [
+        {
+          "name": "identifier",
+          "schema": "undefined",
+          "required": true,
+          "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "anonymous_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "created_at",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "_update",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "cio_relationships",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "unsubscribed",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "cio_subscription_preferences",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/customers/{identifier}/devices",
+      "method": "device",
+      "httpMethod": "put",
+      "tag": "Track Customers",
+      "typeScriptTag": "trackCustomers",
+      "description": "Add or update a customer device",
+      "parameters": [
+        {
+          "name": "device",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/customers/{identifier}/devices/{device_id}",
+      "method": "device",
+      "httpMethod": "delete",
+      "tag": "Track Customers",
+      "typeScriptTag": "trackCustomers",
+      "description": "Delete a customer device",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "A successful request returns an empty object response."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/customers/{identifier}/suppress",
+      "method": "suppressCustomerProfile",
+      "httpMethod": "post",
+      "tag": "Track Customers",
+      "typeScriptTag": "trackCustomers",
+      "description": "Suppress a customer profile",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/customers/{identifier}/unsuppress",
+      "method": "unsuppressProfile",
+      "httpMethod": "post",
+      "tag": "Track Customers",
+      "typeScriptTag": "trackCustomers",
+      "description": "Unsuppress a customer profile",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/unsubscribe/{delivery_id}",
+      "method": "handleUnsubscribe",
+      "httpMethod": "post",
+      "tag": "Track Customers",
+      "typeScriptTag": "trackCustomers",
+      "description": "Custom unsubscribe handling",
+      "parameters": [
+        {
+          "name": "unsubscribe",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "400",
+          "description": "The `delivery_id` format is incorrect or the request is malformed."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/customers/{identifier}/events",
+      "method": "postCustomerEvent",
+      "httpMethod": "post",
+      "tag": "Track Events",
+      "typeScriptTag": "trackEvents",
+      "description": "Track a customer event",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/events",
+      "method": "createAnonymousEvent",
+      "httpMethod": "post",
+      "tag": "Track Events",
+      "typeScriptTag": "trackEvents",
+      "description": "Track an anonymous event",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/forms/{form_id}/submit",
+      "method": "submitFormResponse",
+      "httpMethod": "post",
+      "tag": "Forms",
+      "typeScriptTag": "forms",
+      "description": "Submit a form",
+      "parameters": [
+        {
+          "name": "formId",
+          "schema": "string",
+          "required": true,
+          "description": "The identifier for a form. If Customer.io does not recognize the `form_id`, we create a new form connection (found on the *Data & Integrations* > *Forms* page). Use a value that makes sense to you, or something that you can trace to your backend system.",
+          "example": "FORM_ID"
+        },
+        {
+          "name": "data",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Successful requests do not return anything."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/merge_customers",
+      "method": "mergePeople",
+      "httpMethod": "post",
+      "tag": "Track Customers",
+      "typeScriptTag": "trackCustomers",
+      "description": "Merge duplicate people",
+      "parameters": [
+        {
+          "name": "primary",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "secondary",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/metrics",
+      "method": "reportMetrics",
+      "httpMethod": "post",
+      "tag": "Track Events",
+      "typeScriptTag": "trackEvents",
+      "description": "Report metrics",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The request was received."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/push/events",
+      "method": "reportPushMetrics",
+      "httpMethod": "post",
+      "tag": "Track Events",
+      "typeScriptTag": "trackEvents",
+      "description": "Report push metrics",
+      "parameters": [
+        {
+          "name": "delivery_id",
+          "schema": "string",
+          "description": "",
+          "example": "RPILAgUBcRhIBqSfeiIwdIYJKxTY"
+        },
+        {
+          "name": "event",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "device_id",
+          "schema": "string",
+          "description": "",
+          "example": "CIO-Delivery-Token from the notification"
+        },
+        {
+          "name": "timestamp",
+          "schema": "integer",
+          "description": "",
+          "example": 1613063089
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The request was received."
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/segments/{segment_id}/add_customers",
+      "method": "addCustomersToManualSegment",
+      "httpMethod": "post",
+      "tag": "Track Segments",
+      "typeScriptTag": "trackSegments",
+      "description": "Add people to a manual segment",
+      "parameters": [
+        {
+          "name": "ids",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v1/segments/{segment_id}/remove_customers",
+      "method": "removeCustomers",
+      "httpMethod": "post",
+      "tag": "Track Segments",
+      "typeScriptTag": "trackSegments",
+      "description": "Remove people from a manual segment",
+      "parameters": [
+        {
+          "name": "ids",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v2/entity",
+      "method": "createEntity",
+      "httpMethod": "post",
+      "tag": "track_v2",
+      "typeScriptTag": "trackV2",
+      "description": "Make a single request",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    },
+    {
+      "url": "/api/v2/batch",
+      "method": "sendMultipleRequests",
+      "httpMethod": "post",
+      "tag": "track_v2",
+      "typeScriptTag": "trackV2",
+      "description": "Send multiple requests",
+      "parameters": [
+        {
+          "name": "batch",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A successful request returns an empty object response."
+        },
+        {
+          "statusCode": "207",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized request. Make sure that you provided the right credentials."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Customer.io is a versatile marketing automation tool that sends relevant messages based on user behavior across web and mobile. Real-time data ensures personalized messaging, from event reminders to onboarding emails. Automate product messaging, newsletters, and more with powerful segmentation and automation capabilities.",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/customer-io/journeys-track/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/customer-io/journeys-track/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/customer-io/journeys-track/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/customer-io/journeys-track/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/customer-io/journeys-track/favicon.png",
+  "clientNameCamelCase": "customerIoJourneysTrack",
+  "lastUpdated": "2024-03-28T21:25:19.896Z",
+  "typescriptSdkUsageCode": "import { CustomerIoJourneysTrack } from 'customer-io-journeys-track-typescript-sdk';\n\nconst customerIoJourneysTrack = new CustomerIoJourneysTrack({\n    /*\n     * The Track API uses a basic authentication scheme. Your credentials are your **Site ID** and your **API key**, **Base-64 encoded** in the format `site_id:api_key`.\n     * \n     * You can find your Site ID and API key on the [Track API Keys page](https://fly.customer.io/settings/api_credentials).\n     * \n     */\n    username: \"USERNAME\",\n    password: \"PASSWORD\"\n})",
+  "typescriptSdkFirstRequestCode": "// Find your account region\nconst findAccountRegionResponse = customerIoJourneysTrack.trackRegion.findAccountRegion()",
+  "fixedSpecFileName": "customer-io-journeys-track-fixed-spec.yaml"
+}
