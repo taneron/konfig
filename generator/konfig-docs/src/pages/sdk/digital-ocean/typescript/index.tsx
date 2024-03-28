@@ -17,7 +17,7 @@ export default function DigitalOceanTypeScriptSdk() {
       companyKebabCase="digital-ocean"
       clientNameCamelCase="digitalOcean"
       homepage="digitalocean.com"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-28T21:39:50.212Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/favicon.png"
       // Missing contactUrl
       contactEmail="api-engineering@digitalocean.com"
@@ -4287,7 +4287,7 @@ export default function DigitalOceanTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Databases",
     "typeScriptTag": "databases",
-    "description": "List Connection Pools (PostgreSQL)",
+    "description": "List Connection Pools (https://docs.digitalocean.com/reference/api/api-reference/",
     "parameters": [
       {
         "name": "databaseClusterUuid",
@@ -4330,7 +4330,7 @@ export default function DigitalOceanTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Databases",
     "typeScriptTag": "databases",
-    "description": "Add a New Connection Pool (PostgreSQL)",
+    "description": "Add a New Connection Pool (https://docs.digitalocean.com/reference/api/api-reference/",
     "parameters": [
       {
         "name": "databaseClusterUuid",
@@ -4432,7 +4432,7 @@ export default function DigitalOceanTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Databases",
     "typeScriptTag": "databases",
-    "description": "Delete a Connection Pool (PostgreSQL)",
+    "description": "Delete a Connection Pool (https://docs.digitalocean.com/reference/api/api-reference/",
     "parameters": [
       {
         "name": "databaseClusterUuid",
@@ -4482,7 +4482,7 @@ export default function DigitalOceanTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Databases",
     "typeScriptTag": "databases",
-    "description": "Retrieve Existing Connection Pool (PostgreSQL)",
+    "description": "Retrieve Existing Connection Pool (https://docs.digitalocean.com/reference/api/api-reference/",
     "parameters": [
       {
         "name": "databaseClusterUuid",
@@ -4532,7 +4532,7 @@ export default function DigitalOceanTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Databases",
     "typeScriptTag": "databases",
-    "description": "Update Connection Pools (PostgreSQL)",
+    "description": "Update Connection Pools (https://docs.digitalocean.com/reference/api/api-reference/",
     "parameters": [
       {
         "name": "databaseClusterUuid",
@@ -6655,7 +6655,7 @@ export default function DigitalOceanTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Droplets",
     "typeScriptTag": "droplets",
-    "description": "Destroy a Droplet and All of its Associated Resources (Dangerous)",
+    "description": "Destroy a Droplet and All of its Associated Resources (https://docs.digitalocean.com/reference/api/api-reference/",
     "parameters": [
       {
         "name": "dropletId",
@@ -8283,7 +8283,7 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "imageId",
         "schema": "undefined",
         "required": true,
-        "description": "A unique number (id) or string (slug) used to identify and reference a\nspecific image.\n\n**Public** images can be identified by image `id` or `slug`.\n\n**Private** images *must* be identified by image `id`.\n"
+        "description": "A unique number (https://docs.digitalocean.com/reference/api/api-reference/ or string (https://docs.digitalocean.com/reference/api/api-reference/ used to identify and reference a\nspecific image.\n\n**Public** images can be identified by image `id` or `slug`.\n\n**Private** images *must* be identified by image `id`.\n"
       }
     ],
     "responses": [
@@ -9022,7 +9022,7 @@ export default function DigitalOceanTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Kubernetes",
     "typeScriptTag": "kubernetes",
-    "description": "Delete a Cluster and All of its Associated Resources (Dangerous)",
+    "description": "Delete a Cluster and All of its Associated Resources (https://docs.digitalocean.com/reference/api/api-reference/",
     "parameters": [
       {
         "name": "clusterId",
@@ -10806,14 +10806,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -10859,14 +10859,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -10912,14 +10912,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -10965,14 +10965,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11018,14 +11018,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11071,14 +11071,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11124,14 +11124,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11177,14 +11177,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11230,14 +11230,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11283,14 +11283,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11336,14 +11336,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11396,14 +11396,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11456,14 +11456,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -11516,14 +11516,14 @@ export default function DigitalOceanTypeScriptSdk() {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to start metric window.",
+        "description": "UNIX timestamp to start metric window.",
         "example": "1620683817"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "Timestamp to end metric window.",
+        "description": "UNIX timestamp to end metric window.",
         "example": "1620705417"
       }
     ],
@@ -12546,7 +12546,7 @@ export default function DigitalOceanTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Container Registry",
     "typeScriptTag": "containerRegistry",
-    "description": "List All Container Registry Repositories (V2)",
+    "description": "List All Container Registry Repositories (https://docs.digitalocean.com/reference/api/api-reference/",
     "parameters": [
       {
         "name": "perPage",

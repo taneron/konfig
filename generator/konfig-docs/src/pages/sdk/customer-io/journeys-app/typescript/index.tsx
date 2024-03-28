@@ -10,14 +10,14 @@ export default function CustomerIoJourneysAppTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="customer-io-journeys-app-typescript-sdk"
-      metaDescription={`Customer.io is a versatile marketing automation tool for sending relevant messages based on behavior across web and mobile products. 
+      metaDescription={`Customer.io is a versatile marketing automation tool for sending relevant messages based on behavior across web and mobile products.
 
 Impersonal messages lead to bad experiences. That's why we use real-time data to help you deliver the right message, exactly when it's needed — like sending an event reminder over SMS or the perfect onboarding email.
 
 Our robust platform enables you to:
-- Automate your product messaging, with the ability to build, test, and send messages from one platform. 
-- Create and manage newsletters, transactional messages, and behavioral messages 
-- Do more with your behavior and data -- connect our powerful segmentation and automation engine with other apps to drive user behavior and save time. 
+- Automate your product messaging, with the ability to build, test, and send messages from one platform.
+- Create and manage newsletters, transactional messages, and behavioral messages
+- Do more with your behavior and data -- connect our powerful segmentation and automation engine with other apps to drive user behavior and save time.
 
 Learn more: https://customer.io`}
       company="Customer.io"
@@ -26,7 +26,7 @@ Learn more: https://customer.io`}
       companyKebabCase="customer-io"
       clientNameCamelCase="customerIoJourneysApp"
       homepage="customer.io"
-      lastUpdated={new Date("2024-03-28T21:25:19.896Z")}
+      lastUpdated={new Date("2024-03-28T21:39:50.212Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/customer-io/journeys-app/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

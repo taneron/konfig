@@ -1,0 +1,75 @@
+```typescript index.ts
+import { Ducky } from 'ducky-typescript-sdk';
+
+const ducky = new Ducky({
+    /*
+     * Protected requests expect the `Authorization` header with a bearer token respecting the format `Bearer $ACCESS_TOKEN`.
+     * 
+     * This **documentation is interactive**: set your `access_token` here and test all requests directly from your browser
+     * (`access_token` must be formatted as `Bearer $ACCESS_TOKEN`).
+     * Or set it individually for each request, in the `Authorization` header.
+     * 
+     * 
+     * ### Introduction
+     * The API requires an `access_token` for every request (except [/ping](https://storage.googleapis.com)).
+     * 
+     * Step-by-step:
+     * 1. [Ask Ducky](mailto:api@ducky.eco) for a `CLIENT_ID` and a `CLIENT_SECRET`
+     * 2. Negotiate an `access_token` with Auth0
+     * 3. Send authenticated requests to Ducky API
+     * 
+     * Keep reading to learn how to obtain an `access_token` and use it to perform requests.
+     * 
+     * ---
+     * 
+     * ### Prerequisite
+     * To use the API, you have to get `CLIENT_ID` and a `CLIENT_SECRET`.
+     * To do so, please contact Ducky at [api@ducky.eco](mailto:api@ducky.eco).
+     * 
+     * > Note: even without an `access_token`, you can browse the documentation and explore its possibilities by looking at the example outputs.
+     * 
+     * 
+     * ### Getting an access token
+     * #### Request
+     * Authentication is provided by Auth0. Before using Ducky API, you send a query to Auth0, asking for an `access_token`.
+     * 
+     * To negotiate an `access_token`, send a request based on this curl snippet (update it with your `$CLIENT_ID`& `$CLIENT_SECRET`):
+     * 
+     * ```shell
+     * curl --request POST \
+     *   --url https://ducky-prod.eu.auth0.com/oauth/token \
+     *   --header 'content-type: application/json' \
+     *   --data '{"client_id":"$CLIENT_ID","client_secret":"$CLIENT_SECRET","audience":"ducky-api-prod","grant_type":"client_credentials"}'
+     * ```
+     * 
+     * #### Response
+     * The response contains an `access_token` and an expiration time. You should store both and use the `access_token` until its expiration date. After expiration, repeat the process above to negotiate a new token.
+     * 
+     * ```json
+     * {
+     *   "access_token": "example_access_token",
+     *   "token_type": "Bearer",
+     *   "expires_in": 86400
+     * }
+     * ```
+     * ```
+     * 
+     * ### Usage
+     * Now that you have an `access_token`, you can start using the Ducky API.
+     * Send the `access_token` with each request, in an `Authorization` header.
+     * Make sure to prefix it with the `token_type` which is always `Bearer`.
+     * 
+     * ##### Example
+     * To make sure you're ready to use the API, you can use the [/ping/protected endpoint](https://storage.googleapis.com).
+     * It validates your `access_token` and checks if the API is ready to accept connections.
+     * 
+     * ```shell
+     * curl --request GET \
+     *   --url https://api.ducky.eco/v3/ping/protected \
+     *   --header 'authorization: Bearer example_access_token'
+     * ```
+     * 
+     */
+    apiKeyAuth: "AUTHORIZATION"
+})
+```

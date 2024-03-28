@@ -17,7 +17,7 @@ export default function BoxTypeScriptSdk() {
       companyKebabCase="box"
       clientNameCamelCase="box"
       homepage="box.com"
-      lastUpdated={new Date("2024-03-27T20:29:17.115Z")}
+      lastUpdated={new Date("2024-03-28T21:39:50.212Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/box/favicon.png"
       contactUrl="https://box.dev"
       contactEmail="devrel@box.com"
@@ -376,7 +376,7 @@ export default function BoxTypeScriptSdk() {
         "name": "fields",
         "schema": "array",
         "required": false,
-        "description": "A comma-separated list of attributes to include in the\nresponse. This can be used to request fields that are\nnot normally returned in a standard response.\n\nBe aware that specifying this parameter will have the\neffect that none of the standard fields are returned in\nthe response unless explicitly specified, instead only\nfields for the mini representation are returned, additional\nto the fields requested.\n\nAdditionally this field can be used to query any metadata\napplied to the file by specifying the `metadata` field as well\nas the scope and key of the template to retrieve, for example\n`?field=metadata.enterprise_12345.contractTemplate`.",
+        "description": "A comma-separated list of attributes to include in the\nresponse. This can be used to request fields that are\nnot normally returned in a standard response.\n\nBe aware that specifying this parameter will have the\neffect that none of the standard fields are returned in\nthe response unless explicitly specified, instead only\nfields for the mini representation are returned, additional\nto the fields requested.\n\nAdditionally this field can be used to query any metadata\napplied to the file by specifying the `metadata` field as well\nas the scope and key of the template to retrieve, for example\n`?fields=metadata.enterprise_12345.contractTemplate`.",
         "example": [
           "id",
           "type",
@@ -857,8 +857,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/upload_sessions",
     "method": "createSessionForUpload",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Uploads (Chunked)",
-    "typeScriptTag": "uploadsChunked",
+    "tag": "Uploads (https://developer.box.com/reference/",
+    "typeScriptTag": "uploadsHttps:DeveloperBoxComReference",
     "description": "Create upload session",
     "parameters": [
       {
@@ -914,8 +914,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/upload_sessions",
     "method": "createSessionForUpload",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Uploads (Chunked)",
-    "typeScriptTag": "uploadsChunked",
+    "tag": "Uploads (https://developer.box.com/reference/",
+    "typeScriptTag": "uploadsHttps:DeveloperBoxComReference",
     "description": "Create upload session for existing file",
     "parameters": [
       {
@@ -959,8 +959,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/upload_sessions/{upload_session_id}",
     "method": "removeUploadSession",
     "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Uploads (Chunked)",
-    "typeScriptTag": "uploadsChunked",
+    "tag": "Uploads (https://developer.box.com/reference/",
+    "typeScriptTag": "uploadsHttps:DeveloperBoxComReference",
     "description": "Remove upload session",
     "parameters": [
       {
@@ -986,8 +986,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/upload_sessions/{upload_session_id}",
     "method": "info",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Uploads (Chunked)",
-    "typeScriptTag": "uploadsChunked",
+    "tag": "Uploads (https://developer.box.com/reference/",
+    "typeScriptTag": "uploadsHttps:DeveloperBoxComReference",
     "description": "Get upload session",
     "parameters": [
       {
@@ -1013,8 +1013,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/upload_sessions/{upload_session_id}",
     "method": "filePartUpdate",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Uploads (Chunked)",
-    "typeScriptTag": "uploadsChunked",
+    "tag": "Uploads (https://developer.box.com/reference/",
+    "typeScriptTag": "uploadsHttps:DeveloperBoxComReference",
     "description": "Upload part of file",
     "parameters": [
       {
@@ -1066,8 +1066,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/upload_sessions/{upload_session_id}/parts",
     "method": "listParts",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Uploads (Chunked)",
-    "typeScriptTag": "uploadsChunked",
+    "tag": "Uploads (https://developer.box.com/reference/",
+    "typeScriptTag": "uploadsHttps:DeveloperBoxComReference",
     "description": "List parts",
     "parameters": [
       {
@@ -1108,8 +1108,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/upload_sessions/{upload_session_id}/commit",
     "method": "commitSession",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Uploads (Chunked)",
-    "typeScriptTag": "uploadsChunked",
+    "tag": "Uploads (https://developer.box.com/reference/",
+    "typeScriptTag": "uploadsHttps:DeveloperBoxComReference",
     "description": "Commit upload session",
     "parameters": [
       {
@@ -1332,8 +1332,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/collaborations",
     "method": "fileAccessList",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Collaborations (List)",
-    "typeScriptTag": "collaborationsList",
+    "tag": "Collaborations (https://developer.box.com/reference/",
+    "typeScriptTag": "collaborationsHttps:DeveloperBoxComReference",
     "description": "List file collaborations",
     "parameters": [
       {
@@ -1778,8 +1778,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/metadata",
     "method": "listFileMetadata",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Metadata instances (Files)",
-    "typeScriptTag": "metadataInstancesFiles",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "List metadata instances on file",
     "parameters": [
       {
@@ -1971,8 +1971,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/metadata/{scope}/{template_key}",
     "method": "removeInstance",
     "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Metadata instances (Files)",
-    "typeScriptTag": "metadataInstancesFiles",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "Remove metadata instance from file",
     "parameters": [
       {
@@ -2024,8 +2024,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/metadata/{scope}/{template_key}",
     "method": "getInstance",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Metadata instances (Files)",
-    "typeScriptTag": "metadataInstancesFiles",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "Get metadata instance on file",
     "parameters": [
       {
@@ -2077,8 +2077,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/metadata/{scope}/{template_key}",
     "method": "applyTemplate",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Metadata instances (Files)",
-    "typeScriptTag": "metadataInstancesFiles",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "Create metadata instance on file",
     "parameters": [
       {
@@ -2130,8 +2130,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/metadata/{scope}/{template_key}",
     "method": "updateInstanceOnFile",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Metadata instances (Files)",
-    "typeScriptTag": "metadataInstancesFiles",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "Update metadata instance on file",
     "parameters": [
       {
@@ -2317,8 +2317,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/watermark",
     "method": "removeWatermark",
     "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Watermarks (Files)",
-    "typeScriptTag": "watermarksFiles",
+    "tag": "Watermarks (https://developer.box.com/reference/",
+    "typeScriptTag": "watermarksHttps:DeveloperBoxComReference",
     "description": "Remove watermark from file",
     "parameters": [
       {
@@ -2348,8 +2348,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/watermark",
     "method": "get",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Watermarks (Files)",
-    "typeScriptTag": "watermarksFiles",
+    "tag": "Watermarks (https://developer.box.com/reference/",
+    "typeScriptTag": "watermarksHttps:DeveloperBoxComReference",
     "description": "Get watermark on file",
     "parameters": [
       {
@@ -2379,8 +2379,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}/watermark",
     "method": "applyWatermarkToFile",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Watermarks (Files)",
-    "typeScriptTag": "watermarksFiles",
+    "tag": "Watermarks (https://developer.box.com/reference/",
+    "typeScriptTag": "watermarksHttps:DeveloperBoxComReference",
     "description": "Apply watermark to file",
     "parameters": [
       {
@@ -2707,7 +2707,7 @@ export default function BoxTypeScriptSdk() {
         "name": "fields",
         "schema": "array",
         "required": false,
-        "description": "A comma-separated list of attributes to include in the\nresponse. This can be used to request fields that are\nnot normally returned in a standard response.\n\nBe aware that specifying this parameter will have the\neffect that none of the standard fields are returned in\nthe response unless explicitly specified, instead only\nfields for the mini representation are returned, additional\nto the fields requested.\n\nAdditionally this field can be used to query any metadata\napplied to the file by specifying the `metadata` field as well\nas the scope and key of the template to retrieve, for example\n`?field=metadata.enterprise_12345.contractTemplate`.",
+        "description": "A comma-separated list of attributes to include in the\nresponse. This can be used to request fields that are\nnot normally returned in a standard response.\n\nBe aware that specifying this parameter will have the\neffect that none of the standard fields are returned in\nthe response unless explicitly specified, instead only\nfields for the mini representation are returned, additional\nto the fields requested.\n\nAdditionally this field can be used to query any metadata\napplied to the file by specifying the `metadata` field as well\nas the scope and key of the template to retrieve, for example\n`?fields=metadata.enterprise_12345.contractTemplate`.",
         "example": [
           "id",
           "type",
@@ -2998,7 +2998,7 @@ export default function BoxTypeScriptSdk() {
         "name": "fields",
         "schema": "array",
         "required": false,
-        "description": "A comma-separated list of attributes to include in the\nresponse. This can be used to request fields that are\nnot normally returned in a standard response.\n\nBe aware that specifying this parameter will have the\neffect that none of the standard fields are returned in\nthe response unless explicitly specified, instead only\nfields for the mini representation are returned, additional\nto the fields requested.\n\nAdditionally this field can be used to query any metadata\napplied to the file by specifying the `metadata` field as well\nas the scope and key of the template to retrieve, for example\n`?field=metadata.enterprise_12345.contractTemplate`.",
+        "description": "A comma-separated list of attributes to include in the\nresponse. This can be used to request fields that are\nnot normally returned in a standard response.\n\nBe aware that specifying this parameter will have the\neffect that none of the standard fields are returned in\nthe response unless explicitly specified, instead only\nfields for the mini representation are returned, additional\nto the fields requested.\n\nAdditionally this field can be used to query any metadata\napplied to the file by specifying the `metadata` field as well\nas the scope and key of the template to retrieve, for example\n`?fields=metadata.enterprise_12345.contractTemplate`.",
         "example": [
           "id",
           "type",
@@ -3231,8 +3231,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/collaborations",
     "method": "folderAccess",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Collaborations (List)",
-    "typeScriptTag": "collaborationsList",
+    "tag": "Collaborations (https://developer.box.com/reference/",
+    "typeScriptTag": "collaborationsHttps:DeveloperBoxComReference",
     "description": "List folder collaborations",
     "parameters": [
       {
@@ -3342,8 +3342,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/metadata",
     "method": "listOnFolder",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Metadata instances (Folders)",
-    "typeScriptTag": "metadataInstancesFolders",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "List metadata instances on folder",
     "parameters": [
       {
@@ -3535,8 +3535,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/metadata/{scope}/{template_key}",
     "method": "removeInstance",
     "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Metadata instances (Folders)",
-    "typeScriptTag": "metadataInstancesFolders",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "Remove metadata instance from folder",
     "parameters": [
       {
@@ -3588,8 +3588,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/metadata/{scope}/{template_key}",
     "method": "getFolderMetadataInstance",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Metadata instances (Folders)",
-    "typeScriptTag": "metadataInstancesFolders",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "Get metadata instance on folder",
     "parameters": [
       {
@@ -3641,8 +3641,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/metadata/{scope}/{template_key}",
     "method": "applyTemplate",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Metadata instances (Folders)",
-    "typeScriptTag": "metadataInstancesFolders",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "Create metadata instance on folder",
     "parameters": [
       {
@@ -3694,8 +3694,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/metadata/{scope}/{template_key}",
     "method": "updateInstanceOnFolder",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Metadata instances (Folders)",
-    "typeScriptTag": "metadataInstancesFolders",
+    "tag": "Metadata instances (https://developer.box.com/reference/",
+    "typeScriptTag": "metadataInstancesHttps:DeveloperBoxComReference",
     "description": "Update metadata instance on folder",
     "parameters": [
       {
@@ -3821,8 +3821,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/watermark",
     "method": "removeFolderWatermark",
     "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Watermarks (Folders)",
-    "typeScriptTag": "watermarksFolders",
+    "tag": "Watermarks (https://developer.box.com/reference/",
+    "typeScriptTag": "watermarksHttps:DeveloperBoxComReference",
     "description": "Remove watermark from folder",
     "parameters": [
       {
@@ -3852,8 +3852,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/watermark",
     "method": "getFolderWatermark",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Watermarks (Folders)",
-    "typeScriptTag": "watermarksFolders",
+    "tag": "Watermarks (https://developer.box.com/reference/",
+    "typeScriptTag": "watermarksHttps:DeveloperBoxComReference",
     "description": "Get watermark for folder",
     "parameters": [
       {
@@ -3883,8 +3883,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}/watermark",
     "method": "applyToFolder",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Watermarks (Folders)",
-    "typeScriptTag": "watermarksFolders",
+    "tag": "Watermarks (https://developer.box.com/reference/",
+    "typeScriptTag": "watermarksHttps:DeveloperBoxComReference",
     "description": "Apply watermark to folder",
     "parameters": [
       {
@@ -5120,8 +5120,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/collaborations",
     "method": "collaborations",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Collaborations (List)",
-    "typeScriptTag": "collaborationsList",
+    "tag": "Collaborations (https://developer.box.com/reference/",
+    "typeScriptTag": "collaborationsHttps:DeveloperBoxComReference",
     "description": "List pending collaborations",
     "parameters": [
       {
@@ -5309,7 +5309,7 @@ export default function BoxTypeScriptSdk() {
         "name": "sizeRange",
         "schema": "array",
         "required": false,
-        "description": "Limits the search results to any items with a size within\na given file size range. This applied to files and folders.\n\nSize ranges are defined as comma separated list of a lower\nand upper byte size limit (inclusive).\n\nThe upper and lower bound can be omitted to create open ranges.",
+        "description": "Limits the search results to any items with a size within\na given file size range. This applied to files and folders.\n\nSize ranges are defined as comma separated list of a lower\nand upper byte size limit (https://developer.box.com/reference/.\n\nThe upper and lower bound can be omitted to create open ranges.",
         "example": [
           1000000,
           5000000
@@ -5392,7 +5392,7 @@ export default function BoxTypeScriptSdk() {
         "name": "sort",
         "schema": "string",
         "required": false,
-        "description": "Defines the order in which search results are returned. This API\ndefaults to returning items by relevance unless this parameter is\nexplicitly specified.\n\n* `relevance` (default) returns the results sorted by relevance to the\nquery search term. The relevance is based on the occurrence of the search\nterm in the items name, description, content, and additional properties.\n* `modified_at` returns the results ordered in descending order by date\nat which the item was last modified.",
+        "description": "Defines the order in which search results are returned. This API\ndefaults to returning items by relevance unless this parameter is\nexplicitly specified.\n\n* `relevance` (https://developer.box.com/reference/ returns the results sorted by relevance to the\nquery search term. The relevance is based on the occurrence of the search\nterm in the items name, description, content, and additional properties.\n* `modified_at` returns the results ordered in descending order by date\nat which the item was last modified.",
         "example": "modified_at",
         "default": "relevance"
       },
@@ -5870,8 +5870,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/shared_items",
     "method": "getBySharedLink",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Shared links (Files)",
-    "typeScriptTag": "sharedLinksFiles",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Find file for shared link",
     "parameters": [
       {
@@ -5919,8 +5919,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}#get_shared_link",
     "method": "getSharedLinkInfo",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Shared links (Files)",
-    "typeScriptTag": "sharedLinksFiles",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Get shared link for file",
     "parameters": [
       {
@@ -5965,8 +5965,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}#add_shared_link",
     "method": "addSharedLinkToFile",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Shared links (Files)",
-    "typeScriptTag": "sharedLinksFiles",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Add shared link to file",
     "parameters": [
       {
@@ -6028,8 +6028,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}#update_shared_link",
     "method": "updateLinkOnFile",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Shared links (Files)",
-    "typeScriptTag": "sharedLinksFiles",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Update shared link on file",
     "parameters": [
       {
@@ -6091,8 +6091,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/files/{file_id}#remove_shared_link",
     "method": "removeSharedLink",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Shared links (Files)",
-    "typeScriptTag": "sharedLinksFiles",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Remove shared link from file",
     "parameters": [
       {
@@ -6151,8 +6151,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/shared_items#folders",
     "method": "findFolderBySharedLink",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Shared links (Folders)",
-    "typeScriptTag": "sharedLinksFolders",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Find folder for shared link",
     "parameters": [
       {
@@ -6200,8 +6200,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}#get_shared_link",
     "method": "getSharedLinkForFolder",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Shared links (Folders)",
-    "typeScriptTag": "sharedLinksFolders",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Get shared link for folder",
     "parameters": [
       {
@@ -6246,8 +6246,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}#add_shared_link",
     "method": "addLinkToFolder",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Shared links (Folders)",
-    "typeScriptTag": "sharedLinksFolders",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Add shared link to folder",
     "parameters": [
       {
@@ -6309,8 +6309,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}#update_shared_link",
     "method": "updateFolderSharedLink",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Shared links (Folders)",
-    "typeScriptTag": "sharedLinksFolders",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Update shared link on folder",
     "parameters": [
       {
@@ -6372,8 +6372,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/folders/{folder_id}#remove_shared_link",
     "method": "removeFromFolder",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Shared links (Folders)",
-    "typeScriptTag": "sharedLinksFolders",
+    "tag": "Shared links (https://developer.box.com/reference/",
+    "typeScriptTag": "sharedLinksHttps:DeveloperBoxComReference",
     "description": "Remove shared link from folder",
     "parameters": [
       {
@@ -8343,8 +8343,8 @@ export default function BoxTypeScriptSdk() {
     "url": "/groups/{group_id}/collaborations",
     "method": "groupAccessDetails",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Collaborations (List)",
-    "typeScriptTag": "collaborationsList",
+    "tag": "Collaborations (https://developer.box.com/reference/",
+    "typeScriptTag": "collaborationsHttps:DeveloperBoxComReference",
     "description": "List group collaborations",
     "parameters": [
       {
