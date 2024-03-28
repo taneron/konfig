@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixPassthroughRefs request body shouldn't be shortened 1`] = `
+{
+  "components": {
+    "requestBodies": {
+      "TestRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PassthroughSchema",
+            },
+          },
+        },
+      },
+    },
+    "schemas": {
+      "PassthroughSchema": {
+        "properties": {
+          "test": {
+            "type": "string",
+          },
+        },
+        "type": "object",
+      },
+    },
+  },
+  "info": {
+    "title": "Test API",
+    "version": "1.0.0",
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/test": {
+      "post": {
+        "requestBody": {
+          "$ref": "#/components/requestBodies/RequestBody",
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+          },
+        },
+      },
+    },
+  },
+}
+`;

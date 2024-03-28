@@ -1,0 +1,853 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /ab-tests/subject:
+    get: AbTestsSubject_getList
+    post: AbTestsSubject_createNewTest
+  /ab-tests/subject/{abTestId}:
+    get: AbTestsSubject_getSingleById
+  /ab-tests/subject/{abTestId}/winner:
+    post: AbTestsSubject_chooseWinner
+  /accounts:
+    get: Accounts_getInformation
+    post: Accounts_updateAccountDetails
+  /accounts/badge:
+    get: Accounts_getCurrentStatusOfBadge
+    post: Accounts_toggleBadgeStatus
+  /accounts/billing:
+    get: Accounts_getBillingInformation
+  /accounts/blocklists:
+    get: Accounts_getBlocklistMasks
+    post: Accounts_updateBlocklist
+  /accounts/callbacks:
+    delete: Accounts_disableCallbacks
+    get: Accounts_getConfiguration
+    post: Accounts_enableCallbacksConfiguration
+  /accounts/industries:
+    get: Accounts_listIndustryTags
+  /accounts/login-history:
+    get: Accounts_getLoginHistory
+  /accounts/sending-limits:
+    get: Accounts_getSendingLimits
+  /accounts/timezones:
+    get: Accounts_getTimezonesList
+  /addresses:
+    get: Addresses_getList
+    post: Addresses_createNewAddress
+  /addresses/{addressId}:
+    delete: Addresses_deleteAddress
+    get: Addresses_getAddressById
+    post: Addresses_updateAddress
+  /autoresponders:
+    get: Autoresponders_getList
+    post: Autoresponders_createNewAutoresponder
+  /autoresponders/statistics:
+    get: Autoresponders_getAllStatistics
+  /autoresponders/{autoresponderId}:
+    delete: Autoresponders_deleteById
+    get: Autoresponders_getById
+    post: Autoresponders_updateAutoresponder
+  /autoresponders/{autoresponderId}/statistics:
+    get: Autoresponders_getStatistics
+  /autoresponders/{autoresponderId}/thumbnail:
+    get: Autoresponders_getThumbnail
+  /campaigns:
+    get: CampaignsLists_getList
+    post: CampaignsLists_createNewCampaign
+  /campaigns/statistics/balance:
+    get: CampaignsLists_getBalanceStatistics
+  /campaigns/statistics/list-size:
+    get: CampaignsLists_getCampaignSizeStatistics
+  /campaigns/statistics/locations:
+    get: CampaignsLists_getSubscriberLocationStatistics
+  /campaigns/statistics/origins:
+    get: CampaignsLists_getSubscriberOriginStatistics
+  /campaigns/statistics/removals:
+    get: CampaignsLists_getRemovalStatistics
+  /campaigns/statistics/subscriptions:
+    get: CampaignsLists_getSubscriptionStatistics
+  /campaigns/statistics/summary:
+    get: CampaignsLists_getStatisticsSummary
+  /campaigns/{campaignId}:
+    get: CampaignsLists_getSingleCampaign
+    post: CampaignsLists_updateCampaign
+  /campaigns/{campaignId}/blocklists:
+    get: CampaignsLists_getBlocklistMasks
+    post: CampaignsLists_updateBlocklistMasks
+  /campaigns/{campaignId}/contacts:
+    get: Contacts_getSingleCampaignContacts
+  /click-tracks:
+    get: ClickTracks_getList
+  /click-tracks/{clickTrackId}:
+    get: ClickTracks_getLinkDetailsById
+  /contacts:
+    get: Contacts_getList
+    post: Contacts_createNewContact
+  /contacts/batch:
+    post: Contacts_createBatchContacts
+  /contacts/{contactId}:
+    delete: Contacts_deleteById
+    get: Contacts_getDetailsById
+    post: Contacts_updateDetails
+  /contacts/{contactId}/activities:
+    get: Contacts_getListOfActivities
+  /contacts/{contactId}/custom-fields:
+    post: Contacts_upsertCustomFields
+  /contacts/{contactId}/tags:
+    post: Contacts_upsertContactTags
+  /custom-events:
+    get: CustomEvents_getList
+    post: CustomEvents_createEvent
+  /custom-events/trigger:
+    post: CustomEvents_triggerEvent
+  /custom-events/{customEventId}:
+    delete: CustomEvents_deleteEventById
+    get: CustomEvents_getById
+    post: CustomEvents_updateDetails
+  /custom-fields:
+    get: CustomFields_getList
+    post: CustomFields_createNewField
+  /custom-fields/{customFieldId}:
+    delete: CustomFields_deleteSingleCustomField
+    get: CustomFields_getDefinitionById
+    post: CustomFields_updateDefinition
+  /file-library/files:
+    get: FileLibrary_getFileList
+    post: FileLibrary_createNewFile
+  /file-library/files/{fileId}:
+    delete: FileLibrary_deleteFileById
+    get: FileLibrary_getFileById
+  /file-library/folders:
+    get: FileLibrary_listFolders
+    post: FileLibrary_createFolder
+  /file-library/folders/{folderId}:
+    delete: FileLibrary_deleteFolderById
+  /file-library/quota:
+    get: FileLibrary_getStorageInfo
+  /forms:
+    get: Forms_getList
+  /forms/{formId}:
+    get: Forms_getById
+  /forms/{formId}/variants:
+    get: Forms_getListOfVariants
+  /from-fields:
+    get: FromFields_getList
+    post: FromFields_createNewAddress
+  /from-fields/{fromFieldId}:
+    delete: FromFields_deleteAddress
+    get: FromFields_getSingleAddressById
+  /from-fields/{fromFieldId}/default:
+    post: FromFields_setFromAddressAsDefault
+  /gdpr-fields:
+    get: GdprFields_getList
+  /gdpr-fields/{gdprFieldId}:
+    get: GdprFields_getDetails
+  /imports:
+    get: Imports_getList
+    post: Imports_scheduleNewContactImport
+  /imports/{importId}:
+    get: Imports_getImportDetailsById
+  /landing-pages:
+    get: LegacyLandingPages_getList
+  /landing-pages/{landingPageId}:
+    get: LegacyLandingPages_getById
+  /lps:
+    get: LandingPages_getList
+  /lps/{lpsId}:
+    get: LandingPages_getById
+  /multimedia:
+    get: Multimedia_getImageList
+    post: Multimedia_uploadImage
+  /newsletters:
+    get: Newsletters_getList
+    post: Newsletters_enqueueNewsletter
+  /newsletters/send-draft:
+    post: Newsletters_sendDraft
+  /newsletters/statistics:
+    get: Newsletters_getStatisticsBasedOnList
+  /newsletters/{newsletterId}:
+    delete: Newsletters_deleteNewsletter
+    get: Newsletters_getSingleById
+  /newsletters/{newsletterId}/activities:
+    get: Newsletters_getActivities
+  /newsletters/{newsletterId}/cancel:
+    post: Newsletters_cancelSending
+  /newsletters/{newsletterId}/statistics:
+    get: Newsletters_getStatistics
+  /newsletters/{newsletterId}/thumbnail:
+    get: Newsletters_getThumbnail
+  /popups:
+    get: FormsAndPopups_getList
+  /popups/{popupId}:
+    get: FormsAndPopups_getFormOrPopupById
+  /predefined-fields:
+    get: PredefinedFields_getList
+    post: PredefinedFields_createField
+  /predefined-fields/{predefinedFieldId}:
+    delete: PredefinedFields_deleteField
+    get: PredefinedFields_getById
+    post: PredefinedFields_updateField
+  /rss-newsletters:
+    get: RssNewsletters_getList
+    post: RssNewsletters_createNewsletter
+  /rss-newsletters/statistics:
+    get: RssNewsletters_getStatistics
+  /rss-newsletters/{rssNewsletterId}:
+    delete: RssNewsletters_deleteNewsletter
+    get: RssNewsletters_getById
+    post: RssNewsletters_updateNewsletter
+  /rss-newsletters/{rssNewsletterId}/statistics:
+    get: RssNewsletters_getStatisticsById
+  /search-contacts:
+    get: SearchContacts_savedList
+    post: SearchContacts_createNewSearch
+  /search-contacts/contacts:
+    post: SearchContacts_usingConditions
+  /search-contacts/{searchContactId}:
+    delete: SearchContacts_deleteById
+    get: SearchContacts_byContactId
+    post: SearchContacts_updateSpecifiedContacts
+  /search-contacts/{searchContactId}/contacts:
+    get: SearchContacts_byId
+  /search-contacts/{searchContactId}/custom-fields:
+    post: SearchContacts_upsertCustomFieldsByContactId
+  /shops:
+    get: Shops_getListOfShops
+    post: Shops_createNewShop
+  /shops/{shopId}:
+    delete: Shops_deleteShop
+    get: Shops_getById
+    post: Shops_updatePreferences
+  /shops/{shopId}/carts:
+    get: Carts_getShopCarts
+    post: Carts_createNewCart
+  /shops/{shopId}/carts/{cartId}:
+    delete: Carts_deleteCart
+    get: Carts_getByIdInShopContext
+    post: Carts_updateCartProperties
+  /shops/{shopId}/categories:
+    get: Categories_list
+    post: Categories_createNewCategory
+  /shops/{shopId}/categories/{categoryId}:
+    delete: Categories_deleteCategory
+    get: Categories_getById
+    post: Categories_updateCategoryProperties
+  /shops/{shopId}/meta-fields:
+    get: MetaFields_getCollection
+    post: MetaFields_createNewMetaField
+  /shops/{shopId}/meta-fields/{metaFieldId}:
+    delete: MetaFields_delete
+    get: MetaFields_getById
+    post: MetaFields_updateProperties
+  /shops/{shopId}/orders:
+    get: Orders_getList
+    post: Orders_createNewOrder
+  /shops/{shopId}/orders/{orderId}:
+    delete: Orders_deleteOrder
+    get: Orders_getById
+    post: Orders_updateOrder
+  /shops/{shopId}/products:
+    get: Products_getList
+    post: Products_createProduct
+  /shops/{shopId}/products/{productId}:
+    delete: Products_deleteProduct
+    get: Products_getByShopIdAndProductId
+    post: Products_updateProduct
+  /shops/{shopId}/products/{productId}/categories:
+    post: Products_upsertCategories
+  /shops/{shopId}/products/{productId}/meta-fields:
+    post: Products_upsertMetaFields
+  /shops/{shopId}/products/{productId}/variants:
+    get: ProductVariants_getProductVariantsList
+    post: ProductVariants_createNewVariant
+  /shops/{shopId}/products/{productId}/variants/{variantId}:
+    delete: ProductVariants_deleteVariant
+    get: ProductVariants_getById
+    post: ProductVariants_updateVariantProperties
+  /shops/{shopId}/taxes:
+    get: Taxes_getList
+    post: Taxes_createNewTax
+  /shops/{shopId}/taxes/{taxId}:
+    delete: Taxes_deleteById
+    get: Taxes_getSingleById
+    post: Taxes_updateShopTax
+  /sms:
+    get: SmsMessages_getList
+  /sms-automation:
+    get: SmsAutomationMessages_getList
+  /sms/{smsId}:
+    get: SmsMessages_getById
+  /splittests:
+    get: AbTests_getList
+  /splittests/{splittestId}:
+    get: AbTests_getSingleAbTestById
+  /statistics/ecommerce/performance:
+    get: Ecommerce_getPerformanceStatistics
+  /statistics/ecommerce/revenue:
+    get: Ecommerce_getRevenueStatistics
+  /statistics/lps/{lpsId}/performance:
+    get: LandingPage_getPerformanceDetails
+  /statistics/popups/{popupId}/performance:
+    get: FormAndPopup_getPerformanceStatsSinglePopup
+  /statistics/sms/{smsId}:
+    get: Sms_getMessageStatistics
+  /statistics/wbe/{websiteId}/performance:
+    get: Website_getPerformanceDetails
+  /subscription-confirmations/body/{languageCode}:
+    get: SubscriptionConfirmations_getCollectionOfBodies
+  /subscription-confirmations/subject/{languageCode}:
+    get: SubscriptionConfirmations_getSubjectCollection
+  /suppressions:
+    get: Suppressions_getSuppressionLists
+    post: Suppressions_createNewSuppressionList
+  /suppressions/{suppressionId}:
+    delete: Suppressions_deleteById
+    get: Suppressions_getSuppressionListById
+    post: Suppressions_updateById
+  /tags:
+    get: Tags_getList
+    post: Tags_addNewTag
+  /tags/{tagId}:
+    delete: Tags_deleteById
+    get: Tags_getById
+    post: Tags_updateById
+  /tracking:
+    get: Tracking_javascriptCodeSnippets
+  /tracking/facebook-pixels:
+    get: Tracking_getFacebookPixels
+  /transactional-emails:
+    get: TransactionalEmails_getList
+    post: TransactionalEmails_sendEmail
+  /transactional-emails/statistics:
+    get: TransactionalEmails_getOverallStatistics
+  /transactional-emails/templates:
+    get: TransactionalEmailsTemplates_getList
+    post: TransactionalEmailsTemplates_createNewTemplate
+  /transactional-emails/templates/{transactionalTemplateId}:
+    delete: TransactionalEmailsTemplates_deleteTemplate
+    get: TransactionalEmailsTemplates_getById
+    post: TransactionalEmailsTemplates_updateTemplate
+  /transactional-emails/{transactionalEmailId}:
+    get: TransactionalEmails_getDetailsById
+  /webforms:
+    get: LegacyForms_getList
+  /webforms/{webformId}:
+    get: LegacyForms_getById
+  /webinars:
+    get: Webinars_getList
+  /webinars/{webinarId}:
+    get: Webinars_getById
+  /websites:
+    get: Websites_getList
+  /websites/{websiteId}:
+    get: Websites_getById
+  /workflow:
+    get: Workflows_listWorkflows
+  /workflow/{workflowId}:
+    get: Workflows_getById
+    post: Workflows_updateSingleWorkflow
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /contacts/batch:
+    post:
+      application/json: ContactsCreateBatchContactsRequest
+  /transactional-emails/templates/{transactionalTemplateId}:
+    post:
+      application/json: TransactionalEmailsTemplatesUpdateTemplateRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /ab-tests/subject:
+    get:
+      '200':
+        application/json: AbTestsSubjectGetListResponse
+  /accounts/industries:
+    get:
+      '200':
+        application/json: AccountsListIndustryTagsResponse
+  /accounts/login-history:
+    get:
+      '200':
+        application/json: AccountsGetLoginHistoryResponse
+  /accounts/sending-limits:
+    get:
+      '200':
+        application/json: AccountsGetSendingLimitsResponse
+  /accounts/timezones:
+    get:
+      '200':
+        application/json: AccountsGetTimezonesListResponse
+  /addresses:
+    get:
+      '200':
+        application/json: AddressesGetListResponse
+  /autoresponders/{autoresponderId}/thumbnail:
+    get:
+      '200':
+        image/*: AutorespondersGetThumbnailResponse
+  /campaigns:
+    get:
+      '200':
+        application/json: CampaignsListsGetListResponse
+  /campaigns/{campaignId}/contacts:
+    get:
+      '200':
+        application/json: ContactsGetSingleCampaignContactsResponse
+  /click-tracks:
+    get:
+      '200':
+        application/json: ClickTracksGetListResponse
+  /contacts/{contactId}/activities:
+    get:
+      '200':
+        application/json: ContactsGetListOfActivitiesResponse
+  /contacts/{contactId}/tags:
+    post:
+      '200':
+        application/json: ContactsUpsertContactTagsResponse
+  /custom-events:
+    get:
+      '200':
+        application/json: CustomEventsGetListResponse
+  /custom-fields:
+    get:
+      '200':
+        application/json: CustomFieldsGetListResponse
+  /file-library/files:
+    get:
+      '200':
+        application/json: FileLibraryGetFileListResponse
+  /file-library/folders:
+    get:
+      '200':
+        application/json: FileLibraryListFoldersResponse
+    post:
+      '201':
+        application/json: FileLibraryCreateFolderResponse
+  /forms:
+    get:
+      '200':
+        application/json: FormsGetListResponse
+  /forms/{formId}/variants:
+    get:
+      '200':
+        application/json: FormsGetListOfVariantsResponse
+  /from-fields:
+    get:
+      '200':
+        application/json: FromFieldsGetListResponse
+  /gdpr-fields:
+    get:
+      '200':
+        application/json: GdprFieldsGetListResponse
+  /imports:
+    get:
+      '200':
+        application/json: ImportsGetListResponse
+  /landing-pages:
+    get:
+      '200':
+        application/json: LegacyLandingPagesGetListResponse
+  /landing-pages/{landingPageId}:
+    get:
+      '200':
+        application/json: LegacyLandingPagesGetByIdResponse
+  /lps:
+    get:
+      '200':
+        application/json: LandingPagesGetListResponse
+  /multimedia:
+    get:
+      '200':
+        application/json: MultimediaGetImageListResponse
+  /newsletters:
+    get:
+      '200':
+        application/json: NewslettersGetListResponse
+  /newsletters/{newsletterId}/activities:
+    get:
+      '200':
+        application/json: NewslettersGetActivitiesResponse
+  /newsletters/{newsletterId}/thumbnail:
+    get:
+      '200':
+        image/*: NewslettersGetThumbnailResponse
+  /popups:
+    get:
+      '200':
+        application/json: FormsAndPopupsGetListResponse
+  /predefined-fields:
+    get:
+      '200':
+        application/json: PredefinedFieldsGetListResponse
+  /rss-newsletters:
+    get:
+      '200':
+        application/json: RssNewslettersGetListResponse
+  /rss-newsletters/statistics:
+    get:
+      '200':
+        application/json: RssNewslettersGetStatisticsResponse
+  /rss-newsletters/{rssNewsletterId}/statistics:
+    get:
+      '200':
+        application/json: RssNewslettersGetStatisticsByIdResponse
+  /search-contacts:
+    get:
+      '200':
+        application/json: SearchContactsSavedListResponse
+  /search-contacts/{searchContactId}/contacts:
+    get:
+      '200':
+        application/json: SearchContactsByIdResponse
+  /shops:
+    get:
+      '200':
+        application/json: ShopsGetListOfShopsResponse
+  /shops/{shopId}/carts:
+    get:
+      '200':
+        application/json: CartsGetShopCartsResponse
+  /shops/{shopId}/categories:
+    get:
+      '200':
+        application/json: CategoriesListResponse
+  /shops/{shopId}/orders:
+    get:
+      '200':
+        application/json: OrdersGetListResponse
+  /shops/{shopId}/products:
+    get:
+      '200':
+        application/json: ProductsGetListResponse
+  /shops/{shopId}/products/{productId}/categories:
+    post:
+      '200':
+        application/json: ProductsUpsertCategoriesResponse
+  /shops/{shopId}/products/{productId}/meta-fields:
+    post:
+      '200':
+        application/json: ProductsUpsertMetaFieldsResponse
+  /shops/{shopId}/products/{productId}/variants:
+    get:
+      '200':
+        application/json: ProductVariantsGetProductVariantsListResponse
+  /shops/{shopId}/taxes:
+    get:
+      '200':
+        application/json: TaxesGetListResponse
+  /splittests:
+    get:
+      '200':
+        application/json: AbTestsGetListResponse
+  /subscription-confirmations/body/{languageCode}:
+    get:
+      '200':
+        application/json: SubscriptionConfirmationsGetCollectionOfBodiesResponse
+  /subscription-confirmations/subject/{languageCode}:
+    get:
+      '200':
+        application/json: SubscriptionConfirmationsGetSubjectCollectionResponse
+  /suppressions:
+    get:
+      '200':
+        application/json: SuppressionsGetSuppressionListsResponse
+  /tags:
+    get:
+      '200':
+        application/json: TagsGetListResponse
+  /tracking:
+    get:
+      '200':
+        application/json: TrackingJavascriptCodeSnippetsResponse
+  /tracking/facebook-pixels:
+    get:
+      '200':
+        application/json: TrackingGetFacebookPixelsResponse
+  /transactional-emails:
+    get:
+      '200':
+        application/json: TransactionalEmailsGetListResponse
+  /transactional-emails/statistics:
+    get:
+      '200':
+        application/json: TransactionalEmailsGetOverallStatisticsResponse
+  /transactional-emails/templates:
+    get:
+      '200':
+        application/json: TransactionalEmailsTemplatesGetListResponse
+  /webforms:
+    get:
+      '200':
+        application/json: LegacyFormsGetListResponse
+  /webinars:
+    get:
+      '200':
+        application/json: WebinarsGetListResponse
+  /websites:
+    get:
+      '200':
+        application/json: WebsitesGetListResponse
+  /workflow:
+    get:
+      '200':
+        application/json: WorkflowsListWorkflowsResponse
+securityParameters:
+  additionalFlags:
+    query: false
+  fields:
+    query: false
+  fromFieldIdToReplaceWith:
+    query: false
+  ipAddress:
+    query: false
+  messageId:
+    query: false
+  page:
+    query: false
+  perPage:
+    query: false
+  query[abTestId]:
+    query: false
+  query[activity]:
+    query: false
+  query[address1]:
+    query: false
+  query[address2]:
+    query: false
+  query[allFolders]:
+    query: false
+  query[autoreponderId]:
+    query: false
+  query[campaignId]:
+    query: false
+  query[categoryId]:
+    query: false
+  query[category]:
+    query: false
+  query[changedOn][from]:
+    query: false
+  query[changedOn][to]:
+    query: false
+  query[city]:
+    query: false
+  query[company]:
+    query: false
+  query[createdAt][from]:
+    query: false
+  query[createdAt][to]:
+    query: false
+  query[createdOn][from]:
+    query: false
+  query[createdOn][to]:
+    query: false
+  query[date][from]:
+    query: false
+  query[date][to]:
+    query: false
+  query[description]:
+    query: false
+  query[device]:
+    query: false
+  query[domain]:
+    query: false
+  query[email]:
+    query: false
+  query[externalId]:
+    query: false
+  query[firstName]:
+    query: false
+  query[folderId]:
+    query: false
+  query[groupBy]:
+    query: false
+  query[group]:
+    query: false
+  query[hasAttributes]:
+    query: false
+  query[hasLinks]:
+    query: false
+  query[isActive]:
+    query: false
+  query[isDefault]:
+    query: false
+  query[lastName]:
+    query: false
+  query[location]:
+    query: false
+  query[mask]:
+    query: false
+  query[metaFieldNames]:
+    query: false
+  query[metaFieldValues]:
+    query: false
+  query[metaTitle]:
+    query: false
+  query[modifiedOn][from]:
+    query: false
+  query[modifiedOn][to]:
+    query: false
+  query[name]:
+    query: false
+  query[newsletterId]:
+    query: false
+  query[orderDate][from]:
+    query: false
+  query[orderDate][to]:
+    query: false
+  query[origin]:
+    query: false
+  query[page]:
+    query: false
+  query[parentId]:
+    query: false
+  query[phone]:
+    query: false
+  query[processedAt][from]:
+    query: false
+  query[processedAt][to]:
+    query: false
+  query[provinceCode]:
+    query: false
+  query[province]:
+    query: false
+  query[rssNewsletterId]:
+    query: false
+  query[sendOn][from]:
+    query: false
+  query[sendOn][to]:
+    query: false
+  query[sendingStatus]:
+    query: false
+  query[sentOn][from]:
+    query: false
+  query[sentOn][to]:
+    query: false
+  query[shopId]:
+    query: false
+  query[sku]:
+    query: false
+  query[stage]:
+    query: false
+  query[status]:
+    query: false
+  query[subdomain]:
+    query: false
+  query[subject]:
+    query: false
+  query[tagId]:
+    query: false
+  query[tagged]:
+    query: false
+  query[timeFrame][from]:
+    query: false
+  query[timeFrame][to]:
+    query: false
+  query[triggerType]:
+    query: false
+  query[type]:
+    query: false
+  query[userDomain]:
+    query: false
+  query[value]:
+    query: false
+  query[variantName]:
+    query: false
+  query[vendor]:
+    query: false
+  query[zip]:
+    query: false
+  search[createdAt][from]:
+    query: false
+  search[createdAt][to]:
+    query: false
+  size:
+    query: false
+  sort[addedContacts]:
+    query: false
+  sort[campaignId]:
+    query: false
+  sort[campaignName]:
+    query: false
+  sort[changedOn]:
+    query: false
+  sort[clickRate]:
+    query: false
+  sort[clicks]:
+    query: false
+  sort[createdAt]:
+    query: false
+  sort[createdOn]:
+    query: false
+  sort[ctr]:
+    query: false
+  sort[dayOfCycle]:
+    query: false
+  sort[delivered]:
+    query: false
+  sort[domain]:
+    query: false
+  sort[email]:
+    query: false
+  sort[finishedOn]:
+    query: false
+  sort[group]:
+    query: false
+  sort[invalidContacts]:
+    query: false
+  sort[leads]:
+    query: false
+  sort[metaTitle]:
+    query: false
+  sort[modifiedOn]:
+    query: false
+  sort[name]:
+    query: false
+  sort[openRate]:
+    query: false
+  sort[pageViews]:
+    query: false
+  sort[sendOn]:
+    query: false
+  sort[sendingStatus]:
+    query: false
+  sort[sent]:
+    query: false
+  sort[size]:
+    query: false
+  sort[stage]:
+    query: false
+  sort[startsOn]:
+    query: false
+  sort[status]:
+    query: false
+  sort[subject]:
+    query: false
+  sort[subscribed]:
+    query: false
+  sort[subscriptionRate]:
+    query: false
+  sort[totalDelivered]:
+    query: false
+  sort[uniqueVisitors]:
+    query: false
+  sort[updatedAt]:
+    query: false
+  sort[updatedContacts]:
+    query: false
+  sort[uploadedContacts]:
+    query: false
+  sort[views]:
+    query: false
+  sort[visitors]:
+    query: false
+  sort[visits]:
+    query: false
+  stats[from]:
+    query: false
+  stats[to]:
+    query: false
+validServerUrls: {}

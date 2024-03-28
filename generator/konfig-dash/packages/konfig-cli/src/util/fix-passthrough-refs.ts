@@ -58,7 +58,6 @@ export async function fixPassthroughRefs({
   }
 
   let passthroughRefs = collectPassthroughRefs()
-  console.log(passthroughRefs)
   // iterate through all passthrough refs and replace them with the reffed schema
   for (const [source, destination] of passthroughRefs) {
     recurseObject(spec.spec, ({ value: schema }) => {
@@ -74,6 +73,10 @@ export async function fixPassthroughRefs({
 
       // get name of schema from ref
       const ref = schema['$ref']
+
+      // check that ref is referring to something with "components/schemas"
+      if (!ref.startsWith('#/components/schemas/')) return
+
       const schemaName = ref.split('/').pop()
       if (schemaName === undefined) return
       // check if schemaName matches name of passthrough ref (e.g. "source")

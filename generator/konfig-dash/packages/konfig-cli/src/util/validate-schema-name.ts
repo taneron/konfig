@@ -29,7 +29,6 @@ export function validateSchemaName({
   const nameWithoutX = name.replace(/X/g, '')
   const isCamelcase =
     camelcase(nameWithoutX, { pascalCase: true }) === nameWithoutX
-  console.log(name, isCamelcase)
   const isNonEmpty = nameSchema.safeParse(name).success
   const isUnique =
     spec.components === undefined ||

@@ -267,6 +267,10 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "getresponse.com": {
+    type: "GET",
+    url: "https://apireference.getresponse.com/open-api.json",
+  },
   "customer.io_DatePipelines": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
@@ -2185,7 +2189,7 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "bulksms.com": {
     type: "GET",
-    url: "https://www.bulksms.com/developer/json/v1/swagger.yaml?v=9"
+    url: "https://www.bulksms.com/developer/json/v1/swagger.yaml?v=9",
   },
   "pappers.fr": {
     type: "GET",
@@ -2198,7 +2202,7 @@ const customRequests: Record<string, CustomRequest> = {
   "redkik.com": {
     type: "GET",
     url: "https://sales.app.redkik.com/api/v2/apidoc/doc/userservice.json",
-    apiBaseUrl: "https://sales.app.redkik.com/api/v2/"
+    apiBaseUrl: "https://sales.app.redkik.com/api/v2/",
   },
   "tramitapp.com": {
     type: "GET",
