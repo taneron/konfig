@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Zuora",
-    "numberOfMethods": 462,
+    "numberOfMethods": 529,
     "categories": [
       "finance",
       "developer_tools",
@@ -18,7 +18,7 @@ const sdks = [
   },
   {
     "name": "Zuora",
-    "numberOfMethods": 462,
+    "numberOfMethods": 529,
     "categories": [
       "finance",
       "developer_tools",
@@ -32,7 +32,7 @@ const sdks = [
   },
   {
     "name": "Zuora",
-    "numberOfMethods": 462,
+    "numberOfMethods": 529,
     "categories": [
       "finance",
       "developer_tools",

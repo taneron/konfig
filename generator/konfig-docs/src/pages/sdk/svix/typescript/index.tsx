@@ -17,7 +17,7 @@ export default function SvixTypeScriptSdk() {
       companyKebabCase="svix"
       clientNameCamelCase="svix"
       homepage="svix.com"
-      lastUpdated={new Date("2024-03-27T20:13:36.016Z")}
+      lastUpdated={new Date("2024-03-28T20:59:16.525Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -4024,6 +4024,11 @@ export default function SvixTypeScriptSdk() {
         "schema": "string",
         "description": "The iterator returned from a prior invocation",
         "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
+      },
+      {
+        "name": "order",
+        "schema": "string",
+        "description": "The sorting order of the returned items"
       }
     ],
     "responses": [
@@ -4306,12 +4311,12 @@ export default function SvixTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v1/app/{app_id}/integration/{integ_id}/key",
-    "method": "getKey",
-    "httpMethod": HttpMethodsEnum.GET,
+    "url": "/api/v1/app/{app_id}/integration/{integ_id}/key/rotate",
+    "method": "rotateKey",
+    "httpMethod": HttpMethodsEnum.POST,
     "tag": "Integration",
     "typeScriptTag": "integration",
-    "description": "Get Integration Key",
+    "description": "Rotate Integration Key",
     "parameters": [
       {
         "name": "appId",
@@ -4326,6 +4331,11 @@ export default function SvixTypeScriptSdk() {
         "required": true,
         "description": "The integ's ID",
         "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
+      },
+      {
+        "name": "idempotencyKey",
+        "schema": "string",
+        "description": "The request's idempotency key"
       }
     ],
     "responses": [
@@ -4364,12 +4374,12 @@ export default function SvixTypeScriptSdk() {
     ]
   },
   {
-    "url": "/api/v1/app/{app_id}/integration/{integ_id}/key/rotate",
-    "method": "rotateKey",
-    "httpMethod": HttpMethodsEnum.POST,
+    "url": "/api/v1/app/{app_id}/integration/{integ_id}/key",
+    "method": "getKey",
+    "httpMethod": HttpMethodsEnum.GET,
     "tag": "Integration",
     "typeScriptTag": "integration",
-    "description": "Rotate Integration Key",
+    "description": "Get Integration Key",
     "parameters": [
       {
         "name": "appId",
@@ -4384,11 +4394,6 @@ export default function SvixTypeScriptSdk() {
         "required": true,
         "description": "The integ's ID",
         "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
-      },
-      {
-        "name": "idempotencyKey",
-        "schema": "string",
-        "description": "The request's idempotency key"
       }
     ],
     "responses": [
@@ -4478,7 +4483,7 @@ export default function SvixTypeScriptSdk() {
       endpoints={40}
       sdkMethods={59}
       schemas={120}
-      parameters={266}
+      parameters={267}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/svix/openapi.yaml"

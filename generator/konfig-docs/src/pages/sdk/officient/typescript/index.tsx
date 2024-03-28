@@ -19,7 +19,7 @@ We support our customers in transforming HR towards paperless administration and
       companyKebabCase="officient"
       clientNameCamelCase="officient"
       homepage="officient.io"
-      lastUpdated={new Date("2024-03-26T20:28:24.270Z")}
+      lastUpdated={new Date("2024-03-28T20:59:16.525Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -158,6 +158,33 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
+    "url": "/1.0/assets/{asset_id}/detail",
+    "method": "getDetail",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Asset",
+    "typeScriptTag": "asset",
+    "description": "Asset detail",
+    "parameters": [
+      {
+        "name": "assetId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/1.0/wages/{person_id}/history",
     "method": "getWageHistory",
     "httpMethod": HttpMethodsEnum.GET,
@@ -216,19 +243,25 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/assets/{asset_id}/detail",
-    "method": "getDetail",
+    "url": "/1.0/fleet/list",
+    "method": "getAllVehicles",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Asset",
-    "typeScriptTag": "asset",
-    "description": "Asset detail",
+    "tag": "Vehicle",
+    "typeScriptTag": "vehicle",
+    "description": "List vehicles",
     "parameters": [
       {
-        "name": "assetId",
+        "name": "page",
         "schema": "integer",
         "required": true,
-        "description": "",
-        "example": 0
+        "description": "Controls pagination (0, 1, 2, ..) to view all results. 30 items per page.",
+        "example": 0,
+        "default": 0
+      },
+      {
+        "name": "personId",
+        "schema": "integer",
+        "description": "view only vehicles that belong to a specific person"
       }
     ],
     "responses": [
@@ -270,25 +303,19 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/fleet/list",
-    "method": "getAllVehicles",
+    "url": "/1.0/contracts/{contract_id}/detail",
+    "method": "getDetail",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Vehicle",
-    "typeScriptTag": "vehicle",
-    "description": "List vehicles",
+    "tag": "Contract",
+    "typeScriptTag": "contract",
+    "description": "Contract detail",
     "parameters": [
       {
-        "name": "page",
+        "name": "contractId",
         "schema": "integer",
         "required": true,
-        "description": "Controls pagination (0, 1, 2, ..) to view all results. 30 items per page.",
-        "example": 0,
-        "default": 0
-      },
-      {
-        "name": "personId",
-        "schema": "integer",
-        "description": "view only vehicles that belong to a specific person"
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -317,33 +344,6 @@ We support our customers in transforming HR towards paperless administration and
         "description": "Controls pagination (0, 1, 2, ..) to view all results. 30 items per page.",
         "example": 0,
         "default": 0
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/1.0/contracts/{contract_id}/detail",
-    "method": "getDetail",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Contract",
-    "typeScriptTag": "contract",
-    "description": "Contract detail",
-    "parameters": [
-      {
-        "name": "contractId",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
       }
     ],
     "responses": [
@@ -426,12 +426,12 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/teams/list",
-    "method": "getAllTeams",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Team",
-    "typeScriptTag": "team",
-    "description": "List teams",
+    "url": "/1.0/people/add",
+    "method": "addNew",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Person",
+    "typeScriptTag": "person",
+    "description": "Add person",
     "parameters": [],
     "responses": [
       {
@@ -445,12 +445,12 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/people/add",
-    "method": "addNew",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Person",
-    "typeScriptTag": "person",
-    "description": "Add person",
+    "url": "/1.0/teams/list",
+    "method": "getAllTeams",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Team",
+    "typeScriptTag": "team",
+    "description": "List teams",
     "parameters": [],
     "responses": [
       {
@@ -552,12 +552,12 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/calendar/{person_id}/{year}/{month}/{day}/work",
-    "method": "updateTimeWorked",
-    "httpMethod": HttpMethodsEnum.PATCH,
+    "url": "/1.0/calendar/{person_id}/{year}/{month}/{day}/work/reset",
+    "method": "resetTimeWorked",
+    "httpMethod": HttpMethodsEnum.POST,
     "tag": "Person",
     "typeScriptTag": "person",
-    "description": "Update time worked",
+    "description": "Reset time worked",
     "parameters": [
       {
         "name": "personId",
@@ -600,12 +600,12 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/calendar/{person_id}/{year}/{month}/{day}/work/reset",
-    "method": "resetTimeWorked",
-    "httpMethod": HttpMethodsEnum.POST,
+    "url": "/1.0/calendar/{person_id}/{year}/{month}/{day}/work",
+    "method": "updateTimeWorked",
+    "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Person",
     "typeScriptTag": "person",
-    "description": "Reset time worked",
+    "description": "Update time worked",
     "parameters": [
       {
         "name": "personId",
@@ -702,6 +702,40 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
+    "url": "/1.0/documents/{object_type}/{object_id}/add",
+    "method": "uploadDocument",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Document",
+    "typeScriptTag": "document",
+    "description": "Upload document",
+    "parameters": [
+      {
+        "name": "objectType",
+        "schema": "string",
+        "required": true,
+        "description": "pick one: employee, asset, car",
+        "example": "OBJECT_TYPE"
+      },
+      {
+        "name": "objectId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/1.0/documents/{object_type}/{object_id}/list",
     "method": "listRelated",
     "httpMethod": HttpMethodsEnum.GET,
@@ -769,22 +803,15 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/documents/{object_type}/{object_id}/add",
-    "method": "uploadDocument",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Document",
-    "typeScriptTag": "document",
-    "description": "Upload document",
+    "url": "/1.0/webhooks/{webhook_id}",
+    "method": "unsubscribeNotification",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "Webhook",
+    "typeScriptTag": "webhook",
+    "description": "Delete webhook",
     "parameters": [
       {
-        "name": "objectType",
-        "schema": "string",
-        "required": true,
-        "description": "pick one: employee, asset, car",
-        "example": "OBJECT_TYPE"
-      },
-      {
-        "name": "objectId",
+        "name": "webhookId",
         "schema": "integer",
         "required": true,
         "description": "",
@@ -810,33 +837,6 @@ We support our customers in transforming HR towards paperless administration and
     "typeScriptTag": "webhook",
     "description": "Add webhook",
     "parameters": [],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/1.0/webhooks/{webhook_id}",
-    "method": "unsubscribeNotification",
-    "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Webhook",
-    "typeScriptTag": "webhook",
-    "description": "Delete webhook",
-    "parameters": [
-      {
-        "name": "webhookId",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
-      }
-    ],
     "responses": [
       {
         "statusCode": "200",
@@ -906,6 +906,47 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
+    "url": "/1.0/calendar/{person_id}/events/types/{year}/limits/{type_id}/set",
+    "method": "updateEventTypeLimit",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Person",
+    "typeScriptTag": "person",
+    "description": "Set event type limit",
+    "parameters": [
+      {
+        "name": "personId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      },
+      {
+        "name": "year",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      },
+      {
+        "name": "typeId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/1.0/contracts/signature/request",
     "method": "requestSignature",
     "httpMethod": HttpMethodsEnum.POST,
@@ -941,47 +982,6 @@ We support our customers in transforming HR towards paperless administration and
       },
       {
         "name": "year",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/1.0/calendar/{person_id}/events/types/{year}/limits/{type_id}/set",
-    "method": "updateEventTypeLimit",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Person",
-    "typeScriptTag": "person",
-    "description": "Set event type limit",
-    "parameters": [
-      {
-        "name": "personId",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
-      },
-      {
-        "name": "year",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
-      },
-      {
-        "name": "typeId",
         "schema": "integer",
         "required": true,
         "description": "",
@@ -1246,6 +1246,25 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
+    "url": "/1.0/teams/add",
+    "method": "createNewTeam",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Team",
+    "typeScriptTag": "team",
+    "description": "Add team",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/1.0/teams/{team_id}",
     "method": "editInformation",
     "httpMethod": HttpMethodsEnum.PATCH,
@@ -1261,25 +1280,6 @@ We support our customers in transforming HR towards paperless administration and
         "example": 0
       }
     ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/1.0/teams/add",
-    "method": "createNewTeam",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Team",
-    "typeScriptTag": "team",
-    "description": "Add team",
-    "parameters": [],
     "responses": [
       {
         "statusCode": "200",
@@ -1311,13 +1311,21 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/assets/types/add",
-    "method": "addCustomType",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Asset",
-    "typeScriptTag": "asset",
-    "description": "Add custom asset type",
-    "parameters": [],
+    "url": "/1.0/fleet/{vehicle_id}",
+    "method": "editDetails",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "Vehicle",
+    "typeScriptTag": "vehicle",
+    "description": "Edit vehicle",
+    "parameters": [
+      {
+        "name": "vehicleId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      }
+    ],
     "responses": [
       {
         "statusCode": "200",
@@ -1330,24 +1338,20 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/assets/types/{asset_type_id}",
-    "method": "removeCustomType",
-    "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Asset",
-    "typeScriptTag": "asset",
-    "description": "Delete custom asset type",
-    "parameters": [
-      {
-        "name": "assetTypeId",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
-      }
-    ],
+    "url": "/1.0/fleet/add",
+    "method": "createNew",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Vehicle",
+    "typeScriptTag": "vehicle",
+    "description": "Add vehicle",
+    "parameters": [],
     "responses": [
       {
         "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
         "description": ""
       }
     ]
@@ -1426,40 +1430,36 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
-    "url": "/1.0/fleet/add",
-    "method": "createNew",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Vehicle",
-    "typeScriptTag": "vehicle",
-    "description": "Add vehicle",
-    "parameters": [],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/1.0/fleet/{vehicle_id}",
-    "method": "editDetails",
-    "httpMethod": HttpMethodsEnum.PATCH,
-    "tag": "Vehicle",
-    "typeScriptTag": "vehicle",
-    "description": "Edit vehicle",
+    "url": "/1.0/assets/types/{asset_type_id}",
+    "method": "removeCustomType",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "Asset",
+    "typeScriptTag": "asset",
+    "description": "Delete custom asset type",
     "parameters": [
       {
-        "name": "vehicleId",
+        "name": "assetTypeId",
         "schema": "integer",
         "required": true,
         "description": "",
         "example": 0
       }
     ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/1.0/assets/types/add",
+    "method": "addCustomType",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Asset",
+    "typeScriptTag": "asset",
+    "description": "Add custom asset type",
+    "parameters": [],
     "responses": [
       {
         "statusCode": "200",
@@ -1512,6 +1512,33 @@ We support our customers in transforming HR towards paperless administration and
     ]
   },
   {
+    "url": "/1.0/calendar/requests/{request_id}/detail",
+    "method": "getDetailById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "CalendarRequest",
+    "typeScriptTag": "calendarRequest",
+    "description": "Calendar request detail",
+    "parameters": [
+      {
+        "name": "requestId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/1.0/calendar/requests/list",
     "method": "listRequests",
     "httpMethod": HttpMethodsEnum.GET,
@@ -1535,33 +1562,6 @@ We support our customers in transforming HR towards paperless administration and
     "responses": [
       {
         "statusCode": "200",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/1.0/calendar/requests/{request_id}/detail",
-    "method": "getDetailById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "CalendarRequest",
-    "typeScriptTag": "calendarRequest",
-    "description": "Calendar request detail",
-    "parameters": [
-      {
-        "name": "requestId",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
         "description": ""
       }
     ]

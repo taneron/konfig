@@ -17,7 +17,7 @@ export default function TerminalTypeScriptSdk() {
       companyKebabCase="terminal"
       clientNameCamelCase="terminal"
       homepage="withterminal.com"
-      lastUpdated={new Date("2024-03-27T20:44:35.877Z")}
+      lastUpdated={new Date("2024-03-28T20:59:16.525Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -84,7 +84,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "tag",
         "schema": "string",
         "description": "Filter connections by tag",
-        "example": "non mollit reprehenderit"
+        "example": "i"
       },
       {
         "name": "updatedAfter",
@@ -142,7 +142,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "elit commodo in sunt"
+        "example": "quis"
       },
       {
         "name": "provider",
@@ -175,7 +175,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -197,7 +197,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       },
       {
@@ -205,8 +205,8 @@ export default function TerminalTypeScriptSdk() {
         "schema": "array",
         "description": "",
         "example": [
-          "Excepteur Ut",
-          "deserunt incididunt eu"
+          "dolor",
+          "ipsum amet"
         ]
       },
       {
@@ -218,13 +218,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "pariatur dolor minim"
+        "example": "ut"
       },
       {
         "name": "status",
         "schema": "string",
         "description": "",
-        "example": "do"
+        "example": "ipsum adipisicing labori"
       },
       {
         "name": "syncMode",
@@ -275,7 +275,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -297,7 +297,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       },
       {
@@ -331,7 +331,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -353,7 +353,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       },
       {
@@ -434,7 +434,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -468,7 +468,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -526,7 +526,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -578,7 +578,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -654,7 +654,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -689,13 +689,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "startDate",
         "schema": "string",
         "description": "Only include daily logs from on or after a specific date",
-        "example": "1992-10-05"
+        "example": "1957-09-26"
       },
       {
         "name": "endDate",
         "schema": "string",
         "description": "Only include daily logs from on or before a specific date",
-        "example": "1992-10-05"
+        "example": "1957-09-26"
       },
       {
         "name": "modifiedAfter",
@@ -730,7 +730,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -770,13 +770,13 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "startMonth",
         "schema": "string",
-        "description": "(Required) The month from which to start including vehicle reports",
+        "description": "(https://docs.withterminal.com/api-reference/overview The month from which to start including vehicle reports",
         "example": "2021-01"
       },
       {
         "name": "endMonth",
         "schema": "string",
-        "description": "(Required) Include vehicle reports up to and including this month",
+        "description": "(https://docs.withterminal.com/api-reference/overview Include vehicle reports up to and including this month",
         "example": "2021-01"
       },
       {
@@ -788,7 +788,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -823,13 +823,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "lastReportedAfter",
         "schema": "string",
         "description": "Timestamp to start when the issue was last observed",
-        "example": "1999-09-28"
+        "example": "2004-09-23"
       },
       {
         "name": "lastReportedBefore",
         "schema": "string",
         "description": "Timestamp to end when the issue was last observed",
-        "example": "1999-09-28"
+        "example": "2004-09-23"
       },
       {
         "name": "expand",
@@ -847,13 +847,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "errorCode",
         "schema": "string",
         "description": "Filter issues to a specific error code",
-        "example": "missing_permissions"
+        "example": "exceeded_retention_window"
       },
       {
         "name": "status",
         "schema": "string",
         "description": "Filter issues to a specific status",
-        "example": "resolved"
+        "example": "ongoing"
       }
     ],
     "responses": [
@@ -964,7 +964,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1022,7 +1022,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1068,7 +1068,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1126,7 +1126,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1160,7 +1160,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1212,7 +1212,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1264,7 +1264,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1328,7 +1328,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1422,7 +1422,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],
@@ -1474,7 +1474,7 @@ export default function TerminalTypeScriptSdk() {
       {
         "name": "connectionToken",
         "schema": "string",
-        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "description": "(https://docs.withterminal.com/api-reference/overview The token returned when a user authenticated their account. This authorizes access to a specific account.",
         "example": "{{connectionToken}}"
       }
     ],

@@ -10,7 +10,7 @@ export default function StarkBankTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="stark-bank-typescript-sdk"
-      metaDescription={`Nós somos um challenger bank focado em enterprise no Brasil. 
+      metaDescription={`Nós somos um challenger bank focado em enterprise no Brasil.
 
 Tudo que fazemos é para impulsionar empresas e empreendedores a desafiarem o status quo e mudarem o Brasil para melhor.`}
       company="Stark Bank"
@@ -19,7 +19,7 @@ Tudo que fazemos é para impulsionar empresas e empreendedores a desafiarem o st
       companyKebabCase="stark-bank"
       clientNameCamelCase="starkBank"
       homepage="starkbank.com/en"
-      lastUpdated={new Date("2024-03-28T20:23:10.249Z")}
+      lastUpdated={new Date("2024-03-28T20:59:16.525Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/stark-bank/favicon.png"
       contactUrl="https://starkbank.com"
       contactEmail="help@starkbank.com"

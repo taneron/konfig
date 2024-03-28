@@ -17,7 +17,7 @@ export default function VantageTypeScriptSdk() {
       companyKebabCase="vantage"
       clientNameCamelCase="vantage"
       homepage="vantage.sh"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-28T20:59:16.525Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vantage/favicon.png"
       contactUrl="https://www.vantage.sh"
       contactEmail="support@vantage.sh"
@@ -1125,7 +1125,7 @@ export default function VantageTypeScriptSdk() {
         "name": "groupings",
         "schema": "array",
         "required": false,
-        "description": "Group the results by specific field(s). Defaults to provider, service, account_id. Valid groupings: account_id, billing_account_id, charge_type, cost_category, cost_subcategory, provider, region, resource_id, service, tagged, tag:<tag_value>. If providing multiple groupings, join as comma separated values: groupings=provider,service,region"
+        "description": "Group the results by specific field(https://vantage.readme.io/reference/general. Defaults to provider, service, account_id. Valid groupings: account_id, billing_account_id, charge_type, cost_category, cost_subcategory, provider, region, resource_id, service, tagged, tag:<tag_value>. If providing multiple groupings, join as comma separated values: groupings=provider,service,region"
       },
       {
         "name": "order",
@@ -2212,6 +2212,170 @@ export default function VantageTypeScriptSdk() {
     ]
   },
   {
+    "url": "/resource_reports",
+    "method": "getAll",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "ResourceReports",
+    "typeScriptTag": "resourceReports",
+    "description": "Return all ResourceReports.",
+    "parameters": [
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": "The page of results to return."
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "The number of results to return. The maximum is 1000."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "ResourceReports model"
+      }
+    ]
+  },
+  {
+    "url": "/resource_reports/{resource_report_token}",
+    "method": "removeReport",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "ResourceReports",
+    "typeScriptTag": "resourceReports",
+    "description": "Delete a ResourceReport.",
+    "parameters": [
+      {
+        "name": "resourceReportToken",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "RESOURCE_REPORT_TOKEN"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "ResourceReport model"
+      },
+      {
+        "statusCode": "404",
+        "description": "Errors model"
+      }
+    ]
+  },
+  {
+    "url": "/resource_reports/{resource_report_token}",
+    "method": "getResourceReport",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "ResourceReports",
+    "typeScriptTag": "resourceReports",
+    "description": "Return a ResourceReport.",
+    "parameters": [
+      {
+        "name": "resourceReportToken",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "RESOURCE_REPORT_TOKEN"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "ResourceReport model"
+      },
+      {
+        "statusCode": "404",
+        "description": "Errors model"
+      }
+    ]
+  },
+  {
+    "url": "/financial_commitment_reports",
+    "method": "getAllReports",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "FinancialCommitmentReports",
+    "typeScriptTag": "financialCommitmentReports",
+    "description": "Return all FinancialCommitmentReports.",
+    "parameters": [
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": "The page of results to return."
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "The amount of results to return. The maximum is 1000."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "FinancialCommitmentReports model"
+      }
+    ]
+  },
+  {
+    "url": "/financial_commitment_reports/{financial_commitment_report_token}",
+    "method": "deleteReport",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "FinancialCommitmentReports",
+    "typeScriptTag": "financialCommitmentReports",
+    "description": "Delete a FinancialCommitmentReport.",
+    "parameters": [
+      {
+        "name": "financialCommitmentReportToken",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "FINANCIAL_COMMITMENT_REPORT_TOKEN"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "FinancialCommitmentReport model"
+      },
+      {
+        "statusCode": "404",
+        "description": "Errors model"
+      }
+    ]
+  },
+  {
+    "url": "/financial_commitment_reports/{financial_commitment_report_token}",
+    "method": "get",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "FinancialCommitmentReports",
+    "typeScriptTag": "financialCommitmentReports",
+    "description": "Return a FinancialCommitmentReport.",
+    "parameters": [
+      {
+        "name": "financialCommitmentReportToken",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "FINANCIAL_COMMITMENT_REPORT_TOKEN"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "FinancialCommitmentReport model"
+      },
+      {
+        "statusCode": "404",
+        "description": "Errors model"
+      }
+    ]
+  },
+  {
     "url": "/ping",
     "method": "healthCheck",
     "httpMethod": HttpMethodsEnum.GET,
@@ -2232,10 +2396,10 @@ export default function VantageTypeScriptSdk() {
       apiTitle="Vantage"
       apiBaseUrl="https://api.vantage.sh/v2"
       apiVersion="2.0.0"
-      endpoints={29}
-      sdkMethods={56}
-      schemas={48}
-      parameters={162}
+      endpoints={33}
+      sdkMethods={62}
+      schemas={52}
+      parameters={170}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vantage/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/vantage/openapi.yaml"

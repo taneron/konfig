@@ -26,7 +26,7 @@ CyberArk has offices in the U.S, Israel, U.K., Singapore, Australia, France, Ger
       companyKebabCase="cyber-ark"
       clientNameCamelCase="cyberArkConjur"
       homepage="cyberark.com"
-      lastUpdated={new Date("2024-03-25T23:49:11.494Z")}
+      lastUpdated={new Date("2024-03-28T20:59:16.525Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/cyberark/conjur/favicon.png"
       // Missing contactUrl
       contactEmail="conj_maintainers@cyberark.com"
@@ -84,7 +84,7 @@ CyberArk has offices in the U.S, Israel, U.K., Singapore, Australia, France, Ger
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "authentication",
     "typeScriptTag": "authentication",
-    "description": "For applications running in Kubernetes; sends Conjur a certificate\nsigning request (CSR) and requests a client certificate injected into\nthe application's Kubernetes pod.\n",
+    "description": "For applications running in Kubernetes; sends Conjur a certificate\nsigning request (https://docs.cyberark.com and requests a client certificate injected into\nthe application's Kubernetes pod.\n",
     "parameters": [
       {
         "name": "serviceId",
@@ -513,7 +513,7 @@ CyberArk has offices in the U.S, Israel, U.K., Singapore, Australia, France, Ger
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "authentication",
     "typeScriptTag": "authentication",
-    "description": "Gets a short-lived access token for applications using OpenID\nConnect (OIDC) to access the Conjur API.\n",
+    "description": "Gets a short-lived access token for applications using OpenID\nConnect (https://docs.cyberark.com to access the Conjur API.\n",
     "parameters": [
       {
         "name": "serviceId",
@@ -560,7 +560,7 @@ CyberArk has offices in the U.S, Israel, U.K., Singapore, Australia, France, Ger
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "authentication",
     "typeScriptTag": "authentication",
-    "description": "Gets a short-lived access token for applications using JSON Web Token (JWT)\nto access the Conjur API.\n",
+    "description": "Gets a short-lived access token for applications using JSON Web Token (https://docs.cyberark.com\nto access the Conjur API.\n",
     "parameters": [
       {
         "name": "account",
@@ -611,7 +611,7 @@ CyberArk has offices in the U.S, Israel, U.K., Singapore, Australia, France, Ger
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "authentication",
     "typeScriptTag": "authentication",
-    "description": "Gets a short-lived access token for applications using JSON Web Token (JWT)\nto access the Conjur API. Covers the case of use of optional URL parameter \"ID\"\n",
+    "description": "Gets a short-lived access token for applications using JSON Web Token (https://docs.cyberark.com\nto access the Conjur API. Covers the case of use of optional URL parameter \"ID\"\n",
     "parameters": [
       {
         "name": "account",
@@ -2185,7 +2185,7 @@ CyberArk has offices in the U.S, Israel, U.K., Singapore, Australia, France, Ger
       },
       {
         "statusCode": "403",
-        "description": "Either          \n- The authenticated role is not a Host role,\n- The authenticated Host does not have `sign` privilege for the CA service, or\n- The authenticated Host ID does not match the of the CSR Common Name (CN).\n"
+        "description": "Either          \n- The authenticated role is not a Host role,\n- The authenticated Host does not have `sign` privilege for the CA service, or\n- The authenticated Host ID does not match the of the CSR Common Name (https://docs.cyberark.com.\n"
       },
       {
         "statusCode": "404",
@@ -2203,7 +2203,7 @@ CyberArk has offices in the U.S, Israel, U.K., Singapore, Australia, France, Ger
       sdkMethods={77}
       schemas={41}
       parameters={136}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/cyberark/conjur/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/cyberark/conjur/openapi.yaml"
       developerDocumentation="docs.cyberark.com"

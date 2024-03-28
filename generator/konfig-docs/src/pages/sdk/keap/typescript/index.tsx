@@ -31,7 +31,7 @@ Top 100 Best Workplaces for Millennials in US`}
       companyKebabCase="keap"
       clientNameCamelCase="keap"
       homepage="keap.com"
-      lastUpdated={new Date("2024-03-27T20:29:17.115Z")}
+      lastUpdated={new Date("2024-03-28T20:59:16.525Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/keap/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -208,7 +208,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       },
       {
         "name": "parentId",
@@ -360,7 +360,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       },
       {
         "name": "since",
@@ -453,7 +453,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       }
     ],
     "responses": [
@@ -508,7 +508,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       }
     ],
     "responses": [
@@ -551,7 +551,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       }
     ],
     "responses": [
@@ -608,7 +608,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       },
       {
         "name": "since",
@@ -675,7 +675,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       },
       {
         "name": "since",
@@ -1226,7 +1226,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       },
       {
         "name": "searchText",
@@ -1560,7 +1560,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       }
     ],
     "responses": [
@@ -1866,7 +1866,7 @@ Top 100 Best Workplaces for Millennials in US`}
       {
         "name": "orderDirection",
         "schema": "string",
-        "description": "How to order the data i.e. ascending (A-Z) or descending (Z-A)"
+        "description": "How to order the data i.e. ascending (https://developer.infusionsoft.com/docs/rest/ or descending (https://developer.infusionsoft.com/docs/rest/"
       },
       {
         "name": "since",

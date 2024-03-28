@@ -63,7 +63,7 @@ export default function StarkBank() {
       homepage="starkbank.com/en"
       companyKebabCase="stark-bank"
       categories={allCategories}
-      metaDescription={`Nós somos um challenger bank focado em enterprise no Brasil. 
+      metaDescription={`Nós somos um challenger bank focado em enterprise no Brasil.
 
 Tudo que fazemos é para impulsionar empresas e empreendedores a desafiarem o status quo e mudarem o Brasil para melhor.`}
     />

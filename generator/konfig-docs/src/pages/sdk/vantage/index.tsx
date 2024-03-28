@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Vantage",
-    "numberOfMethods": 56,
+    "numberOfMethods": 62,
     "categories": [
       "cloud",
       "cloud_cost_optimization",
@@ -19,7 +19,7 @@ const sdks = [
   },
   {
     "name": "Vantage",
-    "numberOfMethods": 56,
+    "numberOfMethods": 62,
     "categories": [
       "cloud",
       "cloud_cost_optimization",
@@ -34,7 +34,7 @@ const sdks = [
   },
   {
     "name": "Vantage",
-    "numberOfMethods": 56,
+    "numberOfMethods": 62,
     "categories": [
       "cloud",
       "cloud_cost_optimization",
