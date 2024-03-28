@@ -21,7 +21,7 @@ Whether you're just starting your global journey, or looking to optimize your ex
       companyKebabCase="remote"
       clientNameCamelCase="remote"
       homepage="remote.com"
-      lastUpdated={new Date("2024-03-27T17:31:49.635Z")}
+      lastUpdated={new Date("2024-03-28T16:48:14.533Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/remote/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2806,7 +2806,7 @@ Whether you're just starting your global journey, or looking to optimize your ex
         "name": "action",
         "schema": "string",
         "required": false,
-        "description": "Complementary action(s) to perform when creating a company:\n\n- `get_oauth_access_tokens` returns the user's access and refresh tokens\n- `send_create_password_email ` sends a reset password token to the company owner's email so they can log in using Remote UI (not needed if integration plans to use SSO only)\n\nIf `action` contains `send_create_password_email` you can redirect the user to [https://employ.remote.com/api-integration-new-password-send](https://employ.remote.com/api-integration-new-password-send)\n",
+        "description": "Complementary action(https://gateway.remote.com/v1/docs/openapi.html to perform when creating a company:\n\n- `get_oauth_access_tokens` returns the user's access and refresh tokens\n- `send_create_password_email ` sends a reset password token to the company owner's email so they can log in using Remote UI (not needed if integration plans to use SSO only)\n\nIf `action` contains `send_create_password_email` you can redirect the user to [https://employ.remote.com/api-integration-new-password-send](https://employ.remote.com/api-integration-new-password-send)\n",
         "example": "get_oauth_access_tokens,send_create_password_email"
       },
       {
@@ -4480,9 +4480,9 @@ Whether you're just starting your global journey, or looking to optimize your ex
     "url": "/v1/sandbox/contract-amendments/{contract_amendment_request_id}/approve",
     "method": "approveAmendment",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Contract Amendments",
-    "typeScriptTag": "contractAmendments",
-    "description": "Approve Contract Amendment in the Sandbox Environment",
+    "tag": "Sandbox",
+    "typeScriptTag": "sandbox",
+    "description": "Approve Contract Amendment",
     "parameters": [
       {
         "name": "contractAmendmentRequestId",
@@ -4575,6 +4575,49 @@ Whether you're just starting your global journey, or looking to optimize your ex
         "description": ""
       }
     ]
+  },
+  {
+    "url": "/v1/sandbox/contract-amendments/{contract_amendment_request_id}/cancel",
+    "method": "cancelAmendmentRequest",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "Sandbox",
+    "typeScriptTag": "sandbox",
+    "description": "Cancel Contract Amendment",
+    "parameters": [
+      {
+        "name": "contractAmendmentRequestId",
+        "schema": "string",
+        "required": true,
+        "description": "Contract amendment request ID",
+        "example": "5bdc2cb9-6bda-4cf7-bc6e-0b122791e52a"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "422",
+        "description": ""
+      },
+      {
+        "statusCode": "429",
+        "description": ""
+      }
+    ]
   }
 ]
     }
@@ -4582,10 +4625,10 @@ Whether you're just starting your global journey, or looking to optimize your ex
       apiTitle="Remote API"
       apiBaseUrl="https://gateway.remote.com/"
       apiVersion="0.1.0"
-      endpoints={55}
-      sdkMethods={78}
+      endpoints={56}
+      sdkMethods={79}
       schemas={187}
-      parameters={248}
+      parameters={249}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/remote/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/remote/openapi.yaml"
