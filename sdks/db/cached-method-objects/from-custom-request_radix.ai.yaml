@@ -1,0 +1,1391 @@
+hash: 8d4012aff29a786a2f2c4276fc94afb4f515e307e6eadfcca4a7fda3c3267753
+methodObjects:
+  - url: /auth
+    method: accessTokenPost
+    httpMethod: post
+    tag: Authentication
+    typeScriptTag: authentication
+    description: Authenticate with the Talent API.
+    parameters:
+      - name: client_id
+        schema: string
+        required: true
+        description: ''
+        example: CLIENT_ID
+      - name: client_secret
+        schema: string
+        required: true
+        description: ''
+        example: CLIENT_SECRET
+      - name: scope
+        schema: string
+        required: false
+        description: ''
+        default: tapi/ALL
+      - name: type
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend/job/{job_id}/profiles
+    method: jobProfilesPost
+    httpMethod: post
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Recommend profiles for a given job.
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: ''
+        example: JOB_ID
+      - name: xResponseTarget
+        schema: string
+        required: false
+        description: >-
+          An identifier for the usage of the response matches. In this way, the
+          different use cases can be analyzed separately. For example, if
+          TalentAPI is called within a web application, then, the URL of the
+          page on which the matches will be displayed, can be used as the value
+          of X-Response-Target. Thus, the API calls can be separated according
+          to the target URL.
+      - name: filters
+        schema: array
+        description: ''
+      - name: max_distance
+        schema: integer
+        description: ''
+      - name: location_filters
+        schema: array
+        description: ''
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 10
+      - name: interactions_to_filter
+        schema: array
+        description: ''
+      - name: show_explanation
+        schema: boolean
+        description: ''
+        default: false
+      - name: experimental
+        schema: boolean
+        description: ''
+        default: false
+      - name: model_version_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend/profile/{profile_id}/jobs
+    method: jobsForProfile
+    httpMethod: post
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Recommend jobs for a given profile.
+    parameters:
+      - name: profileId
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE_ID
+      - name: xResponseTarget
+        schema: string
+        required: false
+        description: >-
+          An identifier for the usage of the response matches. In this way, the
+          different use cases can be analyzed separately. For example, if
+          TalentAPI is called within a web application, then, the URL of the
+          page on which the matches will be displayed, can be used as the value
+          of X-Response-Target. Thus, the API calls can be separated according
+          to the target URL.
+      - name: filters
+        schema: array
+        description: ''
+      - name: max_distance
+        schema: integer
+        description: ''
+      - name: location_filters
+        schema: array
+        description: ''
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 10
+      - name: interactions_to_filter
+        schema: array
+        description: ''
+      - name: show_explanation
+        schema: boolean
+        description: ''
+        default: false
+      - name: experimental
+        schema: boolean
+        description: ''
+        default: false
+      - name: model_version_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend-master/profile/{profile_id}/jobs
+    method: jobsForProfileMaster
+    httpMethod: post
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Recommend jobs for a given profile (https://api.talentapi.com/.
+    parameters:
+      - name: profileId
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE_ID
+      - name: filters
+        schema: array
+        description: ''
+      - name: max_distance
+        schema: integer
+        description: ''
+      - name: location_filters
+        schema: array
+        description: ''
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 10
+      - name: interactions_to_filter
+        schema: array
+        description: ''
+      - name: show_explanation
+        schema: boolean
+        description: ''
+        default: false
+      - name: experimental
+        schema: boolean
+        description: ''
+        default: false
+      - name: model_version_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend-master/job/{job_id}/profiles
+    method: profilesForJobMasterPost
+    httpMethod: post
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Recommend profiles for a given job (https://api.talentapi.com/.
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: ''
+        example: JOB_ID
+      - name: filters
+        schema: array
+        description: ''
+      - name: max_distance
+        schema: integer
+        description: ''
+      - name: location_filters
+        schema: array
+        description: ''
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 10
+      - name: interactions_to_filter
+        schema: array
+        description: ''
+      - name: show_explanation
+        schema: boolean
+        description: ''
+        default: false
+      - name: experimental
+        schema: boolean
+        description: ''
+        default: false
+      - name: model_version_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend-master/job/{job_id}/jobs
+    method: jobMasterJobs
+    httpMethod: post
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Recommend jobs for a given job (https://api.talentapi.com/.
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: ''
+        example: JOB_ID
+      - name: filters
+        schema: array
+        description: ''
+      - name: max_distance
+        schema: integer
+        description: ''
+      - name: location_filters
+        schema: array
+        description: ''
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 10
+      - name: interactions_to_filter
+        schema: array
+        description: ''
+      - name: show_explanation
+        schema: boolean
+        description: ''
+        default: false
+      - name: experimental
+        schema: boolean
+        description: ''
+        default: false
+      - name: model_version_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend-master/profile/{profile_id}/profiles
+    method: profilesForProfileMaster
+    httpMethod: post
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Recommend profiles for a given profile (https://api.talentapi.com/.
+    parameters:
+      - name: profileId
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE_ID
+      - name: filters
+        schema: array
+        description: ''
+      - name: max_distance
+        schema: integer
+        description: ''
+      - name: location_filters
+        schema: array
+        description: ''
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 10
+      - name: interactions_to_filter
+        schema: array
+        description: ''
+      - name: show_explanation
+        schema: boolean
+        description: ''
+        default: false
+      - name: experimental
+        schema: boolean
+        description: ''
+        default: false
+      - name: model_version_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend/job/{job_id}/jobs
+    method: jobForJob
+    httpMethod: post
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Recommend job for a given job.
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: ''
+        example: JOB_ID
+      - name: xResponseTarget
+        schema: string
+        required: false
+        description: >-
+          An identifier for the usage of the response matches. In this way, the
+          different use cases can be analyzed separately. For example, if
+          TalentAPI is called within a web application, then, the URL of the
+          page on which the matches will be displayed, can be used as the value
+          of X-Response-Target. Thus, the API calls can be separated according
+          to the target URL.
+      - name: filters
+        schema: array
+        description: ''
+      - name: max_distance
+        schema: integer
+        description: ''
+      - name: location_filters
+        schema: array
+        description: ''
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 10
+      - name: interactions_to_filter
+        schema: array
+        description: ''
+      - name: show_explanation
+        schema: boolean
+        description: ''
+        default: false
+      - name: experimental
+        schema: boolean
+        description: ''
+        default: false
+      - name: model_version_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend/profile/{profile_id}/profiles
+    method: profilesForProfile
+    httpMethod: post
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Recommend profiles for a given profile.
+    parameters:
+      - name: profileId
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE_ID
+      - name: xResponseTarget
+        schema: string
+        required: false
+        description: >-
+          An identifier for the usage of the response matches. In this way, the
+          different use cases can be analyzed separately. For example, if
+          TalentAPI is called within a web application, then, the URL of the
+          page on which the matches will be displayed, can be used as the value
+          of X-Response-Target. Thus, the API calls can be separated according
+          to the target URL.
+      - name: filters
+        schema: array
+        description: ''
+      - name: max_distance
+        schema: integer
+        description: ''
+      - name: location_filters
+        schema: array
+        description: ''
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 10
+      - name: interactions_to_filter
+        schema: array
+        description: ''
+      - name: show_explanation
+        schema: boolean
+        description: ''
+        default: false
+      - name: experimental
+        schema: boolean
+        description: ''
+        default: false
+      - name: model_version_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /recommend/available-matchers
+    method: clientMatchersGet
+    httpMethod: get
+    tag: Recommend
+    typeScriptTag: recommend
+    description: Get the recommendation matchers for a given client.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /search/profiles
+    method: profilesPost
+    httpMethod: post
+    tag: Search
+    typeScriptTag: search
+    description: Find profiles for the given query.
+    parameters:
+      - name: search_metadata
+        schema: object
+        description: ''
+      - name: search_query
+        schema: object
+        description: ''
+      - name: broaden_search
+        schema: undefined
+        description: ''
+        default: true
+      - name: fields_to_return
+        schema: array
+        description: ''
+      - name: facets
+        schema: array
+        description: ''
+      - name: page_size
+        schema: integer
+        description: ''
+        default: 20
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: order_by
+        schema: string
+        description: ''
+      - name: pagination_offset
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /search/jobs
+    method: jobsForQueryPost
+    httpMethod: post
+    tag: Search
+    typeScriptTag: search
+    description: Find jobs for the given query.
+    parameters:
+      - name: search_metadata
+        schema: object
+        description: ''
+      - name: search_query
+        schema: object
+        description: ''
+      - name: broaden_search
+        schema: undefined
+        description: ''
+        default: true
+      - name: fields_to_return
+        schema: array
+        description: ''
+      - name: facets
+        schema: array
+        description: ''
+      - name: page_size
+        schema: integer
+        description: ''
+        default: 20
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: order_by
+        schema: string
+        description: ''
+      - name: pagination_offset
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /search/jobs/v2
+    method: jobsForQueryPostV2
+    httpMethod: post
+    tag: Search
+    typeScriptTag: search
+    description: Find jobs for the given query (https://api.talentapi.com/.
+    parameters:
+      - name: search_metadata
+        schema: object
+        description: ''
+      - name: search_query
+        schema: object
+        description: ''
+      - name: broaden_search
+        schema: undefined
+        description: ''
+        default: true
+      - name: fields_to_return
+        schema: array
+        description: ''
+      - name: facets
+        schema: array
+        description: ''
+      - name: page_size
+        schema: integer
+        description: ''
+        default: 20
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: order_by
+        schema: string
+        description: ''
+      - name: pagination_offset
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /search/titles
+    method: jobTitlesPost
+    httpMethod: post
+    tag: Search
+    typeScriptTag: search
+    description: Find job titles for the given query.
+    parameters:
+      - name: query
+        schema: string
+        description: ''
+      - name: limit
+        schema: integer
+        description: ''
+        default: 20
+      - name: language
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /search/jobs/semantic
+    method: semanticJobsPost
+    httpMethod: post
+    tag: Search
+    typeScriptTag: search
+    description: Find jobs for the given query (https://api.talentapi.com/.
+    parameters:
+      - name: search_metadata
+        schema: object
+        description: ''
+      - name: search_query
+        schema: object
+        description: ''
+      - name: broaden_search
+        schema: undefined
+        description: ''
+        default: true
+      - name: fields_to_return
+        schema: array
+        description: ''
+      - name: facets
+        schema: array
+        description: ''
+      - name: page_size
+        schema: integer
+        description: ''
+        default: 20
+      - name: continuation_token
+        schema: string
+        description: ''
+      - name: order_by
+        schema: string
+        description: ''
+      - name: pagination_offset
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /status
+    method: getGlobalData
+    httpMethod: get
+    tag: Status
+    typeScriptTag: status
+    description: Get global status
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /skills/feedback
+    method: manageSkill
+    httpMethod: post
+    tag: Skills
+    typeScriptTag: skills
+    description: Add or remove a skill.
+    parameters:
+      - name: entity_type
+        schema: string
+        required: true
+        description: ''
+        example: ENTITY_TYPE
+      - name: external_id
+        schema: string
+        required: true
+        description: ''
+        example: EXTERNAL_ID
+      - name: feedback_type
+        schema: string
+        required: true
+        description: ''
+        example: FEEDBACK_TYPE
+      - name: skill
+        schema: string
+        required: true
+        description: ''
+        example: SKILL
+      - name: score
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /jobs
+    method: jobRecommendations
+    httpMethod: post
+    tag: Add or Update
+    typeScriptTag: addOrUpdate
+    description: Add or update a job.
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+        example: TITLE
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: external_id
+        schema: string
+        required: true
+        description: ''
+        example: EXTERNAL_ID
+      - name: client_data
+        schema: object
+        required: false
+        description: ''
+        default: {}
+      - name: addresses
+        schema: array
+        required: false
+        description: ''
+      - name: geocoordinates
+        schema: array
+        required: false
+        description: ''
+      - name: publisher_name
+        schema: string
+        required: false
+        description: ''
+      - name: publisher_vatin
+        schema: string
+        required: false
+        description: ''
+      - name: publisher_description
+        schema: string
+        required: false
+        description: ''
+      - name: employer_name
+        schema: string
+        required: false
+        description: ''
+      - name: employer_vatin
+        schema: string
+        required: false
+        description: ''
+      - name: employer_description
+        schema: string
+        required: false
+        description: ''
+      - name: department
+        schema: string
+        required: false
+        description: ''
+      - name: required_qualifications
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: skill_tags
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: offer_and_benefits_str
+        schema: string
+        required: false
+        description: ''
+      - name: application_instructions_str
+        schema: string
+        required: false
+        description: ''
+      - name: compensation_currency
+        schema: string
+        required: false
+        description: ''
+      - name: hourly_gross_compensation
+        schema: number
+        required: false
+        description: ''
+      - name: languages
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: degrees
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: education_levels
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: seniority_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: relationship_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: location_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: employment_term_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: capacity_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: workday_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: hours_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: job_start_datetime
+        schema: undefined
+        required: false
+        description: ''
+      - name: job_end_datetime
+        schema: undefined
+        required: false
+        description: ''
+      - name: last_updated_datetime
+        schema: undefined
+        required: false
+        description: ''
+      - name: publication_datetime
+        schema: undefined
+        required: false
+        description: ''
+      - name: expiration_datetime
+        schema: undefined
+        required: false
+        description: ''
+      - name: may_be_recommended
+        schema: boolean
+        required: false
+        description: ''
+      - name: may_receive_recommendations
+        schema: boolean
+        required: false
+        description: ''
+      - name: attachments
+        schema: array
+        required: false
+        description: ''
+        default: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /profiles
+    method: profileData
+    httpMethod: post
+    tag: Add or Update
+    typeScriptTag: addOrUpdate
+    description: Add or update a profile.
+    parameters:
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: external_id
+        schema: string
+        required: true
+        description: ''
+        example: EXTERNAL_ID
+      - name: client_data
+        schema: object
+        required: false
+        description: ''
+        default: {}
+      - name: addresses
+        schema: array
+        required: false
+        description: ''
+      - name: geocoordinates
+        schema: array
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: picture_url
+        schema: string
+        required: false
+        description: ''
+      - name: website_url
+        schema: string
+        required: false
+        description: ''
+      - name: social_media_profile_urls
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: phone
+        schema: string
+        required: false
+        description: ''
+      - name: email
+        schema: undefined
+        required: false
+        description: ''
+      - name: gender
+        schema: string
+        required: false
+        description: ''
+      - name: birthdate
+        schema: string
+        required: false
+        description: ''
+      - name: highest_educational_level
+        schema: string
+        required: false
+        description: ''
+      - name: languages
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: certificates
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: skills
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: skill_tags
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: interests
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: desired_jobs
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: undesired_jobs
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: desired_job_seniority_levels
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: degrees
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: experiences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: relationship_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: location_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: employment_term_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: capacity_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: workday_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: hours_preferences
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: last_updated_datetime
+        schema: undefined
+        required: false
+        description: ''
+      - name: publication_datetime
+        schema: undefined
+        required: false
+        description: ''
+      - name: expiration_datetime
+        schema: undefined
+        required: false
+        description: ''
+      - name: may_be_recommended
+        schema: boolean
+        required: false
+        description: ''
+        default: true
+      - name: may_receive_recommendations
+        schema: boolean
+        required: false
+        description: ''
+        default: true
+      - name: attachments
+        schema: array
+        required: false
+        description: ''
+        default: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /matches
+    method: matchIndicator
+    httpMethod: post
+    tag: Add or Update
+    typeScriptTag: addOrUpdate
+    description: Add a match indicator.
+    parameters:
+      - name: profile_id
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE_ID
+      - name: job_id
+        schema: string
+        required: true
+        description: ''
+        example: JOB_ID
+      - name: match_actor
+        schema: string
+        required: true
+        description: ''
+        example: MATCH_ACTOR
+      - name: match_datetime
+        schema: string
+        required: true
+        description: ''
+        example: MATCH_DATETIME
+      - name: match_type
+        schema: string
+        required: true
+        description: ''
+        example: MATCH_TYPE
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /jobs/{job_id}
+    method: jobById
+    httpMethod: delete
+    tag: Delete
+    typeScriptTag: delete
+    description: Delete a job.
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: ''
+        example: JOB_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /jobs/{job_id}
+    method: specificJob
+    httpMethod: get
+    tag: Fetch
+    typeScriptTag: fetch
+    description: Fetch a specific job.
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: ''
+        example: JOB_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /profiles/{profile_id}
+    method: profileById
+    httpMethod: delete
+    tag: Delete
+    typeScriptTag: delete
+    description: Delete a profile.
+    parameters:
+      - name: profileId
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /profiles/{profile_id}
+    method: specificProfile
+    httpMethod: get
+    tag: Fetch
+    typeScriptTag: fetch
+    description: Fetch a specific profile.
+    parameters:
+      - name: profileId
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /evaluate
+    method: profileJobCompatibility
+    httpMethod: post
+    tag: Evaluate
+    typeScriptTag: evaluate
+    description: 'Endpoint to evaluate the compatibility of a profile & a job '
+    parameters:
+      - name: job
+        schema: object
+        required: true
+        description: ''
+      - name: profile
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |-
+          The recommendation response.
+
+          Versioning: available after version `2020-05-01` included.
+      - statusCode: '422'
+        description: ''
+numberOfSchemas: 83
+apiDescription: >-
+  <p>API Support: <a href="support@radix.ai">support@radix.ai</a>  | Website: <a
+  href="https://www.radix.ai">https://www.radix.ai</a></p>
+
+  <p>Job and profile matching using Artificial Intelligence.</p>
+
+  <h1>What is it?</h1>
+
+  <p>Talent API is a system that allows retrieving jobs recommendations for a
+  profile or profiles recommendations for a job.<br>
+
+  There are three types of entities involved:</p>
+
+  <ul>
+
+  <li>The <code>job</code>: a JSON document describing a job offer.</li>
+
+  <li>The <code>profile</code>: a JSON document describing a user profile.</li>
+
+  <li>The <code>match</code>: a JSON document describing a link between a job
+  and a profile. Getting started Here is a description of a<br>
+    basic use of the API using curl. In the examples, words between brackets need to be replaced by the appropriate value.</li>
+  </ul>
+
+  <h4>Credentials</h4>
+
+  <p>You need a <code>client_id</code> and a <code>client_secret</code> in order
+  to have access to the API. If you don't have credentials, please<br>
+
+  contact us at <a href="hello@radix.ai">hello@radix.ai</a>. These credentials
+  will also come with the scope you are allowed to use.</p>
+
+  <p>Using these, you can authenticate at the /auth endpoint and receive an
+  access_token. This access_token will be needed<br>
+
+  for the next requests.</p>
+
+  <p>The request should look like</p>
+
+  <pre><code>curl -X POST \
+    https://[server-url]/auth \
+    -H 'Content-Type: application/json' \
+    -d '{
+             &quot;client_id&quot;: &quot;[client_id]&quot;, \
+             &quot;client_secret&quot;: &quot;[client_secret]&quot;, \
+             &quot;scope&quot;:&quot;tapi/ALL&quot;
+        }'
+  </code></pre>
+
+  <p>The response will be</p>
+
+  <pre><code>{
+    &quot;access_token&quot;:&quot;eyJjIs7iOiJ[...]vQZUUhw2fsg&quot;,
+    &quot;expires_in&quot;:3600,
+    &quot;token_type&quot;:&quot;Bearer&quot;
+  }
+
+  </code></pre>
+
+  <h4>Sending data</h4>
+
+  <p>Before being able to request recommendations, you need to provide data. The
+  minimum is a profile and a job.</p>
+
+  <h4>Send a job</h4>
+
+  <p>Here is a sample request of how to send us a job.</p>
+
+  <p>The example uses the smallest set of fields necessary for the query to
+  work, but you should fill as many of them as<br>
+
+  possible.</p>
+
+  <p>The field client_data can be used to send fields that are specific to your
+  corporation that cannot be mapped to the API<br>
+
+  specification. Please note that using client specific fields is discouraged if
+  your fields are non-critical or can be<br>
+
+  translated into predefined fields.</p>
+
+  <pre><code>curl -X POST \
+    http://[server-url]/jobs \
+    -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \
+    -H 'Content-Type: application/json' \
+    -d '{
+            &quot;external_id&quot; : &quot;12345&quot;,
+            &quot;title&quot;: &quot;A job title&quot;,
+            &quot;addresses&quot;: [&quot;The job address&quot;],
+            &quot;publication_datetime&quot; : &quot;2020-02-12 00:02:00&quot;,
+            &quot;expiration_datetime&quot; :  &quot;2020-02-12 00:02:00&quot;,
+            &quot;may_be_recommended&quot; : true,
+            &quot;may_receive_recommendations&quot; : true
+  }'
+
+  </code></pre>
+
+  <p>You will receive the following response, confirming that we received the
+  job and processed it correctly:</p>
+
+  <pre><code>{
+      &quot;message&quot;: &quot;Job successfully received. Recommendations will be available once the job has been processed.&quot;
+  }
+
+  </code></pre>
+
+  <h4>Send a profile</h4>
+
+  <p>In the same fashion, to send us a profile</p>
+
+  <pre><code>curl -X POST \
+    http://[server-url]/profiles \
+    -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \
+    -H 'Content-Type: application/json' \
+    -d '{
+            &quot;external_id&quot; : &quot;6789&quot;,
+            &quot;addresses&quot;: [&quot;The addresses where the candidate lives.&quot;],
+            &quot;publication_datetime&quot; : &quot;2008-02-12 00:02:00&quot;,
+            &quot;expiration_datetime&quot; :  &quot;2008-02-12 00:02:00&quot;,
+            &quot;may_be_recommended&quot; : true,
+            &quot;may_receive_recommendations&quot; : true
+  }'
+
+  </code></pre>
+
+  <p>And the response will be</p>
+
+  <pre><code>{
+    &quot;message&quot;: &quot;Profile successfully received. Recommendations will be available once the profile has been processed.&quot;,
+  }
+
+  </code></pre>
+
+  <h4>Get a recommendation</h4>
+
+  <p>Now that there is a job and a profile in the system, you can ask for a
+  recommendation. For example, in order to get the<br>
+
+  best jobs for the profile you just uploaded, you can do the following
+  request</p>
+
+  <pre><code>curl -X GET \
+    http://[server-url]/profile/123456789/jobs \
+    -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \
+    -H 'Content-Type: application/json' \
+  </code></pre>
+
+  <p>The response will contain a list of the best jobs for that profile, in the
+  following form</p>
+
+  <pre><code>[
+      {
+        &quot;resource_id&quot;: 12345
+        &quot;score&quot;: 0.87
+        &quot;resource&quot;: {
+          &quot;external_id&quot; : &quot;12345&quot;,
+          &quot;title&quot;: &quot;A job title&quot;,
+          &quot;addresses&quot;: [&quot;The job address&quot;],
+          &quot;publication_datetime&quot; : &quot;2020-02-12 00:02:00&quot;,
+          &quot;expiration_datetime&quot; :  &quot;2020-02-12 00:02:00&quot;,
+          &quot;may_be_recommended&quot; : true,
+          &quot;may_receive_recommendations&quot; : true
+        },
+        &quot;match_explanation&quot;: {
+        }
+      },
+      ...
+  ]
+
+  </code></pre>
+
+  <p>These recommendations are based on the data that you included when
+  uploading jobs and profiles to Talent API. To receive<br>
+
+  high quality recommendations, make sure to fill as many fields as possible
+  when uploading entities.</p>
+
+  <h4>Send a match indicator</h4>
+
+  <p>If you want the recommendation to improve based on your user behaviour, you
+  need to send us <code>match indicators</code>. A match<br>
+
+  indicator represents a link between a profile and a job. As an example, if the
+  user with profile_id <code>6789</code> had a look at<br>
+
+  the job page with id <code>12345</code>, you can send us the following
+  match:</p>
+
+  <pre><code>curl -X POST \
+    https://[server-url]/matches \
+    -H 'Authorization: Bearer eyJraWQiOi[...]Mou8GdpvnA'
+    -H 'Content-Type: application/json' 
+    -d '{
+           'profile_id':'6789',
+           'job_id':'12345',
+           'match_actor':'CANDIDATE',
+           'match_datetime':'2020-03-14T21:37:38.414Z',
+           'match_type':'PAGEVIEW'
+        }'
+  </code></pre>
+
+  <p>That way, we are aware of user interactions inside of your data.</p>
+
+  <h4>View your data status</h4>
+
+  <p>To have a look at what you currently sent us, call the <code>status</code>
+  endpoint:</p>
+
+  <pre><code>curl -X GET \
+    https://[server-url]/status \
+    -H 'Authorization: Bearer eyJraWQiOi[...]Mou8GdpvnA'
+    -H 'Content-Type: application/json' 
+  </code></pre>

@@ -1,4 +1,4 @@
-hash: 4e8f3c1f13c71d124500143939d0e947630d0e9485e3a89ba78997afb28129ab
+hash: 5ac8283a3473f8c44651dea1d07d1232e300cf1bba38ef1966a7c8b265e4d884
 methodObjects:
   - url: /v1/contract-amendments
     method: listRequests
@@ -1758,7 +1758,8 @@ methodObjects:
         schema: string
         required: false
         description: >
-          Complementary action(s) to perform when creating a company:
+          Complementary action(https://gateway.remote.com/v1/docs/openapi.html
+          to perform when creating a company:
 
 
           - `get_oauth_access_tokens` returns the user's access and refresh
@@ -2795,9 +2796,9 @@ methodObjects:
   - url: /v1/sandbox/contract-amendments/{contract_amendment_request_id}/approve
     method: approveAmendment
     httpMethod: put
-    tag: Contract Amendments
-    typeScriptTag: contractAmendments
-    description: Approve Contract Amendment in the Sandbox Environment
+    tag: Sandbox
+    typeScriptTag: sandbox
+    description: Approve Contract Amendment
     parameters:
       - name: contractAmendmentRequestId
         schema: string
@@ -2844,6 +2845,31 @@ methodObjects:
         description: >-
           Object with required and optional fields, its descriptions and
           suggested presentation
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /v1/sandbox/contract-amendments/{contract_amendment_request_id}/cancel
+    method: cancelAmendmentRequest
+    httpMethod: put
+    tag: Sandbox
+    typeScriptTag: sandbox
+    description: Cancel Contract Amendment
+    parameters:
+      - name: contractAmendmentRequestId
+        schema: string
+        required: true
+        description: Contract amendment request ID
+        example: 5bdc2cb9-6bda-4cf7-bc6e-0b122791e52a
+    responses:
+      - statusCode: '200'
+        description: ''
       - statusCode: '400'
         description: ''
       - statusCode: '401'

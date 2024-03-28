@@ -1027,6 +1027,11 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "radix.ai": {
+    type: "GET",
+    url: "https://api.talentapi.com/openapi.json",
+    apiBaseUrl: "https://api.talentapi.com",
+  },
   "talentlyft.com_Customers": {
     type: "GET",
     url: "https://api.talentlyft.com/swagger/v2/swagger.json",

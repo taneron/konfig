@@ -1,0 +1,4508 @@
+openapi: 3.1.0
+info:
+  title: Talent API · API Reference
+  description: >-
+    <p>API Support: <a href="support@radix.ai">support@radix.ai</a>  | Website:
+    <a href="https://www.radix.ai">https://www.radix.ai</a></p>
+
+    <p>Job and profile matching using Artificial Intelligence.</p>
+
+    <h1>What is it?</h1>
+
+    <p>Talent API is a system that allows retrieving jobs recommendations for a
+    profile or profiles recommendations for a job.<br>
+
+    There are three types of entities involved:</p>
+
+    <ul>
+
+    <li>The <code>job</code>: a JSON document describing a job offer.</li>
+
+    <li>The <code>profile</code>: a JSON document describing a user
+    profile.</li>
+
+    <li>The <code>match</code>: a JSON document describing a link between a job
+    and a profile. Getting started Here is a description of a<br>
+      basic use of the API using curl. In the examples, words between brackets need to be replaced by the appropriate value.</li>
+    </ul>
+
+    <h4>Credentials</h4>
+
+    <p>You need a <code>client_id</code> and a <code>client_secret</code> in
+    order to have access to the API. If you don't have credentials, please<br>
+
+    contact us at <a href="hello@radix.ai">hello@radix.ai</a>. These credentials
+    will also come with the scope you are allowed to use.</p>
+
+    <p>Using these, you can authenticate at the /auth endpoint and receive an
+    access_token. This access_token will be needed<br>
+
+    for the next requests.</p>
+
+    <p>The request should look like</p>
+
+    <pre><code>curl -X POST \
+      https://[server-url]/auth \
+      -H 'Content-Type: application/json' \
+      -d '{
+               &quot;client_id&quot;: &quot;[client_id]&quot;, \
+               &quot;client_secret&quot;: &quot;[client_secret]&quot;, \
+               &quot;scope&quot;:&quot;tapi/ALL&quot;
+          }'
+    </code></pre>
+
+    <p>The response will be</p>
+
+    <pre><code>{
+      &quot;access_token&quot;:&quot;eyJjIs7iOiJ[...]vQZUUhw2fsg&quot;,
+      &quot;expires_in&quot;:3600,
+      &quot;token_type&quot;:&quot;Bearer&quot;
+    }
+
+    </code></pre>
+
+    <h4>Sending data</h4>
+
+    <p>Before being able to request recommendations, you need to provide data.
+    The minimum is a profile and a job.</p>
+
+    <h4>Send a job</h4>
+
+    <p>Here is a sample request of how to send us a job.</p>
+
+    <p>The example uses the smallest set of fields necessary for the query to
+    work, but you should fill as many of them as<br>
+
+    possible.</p>
+
+    <p>The field client_data can be used to send fields that are specific to
+    your corporation that cannot be mapped to the API<br>
+
+    specification. Please note that using client specific fields is discouraged
+    if your fields are non-critical or can be<br>
+
+    translated into predefined fields.</p>
+
+    <pre><code>curl -X POST \
+      http://[server-url]/jobs \
+      -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \
+      -H 'Content-Type: application/json' \
+      -d '{
+              &quot;external_id&quot; : &quot;12345&quot;,
+              &quot;title&quot;: &quot;A job title&quot;,
+              &quot;addresses&quot;: [&quot;The job address&quot;],
+              &quot;publication_datetime&quot; : &quot;2020-02-12 00:02:00&quot;,
+              &quot;expiration_datetime&quot; :  &quot;2020-02-12 00:02:00&quot;,
+              &quot;may_be_recommended&quot; : true,
+              &quot;may_receive_recommendations&quot; : true
+    }'
+
+    </code></pre>
+
+    <p>You will receive the following response, confirming that we received the
+    job and processed it correctly:</p>
+
+    <pre><code>{
+        &quot;message&quot;: &quot;Job successfully received. Recommendations will be available once the job has been processed.&quot;
+    }
+
+    </code></pre>
+
+    <h4>Send a profile</h4>
+
+    <p>In the same fashion, to send us a profile</p>
+
+    <pre><code>curl -X POST \
+      http://[server-url]/profiles \
+      -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \
+      -H 'Content-Type: application/json' \
+      -d '{
+              &quot;external_id&quot; : &quot;6789&quot;,
+              &quot;addresses&quot;: [&quot;The addresses where the candidate lives.&quot;],
+              &quot;publication_datetime&quot; : &quot;2008-02-12 00:02:00&quot;,
+              &quot;expiration_datetime&quot; :  &quot;2008-02-12 00:02:00&quot;,
+              &quot;may_be_recommended&quot; : true,
+              &quot;may_receive_recommendations&quot; : true
+    }'
+
+    </code></pre>
+
+    <p>And the response will be</p>
+
+    <pre><code>{
+      &quot;message&quot;: &quot;Profile successfully received. Recommendations will be available once the profile has been processed.&quot;,
+    }
+
+    </code></pre>
+
+    <h4>Get a recommendation</h4>
+
+    <p>Now that there is a job and a profile in the system, you can ask for a
+    recommendation. For example, in order to get the<br>
+
+    best jobs for the profile you just uploaded, you can do the following
+    request</p>
+
+    <pre><code>curl -X GET \
+      http://[server-url]/profile/123456789/jobs \
+      -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \
+      -H 'Content-Type: application/json' \
+    </code></pre>
+
+    <p>The response will contain a list of the best jobs for that profile, in
+    the following form</p>
+
+    <pre><code>[
+        {
+          &quot;resource_id&quot;: 12345
+          &quot;score&quot;: 0.87
+          &quot;resource&quot;: {
+            &quot;external_id&quot; : &quot;12345&quot;,
+            &quot;title&quot;: &quot;A job title&quot;,
+            &quot;addresses&quot;: [&quot;The job address&quot;],
+            &quot;publication_datetime&quot; : &quot;2020-02-12 00:02:00&quot;,
+            &quot;expiration_datetime&quot; :  &quot;2020-02-12 00:02:00&quot;,
+            &quot;may_be_recommended&quot; : true,
+            &quot;may_receive_recommendations&quot; : true
+          },
+          &quot;match_explanation&quot;: {
+          }
+        },
+        ...
+    ]
+
+    </code></pre>
+
+    <p>These recommendations are based on the data that you included when
+    uploading jobs and profiles to Talent API. To receive<br>
+
+    high quality recommendations, make sure to fill as many fields as possible
+    when uploading entities.</p>
+
+    <h4>Send a match indicator</h4>
+
+    <p>If you want the recommendation to improve based on your user behaviour,
+    you need to send us <code>match indicators</code>. A match<br>
+
+    indicator represents a link between a profile and a job. As an example, if
+    the user with profile_id <code>6789</code> had a look at<br>
+
+    the job page with id <code>12345</code>, you can send us the following
+    match:</p>
+
+    <pre><code>curl -X POST \
+      https://[server-url]/matches \
+      -H 'Authorization: Bearer eyJraWQiOi[...]Mou8GdpvnA'
+      -H 'Content-Type: application/json' 
+      -d '{
+             'profile_id':'6789',
+             'job_id':'12345',
+             'match_actor':'CANDIDATE',
+             'match_datetime':'2020-03-14T21:37:38.414Z',
+             'match_type':'PAGEVIEW'
+          }'
+    </code></pre>
+
+    <p>That way, we are aware of user interactions inside of your data.</p>
+
+    <h4>View your data status</h4>
+
+    <p>To have a look at what you currently sent us, call the
+    <code>status</code> endpoint:</p>
+
+    <pre><code>curl -X GET \
+      https://[server-url]/status \
+      -H 'Authorization: Bearer eyJraWQiOi[...]Mou8GdpvnA'
+      -H 'Content-Type: application/json' 
+    </code></pre>
+  version: '2024-03-19'
+paths:
+  /auth:
+    post:
+      tags:
+        - Authentication
+      summary: Authenticate with the Talent API.
+      description: >-
+        Authenticate with the Talent API. After authenticating with your Access
+        Key ID and Secret Access Key, you will receive an Access Token that can
+        be used to authorize all subsequent requests by including the header
+        <code>Authorization: Bearer {access_token}.</code>
+      operationId: authenticate_auth_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credentials'
+        required: true
+      responses:
+        '200':
+          description: r_description
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /recommend/job/{job_id}/profiles:
+    post:
+      tags:
+        - Recommend
+      summary: Recommend profiles for a given job.
+      description: Recommend profiles for a given job.
+      operationId: recommend_profiles_for_job_recommend_job__job_id__profiles_post
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Job Id
+          name: job_id
+          in: path
+        - description: >-
+            An identifier for the usage of the response matches. In this way,
+            the different use cases can be analyzed separately. For example, if
+            TalentAPI is called within a web application, then, the URL of the
+            page on which the matches will be displayed, can be used as the
+            value of X-Response-Target. Thus, the API calls can be separated
+            according to the target URL.
+          required: false
+          schema:
+            type: string
+            title: X-Response-Target
+            description: >-
+              An identifier for the usage of the response matches. In this way,
+              the different use cases can be analyzed separately. For example,
+              if TalentAPI is called within a web application, then, the URL of
+              the page on which the matches will be displayed, can be used as
+              the value of X-Response-Target. Thus, the API calls can be
+              separated according to the target URL.
+          name: x-response-target
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/MatchConfig'
+              title: Match Config
+              default:
+                limit: 10
+                show_explanation: false
+                experimental: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobRecommendResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /recommend/profile/{profile_id}/jobs:
+    post:
+      tags:
+        - Recommend
+      summary: Recommend jobs for a given profile.
+      description: Recommend jobs for a given profile.
+      operationId: recommend_jobs_for_profile_recommend_profile__profile_id__jobs_post
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Profile Id
+          name: profile_id
+          in: path
+        - description: >-
+            An identifier for the usage of the response matches. In this way,
+            the different use cases can be analyzed separately. For example, if
+            TalentAPI is called within a web application, then, the URL of the
+            page on which the matches will be displayed, can be used as the
+            value of X-Response-Target. Thus, the API calls can be separated
+            according to the target URL.
+          required: false
+          schema:
+            type: string
+            title: X-Response-Target
+            description: >-
+              An identifier for the usage of the response matches. In this way,
+              the different use cases can be analyzed separately. For example,
+              if TalentAPI is called within a web application, then, the URL of
+              the page on which the matches will be displayed, can be used as
+              the value of X-Response-Target. Thus, the API calls can be
+              separated according to the target URL.
+          name: x-response-target
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/MatchConfig'
+              title: Match Config
+              default:
+                limit: 10
+                show_explanation: false
+                experimental: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ProfileRecommendResponse'
+                  - items:
+                      $ref: '#/components/schemas/MatchedJob'
+                    type: array
+                title: >-
+                  Response Recommend Jobs For Profile Recommend Profile  Profile
+                  Id  Jobs Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /recommend-master/profile/{profile_id}/jobs:
+    post:
+      tags:
+        - Recommend
+      summary: Recommend jobs for a given profile (master).
+      description: >-
+        Recommend jobs for a given profile returning only the master results
+        (experimental)
+      operationId: >-
+        recommend_jobs_for_profile_master_recommend_master_profile__profile_id__jobs_post
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Profile Id
+          name: profile_id
+          in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/MatchConfig'
+              title: Match Config
+              default:
+                limit: 10
+                show_explanation: false
+                experimental: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ProfileRecommendResponse'
+                  - items:
+                      $ref: '#/components/schemas/MatchedJob'
+                    type: array
+                title: >-
+                  Response Recommend Jobs For Profile Master Recommend Master
+                  Profile  Profile Id  Jobs Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /recommend-master/job/{job_id}/profiles:
+    post:
+      tags:
+        - Recommend
+      summary: Recommend profiles for a given job (master).
+      description: >-
+        Recommend profiles for a given job returning only the master results
+        (experimental)
+      operationId: >-
+        recommend_profiles_for_job_master_recommend_master_job__job_id__profiles_post
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Job Id
+          name: job_id
+          in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/MatchConfig'
+              title: Match Config
+              default:
+                limit: 10
+                show_explanation: false
+                experimental: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ProfileRecommendResponse'
+                  - items:
+                      $ref: '#/components/schemas/MatchedJob'
+                    type: array
+                title: >-
+                  Response Recommend Profiles For Job Master Recommend Master
+                  Job  Job Id  Profiles Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /recommend-master/job/{job_id}/jobs:
+    post:
+      tags:
+        - Recommend
+      summary: Recommend jobs for a given job (master).
+      description: >-
+        Recommend jobs for a given job returning only the master results
+        (experimental)
+      operationId: recommend_jobs_for_job_master_recommend_master_job__job_id__jobs_post
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Job Id
+          name: job_id
+          in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/MatchConfig'
+              title: Match Config
+              default:
+                limit: 10
+                show_explanation: false
+                experimental: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ProfileRecommendResponse'
+                  - items:
+                      $ref: '#/components/schemas/MatchedJob'
+                    type: array
+                title: >-
+                  Response Recommend Jobs For Job Master Recommend Master Job 
+                  Job Id  Jobs Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /recommend-master/profile/{profile_id}/profiles:
+    post:
+      tags:
+        - Recommend
+      summary: Recommend profiles for a given profile (master).
+      description: >-
+        Recommend profiles for a given profile returning only the master results
+        (experimental)
+      operationId: >-
+        recommend_profiles_for_profile_master_recommend_master_profile__profile_id__profiles_post
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Profile Id
+          name: profile_id
+          in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/MatchConfig'
+              title: Match Config
+              default:
+                limit: 10
+                show_explanation: false
+                experimental: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ProfileRecommendResponse'
+                  - items:
+                      $ref: '#/components/schemas/MatchedJob'
+                    type: array
+                title: >-
+                  Response Recommend Profiles For Profile Master Recommend
+                  Master Profile  Profile Id  Profiles Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /recommend/job/{job_id}/jobs:
+    post:
+      tags:
+        - Recommend
+      summary: Recommend job for a given job.
+      description: Recommend jobs for a given job.
+      operationId: recommend_jobs_for_job_recommend_job__job_id__jobs_post
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Job Id
+          name: job_id
+          in: path
+        - description: >-
+            An identifier for the usage of the response matches. In this way,
+            the different use cases can be analyzed separately. For example, if
+            TalentAPI is called within a web application, then, the URL of the
+            page on which the matches will be displayed, can be used as the
+            value of X-Response-Target. Thus, the API calls can be separated
+            according to the target URL.
+          required: false
+          schema:
+            type: string
+            title: X-Response-Target
+            description: >-
+              An identifier for the usage of the response matches. In this way,
+              the different use cases can be analyzed separately. For example,
+              if TalentAPI is called within a web application, then, the URL of
+              the page on which the matches will be displayed, can be used as
+              the value of X-Response-Target. Thus, the API calls can be
+              separated according to the target URL.
+          name: x-response-target
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/MatchConfig'
+              title: Match Config
+              default:
+                limit: 10
+                show_explanation: false
+                experimental: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimilarJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /recommend/profile/{profile_id}/profiles:
+    post:
+      tags:
+        - Recommend
+      summary: Recommend profiles for a given profile.
+      description: Recommend profiles for a given profile.
+      operationId: >-
+        recommend_profiles_for_profile_recommend_profile__profile_id__profiles_post
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Profile Id
+          name: profile_id
+          in: path
+        - description: >-
+            An identifier for the usage of the response matches. In this way,
+            the different use cases can be analyzed separately. For example, if
+            TalentAPI is called within a web application, then, the URL of the
+            page on which the matches will be displayed, can be used as the
+            value of X-Response-Target. Thus, the API calls can be separated
+            according to the target URL.
+          required: false
+          schema:
+            type: string
+            title: X-Response-Target
+            description: >-
+              An identifier for the usage of the response matches. In this way,
+              the different use cases can be analyzed separately. For example,
+              if TalentAPI is called within a web application, then, the URL of
+              the page on which the matches will be displayed, can be used as
+              the value of X-Response-Target. Thus, the API calls can be
+              separated according to the target URL.
+          name: x-response-target
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/MatchConfig'
+              title: Match Config
+              default:
+                limit: 10
+                show_explanation: false
+                experimental: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimilarProfileResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /recommend/available-matchers:
+    get:
+      tags:
+        - Recommend
+      summary: Get the recommendation matchers for a given client.
+      description: Get the recommendation models for a given client.
+      operationId: get_available_matchers_recommend_available_matchers_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: >-
+                  Response Get Available Matchers Recommend Available Matchers
+                  Get
+      security:
+        - JWTBearer: []
+  /search/profiles:
+    post:
+      tags:
+        - Search
+      summary: Find profiles for the given query.
+      description: Find profiles for the given query.
+      operationId: search_profile_search_profiles_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/SearchModel'
+              title: Search
+              default:
+                broaden_search: true
+                page_size: 20
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchProfileResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /search/jobs:
+    post:
+      tags:
+        - Search
+      summary: Find jobs for the given query.
+      description: Find jobs for the given query.
+      operationId: search_job_search_jobs_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/SearchModel'
+              title: Search
+              default:
+                broaden_search: true
+                page_size: 20
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /search/jobs/v2:
+    post:
+      tags:
+        - Search
+      summary: Find jobs for the given query (V2).
+      description: >-
+        Find jobs for the given query. This endpoint is used for the new job
+        search.
+      operationId: search_job_v2_search_jobs_v2_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/SearchModel'
+              title: Search
+              default:
+                broaden_search: true
+                page_size: 20
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /search/titles:
+    post:
+      tags:
+        - Search
+      summary: Find job titles for the given query.
+      description: Find job titles for the given query.
+      operationId: search_job_search_titles_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/JobTitleSearchModel'
+              title: Search
+              default:
+                limit: 20
+                language: AUTO
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchJobTitleResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /search/jobs/semantic:
+    post:
+      tags:
+        - Search
+      summary: Find jobs for the given query (Semantic-experimental).
+      description: >-
+        Find jobs for the given query. This endpoint is used for the semantic
+        job search.
+      operationId: search_job_semantic_search_jobs_semantic_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/SearchModel'
+              title: Search
+              default:
+                broaden_search: true
+                page_size: 20
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /status:
+    get:
+      tags:
+        - Status
+      summary: Get global status
+      description: 'Get your status: numbers and statistics about the data you sent us.'
+      operationId: get_global_status_status_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalStatus'
+      security:
+        - JWTBearer: []
+  /skills/feedback:
+    post:
+      tags:
+        - Skills
+      summary: Add or remove a skill.
+      description: >-
+        Add or remove a skill. The job or the profile you refer to must have
+        been uploaded before.
+      operationId: register_skills_feedback_skills_feedback_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkillFeedback'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /jobs:
+    post:
+      tags:
+        - Add or Update
+      summary: Add or update a job.
+      description: >-
+        Add or update a job. Recommendations will be updated shortly to reflect
+        these changes.
+      operationId: post_job_jobs_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /profiles:
+    post:
+      tags:
+        - Add or Update
+      summary: Add or update a profile.
+      description: >-
+        Add or update a profile. Recommendations will be updated shortly to
+        reflect these changes.
+      operationId: post_profile_profiles_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /matches:
+    post:
+      tags:
+        - Add or Update
+      summary: Add a match indicator.
+      description: >-
+        Add a match indicator. The job and the profile you refer to must have
+        been uploaded before.
+      operationId: post_match_matches_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Match'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /jobs/{job_id}:
+    get:
+      tags:
+        - Fetch
+      summary: Fetch a specific job.
+      description: Fetch a specific job.
+      operationId: get_job_jobs__job_id__get
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Job Id
+          name: job_id
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBJob'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+    delete:
+      tags:
+        - Delete
+      summary: Delete a job.
+      description: Delete a job.
+      operationId: delete_job_jobs__job_id__delete
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Job Id
+          name: job_id
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /profiles/{profile_id}:
+    get:
+      tags:
+        - Fetch
+      summary: Fetch a specific profile.
+      description: Fetch a specific profile.
+      operationId: get_profile_profiles__profile_id__get
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Profile Id
+          name: profile_id
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBProfile'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+    delete:
+      tags:
+        - Delete
+      summary: Delete a profile.
+      description: Delete a profile.
+      operationId: delete_profile_profiles__profile_id__delete
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Profile Id
+          name: profile_id
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+  /evaluate:
+    post:
+      tags:
+        - Evaluate
+      summary: 'Endpoint to evaluate the compatibility of a profile & a job '
+      description: Endpoint to evaluate the compatibility of a profile & a job.
+      operationId: evaluate_evaluate_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_evaluate_evaluate_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluateResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - JWTBearer: []
+components:
+  schemas:
+    Attachment:
+      properties:
+        filename:
+          type: string
+          title: Filename
+          description: The name of the file. We support .pdf, .docx and .doc
+        content:
+          type: string
+          title: Content
+          description: >-
+            The attachment content base-64 encoded. We support .pdf, .docx and
+            .doc.
+      type: object
+      required:
+        - filename
+        - content
+      title: Attachment
+    Body_evaluate_evaluate_post:
+      properties:
+        job:
+          $ref: '#/components/schemas/EvaluateJob'
+        profile:
+          $ref: '#/components/schemas/EvaluateProfile'
+      type: object
+      required:
+        - job
+        - profile
+      title: Body_evaluate_evaluate_post
+    CapacityType:
+      type: string
+      enum:
+        - FULL_TIME
+        - PART_TIME
+        - PER_DIEM
+      title: CapacityType
+      description: An enumeration.
+    Credentials:
+      properties:
+        client_id:
+          type: string
+          title: Client Id
+        client_secret:
+          type: string
+          title: Client Secret
+        scope:
+          type: string
+          title: Scope
+          default: tapi/ALL
+        type:
+          allOf:
+            - $ref: '#/components/schemas/TypeEnum'
+          default: client
+      type: object
+      required:
+        - client_id
+        - client_secret
+      title: Credentials
+      description: Authentication request body.
+    DBAttachment:
+      properties:
+        filename:
+          type: string
+          title: Filename
+        content:
+          type: string
+          title: Content
+        state:
+          type: string
+          title: State
+          default: ''
+        s3_target:
+          type: string
+          title: S3 Target
+          default: ''
+      type: object
+      required:
+        - filename
+        - content
+      title: DBAttachment
+    DBJob:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+          default: {}
+        client_name:
+          type: string
+          title: Client Name
+        computed_data:
+          type: object
+          title: Computed Data
+          default: {}
+        title:
+          type: string
+          maxLength: 500
+          title: Title
+          description: The job title.
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The full street address including the country of the hiring
+            locations. If the full street address is not available, the address
+            should be provided up to the most granular level. At least one
+            hiring location is required.
+        geocoordinates:
+          items:
+            $ref: '#/components/schemas/GeoPoint'
+          type: array
+          title: Geocoordinates
+          description: Each element in the list characterizes a geo point.
+        publisher_name:
+          type: string
+          maxLength: 255
+          title: Publisher Name
+          description: The name of the company publishing this job.
+        publisher_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Publisher Vatin
+          description: >-
+            The publisher VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        publisher_description:
+          type: string
+          maxLength: 10000
+          title: Publisher Description
+          description: The description of the publisher.
+        employer_name:
+          type: string
+          maxLength: 255
+          title: Employer Name
+          description: The name of the employer.
+        employer_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Employer Vatin
+          description: >-
+            The employer VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        employer_description:
+          type: string
+          maxLength: 10000
+          title: Employer Description
+          description: A description of the employer.
+        department:
+          type: string
+          maxLength: 255
+          title: Department
+          description: >-
+            The department or functional area within the company with the open
+            position.
+        description:
+          type: string
+          maxLength: 100000
+          title: Description
+          description: The job description.
+        required_qualifications:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Required Qualifications
+          description: >-
+            A description of the qualifications and skills required to perform
+            this job.
+          default: []
+        skill_tags:
+          items:
+            $ref: '#/components/schemas/SkillTag'
+          type: array
+          title: Skill Tags
+          description: A list of the job's skill tags.
+          default: []
+        offer_and_benefits_str:
+          type: string
+          maxLength: 10000
+          title: Offer And Benefits Str
+          description: A description of the benefits offered with this job.
+        application_instructions_str:
+          type: string
+          maxLength: 3000
+          title: Application Instructions Str
+          description: >-
+            The application instructions that a candidate should follow to apply
+            for this job.
+        compensation_currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          title: Compensation Currency
+          description: >-
+            The currency of the compensation, defined in ISO 4217
+            (https://en.wikipedia.org/wiki/ISO_4217).
+        hourly_gross_compensation:
+          type: number
+          minimum: 0
+          title: Hourly Gross Compensation
+          description: >-
+            The gross hourly compensation expressed in the corresponding
+            currency.
+        languages:
+          items:
+            $ref: '#/components/schemas/validate__api_spec__Language'
+          type: array
+          title: Languages
+          description: >-
+            Language proficiencies requested for this job. Languages must be
+            two-letter codes defined in ISO 639-1
+            (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+            Proficiencies are on the ILR scale
+            (https://en.wikipedia.org/wiki/ILR_scale).
+          default: []
+        degrees:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Degrees
+          description: Requested degrees for this job.
+          default: []
+        education_levels:
+          items:
+            type: string
+            pattern: ^[0-9]{1,3}$
+          type: array
+          title: Education Levels
+          description: >-
+            Requested education levels as defined in ISCED 2011 levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+          default: []
+        seniority_preferences:
+          items:
+            $ref: '#/components/schemas/ExperienceLevel'
+          type: array
+          description: The requested work experience for this job.
+          default: []
+        relationship_preferences:
+          items:
+            $ref: '#/components/schemas/RelationshipType'
+          type: array
+          description: The desired employment relationship.
+          default: []
+        location_preferences:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type: array
+          description: The employment location.
+          default: []
+        employment_term_preferences:
+          items:
+            $ref: '#/components/schemas/TermType'
+          type: array
+          description: The employment term.
+          default: []
+        capacity_preferences:
+          items:
+            $ref: '#/components/schemas/CapacityType'
+          type: array
+          description: The employment capacity.
+          default: []
+        workday_preferences:
+          items:
+            $ref: '#/components/schemas/DaysType'
+          type: array
+          description: The employment schedule.
+          default: []
+        hours_preferences:
+          items:
+            $ref: '#/components/schemas/HoursType'
+          type: array
+          description: The employment hours.
+          default: []
+        job_start_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job Start Datetime
+          description: The localized start timestamp of the job.
+        job_end_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job End Datetime
+          description: >-
+            The localized end timestamp (including timezone) of the job in ISO
+            8601 (https://en.wikipedia.org/wiki/ISO_8601). If null, it is known
+            that there is no end time. If this property is missing, the end time
+            is unknown.
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: The localized timestamp when the job was last modified.
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting was
+            most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        expiration_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Expiration Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting
+            expires in ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601). If
+            null, this posting does not expire.
+        may_be_recommended:
+          type: boolean
+          title: May Be Recommended
+          description: >-
+            Whether this job may be recommended (subject to the posting publish
+            and expire times).
+        may_receive_recommendations:
+          type: boolean
+          title: May Receive Recommendations
+          description: Whether this job may receive recommendations.
+        attachments:
+          items:
+            $ref: '#/components/schemas/DBAttachment'
+          type: array
+          title: Attachments
+          default: []
+      type: object
+      required:
+        - external_id
+        - title
+      title: DBJob
+    DBJobPreview:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        title:
+          type: string
+          maxLength: 500
+          title: Title
+          description: The job title.
+        description:
+          type: string
+          title: Description
+          description: The job description.
+        employer_name:
+          type: string
+          maxLength: 255
+          title: Employer Name
+          description: The name of the employer.
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The full street address including the country of the hiring
+            locations. If the full street address is not available, the address
+            should be provided up to the most granular level. At least one
+            hiring location is required.
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: The localized timestamp when the job was last modified.
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting was
+            most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        status:
+          allOf:
+            - $ref: '#/components/schemas/EntityStatus'
+          description: The status of the uploaded entity.
+          default: outdated
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+      type: object
+      required:
+        - external_id
+        - title
+      title: DBJobPreview
+    DBProfile:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+          default: {}
+        client_name:
+          type: string
+          title: Client Name
+        computed_data:
+          type: object
+          title: Computed Data
+          default: {}
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The addresses closest to which the profile is looking for work,
+            including the country name. Note this is not the same as the
+            addresses where the profile is looking for work.
+        geocoordinates:
+          items:
+            $ref: '#/components/schemas/GeoPoint'
+          type: array
+          title: Geocoordinates
+          description: Each element in the list characterizes a geo point.
+        name:
+          type: string
+          maxLength: 255
+          pattern: ''
+          title: Name
+          description: The profile's full name.
+        picture_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Picture Url
+          description: The profile's picture URL.
+        website_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Website Url
+          description: The profile's website URL.
+        social_media_profile_urls:
+          items:
+            type: string
+            maxLength: 65536
+            minLength: 1
+            format: uri
+          type: array
+          title: Social Media Profile Urls
+          description: The social media profiles of the profile.
+          default: []
+        phone:
+          type: string
+          maxLength: 255
+          title: Phone
+          description: The profile's phone number.
+        email:
+          anyOf:
+            - type: string
+              format: email
+            - type: string
+              maxLength: 0
+          title: Email
+          description: The email addresses of the profile.
+        gender:
+          allOf:
+            - $ref: '#/components/schemas/Gender'
+          description: The gender of the profile.
+        birthdate:
+          type: string
+          format: date-time
+          title: Birthdate
+          description: >-
+            The birthdate of the profile in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        description:
+          type: string
+          maxLength: 100000
+          title: Description
+          description: A description of this profile.
+        highest_educational_level:
+          type: string
+          pattern: ^[0-9]{1,3}$
+          title: Highest Educational Level
+          description: >-
+            Highest education levels attained by this profile as defined in
+            ISCED 2011 levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+        languages:
+          items:
+            $ref: '#/components/schemas/validate__api_spec__Language'
+          type: array
+          title: Languages
+          description: >-
+            Language proficiencies of this profile. Languages must be two-letter
+            codes defined in ISO 639-1
+            (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+            Proficiencies are on the ILR scale
+            (https://en.wikipedia.org/wiki/ILR_scale).
+          default: []
+        certificates:
+          items:
+            type: string
+            maxLength: 1000
+          type: array
+          title: Certificates
+          description: A list of descriptions of the profile's certificates.
+          default: []
+        skills:
+          items:
+            type: string
+            maxLength: 1000
+          type: array
+          title: Skills
+          description: A list of short descriptions of the profile's skills.
+          default: []
+        skill_tags:
+          items:
+            $ref: '#/components/schemas/SkillTag'
+          type: array
+          title: Skill Tags
+          description: A list of the profile's skill tags.
+          default: []
+        interests:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Interests
+          description: A list of descriptions of the profile's interests.
+          default: []
+        desired_jobs:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Desired Jobs
+          description: A list of desired jobs titles or short descriptions.
+          default: []
+        undesired_jobs:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Undesired Jobs
+          description: A list of undesired jobs titles or short descriptions.
+          default: []
+        desired_job_seniority_levels:
+          items:
+            $ref: '#/components/schemas/ExperienceLevel'
+          type: array
+          description: The desired seniority for a job.
+          default: []
+        degrees:
+          items:
+            $ref: '#/components/schemas/Degree'
+          type: array
+          title: Degrees
+          description: >-
+            A list of attained or in-progress degrees. If the degree is
+            in-progress, leave the attendanceEndDateTime blank. Make sure to not
+            include degrees that are not attained or in-progress!
+          default: []
+        experiences:
+          items:
+            $ref: '#/components/schemas/Experience'
+          type: array
+          title: Experiences
+          description: >-
+            A list of work experience. If the job is in-progress, leave the
+            job_end_datetime blank.
+          default: []
+        relationship_preferences:
+          items:
+            $ref: '#/components/schemas/RelationshipType'
+          type: array
+          description: The desired employment relationship.
+          default: []
+        location_preferences:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type: array
+          description: The desired employment location.
+          default: []
+        employment_term_preferences:
+          items:
+            $ref: '#/components/schemas/TermType'
+          type: array
+          description: The desired employment term.
+          default: []
+        capacity_preferences:
+          items:
+            $ref: '#/components/schemas/CapacityType'
+          type: array
+          description: The desired employment capacity.
+          default: []
+        workday_preferences:
+          items:
+            $ref: '#/components/schemas/DaysType'
+          type: array
+          description: The desired employment schedule.
+          default: []
+        hours_preferences:
+          items:
+            $ref: '#/components/schemas/HoursType'
+          type: array
+          description: The desired employment hours.
+          default: []
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            was most recently updated in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            was most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        expiration_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Expiration Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            expires in ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601). If
+            null, this profile does not expire.
+        may_be_recommended:
+          type: boolean
+          title: May Be Recommended
+          description: >-
+            Whether this profile may be recommended (subject to the posting
+            publish and expire times).
+          default: true
+        may_receive_recommendations:
+          type: boolean
+          title: May Receive Recommendations
+          description: Whether this profile may receive recommendations.
+          default: true
+        attachments:
+          items:
+            $ref: '#/components/schemas/DBAttachment'
+          type: array
+          title: Attachments
+          default: []
+      type: object
+      required:
+        - external_id
+      title: DBProfile
+    DBProfilePreview:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        name:
+          type: string
+          maxLength: 255
+          pattern: ''
+          title: Name
+          description: The profile's full name.
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The full street address including the country of the hiring
+            locations. If the full street address is not available, the address
+            should be provided up to the most granular level. At least one
+            hiring location is required.
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: The localized timestamp when the job was last modified.
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting was
+            most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        status:
+          allOf:
+            - $ref: '#/components/schemas/EntityStatus'
+          description: The status of the uploaded entity.
+          default: outdated
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+      type: object
+      required:
+        - external_id
+      title: DBProfilePreview
+    DaysType:
+      type: string
+      enum:
+        - WEEKDAYS
+        - WEEKENDS
+        - HOLIDAYS
+      title: DaysType
+      description: An enumeration.
+    Degree:
+      properties:
+        title:
+          type: string
+          maxLength: 500
+          title: Title
+        institution:
+          type: string
+          maxLength: 500
+          title: Institution
+        description:
+          type: string
+          maxLength: 10000
+          title: Description
+        level:
+          type: string
+          pattern: ^[0-9]{1,3}$
+          title: Level
+          description: >-
+            Education level attained by this degree as defined in ISCED 2011
+            levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+        attendance_start_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Attendance Start Datetime
+        attendance_end_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Attendance End Datetime
+      type: object
+      required:
+        - title
+      title: Degree
+    EntityStatus:
+      enum:
+        - not_available
+        - outdated
+        - updated_without_attachments
+        - updated_with_attachment
+      title: EntityStatus
+      description: An enumeration.
+    EntityType:
+      type: string
+      enum:
+        - JOB
+        - PROFILE
+      title: EntityType
+      description: An enumeration.
+    EvaluateJob:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+          default: {}
+        title:
+          type: string
+          maxLength: 500
+          title: Title
+          description: The job title.
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The full street address including the country of the hiring
+            locations. If the full street address is not available, the address
+            should be provided up to the most granular level. At least one
+            hiring location is required.
+        geocoordinates:
+          items:
+            $ref: '#/components/schemas/GeoPoint'
+          type: array
+          title: Geocoordinates
+          description: Each element in the list characterizes a geo point.
+        publisher_name:
+          type: string
+          maxLength: 255
+          title: Publisher Name
+          description: The name of the company publishing this job.
+        publisher_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Publisher Vatin
+          description: >-
+            The publisher VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        publisher_description:
+          type: string
+          maxLength: 10000
+          title: Publisher Description
+          description: The description of the publisher.
+        employer_name:
+          type: string
+          maxLength: 255
+          title: Employer Name
+          description: The name of the employer.
+        employer_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Employer Vatin
+          description: >-
+            The employer VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        employer_description:
+          type: string
+          maxLength: 10000
+          title: Employer Description
+          description: A description of the employer.
+        department:
+          type: string
+          maxLength: 255
+          title: Department
+          description: >-
+            The department or functional area within the company with the open
+            position.
+        description:
+          type: string
+          maxLength: 100000
+          title: Description
+          description: The job description.
+        required_qualifications:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Required Qualifications
+          description: >-
+            A description of the qualifications and skills required to perform
+            this job.
+          default: []
+        skill_tags:
+          items:
+            $ref: '#/components/schemas/SkillTag'
+          type: array
+          title: Skill Tags
+          description: A list of the job's skill tags.
+          default: []
+        offer_and_benefits_str:
+          type: string
+          maxLength: 10000
+          title: Offer And Benefits Str
+          description: A description of the benefits offered with this job.
+        application_instructions_str:
+          type: string
+          maxLength: 3000
+          title: Application Instructions Str
+          description: >-
+            The application instructions that a candidate should follow to apply
+            for this job.
+        compensation_currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          title: Compensation Currency
+          description: >-
+            The currency of the compensation, defined in ISO 4217
+            (https://en.wikipedia.org/wiki/ISO_4217).
+        hourly_gross_compensation:
+          type: number
+          minimum: 0
+          title: Hourly Gross Compensation
+          description: >-
+            The gross hourly compensation expressed in the corresponding
+            currency.
+        languages:
+          items:
+            $ref: '#/components/schemas/validate__api_spec__Language'
+          type: array
+          title: Languages
+          description: >-
+            Language proficiencies requested for this job. Languages must be
+            two-letter codes defined in ISO 639-1
+            (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+            Proficiencies are on the ILR scale
+            (https://en.wikipedia.org/wiki/ILR_scale).
+          default: []
+        degrees:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Degrees
+          description: Requested degrees for this job.
+          default: []
+        education_levels:
+          items:
+            type: string
+            pattern: ^[0-9]{1,3}$
+          type: array
+          title: Education Levels
+          description: >-
+            Requested education levels as defined in ISCED 2011 levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+          default: []
+        seniority_preferences:
+          items:
+            $ref: '#/components/schemas/ExperienceLevel'
+          type: array
+          description: The requested work experience for this job.
+          default: []
+        relationship_preferences:
+          items:
+            $ref: '#/components/schemas/RelationshipType'
+          type: array
+          description: The desired employment relationship.
+          default: []
+        location_preferences:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type: array
+          description: The employment location.
+          default: []
+        employment_term_preferences:
+          items:
+            $ref: '#/components/schemas/TermType'
+          type: array
+          description: The employment term.
+          default: []
+        capacity_preferences:
+          items:
+            $ref: '#/components/schemas/CapacityType'
+          type: array
+          description: The employment capacity.
+          default: []
+        workday_preferences:
+          items:
+            $ref: '#/components/schemas/DaysType'
+          type: array
+          description: The employment schedule.
+          default: []
+        hours_preferences:
+          items:
+            $ref: '#/components/schemas/HoursType'
+          type: array
+          description: The employment hours.
+          default: []
+        job_start_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job Start Datetime
+          description: The localized start timestamp of the job.
+        job_end_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job End Datetime
+          description: >-
+            The localized end timestamp (including timezone) of the job in ISO
+            8601 (https://en.wikipedia.org/wiki/ISO_8601). If null, it is known
+            that there is no end time. If this property is missing, the end time
+            is unknown.
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: The localized timestamp when the job was last modified.
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting was
+            most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        expiration_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Expiration Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting
+            expires in ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601). If
+            null, this posting does not expire.
+        attachments:
+          items:
+            $ref: '#/components/schemas/Attachment'
+          type: array
+          title: Attachments
+          default: []
+      type: object
+      required:
+        - external_id
+        - title
+      title: EvaluateJob
+    EvaluateProfile:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+          default: {}
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The addresses closest to which the profile is looking for work,
+            including the country name. Note this is not the same as the
+            addresses where the profile is looking for work.
+        geocoordinates:
+          items:
+            $ref: '#/components/schemas/GeoPoint'
+          type: array
+          title: Geocoordinates
+          description: Each element in the list characterizes a geo point.
+        name:
+          type: string
+          maxLength: 255
+          pattern: ''
+          title: Name
+          description: The profile's full name.
+        picture_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Picture Url
+          description: The profile's picture URL.
+        website_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Website Url
+          description: The profile's website URL.
+        social_media_profile_urls:
+          items:
+            type: string
+            maxLength: 65536
+            minLength: 1
+            format: uri
+          type: array
+          title: Social Media Profile Urls
+          description: The social media profiles of the profile.
+          default: []
+        phone:
+          type: string
+          maxLength: 255
+          title: Phone
+          description: The profile's phone number.
+        email:
+          anyOf:
+            - type: string
+              format: email
+            - type: string
+              maxLength: 0
+          title: Email
+          description: The email addresses of the profile.
+        gender:
+          allOf:
+            - $ref: '#/components/schemas/Gender'
+          description: The gender of the profile.
+        birthdate:
+          type: string
+          format: date-time
+          title: Birthdate
+          description: >-
+            The birthdate of the profile in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        description:
+          type: string
+          maxLength: 100000
+          title: Description
+          description: A description of this profile.
+        highest_educational_level:
+          type: string
+          pattern: ^[0-9]{1,3}$
+          title: Highest Educational Level
+          description: >-
+            Highest education levels attained by this profile as defined in
+            ISCED 2011 levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+        languages:
+          items:
+            $ref: '#/components/schemas/validate__api_spec__Language'
+          type: array
+          title: Languages
+          description: >-
+            Language proficiencies of this profile. Languages must be two-letter
+            codes defined in ISO 639-1
+            (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+            Proficiencies are on the ILR scale
+            (https://en.wikipedia.org/wiki/ILR_scale).
+          default: []
+        certificates:
+          items:
+            type: string
+            maxLength: 1000
+          type: array
+          title: Certificates
+          description: A list of descriptions of the profile's certificates.
+          default: []
+        skills:
+          items:
+            type: string
+            maxLength: 1000
+          type: array
+          title: Skills
+          description: A list of short descriptions of the profile's skills.
+          default: []
+        skill_tags:
+          items:
+            $ref: '#/components/schemas/SkillTag'
+          type: array
+          title: Skill Tags
+          description: A list of the profile's skill tags.
+          default: []
+        interests:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Interests
+          description: A list of descriptions of the profile's interests.
+          default: []
+        desired_jobs:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Desired Jobs
+          description: A list of desired jobs titles or short descriptions.
+          default: []
+        undesired_jobs:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Undesired Jobs
+          description: A list of undesired jobs titles or short descriptions.
+          default: []
+        desired_job_seniority_levels:
+          items:
+            $ref: '#/components/schemas/ExperienceLevel'
+          type: array
+          description: The desired seniority for a job.
+          default: []
+        degrees:
+          items:
+            $ref: '#/components/schemas/Degree'
+          type: array
+          title: Degrees
+          description: >-
+            A list of attained or in-progress degrees. If the degree is
+            in-progress, leave the attendanceEndDateTime blank. Make sure to not
+            include degrees that are not attained or in-progress!
+          default: []
+        experiences:
+          items:
+            $ref: '#/components/schemas/Experience'
+          type: array
+          title: Experiences
+          description: >-
+            A list of work experience. If the job is in-progress, leave the
+            job_end_datetime blank.
+          default: []
+        relationship_preferences:
+          items:
+            $ref: '#/components/schemas/RelationshipType'
+          type: array
+          description: The desired employment relationship.
+          default: []
+        location_preferences:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type: array
+          description: The desired employment location.
+          default: []
+        employment_term_preferences:
+          items:
+            $ref: '#/components/schemas/TermType'
+          type: array
+          description: The desired employment term.
+          default: []
+        capacity_preferences:
+          items:
+            $ref: '#/components/schemas/CapacityType'
+          type: array
+          description: The desired employment capacity.
+          default: []
+        workday_preferences:
+          items:
+            $ref: '#/components/schemas/DaysType'
+          type: array
+          description: The desired employment schedule.
+          default: []
+        hours_preferences:
+          items:
+            $ref: '#/components/schemas/HoursType'
+          type: array
+          description: The desired employment hours.
+          default: []
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            was most recently updated in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            was most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        expiration_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Expiration Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            expires in ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601). If
+            null, this profile does not expire.
+        attachments:
+          items:
+            $ref: '#/components/schemas/Attachment'
+          type: array
+          title: Attachments
+          default: []
+      type: object
+      required:
+        - external_id
+      title: EvaluateProfile
+    EvaluateResponse:
+      properties:
+        score:
+          type: number
+          title: Score
+        match_explanation:
+          additionalProperties:
+            $ref: '#/components/schemas/MatchExplanation'
+          type: object
+          title: Match Explanation
+      type: object
+      required:
+        - score
+      title: EvaluateResponse
+      description: |-
+        The recommendation response.
+
+        Versioning: available after version `2020-05-01` included.
+    Experience:
+      properties:
+        title:
+          type: string
+          maxLength: 500
+          title: Title
+        organization_name:
+          type: string
+          maxLength: 500
+          title: Organization Name
+        organization_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Organization Url
+        organization_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Organization Vatin
+          description: >-
+            The organization VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        description:
+          type: string
+          maxLength: 10000
+          title: Description
+        job_start_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job Start Datetime
+        job_end_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job End Datetime
+      type: object
+      required:
+        - title
+      title: Experience
+    ExperienceLevel:
+      type: string
+      enum:
+        - JUNIOR
+        - MEDIOR
+        - SENIOR
+      title: ExperienceLevel
+      description: An enumeration.
+    FacetRequest:
+      properties:
+        key:
+          type: string
+          title: Key
+        selected_values:
+          items:
+            anyOf:
+              - type: boolean
+              - type: string
+              - type: integer
+          type: array
+          title: Selected Values
+      type: object
+      required:
+        - key
+      title: FacetRequest
+    FacetResponse:
+      properties:
+        key:
+          type: string
+          title: Key
+        selected_values:
+          items:
+            $ref: '#/components/schemas/SelectedValue'
+          type: array
+          title: Selected Values
+      type: object
+      required:
+        - key
+      title: FacetResponse
+    Filter:
+      properties:
+        key:
+          type: string
+          title: Key
+          description: >-
+            The profile or job key that we are filtering on. Example: 'title' or
+            'client_data.custom_field'
+        operator:
+          allOf:
+            - $ref: '#/components/schemas/FilterOperator'
+          description: >-
+            The operator to use for filtering the field. The operators `LIKE`
+            and `NOT_LIKE`also filter on not exact matches.
+        value:
+          anyOf:
+            - items: {}
+              type: array
+            - {}
+          title: Value
+          description: >-
+            The value to use with the operator. Can refer to a raw value, but
+            can also refer to a field in the source entity.To refer to a field
+            in the source entity, start with the $ symbol: $capacity_preferences
+      type: object
+      required:
+        - key
+        - operator
+        - value
+      title: Filter
+    FilterOperator:
+      type: string
+      enum:
+        - OVERLAP
+        - MATCH
+        - NOT_MATCH
+        - IS_IN
+        - NOT_IN
+        - LIKE
+        - NOT_LIKE
+        - GREATER_THAN_OR_EQUAL
+        - LESS_THAN_OR_EQUAL
+        - EXISTS
+      title: FilterOperator
+      description: An enumeration.
+    Gender:
+      type: string
+      enum:
+        - F
+        - M
+        - X
+      title: Gender
+      description: An enumeration.
+    GeoLocationFilter:
+      properties:
+        geopoint:
+          $ref: '#/components/schemas/GeoPoint'
+        distance_in_km:
+          type: number
+          title: Distance In Km
+          default: 30
+      type: object
+      required:
+        - geopoint
+      title: GeoLocationFilter
+    GeoPoint:
+      properties:
+        lat:
+          type: number
+          maximum: 90
+          minimum: -90
+          title: Lat
+          description: |-
+            Example: lat=50.8503396.
+                Latitude in degrees following the WGS84 standard. Positive numbers correspond to latitude North.
+        lon:
+          type: number
+          maximum: 180
+          minimum: -180
+          title: Lon
+          description: |-
+            Example: long=4.3517103.
+                Longitude in degrees following the WGS84 standard. Positive numbers correspond to longitude East.
+      type: object
+      required:
+        - lat
+        - lon
+      title: GeoPoint
+    GlobalStatus:
+      properties:
+        jobs_count:
+          type: integer
+          title: Jobs Count
+        profiles_count:
+          type: integer
+          title: Profiles Count
+        matches_count:
+          type: integer
+          title: Matches Count
+        usage:
+          type: object
+          title: Usage
+      type: object
+      required:
+        - jobs_count
+        - profiles_count
+        - matches_count
+      title: GlobalStatus
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HoursType:
+      type: string
+      enum:
+        - DAY
+        - MORNING
+        - AFTERNOON
+        - EVENING
+        - NIGHT
+      title: HoursType
+      description: An enumeration.
+    InteractionTypes:
+      type: string
+      enum:
+        - PAGEVIEW
+        - SAVE
+        - APPLY
+        - RECOMMEND
+        - INVITE
+        - GOOD_MATCH
+        - BAD_MATCH
+        - INTERVIEW
+        - HIRE
+      title: InteractionTypes
+      description: An enumeration.
+    Job:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+          default: {}
+        title:
+          type: string
+          maxLength: 500
+          title: Title
+          description: The job title.
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The full street address including the country of the hiring
+            locations. If the full street address is not available, the address
+            should be provided up to the most granular level. At least one
+            hiring location is required.
+        geocoordinates:
+          items:
+            $ref: '#/components/schemas/GeoPoint'
+          type: array
+          title: Geocoordinates
+          description: Each element in the list characterizes a geo point.
+        publisher_name:
+          type: string
+          maxLength: 255
+          title: Publisher Name
+          description: The name of the company publishing this job.
+        publisher_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Publisher Vatin
+          description: >-
+            The publisher VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        publisher_description:
+          type: string
+          maxLength: 10000
+          title: Publisher Description
+          description: The description of the publisher.
+        employer_name:
+          type: string
+          maxLength: 255
+          title: Employer Name
+          description: The name of the employer.
+        employer_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Employer Vatin
+          description: >-
+            The employer VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        employer_description:
+          type: string
+          maxLength: 10000
+          title: Employer Description
+          description: A description of the employer.
+        department:
+          type: string
+          maxLength: 255
+          title: Department
+          description: >-
+            The department or functional area within the company with the open
+            position.
+        description:
+          type: string
+          maxLength: 100000
+          title: Description
+          description: The job description.
+        required_qualifications:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Required Qualifications
+          description: >-
+            A description of the qualifications and skills required to perform
+            this job.
+          default: []
+        skill_tags:
+          items:
+            $ref: '#/components/schemas/SkillTag'
+          type: array
+          title: Skill Tags
+          description: A list of the job's skill tags.
+          default: []
+        offer_and_benefits_str:
+          type: string
+          maxLength: 10000
+          title: Offer And Benefits Str
+          description: A description of the benefits offered with this job.
+        application_instructions_str:
+          type: string
+          maxLength: 3000
+          title: Application Instructions Str
+          description: >-
+            The application instructions that a candidate should follow to apply
+            for this job.
+        compensation_currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          title: Compensation Currency
+          description: >-
+            The currency of the compensation, defined in ISO 4217
+            (https://en.wikipedia.org/wiki/ISO_4217).
+        hourly_gross_compensation:
+          type: number
+          minimum: 0
+          title: Hourly Gross Compensation
+          description: >-
+            The gross hourly compensation expressed in the corresponding
+            currency.
+        languages:
+          items:
+            $ref: '#/components/schemas/validate__api_spec__Language'
+          type: array
+          title: Languages
+          description: >-
+            Language proficiencies requested for this job. Languages must be
+            two-letter codes defined in ISO 639-1
+            (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+            Proficiencies are on the ILR scale
+            (https://en.wikipedia.org/wiki/ILR_scale).
+          default: []
+        degrees:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Degrees
+          description: Requested degrees for this job.
+          default: []
+        education_levels:
+          items:
+            type: string
+            pattern: ^[0-9]{1,3}$
+          type: array
+          title: Education Levels
+          description: >-
+            Requested education levels as defined in ISCED 2011 levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+          default: []
+        seniority_preferences:
+          items:
+            $ref: '#/components/schemas/ExperienceLevel'
+          type: array
+          description: The requested work experience for this job.
+          default: []
+        relationship_preferences:
+          items:
+            $ref: '#/components/schemas/RelationshipType'
+          type: array
+          description: The desired employment relationship.
+          default: []
+        location_preferences:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type: array
+          description: The employment location.
+          default: []
+        employment_term_preferences:
+          items:
+            $ref: '#/components/schemas/TermType'
+          type: array
+          description: The employment term.
+          default: []
+        capacity_preferences:
+          items:
+            $ref: '#/components/schemas/CapacityType'
+          type: array
+          description: The employment capacity.
+          default: []
+        workday_preferences:
+          items:
+            $ref: '#/components/schemas/DaysType'
+          type: array
+          description: The employment schedule.
+          default: []
+        hours_preferences:
+          items:
+            $ref: '#/components/schemas/HoursType'
+          type: array
+          description: The employment hours.
+          default: []
+        job_start_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job Start Datetime
+          description: The localized start timestamp of the job.
+        job_end_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job End Datetime
+          description: >-
+            The localized end timestamp (including timezone) of the job in ISO
+            8601 (https://en.wikipedia.org/wiki/ISO_8601). If null, it is known
+            that there is no end time. If this property is missing, the end time
+            is unknown.
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: The localized timestamp when the job was last modified.
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting was
+            most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        expiration_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Expiration Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting
+            expires in ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601). If
+            null, this posting does not expire.
+        may_be_recommended:
+          type: boolean
+          title: May Be Recommended
+          description: >-
+            Whether this job may be recommended (subject to the posting publish
+            and expire times).
+        may_receive_recommendations:
+          type: boolean
+          title: May Receive Recommendations
+          description: Whether this job may receive recommendations.
+        attachments:
+          items:
+            $ref: '#/components/schemas/Attachment'
+          type: array
+          title: Attachments
+          default: []
+      type: object
+      required:
+        - external_id
+        - title
+      title: Job
+    JobRecommendResponse:
+      properties:
+        continuation_token:
+          type: string
+          title: Continuation Token
+        num_total_results:
+          type: integer
+          title: Num Total Results
+        results:
+          items:
+            $ref: '#/components/schemas/MatchedProfile'
+          type: array
+          title: Results
+      type: object
+      required:
+        - continuation_token
+        - num_total_results
+        - results
+      title: JobRecommendResponse
+    JobTitle:
+      properties:
+        job_title:
+          type: string
+          title: Job Title
+      type: object
+      required:
+        - job_title
+      title: JobTitle
+    JobTitleSearchModel:
+      properties:
+        query:
+          type: string
+          title: Query
+          description: 'Example: `query=customer support`.'
+        limit:
+          type: integer
+          maximum: 100
+          exclusiveMinimum: 0
+          title: Limit
+          description: |-
+            Example: `limit=25`.
+                    The maximal number of results returned.
+                    
+          default: 20
+        language:
+          allOf:
+            - $ref: >-
+                #/components/schemas/talent_api__routes__search__search__Language
+          description: |-
+            Example: `language=NL`.
+                    The language of the input text. auto will automatically detect the language used.
+          default: AUTO
+      type: object
+      title: JobTitleSearchModel
+    LanguageProficiency:
+      type: string
+      enum:
+        - ELEMENTARY
+        - LIMITED_WORKING
+        - PROFESSIONAL_WORKING
+        - FULL_PROFESSIONAL
+        - NATIVE_OR_BILINGUAL
+      title: LanguageProficiency
+      description: An enumeration.
+    LocationType:
+      type: string
+      enum:
+        - LOCAL
+        - REMOTE
+        - RELOCATE
+        - FLY_IN_FLY_OUT
+      title: LocationType
+      description: An enumeration.
+    Match:
+      properties:
+        profile_id:
+          type: string
+          title: Profile Id
+          description: The id of the entity doing the match action.
+        job_id:
+          type: string
+          title: Job Id
+          description: The id of the entity receiving the match action.
+        match_actor:
+          allOf:
+            - $ref: '#/components/schemas/MatchActor'
+          description: The entity performing the match action.
+        match_datetime:
+          type: string
+          format: date-time
+          title: Match Datetime
+          description: The time at which the match action occured.
+        match_type:
+          allOf:
+            - $ref: '#/components/schemas/MatchType'
+          description: The type of match action.
+        metadata:
+          allOf:
+            - $ref: '#/components/schemas/MatchMetadata'
+          title: Metadata
+          description: >-
+            Metadata that gives more details about where the match originates
+            from.
+      type: object
+      required:
+        - profile_id
+        - job_id
+        - match_actor
+        - match_datetime
+        - match_type
+      title: Match
+    MatchActor:
+      type: string
+      enum:
+        - CANDIDATE
+        - EMPLOYER
+        - CANDIDATE_AND_EMPLOYER
+        - INTERMEDIARY
+      title: MatchActor
+      description: An enumeration.
+    MatchConfig:
+      properties:
+        filters:
+          items:
+            $ref: '#/components/schemas/Filter'
+          type: array
+          title: Filters
+          description: A list of filters that filter results based on entity properties.
+        max_distance:
+          type: integer
+          title: Max Distance
+          description: >-
+            Defines a radius used for looking for recommendations, based on the
+            entity addresses. This is not used if `location_filters` is
+            specified.
+        location_filters:
+          items:
+            $ref: '#/components/schemas/GeoLocationFilter'
+          type: array
+          title: Location Filters
+          description: >-
+            A list of coordinates and distances, to replace the entity
+            addresses. This takes precendence over the `max_distance` parameter.
+        continuation_token:
+          type: string
+          title: Continuation Token
+          description: A continuation token for getting the next page of recommendations.
+        limit:
+          type: integer
+          maximum: 100
+          minimum: 1
+          title: Limit
+          description: The number of results to return
+          default: 10
+        interactions_to_filter:
+          items:
+            $ref: '#/components/schemas/InteractionTypes'
+          type: array
+          description: >-
+            The types of interactions to filter out of the suggestions. For
+            example, if the 'SAVE' interaction type is specified in the list,
+            then the jobs that were saved by the profile will not be used in the
+            suggestions. If this parameter is not specified, by default, all
+            types of interactions will be filtered out.
+        show_explanation:
+          type: boolean
+          title: Show Explanation
+          description: Enable human readable explanations.
+          default: false
+        experimental:
+          type: boolean
+          title: Experimental
+          description: Enable the latest experimental improvements.
+          default: false
+        model_version_id:
+          type: string
+          title: Model Version Id
+          description: >-
+            The model version id to use for the recommendations. If not
+            specified, the latest model version is used or the model version is
+            choses based on the A/B testing configuration.
+      type: object
+      title: MatchConfig
+    MatchDirection:
+      type: string
+      enum:
+        - JOB2JOB
+        - PROFILE2JOB
+      title: MatchDirection
+      description: An enumeration.
+    MatchExplanation:
+      properties:
+        score:
+          type: number
+          title: Score
+        explanation:
+          anyOf:
+            - type: string
+            - type: object
+            - items:
+                type: string
+              type: array
+          title: Explanation
+        metadata:
+          type: object
+          title: Metadata
+      type: object
+      required:
+        - score
+        - explanation
+        - metadata
+      title: MatchExplanation
+    MatchMetadata:
+      properties:
+        origin:
+          allOf:
+            - $ref: '#/components/schemas/OriginType'
+          description: The origin from which the click originates.
+        direction:
+          allOf:
+            - $ref: '#/components/schemas/MatchDirection'
+          description: >-
+            The match direction from where the click originates. This field
+            should only be filled in when matching triggered the click.
+        origin_id:
+          type: string
+          title: Origin Id
+          description: >-
+            The id of the entity which was used to compute the clicked
+            recommendation. This field should only be filled in when matching
+            triggered the click.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data.
+      type: object
+      title: MatchMetadata
+    MatchType:
+      type: string
+      enum:
+        - PAGEVIEW
+        - SAVE
+        - APPLY
+        - RECOMMEND
+        - INVITE
+        - GOOD_MATCH
+        - BAD_MATCH
+        - INTERVIEW
+        - HIRE
+      title: MatchType
+      description: An enumeration.
+    MatchedJob:
+      properties:
+        resource_id:
+          type: string
+          title: Resource Id
+        score:
+          type: number
+          title: Score
+        resource:
+          $ref: '#/components/schemas/DBJobPreview'
+        match_explanation:
+          additionalProperties:
+            $ref: '#/components/schemas/MatchExplanation'
+          type: object
+          title: Match Explanation
+      type: object
+      required:
+        - resource_id
+        - score
+        - resource
+      title: MatchedJob
+    MatchedProfile:
+      properties:
+        resource_id:
+          type: string
+          title: Resource Id
+        score:
+          type: number
+          title: Score
+        resource:
+          $ref: '#/components/schemas/DBProfilePreview'
+        match_explanation:
+          additionalProperties:
+            $ref: '#/components/schemas/MatchExplanation'
+          type: object
+          title: Match Explanation
+      type: object
+      required:
+        - resource_id
+        - score
+        - resource
+      title: MatchedProfile
+    OrderBy:
+      type: string
+      enum:
+        - relevance_descending
+        - distance_ascending
+        - last_updated_datetime_descending
+      title: OrderBy
+      description: An enumeration.
+    OriginType:
+      type: string
+      enum:
+        - LITTO_MATCHING
+        - SEARCH
+        - INTERNAL
+        - EXTERNAL
+      title: OriginType
+      description: An enumeration.
+    Profile:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+          default: {}
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The addresses closest to which the profile is looking for work,
+            including the country name. Note this is not the same as the
+            addresses where the profile is looking for work.
+        geocoordinates:
+          items:
+            $ref: '#/components/schemas/GeoPoint'
+          type: array
+          title: Geocoordinates
+          description: Each element in the list characterizes a geo point.
+        name:
+          type: string
+          maxLength: 255
+          pattern: ''
+          title: Name
+          description: The profile's full name.
+        picture_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Picture Url
+          description: The profile's picture URL.
+        website_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Website Url
+          description: The profile's website URL.
+        social_media_profile_urls:
+          items:
+            type: string
+            maxLength: 65536
+            minLength: 1
+            format: uri
+          type: array
+          title: Social Media Profile Urls
+          description: The social media profiles of the profile.
+          default: []
+        phone:
+          type: string
+          maxLength: 255
+          title: Phone
+          description: The profile's phone number.
+        email:
+          anyOf:
+            - type: string
+              format: email
+            - type: string
+              maxLength: 0
+          title: Email
+          description: The email addresses of the profile.
+        gender:
+          allOf:
+            - $ref: '#/components/schemas/Gender'
+          description: The gender of the profile.
+        birthdate:
+          type: string
+          format: date-time
+          title: Birthdate
+          description: >-
+            The birthdate of the profile in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        description:
+          type: string
+          maxLength: 100000
+          title: Description
+          description: A description of this profile.
+        highest_educational_level:
+          type: string
+          pattern: ^[0-9]{1,3}$
+          title: Highest Educational Level
+          description: >-
+            Highest education levels attained by this profile as defined in
+            ISCED 2011 levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+        languages:
+          items:
+            $ref: '#/components/schemas/validate__api_spec__Language'
+          type: array
+          title: Languages
+          description: >-
+            Language proficiencies of this profile. Languages must be two-letter
+            codes defined in ISO 639-1
+            (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+            Proficiencies are on the ILR scale
+            (https://en.wikipedia.org/wiki/ILR_scale).
+          default: []
+        certificates:
+          items:
+            type: string
+            maxLength: 1000
+          type: array
+          title: Certificates
+          description: A list of descriptions of the profile's certificates.
+          default: []
+        skills:
+          items:
+            type: string
+            maxLength: 1000
+          type: array
+          title: Skills
+          description: A list of short descriptions of the profile's skills.
+          default: []
+        skill_tags:
+          items:
+            $ref: '#/components/schemas/SkillTag'
+          type: array
+          title: Skill Tags
+          description: A list of the profile's skill tags.
+          default: []
+        interests:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Interests
+          description: A list of descriptions of the profile's interests.
+          default: []
+        desired_jobs:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Desired Jobs
+          description: A list of desired jobs titles or short descriptions.
+          default: []
+        undesired_jobs:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Undesired Jobs
+          description: A list of undesired jobs titles or short descriptions.
+          default: []
+        desired_job_seniority_levels:
+          items:
+            $ref: '#/components/schemas/ExperienceLevel'
+          type: array
+          description: The desired seniority for a job.
+          default: []
+        degrees:
+          items:
+            $ref: '#/components/schemas/Degree'
+          type: array
+          title: Degrees
+          description: >-
+            A list of attained or in-progress degrees. If the degree is
+            in-progress, leave the attendanceEndDateTime blank. Make sure to not
+            include degrees that are not attained or in-progress!
+          default: []
+        experiences:
+          items:
+            $ref: '#/components/schemas/Experience'
+          type: array
+          title: Experiences
+          description: >-
+            A list of work experience. If the job is in-progress, leave the
+            job_end_datetime blank.
+          default: []
+        relationship_preferences:
+          items:
+            $ref: '#/components/schemas/RelationshipType'
+          type: array
+          description: The desired employment relationship.
+          default: []
+        location_preferences:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type: array
+          description: The desired employment location.
+          default: []
+        employment_term_preferences:
+          items:
+            $ref: '#/components/schemas/TermType'
+          type: array
+          description: The desired employment term.
+          default: []
+        capacity_preferences:
+          items:
+            $ref: '#/components/schemas/CapacityType'
+          type: array
+          description: The desired employment capacity.
+          default: []
+        workday_preferences:
+          items:
+            $ref: '#/components/schemas/DaysType'
+          type: array
+          description: The desired employment schedule.
+          default: []
+        hours_preferences:
+          items:
+            $ref: '#/components/schemas/HoursType'
+          type: array
+          description: The desired employment hours.
+          default: []
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            was most recently updated in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            was most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        expiration_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Expiration Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            expires in ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601). If
+            null, this profile does not expire.
+        may_be_recommended:
+          type: boolean
+          title: May Be Recommended
+          description: >-
+            Whether this profile may be recommended (subject to the posting
+            publish and expire times).
+          default: true
+        may_receive_recommendations:
+          type: boolean
+          title: May Receive Recommendations
+          description: Whether this profile may receive recommendations.
+          default: true
+        attachments:
+          items:
+            $ref: '#/components/schemas/Attachment'
+          type: array
+          title: Attachments
+          default: []
+      type: object
+      required:
+        - external_id
+      title: Profile
+    ProfileRecommendResponse:
+      properties:
+        continuation_token:
+          type: string
+          title: Continuation Token
+        num_total_results:
+          type: integer
+          title: Num Total Results
+        results:
+          items:
+            $ref: '#/components/schemas/MatchedJob'
+          type: array
+          title: Results
+      type: object
+      required:
+        - continuation_token
+        - num_total_results
+        - results
+      title: ProfileRecommendResponse
+    QueryField:
+      properties:
+        key:
+          type: string
+          title: Key
+          description: Field key in which to search for the query keywords.
+        queries:
+          items:
+            type: string
+          type: array
+          title: Queries
+          description: List of keywords.
+      type: object
+      required:
+        - key
+        - queries
+      title: QueryField
+    RelationshipType:
+      type: string
+      enum:
+        - EMPLOYEE
+        - CONTRACTOR
+        - CONTRACT_TO_HIRE
+        - INTERN
+        - JOB_STUDENT
+        - VOLUNTEER
+      title: RelationshipType
+      description: An enumeration.
+    SearchJob:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+          default: {}
+        client_name:
+          type: string
+          title: Client Name
+        computed_data:
+          type: object
+          title: Computed Data
+          default: {}
+        title:
+          type: string
+          maxLength: 500
+          title: Title
+          description: The job title.
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The full street address including the country of the hiring
+            locations. If the full street address is not available, the address
+            should be provided up to the most granular level. At least one
+            hiring location is required.
+        geocoordinates:
+          items:
+            $ref: '#/components/schemas/GeoPoint'
+          type: array
+          title: Geocoordinates
+          description: Each element in the list characterizes a geo point.
+        publisher_name:
+          type: string
+          maxLength: 255
+          title: Publisher Name
+          description: The name of the company publishing this job.
+        publisher_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Publisher Vatin
+          description: >-
+            The publisher VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        publisher_description:
+          type: string
+          maxLength: 10000
+          title: Publisher Description
+          description: The description of the publisher.
+        employer_name:
+          type: string
+          maxLength: 255
+          title: Employer Name
+          description: The name of the employer.
+        employer_vatin:
+          type: string
+          pattern: ^[A-Z]{2}[0-9A-Z]{2,13}$
+          title: Employer Vatin
+          description: >-
+            The employer VAT identification number, or VATIN
+            (https://en.wikipedia.org/wiki/VAT_identification_number).
+        employer_description:
+          type: string
+          maxLength: 10000
+          title: Employer Description
+          description: A description of the employer.
+        department:
+          type: string
+          maxLength: 255
+          title: Department
+          description: >-
+            The department or functional area within the company with the open
+            position.
+        description:
+          type: string
+          maxLength: 100000
+          title: Description
+          description: The job description.
+        required_qualifications:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Required Qualifications
+          description: >-
+            A description of the qualifications and skills required to perform
+            this job.
+          default: []
+        skill_tags:
+          items:
+            $ref: '#/components/schemas/SkillTag'
+          type: array
+          title: Skill Tags
+          description: A list of the job's skill tags.
+          default: []
+        offer_and_benefits_str:
+          type: string
+          maxLength: 10000
+          title: Offer And Benefits Str
+          description: A description of the benefits offered with this job.
+        application_instructions_str:
+          type: string
+          maxLength: 3000
+          title: Application Instructions Str
+          description: >-
+            The application instructions that a candidate should follow to apply
+            for this job.
+        compensation_currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          title: Compensation Currency
+          description: >-
+            The currency of the compensation, defined in ISO 4217
+            (https://en.wikipedia.org/wiki/ISO_4217).
+        hourly_gross_compensation:
+          type: number
+          minimum: 0
+          title: Hourly Gross Compensation
+          description: >-
+            The gross hourly compensation expressed in the corresponding
+            currency.
+        languages:
+          items:
+            $ref: '#/components/schemas/validate__api_spec__Language'
+          type: array
+          title: Languages
+          description: >-
+            Language proficiencies requested for this job. Languages must be
+            two-letter codes defined in ISO 639-1
+            (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+            Proficiencies are on the ILR scale
+            (https://en.wikipedia.org/wiki/ILR_scale).
+          default: []
+        degrees:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Degrees
+          description: Requested degrees for this job.
+          default: []
+        education_levels:
+          items:
+            type: string
+            pattern: ^[0-9]{1,3}$
+          type: array
+          title: Education Levels
+          description: >-
+            Requested education levels as defined in ISCED 2011 levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+          default: []
+        seniority_preferences:
+          items:
+            $ref: '#/components/schemas/ExperienceLevel'
+          type: array
+          description: The requested work experience for this job.
+          default: []
+        relationship_preferences:
+          items:
+            $ref: '#/components/schemas/RelationshipType'
+          type: array
+          description: The desired employment relationship.
+          default: []
+        location_preferences:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type: array
+          description: The employment location.
+          default: []
+        employment_term_preferences:
+          items:
+            $ref: '#/components/schemas/TermType'
+          type: array
+          description: The employment term.
+          default: []
+        capacity_preferences:
+          items:
+            $ref: '#/components/schemas/CapacityType'
+          type: array
+          description: The employment capacity.
+          default: []
+        workday_preferences:
+          items:
+            $ref: '#/components/schemas/DaysType'
+          type: array
+          description: The employment schedule.
+          default: []
+        hours_preferences:
+          items:
+            $ref: '#/components/schemas/HoursType'
+          type: array
+          description: The employment hours.
+          default: []
+        job_start_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job Start Datetime
+          description: The localized start timestamp of the job.
+        job_end_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Job End Datetime
+          description: >-
+            The localized end timestamp (including timezone) of the job in ISO
+            8601 (https://en.wikipedia.org/wiki/ISO_8601). If null, it is known
+            that there is no end time. If this property is missing, the end time
+            is unknown.
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: The localized timestamp when the job was last modified.
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting was
+            most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        expiration_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Expiration Datetime
+          description: >-
+            The localized timestamp (including timezone) this job posting
+            expires in ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601). If
+            null, this posting does not expire.
+        may_be_recommended:
+          type: boolean
+          title: May Be Recommended
+          description: >-
+            Whether this job may be recommended (subject to the posting publish
+            and expire times).
+        may_receive_recommendations:
+          type: boolean
+          title: May Receive Recommendations
+          description: Whether this job may receive recommendations.
+        attachments:
+          items:
+            $ref: '#/components/schemas/DBAttachment'
+          type: array
+          title: Attachments
+          default: []
+      type: object
+      title: SearchJob
+    SearchJobResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/SearchJob'
+          type: array
+          title: Results
+        facets:
+          items:
+            $ref: '#/components/schemas/FacetResponse'
+          type: array
+          title: Facets
+        continuation_token:
+          type: string
+          title: Continuation Token
+        num_total_results:
+          type: integer
+          title: Num Total Results
+      type: object
+      title: SearchJobResponse
+    SearchJobTitleResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/JobTitle'
+          type: array
+          title: Results
+        num_total_results:
+          type: integer
+          title: Num Total Results
+      type: object
+      title: SearchJobTitleResponse
+    SearchMetadata:
+      properties:
+        profile_id:
+          type: string
+          title: Profile Id
+        interactions_to_filter:
+          items:
+            $ref: '#/components/schemas/InteractionTypes'
+          type: array
+          default: []
+        broaden_search_weight:
+          type: number
+          title: Broaden Search Weight
+          description: >-
+            `broaden_search_weight < 1`: Impact of all query expansions will be
+            lower.
+          default: 1
+      type: object
+      title: SearchMetadata
+    SearchModel:
+      properties:
+        search_metadata:
+          $ref: '#/components/schemas/SearchMetadata'
+        search_query:
+          $ref: '#/components/schemas/SearchQuery'
+        broaden_search:
+          anyOf:
+            - type: boolean
+            - type: number
+            - type: integer
+          title: Broaden Search
+          description: |-
+            Expand the query with similar keywords.
+                    If `true` standard settings will be used.
+                    `false` query will not be expanded.
+                    `Below 1 and higher 0`: take into account keywords with a similarity till the defined threshold.
+                    `broaden_search=0.7` all keywords with a similarity of 0.7 and higher are used.
+                    `Higher equal 1`: number of most similar keywords will be used.
+                    `broaden_search=5`: 5 most similar keywords are used.
+                    
+          default: true
+        fields_to_return:
+          items:
+            type: string
+          type: array
+          title: Fields To Return
+        facets:
+          items:
+            $ref: '#/components/schemas/FacetRequest'
+          type: array
+          title: Facets
+        page_size:
+          type: integer
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          description: |-
+            Example: `page_size=25`.
+                    The maximum number items to return in the results list.
+                    Important: **Above a value of 10000 the values will be returned unsorted.**
+                    The higher this value the higher the response times.
+                    
+          default: 20
+        continuation_token:
+          type: string
+          title: Continuation Token
+          description: A continuation token for fetching the next page of results.
+        order_by:
+          $ref: '#/components/schemas/OrderBy'
+        pagination_offset:
+          type: integer
+          maximum: 10000
+          minimum: 0
+          title: Pagination Offset
+          description: >-
+            Index from which to start when generating the results list. When
+            both the `continuation_token` and `pagination_offset` are provided
+            the integer from `pagination_offset` will be used for pagination.
+            Talent API offers up to 10.000 sorted results. Please use the key
+            `page_size` and a `pagination_offset` of 0 to receive more than
+            10.000 unsorted results.
+      type: object
+      title: SearchModel
+    SearchProfile:
+      properties:
+        external_id:
+          type: string
+          title: External Id
+          description: The unique entity id.
+        client_data:
+          type: object
+          title: Client Data
+          description: Optional client-specific data
+          default: {}
+        client_name:
+          type: string
+          title: Client Name
+        computed_data:
+          type: object
+          title: Computed Data
+          default: {}
+        addresses:
+          items:
+            type: string
+            maxLength: 500
+          type: array
+          title: Addresses
+          description: >-
+            The addresses closest to which the profile is looking for work,
+            including the country name. Note this is not the same as the
+            addresses where the profile is looking for work.
+        geocoordinates:
+          items:
+            $ref: '#/components/schemas/GeoPoint'
+          type: array
+          title: Geocoordinates
+          description: Each element in the list characterizes a geo point.
+        name:
+          type: string
+          maxLength: 255
+          pattern: ''
+          title: Name
+          description: The profile's full name.
+        picture_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Picture Url
+          description: The profile's picture URL.
+        website_url:
+          type: string
+          maxLength: 65536
+          minLength: 1
+          format: uri
+          title: Website Url
+          description: The profile's website URL.
+        social_media_profile_urls:
+          items:
+            type: string
+            maxLength: 65536
+            minLength: 1
+            format: uri
+          type: array
+          title: Social Media Profile Urls
+          description: The social media profiles of the profile.
+          default: []
+        phone:
+          type: string
+          maxLength: 255
+          title: Phone
+          description: The profile's phone number.
+        email:
+          anyOf:
+            - type: string
+              format: email
+            - type: string
+              maxLength: 0
+          title: Email
+          description: The email addresses of the profile.
+        gender:
+          allOf:
+            - $ref: '#/components/schemas/Gender'
+          description: The gender of the profile.
+        birthdate:
+          type: string
+          format: date-time
+          title: Birthdate
+          description: >-
+            The birthdate of the profile in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        description:
+          type: string
+          maxLength: 100000
+          title: Description
+          description: A description of this profile.
+        highest_educational_level:
+          type: string
+          pattern: ^[0-9]{1,3}$
+          title: Highest Educational Level
+          description: >-
+            Highest education levels attained by this profile as defined in
+            ISCED 2011 levels
+            (https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education,
+            http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf).
+            Preferably as granular as possible.
+        languages:
+          items:
+            $ref: '#/components/schemas/validate__api_spec__Language'
+          type: array
+          title: Languages
+          description: >-
+            Language proficiencies of this profile. Languages must be two-letter
+            codes defined in ISO 639-1
+            (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+            Proficiencies are on the ILR scale
+            (https://en.wikipedia.org/wiki/ILR_scale).
+          default: []
+        certificates:
+          items:
+            type: string
+            maxLength: 1000
+          type: array
+          title: Certificates
+          description: A list of descriptions of the profile's certificates.
+          default: []
+        skills:
+          items:
+            type: string
+            maxLength: 1000
+          type: array
+          title: Skills
+          description: A list of short descriptions of the profile's skills.
+          default: []
+        skill_tags:
+          items:
+            $ref: '#/components/schemas/SkillTag'
+          type: array
+          title: Skill Tags
+          description: A list of the profile's skill tags.
+          default: []
+        interests:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Interests
+          description: A list of descriptions of the profile's interests.
+          default: []
+        desired_jobs:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Desired Jobs
+          description: A list of desired jobs titles or short descriptions.
+          default: []
+        undesired_jobs:
+          items:
+            type: string
+            maxLength: 10000
+          type: array
+          title: Undesired Jobs
+          description: A list of undesired jobs titles or short descriptions.
+          default: []
+        desired_job_seniority_levels:
+          items:
+            $ref: '#/components/schemas/ExperienceLevel'
+          type: array
+          description: The desired seniority for a job.
+          default: []
+        degrees:
+          items:
+            $ref: '#/components/schemas/Degree'
+          type: array
+          title: Degrees
+          description: >-
+            A list of attained or in-progress degrees. If the degree is
+            in-progress, leave the attendanceEndDateTime blank. Make sure to not
+            include degrees that are not attained or in-progress!
+          default: []
+        experiences:
+          items:
+            $ref: '#/components/schemas/Experience'
+          type: array
+          title: Experiences
+          description: >-
+            A list of work experience. If the job is in-progress, leave the
+            job_end_datetime blank.
+          default: []
+        relationship_preferences:
+          items:
+            $ref: '#/components/schemas/RelationshipType'
+          type: array
+          description: The desired employment relationship.
+          default: []
+        location_preferences:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type: array
+          description: The desired employment location.
+          default: []
+        employment_term_preferences:
+          items:
+            $ref: '#/components/schemas/TermType'
+          type: array
+          description: The desired employment term.
+          default: []
+        capacity_preferences:
+          items:
+            $ref: '#/components/schemas/CapacityType'
+          type: array
+          description: The desired employment capacity.
+          default: []
+        workday_preferences:
+          items:
+            $ref: '#/components/schemas/DaysType'
+          type: array
+          description: The desired employment schedule.
+          default: []
+        hours_preferences:
+          items:
+            $ref: '#/components/schemas/HoursType'
+          type: array
+          description: The desired employment hours.
+          default: []
+        last_updated_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Last Updated Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            was most recently updated in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        publication_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Publication Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            was most recently published in ISO 8601
+            (https://en.wikipedia.org/wiki/ISO_8601).
+        expiration_datetime:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: string
+              maxLength: 0
+          title: Expiration Datetime
+          description: >-
+            The localized timestamp (including timezone) this profile posting
+            expires in ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601). If
+            null, this profile does not expire.
+        may_be_recommended:
+          type: boolean
+          title: May Be Recommended
+          description: >-
+            Whether this profile may be recommended (subject to the posting
+            publish and expire times).
+          default: true
+        may_receive_recommendations:
+          type: boolean
+          title: May Receive Recommendations
+          description: Whether this profile may receive recommendations.
+          default: true
+        attachments:
+          items:
+            $ref: '#/components/schemas/DBAttachment'
+          type: array
+          title: Attachments
+          default: []
+      type: object
+      required:
+        - external_id
+      title: SearchProfile
+    SearchProfileResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/SearchProfile'
+          type: array
+          title: Results
+        facets:
+          items:
+            $ref: '#/components/schemas/FacetResponse'
+          type: array
+          title: Facets
+        continuation_token:
+          type: string
+          title: Continuation Token
+        num_total_results:
+          type: integer
+          title: Num Total Results
+      type: object
+      title: SearchProfileResponse
+    SearchQuery:
+      properties:
+        queries:
+          items:
+            anyOf:
+              - type: string
+              - $ref: '#/components/schemas/QueryField'
+          type: array
+          title: Queries
+        location_filters:
+          items:
+            $ref: '#/components/schemas/GeoLocationFilter'
+          type: array
+          title: Location Filters
+        filters:
+          items:
+            $ref: '#/components/schemas/Filter'
+          type: array
+          title: Filters
+      type: object
+      title: SearchQuery
+    SelectedValue:
+      properties:
+        value:
+          anyOf:
+            - type: string
+            - type: integer
+            - type: boolean
+          title: Value
+        num_results:
+          type: integer
+          title: Num Results
+        selected:
+          type: boolean
+          title: Selected
+      type: object
+      title: SelectedValue
+    SimilarJobResponse:
+      properties:
+        continuation_token:
+          type: string
+          title: Continuation Token
+        num_total_results:
+          type: integer
+          title: Num Total Results
+        results:
+          items:
+            $ref: '#/components/schemas/MatchedJob'
+          type: array
+          title: Results
+      type: object
+      required:
+        - continuation_token
+        - num_total_results
+        - results
+      title: SimilarJobResponse
+    SimilarProfileResponse:
+      properties:
+        continuation_token:
+          type: string
+          title: Continuation Token
+        num_total_results:
+          type: integer
+          title: Num Total Results
+        results:
+          items:
+            $ref: '#/components/schemas/MatchedProfile'
+          type: array
+          title: Results
+      type: object
+      required:
+        - continuation_token
+        - num_total_results
+        - results
+      title: SimilarProfileResponse
+    SkillFeedback:
+      properties:
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        external_id:
+          type: string
+          title: External Id
+        feedback_type:
+          $ref: '#/components/schemas/SkillFeedbackType'
+        skill:
+          type: string
+          title: Skill
+        score:
+          type: integer
+          title: Relevance Score
+          description: The relevance score of a skill.
+          gte: 1
+          lte: 5
+      type: object
+      required:
+        - entity_type
+        - external_id
+        - feedback_type
+        - skill
+      title: SkillFeedback
+    SkillFeedbackType:
+      type: string
+      enum:
+        - ADD
+        - REMOVE
+      title: SkillFeedbackType
+      description: An enumeration.
+    SkillTag:
+      properties:
+        name:
+          type: string
+          title: Name
+        experience:
+          $ref: '#/components/schemas/ExperienceLevel'
+        type:
+          $ref: '#/components/schemas/Type'
+      type: object
+      required:
+        - name
+        - type
+      title: SkillTag
+    TermType:
+      type: string
+      enum:
+        - INDEFINITE
+        - TEMPORARY
+      title: TermType
+      description: An enumeration.
+    Type:
+      type: string
+      enum:
+        - GENERATED
+        - CONFIRMED
+        - REJECTED
+      title: Type
+      description: An enumeration.
+    TypeEnum:
+      enum:
+        - client
+        - user
+      title: TypeEnum
+      description: Type of Authentication request.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+              - type: string
+              - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+        - loc
+        - msg
+        - type
+      title: ValidationError
+    talent_api__routes__search__search__Language:
+      type: string
+      enum:
+        - NL
+        - FR
+        - AUTO
+      title: Language
+      description: An enumeration.
+    validate__api_spec__Language:
+      properties:
+        language:
+          type: string
+          pattern: '[a-z]{2}'
+          title: Language
+        proficiency:
+          $ref: '#/components/schemas/LanguageProficiency'
+      type: object
+      required:
+        - language
+      title: Language
+  securitySchemes:
+    JWTBearer:
+      type: http
+      scheme: bearer
+tags:
+  - name: Authentication
+    description: Authenticate with the Talent API.
+  - name: Recommend
+    description: Recommend jobs and profiles.
+  - name: Search
+    description: Search through uploaded jobs and profiles.
+  - name: Status
+    description: Fetch status information about uploaded jobs and profiles.
+  - name: Add or Update
+    description: Add or update job and profile data.
+  - name: Delete
+    description: Delete a job or profile.
+  - name: Fetch
+    description: Fetch a job or profile.
+servers:
+  - url: https://api.talentapi.com

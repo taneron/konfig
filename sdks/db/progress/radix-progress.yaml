@@ -1,0 +1,146 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /auth:
+    post:
+      '200':
+        application/json: {}
+  /jobs:
+    post:
+      '200':
+        application/json: {}
+  /jobs/{job_id}:
+    delete:
+      '200':
+        application/json: {}
+  /matches:
+    post:
+      '200':
+        application/json: {}
+  /profiles:
+    post:
+      '200':
+        application/json: {}
+  /profiles/{profile_id}:
+    delete:
+      '200':
+        application/json: {}
+  /recommend/available-matchers:
+    get:
+      '200':
+        application/json: {}
+  /skills/feedback:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /auth:
+    post: Authentication_accessTokenPost
+  /evaluate:
+    post: Evaluate_profileJobCompatibility
+  /jobs:
+    post: AddOrUpdate_jobRecommendations
+  /jobs/{job_id}:
+    delete: Delete_jobById
+    get: Fetch_specificJob
+  /matches:
+    post: AddOrUpdate_matchIndicator
+  /profiles:
+    post: AddOrUpdate_profileData
+  /profiles/{profile_id}:
+    delete: Delete_profileById
+    get: Fetch_specificProfile
+  /recommend-master/job/{job_id}/jobs:
+    post: Recommend_jobMasterJobs
+  /recommend-master/job/{job_id}/profiles:
+    post: Recommend_profilesForJobMasterPost
+  /recommend-master/profile/{profile_id}/jobs:
+    post: Recommend_jobsForProfileMaster
+  /recommend-master/profile/{profile_id}/profiles:
+    post: Recommend_profilesForProfileMaster
+  /recommend/available-matchers:
+    get: Recommend_clientMatchersGet
+  /recommend/job/{job_id}/jobs:
+    post: Recommend_jobForJob
+  /recommend/job/{job_id}/profiles:
+    post: Recommend_jobProfilesPost
+  /recommend/profile/{profile_id}/jobs:
+    post: Recommend_jobsForProfile
+  /recommend/profile/{profile_id}/profiles:
+    post: Recommend_profilesForProfile
+  /search/jobs:
+    post: Search_jobsForQueryPost
+  /search/jobs/semantic:
+    post: Search_semanticJobsPost
+  /search/jobs/v2:
+    post: Search_jobsForQueryPostV2
+  /search/profiles:
+    post: Search_profilesPost
+  /search/titles:
+    post: Search_jobTitlesPost
+  /skills/feedback:
+    post: Skills_manageSkill
+  /status:
+    get: Status_getGlobalData
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /auth:
+    post:
+      '200':
+        application/json: AuthenticationAccessTokenPostResponse
+  /jobs:
+    post:
+      '200':
+        application/json: AddOrUpdateJobRecommendationsResponse
+  /jobs/{job_id}:
+    delete:
+      '200':
+        application/json: DeleteJobByIdResponse
+  /matches:
+    post:
+      '200':
+        application/json: AddOrUpdateMatchIndicatorResponse
+  /profiles:
+    post:
+      '200':
+        application/json: AddOrUpdateProfileDataResponse
+  /profiles/{profile_id}:
+    delete:
+      '200':
+        application/json: DeleteProfileByIdResponse
+  /recommend-master/job/{job_id}/jobs:
+    post:
+      '200':
+        application/json: RecommendJobMasterJobsResponse
+  /recommend-master/job/{job_id}/profiles:
+    post:
+      '200':
+        application/json: RecommendProfilesForJobMasterPostResponse
+  /recommend-master/profile/{profile_id}/jobs:
+    post:
+      '200':
+        application/json: RecommendJobsForProfileMasterResponse
+  /recommend-master/profile/{profile_id}/profiles:
+    post:
+      '200':
+        application/json: RecommendProfilesForProfileMasterResponse
+  /recommend/available-matchers:
+    get:
+      '200':
+        application/json: RecommendClientMatchersGetResponse
+  /recommend/profile/{profile_id}/jobs:
+    post:
+      '200':
+        application/json: RecommendJobsForProfileResponse
+  /skills/feedback:
+    post:
+      '200':
+        application/json: SkillsManageSkillResponse
+securityParameters:
+  x-response-target:
+    header: false
+validServerUrls: {}

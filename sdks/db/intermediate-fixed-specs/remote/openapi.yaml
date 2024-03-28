@@ -5,7 +5,6 @@ x-webhooks:
       tags:
         - Offboarding
       summary: offboarding.done
-      operationId: offboarding.done
       requestBody:
         content:
           application/json:
@@ -25,17 +24,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: offboarding.done
                 offboarding_request_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: offboarding.done
+      security: []
   incentive.deleted:
     post:
       description: This event is triggered whenever an incentive is deleted.
       tags:
         - Incentives
       summary: incentive.deleted
-      operationId: incentive.deleted
       requestBody:
         content:
           application/json:
@@ -55,10 +54,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: incentive.deleted
                 incentive_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: incentive.deleted
+      security: []
   contract_amendment.review_started:
     post:
       description: >-
@@ -67,7 +67,6 @@ x-webhooks:
       tags:
         - Contract Amendments
       summary: contract_amendment.review_started
-      operationId: contract_amendment.review_started
       requestBody:
         content:
           application/json:
@@ -87,10 +86,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 employment_request_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
                 event_type: contract_amendment.review_started
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: contract_amendment.review_started
+      security: []
   employment_contract.active_contract_updated:
     post:
       description: >-
@@ -99,7 +99,6 @@ x-webhooks:
       tags:
         - Employment Contracts
       summary: employment_contract.active_contract_updated
-      operationId: employment_contract.active_contract_updated
       requestBody:
         content:
           application/json:
@@ -119,10 +118,11 @@ x-webhooks:
                 contract_id: ba310525-9282-40c9-8977-14d844bf891a
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: employment_contract.active_contract_updated
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: employment_contract.active_contract_updated
+      security: []
   payslip.released:
     post:
       description: >
@@ -131,7 +131,6 @@ x-webhooks:
       tags:
         - Payslips
       summary: payslip.released
-      operationId: payslip.released
       requestBody:
         content:
           application/json:
@@ -151,10 +150,11 @@ x-webhooks:
                 employment_id: 45b34922-2590-43a0-ac05-ad23834adb8f
                 event_type: payslip.released
                 payslip_id: 86e56288-ca62-11ed-9702-a703c40b6c0d
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: payslip.released
+      security: []
   employment.onboarding.completed:
     post:
       description: >
@@ -174,7 +174,6 @@ x-webhooks:
       tags:
         - Employments
       summary: employment.onboarding.completed
-      operationId: employment.onboarding.completed
       requestBody:
         content:
           application/json:
@@ -190,17 +189,17 @@ x-webhooks:
               example:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: employment.onboarding.completed
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: employment.onboarding.completed
+      security: []
   timeoff.canceled:
     post:
       description: This event is triggered when a timeoff has status changed to canceled.
       tags:
         - Time Off
       summary: timeoff.canceled
-      operationId: timeoff.canceled
       requestBody:
         content:
           application/json:
@@ -220,17 +219,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: timeoff.canceled
                 timeoff_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: timeoff.canceled
+      security: []
   incentive.updated:
     post:
       description: This event is triggered whenever an incentive is updated.
       tags:
         - Incentives
       summary: incentive.updated
-      operationId: incentive.updated
       requestBody:
         content:
           application/json:
@@ -250,10 +249,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: incentive.updated
                 incentive_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: incentive.updated
+      security: []
   expense.deleted:
     post:
       description: >-
@@ -262,7 +262,6 @@ x-webhooks:
       tags:
         - Expenses
       summary: expense.deleted
-      operationId: expense.deleted
       requestBody:
         content:
           application/json:
@@ -282,10 +281,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: expense.deleted
                 expense_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: expense.deleted
+      security: []
   employment.personal_information.updated:
     post:
       description: >-
@@ -295,7 +295,6 @@ x-webhooks:
       tags:
         - Employments
       summary: employment.personal_information.updated
-      operationId: employment.personal_information.updated
       requestBody:
         content:
           application/json:
@@ -311,17 +310,17 @@ x-webhooks:
               example:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: employment.personal_information.updated
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: employment.personal_information.updated
+      security: []
   expense.reimbursed:
     post:
       description: This event is triggered when an expense is reimbursed.
       tags:
         - Expenses
       summary: expense.reimbursed
-      operationId: expense.reimbursed
       requestBody:
         content:
           application/json:
@@ -341,10 +340,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: expense.reimbursed
                 expense_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: expense.reimbursed
+      security: []
   contract_amendment.done:
     post:
       description: >-
@@ -353,7 +353,6 @@ x-webhooks:
       tags:
         - Contract Amendments
       summary: contract_amendment.done
-      operationId: contract_amendment.done
       requestBody:
         content:
           application/json:
@@ -373,10 +372,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 employment_request_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
                 event_type: contract_amendment.done
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: contract_amendment.done
+      security: []
   contract_amendment.canceled:
     post:
       description: >-
@@ -385,7 +385,6 @@ x-webhooks:
       tags:
         - Contract Amendments
       summary: contract_amendment.canceled
-      operationId: contract_amendment.canceled
       requestBody:
         content:
           application/json:
@@ -405,17 +404,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 employment_request_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
                 event_type: contract_amendment.canceled
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: contract_amendment.canceled
+      security: []
   incentive.paid:
     post:
       description: This event is triggered whenever an incentive is paid
       tags:
         - Incentives
       summary: incentive.paid
-      operationId: incentive.paid
       requestBody:
         content:
           application/json:
@@ -435,17 +434,17 @@ x-webhooks:
                 employment_id: 2610f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: incentive.paid
                 incentive_id: 0078fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: incentive.paid
+      security: []
   timeoff.taken:
     post:
       description: This event is triggered when a timeoff is set as taken.
       tags:
         - Time Off
       summary: timeoff.taken
-      operationId: timeoff.taken
       requestBody:
         content:
           application/json:
@@ -465,17 +464,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: timeoff.taken
                 timeoff_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: timeoff.taken
+      security: []
   timeoff.approved:
     post:
       description: This event is triggered when a timeoff is set as approved.
       tags:
         - Time Off
       summary: timeoff.approved
-      operationId: timeoff.approved
       requestBody:
         content:
           application/json:
@@ -495,17 +494,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: timeoff.approved
                 timeoff_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: timeoff.approved
+      security: []
   timeoff.date_changed:
     post:
       description: This event is triggered when a timeoff has its date changed.
       tags:
         - Time Off
       summary: timeoff.date_changed
-      operationId: timeoff.date_changed
       requestBody:
         content:
           application/json:
@@ -525,10 +524,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: timeoff.date_changed
                 timeoff_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: timeoff.date_changed
+      security: []
   billing_document.issued:
     post:
       description: >-
@@ -537,7 +537,6 @@ x-webhooks:
       tags:
         - Billing Documents
       summary: billing_document.issued
-      operationId: billing_document.issued
       requestBody:
         content:
           application/json:
@@ -547,8 +546,6 @@ x-webhooks:
                 - billing_document_id
                 - document_type
               properties:
-                event_type:
-                  type: string
                 document_type:
                   type: string
                   enum:
@@ -558,23 +555,25 @@ x-webhooks:
                     - prefunding_credit_note
                     - reconciliation_credit_note
                     - supplemental_service_credit_note
+                event_type:
+                  type: string
                 billing_document_id:
                   type: string
               example:
                 billing_document_id: 2f2b7ce8-3f80-47fe-a0b1-57ad9217636d
                 document_type: reconciliation_invoice
                 event_type: billing_document.issued
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: billing_document.issued
+      security: []
   incentive.created:
     post:
       description: This event is triggered when an incentive is created
       tags:
         - Incentives
       summary: incentive.created
-      operationId: incentive.created
       requestBody:
         content:
           application/json:
@@ -592,17 +591,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: incentive.created
                 incentive_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: incentive.created
+      security: []
   expense.submitted:
     post:
       description: This event is triggered when an expense is submitted by an employee.
       tags:
         - Expenses
       summary: expense.submitted
-      operationId: expense.submitted
       requestBody:
         content:
           application/json:
@@ -622,10 +621,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: expense.submitted
                 expense_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: expense.submitted
+      security: []
   employment.user_status.activated:
     post:
       description: >-
@@ -634,7 +634,6 @@ x-webhooks:
       tags:
         - Employments
       summary: employment.user_status.activated
-      operationId: employment.user_status.activated
       requestBody:
         content:
           application/json:
@@ -650,10 +649,11 @@ x-webhooks:
               example:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: employment.user_status.activated
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: employment.user_status.activated
+      security: []
   offboarding.review_started:
     post:
       description: >-
@@ -662,7 +662,6 @@ x-webhooks:
       tags:
         - Offboarding
       summary: offboarding.review_started
-      operationId: offboarding.review_started
       requestBody:
         content:
           application/json:
@@ -682,10 +681,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: offboarding.review_started
                 offboarding_request_id: ba310525-9282-40c9-8977-14d844bf891a
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: offboarding.review_started
+      security: []
   employment.details.updated:
     post:
       description: >-
@@ -694,7 +694,6 @@ x-webhooks:
       tags:
         - Employments
       summary: employment.details.updated
-      operationId: employment.details.updated
       requestBody:
         content:
           application/json:
@@ -710,17 +709,17 @@ x-webhooks:
               example:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: employment.details.updated
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: employment.details.updated
+      security: []
   expense.declined:
     post:
       description: This event is triggered when an expense is declined.
       tags:
         - Expenses
       summary: expense.declined
-      operationId: expense.declined
       requestBody:
         content:
           application/json:
@@ -740,17 +739,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: expense.declined
                 expense_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: expense.declined
+      security: []
   expense.approved:
     post:
       description: This event is triggered when an expense is approved.
       tags:
         - Expenses
       summary: expense.approved
-      operationId: expense.approved
       requestBody:
         content:
           application/json:
@@ -770,17 +769,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: expense.approved
                 expense_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: expense.approved
+      security: []
   timeoff.updated:
     post:
       description: This event is triggered when a timeoff is updated.
       tags:
         - Time Off
       summary: timeoff.updated
-      operationId: timeoff.updated
       requestBody:
         content:
           application/json:
@@ -800,10 +799,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: timeoff.updated
                 timeoff_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: timeoff.updated
+      security: []
   contract_amendment.submitted:
     post:
       description: >-
@@ -812,7 +812,6 @@ x-webhooks:
       tags:
         - Contract Amendments
       summary: contract_amendment.submitted
-      operationId: contract_amendment.submitted
       requestBody:
         content:
           application/json:
@@ -832,10 +831,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 employment_request_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
                 event_type: contract_amendment.submitted
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: contract_amendment.submitted
+      security: []
   contract_amendment.deleted:
     post:
       description: >-
@@ -844,7 +844,6 @@ x-webhooks:
       tags:
         - Contract Amendments
       summary: contract_amendment.deleted
-      operationId: contract_amendment.deleted
       requestBody:
         content:
           application/json:
@@ -864,17 +863,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 employment_request_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
                 event_type: contract_amendment.deleted
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: contract_amendment.deleted
+      security: []
   offboarding.deleted:
     post:
       description: This event is triggered whenever an offboarding request is deleted.
       tags:
         - Offboarding
       summary: offboarding.deleted
-      operationId: offboarding.deleted
       requestBody:
         content:
           application/json:
@@ -894,10 +893,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: offboarding.deleted
                 offboarding_request_id: ba310525-9282-40c9-8977-14d844bf891a
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: offboarding.deleted
+      security: []
   employment.onboarding_task.completed:
     post:
       description: |
@@ -908,7 +908,6 @@ x-webhooks:
       tags:
         - Employments
       summary: employment.onboarding_task.completed
-      operationId: employment.onboarding_task.completed
       requestBody:
         content:
           application/json:
@@ -918,11 +917,11 @@ x-webhooks:
                 - company_id
                 - employment_id
               properties:
+                company_id:
+                  type: string
                 event_type:
                   type: string
                 employment_id:
-                  type: string
-                company_id:
                   type: string
                 completed_task:
                   required:
@@ -971,17 +970,17 @@ x-webhooks:
                   status: completed
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: employment.onboarding_task.completed
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: employment.onboarding_task.completed
+      security: []
   offboarding.submitted:
     post:
       description: This event is triggered when an offboarding request is submitted.
       tags:
         - Offboarding
       summary: offboarding.submitted
-      operationId: offboarding.submitted
       requestBody:
         content:
           application/json:
@@ -1001,17 +1000,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: offboarding.submitted
                 offboarding_request_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: offboarding.submitted
+      security: []
   timeoff.declined:
     post:
       description: This event is triggered when a timeoff is declined
       tags:
         - Time Off
       summary: timeoff.declined
-      operationId: timeoff.declined
       requestBody:
         content:
           application/json:
@@ -1031,10 +1030,11 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: timeoff.declined
                 timeoff_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: timeoff.declined
+      security: []
   employment.user_status.deactivated:
     post:
       description: >-
@@ -1043,7 +1043,6 @@ x-webhooks:
       tags:
         - Employments
       summary: employment.user_status.deactivated
-      operationId: employment.user_status.deactivated
       requestBody:
         content:
           application/json:
@@ -1059,17 +1058,17 @@ x-webhooks:
               example:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: employment.user_status.deactivated
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: employment.user_status.deactivated
+      security: []
   expense.updated:
     post:
       description: This event is triggered whenever an expense is updated.
       tags:
         - Expenses
       summary: expense.updated
-      operationId: expense.updated
       requestBody:
         content:
           application/json:
@@ -1089,17 +1088,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: expense.updated
                 expense_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: expense.updated
+      security: []
   timeoff.requested:
     post:
       description: This event is triggered when a timeoff is requested
       tags:
         - Time Off
       summary: timeoff.requested
-      operationId: timeoff.requested
       requestBody:
         content:
           application/json:
@@ -1119,17 +1118,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: timeoff.requested
                 timeoff_id: 0073fcb5-b669-4e4a-b963-2a47744e75a1
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: timeoff.requested
+      security: []
   incentive.processing_started:
     post:
       description: This event is triggered when an incentive has its processing started
       tags:
         - Incentives
       summary: incentive.processing_started
-      operationId: incentive.processing_started
       requestBody:
         content:
           application/json:
@@ -1147,17 +1146,17 @@ x-webhooks:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: incentive.processing_started
                 incentive_id: 129d02bc-dd6a-11ed-ac99-cb057df06a33
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: incentive.processing_started
+      security: []
   employment.account.updated:
     post:
       description: This event is triggered whenever an employment account email is updated.
       tags:
         - Employments
       summary: employment.account.updated
-      operationId: employment.account.updated
       requestBody:
         content:
           application/json:
@@ -1173,10 +1172,11 @@ x-webhooks:
               example:
                 employment_id: 2614f814-b08e-4c8e-8c4d-ddbcc4692d99
                 event_type: employment.account.updated
-      security: []
       responses:
         2XX:
           description: Any 200 response confirms that the webhook was delivered.
+      operationId: employment.account.updated
+      security: []
 components:
   responses: {}
   schemas:
@@ -15147,9 +15147,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/TooManyRequestsResponse'
           description: Too many requests
-      summary: Approve Contract Amendment in the Sandbox Environment
+      summary: Approve Contract Amendment
       tags:
-        - Contract Amendments
+        - Sandbox
   /v1/countries/{country_code}/{form}:
     get:
       callbacks: {}
@@ -15272,6 +15272,66 @@ paths:
       summary: Show form schema
       tags:
         - Countries
+  /v1/sandbox/contract-amendments/{contract_amendment_request_id}/cancel:
+    put:
+      callbacks: {}
+      description: >
+        Use this endpoint to cancel an existing contract amendment request.
+
+
+        This endpoint is only available in Sandbox, otherwise it will respond
+        with a 404.
+      operationId: put_cancel_contract_amendment
+      parameters:
+        - description: Contract amendment request ID
+          example: 5bdc2cb9-6bda-4cf7-bc6e-0b122791e52a
+          in: path
+          name: contract_amendment_request_id
+          required: true
+          schema:
+            type: string
+            x-struct: null
+            x-validate: null
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntityResponse'
+          description: Unprocessable Entity
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too many requests
+      summary: Cancel Contract Amendment
+      tags:
+        - Sandbox
 security:
   - OAuth2: []
 servers:

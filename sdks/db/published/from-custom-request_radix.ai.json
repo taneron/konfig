@@ -1,0 +1,1824 @@
+{
+  "securitySchemes": {
+    "JWTBearer": {
+      "type": "http",
+      "scheme": "bearer"
+    }
+  },
+  "apiBaseUrl": "https://api.talentapi.com",
+  "apiVersion": "2024-03-19",
+  "apiDescription": "<p>API Support: <a href=\"support@radix.ai\">support@radix.ai</a>  | Website: <a href=\"https://www.radix.ai\">https://www.radix.ai</a></p>\n<p>Job and profile matching using Artificial Intelligence.</p>\n<h1>What is it?</h1>\n<p>Talent API is a system that allows retrieving jobs recommendations for a profile or profiles recommendations for a job.<br>\nThere are three types of entities involved:</p>\n<ul>\n<li>The <code>job</code>: a JSON document describing a job offer.</li>\n<li>The <code>profile</code>: a JSON document describing a user profile.</li>\n<li>The <code>match</code>: a JSON document describing a link between a job and a profile. Getting started Here is a description of a<br>\n  basic use of the API using curl. In the examples, words between brackets need to be replaced by the appropriate value.</li>\n</ul>\n<h4>Credentials</h4>\n<p>You need a <code>client_id</code> and a <code>client_secret</code> in order to have access to the API. If you don't have credentials, please<br>\ncontact us at <a href=\"hello@radix.ai\">hello@radix.ai</a>. These credentials will also come with the scope you are allowed to use.</p>\n<p>Using these, you can authenticate at the /auth endpoint and receive an access_token. This access_token will be needed<br>\nfor the next requests.</p>\n<p>The request should look like</p>\n<pre><code>curl -X POST \\\n  https://[server-url]/auth \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n           &quot;client_id&quot;: &quot;[client_id]&quot;, \\\n           &quot;client_secret&quot;: &quot;[client_secret]&quot;, \\\n           &quot;scope&quot;:&quot;tapi/ALL&quot;\n      }'\n</code></pre>\n<p>The response will be</p>\n<pre><code>{\n  &quot;access_token&quot;:&quot;eyJjIs7iOiJ[...]vQZUUhw2fsg&quot;,\n  &quot;expires_in&quot;:3600,\n  &quot;token_type&quot;:&quot;Bearer&quot;\n}\n</code></pre>\n<h4>Sending data</h4>\n<p>Before being able to request recommendations, you need to provide data. The minimum is a profile and a job.</p>\n<h4>Send a job</h4>\n<p>Here is a sample request of how to send us a job.</p>\n<p>The example uses the smallest set of fields necessary for the query to work, but you should fill as many of them as<br>\npossible.</p>\n<p>The field client_data can be used to send fields that are specific to your corporation that cannot be mapped to the API<br>\nspecification. Please note that using client specific fields is discouraged if your fields are non-critical or can be<br>\ntranslated into predefined fields.</p>\n<pre><code>curl -X POST \\\n  http://[server-url]/jobs \\\n  -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n          &quot;external_id&quot; : &quot;12345&quot;,\n          &quot;title&quot;: &quot;A job title&quot;,\n          &quot;addresses&quot;: [&quot;The job address&quot;],\n          &quot;publication_datetime&quot; : &quot;2020-02-12 00:02:00&quot;,\n          &quot;expiration_datetime&quot; :  &quot;2020-02-12 00:02:00&quot;,\n          &quot;may_be_recommended&quot; : true,\n          &quot;may_receive_recommendations&quot; : true\n}'\n</code></pre>\n<p>You will receive the following response, confirming that we received the job and processed it correctly:</p>\n<pre><code>{\n    &quot;message&quot;: &quot;Job successfully received. Recommendations will be available once the job has been processed.&quot;\n}\n</code></pre>\n<h4>Send a profile</h4>\n<p>In the same fashion, to send us a profile</p>\n<pre><code>curl -X POST \\\n  http://[server-url]/profiles \\\n  -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n          &quot;external_id&quot; : &quot;6789&quot;,\n          &quot;addresses&quot;: [&quot;The addresses where the candidate lives.&quot;],\n          &quot;publication_datetime&quot; : &quot;2008-02-12 00:02:00&quot;,\n          &quot;expiration_datetime&quot; :  &quot;2008-02-12 00:02:00&quot;,\n          &quot;may_be_recommended&quot; : true,\n          &quot;may_receive_recommendations&quot; : true\n}'\n</code></pre>\n<p>And the response will be</p>\n<pre><code>{\n  &quot;message&quot;: &quot;Profile successfully received. Recommendations will be available once the profile has been processed.&quot;,\n}\n</code></pre>\n<h4>Get a recommendation</h4>\n<p>Now that there is a job and a profile in the system, you can ask for a recommendation. For example, in order to get the<br>\nbest jobs for the profile you just uploaded, you can do the following request</p>\n<pre><code>curl -X GET \\\n  http://[server-url]/profile/123456789/jobs \\\n  -H 'Authorization: Bearer eyJjIs7iOiJ[...]vQZUUhw2fsg' \\\n  -H 'Content-Type: application/json' \\\n</code></pre>\n<p>The response will contain a list of the best jobs for that profile, in the following form</p>\n<pre><code>[\n    {\n      &quot;resource_id&quot;: 12345\n      &quot;score&quot;: 0.87\n      &quot;resource&quot;: {\n        &quot;external_id&quot; : &quot;12345&quot;,\n        &quot;title&quot;: &quot;A job title&quot;,\n        &quot;addresses&quot;: [&quot;The job address&quot;],\n        &quot;publication_datetime&quot; : &quot;2020-02-12 00:02:00&quot;,\n        &quot;expiration_datetime&quot; :  &quot;2020-02-12 00:02:00&quot;,\n        &quot;may_be_recommended&quot; : true,\n        &quot;may_receive_recommendations&quot; : true\n      },\n      &quot;match_explanation&quot;: {\n      }\n    },\n    ...\n]\n</code></pre>\n<p>These recommendations are based on the data that you included when uploading jobs and profiles to Talent API. To receive<br>\nhigh quality recommendations, make sure to fill as many fields as possible when uploading entities.</p>\n<h4>Send a match indicator</h4>\n<p>If you want the recommendation to improve based on your user behaviour, you need to send us <code>match indicators</code>. A match<br>\nindicator represents a link between a profile and a job. As an example, if the user with profile_id <code>6789</code> had a look at<br>\nthe job page with id <code>12345</code>, you can send us the following match:</p>\n<pre><code>curl -X POST \\\n  https://[server-url]/matches \\\n  -H 'Authorization: Bearer eyJraWQiOi[...]Mou8GdpvnA'\n  -H 'Content-Type: application/json' \n  -d '{\n         'profile_id':'6789',\n         'job_id':'12345',\n         'match_actor':'CANDIDATE',\n         'match_datetime':'2020-03-14T21:37:38.414Z',\n         'match_type':'PAGEVIEW'\n      }'\n</code></pre>\n<p>That way, we are aware of user interactions inside of your data.</p>\n<h4>View your data status</h4>\n<p>To have a look at what you currently sent us, call the <code>status</code> endpoint:</p>\n<pre><code>curl -X GET \\\n  https://[server-url]/status \\\n  -H 'Authorization: Bearer eyJraWQiOi[...]Mou8GdpvnA'\n  -H 'Content-Type: application/json' \n</code></pre>",
+  "apiTitle": "Talent API · API Reference",
+  "endpoints": 23,
+  "sdkMethods": 25,
+  "schemas": 83,
+  "parameters": 106,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://api.talentapi.com/openapi.json",
+    "apiBaseUrl": "https://api.talentapi.com"
+  },
+  "customRequestSpecFilename": "radix.ai.yaml",
+  "difficultyScore": 86.5,
+  "difficulty": "Easy",
+  "company": "Radix",
+  "sdkName": "radix-{language}-sdk",
+  "clientName": "Radix",
+  "metaDescription": "Radix is a Belgian AI solution provider committed to driving progress through the transformative power of artificial intelligence.\n\nWe believe that AI should be viewed as a co-pilot for people, helping them to do more and ultimately allowing us to be more human.\n\nWe provide expert guidance and support on every step of the journey towards a tailored portfolio of AI solutions.\n\nAs a leading AI consultancy with a presence in Belgium, the Netherlands, Germany, the Nordics, the US, and Italy, we pride ourselves on our rapid growth, exceptional team of over 50 experts, and the ability to collaborate with some of the world's most influential organizations.\n\nOur client portfolio includes GSK, Atlas Copco, Yara International, Brussels Airport Company, Port-of-Antwerp Bruges, United Nations, Carrefour, and more.",
+  "apiStatusUrls": "inherit",
+  "homepage": "radix.ai",
+  "developerDocumentation": "api.talentapi.com/",
+  "categories": [
+    "ai"
+  ],
+  "category": "AI Tools",
+  "methods": [
+    {
+      "url": "/auth",
+      "method": "accessTokenPost",
+      "httpMethod": "post",
+      "tag": "Authentication",
+      "typeScriptTag": "authentication",
+      "description": "Authenticate with the Talent API.",
+      "parameters": [
+        {
+          "name": "client_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CLIENT_ID"
+        },
+        {
+          "name": "client_secret",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CLIENT_SECRET"
+        },
+        {
+          "name": "scope",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": "tapi/ALL"
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend/job/{job_id}/profiles",
+      "method": "jobProfilesPost",
+      "httpMethod": "post",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Recommend profiles for a given job.",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOB_ID"
+        },
+        {
+          "name": "xResponseTarget",
+          "schema": "string",
+          "required": false,
+          "description": "An identifier for the usage of the response matches. In this way, the different use cases can be analyzed separately. For example, if TalentAPI is called within a web application, then, the URL of the page on which the matches will be displayed, can be used as the value of X-Response-Target. Thus, the API calls can be separated according to the target URL."
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "max_distance",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "location_filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "interactions_to_filter",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "show_explanation",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "experimental",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "model_version_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend/profile/{profile_id}/jobs",
+      "method": "jobsForProfile",
+      "httpMethod": "post",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Recommend jobs for a given profile.",
+      "parameters": [
+        {
+          "name": "profileId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROFILE_ID"
+        },
+        {
+          "name": "xResponseTarget",
+          "schema": "string",
+          "required": false,
+          "description": "An identifier for the usage of the response matches. In this way, the different use cases can be analyzed separately. For example, if TalentAPI is called within a web application, then, the URL of the page on which the matches will be displayed, can be used as the value of X-Response-Target. Thus, the API calls can be separated according to the target URL."
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "max_distance",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "location_filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "interactions_to_filter",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "show_explanation",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "experimental",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "model_version_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend-master/profile/{profile_id}/jobs",
+      "method": "jobsForProfileMaster",
+      "httpMethod": "post",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Recommend jobs for a given profile (https://api.talentapi.com/.",
+      "parameters": [
+        {
+          "name": "profileId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROFILE_ID"
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "max_distance",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "location_filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "interactions_to_filter",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "show_explanation",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "experimental",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "model_version_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend-master/job/{job_id}/profiles",
+      "method": "profilesForJobMasterPost",
+      "httpMethod": "post",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Recommend profiles for a given job (https://api.talentapi.com/.",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOB_ID"
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "max_distance",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "location_filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "interactions_to_filter",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "show_explanation",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "experimental",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "model_version_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend-master/job/{job_id}/jobs",
+      "method": "jobMasterJobs",
+      "httpMethod": "post",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Recommend jobs for a given job (https://api.talentapi.com/.",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOB_ID"
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "max_distance",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "location_filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "interactions_to_filter",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "show_explanation",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "experimental",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "model_version_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend-master/profile/{profile_id}/profiles",
+      "method": "profilesForProfileMaster",
+      "httpMethod": "post",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Recommend profiles for a given profile (https://api.talentapi.com/.",
+      "parameters": [
+        {
+          "name": "profileId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROFILE_ID"
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "max_distance",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "location_filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "interactions_to_filter",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "show_explanation",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "experimental",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "model_version_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend/job/{job_id}/jobs",
+      "method": "jobForJob",
+      "httpMethod": "post",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Recommend job for a given job.",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOB_ID"
+        },
+        {
+          "name": "xResponseTarget",
+          "schema": "string",
+          "required": false,
+          "description": "An identifier for the usage of the response matches. In this way, the different use cases can be analyzed separately. For example, if TalentAPI is called within a web application, then, the URL of the page on which the matches will be displayed, can be used as the value of X-Response-Target. Thus, the API calls can be separated according to the target URL."
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "max_distance",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "location_filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "interactions_to_filter",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "show_explanation",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "experimental",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "model_version_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend/profile/{profile_id}/profiles",
+      "method": "profilesForProfile",
+      "httpMethod": "post",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Recommend profiles for a given profile.",
+      "parameters": [
+        {
+          "name": "profileId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROFILE_ID"
+        },
+        {
+          "name": "xResponseTarget",
+          "schema": "string",
+          "required": false,
+          "description": "An identifier for the usage of the response matches. In this way, the different use cases can be analyzed separately. For example, if TalentAPI is called within a web application, then, the URL of the page on which the matches will be displayed, can be used as the value of X-Response-Target. Thus, the API calls can be separated according to the target URL."
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "max_distance",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "location_filters",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 10
+        },
+        {
+          "name": "interactions_to_filter",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "show_explanation",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "experimental",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "model_version_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/recommend/available-matchers",
+      "method": "clientMatchersGet",
+      "httpMethod": "get",
+      "tag": "Recommend",
+      "typeScriptTag": "recommend",
+      "description": "Get the recommendation matchers for a given client.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/search/profiles",
+      "method": "profilesPost",
+      "httpMethod": "post",
+      "tag": "Search",
+      "typeScriptTag": "search",
+      "description": "Find profiles for the given query.",
+      "parameters": [
+        {
+          "name": "search_metadata",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "search_query",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "broaden_search",
+          "schema": "undefined",
+          "description": "",
+          "default": true
+        },
+        {
+          "name": "fields_to_return",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "facets",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "page_size",
+          "schema": "integer",
+          "description": "",
+          "default": 20
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "order_by",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "pagination_offset",
+          "schema": "integer",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/search/jobs",
+      "method": "jobsForQueryPost",
+      "httpMethod": "post",
+      "tag": "Search",
+      "typeScriptTag": "search",
+      "description": "Find jobs for the given query.",
+      "parameters": [
+        {
+          "name": "search_metadata",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "search_query",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "broaden_search",
+          "schema": "undefined",
+          "description": "",
+          "default": true
+        },
+        {
+          "name": "fields_to_return",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "facets",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "page_size",
+          "schema": "integer",
+          "description": "",
+          "default": 20
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "order_by",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "pagination_offset",
+          "schema": "integer",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/search/jobs/v2",
+      "method": "jobsForQueryPostV2",
+      "httpMethod": "post",
+      "tag": "Search",
+      "typeScriptTag": "search",
+      "description": "Find jobs for the given query (https://api.talentapi.com/.",
+      "parameters": [
+        {
+          "name": "search_metadata",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "search_query",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "broaden_search",
+          "schema": "undefined",
+          "description": "",
+          "default": true
+        },
+        {
+          "name": "fields_to_return",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "facets",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "page_size",
+          "schema": "integer",
+          "description": "",
+          "default": 20
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "order_by",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "pagination_offset",
+          "schema": "integer",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/search/titles",
+      "method": "jobTitlesPost",
+      "httpMethod": "post",
+      "tag": "Search",
+      "typeScriptTag": "search",
+      "description": "Find job titles for the given query.",
+      "parameters": [
+        {
+          "name": "query",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "",
+          "default": 20
+        },
+        {
+          "name": "language",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/search/jobs/semantic",
+      "method": "semanticJobsPost",
+      "httpMethod": "post",
+      "tag": "Search",
+      "typeScriptTag": "search",
+      "description": "Find jobs for the given query (https://api.talentapi.com/.",
+      "parameters": [
+        {
+          "name": "search_metadata",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "search_query",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "broaden_search",
+          "schema": "undefined",
+          "description": "",
+          "default": true
+        },
+        {
+          "name": "fields_to_return",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "facets",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "page_size",
+          "schema": "integer",
+          "description": "",
+          "default": 20
+        },
+        {
+          "name": "continuation_token",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "order_by",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "pagination_offset",
+          "schema": "integer",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/status",
+      "method": "getGlobalData",
+      "httpMethod": "get",
+      "tag": "Status",
+      "typeScriptTag": "status",
+      "description": "Get global status",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/skills/feedback",
+      "method": "manageSkill",
+      "httpMethod": "post",
+      "tag": "Skills",
+      "typeScriptTag": "skills",
+      "description": "Add or remove a skill.",
+      "parameters": [
+        {
+          "name": "entity_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ENTITY_TYPE"
+        },
+        {
+          "name": "external_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EXTERNAL_ID"
+        },
+        {
+          "name": "feedback_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FEEDBACK_TYPE"
+        },
+        {
+          "name": "skill",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "SKILL"
+        },
+        {
+          "name": "score",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/jobs",
+      "method": "jobRecommendations",
+      "httpMethod": "post",
+      "tag": "Add or Update",
+      "typeScriptTag": "addOrUpdate",
+      "description": "Add or update a job.",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TITLE"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "external_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EXTERNAL_ID"
+        },
+        {
+          "name": "client_data",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "default": {}
+        },
+        {
+          "name": "addresses",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "geocoordinates",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "publisher_name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "publisher_vatin",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "publisher_description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "employer_name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "employer_vatin",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "employer_description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "department",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "required_qualifications",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "skill_tags",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "offer_and_benefits_str",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "application_instructions_str",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "compensation_currency",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "hourly_gross_compensation",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "languages",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "degrees",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "education_levels",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "seniority_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "relationship_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "location_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "employment_term_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "capacity_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "workday_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "hours_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "job_start_datetime",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "job_end_datetime",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "last_updated_datetime",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "publication_datetime",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expiration_datetime",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "may_be_recommended",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "may_receive_recommendations",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "attachments",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/profiles",
+      "method": "profileData",
+      "httpMethod": "post",
+      "tag": "Add or Update",
+      "typeScriptTag": "addOrUpdate",
+      "description": "Add or update a profile.",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "external_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EXTERNAL_ID"
+        },
+        {
+          "name": "client_data",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "default": {}
+        },
+        {
+          "name": "addresses",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "geocoordinates",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "picture_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "website_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "social_media_profile_urls",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "phone",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "gender",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "birthdate",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "highest_educational_level",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "languages",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "certificates",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "skills",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "skill_tags",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "interests",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "desired_jobs",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "undesired_jobs",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "desired_job_seniority_levels",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "degrees",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "experiences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "relationship_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "location_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "employment_term_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "capacity_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "workday_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "hours_preferences",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "last_updated_datetime",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "publication_datetime",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expiration_datetime",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "may_be_recommended",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": true
+        },
+        {
+          "name": "may_receive_recommendations",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": true
+        },
+        {
+          "name": "attachments",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/matches",
+      "method": "matchIndicator",
+      "httpMethod": "post",
+      "tag": "Add or Update",
+      "typeScriptTag": "addOrUpdate",
+      "description": "Add a match indicator.",
+      "parameters": [
+        {
+          "name": "profile_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROFILE_ID"
+        },
+        {
+          "name": "job_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOB_ID"
+        },
+        {
+          "name": "match_actor",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MATCH_ACTOR"
+        },
+        {
+          "name": "match_datetime",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MATCH_DATETIME"
+        },
+        {
+          "name": "match_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MATCH_TYPE"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/jobs/{job_id}",
+      "method": "jobById",
+      "httpMethod": "delete",
+      "tag": "Delete",
+      "typeScriptTag": "delete",
+      "description": "Delete a job.",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOB_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/jobs/{job_id}",
+      "method": "specificJob",
+      "httpMethod": "get",
+      "tag": "Fetch",
+      "typeScriptTag": "fetch",
+      "description": "Fetch a specific job.",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "JOB_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/profiles/{profile_id}",
+      "method": "profileById",
+      "httpMethod": "delete",
+      "tag": "Delete",
+      "typeScriptTag": "delete",
+      "description": "Delete a profile.",
+      "parameters": [
+        {
+          "name": "profileId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROFILE_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/profiles/{profile_id}",
+      "method": "specificProfile",
+      "httpMethod": "get",
+      "tag": "Fetch",
+      "typeScriptTag": "fetch",
+      "description": "Fetch a specific profile.",
+      "parameters": [
+        {
+          "name": "profileId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PROFILE_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/evaluate",
+      "method": "profileJobCompatibility",
+      "httpMethod": "post",
+      "tag": "Evaluate",
+      "typeScriptTag": "evaluate",
+      "description": "Endpoint to evaluate the compatibility of a profile & a job ",
+      "parameters": [
+        {
+          "name": "job",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "profile",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The recommendation response.\n\nVersioning: available after version `2020-05-01` included."
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Radix is a global AI consultancy driving progress through innovative AI solutions. We empower clients to harness AI as a co-pilot for success, offering tailored expertise and support across various regions and industries. Radix's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/radix/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/radix/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/radix/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/radix/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/radix/favicon.png",
+  "clientNameCamelCase": "radix",
+  "lastUpdated": "2024-03-28T16:48:14.533Z",
+  "typescriptSdkUsageCode": "import { Radix } from 'radix-typescript-sdk';\n\nconst radix = new Radix({\n    jwtBearer: \"JWT_BEARER\"\n})",
+  "typescriptSdkFirstRequestCode": "// Authenticate with the Talent API.\nconst accessTokenPostResponse = radix.authentication.accessTokenPost({\n    client_id: \"CLIENT_ID\"\n    client_secret: \"CLIENT_SECRET\"\n    scope: \"tapi/ALL\"\n})",
+  "fixedSpecFileName": "radix-fixed-spec.yaml"
+}
