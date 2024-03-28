@@ -2208,6 +2208,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://api.brevo.com/v3/swagger_definition_v3.yml",
   },
+  "belvo.com": {
+    type: "GET",
+    url: "https://statics.belvo.io/openapi-specs/BelvoOpenFinanceApiSpec.yaml",
+  },
   "podium.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

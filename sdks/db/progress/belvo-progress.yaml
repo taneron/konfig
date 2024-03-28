@@ -1,0 +1,1079 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/accounts/:
+    get: Accounts_listAll
+    patch: Accounts_resumeRetrieveSession
+    post: Accounts_createLinkAccounts
+  /api/accounts/{id}/:
+    delete: Accounts_deleteSpecificAccount
+    get: Accounts_getDetails
+  /api/balances/:
+    get: Balances_getAll
+    patch: Balances_resumeSession
+    post: Balances_getLinkBalances
+  /api/balances/{id}/:
+    delete: Balances_deleteBalance
+    get: Balances_getDetails
+  /api/categorization/:
+    post: Categorization_categorizeTransactions
+  /api/credit-score/:
+    get: CreditScore_listAll
+    post: CreditScore_getByLink
+  /api/credit-score/{id}/:
+    delete: CreditScore_deleteSpecificScore
+    get: CreditScore_getDetailsById
+  /api/employment-records/:
+    get: EmploymentRecordsMexico_listAll
+    post: EmploymentRecordsMexico_getDetails
+  /api/employment-records/{id}/:
+    delete: EmploymentRecordsMexico_deleteRecord
+    get: EmploymentRecordsMexico_getDetails
+  /api/enrich/credit-score/:
+    post: CreditScoreEyod_getUserCreditScore
+  /api/enrich/incomes/:
+    post: IncomeVerification_enrichUserIncomes
+  /api/incomes/:
+    get: Incomes_listAll
+    patch: Incomes_resumeSession
+    post: Incomes_getInsights
+  /api/incomes/{id}/:
+    delete: Incomes_deleteIncome
+    get: Incomes_getDetails
+  /api/institutions/:
+    get: Institutions_getAll
+  /api/institutions/{id}/:
+    get: Institutions_getDetails
+  /api/invoices/:
+    get: Invoices_listAll
+    patch: Invoices_completeRequest
+    post: Invoices_getLinkInvoices
+  /api/invoices/{id}/:
+    delete: Invoices_deleteInvoice
+    get: Invoices_getDetails
+  /api/links/:
+    get: Links_listAll
+    patch: Links_resumeSession
+    post: Links_registerNewLink
+  /api/links/{id}/:
+    delete: Links_deleteLinkAccounts
+    get: Links_getDetails
+    patch: Links_changeAccessMode
+    put: Links_updateCredentials
+  /api/owners/:
+    get: Owners_listAll
+    patch: Owners_resumeRetrieveSession
+    post: Owners_getLinkOwner
+  /api/owners/{id}/:
+    delete: Owners_deleteOwner
+    get: Owners_getDetails
+  /api/recurring-expenses/:
+    get: RecurringExpenses_listAll
+    patch: RecurringExpenses_resumeRequest
+    post: RecurringExpenses_getInsights
+  /api/recurring-expenses/{id}/:
+    delete: RecurringExpenses_deleteExpense
+    get: RecurringExpenses_getDetails
+  /api/risk-insights/:
+    get: RiskInsights_listAllRiskInsights
+    patch: RiskInsights_resumeInsightsSession
+    post: RiskInsights_getForLink
+  /api/risk-insights/{id}/:
+    delete: RiskInsights_deleteSpecificInsight
+    get: RiskInsights_getDetails
+  /api/tax-compliance-status/:
+    get: TaxComplianceStatus_listAll
+    post: TaxComplianceStatus_getFiscalLinkInfo
+  /api/tax-compliance-status/{id}/:
+    delete: TaxComplianceStatus_deleteSpecificTaxComplianceStatus
+    get: TaxComplianceStatus_getDetails
+  /api/tax-declarations/:
+    get: TaxDeclarations_listAll
+    post: TaxDeclarations_getFiscalLink
+  /api/tax-declarations/{id}/:
+    delete: TaxDeclarations_deleteSpecificDeclaration
+    get: TaxDeclarations_getDetails
+  /api/tax-retentions/:
+    get: TaxRetentions_listAll
+    post: TaxRetentions_getLinkTaxRetentions
+  /api/tax-retentions/{id}/:
+    delete: TaxRetentions_deleteSpecificTaxRetention
+    get: TaxRetentions_getDetails
+  /api/tax-returns/:
+    get: TaxReturns_listAll
+    post: TaxReturns_getInformation
+  /api/tax-returns/{id}/:
+    delete: TaxReturns_deleteSpecificTaxReturn
+    get: TaxReturns_getDetails
+  /api/tax-status/:
+    get: TaxStatus_listAll
+    post: TaxStatus_getLinkTaxStatus
+  /api/tax-status/{id}/:
+    delete: TaxStatus_deleteSpecificTaxStatus
+    get: TaxStatus_getDetails
+  /api/transactions/:
+    get: Transactions_listAllTransactions
+    patch: Transactions_resumeRetrieveSession
+    post: Transactions_createLinkTransactions
+  /api/transactions/{id}/:
+    delete: Transactions_removeById
+    get: Transactions_getDetails
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/enrich/credit-score:
+    post:
+      application/json: CreditScoreEyodGetUserCreditScoreRequest
+  /api/tax-returns:
+    post:
+      application/json: TaxReturnsGetInformationRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/accounts:
+    get:
+      '200':
+        application/json: AccountsListAllResponse
+      '401':
+        application/json: AccountsListAll401Response
+    patch:
+      '200':
+        application/json: AccountsResumeRetrieveSessionResponse
+      '201':
+        application/json: AccountsResumeRetrieveSession201Response
+      '400':
+        application/json: AccountsResumeRetrieveSession400Response
+      '401':
+        application/json: AccountsResumeRetrieveSession401Response
+      '408':
+        application/json: AccountsResumeRetrieveSession408Response
+      '428':
+        application/json: AccountsResumeRetrieveSession428Response
+      '500':
+        application/json: AccountsResumeRetrieveSession500Response
+    post:
+      '200':
+        application/json: AccountsCreateLinkAccountsResponse
+      '201':
+        application/json: AccountsCreateLinkAccounts201Response
+      '400':
+        application/json: AccountsCreateLinkAccounts400Response
+      '401':
+        application/json: AccountsCreateLinkAccounts401Response
+      '408':
+        application/json: AccountsCreateLinkAccounts408Response
+      '428':
+        application/json: AccountsCreateLinkAccounts428Response
+      '500':
+        application/json: AccountsCreateLinkAccounts500Response
+  /api/accounts/{id}:
+    delete:
+      '401':
+        application/json: AccountsDeleteSpecificAccountResponse
+      '404':
+        application/json: AccountsDeleteSpecificAccount404Response
+    get:
+      '200':
+        application/json: AccountsGetDetailsResponse
+      '401':
+        application/json: AccountsGetDetails401Response
+      '404':
+        application/json: AccountsGetDetails404Response
+  /api/balances:
+    get:
+      '401':
+        application/json: BalancesGetAllResponse
+    patch:
+      '200':
+        application/json: BalancesResumeSessionResponse
+      '201':
+        application/json: BalancesResumeSession201Response
+      '400':
+        application/json: BalancesResumeSession400Response
+      '401':
+        application/json: BalancesResumeSession401Response
+      '408':
+        application/json: BalancesResumeSession408Response
+      '428':
+        application/json: BalancesResumeSession428Response
+      '500':
+        application/json: BalancesResumeSession500Response
+    post:
+      '200':
+        application/json: BalancesGetLinkBalancesResponse
+      '201':
+        application/json: BalancesGetLinkBalances201Response
+      '400':
+        application/json: BalancesGetLinkBalances400Response
+      '401':
+        application/json: BalancesGetLinkBalances401Response
+      '408':
+        application/json: BalancesGetLinkBalances408Response
+      '428':
+        application/json: BalancesGetLinkBalances428Response
+      '500':
+        application/json: BalancesGetLinkBalances500Response
+  /api/balances/{id}:
+    delete:
+      '401':
+        application/json: BalancesDeleteBalanceResponse
+      '404':
+        application/json: BalancesDeleteBalance404Response
+    get:
+      '401':
+        application/json: BalancesGetDetailsResponse
+      '404':
+        application/json: BalancesGetDetails404Response
+  /api/categorization:
+    post:
+      '400':
+        application/json: CategorizationCategorizeTransactionsResponse
+      '401':
+        application/json: CategorizationCategorizeTransactions401Response
+      '403':
+        application/json: CategorizationCategorizeTransactions403Response
+      '500':
+        application/json: CategorizationCategorizeTransactions500Response
+  /api/credit-score:
+    get:
+      '401':
+        application/json: CreditScoreListAllResponse
+    post:
+      '400':
+        application/json: CreditScoreGetByLinkResponse
+      '401':
+        application/json: CreditScoreGetByLink401Response
+      '408':
+        application/json: CreditScoreGetByLink408Response
+      '428':
+        application/json: CreditScoreGetByLink428Response
+      '500':
+        application/json: CreditScoreGetByLink500Response
+  /api/credit-score/{id}:
+    delete:
+      '401':
+        application/json: CreditScoreDeleteSpecificScoreResponse
+      '404':
+        application/json: CreditScoreDeleteSpecificScore404Response
+    get:
+      '401':
+        application/json: CreditScoreGetDetailsByIdResponse
+      '404':
+        application/json: CreditScoreGetDetailsById404Response
+  /api/employment-records:
+    get:
+      '401':
+        application/json: EmploymentRecordsMexicoListAllResponse
+    post:
+      '200':
+        application/json: EmploymentRecordsMexicoGetDetailsResponse
+      '201':
+        application/json: EmploymentRecordsMexicoGetDetails201Response
+      '400':
+        application/json: EmploymentRecordsMexicoGetDetails400Response
+      '401':
+        application/json: EmploymentRecordsMexicoGetDetails401Response
+      '408':
+        application/json: EmploymentRecordsMexicoGetDetails408Response
+      '428':
+        application/json: EmploymentRecordsMexicoGetDetails428Response
+      '500':
+        application/json: EmploymentRecordsMexicoGetDetails500Response
+  /api/employment-records/{id}:
+    delete:
+      '401':
+        application/json: EmploymentRecordsMexicoDeleteRecordResponse
+      '404':
+        application/json: EmploymentRecordsMexicoDeleteRecord404Response
+    get:
+      '401':
+        application/json: EmploymentRecordsMexicoGetDetails401Response
+      '404':
+        application/json: EmploymentRecordsMexicoGetDetails404Response
+  /api/enrich/credit-score:
+    post:
+      '200':
+        application/json: CreditScoreEyodGetUserCreditScoreResponse
+      '400':
+        application/json: CreditScoreEyodGetUserCreditScore400Response
+      '401':
+        application/json: CreditScoreEyodGetUserCreditScore401Response
+      '403':
+        application/json: CreditScoreEyodGetUserCreditScore403Response
+      '500':
+        application/json: CreditScoreEyodGetUserCreditScore500Response
+  /api/enrich/incomes:
+    post:
+      '200':
+        application/json: IncomeVerificationEnrichUserIncomesResponse
+      '400':
+        application/json: IncomeVerificationEnrichUserIncomes400Response
+      '401':
+        application/json: IncomeVerificationEnrichUserIncomes401Response
+      '403':
+        application/json: IncomeVerificationEnrichUserIncomes403Response
+      '500':
+        application/json: IncomeVerificationEnrichUserIncomes500Response
+  /api/incomes:
+    get:
+      '401':
+        application/json: IncomesListAllResponse
+    patch:
+      '200':
+        application/json: IncomesResumeSessionResponse
+      '201':
+        application/json: IncomesResumeSession201Response
+      '400':
+        application/json: IncomesResumeSession400Response
+      '401':
+        application/json: IncomesResumeSession401Response
+      '408':
+        application/json: IncomesResumeSession408Response
+      '428':
+        application/json: IncomesResumeSession428Response
+      '500':
+        application/json: IncomesResumeSession500Response
+    post:
+      '400':
+        application/json: IncomesGetInsightsResponse
+      '401':
+        application/json: IncomesGetInsights401Response
+      '408':
+        application/json: IncomesGetInsights408Response
+      '428':
+        application/json: IncomesGetInsights428Response
+      '500':
+        application/json: IncomesGetInsights500Response
+  /api/incomes/{id}:
+    delete:
+      '401':
+        application/json: IncomesDeleteIncomeResponse
+      '404':
+        application/json: IncomesDeleteIncome404Response
+    get:
+      '401':
+        application/json: IncomesGetDetailsResponse
+      '404':
+        application/json: IncomesGetDetails404Response
+  /api/institutions:
+    get:
+      '401':
+        application/json: InstitutionsGetAllResponse
+  /api/institutions/{id}:
+    get:
+      '401':
+        application/json: InstitutionsGetDetailsResponse
+      '404':
+        application/json: InstitutionsGetDetails404Response
+  /api/invoices:
+    get:
+      '401':
+        application/json: InvoicesListAllResponse
+    patch:
+      '200':
+        application/json: InvoicesCompleteRequestResponse
+      '201':
+        application/json: InvoicesCompleteRequest201Response
+      '400':
+        application/json: InvoicesCompleteRequest400Response
+      '401':
+        application/json: InvoicesCompleteRequest401Response
+      '408':
+        application/json: InvoicesCompleteRequest408Response
+      '428':
+        application/json: InvoicesCompleteRequest428Response
+      '500':
+        application/json: InvoicesCompleteRequest500Response
+    post:
+      '200':
+        application/json: InvoicesGetLinkInvoicesResponse
+      '201':
+        application/json: InvoicesGetLinkInvoices201Response
+      '400':
+        application/json: InvoicesGetLinkInvoices400Response
+      '401':
+        application/json: InvoicesGetLinkInvoices401Response
+      '408':
+        application/json: InvoicesGetLinkInvoices408Response
+      '500':
+        application/json: InvoicesGetLinkInvoices500Response
+  /api/invoices/{id}:
+    delete:
+      '401':
+        application/json: InvoicesDeleteInvoiceResponse
+      '404':
+        application/json: InvoicesDeleteInvoice404Response
+    get:
+      '200':
+        application/json: InvoicesGetDetailsResponse
+      '401':
+        application/json: InvoicesGetDetails401Response
+      '404':
+        application/json: InvoicesGetDetails404Response
+  /api/links:
+    get:
+      '401':
+        application/json: LinksListAllResponse
+    patch:
+      '400':
+        application/json: LinksResumeSessionResponse
+      '401':
+        application/json: LinksResumeSession401Response
+      '428':
+        application/json: LinksResumeSession428Response
+      '500':
+        application/json: LinksResumeSession500Response
+    post:
+      '400':
+        application/json: LinksRegisterNewLinkResponse
+      '401':
+        application/json: LinksRegisterNewLink401Response
+      '428':
+        application/json: LinksRegisterNewLink428Response
+      '500':
+        application/json: LinksRegisterNewLink500Response
+  /api/links/{id}:
+    delete:
+      '401':
+        application/json: LinksDeleteLinkAccountsResponse
+      '404':
+        application/json: LinksDeleteLinkAccounts404Response
+    get:
+      '401':
+        application/json: LinksGetDetailsResponse
+      '404':
+        application/json: LinksGetDetails404Response
+    patch:
+      '400':
+        application/json: LinksChangeAccessModeResponse
+      '401':
+        application/json: LinksChangeAccessMode401Response
+      '404':
+        application/json: LinksChangeAccessMode404Response
+      '428':
+        application/json: LinksChangeAccessMode428Response
+      '500':
+        application/json: LinksChangeAccessMode500Response
+    put:
+      '400':
+        application/json: LinksUpdateCredentialsResponse
+      '401':
+        application/json: LinksUpdateCredentials401Response
+      '404':
+        application/json: LinksUpdateCredentials404Response
+      '428':
+        application/json: LinksUpdateCredentials428Response
+      '500':
+        application/json: LinksUpdateCredentials500Response
+  /api/owners:
+    get:
+      '200':
+        application/json: OwnersListAllResponse
+      '401':
+        application/json: OwnersListAll401Response
+    patch:
+      '200':
+        application/json: OwnersResumeRetrieveSessionResponse
+      '201':
+        application/json: OwnersResumeRetrieveSession201Response
+      '400':
+        application/json: OwnersResumeRetrieveSession400Response
+      '401':
+        application/json: OwnersResumeRetrieveSession401Response
+      '408':
+        application/json: OwnersResumeRetrieveSession408Response
+      '428':
+        application/json: OwnersResumeRetrieveSession428Response
+      '500':
+        application/json: OwnersResumeRetrieveSession500Response
+    post:
+      '200':
+        application/json: OwnersGetLinkOwnerResponse
+      '201':
+        application/json: OwnersGetLinkOwner201Response
+      '400':
+        application/json: OwnersGetLinkOwner400Response
+      '401':
+        application/json: OwnersGetLinkOwner401Response
+      '408':
+        application/json: OwnersGetLinkOwner408Response
+      '428':
+        application/json: OwnersGetLinkOwner428Response
+      '500':
+        application/json: OwnersGetLinkOwner500Response
+  /api/owners/{id}:
+    delete:
+      '401':
+        application/json: OwnersDeleteOwnerResponse
+      '404':
+        application/json: OwnersDeleteOwner404Response
+    get:
+      '200':
+        application/json: OwnersGetDetailsResponse
+      '401':
+        application/json: OwnersGetDetails401Response
+      '404':
+        application/json: OwnersGetDetails404Response
+  /api/recurring-expenses:
+    get:
+      '401':
+        application/json: RecurringExpensesListAllResponse
+    patch:
+      '200':
+        application/json: RecurringExpensesResumeRequestResponse
+      '201':
+        application/json: RecurringExpensesResumeRequest201Response
+      '400':
+        application/json: RecurringExpensesResumeRequest400Response
+      '401':
+        application/json: RecurringExpensesResumeRequest401Response
+      '408':
+        application/json: RecurringExpensesResumeRequest408Response
+      '428':
+        application/json: RecurringExpensesResumeRequest428Response
+      '500':
+        application/json: RecurringExpensesResumeRequest500Response
+    post:
+      '200':
+        application/json: RecurringExpensesGetInsightsResponse
+      '201':
+        application/json: RecurringExpensesGetInsights201Response
+      '400':
+        application/json: RecurringExpensesGetInsights400Response
+      '401':
+        application/json: RecurringExpensesGetInsights401Response
+      '408':
+        application/json: RecurringExpensesGetInsights408Response
+      '428':
+        application/json: RecurringExpensesGetInsights428Response
+      '500':
+        application/json: RecurringExpensesGetInsights500Response
+  /api/recurring-expenses/{id}:
+    delete:
+      '401':
+        application/json: RecurringExpensesDeleteExpenseResponse
+      '404':
+        application/json: RecurringExpensesDeleteExpense404Response
+    get:
+      '200':
+        application/json: RecurringExpensesGetDetailsResponse
+      '401':
+        application/json: RecurringExpensesGetDetails401Response
+      '404':
+        application/json: RecurringExpensesGetDetails404Response
+  /api/risk-insights:
+    get:
+      '401':
+        application/json: RiskInsightsListAllRiskInsightsResponse
+    patch:
+      '200':
+        application/json: RiskInsightsResumeInsightsSessionResponse
+      '201':
+        application/json: RiskInsightsResumeInsightsSession201Response
+      '400':
+        application/json: RiskInsightsResumeInsightsSession400Response
+      '401':
+        application/json: RiskInsightsResumeInsightsSession401Response
+      '408':
+        application/json: RiskInsightsResumeInsightsSession408Response
+      '428':
+        application/json: RiskInsightsResumeInsightsSession428Response
+      '500':
+        application/json: RiskInsightsResumeInsightsSession500Response
+    post:
+      '400':
+        application/json: RiskInsightsGetForLinkResponse
+      '401':
+        application/json: RiskInsightsGetForLink401Response
+      '408':
+        application/json: RiskInsightsGetForLink408Response
+      '428':
+        application/json: RiskInsightsGetForLink428Response
+      '500':
+        application/json: RiskInsightsGetForLink500Response
+  /api/risk-insights/{id}:
+    delete:
+      '401':
+        application/json: RiskInsightsDeleteSpecificInsightResponse
+      '404':
+        application/json: RiskInsightsDeleteSpecificInsight404Response
+    get:
+      '200':
+        application/json: RiskInsightsGetDetailsResponse
+      '401':
+        application/json: RiskInsightsGetDetails401Response
+      '404':
+        application/json: RiskInsightsGetDetails404Response
+  /api/tax-compliance-status:
+    get:
+      '401':
+        application/json: TaxComplianceStatusListAllResponse
+    post:
+      '400':
+        application/json: TaxComplianceStatusGetFiscalLinkInfoResponse
+      '401':
+        application/json: TaxComplianceStatusGetFiscalLinkInfo401Response
+      '408':
+        application/json: TaxComplianceStatusGetFiscalLinkInfo408Response
+      '500':
+        application/json: TaxComplianceStatusGetFiscalLinkInfo500Response
+  /api/tax-compliance-status/{id}:
+    delete:
+      '401':
+        application/json: TaxComplianceStatusDeleteSpecificTaxComplianceStatusResponse
+      '404':
+        application/json: TaxComplianceStatusDeleteSpecificTaxComplianceStatus404Response
+    get:
+      '401':
+        application/json: TaxComplianceStatusGetDetailsResponse
+      '404':
+        application/json: TaxComplianceStatusGetDetails404Response
+  /api/tax-declarations:
+    get:
+      '200':
+        application/json: TaxDeclarationsListAllResponse
+      '401':
+        application/json: TaxDeclarationsListAll401Response
+    post:
+      '200':
+        application/json: TaxDeclarationsGetFiscalLinkResponse
+      '201':
+        application/json: TaxDeclarationsGetFiscalLink201Response
+      '400':
+        application/json: TaxDeclarationsGetFiscalLink400Response
+      '401':
+        application/json: TaxDeclarationsGetFiscalLink401Response
+      '500':
+        application/json: TaxDeclarationsGetFiscalLink500Response
+  /api/tax-declarations/{id}:
+    delete:
+      '401':
+        application/json: TaxDeclarationsDeleteSpecificDeclarationResponse
+      '404':
+        application/json: TaxDeclarationsDeleteSpecificDeclaration404Response
+    get:
+      '200':
+        application/json: TaxDeclarationsGetDetailsResponse
+      '401':
+        application/json: TaxDeclarationsGetDetails401Response
+      '404':
+        application/json: TaxDeclarationsGetDetails404Response
+  /api/tax-retentions:
+    get:
+      '401':
+        application/json: TaxRetentionsListAllResponse
+    post:
+      '200':
+        application/json: TaxRetentionsGetLinkTaxRetentionsResponse
+      '201':
+        application/json: TaxRetentionsGetLinkTaxRetentions201Response
+      '400':
+        application/json: TaxRetentionsGetLinkTaxRetentions400Response
+      '401':
+        application/json: TaxRetentionsGetLinkTaxRetentions401Response
+      '408':
+        application/json: TaxRetentionsGetLinkTaxRetentions408Response
+      '500':
+        application/json: TaxRetentionsGetLinkTaxRetentions500Response
+  /api/tax-retentions/{id}:
+    delete:
+      '401':
+        application/json: TaxRetentionsDeleteSpecificTaxRetentionResponse
+      '404':
+        application/json: TaxRetentionsDeleteSpecificTaxRetention404Response
+    get:
+      '401':
+        application/json: TaxRetentionsGetDetailsResponse
+      '404':
+        application/json: TaxRetentionsGetDetails404Response
+  /api/tax-returns:
+    get:
+      '200':
+        application/json: TaxReturnsListAllResponse
+      '401':
+        application/json: TaxReturnsListAll401Response
+    post:
+      '200':
+        application/json: TaxReturnsGetInformationResponse
+      '201':
+        application/json: TaxReturnsGetInformation201Response
+      '400':
+        application/json: TaxReturnsGetInformation400Response
+      '401':
+        application/json: TaxReturnsGetInformation401Response
+      '500':
+        application/json: TaxReturnsGetInformation500Response
+  /api/tax-returns/{id}:
+    delete:
+      '401':
+        application/json: TaxReturnsDeleteSpecificTaxReturnResponse
+      '404':
+        application/json: TaxReturnsDeleteSpecificTaxReturn404Response
+    get:
+      '200':
+        application/json: TaxReturnsGetDetailsResponse
+      '401':
+        application/json: TaxReturnsGetDetails401Response
+      '404':
+        application/json: TaxReturnsGetDetails404Response
+  /api/tax-status:
+    get:
+      '401':
+        application/json: TaxStatusListAllResponse
+    post:
+      '200':
+        application/json: TaxStatusGetLinkTaxStatusResponse
+      '201':
+        application/json: TaxStatusGetLinkTaxStatus201Response
+      '400':
+        application/json: TaxStatusGetLinkTaxStatus400Response
+      '401':
+        application/json: TaxStatusGetLinkTaxStatus401Response
+      '408':
+        application/json: TaxStatusGetLinkTaxStatus408Response
+      '500':
+        application/json: TaxStatusGetLinkTaxStatus500Response
+  /api/tax-status/{id}:
+    delete:
+      '401':
+        application/json: TaxStatusDeleteSpecificTaxStatusResponse
+      '404':
+        application/json: TaxStatusDeleteSpecificTaxStatus404Response
+    get:
+      '200':
+        application/json: TaxStatusGetDetailsResponse
+      '401':
+        application/json: TaxStatusGetDetails401Response
+      '404':
+        application/json: TaxStatusGetDetails404Response
+  /api/transactions:
+    get:
+      '200':
+        application/json: TransactionsListAllTransactionsResponse
+      '401':
+        application/json: TransactionsListAllTransactions401Response
+    patch:
+      '200':
+        application/json: TransactionsResumeRetrieveSessionResponse
+      '201':
+        application/json: TransactionsResumeRetrieveSession201Response
+      '400':
+        application/json: TransactionsResumeRetrieveSession400Response
+      '401':
+        application/json: TransactionsResumeRetrieveSession401Response
+      '408':
+        application/json: TransactionsResumeRetrieveSession408Response
+      '428':
+        application/json: TransactionsResumeRetrieveSession428Response
+      '500':
+        application/json: TransactionsResumeRetrieveSession500Response
+    post:
+      '200':
+        application/json: TransactionsCreateLinkTransactionsResponse
+      '201':
+        application/json: TransactionsCreateLinkTransactions201Response
+      '400':
+        application/json: TransactionsCreateLinkTransactions400Response
+      '401':
+        application/json: TransactionsCreateLinkTransactions401Response
+      '408':
+        application/json: TransactionsCreateLinkTransactions408Response
+      '428':
+        application/json: TransactionsCreateLinkTransactions428Response
+      '500':
+        application/json: TransactionsCreateLinkTransactions500Response
+  /api/transactions/{id}:
+    delete:
+      '401':
+        application/json: TransactionsRemoveByIdResponse
+      '404':
+        application/json: TransactionsRemoveById404Response
+    get:
+      '200':
+        application/json: TransactionsGetDetailsResponse
+      '401':
+        application/json: TransactionsGetDetails401Response
+      '404':
+        application/json: TransactionsGetDetails404Response
+securityParameters:
+  X-Belvo-Request-Mode:
+    header: false
+  access_mode:
+    query: false
+  account:
+    query: false
+  account__balance__available:
+    query: false
+  account__balance__available__gt:
+    query: false
+  account__balance__available__gte:
+    query: false
+  account__balance__available__lt:
+    query: false
+  account__balance__available__lte:
+    query: false
+  account__balance__available__range:
+    query: false
+  account__balance__current:
+    query: false
+  account__balance__current__gt:
+    query: false
+  account__balance__current__gte:
+    query: false
+  account__balance__current__lt:
+    query: false
+  account__balance__current__lte:
+    query: false
+  account__balance__current__range:
+    query: false
+  account__in:
+    query: false
+  account__type:
+    query: false
+  account__type__in:
+    query: false
+  account_type:
+    query: false
+  account_type__in:
+    query: false
+  accounting_date:
+    query: false
+  accounting_date__gt:
+    query: false
+  accounting_date__gte:
+    query: false
+  accounting_date__lt:
+    query: false
+  accounting_date__lte:
+    query: false
+  accounting_date__range:
+    query: false
+  amount:
+    query: false
+  amount__gt:
+    query: false
+  amount__gte:
+    query: false
+  amount__lt:
+    query: false
+  amount__lte:
+    query: false
+  amount__range:
+    query: false
+  balance:
+    query: false
+  balance__available:
+    query: false
+  balance__available__gt:
+    query: false
+  balance__available__gte:
+    query: false
+  balance__available__lt:
+    query: false
+  balance__available__lte:
+    query: false
+  balance__available__range:
+    query: false
+  balance__current:
+    query: false
+  balance__current__gt:
+    query: false
+  balance__current__gte:
+    query: false
+  balance__current__lt:
+    query: false
+  balance__current__lte:
+    query: false
+  balance__current__range:
+    query: false
+  balance__gt:
+    query: false
+  balance__gte:
+    query: false
+  balance__lt:
+    query: false
+  balance__lte:
+    query: false
+  balance__range:
+    query: false
+  category:
+    query: false
+  category__in:
+    query: false
+  collected_at:
+    query: false
+  collected_at__gt:
+    query: false
+  collected_at__gte:
+    query: false
+  collected_at__lt:
+    query: false
+  collected_at__lte:
+    query: false
+  collected_at__range:
+    query: false
+  country_code:
+    query: false
+  country_code__in:
+    query: false
+  created_at:
+    query: false
+  created_at__gt:
+    query: false
+  created_at__gte:
+    query: false
+  created_at__lt:
+    query: false
+  created_at__lte:
+    query: false
+  created_at__range:
+    query: false
+  created_by__not_in:
+    query: false
+  credit_card_data__bill_name__in:
+    query: false
+  currency:
+    query: false
+  currency__in:
+    query: false
+  display_name:
+    query: false
+  display_name__icontains:
+    query: false
+  ejercicio:
+    query: false
+  ejercicio__gt:
+    query: false
+  ejercicio__gte:
+    query: false
+  ejercicio__lt:
+    query: false
+  ejercicio__lte:
+    query: false
+  ejercicio__range:
+    query: false
+  email:
+    query: false
+  external_id:
+    query: false
+  external_id__in:
+    query: false
+  fields:
+    query: false
+  id:
+    query: false
+  id__in:
+    query: false
+  institution:
+    query: false
+  institution__in:
+    query: false
+  institution_user_id:
+    query: false
+  institution_user_id__in:
+    query: false
+  internal_identification:
+    query: false
+  internal_identification__in:
+    query: false
+  invoice_date:
+    query: false
+  invoice_date__gt:
+    query: false
+  invoice_date__gte:
+    query: false
+  invoice_date__lt:
+    query: false
+  invoice_date__lte:
+    query: false
+  invoice_date__range:
+    query: false
+  invoice_identification:
+    query: false
+  invoice_identification__in:
+    query: false
+  link:
+    query: false
+  link__in:
+    query: false
+  name:
+    query: false
+  name__icontains:
+    query: false
+  name__in:
+    query: false
+  number:
+    query: false
+  number__in:
+    query: false
+  omit:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  public_identification_name:
+    query: false
+  public_identification_value:
+    query: false
+  reference:
+    query: false
+  reference__in:
+    query: false
+  refresh_rate:
+    query: false
+  resources__allin:
+    query: false
+  status:
+    query: false
+  status__in:
+    query: false
+  tipo_declaracion:
+    query: false
+  tipo_declaracion__in:
+    query: false
+  total_amount:
+    query: false
+  total_amount__gt:
+    query: false
+  total_amount__gte:
+    query: false
+  total_amount__lt:
+    query: false
+  total_amount__lte:
+    query: false
+  total_amount__range:
+    query: false
+  type:
+    query: false
+  type__in:
+    query: false
+  value_date:
+    query: false
+  value_date__gt:
+    query: false
+  value_date__gte:
+    query: false
+  value_date__lt:
+    query: false
+  value_date__lte:
+    query: false
+  value_date__range:
+    query: false
+  website:
+    query: false
+  year:
+    query: false
+  year__gt:
+    query: false
+  year__gte:
+    query: false
+  year__lt:
+    query: false
+  year__lte:
+    query: false
+  year__range:
+    query: false
+validServerUrls: {}
