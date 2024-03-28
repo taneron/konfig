@@ -1,0 +1,638 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /integrations/companies/{companyId}:
+    delete:
+      '204':
+        application/json: {}
+  /packages/orders:
+    post:
+      '202':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /access-groups:
+    get: Users_listAccessGroups
+  /access-groups/{accessGroupId}/users:
+    post: Users_assignToAccessGroup
+  /access-groups/{accessGroupId}/users/{id}:
+    delete: Users_removeFromAccessGroup
+  /activity-assignments/{activityAssignmentId}/attachments:
+    get: Assignmentssubmissions_listAttachments
+  /activity-assignments/{activityAssignmentId}/attachments/{attachmentId}:
+    get: Assignmentssubmissions_getSingleAttachment
+  /approvals:
+    get: Approvals_getPendingRequests
+    post: Approvals_createApprovalRequest
+  /approvals/{approvalRequestId}:
+    get: Approvals_getById
+  /approvals/{approvalRequestId}/approve-decisions:
+    post: Approvals_approveDecisions
+  /approvals/{approvalRequestId}/comments:
+    get: Approvals_getComments
+    post: Approvals_addCommentToRequest
+  /approvals/{approvalRequestId}/reject-decisions:
+    post: Approvals_rejectRequestById
+  /assessment-orders:
+    get: AssessmentOrders_getAllForApplication
+  /assessments:
+    get: Assessments_listByCriteria
+    post: Assessments_createNewOrder
+  /assessments/{assessmentOrderId}:
+    get: Assessments_getById
+  /assessments/{assessmentOrderId}/accept:
+    post: Assessments_acceptOrder
+  /assessments/{assessmentOrderId}/comments:
+    get: Comments_listByAssessmentOrderId
+    post: Comments_addNewCommentToAssessmentOrder
+  /assessments/{assessmentOrderId}/comments/{commentId}:
+    get: Comments_getById
+  /assessments/{assessmentOrderId}/complete:
+    post: Assessments_markAsCompleted
+  /assessments/{assessmentOrderId}/reject:
+    post: Assessments_rejectOrder
+  /assessments/{assessmentOrderId}/results:
+    get: Results_listByAssessmentOrderId
+    post: Results_submitNewAssessmentResult
+  /assessments/{assessmentOrderId}/results/{resultId}:
+    get: Results_findById
+  /assessments/{assessmentOrderId}/results/{resultId}/attachments:
+    get: Attachments_getList
+    post: Attachments_submitNewAssessmentResultFile
+  /assessments/{assessmentOrderId}/results/{resultId}/attachments/{attachmentId}:
+    get: Attachments_getDetails
+    post: Attachments_updateFile
+  /audit-events:
+    get: Audit_listEvents
+  /candidates:
+    get: Candidates_searchResults
+    post: Candidates_createWithSourceDetails
+  /candidates/attachments/{attachmentId}:
+    delete: Candidates_deleteAttachment
+    get: Candidates_getAttachment
+  /candidates/consent-requests:
+    post: Candidates_requestConsentFromMultiple
+  /candidates/cv:
+    post: Candidates_parseResumeAndAssignToTalentPool
+  /candidates/{id}:
+    delete: Candidates_removeCandidateById
+    get: Candidates_getDetails
+    patch: Candidates_updatePersonalInfo
+  /candidates/{id}/attachments:
+    get: Candidates_listAttachments
+    post: Candidates_attachFiles
+  /candidates/{id}/attachments/{attachmentId}:
+    get: Candidates_getAttachmentById
+  /candidates/{id}/consent:
+    get: Candidates_getStatusOfConsent
+  /candidates/{id}/consents:
+    get: Candidates_getConsentDecisions
+  /candidates/{id}/jobs/{jobId}:
+    get: Candidates_getApplicationDetails
+  /candidates/{id}/jobs/{jobId}/attachments:
+    get: Candidates_getAttachmentsByJobId
+    post: Candidates_attachFileToJobCandidate
+  /candidates/{id}/jobs/{jobId}/offers:
+    get: Offers_getCandidateJobOffers
+  /candidates/{id}/jobs/{jobId}/offers/{offerId}:
+    get: Offers_getCandidateOffer
+  /candidates/{id}/jobs/{jobId}/offers/{offerId}/approvals/latest:
+    get: Offers_getLatestApprovalRequest
+  /candidates/{id}/jobs/{jobId}/onboardingStatus:
+    get: Candidates_getOnboardingStatus
+    put: Candidates_setOnboardingStatus
+  /candidates/{id}/jobs/{jobId}/properties:
+    get: Candidates_getPropertyValuesForJob
+    put: Candidates_updateCandidateProperties
+  /candidates/{id}/jobs/{jobId}/properties/{propertyId}:
+    put: Candidates_updatePropertyValue
+  /candidates/{id}/jobs/{jobId}/screening-answers:
+    get: Candidates_getScreeningAnswersByJob
+  /candidates/{id}/jobs/{jobId}/source:
+    put: Candidates_updateSource
+  /candidates/{id}/jobs/{jobId}/status:
+    put: Candidates_updateStatus
+  /candidates/{id}/jobs/{jobId}/status/history:
+    get: Candidates_getStatusHistory
+  /candidates/{id}/onboardingStatus:
+    get: Candidates_getOnboardingStatus
+    put: Candidates_setOnboardingStatus
+  /candidates/{id}/properties:
+    get: Candidates_getPropertyValues
+  /candidates/{id}/properties/{propertyId}:
+    put: Candidates_updatePropertyValue
+  /candidates/{id}/status:
+    put: Candidates_updateStatusOnPrimaryAssignment
+  /candidates/{id}/status/history:
+    get: Candidates_getStatusHistory
+  /candidates/{id}/tags:
+    delete: Candidates_removeTags
+    get: Candidates_getTags
+    post: Candidates_addTagsToCandidate
+    put: Candidates_updateCandidateTags
+  /configs:
+    get: Configs_getList
+    post: Configs_addNewConfig
+  /configs/{configId}:
+    get: Configs_getByConfigId
+    post: Configs_updateConfigById
+  /configuration/candidate-properties:
+    get: Configuration_getCandidateProperties
+  /configuration/candidate-properties/{id}:
+    get: Configuration_getCandidatePropertyById
+  /configuration/candidate-properties/{id}/values:
+    get: Configuration_getCandidatePropertyValues
+    post: Configuration_createCandidatePropertyValue
+  /configuration/candidate-properties/{id}/values/{valueId}:
+    delete: Configuration_removeValue
+    get: Configuration_getCandidatePropertyValueById
+    put: Configuration_updatePropertyValueLabel
+  /configuration/company:
+    get: Configuration_getCompanyInformation
+  /configuration/departments:
+    get: Configuration_getDepartments
+    post: Configuration_createDepartment
+  /configuration/departments/{id}:
+    get: Configuration_getDepartmentById
+  /configuration/hiring-processes:
+    get: Configuration_getHiringProcesses
+  /configuration/hiring-processes/{id}:
+    get: Configuration_getHiringProcess
+  /configuration/job-properties:
+    get: Configuration_getAvailableProperties
+    post: Configuration_createJobProperty
+  /configuration/job-properties/{id}:
+    get: Configuration_getPropertyById
+    patch: Configuration_updateJobProperty
+  /configuration/job-properties/{id}/activation:
+    delete: Configuration_deactivateJobProperty
+    put: Configuration_activateJobProperty
+  /configuration/job-properties/{id}/archive-values/{valueId}:
+    delete: Configuration_unarchiveJobPropertyValue
+    put: Configuration_archiveJobPropertyValue
+  /configuration/job-properties/{id}/dependents:
+    get: Configuration_getJobPropertyDependents
+    post: Configuration_createJobPropertyDependents
+  /configuration/job-properties/{id}/dependents/{dependentId}:
+    delete: Configuration_removeDependent
+  /configuration/job-properties/{id}/dependents/{dependentId}/values:
+    get: Configuration_getDependentPropertyValues
+  /configuration/job-properties/{id}/translations:
+    patch: Configuration_addJobPropertyTranslations
+  /configuration/job-properties/{id}/values:
+    get: Configuration_getJobPropertyValues
+    post: Configuration_createJobPropertyValue
+  /configuration/job-properties/{id}/values/{valueId}:
+    delete: Configuration_archiveJobPropertyValue
+    patch: Configuration_updateJobPropertyValue
+    put: Configuration_unarchiveJobPropertyValue
+  /configuration/job-properties/{id}/values/{valueId}/dependents/{dependentId}/values:
+    get: Configuration_getDependentValues
+    post: Configuration_addDependentValue
+  /configuration/job-properties/{id}/values/{valueId}/dependents/{dependentId}/values/{dependentValueId}:
+    delete: Configuration_removeDependentValuesRelationship
+  /configuration/job-properties/{id}/values/{valueId}/translations:
+    patch: Configuration_addJobPropertyValueTranslations
+  /configuration/offer-properties:
+    get: Configuration_listOfferProperties
+  /configuration/rejection-reasons:
+    get: Configuration_getRejectionReasons
+  /configuration/sources:
+    get: Configuration_listCandidateSourceTypesWithSubtypes
+  /configuration/sources/{sourceIdentifier}:
+    get: Configuration_getCandidateSourceById
+  /configuration/sources/{sourceType}/values:
+    get: Configuration_listCandidateSourcesByType
+  /configuration/sources/{sourceType}/values/{sourceValueId}:
+    get: Configuration_getCandidateSource
+  /configuration/withdrawal-reasons:
+    get: Configuration_getWithdrawalReasons
+  /files/{reportFileId}:
+    get: Files_getFileDetails
+  /files/{reportFileId}/data:
+    get: Files_downloadReportData
+  /fillable-pdf-form-assignments/{fillablePdfFormAssignmentId}/form-answers:
+    get: Assignmentssubmissions_getFormAnswers
+  /integration:
+    get: Integration_showConsentFormOnPartnerSide
+  /integration/company/{companyId}:
+    post: Integration_integrationSetup
+  /integrations/companies/{companyId}:
+    delete: Integration_removeIntegrationOnPartnerSide
+  /interview-types:
+    get: InterviewTypes_getTypes
+    patch: InterviewTypes_addExistingTypes
+  /interview-types/{interviewType}:
+    delete: InterviewTypes_removeByType
+  /interviews:
+    get: Interviews_getList
+    post: Interviews_createNewInterview
+  /interviews/{interviewId}:
+    delete: Interviews_deleteById
+    get: Interviews_getDetails
+    patch: Interviews_modifyInterview
+  /interviews/{interviewId}/candidate/status:
+    put: Statuses_updateCandidateStatus
+  /interviews/{interviewId}/timeslots:
+    post: Timeslots_createNewTimeslot
+  /interviews/{interviewId}/timeslots/{timeslotId}:
+    delete: Timeslots_deleteTimeslot
+    get: Timeslots_getById
+    patch: Timeslots_modifyTimeSlot
+  /interviews/{interviewId}/timeslots/{timeslotId}/candidateStatus:
+    put: Statuses_updateCandidateTimeslotStatus
+  /interviews/{interviewId}/timeslots/{timeslotId}/interviewers/{userId}/status:
+    put: Statuses_updateInterviewerStatusInSlot
+  /job-applications/{jobApplicationId}:
+    get: Jobapplications_getById
+  /jobs:
+    get: Jobs_searchJobsByParams
+    post: Jobs_createNewJob
+  /jobs/{jobId}:
+    get: Jobs_getContentById
+    patch: Jobs_updateJobAttributes
+    put: Jobs_updateJobAndJobAd
+  /jobs/{jobId}/approvals/latest:
+    get: Jobs_getLatestApprovals
+  /jobs/{jobId}/candidates:
+    post: Candidates_createWithSource
+  /jobs/{jobId}/candidates/cv:
+    post: Candidates_parseResumeAndAssignToJob
+  /jobs/{jobId}/headcount:
+    patch: Jobs_updateHeadcount
+  /jobs/{jobId}/hiring-team:
+    get: Jobs_getHiringTeam
+    post: Jobs_addHiringTeamMember
+  /jobs/{jobId}/hiring-team/{userId}:
+    delete: Jobs_removeHiringTeamMember
+  /jobs/{jobId}/jobads:
+    get: Jobs_findJobAdsForJob
+    post: Jobs_createJobAd
+  /jobs/{jobId}/jobads/{jobAdId}:
+    get: Jobs_getJobAd
+    put: Jobs_updateJobAd
+  /jobs/{jobId}/jobads/{jobAdId}/postings:
+    delete: Jobs_unpublishJobAd
+    get: Jobs_listPublicationsForJobAd
+    post: Jobs_publishJobAdPostings
+  /jobs/{jobId}/note:
+    get: Jobs_getNoteById
+    put: Jobs_updateNote
+  /jobs/{jobId}/positions:
+    get: Jobs_getPositionsForJob
+    post: Jobs_createNewPosition
+  /jobs/{jobId}/positions/{positionId}:
+    delete: Jobs_deletePosition
+    get: Jobs_getSinglePosition
+    put: Jobs_updatePosition
+  /jobs/{jobId}/publication:
+    delete: Jobs_unpublishJobFromAllSources
+    get: Jobs_findPublications
+    post: Jobs_publishDefaultJobAd
+  /jobs/{jobId}/status:
+    put: Jobs_updateStatus
+  /jobs/{jobId}/status/history:
+    get: Jobs_getStatusHistory
+  /messages:
+    get: Messages_getByCandidateAndJobId
+  /messages/shares:
+    post: Messages_shareNewMessages
+  /messages/shares/{id}:
+    delete: Messages_deleteById
+  /new-hires/{newHireId}:
+    get: Newhires_getDetails
+  /oauth/token:
+    post: Token_exchangeCredentialsForAccessToken
+  /offers:
+    get: Offers_searchByCriteria
+    post: Offers_insertNewOffer
+  /offers/{offerId}:
+    get: Offers_getById
+    post: Offers_updateOffer
+  /offers/{offerId}/documents:
+    get: Offers_getRelatedDocuments
+  /offers/{offerId}/documents/{documentId}:
+    get: Offers_getDocument
+  /offers/{offerId}/submit:
+    post: Offers_submitForReview
+  /offers/{offerId}/withdraw:
+    post: Offers_withdrawal
+  /onboarding-processes/{onboardingProcessId}:
+    get: Onboardingprocesses_getDetails
+  /onboarding-processes/{onboardingProcessId}/assignments:
+    get: Assignments_getByProcessId
+  /orders/{orderId}/results:
+    patch: Result_updatePackageResult
+  /orders/{orderId}/results/attachment:
+    post: Result_addAttachmentToOrder
+  /packages:
+    get: Packages_getList
+  /packages/inline/orders:
+    post: Orders_assessPackageForCandidate
+  /packages/orders:
+    post: Orders_assessPackageForCandidate
+  /packages/{assessmentPackageId}:
+    get: Packages_getById
+  /partner/configuration:
+    get: Configuration_getDetails
+    put: Configuration_savePartnerConfig
+  /postings/{uuid}/candidates:
+    post: ApplicationApi_createNewCandidateApplication
+  /postings/{uuid}/candidates/{candidateId}/status:
+    get: ApplicationApi_getCandidateStatus
+  /postings/{uuid}/configuration:
+    get: ApplicationApi_getPostingConfiguration
+  /publications:
+    get: Feed_listPostings
+  /publications/{postingId}:
+    get: Feed_getPostingById
+    put: Feed_updatePostingInfo
+  /reports:
+    get: Reports_listByModificationDate
+  /reports/{reportId}:
+    get: Reports_getDetails
+  /reports/{reportId}/files:
+    get: Reports_getReportFiles
+    post: Reports_generateAdhocReportFile
+  /reports/{reportId}/files/recent:
+    get: Reports_getRecentFile
+  /reports/{reportId}/files/recent/data:
+    get: Reports_downloadRecentFile
+  /reviews:
+    get: Reviews_getAllForCandidateJob
+    post: Reviews_createReview
+  /reviews/{reviewId}:
+    delete: Reviews_deleteReviewById
+    get: Reviews_getById
+    patch: Reviews_updateReviewById
+  /subscriptions:
+    get: Subscriptions_getWebhookSubscriptions
+    post: Subscriptions_subscribeToWebhook
+  /subscriptions/{id}:
+    delete: Subscriptions_deleteWebhookSubscription
+    get: Subscriptions_getSingleWebhook
+  /subscriptions/{id}/activation:
+    put: Subscriptions_activateWebhookSubscription
+  /subscriptions/{id}/callbacks-log:
+    get: Subscriptions_getCallbackDetails
+  /subscriptions/{id}/secret-key:
+    get: Subscriptions_getSecretKey
+    post: Subscriptions_generateSecretKey
+  /system-roles:
+    get: Users_listSystemRoles
+  /users:
+    get: Users_list
+    post: Users_createNewUser
+  /users/me:
+    get: Users_getDetails
+  /users/{id}:
+    delete: Users_deactivateUser
+    get: Users_getDetails
+    patch: Users_updateUserById
+  /users/{id}/activation:
+    delete: Users_deactivateUserById
+    put: Users_activateUser
+  /users/{id}/activation-email:
+    post: Users_sendActivationEmail
+  /users/{id}/avatar:
+    put: Users_updateAvatar
+  /users/{id}/reset-password:
+    post: Users_sendPasswordResetEmail
+  /v1/companies/{companyIdentifier}/departments:
+    get: Postings_listDepartmentsForCompany
+  /v1/companies/{companyIdentifier}/postings:
+    get: Postings_listByCompanyIdentifier
+  /v1/companies/{companyIdentifier}/postings/{postingId}:
+    get: Postings_getByPostingIdOrUuid
+  /web-form-assignments/{webFormAssignmentId}/fields-metadata:
+    get: Assignmentssubmissions_getFieldsMetadata
+  /web-form-assignments/{webFormAssignmentId}/form-answers:
+    get: Assignmentssubmissions_getFormAnswers
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /approvals:
+    post:
+      application/json: ApprovalsCreateApprovalRequestRequest
+  /approvals/{approvalRequestId}/approve-decisions:
+    post:
+      application/json: ApprovalsApproveDecisionsRequest
+  /approvals/{approvalRequestId}/comments:
+    post:
+      application/json: ApprovalsAddCommentToRequestRequest
+  /approvals/{approvalRequestId}/reject-decisions:
+    post:
+      application/json: ApprovalsRejectRequestByIdRequest
+  /candidates/consent-requests:
+    post:
+      application/json: CandidatesRequestConsentFromMultipleRequest
+  /candidates/cv:
+    post:
+      multipart/form-data: CandidatesParseResumeAndAssignToTalentPoolRequest
+  /candidates/{id}/attachments:
+    post:
+      multipart/form-data: CandidatesAttachFilesRequest
+  /candidates/{id}/jobs/{jobId}/attachments:
+    post:
+      multipart/form-data: CandidatesAttachFileToJobCandidateRequest
+  /candidates/{id}/jobs/{jobId}/properties:
+    put:
+      application/json: CandidatesUpdateCandidatePropertiesRequest
+  /orders/{orderId}/results/attachment:
+    post:
+      multipart/form-data: ResultAddAttachmentToOrderRequest
+  /users/{id}/avatar:
+    put:
+      multipart/form-data: UsersUpdateAvatarRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /activity-assignments/{activityAssignmentId}/attachments/{attachmentId}:
+    get:
+      '200':
+        application/octet-stream: AssignmentssubmissionsGetSingleAttachmentResponse
+  /files/{reportFileId}/data:
+    get:
+      '200':
+        text/csv: FilesDownloadReportDataResponse
+  /fillable-pdf-form-assignments/{fillablePdfFormAssignmentId}/form-answers:
+    get:
+      '200':
+        application/pdf: AssignmentssubmissionsGetFormAnswersResponse
+  /integration:
+    get:
+      '200':
+        text/html: IntegrationShowConsentFormOnPartnerSideResponse
+  /integrations/companies/{companyId}:
+    delete:
+      '204':
+        application/json: IntegrationRemoveIntegrationOnPartnerSideResponse
+  /offers/{offerId}/documents/{documentId}:
+    get:
+      '200':
+        application/octet-stream: OffersGetDocumentResponse
+  /packages:
+    get:
+      '200':
+        application/json: PackagesGetListResponse
+  /packages/orders:
+    post:
+      '202':
+        application/json: OrdersAssessPackageForCandidateResponse
+  /reports/{reportId}/files/recent/data:
+    get:
+      '200':
+        text/csv: ReportsDownloadRecentFileResponse
+  /reviews:
+    get:
+      '200':
+        application/json: ReviewsGetAllForCandidateJobResponse
+securityParameters:
+  Accept-Language:
+    header: false
+  If-None-Match:
+    header: false
+  accept-language:
+    header: false
+  activeOnly:
+    query: false
+  address:
+    query: false
+  after:
+    query: false
+  applicationId:
+    query: false
+  authorId:
+    query: false
+  authorType:
+    query: false
+  averageRating:
+    query: false
+  before:
+    query: false
+  callbackStatus:
+    query: false
+  candidateId:
+    query: false
+  candidateUuid:
+    query: false
+  city:
+    query: false
+  companyId:
+    query: false
+  conditionalsIncluded:
+    query: false
+  consentStatus:
+    query: false
+  context:
+    query: false
+  country:
+    query: false
+  country-code:
+    query: false
+  customField:
+    query: false
+  department:
+    query: false
+  destination:
+    query: false
+  entityId:
+    query: false
+  entityType:
+    query: false
+  eventDateAfter:
+    query: false
+  eventDateBefore:
+    query: false
+  eventName:
+    query: false
+  fromDate:
+    query: false
+  jobId:
+    query: false
+  jobUuid:
+    query: false
+  language:
+    query: false
+  lastActivityAfter:
+    query: false
+  limit:
+    query: false
+  location:
+    query: false
+  locationType:
+    query: false
+  nextPageId:
+    query: false
+  offset:
+    query: false
+  onboardingStatus:
+    query: false
+  page:
+    query: false
+  pageId:
+    query: false
+  pageSize:
+    query: false
+  page_id:
+    query: false
+  partner-field-id:
+    query: false
+  postal-code:
+    query: false
+  postingId:
+    query: false
+  postingStatus:
+    query: false
+  propertyId:
+    query: false
+  propertyValueId:
+    query: false
+  q:
+    query: false
+  questionCategory:
+    query: false
+  questionFieldId:
+    query: false
+  questionFieldValueId:
+    query: false
+  region:
+    query: false
+  region-abbr:
+    query: false
+  releasedAfter:
+    query: false
+  remote:
+    query: false
+  requester:
+    header: false
+  reviewerId:
+    query: false
+  sort:
+    query: false
+  sortBy:
+    query: false
+  sortDir:
+    query: false
+  sourceId:
+    query: false
+  sourceSubType:
+    query: false
+  sourceSubTypeId:
+    query: false
+  sourceType:
+    query: false
+  sourceTypeId:
+    query: false
+  sourceValueId:
+    query: false
+  status:
+    query: false
+  subStatus:
+    query: false
+  tag:
+    query: false
+  toDate:
+    query: false
+  updatedAfter:
+    query: false
+validServerUrls: {}

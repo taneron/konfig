@@ -1,0 +1,81 @@
+processed:
+  securitySchemes:
+    key:
+      type: apiKey
+      name: x-smarttoken
+      in: header
+    oauth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.smartrecruiters.com/identity/oauth/allow
+          tokenUrl: https://api.smartrecruiters.com/identity/oauth/token
+          scopes:
+            approvals_read: Access Approval Requests
+            approvals_create: Create Approval Requests
+            approvals_decide: Approve or Reject Approval Requests
+            assessment_orders_read: Access Assessment Orders
+            audit_events_read: Access Audit Events
+            candidates_read: Access Candidates
+            candidates_create: Create Candidates
+            candidates_offers_read: Access Offer Terms
+            candidates_manage: Manage Candidate Status and Properties
+            candidate_status_read: Access Candidate's status
+            configuration_read: Access Company Settings
+            configuration_manage: Manage Company Settings
+            company_read: Access Company Information
+            interviews_read: Access Interviews and Timeslots
+            interviews_write: Create, update and delete Interviews and Timeslots
+            interview_types_read: Access Interview Types
+            interview_types_write: Create and delete Interview Types
+            jobs_read: Access Jobs
+            jobs_manage: Manage jobs
+            jobs_publications_manage: Publish Jobs
+            job_applications_read: Access Job Applications
+            messages_write: Message Users
+            messages_manage: Manage Messages
+            messages_read: Access Messages
+            reporting_read: Get analytics reports and download report files
+            reporting_write: Manage/execute analytics reports
+            reviews_read: Access Reviews
+            reviews_write: Create, update and delete Reviews
+            users_read: Access Users
+            user_me_read: Access information about my user
+            users_manage: Manage Users
+            webhooks_read: View webhook subscriptions
+            webhooks_write: Create new webhook subscription
+            webhooks_delete: Delete webhook subscription
+            webhooks_manage: View, create and delete webhook subscriptions
+    oauth2_master:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.smartrecruiters.com/identity/oauth/token
+          scopes:
+            partner_configuration_manage: >-
+              Allows modification of global configuration and creation of
+              customer level integrations
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://www.partner.com/identity/oauth/token
+          scopes:
+            jobs_read: Allows reading job details
+            candidates_read: Allows reading candidate details
+            assessment_result_manage: Allows managing assessment result
+            packages_view: Allows reading list of assessment packages
+            orders_manage: Allows creating orders
+  apiBaseUrl: https://api.smartrecruiters.com/webhooks-api/v201907
+  apiVersion: '201910.4'
+  apiDescription: SmartOnboard Public API
+  apiTitle: Webhooks
+  endpoints: 164
+  sdkMethods: 317
+  schemas: 352
+  parameters: 528
+  contactUrl: https://developers.smartrecruiters.com
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: smartrecruiters.com.yaml
+  difficultyScore: 625

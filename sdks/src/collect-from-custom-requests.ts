@@ -2029,6 +2029,14 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://general-api.ivs-apps.com/api/swagger.json",
     apiBaseUrl: "https://api.interviewstream.com/",
   },
+  "smartrecruiters.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.smartrecruiters.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "currencyalliance.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
@@ -2067,8 +2075,8 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "wink.travel": {
     type: "GET",
-    url: "https://api.wink.travel/v3/api-docs/affiliate"
-  }
+    url: "https://api.wink.travel/v3/api-docs/affiliate",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
