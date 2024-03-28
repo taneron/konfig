@@ -1,0 +1,986 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /applications:
+    get: JobApplicationApiJobApplications_listJobApplications
+  /applications/activities:
+    get: JobApplicationApiActivities_findJobApplicationActivities
+  /applications/activitysettings:
+    get: JobApplicationApiActivities_getAllActivitySettingsDefinitions
+  /applications/activitysettings/{settingId}:
+    get: JobApplicationApiActivities_getActivitySettings
+  /applications/deleted:
+    get: JobApplicationApiJobApplications_getRecentDeletions
+  /applications/fields/custom:
+    get: JobApplicationApiLists_getCustomFields
+  /applications/fields/custom/custom/{fieldId}:
+    put: JobApplicationApiLists_modifyCustomFieldValues
+  /applications/fields/custom/{fieldId}:
+    get: JobApplicationApiLists_getCustomField
+  /applications/lists/status:
+    get: JobApplicationApiLists_getAllStatusDefinitions
+  /applications/lists/status/{statusId}:
+    get: JobApplicationApiLists_statusDefinitionGet
+  /applications/lists/workflow:
+    get: JobApplicationApiLists_getWorkflow
+  /applications/{applicationId}:
+    get: JobApplicationApiJobApplications_getApplication
+    put: JobApplicationApiJobApplications_updateStatusAndCustomFields
+  /applications/{applicationId}/activities:
+    get: JobApplicationApiActivities_getJobApplicationActivities
+    post: JobApplicationApiActivities_addActivity
+  /applications/{applicationId}/activities/{activityId}:
+    get: JobApplicationApiActivities_getJobActivity
+  /applications/{applicationId}/attachments:
+    get: JobApplicationApiAttachments_getAll
+  /applications/{applicationId}/attachments/{attach}:
+    get: JobApplicationApiAttachments_getAttachment
+    post: JobApplicationApiAttachments_addAttachment
+    put: JobApplicationApiAttachments_updateAttachmentDetails
+  /applications/{applicationId}/interviews:
+    get: JobApplicationApiInterviews_getAllInterviews
+  /applications/{applicationId}/interviews/external:
+    post: JobApplicationApiInterviews_createExternalInterview
+  /applications/{applicationId}/interviews/external/{interviewId}:
+    put: JobApplicationApiInterviews_updateExternalInterview
+  /applications/{applicationId}/interviews/internal:
+    post: JobApplicationApiInterviews_createInternalInterview
+  /applications/{applicationId}/interviews/internal/{interviewId}:
+    put: JobApplicationApiInterviews_updateInternalInterview
+  /applications/{applicationId}/notes:
+    get: JobApplicationApiNotes_getNotes
+    post: JobApplicationApiNotes_addNote
+  /applications/{applicationId}/review:
+    post: JobApplicationApiReview_submitForReview
+    put: JobApplicationApiReview_markAsViewed
+  /applications/{applicationId}/review/accept:
+    put: JobApplicationApiReview_acceptApplication
+  /applications/{applicationId}/review/reject:
+    put: JobApplicationApiReview_rejectApplication
+  /applications/{applicationId}/status:
+    put: JobApplicationApiJobApplications_updateStatusWithNote
+  /applications/{applicationId}/usertasks:
+    post: JobApplicationApiUserTasks_addTask
+  /applications/{applicationId}/usertasks/{taskId}:
+    get: JobApplicationApiUserTasks_getTaskDetails
+    put: JobApplicationApiUserTasks_updateTask
+  /applications/{applicationId}/videos:
+    get: JobApplicationApiVideos_getAll
+  /applications/{applicationId}/videos/{videoType}:
+    get: JobApplicationApiVideos_getRecentVideo
+    post: JobApplicationApiVideos_addVideo
+  /candidates:
+    get: CandidateApiCandidates_getCandidates
+    post: CandidateApiCandidates_addNewCandidate
+  /candidates/activities:
+    get: CandidateApiActivities_findCandidateActivities
+  /candidates/activitysettings:
+    get: CandidateApiActivities_getAllActivitySettings
+  /candidates/activitysettings/{settingId}:
+    get: CandidateApiActivities_getCandidateActivitySettings
+  /candidates/attachments:
+    get: CandidateApiAttachments_findAttachments
+  /candidates/deleted:
+    get: CandidateApiCandidates_getRecentDeletions
+  /candidates/fields/custom:
+    get: CandidateApiLists_getCustomFields
+  /candidates/fields/custom/{fieldId}:
+    get: CandidateApiLists_getCustomFieldDefinition
+    put: CandidateApiLists_modifyCustomFieldValues
+  /candidates/lists/attachmentcategory:
+    get: CandidateApiAttachments_getAllAttachmentCategories
+  /candidates/lists/notetype:
+    get: CandidateApiNotes_getAllNoteTypes
+  /candidates/lists/rating:
+    get: CandidateApiLists_getInternalRatings
+  /candidates/lists/salutation:
+    get: CandidateApiLists_getSalutations
+  /candidates/lists/source:
+    get: CandidateApiLists_getAllSources
+  /candidates/lists/status:
+    get: CandidateApiLists_getStatusDefinitions
+  /candidates/lists/status/{statusId}:
+    get: CandidateApiLists_getStatusDefinition
+  /candidates/payrollbilling:
+    get: CandidateApiPayrollBilling_findPayrollBillings
+  /candidates/{candidateId}:
+    get: CandidateApiCandidates_getById
+    put: CandidateApiCandidates_updateById
+  /candidates/{candidateId}/activities:
+    get: CandidateApiActivities_getAll
+    post: CandidateApiActivities_addCandidateActivity
+  /candidates/{candidateId}/activities/{activityId}:
+    get: CandidateApiActivities_getActivity
+  /candidates/{candidateId}/applications:
+    get: CandidateApiJobApplications_getAll
+    post: CandidateApiJobApplications_addCandidateJob
+  /candidates/{candidateId}/applications/active:
+    get: CandidateApiJobApplications_listActive
+  /candidates/{candidateId}/attachments:
+    get: CandidateApiAttachments_findCandidateAttachments
+  /candidates/{candidateId}/attachments/{attach}:
+    get: CandidateApiAttachments_getAttachment
+    post: CandidateApiAttachments_addSingleAttachment
+    put: CandidateApiAttachments_updateDetails
+  /candidates/{candidateId}/availability:
+    get: CandidateApiAvailability_getAvailability
+  /candidates/{candidateId}/availability/weekly:
+    delete: CandidateApiAvailability_removeWeeklyAvailability
+    put: CandidateApiAvailability_updateWeeklyAvailability
+  /candidates/{candidateId}/floats:
+    get: CandidateApiFloats_getAllFloats
+  /candidates/{candidateId}/interviews:
+    get: CandidateApiInterviews_getAll
+  /candidates/{candidateId}/notes:
+    get: CandidateApiNotes_getAll
+    post: CandidateApiNotes_addNote
+  /candidates/{candidateId}/payrollbilling:
+    get: CandidateApiPayrollBilling_get
+  /candidates/{candidateId}/photo:
+    delete: CandidateApiPhoto_removePhoto
+    get: CandidateApiPhoto_getImage
+    head: CandidateApiPhoto_getHeaders
+    put: CandidateApiPhoto_updatePhoto
+  /candidates/{candidateId}/placements:
+    get: CandidateApiPlacements_getAll
+  /candidates/{candidateId}/placements/approved:
+    get: CandidateApiPlacements_getAllApproved
+  /candidates/{candidateId}/privacy:
+    delete: CandidateApiPrivacy_removeAtRequest
+  /candidates/{candidateId}/skills:
+    get: CandidateApiSkills_getCandidateSkills
+    post: CandidateApiSkills_removeSkill
+    put: CandidateApiSkills_updateCandidateSkills
+  /candidates/{candidateId}/skills/{categoryId}:
+    delete: CandidateApiSkills_removeCategory
+  /candidates/{candidateId}/status:
+    put: CandidateApiCandidates_updateStatusAndNote
+  /candidates/{candidateId}/submissions:
+    get: CandidateApiSubmissions_getAll
+  /candidates/{candidateId}/usertasks:
+    post: CandidateApiUserTasks_addTask
+  /candidates/{candidateId}/usertasks/{taskId}:
+    get: CandidateApiUserTasks_getCandidateUserTask
+    put: CandidateApiUserTasks_updateUserTask
+  /candidates/{candidateId}/videos:
+    get: CandidateApiVideos_getAll
+  /candidates/{candidateId}/videos/{videoType}:
+    get: CandidateApiVideos_getRecentVideo
+    post: CandidateApiVideos_addNewVideo
+  /categories:
+    get: CategoryApiCategories_getAll
+  /companies:
+    get: CompanyApiCompanies_getAll
+    post: CompanyApiCompanies_addNewCompany
+  /companies/activities:
+    get: CompanyApiActivities_findCompanyActivities
+  /companies/activitysettings:
+    get: CompanyApiActivities_getAllActivitySettings
+  /companies/activitysettings/{settingId}:
+    get: CompanyApiActivities_getDetails
+  /companies/deleted:
+    get: CompanyApiCompanies_getRecentlyDeleted
+  /companies/fields/custom:
+    get: CompanyApiLists_customFieldsList
+  /companies/fields/custom/{fieldId}:
+    get: CompanyApiLists_customFieldGet
+    put: CompanyApiLists_modifyFieldValues
+  /companies/lists/attachmentcategory:
+    get: CompanyApiAttachments_getAllAttachmentCategories
+  /companies/lists/notetype:
+    get: CompanyApiNotes_getNoteTypes
+  /companies/lists/status:
+    get: CompanyApiLists_getStatusDefinitions
+  /companies/lists/status/{statusId}:
+    get: CompanyApiLists_getStatus
+  /companies/{companyId}:
+    get: CompanyApiCompanies_get
+    put: CompanyApiCompanies_updateExistingCompany
+  /companies/{companyId}/activities:
+    get: CompanyApiActivities_getCompanyActivities
+    post: CompanyApiActivities_addNewActivity
+  /companies/{companyId}/activities/{activityId}:
+    get: CompanyApiActivities_getActivity
+  /companies/{companyId}/addresses:
+    get: CompanyApiAddresses_getAll
+    post: CompanyApiAddresses_addNewAddress
+  /companies/{companyId}/addresses/{addressId}:
+    delete: CompanyApiAddresses_removeAddress
+    get: CompanyApiAddresses_getAddress
+    put: CompanyApiAddresses_updateAddress
+  /companies/{companyId}/attachments:
+    get: CompanyApiAttachments_list
+  /companies/{companyId}/attachments/{attach}:
+    get: CompanyApiAttachments_getAttachment
+    post: CompanyApiAttachments_addSingleAttachment
+    put: CompanyApiAttachments_updateDetails
+  /companies/{companyId}/contacts:
+    get: CompanyApiContacts_getAll
+  /companies/{companyId}/floats:
+    get: CompanyApiFloats_list
+  /companies/{companyId}/jobs:
+    get: CompanyApiJobs_getAll
+  /companies/{companyId}/jobs/active:
+    get: CompanyApiJobs_getAllActiveJobs
+  /companies/{companyId}/logo:
+    delete: CompanyApiLogo_removeLogo
+    get: CompanyApiLogo_get
+    head: CompanyApiLogo_getHeaders
+    put: CompanyApiLogo_updateLogo
+  /companies/{companyId}/notes:
+    get: CompanyApiNotes_getAll
+    post: CompanyApiNotes_addNote
+  /companies/{companyId}/placements:
+    get: CompanyApiPlacements_getAll
+  /companies/{companyId}/placements/approved:
+    get: CompanyApiPlacements_getAllApproved
+  /companies/{companyId}/requisitions:
+    get: CompanyApiRequisitions_getAll
+  /companies/{companyId}/skills:
+    get: CompanyApiSkills_getCompanySkills
+  /companies/{companyId}/status:
+    put: CompanyApiCompanies_updateStatusWithNote
+  /companies/{companyId}/submissions:
+    get: CompanyApiSubmissions_getAllSubmissions
+  /companies/{companyId}/subsidiaries:
+    get: CompanyApiCompanies_getAllSubsidiaries
+  /companies/{companyId}/usertasks:
+    post: CompanyApiUserTasks_addTask
+  /companies/{companyId}/usertasks/{taskId}:
+    get: CompanyApiUserTasks_getTask
+    put: CompanyApiUserTasks_updateTask
+  /companies/{companyId}/workflows/{workflowType}:
+    get: CompanyApiWorkflows_getAll
+    post: CompanyApiWorkflows_addNewWorkflow
+  /companies/{companyId}/workflows/{workflowType}/{workflowId}:
+    get: CompanyApiWorkflows_getApproverDetails
+    put: CompanyApiWorkflows_updateWorkflow
+  /contacts:
+    get: ContactApiContacts_getAll
+    post: ContactApiContacts_addNewContact
+  /contacts/activities:
+    get: ContactApiActivities_find
+  /contacts/activitysettings:
+    get: ContactApiActivities_getAllActivitySettings
+  /contacts/activitysettings/{settingId}:
+    get: ContactApiActivities_getDetails
+  /contacts/deleted:
+    get: ContactApiContacts_getRecentDeletions
+  /contacts/fields/custom:
+    get: ContactApiLists_customFieldsGet
+  /contacts/fields/custom/custom/{fieldId}:
+    put: ContactApiLists_modifyCustomFieldListValues
+  /contacts/fields/custom/{fieldId}:
+    get: ContactApiLists_getCustomField
+  /contacts/lists/attachmentcategory:
+    get: ContactApiAttachments_getAllAttachmentCategories
+  /contacts/lists/notetype:
+    get: ContactApiNotes_getNoteTypes
+  /contacts/lists/salutation:
+    get: ContactApiLists_getSalutations
+  /contacts/lists/status:
+    get: ContactApiLists_getStatusDefinitions
+  /contacts/lists/status/{statusId}:
+    get: ContactApiLists_getStatusDefinition
+  /contacts/{contactId}:
+    get: ContactApiContacts_getById
+    put: ContactApiContacts_updateExistingContact
+  /contacts/{contactId}/activities:
+    get: ContactApiActivities_getAll
+    post: ContactApiActivities_addNewActivity
+  /contacts/{contactId}/activities/{activityId}:
+    get: ContactApiActivities_getOneActivity
+  /contacts/{contactId}/attachments:
+    get: ContactApiAttachments_find
+  /contacts/{contactId}/attachments/{attach}:
+    get: ContactApiAttachments_getAttachment
+    post: ContactApiAttachments_addSingleAttachment
+    put: ContactApiAttachments_updateDetails
+  /contacts/{contactId}/interviews:
+    get: ContactApiInterviews_getAll
+  /contacts/{contactId}/jobs:
+    get: ContactApiJobs_getAll
+  /contacts/{contactId}/jobs/active:
+    get: ContactApiJobs_getActive
+  /contacts/{contactId}/notes:
+    get: ContactApiNotes_getAll
+    post: ContactApiNotes_addNewNote
+  /contacts/{contactId}/photo:
+    delete: ContactApiContacts_removePhoto
+    get: ContactApiContacts_getPhoto
+    head: ContactApiContacts_getPhotoHeaders
+    put: ContactApiContacts_updatePhoto
+  /contacts/{contactId}/skills:
+    get: ContactApiSkills_getContactSkills
+  /contacts/{contactId}/status:
+    put: ContactApiContacts_updateStatusAndNote
+  /contacts/{contactId}/usertasks:
+    post: ContactApiUserTasks_addNewTask
+  /contacts/{contactId}/usertasks/{taskId}:
+    get: ContactApiUserTasks_getTask
+    put: ContactApiUserTasks_updateTask
+  /countries:
+    get: LocationApiCountries_getAll
+  /floats:
+    get: CandidateFloatApiFloats_getFloatsList
+  /floats/{floatId}:
+    get: CandidateFloatApiFloats_getFloatById
+  /folders:
+    get: FolderApiFolders_getAll
+  /folders/{folderId}:
+    get: FolderApiFolders_getFolder
+    patch: FolderApiFolders_modifyEntitiesInFolder
+  /interviews:
+    get: InterviewApiInterviews_find
+  /interviews/{interviewId}:
+    delete: InterviewApiInterviews_deleteInterviewById
+  /interviews/{interviewId}/{applicationId}:
+    get: InterviewApiInterviews_getDetails
+  /interviews/{interviewId}/{applicationId}/evaluations:
+    get: InterviewApiEvaluations_getAll
+  /interviews/{interviewId}/{applicationId}/evaluations/external/{contactId}:
+    get: InterviewApiEvaluations_getExternalContactEvaluation
+    put: InterviewApiEvaluations_submitExternalContactEvaluation
+  /interviews/{interviewId}/{applicationId}/evaluations/internal/{userId}:
+    get: InterviewApiEvaluations_getUserInterviewEvaluation
+    put: InterviewApiEvaluations_submitUserInterviewEvaluation
+  /jobads:
+    get: JobAdApiJobAds_find
+    post: JobAdApiJobAds_createDraftJobAd
+  /jobads/{adId}:
+    get: JobAdApiJobAds_getJobAd
+    put: JobAdApiJobAds_updateDraftJobAd
+  /jobads/{adId}/applications:
+    get: JobAdApiJobApplications_listApplications
+  /jobads/{adId}/applications/active:
+    get: JobAdApiJobApplications_getActiveJobApplications
+  /jobboards:
+    get: JobBoardApiJobBoards_findJobBoards
+  /jobboards/{boardId}:
+    get: JobBoardApiJobBoards_getBoard
+  /jobboards/{boardId}/ads:
+    get: JobBoardApiJobAds_listJobAds
+  /jobboards/{boardId}/ads/{adId}:
+    get: JobBoardApiJobAds_getJobAd
+  /jobboards/{boardId}/ads/{adId}/applications:
+    post: JobBoardApiJobApplications_submitJobApplication
+  /jobboards/{boardId}/ads/{adId}/applications/{applicationId}/{attachmentType}:
+    post: JobBoardApiJobApplications_submitJobApplicationDocuments
+  /jobs:
+    get: JobApiJobs_getList
+    post: JobApiJobs_createJobPost
+  /jobs/activities:
+    get: JobApiActivities_findJobActivities
+  /jobs/activitysettings:
+    get: JobApiActivities_getAllActivitySettings
+  /jobs/activitysettings/{settingId}:
+    get: JobApiActivities_getActivitySettingDetails
+  /jobs/deleted:
+    get: JobApiJobs_getDeletedJobs
+  /jobs/fields/custom:
+    get: JobApiLists_customFieldsGet
+  /jobs/fields/custom/custom/{fieldId}:
+    put: JobApiLists_modifyFieldValues
+  /jobs/fields/custom/{fieldId}:
+    get: JobApiLists_customFieldGet
+  /jobs/lists/attachmentcategory:
+    get: JobApiAttachments_getAllAttachmentCategories
+  /jobs/lists/notetype:
+    get: JobApiNotes_getAllNoteTypes
+  /jobs/lists/source:
+    get: JobApiLists_getAllSources
+  /jobs/lists/status:
+    get: JobApiLists_getAllStatusDefinitions
+  /jobs/lists/status/{statusId}:
+    get: JobApiLists_getStatusDefinition
+  /jobs/{jobId}:
+    get: JobApiJobs_getJobById
+    put: JobApiJobs_updateJobById
+  /jobs/{jobId}/activities:
+    get: JobApiActivities_getJobActivities
+    post: JobApiActivities_addJobActivity
+  /jobs/{jobId}/activities/{activityId}:
+    get: JobApiActivities_getActivity
+  /jobs/{jobId}/applications:
+    get: JobApiJobApplications_getJobApplications
+    post: JobApiJobApplications_addCandidatesToJob
+  /jobs/{jobId}/applications/active:
+    get: JobApiJobApplications_getActive
+  /jobs/{jobId}/applications/submit:
+    post: JobApiJobApplications_submitCandidate
+  /jobs/{jobId}/attachments:
+    get: JobApiAttachments_find
+  /jobs/{jobId}/attachments/{attach}:
+    get: JobApiAttachments_getAttachment
+    post: JobApiAttachments_addSingleAttachment
+    put: JobApiAttachments_updateDetails
+  /jobs/{jobId}/invoices:
+    get: JobApiInvoices_getJobInvoices
+  /jobs/{jobId}/invoices/{invoiceId}:
+    get: JobApiInvoices_getJobInvoice
+  /jobs/{jobId}/notes:
+    get: JobApiNotes_getJobNotes
+    post: JobApiNotes_addNote
+  /jobs/{jobId}/placements:
+    get: JobApiPlacements_getAll
+  /jobs/{jobId}/placements/approved:
+    get: JobApiPlacements_getApprovedPlacements
+  /jobs/{jobId}/status:
+    put: JobApiJobs_updateStatus
+  /jobs/{jobId}/submissions:
+    get: JobApiSubmissions_getAll
+  /jobs/{jobId}/usertasks:
+    post: JobApiUserTasks_addTask
+  /jobs/{jobId}/usertasks/{taskId}:
+    get: JobApiUserTasks_getTask
+    put: JobApiUserTasks_updateTask
+  /jobs/{jobOrderId}/ratecard:
+    delete: JobApiPayrollBilling_removeRateCardId
+    get: JobApiPayrollBilling_getRateCardId
+  /jobs/{jobOrderId}/ratecard/{rateCardId}:
+    post: JobApiPayrollBilling_addRateCard
+    put: JobApiPayrollBilling_updateRateCardId
+  /locations:
+    get: LocationApiLocations_getAll
+  /notes:
+    get: NoteApiNotes_getAll
+    post: NoteApiNotes_createNote
+  /notes/{noteId}:
+    get: NoteApiNotes_getById
+    put: NoteApiNotes_updateById
+  /notes/{noteId}/attachments:
+    post: NoteApiAttachments_addSingleAttachment
+  /notes/{noteId}/attachments/{attachmentId}:
+    get: NoteApiAttachments_getAttachment
+  /partners/actions:
+    get: PartnerActionApiActions_listActions
+  /partners/actions/{actionId}/applications:
+    get: PartnerActionApiJobApplications_findSubmitted
+  /partners/actions/{actionId}/applications/{applicationId}/complete:
+    put: PartnerActionApiJobApplications_completeAction
+  /partners/actions/{actionId}/applications/{applicationId}/progress:
+    put: PartnerActionApiJobApplications_updateProgress
+  /partners/actions/{actionId}/applications/{applicationId}/reject:
+    put: PartnerActionApiJobApplications_rejectAction
+  /partners/actions/{actionId}/candidates:
+    get: PartnerActionApiCandidates_findSubmittedCandidates
+  /partners/actions/{actionId}/candidates/{candidateId}/complete:
+    put: PartnerActionApiCandidates_completeAction
+  /partners/actions/{actionId}/candidates/{candidateId}/progress:
+    put: PartnerActionApiCandidates_updateProgress
+  /partners/actions/{actionId}/candidates/{candidateId}/reject:
+    put: PartnerActionApiCandidates_rejectAction
+  /partners/actions/{actionId}/companies:
+    get: PartnerActionApiCompanies_findSubmittedCompanies
+  /partners/actions/{actionId}/companies/{companyId}/complete:
+    put: PartnerActionApiCompanies_completeAction
+  /partners/actions/{actionId}/companies/{companyId}/progress:
+    put: PartnerActionApiCompanies_updateProgress
+  /partners/actions/{actionId}/companies/{companyId}/reject:
+    put: PartnerActionApiCompanies_rejectAction
+  /partners/actions/{actionId}/contacts:
+    get: PartnerActionApiContacts_findSubmittedContacts
+  /partners/actions/{actionId}/contacts/{contactId}/complete:
+    put: PartnerActionApiContacts_completeAction
+  /partners/actions/{actionId}/contacts/{contactId}/progress:
+    put: PartnerActionApiContacts_updateProgress
+  /partners/actions/{actionId}/contacts/{contactId}/reject:
+    put: PartnerActionApiContacts_rejectAction
+  /partners/actions/{actionId}/jobads:
+    get: PartnerActionApiJobAds_findSubmittedJobAds
+  /partners/actions/{actionId}/jobads/{adId}/complete:
+    put: PartnerActionApiJobAds_completeAction
+  /partners/actions/{actionId}/jobads/{adId}/progress:
+    put: PartnerActionApiJobAds_updateProgress
+  /partners/actions/{actionId}/jobads/{adId}/reject:
+    put: PartnerActionApiJobAds_rejectAction
+  /partners/actions/{actionId}/jobs:
+    get: PartnerActionApiJobs_findJobsSubmitted
+  /partners/actions/{actionId}/jobs/{jobId}/complete:
+    put: PartnerActionApiJobs_completeJobAction
+  /partners/actions/{actionId}/jobs/{jobId}/progress:
+    put: PartnerActionApiJobs_updateProgress
+  /partners/actions/{actionId}/jobs/{jobId}/reject:
+    put: PartnerActionApiJobs_rejectJobAction
+  /partners/actions/{actionId}/placements:
+    get: PartnerActionApiPlacements_findSubmittedPlacements
+  /partners/actions/{actionId}/placements/{placementId}/complete:
+    put: PartnerActionApiPlacements_completePlacementAction
+  /partners/actions/{actionId}/placements/{placementId}/progress:
+    put: PartnerActionApiPlacements_updateProgress
+  /partners/actions/{actionId}/placements/{placementId}/reject:
+    put: PartnerActionApiPlacements_rejectPlacementAction
+  /partners/actions/{act}:
+    delete: PartnerActionApiActions_deleteAction
+    get: PartnerActionApiActions_getAction
+    post: PartnerActionApiActions_addPartnerAction
+    put: PartnerActionApiActions_updateAction
+  /placements:
+    get: PlacementApiPlacements_getAll
+  /placements/activities:
+    get: PlacementApiActivities_find
+  /placements/activitysettings:
+    get: PlacementApiActivities_getAllActivitySettings
+  /placements/activitysettings/{settingId}:
+    get: PlacementApiActivities_getDetails
+  /placements/deleted:
+    get: PlacementApiPlacements_getRecentlyDeleted
+  /placements/fields/custom:
+    get: PlacementApiPlacements_getCustomFields
+  /placements/fields/custom/custom/{fieldId}:
+    put: PlacementApiPlacements_modifyCustomFieldListValues
+  /placements/fields/custom/{fieldId}:
+    get: PlacementApiPlacements_getCustomField
+  /placements/lists/attachmentcategory:
+    get: PlacementApiAttachments_getAllAttachmentCategories
+  /placements/lists/awards:
+    get: PlacementApiLists_getAwards
+  /placements/lists/billingterms:
+    get: PlacementApiLists_getAllBillingTerms
+  /placements/lists/industrycodes:
+    get: PlacementApiLists_getAllIndustryCodes
+  /placements/lists/notetype:
+    get: PlacementApiNotes_getAllNoteTypes
+  /placements/lists/paymenttypes:
+    get: PlacementApiLists_getPaymentTypes
+  /placements/lists/status:
+    get: PlacementApiLists_getAllStatusDefinitions
+  /placements/lists/status/{statusId}:
+    get: PlacementApiLists_statusDefinitionGet
+  /placements/{placementId}:
+    get: PlacementApiPlacements_getById
+    put: PlacementApiPlacements_updatePlacement
+  /placements/{placementId}/activities:
+    get: PlacementApiActivities_getAll
+    post: PlacementApiActivities_addNewActivity
+  /placements/{placementId}/activities/{activityId}:
+    get: PlacementApiActivities_getActivity
+  /placements/{placementId}/attachments:
+    get: PlacementApiAttachments_find
+  /placements/{placementId}/attachments/{attach}:
+    get: PlacementApiAttachments_get
+    post: PlacementApiAttachments_addSingleAttachment
+    put: PlacementApiAttachments_updateDetails
+  /placements/{placementId}/notes:
+    get: PlacementApiNotes_getAll
+    post: PlacementApiNotes_addNote
+  /placements/{placementId}/status:
+    put: PlacementApiPlacements_setStatusNote
+  /placements/{placementId}/timesheets:
+    get: PlacementApiTimesheets_getTimesheets
+  /placements/{placementId}/usertasks:
+    post: PlacementApiUserTasks_addTask
+  /placements/{placementId}/usertasks/{taskId}:
+    get: PlacementApiUserTasks_getTask
+    put: PlacementApiUserTasks_updateTask
+  /requisitions:
+    get: RequisitionApiRequisitions_findRequisitions
+    post: RequisitionApiRequisitions_addNewRequisition
+  /requisitions/fields/custom:
+    get: RequisitionApiLists_getAllCustomFields
+  /requisitions/fields/custom/{fieldId}:
+    get: RequisitionApiLists_getFieldById
+  /requisitions/forms:
+    get: RequisitionApiNotes_getAllFormsAndFields
+  /requisitions/{requisitionId}:
+    delete: RequisitionApiRequisitions_removeRequisitionById
+    get: RequisitionApiRequisitions_getRequisitionById
+    put: RequisitionApiRequisitions_updateRequisitionById
+  /requisitions/{requisitionId}/approve:
+    put: RequisitionApiApproval_requisitionApprove
+  /requisitions/{requisitionId}/attachments:
+    get: RequisitionApiAttachments_getAll
+  /requisitions/{requisitionId}/attachments/{attachmentId}:
+    delete: RequisitionApiAttachments_removeAttachment
+    get: RequisitionApiAttachments_getAttachment
+  /requisitions/{requisitionId}/attachments/{attachmentType}:
+    post: RequisitionApiAttachments_addAttachment
+  /requisitions/{requisitionId}/history:
+    get: RequisitionApiApproval_getHistory
+  /requisitions/{requisitionId}/notes:
+    get: RequisitionApiNotes_getNotes
+    post: RequisitionApiNotes_addNote
+  /requisitions/{requisitionId}/reject:
+    put: RequisitionApiApproval_rejectRequisition
+  /requisitions/{requisitionId}/submit:
+    put: RequisitionApiApproval_submitForApproval
+  /search/emailaddress:
+    get: SearchApiSearch_byEmailAddress
+  /search/phonenumber:
+    get: SearchApiSearch_byPhoneNumber
+  /submissions:
+    get: CandidateSubmissionApiSubmissions_getAll
+  /submissions/{submissionId}:
+    get: CandidateSubmissionApiSubmissions_get
+  /usergroups:
+    get: UserGroupApiGroups_list
+  /usergroups/{groupId}:
+    get: UserGroupApiGroups_getGroup
+  /usergroups/{groupId}/users:
+    get: UserGroupApiUsers_getAll
+  /useroffices:
+    get: UserOfficeApiOffices_findUserOffices
+  /useroffices/{officeId}:
+    get: UserOfficeApiOffices_getUserOffice
+  /useroffices/{officeId}/users:
+    get: UserOfficeApiUsers_getByOfficeId
+  /users:
+    get: UserApiUsers_find
+  /users/current:
+    get: UserApiUsers_getCurrentUser
+  /users/{userId}:
+    get: UserApiUsers_getUserById
+  /users/{userId}/interviews:
+    get: UserApiInterviews_getAll
+  /users/{userId}/photo:
+    get: UserApiUsers_getUserPhoto
+  /users/{userId}/usergroups:
+    get: UserApiGroups_getUserGroups
+  /users/{userId}/usertasks:
+    get: UserApiTasks_getUserTasks
+  /usertasks:
+    get: UserTaskApiTasks_getAll
+    post: UserTaskApiTasks_createTask
+  /usertasks/{taskId}:
+    delete: UserTaskApiTasks_deleteTask
+    get: UserTaskApiTasks_getTask
+    put: UserTaskApiTasks_updateTask
+  /usertasks/{taskId}/complete:
+    put: UserTaskApiTasks_markComplete
+  /usertasks/{taskId}/incomplete:
+    put: UserTaskApiTasks_markAsIncomplete
+  /webhooks:
+    get: WebhookApiWebhooks_findWebhooks
+    post: WebhookApiWebhooks_addNew
+  /webhooks/{webhookId}:
+    delete: WebhookApiWebhooks_removeWebhook
+    get: WebhookApiWebhooks_getOne
+    put: WebhookApiWebhooks_updateExisting
+  /worktypes:
+    get: WorkTypeApiWorkTypes_getAllWorkTypes
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /applications/{applicationId}/attachments/{attach}:
+    post:
+      multipart/form-data: JobApplicationApiAttachmentsAddAttachmentRequest
+  /candidates/{candidateId}/attachments/{attach}:
+    post:
+      multipart/form-data: CandidateApiAttachmentsAddSingleAttachmentRequest
+  /candidates/{candidateId}/photo:
+    put:
+      multipart/form-data: CandidateApiPhotoUpdatePhotoRequest
+  /companies/{companyId}/attachments/{attach}:
+    post:
+      multipart/form-data: CompanyApiAttachmentsAddSingleAttachmentRequest
+  /companies/{companyId}/logo:
+    put:
+      multipart/form-data: CompanyApiLogoUpdateLogoRequest
+  /contacts/{contactId}/attachments/{attach}:
+    post:
+      multipart/form-data: ContactApiAttachmentsAddSingleAttachmentRequest
+  /contacts/{contactId}/photo:
+    put:
+      multipart/form-data: ContactApiContactsUpdatePhotoRequest
+  /folders/{folderId}:
+    patch:
+      application/json: FolderApiFoldersModifyEntitiesInFolderRequest
+  /jobboards/{boardId}/ads/{adId}/applications/{applicationId}/{attachmentType}:
+    post:
+      multipart/form-data: JobBoardApiJobApplicationsSubmitJobApplicationDocumentsRequest
+  /jobs/{jobId}/attachments/{attach}:
+    post:
+      multipart/form-data: JobApiAttachmentsAddSingleAttachmentRequest
+  /notes/{noteId}/attachments:
+    post:
+      multipart/form-data: NoteApiAttachmentsAddSingleAttachmentRequest
+  /placements/{placementId}/attachments/{attach}:
+    post:
+      multipart/form-data: PlacementApiAttachmentsAddSingleAttachmentRequest
+  /requisitions/{requisitionId}/attachments/{attachmentType}:
+    post:
+      multipart/form-data: RequisitionApiAttachmentsAddAttachmentRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /applications/{applicationId}/attachments/{attach}:
+    get:
+      '200':
+        application/octet-stream: JobApplicationApiAttachmentsGetAttachmentResponse
+  /candidates/{candidateId}/attachments/{attach}:
+    get:
+      '200':
+        application/octet-stream: CandidateApiAttachmentsGetAttachmentResponse
+  /candidates/{candidateId}/photo:
+    get:
+      '200':
+        application/octet-stream: CandidateApiPhotoGetImageResponse
+  /companies/{companyId}/attachments/{attach}:
+    get:
+      '200':
+        application/octet-stream: CompanyApiAttachmentsGetAttachmentResponse
+  /companies/{companyId}/logo:
+    get:
+      '200':
+        application/octet-stream: CompanyApiLogoGetResponse
+  /contacts/{contactId}/attachments/{attach}:
+    get:
+      '200':
+        application/octet-stream: ContactApiAttachmentsGetAttachmentResponse
+  /contacts/{contactId}/photo:
+    get:
+      '200':
+        application/octet-stream: ContactApiContactsGetPhotoResponse
+  /jobs/{jobId}/attachments/{attach}:
+    get:
+      '200':
+        application/octet-stream: JobApiAttachmentsGetAttachmentResponse
+  /notes/{noteId}/attachments/{attachmentId}:
+    get:
+      '200':
+        application/octet-stream: NoteApiAttachmentsGetAttachmentResponse
+  /placements/{placementId}/attachments/{attach}:
+    get:
+      '200':
+        application/octet-stream: PlacementApiAttachmentsGetResponse
+  /requisitions/{requisitionId}/attachments/{attachmentId}:
+    get:
+      '200':
+        application/octet-stream: RequisitionApiAttachmentsGetAttachmentResponse
+  /users/{userId}/photo:
+    get:
+      '200':
+        application/octet-stream: UserApiUsersGetUserPhotoResponse
+securityParameters:
+  ActionId:
+    query: false
+  ActionType:
+    query: false
+  Active:
+    query: false
+  AdId:
+    query: false
+  ApplicationId:
+    query: false
+  Approved:
+    query: false
+  ApprovedAt:
+    query: false
+  ApprovedBy:
+    query: false
+  Approver.ContactId:
+    query: false
+  Approver.Name:
+    query: false
+  Approver.Pending:
+    query: false
+  BoardId:
+    query: false
+  Candidate.CandidateId:
+    query: false
+  Candidate.Name:
+    query: false
+  CandidateId:
+    query: false
+  Category:
+    query: false
+  CategoryId:
+    query: false
+  City:
+    query: false
+  ClosedAt:
+    query: false
+  ClosedBy:
+    query: false
+  Code:
+    query: false
+  Company.CompanyId:
+    query: false
+  Company.Name:
+    query: false
+  CompanyId:
+    query: false
+  ContactId:
+    query: false
+  CreatedAt:
+    query: false
+  CreatedBy:
+    query: false
+  CurrentPosition:
+    query: false
+  DateOfBirth:
+    query: false
+  Default:
+    query: false
+  E164:
+    query: false
+  Email:
+    query: false
+  Embed:
+    query: false
+  EmbedMode:
+    query: false
+  EndAt:
+    query: false
+  EndDate:
+    query: false
+  EntityType:
+    query: false
+  Events:
+    query: false
+  ExpiresAt:
+    query: false
+  ExpiryDate:
+    query: false
+  Export:
+    query: false
+  Fields:
+    query: false
+  FloatId:
+    query: false
+  FolderId:
+    query: false
+  GroupId:
+    query: false
+  HiringManager:
+    query: false
+  HiringManager.ContactId:
+    query: false
+  HiringManager.Name:
+    query: false
+  Include:
+    query: false
+  IncludeDetails:
+    query: false
+  InterviewId:
+    query: false
+  JobId:
+    query: false
+  JobTitle:
+    query: false
+  Keywords:
+    query: false
+  Latest:
+    query: false
+  Limit:
+    query: false
+  Location:
+    query: false
+  LocationId:
+    query: false
+  Name:
+    query: false
+  NoteId:
+    query: false
+  OfficeId:
+    query: false
+  Offset:
+    query: false
+  OwnerStatus:
+    query: false
+  OwnerUserId:
+    query: false
+  ParentId:
+    query: false
+  PartnerAction.ActionId:
+    query: false
+  PartnerAction.Reference:
+    query: false
+  PartnerAction.Stage:
+    query: false
+  PartnerAction.SubmittedAt:
+    query: false
+  Phone:
+    query: false
+  PlacementId:
+    query: false
+  Portal.HotJob:
+    query: false
+  Portal.Template:
+    query: false
+  Portal.Value:
+    query: false
+  Portal.ValueId:
+    query: false
+  PostedAt:
+    query: false
+  RecruiterUserId:
+    query: false
+  Recurring:
+    query: false
+  Reference:
+    query: false
+  Rejected:
+    query: false
+  RequisitionId:
+    query: false
+  Review.ContactId:
+    query: false
+  Review.ReviewedAt:
+    query: false
+  Review.Stage:
+    query: false
+  Review.SubmittedAt:
+    query: false
+  Review.UserId:
+    query: false
+  SharedWithUserId:
+    query: false
+  Sort:
+    query: false
+  Stage:
+    query: false
+  StartAt:
+    query: false
+  StartDate:
+    query: false
+  State:
+    query: false
+  Status:
+    query: false
+  StatusId:
+    query: false
+  SubmissionId:
+    query: false
+  SubmittedAt:
+    query: false
+  SubsidiaryId:
+    query: false
+  Timesheet.Period:
+    query: false
+  Type:
+    query: false
+  Until:
+    query: false
+  UpdatedAt:
+    query: false
+  UpdatedBy:
+    query: false
+  UserFavourite:
+    query: false
+  UserId:
+    query: false
+  WeekOf:
+    query: false
+  WorkTypeId:
+    query: false
+  WorkflowId:
+    query: false
+  X-Allow-Duplicates:
+    header: false
+  h:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  period:
+    query: false
+  query:
+    query: false
+  w:
+    query: false
+validServerUrls:
+  /v2:
+    url: /v2

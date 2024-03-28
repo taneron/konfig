@@ -1,0 +1,57 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/v1/departments:
+    get: Lookups_getDepartmentsList
+  /api/v1/divisions:
+    get: Lookups_getDivisions
+  /api/v1/functions:
+    get: Lookups_listJobFunctions
+  /api/v1/jobs:
+    get: Jobs_listPublished
+  /api/v1/jobs/{jobId}:
+    get: Jobs_detailsGet
+  /api/v1/locations:
+    get: Lookups_locationList
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/departments:
+    get:
+      '200':
+        application/json: LookupsGetDepartmentsListResponse
+  /api/v1/divisions:
+    get:
+      '200':
+        application/json: LookupsGetDivisionsResponse
+  /api/v1/functions:
+    get:
+      '200':
+        application/json: LookupsListJobFunctionsResponse
+  /api/v1/jobs:
+    get:
+      '200':
+        application/json: JobsListPublishedResponse
+  /api/v1/jobs/{jobId}:
+    get:
+      '200':
+        application/json: JobsDetailsGetResponse
+  /api/v1/locations:
+    get:
+      '200':
+        application/json: LookupsLocationListResponse
+securityParameters:
+  dept:
+    query: false
+  div:
+    query: false
+  fun:
+    query: false
+  loc:
+    query: false
+  q:
+    query: false
+validServerUrls: {}

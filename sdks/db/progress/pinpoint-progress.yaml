@@ -1,0 +1,288 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v1/applications:
+    get: Applications_list
+    post: Applications_createNewApplication
+  /api/v1/applications/{id}:
+    get: Applications_getById
+    put: Applications_updateById
+  /api/v1/comments:
+    get: Comments_listGet
+    post: Comments_createNew
+  /api/v1/comments/{id}:
+    get: Comments_getById
+  /api/v1/custom_attributes:
+    get: CustomAttributes_listAttributes
+    post: CustomAttributes_createNewAttribute
+  /api/v1/custom_attributes/{id}:
+    delete: CustomAttributes_removeById
+    get: CustomAttributes_getAttribute
+    put: CustomAttributes_updateAttributeById
+  /api/v1/custom_fields:
+    get: CustomFields_list
+    post: CustomFields_createNewField
+  /api/v1/custom_fields/{id}:
+    delete: CustomFields_deleteField
+    get: CustomFields_getField
+    put: CustomFields_updateFieldById
+  /api/v1/departments:
+    get: Departments_list
+    post: Departments_createNewDepartment
+  /api/v1/departments/{id}:
+    delete: Departments_removeById
+    get: Departments_getById
+    put: Departments_updateById
+  /api/v1/divisions:
+    get: Divisions_list
+    post: Divisions_createDivision
+  /api/v1/divisions/{id}:
+    delete: Divisions_removeById
+    get: Divisions_getById
+    put: Divisions_updateById
+  /api/v1/equality_monitoring_categories:
+    get: EqualityMonitoringCategories_list
+  /api/v1/equality_monitoring_categories/{id}:
+    get: EqualityMonitoringCategories_getCategoryById
+  /api/v1/hiring_workflows:
+    get: HiringWorkflows_listWorkflows
+  /api/v1/hiring_workflows/{id}:
+    get: HiringWorkflows_getWorkflowById
+  /api/v1/interviews:
+    get: Interviews_listAll
+  /api/v1/interviews/{id}:
+    get: Interviews_getById
+  /api/v1/job_seekers:
+    get: JobSeekers_listJobSeekers
+  /api/v1/job_seekers/{id}:
+    get: JobSeekers_getJobSeekerById
+  /api/v1/jobs:
+    get: Jobs_list
+    post: Jobs_createJob
+  /api/v1/jobs/{id}:
+    delete: Jobs_deleteJob
+    get: Jobs_getJobById
+    put: Jobs_updateJobById
+  /api/v1/locations:
+    get: Locations_list
+    post: Locations_createLocation
+  /api/v1/locations/{id}:
+    delete: Locations_removeLocation
+    get: Locations_getLocation
+    put: Locations_updateLocationById
+  /api/v1/onboarding_applications:
+    get: OnboardingApplications_listApplications
+  /api/v1/onboarding_applications/{id}:
+    get: OnboardingApplications_getById
+  /api/v1/requisition_templates:
+    get: RequisitionTemplates_listTemplates
+  /api/v1/requisition_templates/{id}:
+    get: RequisitionTemplates_getById
+  /api/v1/requisitions:
+    get: Requisitions_listRequisitions
+    post: Requisitions_createNewRequisition
+  /api/v1/requisitions/{id}:
+    delete: Requisitions_removeById
+    get: Requisitions_getById
+    put: Requisitions_updateById
+  /api/v1/structure_custom_group_ones:
+    get: StructureCustomGroupOnes_list
+    post: StructureCustomGroupOnes_createNewGroup
+  /api/v1/structure_custom_group_ones/{id}:
+    delete: StructureCustomGroupOnes_delete
+    get: StructureCustomGroupOnes_getOne
+    put: StructureCustomGroupOnes_updateOne
+  /api/v1/structure_links:
+    get: StructureLinks_list
+    post: StructureLinks_createLink
+  /api/v1/structure_links/{id}:
+    delete: StructureLinks_removeById
+    get: StructureLinks_getById
+    put: StructureLinks_updateLinkById
+  /api/v1/users:
+    get: Users_listUsers
+    post: Users_createUser
+  /api/v1/users/{id}:
+    delete: Users_removeUser
+    get: Users_getById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/custom_fields:
+    post:
+      application/vnd.api+json: CustomFieldsCreateNewFieldRequest
+  /api/v1/custom_fields/{id}:
+    put:
+      application/vnd.api+json: CustomFieldsUpdateFieldByIdRequest
+  /api/v1/departments:
+    post:
+      application/vnd.api+json: DepartmentsCreateNewDepartmentRequest
+  /api/v1/departments/{id}:
+    put:
+      application/vnd.api+json: DepartmentsUpdateByIdRequest
+  /api/v1/divisions:
+    post:
+      application/vnd.api+json: DivisionsCreateDivisionRequest
+  /api/v1/divisions/{id}:
+    put:
+      application/vnd.api+json: DivisionsUpdateByIdRequest
+  /api/v1/jobs:
+    post:
+      application/vnd.api+json: JobsCreateJobRequest
+  /api/v1/jobs/{id}:
+    put:
+      application/vnd.api+json: JobsUpdateJobByIdRequest
+  /api/v1/locations:
+    post:
+      application/vnd.api+json: LocationsCreateLocationRequest
+  /api/v1/locations/{id}:
+    put:
+      application/vnd.api+json: LocationsUpdateLocationByIdRequest
+  /api/v1/structure_custom_group_ones:
+    post:
+      application/vnd.api+json: StructureCustomGroupOnesCreateNewGroupRequest
+  /api/v1/structure_custom_group_ones/{id}:
+    put:
+      application/vnd.api+json: StructureCustomGroupOnesUpdateOneRequest
+  /api/v1/structure_links:
+    post:
+      application/vnd.api+json: StructureLinksCreateLinkRequest
+  /api/v1/structure_links/{id}:
+    put:
+      application/vnd.api+json: StructureLinksUpdateLinkByIdRequest
+  /api/v1/users:
+    post:
+      application/vnd.api+json: UsersCreateUserRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  extra_fields[applications]:
+    query: false
+  extra_fields[job_seekers]:
+    query: false
+  extra_fields[structure_links]:
+    query: false
+  fields[applications]:
+    query: false
+  fields[comments]:
+    query: false
+  fields[custom_attributes]:
+    query: false
+  fields[custom_fields]:
+    query: false
+  fields[departments]:
+    query: false
+  fields[divisions]:
+    query: false
+  fields[equality_monitoring_categories]:
+    query: false
+  fields[interviews]:
+    query: false
+  fields[job_seekers]:
+    query: false
+  fields[jobs]:
+    query: false
+  fields[locations]:
+    query: false
+  fields[onboarding_applications]:
+    query: false
+  fields[requisition_templates]:
+    query: false
+  fields[requisitions]:
+    query: false
+  fields[structure_custom_group_ones]:
+    query: false
+  fields[structure_links]:
+    query: false
+  fields[users]:
+    query: false
+  filter[commentable_id]:
+    query: false
+  filter[commentable_type]:
+    query: false
+  filter[created_at][gt]:
+    query: false
+  filter[created_at][lt]:
+    query: false
+  filter[custom_attributable_id]:
+    query: false
+  filter[custom_attributable_type]:
+    query: false
+  filter[department_id]:
+    query: false
+  filter[department_name]:
+    query: false
+  filter[division_id]:
+    query: false
+  filter[division_name]:
+    query: false
+  filter[employee]:
+    query: false
+  filter[employment_type]:
+    query: false
+  filter[enabled]:
+    query: false
+  filter[hiring_manager_user_id]:
+    query: false
+  filter[internal_candidate]:
+    query: false
+  filter[interviewable_id]:
+    query: false
+  filter[interviewable_type]:
+    query: false
+  filter[job_id]:
+    query: false
+  filter[job_visibility]:
+    query: false
+  filter[location_id]:
+    query: false
+  filter[location_name]:
+    query: false
+  filter[recruitment_manager_user_id]:
+    query: false
+  filter[remote]:
+    query: false
+  filter[search]:
+    query: false
+  filter[stage_basic_type]:
+    query: false
+  filter[stage_id]:
+    query: false
+  filter[start_at][gt]:
+    query: false
+  filter[start_at][lt]:
+    query: false
+  filter[status]:
+    query: false
+  filter[structure_custom_group_one_id]:
+    query: false
+  filter[structure_custom_group_one_name]:
+    query: false
+  filter[updated_at][gt]:
+    query: false
+  filter[updated_at][lt]:
+    query: false
+  filter[visibility]:
+    query: false
+  filter[workplace_type]:
+    query: false
+  filters[locale]:
+    query: false
+  include:
+    query: false
+  locale:
+    query: false
+  page[number]:
+    query: false
+  page[size]:
+    query: false
+  sort:
+    query: false
+  stats[total]:
+    query: false
+validServerUrls:
+  https://{subdomain}.pinpointhq.com:
+    url: https://{subdomain}.pinpointhq.com
