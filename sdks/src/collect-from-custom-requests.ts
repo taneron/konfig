@@ -2156,6 +2156,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://www.starkbank.com/static/openapi-v2.yml",
   },
+  "bulksms.com": {
+    type: "GET",
+    url: "https://www.bulksms.com/developer/json/v1/swagger.yaml?v=9"
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({

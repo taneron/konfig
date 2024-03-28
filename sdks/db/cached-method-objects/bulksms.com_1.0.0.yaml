@@ -1,0 +1,666 @@
+hash: a76cdd2f85af8bfda3b4aef420931fc4fab9cd5bfb30204602a28b7bcf1084b4
+methodObjects:
+  - url: /blocked-numbers
+    method: listRetrieval
+    httpMethod: get
+    tag: Blocked Numbers
+    typeScriptTag: blockedNumbers
+    description: List blocked numbers
+    parameters:
+      - name: minId
+        schema: integer
+        description: >-
+          Records with an `id` that is greater or equal to min-id will be
+          returned. The default value is `0`.  You can add 1 to an id that you
+          previously retrieved, to return subsequent records.
+      - name: limit
+        schema: integer
+        description: >-
+          The maximum number of records to return. The default value is `10000`.
+          The value cannot be greater than 10000.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /blocked-numbers
+    method: createBlockedNumber
+    httpMethod: post
+    tag: Blocked Numbers
+    typeScriptTag: blockedNumbers
+    description: Create a blocked number
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: Empty body upon success
+  - url: /credit/transfer
+    method: transferCreditsToAccount
+    httpMethod: post
+    tag: Credits
+    typeScriptTag: credits
+    description: Transfer credits to another account
+    parameters:
+      - name: commentOnFrom
+        schema: string
+        required: false
+        description: ''
+        example: Tranfer to Bobby
+      - name: commentOnTo
+        schema: string
+        required: false
+        description: ''
+        example: Tranfer from Danny
+      - name: credits
+        schema: number
+        required: true
+        description: ''
+        example: 2345
+      - name: toUserId
+        schema: number
+        required: true
+        description: ''
+        example: 2345
+      - name: toUsername
+        schema: string
+        required: true
+        description: ''
+        example: roboto
+    responses:
+      - statusCode: '200'
+        description: An empty body when the credits were transferred OK.
+      - statusCode: '400'
+        description: When the request fails validation checks.
+      - statusCode: '403'
+        description: >-
+          When there are not enough credits in your account or the credit
+          transfer facility is not activated.
+  - url: /messages
+    method: listRetrieval
+    httpMethod: get
+    tag: Message
+    typeScriptTag: message
+    description: Retrieve Messages
+    parameters:
+      - name: limit
+        schema: number
+        required: false
+        description: >-
+          The maximum number of messages that are returned.  The default is
+          1000.
+
+          The value of `limit` is not a guarantee that a specific number of
+          messages will be in the response, even if there are more messages
+          available.  Consider the case where you have 150 messages and you
+          specify `limit=50`.  It is possible that only 49 messages will be
+          returned.  The  way to make sure that there are no more messages is to
+          submit a new call using the `id` filter field with the `<` operator
+          (described below).
+      - name: filter
+        schema: string
+        description: See the message filtering for more information.
+      - name: sortOrder
+        schema: string
+        description: >
+          The default value is DESCENDING
+
+
+          If the `sortOrder` is DESCENDING, the newest messages be first in the
+          result.  ASCENDING places the oldest messages on top of the response.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+  - url: /messages
+    method: sendBatchMessages
+    httpMethod: post
+    tag: Message
+    typeScriptTag: message
+    description: Send Messages
+    parameters:
+      - name: deduplicationId
+        schema: integer
+        description: >
+          Safeguards against the possibility of sending the same messages more
+          than once.
+
+
+          If a communication failure occurs during a submission, you cannot be
+          sure that the submission was processed; therefore you would have to
+          submit it again. When you post the retry, you must use the
+          `deduplication-id` of the original post. The BulkSMS system uses this
+          ID to check that the request was not previously processed. (If it was
+          previously processed, the submission will succeed, and the behaviour
+          will be indistinguishable to you from a non-duplicated submission).
+          The ID expires after about 12 hours.
+      - name: autoUnicode
+        schema: boolean
+        description: >
+          Specifies how to deal with message text that contains characters not
+          present in the GSM 03.38 character set.
+
+
+          Messages that contain only GSM 03.38 characters are not affected by
+          this setting. 
+
+          If the value is `true` then a message containing non-GSM 03.38
+          characters will be transmitted as a Unicode SMS (which is most likely
+          more costly). 
+
+
+          Please note: when `auto-unicode` is `true` and the value of the
+          `encoding` property is specified as `UNICODE`, the message will always
+          be sent as `UNICODE`.
+
+
+          If the value is `false` and the `encoding` property is `TEXT` then
+          non-GSM 03.38 characters will be replaced by the `?` character.
+
+
+          When using this setting on the API, you should take case to ensure
+          that your message is _clean_.  
+
+
+          Invisible unicode and unexpected characters could unintentionally
+          convert an message to `UNICODE`.  A common mistake is to use the
+          backtick character (\`) which is unicode and will turn your `TEXT`
+          message into a `UNICODE` message.
+        default: false
+      - name: scheduleDate
+        schema: string
+        description: >
+          Allows you to send a message in the future.
+
+
+          An example value is `2019-02-18T13:00:00+02:00`.  It encodes to
+          `2019-02-18T13%3A00%3A00%2B02%3A00`.
+
+          Credits are deducted from your account immediately. Once submitted,
+          scheduled messages cannot be changed or cancelled.
+
+          The date can be a maximum of two years in the future. If the value is
+          in the past, the message will be sent immediately.
+
+          The date format requires you to supply an offset from UTC. You can
+          decide to use the offset of your timezone, or maybe the zone of the
+          recipient's location is more appropriate.
+
+          If the destination is a group, the group members are determined at the
+          time that you submit the message; not the time the message is
+          scheduled to be sent.
+      - name: scheduleDescription
+        schema: string
+        description: >
+          A note that is stored together with a scheduled submission, which
+          could be used to more easily identify the scheduled submission at a
+          later date.
+
+
+          The value of this field is ignored if the `schedule-date` is not
+          provided.
+
+          A value that is longer than 256 characters is truncated.
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+      - statusCode: '403'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+  - url: /messages/send
+    method: submitMessage
+    httpMethod: get
+    tag: Message
+    typeScriptTag: message
+    description: Send message by simple GET or POST
+    parameters:
+      - name: to
+        schema: string
+        required: true
+        description: The phone number of the recipient.
+        example: TO
+      - name: body
+        schema: string
+        required: true
+        description: The text you want to send.
+        example: BODY
+      - name: deduplicationId
+        schema: integer
+        description: Refer to the `deduplication-id` parameter.
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+      - statusCode: '403'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+  - url: /messages/{id}
+    method: byIdGet
+    httpMethod: get
+    tag: Message
+    typeScriptTag: message
+    description: Show Message
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The `id` of the message you want to retrieve
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+      - statusCode: '404'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+  - url: /messages/{id}/relatedReceivedMessages
+    method: relatedReceivedMessagesList
+    httpMethod: get
+    tag: Message
+    typeScriptTag: message
+    description: List Related Messages
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The `id` of the sent message
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+  - url: /profile
+    method: getUserInformation
+    httpMethod: get
+    tag: Profile
+    typeScriptTag: profile
+    description: Get profile
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /rmm/pre-sign-attachment
+    method: uploadViaPreSignedUrl
+    httpMethod: post
+    tag: Attachments
+    typeScriptTag: attachments
+    description: Upload an attachment via a signed URL
+    parameters:
+      - name: fileExtension
+        schema: string
+        description: ''
+        example: pdf
+      - name: mediaType
+        schema: string
+        description: ''
+        example: application/pdf
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webhooks
+    method: listWebhooks
+    httpMethod: get
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: List webhooks
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webhooks
+    method: createWebhook
+    httpMethod: post
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: Create a webhook
+    parameters:
+      - name: active
+        schema: boolean
+        required: false
+        description: ''
+        example: true
+      - name: contactEmailAddress
+        schema: string
+        required: false
+        description: ''
+        example: tech_team@example.com
+      - name: invokeOption
+        schema: string
+        required: false
+        description: ''
+        example: MANY
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: My MT Webhook
+      - name: onWebApp
+        schema: boolean
+        required: false
+        description: ''
+        example: true
+      - name: triggerScope
+        schema: string
+        required: true
+        description: ''
+        example: SENT
+      - name: url
+        schema: string
+        required: true
+        description: ''
+        example: https://www.example.com
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+  - url: /webhooks/{id}
+    method: deleteWebhook
+    httpMethod: delete
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: Delete a webhook
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: The webhook was deleted successfully
+      - statusCode: '404'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+  - url: /webhooks/{id}
+    method: readWebhook
+    httpMethod: get
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: Read a webhook
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+      - statusCode: '404'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+  - url: /webhooks/{id}
+    method: updateWebhook
+    httpMethod: post
+    tag: Webhooks
+    typeScriptTag: webhooks
+    description: Update a webhook
+    parameters:
+      - name: active
+        schema: boolean
+        required: false
+        description: ''
+        example: true
+      - name: contactEmailAddress
+        schema: string
+        required: false
+        description: ''
+        example: tech_team@example.com
+      - name: invokeOption
+        schema: string
+        required: false
+        description: ''
+        example: MANY
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: My MT Webhook
+      - name: onWebApp
+        schema: boolean
+        required: false
+        description: ''
+        example: true
+      - name: triggerScope
+        schema: string
+        required: true
+        description: ''
+        example: SENT
+      - name: url
+        schema: string
+        required: true
+        description: ''
+        example: https://www.example.com
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: >-
+          See the [errors page](https://www.bulksms.com/developer/json/v1/# for
+          more detail on what kind of errors you can get.
+numberOfSchemas: 18
+apiDescription: >
+  ## Overview
+
+
+  The JSON REST API allows you to submit and receive
+  [BulkSMS](https://www.bulksms.com/) messages. You can also get access to past
+  messages and see your account profile.
+
+
+  The base URL to use for this service is `https://api.bulksms.com/v1`.  The
+  base URL cannot be used on its own; you must append a path that identifies an
+  operation and you may have to specify some path parameters as well.
+
+
+  [Click here](https://www.bulksms.com/developer/json/v1/#) to go to the main
+  BulkSMS developer site.
+
+
+  In order to give you an idea on how the API can be used, some JSON snippets
+  are provided below.  Have a look at the [messages
+  section](https://www.bulksms.com/developer/json/v1/#) for more information.
+
+
+  Probably the most simple example
+
+
+  ```
+
+  {
+      "to": "+27001234567",
+      "body": "Hello World!"
+  }
+
+  ```
+
+
+
+  You can send unicode automatically using the `auto-unicode` query parameter. 
+
+  Alternatively, you can specify `UNICODE` for the `encoding` property in the
+  request body. 
+
+  Please note: when `auto-unicode` is specified and the value of the `encoding`
+  property is `UNICODE`, the message will always be sent as `UNICODE`.
+
+
+  Here is an example that sets the `encoding` explicitly
+
+
+  ```
+
+  {
+    "to": "+27001234567",
+    "body": "Dobrá práce! Jak se máš?",
+    "encoding": "UNICODE"
+  }
+
+  ```
+
+
+  You can also specify a from number
+
+
+  ```
+
+  {
+      "from": "+27007654321",
+      "to": "+27001234567",
+      "body": "Hello World!"
+  }
+
+  ```
+
+
+  Similar to above, but repliable
+
+
+  ```
+
+  {
+      "from": { "type": "REPLIABLE" },
+      "to": "+27001234567",
+      "body": "Hello World!"
+  }
+
+  ```
+
+
+  A message to a group called Everyone
+
+
+  ```
+
+  {
+      "to": { "type": "GROUP", "name": "Everyone" },
+      "body": "Hello World!"
+  }
+
+  ```
+
+
+  A message to multiple recipients
+
+
+  ```
+
+  {
+      "to": ["+27001234567", "+27002345678", "+27003456789"],
+      "body": "Happy Holidays!"
+  }
+
+  ```
+
+
+  Sending more than one message in the same request
+
+
+  ```
+
+  [
+      {
+          "to": "+27001234567",
+          "body": "Hello World!"
+      },
+      {
+          "to": "+27002345678",
+          "body": "Hello Universe!"
+      }
+  ]
+
+  ```
+
+
+  **The insecure base URL `http://api.bulksms.com/v1` is deprecated** and may in
+  future result in a `301` redirect response, or insecure requests may be
+  rejected outright. Please use the secure (`https`) URI above.
+
+
+  ### HTTP Content Type
+
+
+  All API methods expect requests to supply a `Content-Type` header with the
+  value `application/json`. All responses will have the `Content-Type` header
+  set to `application/json`.
+
+
+  ### JSON Formatting
+
+
+  You are advised to format your JSON resources according to strict JSON format
+  rules. While the API does attempt to parse strictly invalid JSON documents,
+  doing so may lead to incorrect interpretation and unexpected results.
+
+
+  Good JSON libraries will produce valid JSON suitable for submission, but if
+  you are manually generating the JSON text, be careful to follow the JSON
+  format. This include correct escaping of control characters and double quoting
+  of property names.
+
+
+  See the [JSON specification](https://tools.ietf.org/html/rfc4627) for further
+  information.
+
+
+  ### Date Formatting
+
+
+  Dates are formatted according to ISO-8601, such as `1970-01-01T10:00:00+01:00`
+  for 1st January 1970, 10AM UTC+1.
+
+
+  See the [Wikipedia ISO 8601 reference](https://en.wikipedia.org/wiki/ISO_8601)
+  for further information.
+
+
+  Specifically, calendar dates are formatted with the 'extended' format
+  `YYYY-MM-DD`. Basic format, week dates and ordinal dates are not supported.
+  Times are also formatted in the 'extended' format `hh:mm:ss`. Hours, minutes
+  and seconds are mandatory. Offset from UTC must be provided; this is to ensure
+  that there is no misunderstanding regarding times provided to the API.
+
+
+  The format we look for is `yyyy-MM-ddThh:mm:ss[Z|[+-]hh:mm]`
+
+
+  Examples of valid date/times are`2011-12-31T12:00:00Z`
+  `2011-12-31T12:00:00+02:00`
+
+
+  ### Entity Format Modifications
+
+
+  It is expected that over time some changes will be made to the request and
+  response formats of various methods available in the API.
+
+  Where possible, these will be implemented in a backwards compatible way.
+
+  To make this possible you are required to ignore unknown properties.
+
+  This enables the addition of information in response documents while
+  maintaining compatibility with older clients.
+
+
+  ### Optional Request Entity Properties
+
+
+  There are many instances where requests can be made without having to specify
+  every single property allowable in the request format.
+
+  Any such optional properties are noted as such in the documentation and their
+  default value is noted.

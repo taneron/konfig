@@ -1,0 +1,82 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /blocked-numbers:
+    get: BlockedNumbers_listRetrieval
+    post: BlockedNumbers_createBlockedNumber
+  /credit/transfer:
+    post: Credits_transferCreditsToAccount
+  /messages:
+    get: Message_listRetrieval
+    post: Message_sendBatchMessages
+  /messages/send:
+    get: Message_submitMessage
+  /messages/{id}:
+    get: Message_byIdGet
+  /messages/{id}/relatedReceivedMessages:
+    get: Message_relatedReceivedMessagesList
+  /profile:
+    get: Profile_getUserInformation
+  /rmm/pre-sign-attachment:
+    post: Attachments_uploadViaPreSignedUrl
+  /webhooks:
+    get: Webhooks_listWebhooks
+    post: Webhooks_createWebhook
+  /webhooks/{id}:
+    delete: Webhooks_deleteWebhook
+    get: Webhooks_readWebhook
+    post: Webhooks_updateWebhook
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /blocked-numbers:
+    post:
+      application/json: BlockedNumbersCreateBlockedNumberRequest
+  /messages:
+    post:
+      application/json: MessageSendBatchMessagesRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /messages:
+    get:
+      '200':
+        application/json: MessageListRetrievalResponse
+    post:
+      '201':
+        application/json: MessageSendBatchMessagesResponse
+  /messages/send:
+    get:
+      '201':
+        application/json: MessageSubmitMessageResponse
+  /messages/{id}/relatedReceivedMessages:
+    get:
+      '200':
+        application/json: MessageRelatedReceivedMessagesListResponse
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhooksListWebhooksResponse
+securityParameters:
+  auto-unicode:
+    query: false
+  body:
+    query: false
+  deduplication-id:
+    query: false
+  filter:
+    query: false
+  limit:
+    query: false
+  min-id:
+    query: false
+  schedule-date:
+    query: false
+  schedule-description:
+    query: false
+  sortOrder:
+    query: false
+  to:
+    query: false
+validServerUrls: {}
