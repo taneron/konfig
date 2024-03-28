@@ -14,15 +14,15 @@
   "apiVersion": "1.0.0",
   "apiDescription": "Access your employees data with the Bob API",
   "apiTitle": "Bob API",
-  "endpoints": 70,
-  "sdkMethods": 91,
-  "schemas": 93,
-  "parameters": 210,
+  "endpoints": 72,
+  "sdkMethods": 93,
+  "schemas": 97,
+  "parameters": 215,
   "originalCustomRequest": {
     "lambda": true
   },
   "customRequestSpecFilename": "hibob.com.yaml",
-  "difficultyScore": 186,
+  "difficultyScore": 191.25,
   "difficulty": "Medium",
   "company": "HiBob",
   "sdkName": "hi-bob-{language}-sdk",
@@ -114,7 +114,7 @@
         {
           "name": "humanReadable",
           "schema": "boolean",
-          "description": "Whether to supply humanReadable values in JSON instead of machine-readable format (default).",
+          "description": "Whether to supply humanReadable values in JSON instead of machine-readable format (https://apidocs.hibob.com/reference/getting-started-1.",
           "default": false
         },
         {
@@ -197,12 +197,12 @@
           "name": "fields",
           "schema": "array",
           "required": true,
-          "description": "Whether to supply fields (paths) instead of empty list as a default in order  to not exceed data permitted."
+          "description": "Whether to supply fields (https://apidocs.hibob.com/reference/getting-started-1 instead of empty list as a default in order  to not exceed data permitted."
         },
         {
           "name": "humanReadable",
           "schema": "boolean",
-          "description": "Whether to supply humanReadable values in JSON instead of machine-readable (default) format.",
+          "description": "Whether to supply humanReadable values in JSON instead of machine-readable (https://apidocs.hibob.com/reference/getting-started-1 format.",
           "default": false
         },
         {
@@ -2087,6 +2087,75 @@
       ]
     },
     {
+      "url": "/hiring/job-ads",
+      "method": "listActiveJobAds",
+      "httpMethod": "post",
+      "tag": "Hiring",
+      "typeScriptTag": "hiring",
+      "description": "Get a list of all active job ads.",
+      "parameters": [
+        {
+          "name": "preferredLanguage",
+          "schema": "string",
+          "description": "Preferred language code for the language results will be returned in if available, otherwise language specified on the job ad will be used."
+        },
+        {
+          "name": "fields",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "filters",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/hiring/job-ads/{id}",
+      "method": "jobAdDetails",
+      "httpMethod": "get",
+      "tag": "Hiring",
+      "typeScriptTag": "hiring",
+      "description": "Get the details of the job ad.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "Job Ad ID.",
+          "example": "ID"
+        },
+        {
+          "name": "preferredLanguage",
+          "schema": "string",
+          "description": "Preferred language code for the language results will be returned in if available, otherwise language specified on the job ad will be used."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
       "url": "/people/{id}/work",
       "method": "getWorkHistory",
       "httpMethod": "get",
@@ -2819,7 +2888,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/favicon.png",
   "clientNameCamelCase": "hiBob",
-  "lastUpdated": "2024-03-27T20:13:36.016Z",
+  "lastUpdated": "2024-03-28T16:25:40.616Z",
   "typescriptSdkUsageCode": "import { HiBob } from 'hi-bob-typescript-sdk';\n\nconst hiBob = new HiBob({\n    bearer: \"AUTHORIZATION\",\n    username: \"USERNAME\",\n    password: \"PASSWORD\"\n})",
   "typescriptSdkFirstRequestCode": "// Search for employees\nconst searchEmployeesResponse = hiBob.people.searchEmployees({\n    fields: [\"root.id\",\"root.firstName\",\"root.surname\",\"root.email\",\"work.site\",\"work.department\"]\n})",
   "fixedSpecFileName": "hi-bob-fixed-spec.yaml"

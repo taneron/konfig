@@ -1,4 +1,4 @@
-hash: 2c5ea2e7bb572404cff24a3880d5cb663baa4befc6503f65464779fd3c46c508
+hash: 903c73b29698a9ae79293107232c336f1c2ab16c2dd41ae2ebfe45356571770e
 methodObjects:
   - url: /people/search
     method: searchEmployees
@@ -45,7 +45,8 @@ methodObjects:
         schema: boolean
         description: >-
           Whether to supply humanReadable values in JSON instead of
-          machine-readable format (default).
+          machine-readable format
+          (https://apidocs.hibob.com/reference/getting-started-1.
         default: false
       - name: includeHumanReadable
         schema: boolean
@@ -103,13 +104,15 @@ methodObjects:
         schema: array
         required: true
         description: >-
-          Whether to supply fields (paths) instead of empty list as a default in
-          order  to not exceed data permitted.
+          Whether to supply fields
+          (https://apidocs.hibob.com/reference/getting-started-1 instead of
+          empty list as a default in order  to not exceed data permitted.
       - name: humanReadable
         schema: boolean
         description: >-
           Whether to supply humanReadable values in JSON instead of
-          machine-readable (default) format.
+          machine-readable
+          (https://apidocs.hibob.com/reference/getting-started-1 format.
         default: false
       - name: includeHumanReadable
         schema: boolean
@@ -1397,6 +1400,53 @@ methodObjects:
         description: ''
       - statusCode: default
         description: ''
+  - url: /hiring/job-ads
+    method: listActiveJobAds
+    httpMethod: post
+    tag: Hiring
+    typeScriptTag: hiring
+    description: Get a list of all active job ads.
+    parameters:
+      - name: preferredLanguage
+        schema: string
+        description: >-
+          Preferred language code for the language results will be returned in
+          if available, otherwise language specified on the job ad will be used.
+      - name: fields
+        schema: array
+        required: true
+        description: ''
+      - name: filters
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /hiring/job-ads/{id}
+    method: jobAdDetails
+    httpMethod: get
+    tag: Hiring
+    typeScriptTag: hiring
+    description: Get the details of the job ad.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Job Ad ID.
+        example: ID
+      - name: preferredLanguage
+        schema: string
+        description: >-
+          Preferred language code for the language results will be returned in
+          if available, otherwise language specified on the job ad will be used.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
   - url: /people/{id}/work
     method: getWorkHistory
     httpMethod: get
@@ -1900,5 +1950,5 @@ methodObjects:
         description: ''
       - statusCode: default
         description: ''
-numberOfSchemas: 93
+numberOfSchemas: 97
 apiDescription: Access your employees data with the Bob API

@@ -61,6 +61,10 @@ operationIds:
     post: People_terminateEmployee
   /employees/{identifier}/uninvite:
     post: People_revokeAccessToEmployee
+  /hiring/job-ads:
+    post: Hiring_listActiveJobAds
+  /hiring/job-ads/{id}:
+    get: Hiring_jobAdDetails
   /metadata/objects/position:
     get: Metadata_getPositionFields
   /my/avatar:
@@ -230,6 +234,8 @@ securityParameters:
   policyType:
     query: false
   policyTypeName:
+    query: false
+  preferredLanguage:
     query: false
   showInactive:
     query: false
