@@ -2203,7 +2203,11 @@ const customRequests: Record<string, CustomRequest> = {
   "tramitapp.com": {
     type: "GET",
     url: "https://rrhh.tramitapp.com/public/assets/tramitapp-api.yaml",
-  }
+  },
+  "wannme.com": {
+    type: "GET",
+    url: "https://rest-demo.wannme.com/integration/v2/v3/api-docs",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

@@ -1,0 +1,510 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /wannmepay/debt-case/:
+    post: WannmePayDebtCases_createChecksum
+  /wannmepay/debt-case/search:
+    get: WannmePayDebtCases_multiCriteriaSearch
+    post: WannmePayDebtCases_multiCriteriaSearch
+  /wannmepay/debt-case/{idDebtcase}:
+    get: WannmePayDebtCases_getByIdDebtcaseChecksumSha512
+    post: WannmePayDebtCases_getPostChecksumSha512
+    put: WannmePayDebtCases_updateByIdChecksumSha512Partner
+  /wannmepay/debt-case/{idDebtcase}/action/cancel:
+    post: WannmePayDebtCases_cancelByIdDebtcaseChecksumSha512Partner
+  /wannmepay/debt-case/{idDebtcase}/customer:
+    post: WannmePayDebtCases_createCustomerChecksumSha512Document
+  /wannmepay/debt-case/{idDebtcase}/customer/list:
+    get: WannmePayDebtCases_listCustomerByIdChecksumSha512
+    post: WannmePayDebtCases_listCustomerByIdDebtCaseChecksumSha512Partner
+  /wannmepay/debt-case/{idDebtcase}/customer/{idCustomer}:
+    delete: WannmePayDebtCases_deleteCustomerByIdCase
+    put: WannmePayDebtCases_updateCustomerByIdChecksumSha512
+  /wannmepay/debt-case/{idDebtcase}/invoice:
+    post: WannmePayDebtCases_createNewInvoiceChecksum
+  /wannmepay/debt-case/{idDebtcase}/invoice/list:
+    get: WannmePayDebtCases_listInvoicesByIdDebtcase
+    post: WannmePayDebtCases_listInvoicesByIdDebtcase
+  /wannmepay/debt-case/{idDebtcase}/invoice/{idInvoice}:
+    delete: WannmePayDebtCases_deleteInvoiceById
+    put: WannmePayDebtCases_updateInvoiceByIdChecksumSha512
+  /wannmepay/debt-case/{idDebtcase}/payment:
+    post: WannmePayDebtCases_createPaymentChecksumSHA512
+  /wannmepay/debt-case/{idDebtcase}/payment/list:
+    get: WannmePayDebtCases_getPaymentList
+    post: WannmePayDebtCases_listPaymentsByIdDebtCase
+  /wannmepay/debt-case/{idDebtcase}/recurrent-payment:
+    post: WannmePayDebtCases_createRecurrentPaymentChecksumSha512Partner
+  /wannmepay/debt-case/{idDebtcase}/recurrent-payment/list:
+    get: WannmePayDebtCases_getListRecurrentPayments
+    post: WannmePayDebtCases_getListRecurrentPayments
+  /wannmepay/document/upload-document:
+    post: WannmePayDocuments_uploadBase64DocumentChecksumSha512Partner
+  /wannmepay/document/{documentId}:
+    delete: WannmePayDocuments_deleteByDocumentIdChecksumSha512Partner
+    get: WannmePayDocuments_getByDocumentIdChecksumSha512Partner
+    post: WannmePayDocuments_getByDocumentIdChecksumSha512Partner
+  /wannmepay/masterdata/checkout-branding-translation-types:
+    get: WannmePayMasterData_getViaTypes
+    post: WannmePayMasterData_getViaTypes
+  /wannmepay/masterdata/countries:
+    get: WannmePayMasterData_getCountryMasterData
+    post: WannmePayMasterData_getCountryMasterData
+  /wannmepay/masterdata/debt-case-judicial-state-types:
+    get: WannmePayMasterData_getJudicialStateTypes
+    post: WannmePayMasterData_getJudicialStateTypes
+  /wannmepay/masterdata/debt-case-management-types:
+    get: WannmePayMasterData_getDebtCaseManagementTypesChecksumSha512Partner
+    post: WannmePayMasterData_getDebtCaseManagement
+  /wannmepay/masterdata/debt-case-states:
+    get: WannmePayMasterData_getDebtCaseStates
+    post: WannmePayMasterData_getDebtCaseStates
+  /wannmepay/masterdata/document-file-types:
+    get: WannmePayMasterData_getDocumentFileTypesChecksumSha512Partner
+    post: WannmePayMasterData_getDocumentFileTypeMasterData
+  /wannmepay/masterdata/document-types:
+    get: WannmePayMasterData_getDocumentTypesChecksumSha512Partner
+    post: WannmePayMasterData_getDocumentTypesChecksumSha512
+  /wannmepay/masterdata/gender-types:
+    get: WannmePayMasterData_getGenderTypes
+    post: WannmePayMasterData_getGenderTypesChecksumSHA512Partner
+  /wannmepay/masterdata/languages:
+    get: WannmePayMasterData_getLanguagesMasterData
+    post: WannmePayMasterData_getLanguagesMasterData
+  /wannmepay/masterdata/merchant-payment-method-states:
+    get: WannmePayMasterData_getMerchantPaymentMethodStates
+    post: WannmePayMasterData_getMerchantPaymentMethodStates
+  /wannmepay/masterdata/merchant-types:
+    get: WannmePayMasterData_getMerchantTypesMasterData
+    post: WannmePayMasterData_getMerchantTypesChecksumSha512Partner
+  /wannmepay/masterdata/merge-payment-slice-states:
+    post: WannmePayMasterData_mergePaymentSliceStates
+  /wannmepay/masterdata/merge-payment-slice-types:
+    post: WannmePayMasterData_mergePaymentSliceTypesPost
+  /wannmepay/masterdata/merge-payment-states:
+    post: WannmePayMasterData_mergePaymentStatesPost
+  /wannmepay/masterdata/merge-payment-sub-states:
+    post: WannmePayMasterData_getSubStatesChecksumSha512Partner
+  /wannmepay/masterdata/payment-split-payment-types:
+    post: WannmePayMasterData_getSplitPaymentTypes
+  /wannmepay/masterdata/payment-states:
+    get: WannmePayMasterData_getPaymentStates
+    post: WannmePayMasterData_getPaymentStates
+  /wannmepay/masterdata/provinces:
+    get: WannmePayMasterData_getProvincesMasterDataChecksumSha512Partner
+    post: WannmePayMasterData_getProvincesChecksumSha512Partner
+  /wannmepay/masterdata/recurrent-interval-types:
+    get: WannmePayMasterData_getRecurrentIntervalTypes
+    post: WannmePayMasterData_getRecurrentIntervalTypes
+  /wannmepay/masterdata/recurrent-states:
+    get: WannmePayMasterData_getRecurrentStates
+    post: WannmePayMasterData_getRecurrentStates
+  /wannmepay/masterdata/refund-states:
+    get: WannmePayMasterData_getRefundStates
+    post: WannmePayMasterData_getRefundStates
+  /wannmepay/masterdata/refund-types:
+    get: WannmePayMasterData_getRefundTypeMasterData
+    post: WannmePayMasterData_getRefundType
+  /wannmepay/masterdata/sectors:
+    get: WannmePayMasterData_getSectorsChecksumSha512Partner
+    post: WannmePayMasterData_getSectorsChecksumSha512Partner
+  /wannmepay/masterdata/sign-types:
+    get: WannmePayMasterData_getSignTypesMasterData
+    post: WannmePayMasterData_getSignTypesChecksumSha512Partner
+  /wannmepay/masterdata/via-types:
+    get: WannmePayMasterData_getViaTypesChecksumSha512Partner
+    post: WannmePayMasterData_getViaTypesChecksumSha512Partner
+  /wannmepay/merchant/:
+    post: WannmePayMerchants_createNewMerchant
+  /wannmepay/merchant/search:
+    get: WannmePayMerchants_multiCriteriaSearch
+    post: WannmePayMerchants_multiCriteriaSearch
+  /wannmepay/merchant/{partnerId}:
+    get: WannmePayMerchants_getByPartnerId
+    post: WannmePayMerchants_getByPartnerIdChecksumSha512
+    put: WannmePayMerchants_updateByPartnerIdChecksumSha512
+  /wannmepay/merchant/{partnerId}/action/sandbox-end-process-activate-merchant:
+    post: WannmePayMerchants_activateMerchantByPartnerId
+  /wannmepay/merge-payment:
+    post: WannmePayMergePayments_createChecksumSha512Partner
+  /wannmepay/merge-payment/search:
+    post: WannmePayMergePayments_multiCriteriaSearch
+  /wannmepay/merge-payment/{idMergePayment}:
+    post: WannmePayMergePayments_getByIdMergePaymentWithPostSha512Checksum
+    put: WannmePayMergePayments_updateByIdChecksumSha512Partner
+  /wannmepay/merge-payment/{idMergePayment}/action/cancel:
+    post: WannmePayMergePayments_cancelById
+  /wannmepay/merge-payment/{idMergePayment}/action/initialize:
+    post: WannmePayMergePayments_initializePaymentSha512Checksum
+  /wannmepay/merge-payment/{idMergePayment}/payment/list:
+    post: WannmePayMergePayments_getPaymentListByIdMerge
+  /wannmepay/merge-payment/{idMergePayment}/slice:
+    post: WannmePayMergePayments_createSliceSha512Checksum
+  /wannmepay/merge-payment/{idMergePayment}/slice/list:
+    post: WannmePayMergePayments_listSlicesByIdMergePayment
+  /wannmepay/merge-payment/{idMergePayment}/slice/{idSlice}:
+    delete: WannmePayMergePayments_deleteSliceById
+    put: WannmePayMergePayments_updateSliceById
+  /wannmepay/merge-payment/{idMergePayment}/slice/{idSlice}/split:
+    post: WannmePayMergePayments_createSplitPaymentDefinition
+  /wannmepay/merge-payment/{idMergePayment}/slice/{idSlice}/split/list:
+    post: WannmePayMergePayments_listSliceSplit
+  /wannmepay/merge-payment/{idMergePayment}/slice/{idSlice}/split/{idSplit}:
+    delete: WannmePayMergePayments_deleteSplitOfSliceById
+    put: WannmePayMergePayments_updateExistingSplitOfSlice
+  /wannmepay/payment/:
+    post: WannmePayPayments_createNewPayment
+  /wannmepay/payment/search:
+    get: WannmePayPayments_multiCriteriaSearch
+    post: WannmePayPayments_multiCriteriaSearch
+  /wannmepay/payment/{idPayment}:
+    get: WannmePayPayments_getByIdPaymentChecksumSha512
+    post: WannmePayPayments_getByIdPaymentChecksumSha512
+    put: WannmePayPayments_updatePaymentByIdChecksumSha512
+  /wannmepay/payment/{idPayment}/action/cancel:
+    post: WannmePayPayments_cancelById
+  /wannmepay/payment/{idPayment}/action/import-redsys-token:
+    post: WannmePayPayments_importRedsysToken
+  /wannmepay/payment/{idPayment}/action/import-sepa-mandate:
+    post: WannmePayPayments_importSepaMandateChecksumSha512Partner
+  /wannmepay/payment/{idPayment}/action/init-bizum-rtp:
+    post: WannmePayPayments_payUsingBizumRtp
+  /wannmepay/payment/{idPayment}/action/partial-refund:
+    post: WannmePayPayments_partialRefundActionChecksumSha512
+  /wannmepay/payment/{idPayment}/action/pay-by-call:
+    post: WannmePayPayments_payByCallChecksumSha512
+  /wannmepay/payment/{idPayment}/action/reset:
+    post: WannmePayPayments_resetPaymentByIdChecksumSha512
+  /wannmepay/payment/{idPayment}/action/sandbox-settle-payment:
+    post: WannmePayPayments_settleByIdPaymentChecksumSha512
+  /wannmepay/payment/{idPayment}/action/send-receipt:
+    post: WannmePayPayments_sendReceiptChecksumSha512
+  /wannmepay/payment/{idPayment}/action/share:
+    post: WannmePayPayments_sharePaymentUsingChannels
+  /wannmepay/payment/{idPayment}/action/total-refund:
+    post: WannmePayPayments_refundTotalAmountById
+  /wannmepay/payment/{idPayment}/refund/list:
+    get: WannmePayPayments_getRefundListByIdPayment
+    post: WannmePayPayments_listRefundByIdPaymentChecksumSha512
+  /wannmepay/recurrent-payment/:
+    post: WannmePayRecurrentPayments_createRecurrentPaymentChecksumSha512Partner
+  /wannmepay/recurrent-payment/search:
+    get: WannmePayRecurrentPayments_multiCriteriaSearch
+    post: WannmePayRecurrentPayments_multiCriteriaSearch
+  /wannmepay/recurrent-payment/{idRecurrentPayment}:
+    get: WannmePayRecurrentPayments_getByIdRecurrentPaymentChecksumSha512Partner
+    post: WannmePayRecurrentPayments_getPostChecksumSha512
+    put: WannmePayRecurrentPayments_updateByRecurrentIdChecksumSha512Partner
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/action/cancel:
+    post: WannmePayRecurrentPayments_cancelByIdRecurrentPayment
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/action/initialize:
+    post: WannmePayRecurrentPayments_initializeChecksumSha512Partner
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/action/manual-payment:
+    post: WannmePayRecurrentPayments_triggerManualPayment
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/action/pause:
+    post: WannmePayRecurrentPayments_pauseByIdRecurrentPayment
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/action/resume:
+    post: WannmePayRecurrentPayments_resumeByIdRecurrentPaymentChecksum
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/payment/list:
+    get: WannmePayRecurrentPayments_listPaymentsByIdRecurrentPayment
+    post: WannmePayRecurrentPayments_listPaymentsByIdRecurrentPayment
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/payment/{idPayment}/action/retry:
+    get: WannmePayRecurrentPayments_retryPaymentChecksumSHA512
+    post: WannmePayRecurrentPayments_retryPaymentChecksumSha512Partner
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/schedule:
+    post: WannmePayRecurrentPayments_createScheduleChecksumSha512Partner
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/schedule/list:
+    get: WannmePayRecurrentPayments_getScheduleListById
+    post: WannmePayRecurrentPayments_listSchedulesByIdRecurrentPayment
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/schedule/{idSchedule}:
+    delete: WannmePayRecurrentPayments_deleteScheduleByIds
+    put: WannmePayRecurrentPayments_updateScheduleByIdRecurrentPayment
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /wannmepay/debt-case/search:
+    get:
+      '200':
+        application/json: WannmePayDebtCasesMultiCriteriaSearchResponse
+    post:
+      '200':
+        application/json: WannmePayDebtCasesMultiCriteriaSearch200Response
+  /wannmepay/debt-case/{idDebtcase}/customer/list:
+    get:
+      '200':
+        application/json: WannmePayDebtCasesListCustomerByIdChecksumSha512Response
+    post:
+      '200':
+        application/json: >-
+          WannmePayDebtCasesListCustomerByIdDebtCaseChecksumSha512PartnerResponse
+  /wannmepay/debt-case/{idDebtcase}/invoice/list:
+    get:
+      '200':
+        application/json: WannmePayDebtCasesListInvoicesByIdDebtcaseResponse
+    post:
+      '200':
+        application/json: WannmePayDebtCasesListInvoicesByIdDebtcase200Response
+  /wannmepay/debt-case/{idDebtcase}/payment/list:
+    get:
+      '200':
+        application/json: WannmePayDebtCasesGetPaymentListResponse
+    post:
+      '200':
+        application/json: WannmePayDebtCasesListPaymentsByIdDebtCaseResponse
+  /wannmepay/debt-case/{idDebtcase}/recurrent-payment/list:
+    get:
+      '200':
+        application/json: WannmePayDebtCasesGetListRecurrentPaymentsResponse
+    post:
+      '200':
+        application/json: WannmePayDebtCasesGetListRecurrentPayments200Response
+  /wannmepay/masterdata/checkout-branding-translation-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetViaTypesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetViaTypes200Response
+  /wannmepay/masterdata/countries:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetCountryMasterDataResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetCountryMasterData200Response
+  /wannmepay/masterdata/debt-case-judicial-state-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetJudicialStateTypesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetJudicialStateTypes200Response
+  /wannmepay/masterdata/debt-case-management-types:
+    get:
+      '200':
+        application/json: >-
+          WannmePayMasterDataGetDebtCaseManagementTypesChecksumSha512PartnerResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetDebtCaseManagementResponse
+  /wannmepay/masterdata/debt-case-states:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetDebtCaseStatesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetDebtCaseStates200Response
+  /wannmepay/masterdata/document-file-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetDocumentFileTypesChecksumSha512PartnerResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetDocumentFileTypeMasterDataResponse
+  /wannmepay/masterdata/document-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetDocumentTypesChecksumSha512PartnerResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetDocumentTypesChecksumSha512Response
+  /wannmepay/masterdata/gender-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetGenderTypesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetGenderTypesChecksumSha512PartnerResponse
+  /wannmepay/masterdata/languages:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetLanguagesMasterDataResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetLanguagesMasterData200Response
+  /wannmepay/masterdata/merchant-payment-method-states:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetMerchantPaymentMethodStatesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetMerchantPaymentMethodStates200Response
+  /wannmepay/masterdata/merchant-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetMerchantTypesMasterDataResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetMerchantTypesChecksumSha512PartnerResponse
+  /wannmepay/masterdata/merge-payment-slice-states:
+    post:
+      '200':
+        application/json: WannmePayMasterDataMergePaymentSliceStatesResponse
+  /wannmepay/masterdata/merge-payment-slice-types:
+    post:
+      '200':
+        application/json: WannmePayMasterDataMergePaymentSliceTypesPostResponse
+  /wannmepay/masterdata/merge-payment-states:
+    post:
+      '200':
+        application/json: WannmePayMasterDataMergePaymentStatesPostResponse
+  /wannmepay/masterdata/merge-payment-sub-states:
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetSubStatesChecksumSha512PartnerResponse
+  /wannmepay/masterdata/payment-split-payment-types:
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetSplitPaymentTypesResponse
+  /wannmepay/masterdata/payment-states:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetPaymentStatesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetPaymentStates200Response
+  /wannmepay/masterdata/provinces:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetProvincesMasterDataChecksumSha512PartnerResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetProvincesChecksumSha512PartnerResponse
+  /wannmepay/masterdata/recurrent-interval-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetRecurrentIntervalTypesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetRecurrentIntervalTypes200Response
+  /wannmepay/masterdata/recurrent-states:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetRecurrentStatesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetRecurrentStates200Response
+  /wannmepay/masterdata/refund-states:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetRefundStatesResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetRefundStates200Response
+  /wannmepay/masterdata/refund-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetRefundTypeMasterDataResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetRefundTypeResponse
+  /wannmepay/masterdata/sectors:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetSectorsChecksumSha512PartnerResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetSectorsChecksumSha512Partner200Response
+  /wannmepay/masterdata/sign-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetSignTypesMasterDataResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetSignTypesChecksumSha512PartnerResponse
+  /wannmepay/masterdata/via-types:
+    get:
+      '200':
+        application/json: WannmePayMasterDataGetViaTypesChecksumSha512PartnerResponse
+    post:
+      '200':
+        application/json: WannmePayMasterDataGetViaTypesChecksumSha512Partner200Response
+  /wannmepay/merchant/search:
+    get:
+      '200':
+        application/json: WannmePayMerchantsMultiCriteriaSearchResponse
+    post:
+      '200':
+        application/json: WannmePayMerchantsMultiCriteriaSearch200Response
+  /wannmepay/merge-payment/search:
+    post:
+      '200':
+        application/json: WannmePayMergePaymentsMultiCriteriaSearchResponse
+  /wannmepay/merge-payment/{idMergePayment}/payment/list:
+    post:
+      '200':
+        application/json: WannmePayMergePaymentsGetPaymentListByIdMergeResponse
+  /wannmepay/merge-payment/{idMergePayment}/slice/list:
+    post:
+      '200':
+        application/json: WannmePayMergePaymentsListSlicesByIdMergePaymentResponse
+  /wannmepay/merge-payment/{idMergePayment}/slice/{idSlice}/split/list:
+    post:
+      '200':
+        application/json: WannmePayMergePaymentsListSliceSplitResponse
+  /wannmepay/payment/search:
+    get:
+      '200':
+        application/json: WannmePayPaymentsMultiCriteriaSearchResponse
+    post:
+      '200':
+        application/json: WannmePayPaymentsMultiCriteriaSearch200Response
+  /wannmepay/payment/{idPayment}/refund/list:
+    get:
+      '200':
+        application/json: WannmePayPaymentsGetRefundListByIdPaymentResponse
+    post:
+      '200':
+        application/json: WannmePayPaymentsListRefundByIdPaymentChecksumSha512Response
+  /wannmepay/recurrent-payment/search:
+    get:
+      '200':
+        application/json: WannmePayRecurrentPaymentsMultiCriteriaSearchResponse
+    post:
+      '200':
+        application/json: WannmePayRecurrentPaymentsMultiCriteriaSearch200Response
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/payment/list:
+    get:
+      '200':
+        application/json: WannmePayRecurrentPaymentsListPaymentsByIdRecurrentPaymentResponse
+    post:
+      '200':
+        application/json: WannmePayRecurrentPaymentsListPaymentsByIdRecurrentPayment200Response
+  /wannmepay/recurrent-payment/{idRecurrentPayment}/schedule/list:
+    get:
+      '200':
+        application/json: WannmePayRecurrentPaymentsGetScheduleListByIdResponse
+    post:
+      '200':
+        application/json: WannmePayRecurrentPaymentsListSchedulesByIdRecurrentPaymentResponse
+securityParameters:
+  Content-Language:
+    header: false
+  Wannme-Integration-Version:
+    header: false
+  Wannme-Is-Debug:
+    header: false
+  debtCase:
+    query: false
+  integration:
+    query: false
+  integrationVO:
+    query: false
+  isDebug:
+    query: false
+  payment:
+    query: false
+  recurrentPayment:
+    query: false
+  searchDebtCase:
+    query: false
+  searchPayment:
+    query: false
+  searchRecurrentPayment:
+    query: false
+  version:
+    query: false
+validServerUrls: {}
