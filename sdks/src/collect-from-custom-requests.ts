@@ -1452,6 +1452,10 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(result, null, 2);
     },
   },
+  "jobadder.com": {
+    type: "GET",
+    url: "https://api.jobadder.com/v2/openapi.json",
+  },
   "dropbox.com_Sign": {
     type: "GET",
     url: "https://raw.githubusercontent.com/hellosign/hellosign-openapi/main/openapi.yaml",
