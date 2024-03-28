@@ -360,6 +360,10 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(openapi);
     },
   },
+  "microsoft.com_Dynamics365BusinessCentral": {
+    type: "GET",
+    url: "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v1.0/contracts/bcoas1.0.yaml",
+  },
   "freeagent.com": {
     apiBaseUrl: "https://api.freeagent.com",
     lambda: async ({ key }) => {
