@@ -1,0 +1,642 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /account:
+    get: Account_informationDetails
+  /categories:
+    get: Ecommerce_getAllCategories
+    post: Ecommerce_createCategory
+  /categories/batch:
+    post: Ecommerce_createCategoriesBatch
+  /categories/{id}:
+    get: Ecommerce_getCategoryDetails
+  /companies:
+    get: Companies_getAll
+    post: Companies_createCompany
+  /companies/attributes:
+    get: Companies_getAttributes
+  /companies/link-unlink/{id}:
+    patch: Companies_linkUnlinkWithContactDeal
+  /companies/{id}:
+    delete: Companies_deleteCompany
+    get: Companies_getCompanyById
+    patch: Companies_updateCompany
+  /contacts:
+    get: Contacts_getAllContacts
+    post: Contacts_createNewContact
+  /contacts/attributes:
+    get: Contacts_listAttributes
+  /contacts/attributes/{attributeCategory}/{attributeName}:
+    delete: Contacts_removeAttribute
+    post: Contacts_createAttribute
+    put: Contacts_updateAttribute
+  /contacts/batch:
+    post: Contacts_updateMultiple
+  /contacts/doubleOptinConfirmation:
+    post: Contacts_createDoubleOptInContact
+  /contacts/export:
+    post: Contacts_exportProcessId
+  /contacts/folders:
+    get: Contacts_getAllFolders
+    post: Contacts_createFolder
+  /contacts/folders/{folderId}:
+    delete: Contacts_deleteFolder
+    get: Contacts_getFolderDetails
+    put: Contacts_updateFolder
+  /contacts/folders/{folderId}/lists:
+    get: Contacts_getFolderLists
+  /contacts/import:
+    post: Contacts_importContactsProcess
+  /contacts/lists:
+    get: Contacts_getAllLists
+    post: Contacts_createList
+  /contacts/lists/{listId}:
+    delete: Contacts_deleteList
+    get: Contacts_getListDetails
+    put: Contacts_updateList
+  /contacts/lists/{listId}/contacts:
+    get: Contacts_getListContacts
+  /contacts/lists/{listId}/contacts/add:
+    post: Contacts_addToList
+  /contacts/lists/{listId}/contacts/remove:
+    post: Contacts_removeContactFromList
+  /contacts/segments:
+    get: Contacts_getAllSegments
+  /contacts/{identifier}:
+    delete: Contacts_deleteContact
+    get: Contacts_getDetails
+    put: Contacts_updateContactById
+  /contacts/{identifier}/campaignStats:
+    get: Contacts_getEmailCampaignStats
+  /conversations/agentOnlinePing:
+    post: Conversations_setAgentOnlineStatus
+  /conversations/messages:
+    post: Conversations_sendMessageAsAgent
+  /conversations/messages/{id}:
+    delete: Conversations_deleteMessageSentByAgent
+    get: Conversations_getMessageById
+    put: Conversations_updateAgentMessage
+  /conversations/pushedMessages:
+    post: Conversations_sendAutomatedMessage
+  /conversations/pushedMessages/{id}:
+    delete: Conversations_deleteAutomatedMessage
+    get: Conversations_getAutomatedMessage
+    put: Conversations_updatePushedMessage
+  /corporate/group:
+    post: MasterAccount_createGroupOfSubAccounts
+  /corporate/group/unlink/{groupId}/subAccounts:
+    put: MasterAccount_unlinkSubAccountFromGroup
+  /corporate/group/{id}:
+    delete: MasterAccount_deleteGroup
+    get: MasterAccount_getGroupDetails
+    put: MasterAccount_updateGroupSubAccounts
+  /corporate/groups:
+    get: MasterAccount_listGroups
+  /corporate/invited/users:
+    get: MasterAccount_listAdminUsers
+  /corporate/masterAccount:
+    get: MasterAccount_getDetails
+  /corporate/ssoToken:
+    post: MasterAccount_generateSsoToken
+  /corporate/subAccount:
+    get: MasterAccount_listSubAccounts
+    post: MasterAccount_createSubAccount
+  /corporate/subAccount/key:
+    post: MasterAccount_createSubAccountKey
+  /corporate/subAccount/ssoToken:
+    post: MasterAccount_generateSsoToken
+  /corporate/subAccount/{id}:
+    delete: MasterAccount_deleteSubAccount
+    get: MasterAccount_getSubAccountDetails
+  /corporate/subAccount/{id}/applications/toggle:
+    put: MasterAccount_enableDisable
+  /corporate/subAccount/{id}/plan:
+    put: MasterAccount_updateSubAccountPlan
+  /corporate/user/invitation/send:
+    post: MasterAccount_sendInvitationToAdminUser
+  /corporate/user/invitation/{action}/{email}:
+    put: MasterAccount_resendCancelAdminUserInvitation
+  /corporate/user/revoke/{email}:
+    delete: MasterAccount_revokeAdminUser
+  /corporate/user/{email}/permissions:
+    get: MasterAccount_checkAdminUserPermissions
+  /couponCollections:
+    get: Coupons_listCouponCollections
+    post: Coupons_createCollection
+  /couponCollections/{id}:
+    get: Coupons_getById
+    patch: Coupons_updateCouponCollectionById
+  /coupons:
+    post: Coupons_createCouponCollection
+  /crm/attributes/deals:
+    get: Deals_getAttributes
+  /crm/deals:
+    get: Deals_getAllDeals
+    post: Deals_createNewDeal
+  /crm/deals/link-unlink/{id}:
+    patch: Deals_linkUnlinkPatch
+  /crm/deals/{id}:
+    delete: Deals_deleteDeal
+    get: Deals_getById
+    patch: Deals_updateDealById
+  /crm/files:
+    get: Files_getAllFiles
+    post: Files_uploadFile
+  /crm/files/{id}:
+    delete: Files_deleteFile
+    get: Files_downloadFile
+  /crm/files/{id}/data:
+    get: Files_getFileDetails
+  /crm/notes:
+    get: Notes_getAll
+    post: Notes_createNewNote
+  /crm/notes/{id}:
+    delete: Notes_removeById
+    get: Notes_getById
+    patch: Notes_updateNoteById
+  /crm/pipeline/details:
+    get: Deals_getPipelineStages
+  /crm/pipeline/details/all:
+    get: Deals_getAllPipelines
+  /crm/pipeline/details/{pipelineID}:
+    get: Deals_getDetails
+  /crm/tasks:
+    get: Tasks_getAll
+    post: Tasks_createNewTask
+  /crm/tasks/{id}:
+    delete: Tasks_removeTask
+    get: Tasks_getTaskById
+    patch: Tasks_updateTask
+  /crm/tasktypes:
+    get: Tasks_getAllTaskTypes
+  /ecommerce/activate:
+    post: Ecommerce_activateApp
+  /emailCampaigns:
+    get: EmailCampaigns_getAll
+    post: EmailCampaigns_createCampaign
+  /emailCampaigns/images:
+    post: EmailCampaigns_uploadImageToGallery
+  /emailCampaigns/{campaignId}:
+    delete: EmailCampaigns_removeCampaign
+    get: EmailCampaigns_getReport
+    put: EmailCampaigns_updateCampaign
+  /emailCampaigns/{campaignId}/abTestCampaignResult:
+    get: EmailCampaigns_getAbTestResult
+  /emailCampaigns/{campaignId}/exportRecipients:
+    post: EmailCampaigns_exportRecipientsPost
+  /emailCampaigns/{campaignId}/sendNow:
+    post: EmailCampaigns_sendImmediate
+  /emailCampaigns/{campaignId}/sendReport:
+    post: EmailCampaigns_sendReport
+  /emailCampaigns/{campaignId}/sendTest:
+    post: EmailCampaigns_sendTestToTestList
+  /emailCampaigns/{campaignId}/sharedUrl:
+    get: EmailCampaigns_getSharedUrl
+  /emailCampaigns/{campaignId}/status:
+    put: EmailCampaigns_updateStatus
+  /events:
+    post: Event_trackInteraction
+  /feeds:
+    get: ExternalFeeds_getAllFeeds
+    post: ExternalFeeds_createFeed
+  /feeds/{uuid}:
+    delete: ExternalFeeds_deleteFeedByUUID
+    get: ExternalFeeds_getFeedByUuid
+    put: ExternalFeeds_updateFeedByUUID
+  /inbound/attachments/{downloadToken}:
+    get: InboundParsing_getAttachmentByToken
+  /inbound/events:
+    get: InboundParsing_getAllEvents
+  /inbound/events/{uuid}:
+    get: InboundParsing_getEmailEvents
+  /orders:
+    get: Ecommerce_getOrders
+  /orders/status:
+    post: Ecommerce_manageOrderStatus
+  /orders/status/batch:
+    post: Ecommerce_createOrderBatch
+  /organization/activities:
+    get: Account_getUserActivityLogs
+  /organization/invited/users:
+    get: User_getAllUsers
+  /organization/user/invitation/revoke/{email}:
+    put: User_revokePermissionByEmail
+  /organization/user/invitation/send:
+    post: User_sendInvitation
+  /organization/user/invitation/{action}/{email}:
+    put: User_resendInvitation
+  /organization/user/update/permissions:
+    post: User_updatePermissions
+  /organization/user/{email}/permissions:
+    get: User_checkPermission
+  /processes:
+    get: Process_getAllProcesses
+  /processes/{processId}:
+    get: Process_getProcessInformation
+  /products:
+    get: Ecommerce_listAllProducts
+    post: Ecommerce_createProduct
+  /products/batch:
+    post: Ecommerce_createProductsBatch
+  /products/{id}:
+    get: Ecommerce_getProductDetails
+  /reseller/children:
+    get: Reseller_listChildrenAccounts
+    post: Reseller_createChild
+  /reseller/children/{childIdentifier}:
+    delete: Reseller_deleteChildByIdentifier
+    get: Reseller_getChildDetails
+    put: Reseller_updateChildInfo
+  /reseller/children/{childIdentifier}/accountCreationStatus:
+    get: Reseller_getChildAccountCreationStatus
+  /reseller/children/{childIdentifier}/accountStatus:
+    put: Reseller_updateChildAccountStatus
+  /reseller/children/{childIdentifier}/auth:
+    get: Reseller_getSessionToken
+  /reseller/children/{childIdentifier}/credits/add:
+    post: Reseller_addChildCredits
+  /reseller/children/{childIdentifier}/credits/remove:
+    post: Reseller_removeCreditsFromChild
+  /reseller/children/{childIdentifier}/domains:
+    get: Reseller_getChildDomains
+    post: Reseller_createChildDomain
+  /reseller/children/{childIdentifier}/domains/{domainName}:
+    delete: Reseller_deleteSenderDomainByChildIdentifierAndDomainName
+    put: Reseller_updateSenderDomain
+  /reseller/children/{childIdentifier}/ips/associate:
+    post: Reseller_associateDedicatedIpToChild
+  /reseller/children/{childIdentifier}/ips/dissociate:
+    post: Reseller_dissociateIpToChild
+  /senders:
+    get: Senders_listAll
+    post: Senders_createNewSender
+  /senders/domains:
+    get: Domains_getAll
+    post: Domains_createNewDomain
+  /senders/domains/{domainName}:
+    delete: Domains_deleteDomain
+    get: Domains_validateConfiguration
+  /senders/domains/{domainName}/authenticate:
+    put: Domains_authenticateDomain
+  /senders/ips:
+    get: Senders_getDedicatedIps
+  /senders/{senderId}:
+    delete: Senders_removeSender
+    put: Senders_updateSenderById
+  /senders/{senderId}/ips:
+    get: Senders_getAllDedicatedIps
+  /senders/{senderId}/validate:
+    put: Senders_validateSenderUsingOtp
+  /smsCampaigns:
+    get: SmsCampaigns_getAllInformation
+    post: SmsCampaigns_createCampaign
+  /smsCampaigns/{campaignId}:
+    delete: SmsCampaigns_removeCampaignById
+    get: SmsCampaigns_getCampaignById
+    put: SmsCampaigns_updateCampaignById
+  /smsCampaigns/{campaignId}/exportRecipients:
+    post: SmsCampaigns_exportRecipientsProcess
+  /smsCampaigns/{campaignId}/sendNow:
+    post: SmsCampaigns_sendImmediately
+  /smsCampaigns/{campaignId}/sendReport:
+    post: SmsCampaigns_sendCampaignReport
+  /smsCampaigns/{campaignId}/sendTest:
+    post: SmsCampaigns_sendTestSms
+  /smsCampaigns/{campaignId}/status:
+    put: SmsCampaigns_updateStatus
+  /smtp/blockedContacts:
+    get: TransactionalEmails_listBlockedContacts
+  /smtp/blockedContacts/{email}:
+    delete: TransactionalEmails_unblockContact
+  /smtp/blockedDomains:
+    get: TransactionalEmails_getBlockedDomains
+    post: TransactionalEmails_addBlockedDomain
+  /smtp/blockedDomains/{domain}:
+    delete: TransactionalEmails_unblockDomain
+  /smtp/deleteHardbounces:
+    post: TransactionalEmails_removeHardbounces
+  /smtp/email:
+    post: TransactionalEmails_sendTransactionalEmail
+  /smtp/email/{identifier}:
+    delete: TransactionalEmails_deleteScheduledEmails
+  /smtp/emailStatus/{identifier}:
+    get: TransactionalEmails_getEmailStatusById
+  /smtp/emails:
+    get: TransactionalEmails_getList
+  /smtp/emails/{uuid}:
+    get: TransactionalEmails_getContentByUuid
+  /smtp/log/{identifier}:
+    delete: TransactionalEmails_deleteLog
+  /smtp/statistics/aggregatedReport:
+    get: TransactionalEmails_getAggregatedReport
+  /smtp/statistics/events:
+    get: TransactionalEmails_getAllActivity
+  /smtp/statistics/reports:
+    get: TransactionalEmails_getActivityPerDay
+  /smtp/templates:
+    get: TransactionalEmails_listTemplates
+    post: TransactionalEmails_createTemplate
+  /smtp/templates/{templateId}:
+    delete: TransactionalEmails_deleteTemplateById
+    get: TransactionalEmails_getTemplateInfo
+    put: TransactionalEmails_updateTemplate
+  /smtp/templates/{templateId}/sendTest:
+    post: TransactionalEmails_sendTestTemplate
+  /transactionalSMS/sms:
+    post: TransactionalSms_sendSmsMessageToMobile
+  /transactionalSMS/statistics/aggregatedReport:
+    get: TransactionalSms_getAggregatedReport
+  /transactionalSMS/statistics/events:
+    get: TransactionalSms_getAllEvents
+  /transactionalSMS/statistics/reports:
+    get: TransactionalSms_getSmsActivityAggregatedPerDay
+  /webhooks:
+    get: Webhooks_getAll
+    post: Webhooks_createHook
+  /webhooks/export:
+    post: Webhooks_exportAllEvents
+  /webhooks/{webhookId}:
+    delete: Webhooks_deleteWebhook
+    get: Webhooks_getDetails
+    put: Webhooks_updateWebhookById
+  /whatsapp/sendMessage:
+    post: TransactionalWhatsApp_sendMessage
+  /whatsapp/statistics/events:
+    get: TransactionalWhatsApp_getActivity
+  /whatsappCampaigns:
+    get: WhatsAppCampaigns_getAll
+    post: WhatsAppCampaigns_createAndSend
+  /whatsappCampaigns/config:
+    get: WhatsAppCampaigns_getAccountInfo
+  /whatsappCampaigns/template:
+    post: WhatsAppCampaigns_createTemplate
+  /whatsappCampaigns/template-list:
+    get: WhatsAppCampaigns_getTemplates
+  /whatsappCampaigns/template/approval/{templateId}:
+    post: WhatsAppCampaigns_sendTemplateForApproval
+  /whatsappCampaigns/{campaignId}:
+    delete: WhatsAppCampaigns_deleteCampaign
+    get: WhatsAppCampaigns_getCampaignById
+    put: WhatsAppCampaigns_updateCampaignById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /companies:
+    post:
+      application/json: CompaniesCreateCompanyRequest
+  /companies/link-unlink/{id}:
+    patch:
+      application/json: CompaniesLinkUnlinkWithContactDealRequest
+  /companies/{id}:
+    patch:
+      application/json: CompaniesUpdateCompanyRequest
+  /contacts/lists/{listId}/contacts/add:
+    post:
+      application/json: ContactsAddToListRequest
+  /contacts/lists/{listId}/contacts/remove:
+    post:
+      application/json: ContactsRemoveContactFromListRequest
+  /conversations/agentOnlinePing:
+    post:
+      application/json: ConversationsSetAgentOnlineStatusRequest
+  /conversations/messages:
+    post:
+      application/json: ConversationsSendMessageAsAgentRequest
+  /conversations/messages/{id}:
+    put:
+      application/json: ConversationsUpdateAgentMessageRequest
+  /conversations/pushedMessages:
+    post:
+      application/json: ConversationsSendAutomatedMessageRequest
+  /conversations/pushedMessages/{id}:
+    put:
+      application/json: ConversationsUpdatePushedMessageRequest
+  /corporate/group:
+    post:
+      application/json: MasterAccountCreateGroupOfSubAccountsRequest
+  /corporate/group/unlink/{groupId}/subAccounts:
+    put:
+      application/json: MasterAccountUnlinkSubAccountFromGroupRequest
+  /corporate/group/{id}:
+    put:
+      application/json: MasterAccountUpdateGroupSubAccountsRequest
+  /corporate/ssoToken:
+    post:
+      application/json: MasterAccountGenerateSsoTokenRequest
+  /corporate/subAccount/key:
+    post:
+      application/json: MasterAccountCreateSubAccountKeyRequest
+  /corporate/subAccount/ssoToken:
+    post:
+      application/json: MasterAccountGenerateSsoTokenRequest1
+  /couponCollections:
+    post:
+      application/json: CouponsCreateCollectionRequest
+  /couponCollections/{id}:
+    patch:
+      application/json: CouponsUpdateCouponCollectionByIdRequest
+  /coupons:
+    post:
+      application/json: CouponsCreateCouponCollectionRequest
+  /crm/deals:
+    post:
+      application/json: DealsCreateNewDealRequest
+  /crm/deals/link-unlink/{id}:
+    patch:
+      application/json: DealsLinkUnlinkPatchRequest
+  /crm/deals/{id}:
+    patch:
+      application/json: DealsUpdateDealByIdRequest
+  /crm/files:
+    post:
+      multipart/form-data: FilesUploadFileRequest
+  /crm/tasks:
+    post:
+      application/json: TasksCreateNewTaskRequest
+  /crm/tasks/{id}:
+    patch:
+      application/json: TasksUpdateTaskRequest
+  /webhooks/export:
+    post:
+      application/json: WebhooksExportAllEventsRequest
+  /whatsapp/sendMessage:
+    post:
+      application/json: TransactionalWhatsAppSendMessageRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /companies:
+    post:
+      '200':
+        application/json: CompaniesCreateCompanyResponse
+  /corporate/group:
+    post:
+      '201':
+        application/json: MasterAccountCreateGroupOfSubAccountsResponse
+  /corporate/groups:
+    get:
+      '200':
+        application/json: MasterAccountListGroupsResponse
+  /corporate/user/invitation/send:
+    post:
+      '201':
+        application/json: MasterAccountSendInvitationToAdminUserResponse
+  /corporate/user/invitation/{action}/{email}:
+    put:
+      '200':
+        application/json: MasterAccountResendCancelAdminUserInvitationResponse
+  /couponCollections:
+    post:
+      '201':
+        application/json: CouponsCreateCollectionResponse
+  /couponCollections/{id}:
+    patch:
+      '200':
+        application/json: CouponsUpdateCouponCollectionByIdResponse
+  /crm/deals:
+    post:
+      '201':
+        application/json: DealsCreateNewDealResponse
+  /crm/tasks:
+    post:
+      '201':
+        application/json: TasksCreateNewTaskResponse
+  /feeds:
+    post:
+      '201':
+        application/json: ExternalFeedsCreateFeedResponse
+  /inbound/attachments/{downloadToken}:
+    get:
+      '200':
+        application/octet-stream: InboundParsingGetAttachmentByTokenResponse
+  /orders:
+    get:
+      '200':
+        application/json: EcommerceGetOrdersResponse
+  /smtp/emailStatus/{identifier}:
+    get:
+      '200':
+        application/json: TransactionalEmailsGetEmailStatusByIdResponse
+  /whatsapp/sendMessage:
+    post:
+      '201':
+        application/json: TransactionalWhatsAppSendMessageResponse
+securityParameters:
+  authType:
+    query: false
+  categories:
+    query: false
+  contactNumber:
+    query: false
+  createdSince:
+    query: false
+  dateFrom:
+    query: false
+  dateTo:
+    query: false
+  days:
+    query: false
+  domain:
+    query: false
+  email:
+    query: false
+  endDate:
+    query: false
+  entity:
+    query: false
+  entityIds:
+    query: false
+  event:
+    query: false
+  excludeHtmlContent:
+    query: false
+  filter[assignTo]:
+    query: false
+  filter[companies]:
+    query: false
+  filter[contacts]:
+    query: false
+  filter[date]:
+    query: false
+  filter[deals]:
+    query: false
+  filter[status]:
+    query: false
+  filter[type]:
+    query: false
+  filters:
+    query: false
+  filters[attributes.deal_name]:
+    query: false
+  filters[linkedCompaniesIds]:
+    query: false
+  filters[linkedContactsIds]:
+    query: false
+  ids:
+    query: false
+  ip:
+    query: false
+  limit:
+    query: false
+  linkedContactsIds:
+    query: false
+  linkedDealsIds:
+    query: false
+  listIds:
+    query: false
+  messageId:
+    query: false
+  modifiedSince:
+    query: false
+  name:
+    query: false
+  offset:
+    query: false
+  page:
+    query: false
+  phoneNumber:
+    query: false
+  price[eq]:
+    query: false
+  price[gt]:
+    query: false
+  price[gte]:
+    query: false
+  price[lt]:
+    query: false
+  price[lte]:
+    query: false
+  price[ne]:
+    query: false
+  search:
+    query: false
+  segmentId:
+    query: false
+  sender:
+    query: false
+  senders:
+    query: false
+  sort:
+    query: false
+  sortBy:
+    query: false
+  source:
+    query: false
+  startDate:
+    query: false
+  statistics:
+    query: false
+  status:
+    query: false
+  tag:
+    query: false
+  tags:
+    query: false
+  templateId:
+    query: false
+  templateStatus:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

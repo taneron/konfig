@@ -2204,6 +2204,10 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://sales.app.redkik.com/api/v2/apidoc/doc/userservice.json",
     apiBaseUrl: "https://sales.app.redkik.com/api/v2/",
   },
+  "brevo.com": {
+    type: "GET",
+    url: "https://api.brevo.com/v3/swagger_definition_v3.yml",
+  },
   "podium.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
