@@ -1027,6 +1027,11 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "talentlyft.com_Customers": {
+    type: "GET",
+    url: "https://api.talentlyft.com/swagger/v2/swagger.json",
+    apiBaseUrl: "https://api.talentlyft.com",
+  },
   "factorialhr.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

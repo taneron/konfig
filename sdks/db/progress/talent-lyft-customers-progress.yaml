@@ -1,0 +1,226 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v2/articles:
+    get: Blogs_getArticles
+  /v2/articles/{id}:
+    get: Blogs_getArticle
+  /v2/candidates:
+    get: Candidates_listCandidates
+    post: Candidates_addNewCandidate
+  /v2/candidates/{id}:
+    get: Candidates_getById
+    put: Candidates_updateCandidateById
+  /v2/candidates/{id}/activities:
+    get: Candidates_getActivities
+  /v2/candidates/{id}/applications/{applicationId}:
+    get: Candidates_getApplicationById
+  /v2/candidates/{id}/applications/{applicationId}/education:
+    post: Candidates_createEducationForApplication
+  /v2/candidates/{id}/applications/{applicationId}/education/{educationId}:
+    delete: Candidates_deleteEducationForApplication
+    put: Candidates_updateEducationForApplication
+  /v2/candidates/{id}/applications/{applicationId}/experience:
+    post: Candidates_createExperienceForApplication
+  /v2/candidates/{id}/applications/{applicationId}/experience/{experienceId}:
+    delete: Candidates_deleteExperienceForApplication
+    put: Candidates_updateCandidateExperience
+  /v2/candidates/{id}/contacts:
+    get: Candidates_getContacts
+    post: Candidates_createContact
+  /v2/candidates/{id}/contacts/{contactId}:
+    delete: Candidates_deleteCandidateContact
+    put: Candidates_updateCandidateContact
+  /v2/candidates/{id}/evaluations:
+    post: Candidates_logEvaluation
+  /v2/candidates/{id}/log_activity:
+    post: Candidates_logActivity
+  /v2/candidates/{id}/note:
+    post: Candidates_createCandidateNote
+  /v2/candidates/{id}/skills:
+    put: Candidates_updateSkills
+  /v2/candidates/{id}/tags:
+    put: Candidates_updateCandidateTags
+  /v2/departments:
+    get: Departments_getAll
+    post: Departments_createNew
+  /v2/departments/{id}:
+    delete: Departments_removeById
+    get: Departments_getById
+    put: Departments_updateById
+  /v2/departments/{id}/external:
+    get: Departments_getByExternalId
+  /v2/employees:
+    get: Employees_list
+    post: Employees_createNewEmployee
+  /v2/employees/sync:
+    post: Employees_syncAllEmployees
+  /v2/employees/{id}:
+    delete: Employees_removeById
+    get: Employees_getById
+    put: Employees_updateEmployeeById
+  /v2/events:
+    get: Events_getMeetings
+  /v2/events/{id}:
+    get: Events_getMeeting
+  /v2/forms:
+    get: Forms_getAll
+  /v2/forms/{id}:
+    get: Forms_getDetails
+  /v2/forms/{id}/candidate:
+    post: Forms_submitCandidate
+  /v2/jobs:
+    get: Jobs_getAll
+    post: Jobs_jobCreate
+  /v2/jobs/locations:
+    get: Jobs_listLocations
+  /v2/jobs/{id}:
+    delete: Jobs_deleteJob
+    get: Jobs_findById
+    put: Jobs_updateJobById
+  /v2/jobs/{id}/form:
+    get: Jobs_getForm
+    put: Jobs_updateJobForm
+  /v2/jobs/{id}/stages:
+    get: Jobs_getStages
+  /v2/jobs/{id}/status_changes:
+    get: Jobs_getStatusChanges
+  /v2/members:
+    get: Members_viewAccountUsers
+  /v2/pipelines:
+    get: Pipelines_getAll
+    post: Pipelines_createPipeline
+  /v2/pipelines/{id}:
+    delete: Pipelines_archivePipeline
+    get: Pipelines_getById
+    put: Pipelines_updatePipelineById
+  /v2/rejection_reasons:
+    get: Reasons_listRejectionReasons
+    post: Reasons_createReason
+  /v2/rejection_reasons/{id}:
+    delete: Reasons_deleteRejectionReason
+    get: Reasons_getRejectionReason
+    put: Reasons_updateRejectionReasonById
+  /v2/subscriptions:
+    get: Subscriptions_view
+    post: Subscriptions_createSubscription
+  /v2/subscriptions/{id}:
+    delete: Subscriptions_deleteSubscription
+    get: Subscriptions_getById
+    put: Subscriptions_updateSubscriptionById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v2/employees/sync:
+    post:
+      application/*+json: EmployeesSyncAllEmployeesRequest3
+      application/json: EmployeesSyncAllEmployeesRequest1
+      application/json-patch+json: EmployeesSyncAllEmployeesRequest
+      text/json: EmployeesSyncAllEmployeesRequest2
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/candidates/{id}:
+    get:
+      '200':
+        application/json: CandidatesGetByIdResponse
+  /v2/candidates/{id}/skills:
+    put:
+      '204':
+        application/json: CandidatesUpdateSkillsResponse
+  /v2/candidates/{id}/tags:
+    put:
+      '204':
+        application/json: CandidatesUpdateCandidateTagsResponse
+  /v2/departments:
+    get:
+      '200':
+        application/json: DepartmentsGetAllResponse
+  /v2/jobs/locations:
+    get:
+      '200':
+        application/json: JobsListLocationsResponse
+  /v2/jobs/{id}/stages:
+    get:
+      '200':
+        application/json: JobsGetStagesResponse
+  /v2/jobs/{id}/status_changes:
+    get:
+      '200':
+        application/json: JobsGetStatusChangesResponse
+  /v2/members:
+    get:
+      '200':
+        application/json: MembersViewAccountUsersResponse
+  /v2/pipelines:
+    get:
+      '200':
+        application/json: PipelinesGetAllResponse
+  /v2/rejection_reasons:
+    get:
+      '200':
+        application/json: ReasonsListRejectionReasonsResponse
+  /v2/subscriptions:
+    get:
+      '200':
+        application/json: SubscriptionsViewResponse
+securityParameters:
+  X-TL-CompanyId:
+    header: false
+  X-TL-Subdomain:
+    header: false
+  X-TL-UserId:
+    header: false
+  authors:
+    query: false
+  candidates:
+    query: false
+  contains:
+    query: false
+  createAfterDate:
+    query: false
+  departments:
+    query: false
+  details:
+    query: false
+  eids:
+    query: false
+  includeArchived:
+    query: false
+  includeJobRequisition:
+    query: false
+  includeStages:
+    query: false
+  jobs:
+    query: false
+  languageCode:
+    query: false
+  locations:
+    query: false
+  members:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  perPage:
+    query: false
+  rangeEnd:
+    query: false
+  rangeStart:
+    query: false
+  sort:
+    query: false
+  status:
+    query: false
+  subdomain:
+    query: false
+  tags:
+    query: false
+  targetReason:
+    query: false
+  type:
+    query: false
+  types:
+    query: false
+validServerUrls: {}
