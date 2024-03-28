@@ -1,0 +1,214 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /balance:
+    get: Balance_getList
+  /boleto:
+    get: Boleto_getList
+    post: Boleto_createBoleto
+  /boleto-holmes:
+    get: BoletoHolmes_list
+    post: BoletoHolmes_createNewHolmes
+  /boleto-holmes/log:
+    get: BoletoHolmes_listLogs
+  /boleto-holmes/log/{logId}:
+    get: BoletoHolmes_getLogById
+  /boleto-holmes/{holmesId}:
+    get: BoletoHolmes_getById
+  /boleto-payment:
+    get: BoletoPayment_listPayments
+    post: BoletoPayment_createPayment
+  /boleto-payment/log:
+    get: BoletoPayment_getLogs
+  /boleto-payment/log/{logId}:
+    get: BoletoPayment_getLogById
+  /boleto-payment/{paymentId}:
+    delete: BoletoPayment_cancelById
+    get: BoletoPayment_getById
+  /boleto-payment/{paymentId}/pdf:
+    get: BoletoPayment_getPdfReceiptByPaymentId
+  /boleto/log:
+    get: Boleto_listLogs
+  /boleto/log/{logId}:
+    get: Boleto_getLogById
+  /boleto/{boletoId}:
+    delete: Boleto_cancelById
+    get: Boleto_getById
+  /boleto/{boletoId}/pdf:
+    get: Boleto_getPdfById
+  /brcode-payment:
+    get: BrcodePayment_list
+    post: BrcodePayment_create
+  /brcode-payment/log:
+    get: BrcodePayment_getLogs
+  /brcode-payment/log/{logId}:
+    get: BrcodePayment_getLogById
+  /brcode-payment/{paymentId}:
+    get: BrcodePayment_getById
+    patch: BrcodePayment_updatePaymentById
+  /brcode-payment/{paymentId}/pdf:
+    get: BrcodePayment_getPdfReceiptByPaymentId
+  /brcode-preview:
+    get: BrcodePreview_processBeforeCreate
+  /deposit:
+    get: Deposit_list
+  /deposit/log:
+    get: Deposit_listLogs
+  /deposit/log/{logId}:
+    get: Deposit_getByIdLog
+  /deposit/{depositId}:
+    get: Deposit_getById
+  /dict-key:
+    get: DictKey_listPixKeys
+  /dict-key/{keyId}:
+    get: DictKey_getById
+  /event:
+    get: Event_webhookEventsList
+  /event/{eventId}:
+    delete: Event_deleteById
+    get: Event_getById
+    patch: Event_updateById
+  /invoice:
+    get: Invoice_list
+    post: Invoice_createNewInvoice
+  /invoice/log:
+    get: Invoice_listLogs
+  /invoice/log/{logId}:
+    get: Invoice_getByIdLog
+  /invoice/{invoiceId}:
+    get: Invoice_getById
+    patch: Invoice_updateRefundById
+  /invoice/{invoiceId}/pdf:
+    get: Invoice_generatePdfById
+  /invoice/{invoiceId}/qrcode:
+    get: Invoice_getQrCodeById
+  /payment-request:
+    get: PaymentRequest_list
+    post: PaymentRequest_createNewRequest
+  /public-key:
+    get: PublicKey_getList
+  /transaction:
+    get: Transaction_listTransactions
+    post: Transaction_createNewTransaction
+  /transaction/{transactionId}:
+    get: Transaction_getById
+  /transfer:
+    get: Transfer_getList
+    post: Transfer_createNewTransfer
+  /transfer/log:
+    get: Transfer_listLogs
+  /transfer/log/{logId}:
+    get: Transfer_getLogById
+  /transfer/{transferId}:
+    get: Transfer_getById
+  /transfer/{transferId}/pdf:
+    get: Transfer_getPdfReceiptById
+  /utility-payment:
+    get: UtilityPayment_listPayments
+    post: UtilityPayment_createPayment
+  /utility-payment/log:
+    get: UtilityPayment_listLogs
+  /utility-payment/log/{logId}:
+    get: UtilityPayment_getLogById
+  /utility-payment/{paymentId}:
+    delete: UtilityPayment_cancelById
+    get: UtilityPayment_getById
+  /utility-payment/{paymentId}/pdf:
+    get: UtilityPayment_getPdfReceiptByPaymentId
+  /webhook:
+    get: Webhook_listWebhooks
+    post: Webhook_create
+  /webhook/{webhookId}:
+    delete: Webhook_deleteById
+    get: Webhook_getById
+  /workspace:
+    get: Workspace_listUserWorkspaces
+    post: Workspace_createNewWorkspace
+  /workspace/{workspaceId}:
+    get: Workspace_getById
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /boleto-payment/{paymentId}/pdf:
+    get:
+      '200':
+        application/json: BoletoPaymentGetPdfReceiptByPaymentIdResponse
+  /boleto/{boletoId}/pdf:
+    get:
+      '200':
+        application/json: BoletoGetPdfByIdResponse
+  /brcode-payment/{paymentId}/pdf:
+    get:
+      '200':
+        application/json: BrcodePaymentGetPdfReceiptByPaymentIdResponse
+  /invoice/{invoiceId}/pdf:
+    get:
+      '200':
+        application/json: InvoiceGeneratePdfByIdResponse
+  /invoice/{invoiceId}/qrcode:
+    get:
+      '200':
+        application/json: InvoiceGetQrCodeByIdResponse
+  /transfer/{transferId}/pdf:
+    get:
+      '200':
+        application/json: TransferGetPdfReceiptByIdResponse
+  /utility-payment/{paymentId}/pdf:
+    get:
+      '200':
+        application/json: UtilityPaymentGetPdfReceiptByPaymentIdResponse
+securityParameters:
+  after:
+    query: false
+  before:
+    query: false
+  boletoId:
+    query: false
+  boletoIds:
+    query: false
+  brcodes:
+    query: false
+  centerId:
+    query: false
+  cursor:
+    query: false
+  depositIds:
+    query: false
+  externalIds:
+    query: false
+  fields:
+    query: false
+  format:
+    query: false
+  holmesIds:
+    query: false
+  ids:
+    query: false
+  invoiceIds:
+    query: false
+  limit:
+    query: false
+  paymentIds:
+    query: false
+  sort:
+    query: false
+  status:
+    query: false
+  tags:
+    query: false
+  taxId:
+    query: false
+  transactionIds:
+    query: false
+  transferIds:
+    query: false
+  type:
+    query: false
+  types:
+    query: false
+  username:
+    query: false
+validServerUrls: {}

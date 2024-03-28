@@ -2147,7 +2147,11 @@ const customRequests: Record<string, CustomRequest> = {
   "textrequest.com": {
     type: "GET",
     url: "https://www.textrequest.com/dist/swagger/apiv3docs.yml"
-  }
+  },
+  "starkbank.com": {
+    type: "GET",
+    url: "https://www.starkbank.com/static/openapi-v2.yml"
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
