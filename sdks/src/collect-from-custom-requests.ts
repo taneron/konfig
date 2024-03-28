@@ -249,6 +249,33 @@ const customRequests: Record<string, CustomRequest> = {
       { url: "https://us.cloud.langfuse.com", description: "US" },
     ],
   },
+  "customer.io_JourneysApp": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        filename: "cio_journeys_app_api.json",
+        url: "https://customer.io/docs/api/app/",
+        browser,
+      });
+    },
+  },
+  "customer.io_JourneysTrack": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        filename: "cio_journeys_track_api.json",
+        url: "https://customer.io/docs/api/track/",
+        browser,
+      });
+    },
+  },
+  "customer.io_DatePipelines": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        filename: "cio_data_pipelines_api.json",
+        url: "https://customer.io/docs/api/cdp/",
+        browser,
+      });
+    },
+  },
   // "retellai.com": {
   //   type: "GET",
   //   url: "https://raw.githubusercontent.com/RetellAI/docs/HEAD/openapi.yaml",

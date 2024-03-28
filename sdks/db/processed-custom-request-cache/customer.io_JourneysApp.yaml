@@ -1,0 +1,174 @@
+processed:
+  securitySchemes:
+    Bearer-Auth:
+      type: http
+      scheme: bearer
+      description: >
+        The App API uses a bearer authentication scheme.
+
+
+        You can generate a bearer token, known as an **App API Key**, with a
+        defined scope in [your account
+        settings](https://fly.customer.io/settings/api_credentials?keyType=app).
+        [Learn more about bearer authorization in
+        Customer.io](https://customer.io/docs/api/app/).
+  apiBaseUrl: https://api.customer.io
+  apiVersion: 1.0.0
+  apiDescription: >
+    Our App API provides ways to trigger messages and retrieve information about
+    people, campaigns, broadcasts, and more.
+
+
+    # Overview
+
+
+    The App API provides methods to send transactional messages and trigger
+    broadcasts. In both cases, your payload acts as a message "trigger" and can
+    contain `data` that you reference in your messages using
+    liquid—`{{trigger.<data>}}`.
+
+
+    The other endpoints help you retrieve information about people, segments,
+    campaigns, broadcasts, etc; it also lets you update campaign actions,
+    messages, newsletter variants, etc. Aside from the [API-triggered
+    broadcast](https://customer.io/docs/api/app/) (1 per 10 seconds) and
+    [Transactional](https://customer.io/docs/api/app/) (100 per second)
+    endpoints, requests are limited to 10 per second.
+
+
+    <div class="fly-panel fly-light regionUS">
+
+    <div class="fly-panel-body us-server">
+
+    <p class="text--bold">You're looking at our US regional endpoints</p>
+
+    <p>The only difference in our US and European Union (EU) regions is the
+    subdomain—<code>api-eu</code> for our EU region as rather than
+    <code>app.customer.io/v1</code> for the US; there are no other differences
+    between the two regions. If your account is based in the European Union (EU)
+    data center, <a id='eu-anchor' onClick="anchorToRegion(this.id)">click
+    here</a> to show EU endpoints in our code samples and documentation
+    below.</p>
+
+    <p>If you don't know your region, you can <b>find your account region</b> on
+    <a href="https://fly.customer.io/settings/privacy">your account's privacy
+    page</a>, or <a href="#operation/getRegion">get your region using the
+    API</a>.</p>
+
+    </div>
+
+    <div class="fly-panel-body eu-server">
+
+    <p class="text--bold">You're looking at our EU regional endpoints</p>
+
+    <p>The only difference in our US and European Union (EU) regions is the
+    subdomain—<code>api</code> for our US region rather than
+    <code>api-eu.customer.io/v1</code> for our EU region; there are no other
+    differences between the two regions. If your account is based in the
+    European Union (EU) data center, you can <a id='us-anchor'
+    onClick="anchorToRegion(this.id)">click here</a> to to show US endpoints in
+    our code samples and documentation below.</p>
+
+    <p>Note that if your account is based in the United States (US) data center
+    and you send requests to the EU region (the <code>track-eu</code>
+    subdomain), your requests will fail. If you don't know your region, you can
+    <b>find your account region</b> on <a
+    href="https://fly.customer.io/settings/privacy">your account's privacy
+    page</a>, or <a href="#operation/getRegion">get your region using the
+    API</a>.</p>
+
+    </div></div>
+
+
+
+    Customer.io hosts services in the United States (US) and European Union (EU,
+    host subdomains are suffixed with `-eu`). Select the appropriate region for
+    server addresses that apply to your region.
+
+
+    <table id="hosts">
+      <tr><th>Host/Server</th><th>Purpose</th></tr>
+      <tr><td class='server-url'><a href='#tag/appOverview'><code>https://api.customer.io/</code></a></td><td>Use the <b>App API</b> to send Transactional messages and API triggered broadcasts. This API uses bearer token authorization, helping you control who uses it. Most requests to this API are limited to 10 pers second. The exceptions are <a href="#triggerBroadcast">API-triggered broadcasts</a>, which are limited to 1 request every 10 seconds, and <a href="#sendEmail">Transactional messages</a> which are limited to 100 per second.</td></tr> 
+    </table>
+
+
+    # Use our Postman collection
+
+
+    We've generated a Postman collection with **all** of our APIs—not just the
+    ones on this page—with a starter environment (called "CIO Env") containing
+    variables for authorization and path parameters.
+
+
+    If you fork this collection, you might want to disable the *Watch original
+    collection* option. We automatically update our Postman collection whenever
+    we release changes to our documentation, even if we don't change our
+    APIs—which happens daily! Rather than being flooded with Postman
+    notifications, you can check out our [Release
+    Notes](https://customer.io/docs/api/app/) for updates to our APIs.
+
+
+    **NOTE**: Postman endpoints default to our US APIs. If you're in our
+    European (EU) region, you'll need to add `-eu` server variables
+    (*track_api_url* and *app_api_url*).
+
+
+    <div class="postman-run-button primary-btn"
+
+    data-postman-action="collection/fork"
+
+    data-postman-visibility="public"
+
+    data-postman-var-1="23697545-2931c004-e63d-4cdc-bf4b-e685ba6da42d"
+
+    data-postman-collection-url="entityId=23697545-2931c004-e63d-4cdc-bf4b-e685ba6da42d&entityType=collection&workspaceId=b886877f-fc09-475f-84fe-6221a98f4d18"
+
+    data-postman-param="env%5BCIO%20Env%5D=W3sia2V5IjoidXNlcm5hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjowfSx7ImtleSI6InBhc3N3b3JkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxfSx7ImtleSI6ImJlYXJlciIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjJ9LHsia2V5IjoiaW1wb3J0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6M30seyJrZXkiOiJlbWFpbF9hZGRyZXNzIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6NH0seyJrZXkiOiJzdXBwcmVzc2lvbl90eXBlIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6NX0seyJrZXkiOiJjb2xsZWN0aW9uX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6Nn0seyJrZXkiOiJzbmlwcGV0X25hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4Ijo3fSx7ImtleSI6IndlYmhvb2tfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4Ijo4fSx7ImtleSI6InNlbmRlcl9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjl9LHsia2V5IjoiZXhwb3J0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTB9LHsia2V5IjoibWVzc2FnZV9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjExfSx7ImtleSI6InNlZ21lbnRfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxMn0seyJrZXkiOiJuZXdzbGV0dGVyX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTN9LHsia2V5IjoiY29udGVudF9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjE0fSx7ImtleSI6ImNhbXBhaWduX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTV9LHsia2V5IjoiYWN0aW9uX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTZ9LHsia2V5IjoiY3VzdG9tZXJfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoxN30seyJrZXkiOiJ0cmFuc2FjdGlvbmFsX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTh9LHsia2V5IjoiYnJvYWRjYXN0X2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MTl9LHsia2V5IjoidHJpZ2dlcl9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiIiLCJzZXNzaW9uSW5kZXgiOjIwfSx7ImtleSI6ImZvcm1faWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoyMX0seyJrZXkiOiJpZGVudGlmaWVyIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MjJ9LHsia2V5IjoiZGV2aWNlX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6IiIsInNlc3Npb25JbmRleCI6MjN9LHsia2V5IjoiZGVsaXZlcnlfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiIiwic2Vzc2lvbkluZGV4IjoyNH1d"></div>
+
+    <script type="text/javascript">
+      (function (p,o,s,t,m,a,n) {
+        !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+        !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+          (n = o.createElement("script")),
+          (n.id = s+t), (n.async = 1), (n.src = m), n
+        ));
+      }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+    </script>
+
+
+    # Authentication 
+
+
+    All requests to the Customer.io App API use an [App API
+    Key](https://customer.io/docs/api/app/).
+
+
+    To authenticate, provide your key as a Bearer token in a HTTP Authorization
+    header. You can create and manage your API keys—including keys with
+    different scopes—in [your account settings
+    page](https://fly.customer.io/settings/api_credentials?keyType=app). Each
+    operation on this page references the authorization header it requires.
+
+
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+
+    # App API limits
+
+
+    Aside from Transactional and Broadcast trigger endpoints, this API is
+    limited to 10 requests per second. The [transactional
+    email](https://customer.io/docs/api/app/) endpoint is limited to 100
+    requests per second. The [API-triggered broadcast
+    endpoint](https://customer.io/docs/api/app/) is limited to 1 request every
+    10 seconds. 
+  apiTitle: Journeys App API
+  endpoints: 91
+  sdkMethods: 268
+  schemas: 300
+  parameters: 143
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: customer.io_JourneysApp.yaml
+  difficultyScore: 453.75
