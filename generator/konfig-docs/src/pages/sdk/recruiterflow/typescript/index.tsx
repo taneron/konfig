@@ -10,11 +10,11 @@ export default function RecruiterflowTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="recruiterflow-typescript-sdk"
-      metaDescription={`Recruiterflow is a dedicated Applicant Tracking, CRM and Recruiting platform for Ambitious Recruiting & executive search firms. What makes Recruiterflow different from other ATS and recruiting CRM products, is Recruiting automation, simplicity and ease of use. 
+      metaDescription={`Recruiterflow is a dedicated Applicant Tracking, CRM and Recruiting platform for Ambitious Recruiting & executive search firms. What makes Recruiterflow different from other ATS and recruiting CRM products, is Recruiting automation, simplicity and ease of use.
 
 It offers drag-and-drop workflows, email and text messaging,  API integrations, and ATS capabilities. It also encompasses advanced functionalities like candidate portals, company blocking, automatic email tracking, job board posting, built-in report analytics and more. With its G Suite and office365 integration, you can two-way sync emails to clients and candidates.
 
-With Recruiterflow you can manage & maintain your candidate and client pipeline,  post jobs across multiple job boards and track candidates, write personalized well-crafted email sequences, deliver candidate experience without extra efforts and get a detailed insight about the performance of your team and recruiting effort. 
+With Recruiterflow you can manage & maintain your candidate and client pipeline,  post jobs across multiple job boards and track candidates, write personalized well-crafted email sequences, deliver candidate experience without extra efforts and get a detailed insight about the performance of your team and recruiting effort.
 
 You can review your recruiting strategy and performance in real time using Recruiterflow's real-time statistics. You can also build your own custom apps on Recruiterflow using open APIs.
 
@@ -25,7 +25,7 @@ Recruiterflow's user interface is designed to be effortlessly navigable, ensurin
       companyKebabCase="recruiterflow"
       clientNameCamelCase="recruiterflow"
       homepage="recruiterflow.com"
-      lastUpdated={new Date("2024-03-28T00:17:09.977Z")}
+      lastUpdated={new Date("2024-03-28T00:30:05.996Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/recruiterflow/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

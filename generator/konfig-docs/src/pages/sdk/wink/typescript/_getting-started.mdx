@@ -1,0 +1,15 @@
+```typescript index.ts
+import { Wink } from 'wink-typescript-sdk';
+
+const wink = new Wink({
+    /*
+     * ## Retrieve access token
+     * Make a POST (`Content-Type: application/x-www-form-urlencoded`) request to the Token URL below. Include one POST key/value entry: `grant_type=client_credentials` and include your clientID / secretKey credentials in a Basic Auth header. E.g. `Authorization: Basic base64_encode($clientId + ':' + $secretKey)`.
+     * ## Add Bearer access token to all API requests
+     * Once you have the access token, you can pass that along on all API requests in the authentication header: `'Authorization: Bearer $accessToken`.
+     * Note: Tokens expire after 3 hours. Please make sure you refresh your token before that time.
+     */
+    clientId: "CLIENT_ID",
+    clientSecret: "CLIENT_SECRET"
+})
+```
