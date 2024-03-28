@@ -1,0 +1,135 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /companies:
+    get: Sociedades_listadoSociedades
+  /companies/{id}:
+    get: Sociedades_consultarPorId
+  /webhooks/absences:
+    post: Trmites_notifyAbsences
+  /webhooks/employees:
+    post: Empleados_notifyChanges
+  /webhooks/expenses:
+    post: Trmites_notifyExpenses
+  /webhooks/hours:
+    post: Trmites_notifyWorkHours
+  /{company_id}/absences:
+    get: Trmites_listAbsences
+    post: Trmites_addAbsences
+  /{company_id}/absences/{id}/cancel:
+    post: Trmites_cancelAbsence
+  /{company_id}/batch_clocking:
+    post: Trmites_addBatchClocking
+  /{company_id}/clocking:
+    post: Trmites_addAutoClocking
+  /{company_id}/documents:
+    post: Documentos_consultarFiltrado
+  /{company_id}/employees:
+    get: Empleados_obtenerListado
+    post: Empleados_contratarEmpleadoEnTramitApp
+  /{company_id}/employees/{id}:
+    get: Empleados_consultarPorId
+    put: Empleados_actualizarPorId
+  /{company_id}/employees/{id}/fire:
+    post: Empleados_darDeBaja
+  /{company_id}/employees/{id}/renew:
+    post: Empleados_renewContract
+  /{company_id}/expenses:
+    get: Trmites_listCompanyExpenses
+  /{company_id}/hours:
+    get: Trmites_listHours
+    post: Trmites_addManualTimesheets
+  /{company_id}/hours/{id}/cancel:
+    post: Trmites_cancelEmployeeShift
+  /{company_id}/locations:
+    post: Sociedades_createLocation
+  /{company_id}/locations/:
+    post: Sociedades_updateLocation
+  /{company_id}/projects:
+    post: Sociedades_addProject
+  /{company_id}/projects/{project_id}:
+    post: Sociedades_updateProjectInfo
+  /{company_id}/schedules:
+    get: TurnosYHorarios_listEmployeeSchedules
+  /{company_id}/shifts:
+    get: TurnosYHorarios_listEmployeeShifts
+    post: TurnosYHorarios_addShiftsToEmployees
+  /{company_id}/teams:
+    post: Sociedades_addTeam
+  /{company_id}/teams/{team_id}:
+    post: Sociedades_updateTeam
+  /{company_id}/vacations:
+    get: SaldoDeVacaciones_listEmployeeBalances
+  /{company_id}/workplaces:
+    post: Sociedades_addWorkplace
+  /{company_id}/workplaces/{workplace_id}:
+    post: Sociedades_updateWorkplace
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /companies:
+    get:
+      '200':
+        application/json: SociedadesListadoSociedadesResponse
+  /{company_id}/absences:
+    get:
+      '200':
+        application/json: TrmitesListAbsencesResponse
+    post:
+      '200':
+        application/json: TrmitesAddAbsencesResponse
+  /{company_id}/batch_clocking:
+    post:
+      '200':
+        application/json: TrmitesAddBatchClockingResponse
+  /{company_id}/clocking:
+    post:
+      '200':
+        application/json: TrmitesAddAutoClockingResponse
+  /{company_id}/documents:
+    post:
+      '200':
+        application/json: DocumentosConsultarFiltradoResponse
+  /{company_id}/employees:
+    get:
+      '200':
+        application/json: EmpleadosObtenerListadoResponse
+  /{company_id}/expenses:
+    get:
+      '200':
+        application/json: TrmitesListCompanyExpensesResponse
+  /{company_id}/hours:
+    get:
+      '200':
+        application/json: TrmitesListHoursResponse
+    post:
+      '200':
+        application/json: TrmitesAddManualTimesheetsResponse
+  /{company_id}/schedules:
+    get:
+      '200':
+        application/json: TurnosYHorariosListEmployeeSchedulesResponse
+  /{company_id}/shifts:
+    get:
+      '200':
+        application/json: TurnosYHorariosListEmployeeShiftsResponse
+    post:
+      '200':
+        application/json: TurnosYHorariosAddShiftsToEmployeesResponse
+  /{company_id}/vacations:
+    get:
+      '200':
+        application/json: SaldoDeVacacionesListEmployeeBalancesResponse
+securityParameters:
+  columns:
+    query: false
+  end:
+    query: false
+  modified_since:
+    query: false
+  start:
+    query: false
+validServerUrls: {}

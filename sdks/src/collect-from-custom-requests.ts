@@ -2200,6 +2200,10 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://sales.app.redkik.com/api/v2/apidoc/doc/userservice.json",
     apiBaseUrl: "https://sales.app.redkik.com/api/v2/"
   },
+  "tramitapp.com": {
+    type: "GET",
+    url: "https://rrhh.tramitapp.com/public/assets/tramitapp-api.yaml",
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({

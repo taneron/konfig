@@ -1,0 +1,190 @@
+processed:
+  securitySchemes: {}
+  apiBaseUrl: https://rrhh.tramitapp.com/tramitapi
+  apiVersion: 1.0.0
+  apiDescription: >
+    # Introducción
+
+    Aquí se describen los recursos que conforman el API de TramitApp. Mediante
+    él, podrás acceder a la información
+
+    que gestiona TramitApp de manera automática, permitiendo coordinar tus
+    sistemas informáticos existentes con nuestra plataforma.
+
+
+    Mediante nuestro API, podrás consultar la información relativa a los
+    trámites de tus empleados, como por ejemplo,
+
+    las ausencias que han tenido, sean por vacaciones, permisos, bajas médicas,
+    o simplemente porque trabajaron desde casa.
+
+
+    También podrás acceder la información relativa a los gastos, dietas y
+    kilometrajes que te hayan pasado, así como las imputaciones de horas
+    normales y extras
+
+    que hayan realizado desde TramitApp para poder integrarlo directamente en
+    tus sistemas contables de forma sencilla y evitar procesos manuales
+
+
+    Te proporcionamos además una información detallada de la situación laboral
+    de tus empleados, los tipos de contratos,
+
+    los saldos de vacaciones, y mucho más.
+
+
+    Si lo deseas, también podrás automatizar las altas y bajas de empleados en
+    nuestro sistema directamente desde nuestro
+
+    API, evitando así duplicidades y mejorando tu eficiencia en los procesos de
+    incorporación y salida de la compañía.
+
+
+    # Comenzando a utilizar el API de TramitApp
+
+    Pensamos que la mejor forma de aprender a utilizar un API es experimentando
+    un poco, por lo que vamos a darte
+
+    unos ejemplos que te permitan conocer cómo funcionamos y te ayuden a
+    acelerar al máximo tus desarrollos.
+
+
+    ## Hola TramitApp!
+
+    La mejor forma de empezar a familiarizarte con nuestro API es mediante una
+    herramienta sencilla como
+
+    [curl](https://github.com/curl/curl). Por supuesto, puedes otras
+    herramientas como [PostMan](https://www.getpostman.com/)
+
+    o directamente utilizar tu lenguaje de programación favorito.
+
+
+    Veamos un ejemplo que nos proporciona la lista de compañías a la que tu
+    usuario tiene acceso:
+
+
+    ```curl -H 'auth: YOUR_AUTH_KEY'
+    https://rrhh.tramitapp.com/tramitapi/companies```
+
+
+    La respuesta será un listado en formato JSON de las empresas parecido a
+    este.
+
+    ```
+      [{
+        "_id": "69bdb59e00aa129e8766ec0e",
+        "name": "Tu empresa",
+        "nationalId": "B16159433",
+        "workplaces": [{
+          "_id": "592ff42760804fd378e982ca", "name": "Oficina Central"
+        }]
+      }]
+
+    ```
+
+     ## Mis empleados
+     Para consultar un listado de tus empleados, y en general para todas las operaciones
+     excepto para el listado de compañías, nos tendrás que indicar qué empresa quieres consultar.
+
+     ```curl -H 'auth: YOUR_AUTH_KEY' https://rrhh.tramitapp.com/tramitapi/{company._id}/employees```
+
+    La respuesta será un listado de los empleados de la empresa, similar al
+    siguiente:
+
+    ```
+
+    [{ _id: '5b7fcf3ef9ad0b3f65c4b91f',
+         companies_id: '57bdb59e00aa129e8766ec0e',
+         nationalId: '00000001R',
+         ssn: '281234567840',
+         lastName: 'Arranz',
+         lastName2: 'Perez',
+         firstName: 'Paco',
+         birthday: '1982-04-01',
+         gender: 'man',
+         nationality: 'Spanish',
+         education: null,
+         contract_type: 'temporal_contract',
+         contract_date: '2016-11-19',
+         contract_end_date: null,
+         trial_period: '12',
+         category: 'ppopo',
+         gross_salary: 18000.0,
+         email: 'test0.9794606036734297@domain.com',
+         province: '28',
+         city: 'madrid',
+         address: 'c/ bracamonte',
+         zip_code: '28051',
+         iban: 'ES6398966338433871330966' }]
+
+    ```
+
+    ## Nuevo empleado
+
+
+    Para 'contratar' un empleado en TramitApp bastará con que nos hagas un POST
+    con los datos correspondientes.
+
+    De nuevo, es necesario especificar el id de la empresa a la que pertenecerá
+    el empleado.
+
+
+    ```curl -d "@employee_example.json" -H 'auth: YOUR_AUTH_KEY' -X POST
+    https://rrhh.tramitapp.com/tramitapi/{company._id}/employees```
+
+
+    La respuesta será el empleado ya creado, similar a esta:
+
+    ```
+                {_id: '5b7fcf3ef9ad0b3f65c4b91f',
+                 companies_id: '57bdb59e00aa129e8766ec0e',
+                 nationalId: '00000001R',
+                 ssn: '281234567840',
+                 lastName: 'Arranz',
+                 lastName2: 'Perez',
+                 firstName: 'Paco',
+                 birthday: '1982-04-01',
+                 gender: 'man',
+                 nationality: 'Spanish',
+                 contract_type: 'temporal_contract',
+                 contract_date: '2016-11-19',
+                 contract_end_date: null,
+                 email: 'test0.9794606036734297@domain.com',
+                 iban: 'ES6398966338433871330966' }
+     ```
+
+
+
+    # Qué necesito para empezar a usar el API?
+
+    Como has podido ver en los ejemplos anteriores, para poder acceder al API de
+    TramitApp
+     debes contar con una clave de API, que te proporcionará nuestro equipo de soporte.
+    Esta clave lleva asociada tu configuración de seguridad y por tanto deberá
+    viajar en las cabeceras HTTP de todas las peticiones:
+
+
+    ```
+
+    > GET /tramitapi/companies HTTP/1.1
+
+    > Host:  rrhh.tramitapp.com
+
+    > Accept: */*
+
+    > auth: YOUR_AUTH_KEY
+
+    ```
+  apiTitle: API TramitApp
+  endpoints: 29
+  sdkMethods: 34
+  schemas: 38
+  parameters: 164
+  contactUrl: https://www.tramitapp.com
+  contactEmail: devs@tramitapp.com
+  originalCustomRequest:
+    type: GET
+    url: https://rrhh.tramitapp.com/public/assets/tramitapp-api.yaml
+  customRequestSpecFilename: tramitapp.com.yaml
+  difficultyScore: 94

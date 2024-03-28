@@ -1,0 +1,1697 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "https://rrhh.tramitapp.com/tramitapi",
+  "apiVersion": "1.0.0",
+  "apiDescription": "# Introducción\nAquí se describen los recursos que conforman el API de TramitApp. Mediante él, podrás acceder a la información\nque gestiona TramitApp de manera automática, permitiendo coordinar tus sistemas informáticos existentes con nuestra plataforma.\n\nMediante nuestro API, podrás consultar la información relativa a los trámites de tus empleados, como por ejemplo,\nlas ausencias que han tenido, sean por vacaciones, permisos, bajas médicas, o simplemente porque trabajaron desde casa.\n\nTambién podrás acceder la información relativa a los gastos, dietas y kilometrajes que te hayan pasado, así como las imputaciones de horas normales y extras\nque hayan realizado desde TramitApp para poder integrarlo directamente en tus sistemas contables de forma sencilla y evitar procesos manuales\n\nTe proporcionamos además una información detallada de la situación laboral de tus empleados, los tipos de contratos,\nlos saldos de vacaciones, y mucho más.\n\nSi lo deseas, también podrás automatizar las altas y bajas de empleados en nuestro sistema directamente desde nuestro\nAPI, evitando así duplicidades y mejorando tu eficiencia en los procesos de incorporación y salida de la compañía.\n\n# Comenzando a utilizar el API de TramitApp\nPensamos que la mejor forma de aprender a utilizar un API es experimentando un poco, por lo que vamos a darte\nunos ejemplos que te permitan conocer cómo funcionamos y te ayuden a acelerar al máximo tus desarrollos.\n\n## Hola TramitApp!\nLa mejor forma de empezar a familiarizarte con nuestro API es mediante una herramienta sencilla como\n[curl](https://github.com/curl/curl). Por supuesto, puedes otras herramientas como [PostMan](https://www.getpostman.com/)\no directamente utilizar tu lenguaje de programación favorito.\n\nVeamos un ejemplo que nos proporciona la lista de compañías a la que tu usuario tiene acceso:\n\n```curl -H 'auth: YOUR_AUTH_KEY' https://rrhh.tramitapp.com/tramitapi/companies```\n\nLa respuesta será un listado en formato JSON de las empresas parecido a este.\n```\n  [{\n    \"_id\": \"69bdb59e00aa129e8766ec0e\",\n    \"name\": \"Tu empresa\",\n    \"nationalId\": \"B16159433\",\n    \"workplaces\": [{\n      \"_id\": \"592ff42760804fd378e982ca\", \"name\": \"Oficina Central\"\n    }]\n  }]\n\n```\n\n ## Mis empleados\n Para consultar un listado de tus empleados, y en general para todas las operaciones\n excepto para el listado de compañías, nos tendrás que indicar qué empresa quieres consultar.\n\n ```curl -H 'auth: YOUR_AUTH_KEY' https://rrhh.tramitapp.com/tramitapi/{company._id}/employees```\n\nLa respuesta será un listado de los empleados de la empresa, similar al siguiente:\n```\n[{ _id: '5b7fcf3ef9ad0b3f65c4b91f',\n     companies_id: '57bdb59e00aa129e8766ec0e',\n     nationalId: '00000001R',\n     ssn: '281234567840',\n     lastName: 'Arranz',\n     lastName2: 'Perez',\n     firstName: 'Paco',\n     birthday: '1982-04-01',\n     gender: 'man',\n     nationality: 'Spanish',\n     education: null,\n     contract_type: 'temporal_contract',\n     contract_date: '2016-11-19',\n     contract_end_date: null,\n     trial_period: '12',\n     category: 'ppopo',\n     gross_salary: 18000.0,\n     email: 'test0.9794606036734297@domain.com',\n     province: '28',\n     city: 'madrid',\n     address: 'c/ bracamonte',\n     zip_code: '28051',\n     iban: 'ES6398966338433871330966' }]\n\n```\n## Nuevo empleado\n\nPara 'contratar' un empleado en TramitApp bastará con que nos hagas un POST con los datos correspondientes.\nDe nuevo, es necesario especificar el id de la empresa a la que pertenecerá el empleado.\n\n```curl -d \"@employee_example.json\" -H 'auth: YOUR_AUTH_KEY' -X POST https://rrhh.tramitapp.com/tramitapi/{company._id}/employees```\n\nLa respuesta será el empleado ya creado, similar a esta:\n```\n            {_id: '5b7fcf3ef9ad0b3f65c4b91f',\n             companies_id: '57bdb59e00aa129e8766ec0e',\n             nationalId: '00000001R',\n             ssn: '281234567840',\n             lastName: 'Arranz',\n             lastName2: 'Perez',\n             firstName: 'Paco',\n             birthday: '1982-04-01',\n             gender: 'man',\n             nationality: 'Spanish',\n             contract_type: 'temporal_contract',\n             contract_date: '2016-11-19',\n             contract_end_date: null,\n             email: 'test0.9794606036734297@domain.com',\n             iban: 'ES6398966338433871330966' }\n ```\n\n\n\n# Qué necesito para empezar a usar el API?\nComo has podido ver en los ejemplos anteriores, para poder acceder al API de TramitApp\n debes contar con una clave de API, que te proporcionará nuestro equipo de soporte.\nEsta clave lleva asociada tu configuración de seguridad y por tanto deberá viajar en las cabeceras HTTP de todas las peticiones:\n\n```\n> GET /tramitapi/companies HTTP/1.1\n> Host:  rrhh.tramitapp.com\n> Accept: */*\n> auth: YOUR_AUTH_KEY\n```\n",
+  "apiTitle": "API TramitApp",
+  "endpoints": 29,
+  "sdkMethods": 34,
+  "schemas": 51,
+  "parameters": 164,
+  "contactUrl": "https://www.tramitapp.com",
+  "contactEmail": "devs@tramitapp.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://rrhh.tramitapp.com/public/assets/tramitapp-api.yaml"
+  },
+  "customRequestSpecFilename": "tramitapp.com.yaml",
+  "difficultyScore": 94,
+  "difficulty": "Easy",
+  "company": "TramitApp",
+  "sdkName": "tramit-app-{language}-sdk",
+  "clientName": "TramitApp",
+  "metaDescription": "TramitApp es la App de Gestión de Recursos Humanos con la que ahorrarás tiempo y gestionarás fácilmente y en la nube los tediosos papeleos.\n\nPodrás controlar EN TIEMPO REAL y DESDE TU MÓVIL el registro horario de tus empleados, vacaciones del equipo, nóminas, gastos, kilometraje, dietas, ausencias y bajas médicas.\n\nSomos una plataforma centrada en \"la experiencia de empleado\" y contamos con una APP DE EMPLEADO para eliminar por completo el papel y los errores.\n\nEs segura y cumple estrictamente con los requisitos legales. Incorpora firma electrónica y reconocimiento facial.\n\nSe trata de un sistema flexible para todos los sectores y con una implementación sencilla para grandes, medianas y pequeñas empresas a través de la integración de una API con otros sistemas.\n\nAdemás:\n· Sin costes de mantenimiento. \n· Sin papeles. \n· Con comunicación con tu gestoría. \n· Con posibilidad de integración con sistemas de nóminas.\n· Con soporte.",
+  "apiStatusUrls": "inherit",
+  "homepage": "www.tramitapp.com/en/",
+  "developerDocumentation": "rrhh.tramitapp.com/doc",
+  "categories": [
+    "hr",
+    "hr_management",
+    "hr_platform",
+    "hr_software",
+    "personnel_management",
+    "task_management",
+    "time_management"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/companies",
+      "method": "listadoSociedades",
+      "httpMethod": "get",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Listado de sociedades",
+      "parameters": [
+        {
+          "name": "modifiedSince",
+          "schema": "string",
+          "required": false,
+          "description": "Fecha de última modificación en formato timestamp, para actualizaciones incrementales. El cliente debe soportar que se devuelvan datos aunque no haya habido cambios."
+        },
+        {
+          "name": "columns",
+          "schema": "string",
+          "required": false,
+          "description": "Lista de campos a proyectar (https://rrhh.tramitapp.com/doc en la respuesta. Por ejemplo, el parámetro \"columns=_id&columns=correlation_id\" proyectará el documento y solo recuperará objetos con el siguiente contenido\n```\n{_id:\"someid\", correlation_id:\"some_correlation_id\"}\n```\n"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/companies/{id}",
+      "method": "consultarPorId",
+      "httpMethod": "get",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Consultar sociedad por ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/workplaces",
+      "method": "addWorkplace",
+      "httpMethod": "post",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Crear centro de trabajo",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "correlation_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "address",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/workplaces/{workplace_id}",
+      "method": "updateWorkplace",
+      "httpMethod": "post",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Actualizar centro de trabajo",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "workplaceId",
+          "schema": "string",
+          "required": true,
+          "description": "ID del centro de trabajo",
+          "example": "WORKPLACE_ID"
+        },
+        {
+          "name": "_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/teams",
+      "method": "addTeam",
+      "httpMethod": "post",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Crear equipo",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "correlation_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "is_collective",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/teams/{team_id}",
+      "method": "updateTeam",
+      "httpMethod": "post",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Actualizar equipo",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "teamId",
+          "schema": "string",
+          "required": true,
+          "description": "ID del equipo",
+          "example": "TEAM_ID"
+        },
+        {
+          "name": "_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/projects",
+      "method": "addProject",
+      "httpMethod": "post",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Crear proyecto",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "DESCRIPTION"
+        },
+        {
+          "name": "accountProject",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ACCOUNTPROJECT"
+        },
+        {
+          "name": "locations",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "teams",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/projects/{project_id}",
+      "method": "updateProjectInfo",
+      "httpMethod": "post",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Actualizar proyecto",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "projectId",
+          "schema": "string",
+          "required": true,
+          "description": "ID del proyecto",
+          "example": "PROJECT_ID"
+        },
+        {
+          "name": "_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/locations",
+      "method": "updateLocation",
+      "httpMethod": "post",
+      "tag": "Sociedades",
+      "typeScriptTag": "sociedades",
+      "description": "Actualizar localizacion",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "locationId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la localización",
+          "example": "LOCATION_ID"
+        },
+        {
+          "name": "_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/employees",
+      "method": "obtenerListado",
+      "httpMethod": "get",
+      "tag": "Empleados",
+      "typeScriptTag": "empleados",
+      "description": "Listado de empleados",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "modifiedSince",
+          "schema": "string",
+          "required": false,
+          "description": "Fecha de última modificación en formato timestamp, para actualizaciones incrementales. El cliente debe soportar que se devuelvan datos aunque no haya habido cambios."
+        },
+        {
+          "name": "columns",
+          "schema": "string",
+          "required": false,
+          "description": "Lista de campos a proyectar (https://rrhh.tramitapp.com/doc en la respuesta. Por ejemplo, el parámetro \"columns=_id&columns=correlation_id\" proyectará el documento y solo recuperará objetos con el siguiente contenido\n```\n{_id:\"someid\", correlation_id:\"some_correlation_id\"}\n```\n"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/employees",
+      "method": "contratarEmpleadoEnTramitApp",
+      "httpMethod": "post",
+      "tag": "Empleados",
+      "typeScriptTag": "empleados",
+      "description": "Contratar un empleado",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "correlation_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "workplace_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "WORKPLACE_ID"
+        },
+        {
+          "name": "nationalId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NATIONALID"
+        },
+        {
+          "name": "ssn",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "firstName",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FIRSTNAME"
+        },
+        {
+          "name": "lastName",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "LASTNAME"
+        },
+        {
+          "name": "lastName2",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "birthday",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "start_day_in_company",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "gender",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "nationality",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "civil_status",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "education",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "contract_code",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CONTRACT_CODE"
+        },
+        {
+          "name": "contract_date",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CONTRACT_DATE"
+        },
+        {
+          "name": "contract_end_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "gross_salary",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "nationalId_expiration_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "disability",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "degree_disability_detail",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expiration_disability_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "is_permanent_disability",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "contribution_account",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "trial_period",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "category",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        },
+        {
+          "name": "province",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "city",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "address",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "zip_code",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "iban",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "calendar_name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "calendar_correlation_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "start_clocking_from",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "create_user",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "direct_reports_to",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "teams",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "employment_periods",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "workplace_history",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/employees/{id}",
+      "method": "consultarPorId",
+      "httpMethod": "get",
+      "tag": "Empleados",
+      "typeScriptTag": "empleados",
+      "description": "Consultar empleado por ID",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "ID del empleado",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/employees/{id}",
+      "method": "actualizarPorId",
+      "httpMethod": "put",
+      "tag": "Empleados",
+      "typeScriptTag": "empleados",
+      "description": "Actualizar empleado por ID",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "ID del empleado",
+          "example": "ID"
+        },
+        {
+          "name": "create_user",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "reset_user",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "delete_user",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "hire_again",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "calendar_name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "calendar_correlation_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "start_clocking_from",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "employment_periods",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "workplace_history",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/employees/{id}/fire",
+      "method": "darDeBaja",
+      "httpMethod": "post",
+      "tag": "Empleados",
+      "typeScriptTag": "empleados",
+      "description": "Dar de baja un empleado",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "ID del empleado",
+          "example": "ID"
+        },
+        {
+          "name": "_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "_ID"
+        },
+        {
+          "name": "firing_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FIRING_TYPE"
+        },
+        {
+          "name": "fire_date",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FIRE_DATE"
+        },
+        {
+          "name": "delete_user",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/employees/{id}/renew",
+      "method": "renewContract",
+      "httpMethod": "post",
+      "tag": "Empleados",
+      "typeScriptTag": "empleados",
+      "description": "Renovar contrato",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "ID del empleado",
+          "example": "ID"
+        },
+        {
+          "name": "_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "_ID"
+        },
+        {
+          "name": "renewal_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "RENEWAL_TYPE"
+        },
+        {
+          "name": "contract_code",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CONTRACT_CODE"
+        },
+        {
+          "name": "end_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "change_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/absences",
+      "method": "listAbsences",
+      "httpMethod": "get",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Listado de ausencias",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "start",
+          "schema": "string",
+          "required": true,
+          "description": "Día de inicio, en formato YYYY-MM-DD (por ejemplo 2018-01-01)",
+          "example": "START"
+        },
+        {
+          "name": "end",
+          "schema": "string",
+          "required": true,
+          "description": "Día de fin, en formato YYYY-MM-DD (por ejemplo 2018-01-01)",
+          "example": "END"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/absences",
+      "method": "addAbsences",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Añadir ausencias",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "employees_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "subtype",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "start_date",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "end_date",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "start_time",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "end_time",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/absences/{id}/cancel",
+      "method": "cancelAbsence",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Cancelar Ausencia",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la ausencia",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/expenses",
+      "method": "listCompanyExpenses",
+      "httpMethod": "get",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Listado de gastos",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "start",
+          "schema": "string",
+          "required": true,
+          "description": "Fecha de inicio, en formato YYYY-MM-DD (por ejemplo 2018-01-31)",
+          "example": "START"
+        },
+        {
+          "name": "end",
+          "schema": "string",
+          "required": true,
+          "description": "Fecha de fin, en formato YYYY-MM (por ejemplo 2018-02-04)",
+          "example": "END"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/clocking",
+      "method": "addAutoClocking",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Añadir fichaje auto",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "employees_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMPLOYEES_ID"
+        },
+        {
+          "name": "date",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "DATE"
+        },
+        {
+          "name": "tz",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TZ"
+        },
+        {
+          "name": "in",
+          "schema": "boolean",
+          "required": true,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "online",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "location",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "device_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "correlation_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/batch_clocking",
+      "method": "addBatchClocking",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Batch de fichajes automáticos",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/hours",
+      "method": "listHours",
+      "httpMethod": "get",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Listado de horas",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "start",
+          "schema": "string",
+          "required": true,
+          "description": "Mes de inicio, en formato YYYY-MM (por ejemplo 2018-01)",
+          "example": "START"
+        },
+        {
+          "name": "end",
+          "schema": "string",
+          "required": true,
+          "description": "Mes de fin, en formato YYYY-MM (por ejemplo 2018-01)",
+          "example": "END"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/hours",
+      "method": "addManualTimesheets",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Añadir fichajes manuales",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "employees_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "start_date",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "start_time",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "end_date",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "end_time",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "location_in",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "location_out",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/hours/{id}/cancel",
+      "method": "cancelEmployeeShift",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Cancelar fichaje",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "ID del fichaje",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/vacations",
+      "method": "listEmployeeBalances",
+      "httpMethod": "get",
+      "tag": "Saldo de Vacaciones",
+      "typeScriptTag": "saldoDeVacaciones",
+      "description": "Saldo de vacaciones",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/shifts",
+      "method": "listEmployeeShifts",
+      "httpMethod": "get",
+      "tag": "Turnos y horarios",
+      "typeScriptTag": "turnosYHorarios",
+      "description": "Planificación de jornadas y turnos de empleados",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "start",
+          "schema": "string",
+          "required": true,
+          "description": "Mes de inicio, en formato YYYY-MM (por ejemplo 2018-01)",
+          "example": "START"
+        },
+        {
+          "name": "end",
+          "schema": "string",
+          "required": true,
+          "description": "Mes de fin, en formato YYYY-MM (por ejemplo 2018-01)",
+          "example": "END"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/shifts",
+      "method": "addShiftsToEmployees",
+      "httpMethod": "post",
+      "tag": "Turnos y horarios",
+      "typeScriptTag": "turnosYHorarios",
+      "description": "Añadir listado de jornadas y turnos",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "start",
+          "schema": "string",
+          "required": true,
+          "description": "Mes de inicio, en formato YYYY-MM (por ejemplo 2018-01)",
+          "example": "START"
+        },
+        {
+          "name": "end",
+          "schema": "string",
+          "required": true,
+          "description": "Mes de fin, en formato YYYY-MM (por ejemplo 2018-01)",
+          "example": "END"
+        },
+        {
+          "name": "employees_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "shifts",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "sequences",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/schedules",
+      "method": "listEmployeeSchedules",
+      "httpMethod": "get",
+      "tag": "Turnos y horarios",
+      "typeScriptTag": "turnosYHorarios",
+      "description": "Calendario del empleado",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "start",
+          "schema": "string",
+          "required": false,
+          "description": "Fecha de inicio en formato timestamp (\"2021-01-01\" o \"2021-01-01T00:00:00Z\"). Se inicializa por defecto a \"hoy\"."
+        },
+        {
+          "name": "end",
+          "schema": "string",
+          "required": false,
+          "description": "Fecha de fin en formato timestamp (\"2021-01-01\" o \"2021-01-01T00:00:00Z\"). Se inicializa por defecto a \"hoy+6 días\""
+        },
+        {
+          "name": "modifiedSince",
+          "schema": "string",
+          "required": false,
+          "description": "Fecha de última modificación en formato timestamp, para actualizaciones incrementales. El cliente debe soportar que se devuelvan datos aunque no haya habido cambios."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/{company_id}/documents",
+      "method": "consultarFiltrado",
+      "httpMethod": "post",
+      "tag": "Documentos",
+      "typeScriptTag": "documentos",
+      "description": "Consulta de documentos",
+      "parameters": [
+        {
+          "name": "companyId",
+          "schema": "string",
+          "required": true,
+          "description": "ID de la sociedad",
+          "example": "COMPANY_ID"
+        },
+        {
+          "name": "dates",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "nationalId",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "type",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/webhooks/employees",
+      "method": "notifyChanges",
+      "httpMethod": "post",
+      "tag": "Empleados",
+      "typeScriptTag": "empleados",
+      "description": "Notificaciones sobre empleados",
+      "parameters": [
+        {
+          "name": "type",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Es obligatorio responder con 200 OK, en caso contrario el evento se encolará. El resto de la respuesta se ignorará."
+        }
+      ]
+    },
+    {
+      "url": "/webhooks/absences",
+      "method": "notifyAbsences",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Notificaciones sobre ausencias",
+      "parameters": [
+        {
+          "name": "type",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Es obligatorio responder con 200 OK, en caso contrario el evento se encolará. El resto de la respuesta se ignorará."
+        }
+      ]
+    },
+    {
+      "url": "/webhooks/hours",
+      "method": "notifyWorkHours",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Notificaciones sobre horas de trabajo",
+      "parameters": [
+        {
+          "name": "type",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Es obligatorio responder con 200 OK, en caso contrario el evento se encolará. El resto de la respuesta se ignorará."
+        }
+      ]
+    },
+    {
+      "url": "/webhooks/expenses",
+      "method": "notifyExpenses",
+      "httpMethod": "post",
+      "tag": "Trámites",
+      "typeScriptTag": "trámites",
+      "description": "Notificaciones sobre gastos, dietas y kilometrajes",
+      "parameters": [
+        {
+          "name": "type",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Es obligatorio responder con 200 OK, en caso contrario el evento se encolará. El resto de la respuesta se ignorará."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "TramitApp: HR Management App for time-saving, cloud-based employee management. Real-time tracking, leave, payroll, expenses, and more. Focus on employee experience. Secure, legally compliant, integrates with APIs. No maintenance costs, paperless, supports payroll integration. TramitApp's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tramitapp/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tramitapp/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/tramitapp/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tramitapp/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tramitapp/favicon.png",
+  "clientNameCamelCase": "tramitApp",
+  "lastUpdated": "2024-03-28T22:19:23.800Z",
+  "typescriptSdkUsageCode": "import { TramitApp } from 'tramit-app-typescript-sdk';\n\nconst tramitApp = new TramitApp()",
+  "typescriptSdkFirstRequestCode": "// Listado de sociedades\nconst listadoSociedadesResponse = tramitApp.sociedades.listadoSociedades()",
+  "fixedSpecFileName": "tramit-app-fixed-spec.yaml"
+}

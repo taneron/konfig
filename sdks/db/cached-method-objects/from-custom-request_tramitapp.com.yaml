@@ -1,0 +1,1290 @@
+hash: a576f4643e0add7dc835854d40a8d2b68d41b10150f25bd4d22f800d985bd421
+methodObjects:
+  - url: /companies
+    method: listadoSociedades
+    httpMethod: get
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Listado de sociedades
+    parameters:
+      - name: modifiedSince
+        schema: string
+        required: false
+        description: >-
+          Fecha de última modificación en formato timestamp, para
+          actualizaciones incrementales. El cliente debe soportar que se
+          devuelvan datos aunque no haya habido cambios.
+      - name: columns
+        schema: string
+        required: false
+        description: >
+          Lista de campos a proyectar (https://rrhh.tramitapp.com/doc en la
+          respuesta. Por ejemplo, el parámetro
+          "columns=_id&columns=correlation_id" proyectará el documento y solo
+          recuperará objetos con el siguiente contenido
+
+          ```
+
+          {_id:"someid", correlation_id:"some_correlation_id"}
+
+          ```
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /companies/{id}
+    method: consultarPorId
+    httpMethod: get
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Consultar sociedad por ID
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/workplaces
+    method: addWorkplace
+    httpMethod: post
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Crear centro de trabajo
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: correlation_id
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: address
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/workplaces/{workplace_id}
+    method: updateWorkplace
+    httpMethod: post
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Actualizar centro de trabajo
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: workplaceId
+        schema: string
+        required: true
+        description: ID del centro de trabajo
+        example: WORKPLACE_ID
+      - name: _id
+        schema: string
+        required: true
+        description: ''
+        example: _ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/teams
+    method: addTeam
+    httpMethod: post
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Crear equipo
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: correlation_id
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: is_collective
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/teams/{team_id}
+    method: updateTeam
+    httpMethod: post
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Actualizar equipo
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: teamId
+        schema: string
+        required: true
+        description: ID del equipo
+        example: TEAM_ID
+      - name: _id
+        schema: string
+        required: true
+        description: ''
+        example: _ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/projects
+    method: addProject
+    httpMethod: post
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Crear proyecto
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: description
+        schema: string
+        required: true
+        description: ''
+        example: DESCRIPTION
+      - name: accountProject
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNTPROJECT
+      - name: locations
+        schema: array
+        required: false
+        description: ''
+      - name: teams
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/projects/{project_id}
+    method: updateProjectInfo
+    httpMethod: post
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Actualizar proyecto
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: projectId
+        schema: string
+        required: true
+        description: ID del proyecto
+        example: PROJECT_ID
+      - name: _id
+        schema: string
+        required: true
+        description: ''
+        example: _ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/locations
+    method: updateLocation
+    httpMethod: post
+    tag: Sociedades
+    typeScriptTag: sociedades
+    description: Actualizar localizacion
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: locationId
+        schema: string
+        required: true
+        description: ID de la localización
+        example: LOCATION_ID
+      - name: _id
+        schema: string
+        required: true
+        description: ''
+        example: _ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/employees
+    method: obtenerListado
+    httpMethod: get
+    tag: Empleados
+    typeScriptTag: empleados
+    description: Listado de empleados
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: modifiedSince
+        schema: string
+        required: false
+        description: >-
+          Fecha de última modificación en formato timestamp, para
+          actualizaciones incrementales. El cliente debe soportar que se
+          devuelvan datos aunque no haya habido cambios.
+      - name: columns
+        schema: string
+        required: false
+        description: >
+          Lista de campos a proyectar (https://rrhh.tramitapp.com/doc en la
+          respuesta. Por ejemplo, el parámetro
+          "columns=_id&columns=correlation_id" proyectará el documento y solo
+          recuperará objetos con el siguiente contenido
+
+          ```
+
+          {_id:"someid", correlation_id:"some_correlation_id"}
+
+          ```
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/employees
+    method: contratarEmpleadoEnTramitApp
+    httpMethod: post
+    tag: Empleados
+    typeScriptTag: empleados
+    description: Contratar un empleado
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: correlation_id
+        schema: string
+        required: false
+        description: ''
+      - name: workplace_id
+        schema: string
+        required: true
+        description: ''
+        example: WORKPLACE_ID
+      - name: nationalId
+        schema: string
+        required: true
+        description: ''
+        example: NATIONALID
+      - name: ssn
+        schema: string
+        required: false
+        description: ''
+      - name: firstName
+        schema: string
+        required: true
+        description: ''
+        example: FIRSTNAME
+      - name: lastName
+        schema: string
+        required: true
+        description: ''
+        example: LASTNAME
+      - name: lastName2
+        schema: string
+        required: false
+        description: ''
+      - name: birthday
+        schema: string
+        required: false
+        description: ''
+      - name: start_day_in_company
+        schema: string
+        required: false
+        description: ''
+      - name: gender
+        schema: string
+        required: false
+        description: ''
+      - name: nationality
+        schema: string
+        required: false
+        description: ''
+      - name: civil_status
+        schema: string
+        required: false
+        description: ''
+      - name: education
+        schema: string
+        required: false
+        description: ''
+      - name: contract_code
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_CODE
+      - name: contract_date
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_DATE
+      - name: contract_end_date
+        schema: string
+        required: false
+        description: ''
+      - name: gross_salary
+        schema: number
+        required: false
+        description: ''
+      - name: nationalId_expiration_date
+        schema: string
+        required: false
+        description: ''
+      - name: disability
+        schema: boolean
+        required: false
+        description: ''
+      - name: degree_disability_detail
+        schema: number
+        required: false
+        description: ''
+      - name: expiration_disability_date
+        schema: string
+        required: false
+        description: ''
+      - name: is_permanent_disability
+        schema: boolean
+        required: false
+        description: ''
+      - name: contribution_account
+        schema: string
+        required: false
+        description: ''
+      - name: trial_period
+        schema: string
+        required: false
+        description: ''
+      - name: category
+        schema: string
+        required: false
+        description: ''
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: province
+        schema: string
+        required: false
+        description: ''
+      - name: city
+        schema: string
+        required: false
+        description: ''
+      - name: address
+        schema: string
+        required: false
+        description: ''
+      - name: zip_code
+        schema: string
+        required: false
+        description: ''
+      - name: iban
+        schema: string
+        required: false
+        description: ''
+      - name: calendar_name
+        schema: string
+        required: false
+        description: ''
+      - name: calendar_correlation_id
+        schema: string
+        required: false
+        description: ''
+      - name: start_clocking_from
+        schema: string
+        required: false
+        description: ''
+      - name: create_user
+        schema: boolean
+        required: false
+        description: ''
+      - name: direct_reports_to
+        schema: string
+        required: false
+        description: ''
+      - name: teams
+        schema: object
+        required: false
+        description: ''
+      - name: employment_periods
+        schema: array
+        required: false
+        description: ''
+      - name: workplace_history
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/employees/{id}
+    method: consultarPorId
+    httpMethod: get
+    tag: Empleados
+    typeScriptTag: empleados
+    description: Consultar empleado por ID
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: id
+        schema: string
+        required: true
+        description: ID del empleado
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/employees/{id}
+    method: actualizarPorId
+    httpMethod: put
+    tag: Empleados
+    typeScriptTag: empleados
+    description: Actualizar empleado por ID
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: id
+        schema: string
+        required: true
+        description: ID del empleado
+        example: ID
+      - name: create_user
+        schema: boolean
+        required: false
+        description: ''
+      - name: reset_user
+        schema: boolean
+        required: false
+        description: ''
+      - name: delete_user
+        schema: boolean
+        required: false
+        description: ''
+      - name: hire_again
+        schema: boolean
+        required: false
+        description: ''
+      - name: calendar_name
+        schema: string
+        required: false
+        description: ''
+      - name: calendar_correlation_id
+        schema: string
+        required: false
+        description: ''
+      - name: start_clocking_from
+        schema: string
+        required: false
+        description: ''
+      - name: employment_periods
+        schema: array
+        required: false
+        description: ''
+      - name: workplace_history
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/employees/{id}/fire
+    method: darDeBaja
+    httpMethod: post
+    tag: Empleados
+    typeScriptTag: empleados
+    description: Dar de baja un empleado
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: id
+        schema: string
+        required: true
+        description: ID del empleado
+        example: ID
+      - name: _id
+        schema: string
+        required: true
+        description: ''
+        example: _ID
+      - name: firing_type
+        schema: string
+        required: true
+        description: ''
+        example: FIRING_TYPE
+      - name: fire_date
+        schema: string
+        required: true
+        description: ''
+        example: FIRE_DATE
+      - name: delete_user
+        schema: boolean
+        required: false
+        description: ''
+        default: false
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/employees/{id}/renew
+    method: renewContract
+    httpMethod: post
+    tag: Empleados
+    typeScriptTag: empleados
+    description: Renovar contrato
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: id
+        schema: string
+        required: true
+        description: ID del empleado
+        example: ID
+      - name: _id
+        schema: string
+        required: true
+        description: ''
+        example: _ID
+      - name: renewal_type
+        schema: string
+        required: true
+        description: ''
+        example: RENEWAL_TYPE
+      - name: contract_code
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_CODE
+      - name: end_date
+        schema: string
+        required: false
+        description: ''
+      - name: change_date
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/absences
+    method: listAbsences
+    httpMethod: get
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Listado de ausencias
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: start
+        schema: string
+        required: true
+        description: Día de inicio, en formato YYYY-MM-DD (por ejemplo 2018-01-01)
+        example: START
+      - name: end
+        schema: string
+        required: true
+        description: Día de fin, en formato YYYY-MM-DD (por ejemplo 2018-01-01)
+        example: END
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/absences
+    method: addAbsences
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Añadir ausencias
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: employees_id
+        schema: string
+        description: ''
+      - name: type
+        schema: string
+        description: ''
+      - name: subtype
+        schema: string
+        description: ''
+      - name: start_date
+        schema: string
+        description: ''
+      - name: end_date
+        schema: string
+        description: ''
+      - name: start_time
+        schema: string
+        description: ''
+      - name: end_time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/absences/{id}/cancel
+    method: cancelAbsence
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Cancelar Ausencia
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: id
+        schema: string
+        required: true
+        description: ID de la ausencia
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/expenses
+    method: listCompanyExpenses
+    httpMethod: get
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Listado de gastos
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: start
+        schema: string
+        required: true
+        description: Fecha de inicio, en formato YYYY-MM-DD (por ejemplo 2018-01-31)
+        example: START
+      - name: end
+        schema: string
+        required: true
+        description: Fecha de fin, en formato YYYY-MM (por ejemplo 2018-02-04)
+        example: END
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/clocking
+    method: addAutoClocking
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Añadir fichaje auto
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: employees_id
+        schema: string
+        required: true
+        description: ''
+        example: EMPLOYEES_ID
+      - name: date
+        schema: string
+        required: true
+        description: ''
+        example: DATE
+      - name: tz
+        schema: string
+        required: true
+        description: ''
+        example: TZ
+      - name: in
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: online
+        schema: boolean
+        required: false
+        description: ''
+      - name: location
+        schema: object
+        required: false
+        description: ''
+      - name: device_id
+        schema: string
+        required: false
+        description: ''
+      - name: correlation_id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/batch_clocking
+    method: addBatchClocking
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Batch de fichajes automáticos
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/hours
+    method: listHours
+    httpMethod: get
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Listado de horas
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: start
+        schema: string
+        required: true
+        description: Mes de inicio, en formato YYYY-MM (por ejemplo 2018-01)
+        example: START
+      - name: end
+        schema: string
+        required: true
+        description: Mes de fin, en formato YYYY-MM (por ejemplo 2018-01)
+        example: END
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/hours
+    method: addManualTimesheets
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Añadir fichajes manuales
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: description
+        schema: string
+        description: ''
+      - name: employees_id
+        schema: string
+        description: ''
+      - name: start_date
+        schema: string
+        description: ''
+      - name: start_time
+        schema: string
+        description: ''
+      - name: end_date
+        schema: string
+        description: ''
+      - name: end_time
+        schema: string
+        description: ''
+      - name: location_in
+        schema: string
+        description: ''
+      - name: location_out
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/hours/{id}/cancel
+    method: cancelEmployeeShift
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Cancelar fichaje
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: id
+        schema: string
+        required: true
+        description: ID del fichaje
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/vacations
+    method: listEmployeeBalances
+    httpMethod: get
+    tag: Saldo de Vacaciones
+    typeScriptTag: saldoDeVacaciones
+    description: Saldo de vacaciones
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/shifts
+    method: listEmployeeShifts
+    httpMethod: get
+    tag: Turnos y horarios
+    typeScriptTag: turnosYHorarios
+    description: Planificación de jornadas y turnos de empleados
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: start
+        schema: string
+        required: true
+        description: Mes de inicio, en formato YYYY-MM (por ejemplo 2018-01)
+        example: START
+      - name: end
+        schema: string
+        required: true
+        description: Mes de fin, en formato YYYY-MM (por ejemplo 2018-01)
+        example: END
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/shifts
+    method: addShiftsToEmployees
+    httpMethod: post
+    tag: Turnos y horarios
+    typeScriptTag: turnosYHorarios
+    description: Añadir listado de jornadas y turnos
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: start
+        schema: string
+        required: true
+        description: Mes de inicio, en formato YYYY-MM (por ejemplo 2018-01)
+        example: START
+      - name: end
+        schema: string
+        required: true
+        description: Mes de fin, en formato YYYY-MM (por ejemplo 2018-01)
+        example: END
+      - name: employees_id
+        schema: string
+        description: ''
+      - name: shifts
+        schema: array
+        description: ''
+      - name: sequences
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/schedules
+    method: listEmployeeSchedules
+    httpMethod: get
+    tag: Turnos y horarios
+    typeScriptTag: turnosYHorarios
+    description: Calendario del empleado
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: start
+        schema: string
+        required: false
+        description: >-
+          Fecha de inicio en formato timestamp ("2021-01-01" o
+          "2021-01-01T00:00:00Z"). Se inicializa por defecto a "hoy".
+      - name: end
+        schema: string
+        required: false
+        description: >-
+          Fecha de fin en formato timestamp ("2021-01-01" o
+          "2021-01-01T00:00:00Z"). Se inicializa por defecto a "hoy+6 días"
+      - name: modifiedSince
+        schema: string
+        required: false
+        description: >-
+          Fecha de última modificación en formato timestamp, para
+          actualizaciones incrementales. El cliente debe soportar que se
+          devuelvan datos aunque no haya habido cambios.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{company_id}/documents
+    method: consultarFiltrado
+    httpMethod: post
+    tag: Documentos
+    typeScriptTag: documentos
+    description: Consulta de documentos
+    parameters:
+      - name: companyId
+        schema: string
+        required: true
+        description: ID de la sociedad
+        example: COMPANY_ID
+      - name: dates
+        schema: object
+        description: ''
+      - name: nationalId
+        schema: array
+        description: ''
+      - name: type
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /webhooks/employees
+    method: notifyChanges
+    httpMethod: post
+    tag: Empleados
+    typeScriptTag: empleados
+    description: Notificaciones sobre empleados
+    parameters:
+      - name: type
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >-
+          Es obligatorio responder con 200 OK, en caso contrario el evento se
+          encolará. El resto de la respuesta se ignorará.
+  - url: /webhooks/absences
+    method: notifyAbsences
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Notificaciones sobre ausencias
+    parameters:
+      - name: type
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >-
+          Es obligatorio responder con 200 OK, en caso contrario el evento se
+          encolará. El resto de la respuesta se ignorará.
+  - url: /webhooks/hours
+    method: notifyWorkHours
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Notificaciones sobre horas de trabajo
+    parameters:
+      - name: type
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >-
+          Es obligatorio responder con 200 OK, en caso contrario el evento se
+          encolará. El resto de la respuesta se ignorará.
+  - url: /webhooks/expenses
+    method: notifyExpenses
+    httpMethod: post
+    tag: Trámites
+    typeScriptTag: trámites
+    description: Notificaciones sobre gastos, dietas y kilometrajes
+    parameters:
+      - name: type
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >-
+          Es obligatorio responder con 200 OK, en caso contrario el evento se
+          encolará. El resto de la respuesta se ignorará.
+numberOfSchemas: 51
+apiDescription: >
+  # Introducción
+
+  Aquí se describen los recursos que conforman el API de TramitApp. Mediante él,
+  podrás acceder a la información
+
+  que gestiona TramitApp de manera automática, permitiendo coordinar tus
+  sistemas informáticos existentes con nuestra plataforma.
+
+
+  Mediante nuestro API, podrás consultar la información relativa a los trámites
+  de tus empleados, como por ejemplo,
+
+  las ausencias que han tenido, sean por vacaciones, permisos, bajas médicas, o
+  simplemente porque trabajaron desde casa.
+
+
+  También podrás acceder la información relativa a los gastos, dietas y
+  kilometrajes que te hayan pasado, así como las imputaciones de horas normales
+  y extras
+
+  que hayan realizado desde TramitApp para poder integrarlo directamente en tus
+  sistemas contables de forma sencilla y evitar procesos manuales
+
+
+  Te proporcionamos además una información detallada de la situación laboral de
+  tus empleados, los tipos de contratos,
+
+  los saldos de vacaciones, y mucho más.
+
+
+  Si lo deseas, también podrás automatizar las altas y bajas de empleados en
+  nuestro sistema directamente desde nuestro
+
+  API, evitando así duplicidades y mejorando tu eficiencia en los procesos de
+  incorporación y salida de la compañía.
+
+
+  # Comenzando a utilizar el API de TramitApp
+
+  Pensamos que la mejor forma de aprender a utilizar un API es experimentando un
+  poco, por lo que vamos a darte
+
+  unos ejemplos que te permitan conocer cómo funcionamos y te ayuden a acelerar
+  al máximo tus desarrollos.
+
+
+  ## Hola TramitApp!
+
+  La mejor forma de empezar a familiarizarte con nuestro API es mediante una
+  herramienta sencilla como
+
+  [curl](https://github.com/curl/curl). Por supuesto, puedes otras herramientas
+  como [PostMan](https://www.getpostman.com/)
+
+  o directamente utilizar tu lenguaje de programación favorito.
+
+
+  Veamos un ejemplo que nos proporciona la lista de compañías a la que tu
+  usuario tiene acceso:
+
+
+  ```curl -H 'auth: YOUR_AUTH_KEY'
+  https://rrhh.tramitapp.com/tramitapi/companies```
+
+
+  La respuesta será un listado en formato JSON de las empresas parecido a este.
+
+  ```
+    [{
+      "_id": "69bdb59e00aa129e8766ec0e",
+      "name": "Tu empresa",
+      "nationalId": "B16159433",
+      "workplaces": [{
+        "_id": "592ff42760804fd378e982ca", "name": "Oficina Central"
+      }]
+    }]
+
+  ```
+
+   ## Mis empleados
+   Para consultar un listado de tus empleados, y en general para todas las operaciones
+   excepto para el listado de compañías, nos tendrás que indicar qué empresa quieres consultar.
+
+   ```curl -H 'auth: YOUR_AUTH_KEY' https://rrhh.tramitapp.com/tramitapi/{company._id}/employees```
+
+  La respuesta será un listado de los empleados de la empresa, similar al
+  siguiente:
+
+  ```
+
+  [{ _id: '5b7fcf3ef9ad0b3f65c4b91f',
+       companies_id: '57bdb59e00aa129e8766ec0e',
+       nationalId: '00000001R',
+       ssn: '281234567840',
+       lastName: 'Arranz',
+       lastName2: 'Perez',
+       firstName: 'Paco',
+       birthday: '1982-04-01',
+       gender: 'man',
+       nationality: 'Spanish',
+       education: null,
+       contract_type: 'temporal_contract',
+       contract_date: '2016-11-19',
+       contract_end_date: null,
+       trial_period: '12',
+       category: 'ppopo',
+       gross_salary: 18000.0,
+       email: 'test0.9794606036734297@domain.com',
+       province: '28',
+       city: 'madrid',
+       address: 'c/ bracamonte',
+       zip_code: '28051',
+       iban: 'ES6398966338433871330966' }]
+
+  ```
+
+  ## Nuevo empleado
+
+
+  Para 'contratar' un empleado en TramitApp bastará con que nos hagas un POST
+  con los datos correspondientes.
+
+  De nuevo, es necesario especificar el id de la empresa a la que pertenecerá el
+  empleado.
+
+
+  ```curl -d "@employee_example.json" -H 'auth: YOUR_AUTH_KEY' -X POST
+  https://rrhh.tramitapp.com/tramitapi/{company._id}/employees```
+
+
+  La respuesta será el empleado ya creado, similar a esta:
+
+  ```
+              {_id: '5b7fcf3ef9ad0b3f65c4b91f',
+               companies_id: '57bdb59e00aa129e8766ec0e',
+               nationalId: '00000001R',
+               ssn: '281234567840',
+               lastName: 'Arranz',
+               lastName2: 'Perez',
+               firstName: 'Paco',
+               birthday: '1982-04-01',
+               gender: 'man',
+               nationality: 'Spanish',
+               contract_type: 'temporal_contract',
+               contract_date: '2016-11-19',
+               contract_end_date: null,
+               email: 'test0.9794606036734297@domain.com',
+               iban: 'ES6398966338433871330966' }
+   ```
+
+
+
+  # Qué necesito para empezar a usar el API?
+
+  Como has podido ver en los ejemplos anteriores, para poder acceder al API de
+  TramitApp
+   debes contar con una clave de API, que te proporcionará nuestro equipo de soporte.
+  Esta clave lleva asociada tu configuración de seguridad y por tanto deberá
+  viajar en las cabeceras HTTP de todas las peticiones:
+
+
+  ```
+
+  > GET /tramitapi/companies HTTP/1.1
+
+  > Host:  rrhh.tramitapp.com
+
+  > Accept: */*
+
+  > auth: YOUR_AUTH_KEY
+
+  ```
