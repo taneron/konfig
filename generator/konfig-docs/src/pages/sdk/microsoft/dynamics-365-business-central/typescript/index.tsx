@@ -17,7 +17,7 @@ export default function MicrosoftDynamics365BusinessCentralTypeScriptSdk() {
       companyKebabCase="microsoft"
       clientNameCamelCase="microsoftDynamics365BusinessCentral"
       homepage="microsoft.com"
-      lastUpdated={new Date("2024-03-28T17:24:12.967Z")}
+      lastUpdated={new Date("2024-03-28T17:28:38.369Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/microsoft/dynamics-365-business-central/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
