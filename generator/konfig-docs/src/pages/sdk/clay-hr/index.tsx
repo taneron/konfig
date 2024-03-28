@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "ClayHR",
-    "numberOfMethods": 143,
+    "numberOfMethods": 142,
     "categories": [
       "hr",
       "human_resources",
@@ -24,7 +24,7 @@ const sdks = [
   },
   {
     "name": "ClayHR",
-    "numberOfMethods": 143,
+    "numberOfMethods": 142,
     "categories": [
       "hr",
       "human_resources",
@@ -44,7 +44,7 @@ const sdks = [
   },
   {
     "name": "ClayHR",
-    "numberOfMethods": 143,
+    "numberOfMethods": 142,
     "categories": [
       "hr",
       "human_resources",

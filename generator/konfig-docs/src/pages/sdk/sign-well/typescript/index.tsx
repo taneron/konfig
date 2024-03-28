@@ -24,7 +24,7 @@ Founder, SignWell`}
       companyKebabCase="sign-well"
       clientNameCamelCase="signWell"
       homepage="signwell.com"
-      lastUpdated={new Date("2024-03-27T04:52:35.159Z")}
+      lastUpdated={new Date("2024-03-28T16:25:40.616Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/signwell/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -571,6 +571,12 @@ Founder, SignWell`}
         "schema": "array",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "labels",
+        "schema": "array",
+        "required": false,
+        "description": ""
       }
     ],
     "responses": [
@@ -773,6 +779,12 @@ Founder, SignWell`}
         "schema": "array",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "labels",
+        "schema": "array",
+        "required": false,
+        "description": ""
       }
     ],
     "responses": [
@@ -895,6 +907,11 @@ Founder, SignWell`}
       {
         "name": "metadata",
         "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "labels",
+        "schema": "array",
         "description": ""
       }
     ],
@@ -1099,6 +1116,12 @@ Founder, SignWell`}
         "schema": "object",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "labels",
+        "schema": "array",
+        "required": false,
+        "description": ""
       }
     ],
     "responses": [
@@ -1240,6 +1263,12 @@ Founder, SignWell`}
       },
       {
         "name": "attachment_requests",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "labels",
         "schema": "array",
         "required": false,
         "description": ""
@@ -1416,8 +1445,8 @@ Founder, SignWell`}
       apiVersion="1"
       endpoints={17}
       sdkMethods={23}
-      schemas={127}
-      parameters={140}
+      schemas={132}
+      parameters={145}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/signwell/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/signwell/openapi.yaml"

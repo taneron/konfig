@@ -19,7 +19,7 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
       companyKebabCase="hi-bob"
       clientNameCamelCase="hiBob"
       homepage="hibob.com"
-      lastUpdated={new Date("2024-03-27T20:13:36.016Z")}
+      lastUpdated={new Date("2024-03-28T16:25:40.616Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -92,7 +92,7 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
       {
         "name": "humanReadable",
         "schema": "boolean",
-        "description": "Whether to supply humanReadable values in JSON instead of machine-readable format (default).",
+        "description": "Whether to supply humanReadable values in JSON instead of machine-readable format (https://apidocs.hibob.com/reference/getting-started-1.",
         "default": false
       },
       {
@@ -175,12 +175,12 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
         "name": "fields",
         "schema": "array",
         "required": true,
-        "description": "Whether to supply fields (paths) instead of empty list as a default in order  to not exceed data permitted."
+        "description": "Whether to supply fields (https://apidocs.hibob.com/reference/getting-started-1 instead of empty list as a default in order  to not exceed data permitted."
       },
       {
         "name": "humanReadable",
         "schema": "boolean",
-        "description": "Whether to supply humanReadable values in JSON instead of machine-readable (default) format.",
+        "description": "Whether to supply humanReadable values in JSON instead of machine-readable (https://apidocs.hibob.com/reference/getting-started-1 format.",
         "default": false
       },
       {
@@ -2065,6 +2065,75 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
     ]
   },
   {
+    "url": "/hiring/job-ads",
+    "method": "listActiveJobAds",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Hiring",
+    "typeScriptTag": "hiring",
+    "description": "Get a list of all active job ads.",
+    "parameters": [
+      {
+        "name": "preferredLanguage",
+        "schema": "string",
+        "description": "Preferred language code for the language results will be returned in if available, otherwise language specified on the job ad will be used."
+      },
+      {
+        "name": "fields",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "filters",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/hiring/job-ads/{id}",
+    "method": "jobAdDetails",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Hiring",
+    "typeScriptTag": "hiring",
+    "description": "Get the details of the job ad.",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "Job Ad ID.",
+        "example": "ID"
+      },
+      {
+        "name": "preferredLanguage",
+        "schema": "string",
+        "description": "Preferred language code for the language results will be returned in if available, otherwise language specified on the job ad will be used."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/people/{id}/work",
     "method": "getWorkHistory",
     "httpMethod": HttpMethodsEnum.GET,
@@ -2795,10 +2864,10 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
       apiTitle="Bob API"
       apiBaseUrl="https://api.hibob.com/v1"
       apiVersion="1.0.0"
-      endpoints={70}
-      sdkMethods={91}
-      schemas={93}
-      parameters={210}
+      endpoints={72}
+      sdkMethods={93}
+      schemas={97}
+      parameters={215}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hibob/openapi.yaml"

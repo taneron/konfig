@@ -24,7 +24,7 @@ Completely cloud based application available via your favorite web browsers and 
       companyKebabCase="clay-hr"
       clientNameCamelCase="clayHr"
       homepage="clayhr.com"
-      lastUpdated={new Date("2024-03-25T23:38:15.229Z")}
+      lastUpdated={new Date("2024-03-28T16:25:40.616Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clayhr/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -6348,41 +6348,6 @@ Completely cloud based application available via your favorite web browsers and 
     ]
   },
   {
-    "url": "/deletegoal",
-    "method": "deleteGoal",
-    "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Goals",
-    "typeScriptTag": "goals",
-    "description": "Delete Goal",
-    "parameters": [
-      {
-        "name": "goalId",
-        "schema": "integer",
-        "required": true,
-        "description": "GoalId to delete a goal",
-        "example": 0
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": ""
-      },
-      {
-        "statusCode": "403",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      }
-    ]
-  },
-  {
     "url": "/invoice",
     "method": "getByProjectId",
     "httpMethod": HttpMethodsEnum.GET,
@@ -7336,10 +7301,10 @@ Completely cloud based application available via your favorite web browsers and 
       apiTitle="Expense Reports"
       apiBaseUrl="https://acmecompany.bizmerlin.net/rm/api"
       apiVersion="1.0"
-      endpoints={138}
-      sdkMethods={143}
-      schemas={425}
-      parameters={921}
+      endpoints={137}
+      sdkMethods={142}
+      schemas={421}
+      parameters={918}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clayhr/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/clayhr/openapi.yaml"

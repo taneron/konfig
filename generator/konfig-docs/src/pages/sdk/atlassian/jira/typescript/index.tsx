@@ -17,7 +17,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       companyKebabCase="atlassian"
       clientNameCamelCase="atlassianJira"
       homepage="www.atlassian.com/software/jira"
-      lastUpdated={new Date("2024-03-27T06:26:22.306Z")}
+      lastUpdated={new Date("2024-03-28T16:25:40.616Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/atlassian/jira/favicon.png"
       // Missing contactUrl
       contactEmail="ecosystem@atlassian.com"
@@ -101,8 +101,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/app/field/value",
     "method": "updateValues",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Issue custom field values (apps)",
-    "typeScriptTag": "issueCustomFieldValuesApps",
+    "tag": "Issue custom field values (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldValuesHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Update custom fields",
     "parameters": [
       {
@@ -140,8 +140,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/app/field/{fieldIdOrKey}/context/configuration",
     "method": "getContextConfiguration",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Issue custom field configuration (apps)",
-    "typeScriptTag": "issueCustomFieldConfigurationApps",
+    "tag": "Issue custom field configuration (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldConfigurationHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Get custom field configurations",
     "parameters": [
       {
@@ -216,8 +216,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/app/field/{fieldIdOrKey}/context/configuration",
     "method": "updateContextConfiguration",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Issue custom field configuration (apps)",
-    "typeScriptTag": "issueCustomFieldConfigurationApps",
+    "tag": "Issue custom field configuration (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldConfigurationHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Update custom field configurations",
     "parameters": [
       {
@@ -261,8 +261,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/app/field/{fieldIdOrKey}/value",
     "method": "updateValue",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Issue custom field values (apps)",
-    "typeScriptTag": "issueCustomFieldValuesApps",
+    "tag": "Issue custom field values (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldValuesHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Update custom field value",
     "parameters": [
       {
@@ -2531,9 +2531,9 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/data-policy",
     "method": "getDataPolicyWorkspace",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "App data policies (EAP)",
-    "typeScriptTag": "appDataPoliciesEap",
-    "description": "Get data policy for the workspace (EAP)",
+    "tag": "App data policies (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "appDataPoliciesHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
+    "description": "Get data policy for the workspace (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [],
     "responses": [
       {
@@ -2554,9 +2554,9 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/data-policy/project",
     "method": "getDataPolicyProjects",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "App data policies (EAP)",
-    "typeScriptTag": "appDataPoliciesEap",
-    "description": "Get data policy for projects (EAP)",
+    "tag": "App data policies (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "appDataPoliciesHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
+    "description": "Get data policy for projects (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "ids",
@@ -3544,7 +3544,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Issue custom field options",
     "typeScriptTag": "issueCustomFieldOptions",
-    "description": "Get custom field options (context)",
+    "description": "Get custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "fieldId",
@@ -3613,7 +3613,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Issue custom field options",
     "typeScriptTag": "issueCustomFieldOptions",
-    "description": "Create custom field options (context)",
+    "description": "Create custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "fieldId",
@@ -3664,7 +3664,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Issue custom field options",
     "typeScriptTag": "issueCustomFieldOptions",
-    "description": "Update custom field options (context)",
+    "description": "Update custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "fieldId",
@@ -3715,7 +3715,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Issue custom field options",
     "typeScriptTag": "issueCustomFieldOptions",
-    "description": "Reorder custom field options (context)",
+    "description": "Reorder custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "fieldId",
@@ -3779,7 +3779,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Issue custom field options",
     "typeScriptTag": "issueCustomFieldOptions",
-    "description": "Delete custom field options (context)",
+    "description": "Delete custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "fieldId",
@@ -4088,8 +4088,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/field/{fieldKey}/option",
     "method": "getAllIssueFieldOptions",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Issue custom field options (apps)",
-    "typeScriptTag": "issueCustomFieldOptionsApps",
+    "tag": "Issue custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldOptionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Get all issue field options",
     "parameters": [
       {
@@ -4108,7 +4108,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "fieldKey",
         "schema": "string",
         "required": true,
-        "description": "The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
+        "description": "The field key is specified in the following format: **$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about\\_\\_$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
         "example": "FIELDKEY"
       }
     ],
@@ -4131,15 +4131,15 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/field/{fieldKey}/option",
     "method": "createFieldOption",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Issue custom field options (apps)",
-    "typeScriptTag": "issueCustomFieldOptionsApps",
+    "tag": "Issue custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldOptionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Create issue field option",
     "parameters": [
       {
         "name": "fieldKey",
         "schema": "string",
         "required": true,
-        "description": "The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
+        "description": "The field key is specified in the following format: **$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about\\_\\_$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
         "example": "FIELDKEY"
       },
       {
@@ -4185,8 +4185,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/field/{fieldKey}/option/suggestions/edit",
     "method": "getSelectableIssueFieldOptions",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Issue custom field options (apps)",
-    "typeScriptTag": "issueCustomFieldOptionsApps",
+    "tag": "Issue custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldOptionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Get selectable issue field options",
     "parameters": [
       {
@@ -4210,7 +4210,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "fieldKey",
         "schema": "string",
         "required": true,
-        "description": "The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
+        "description": "The field key is specified in the following format: **$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about\\_\\_$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
         "example": "FIELDKEY"
       }
     ],
@@ -4233,8 +4233,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/field/{fieldKey}/option/suggestions/search",
     "method": "getVisibleIssueFieldOptions",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Issue custom field options (apps)",
-    "typeScriptTag": "issueCustomFieldOptionsApps",
+    "tag": "Issue custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldOptionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Get visible issue field options",
     "parameters": [
       {
@@ -4258,7 +4258,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "fieldKey",
         "schema": "string",
         "required": true,
-        "description": "The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
+        "description": "The field key is specified in the following format: **$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about\\_\\_$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
         "example": "FIELDKEY"
       }
     ],
@@ -4281,15 +4281,15 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/field/{fieldKey}/option/{optionId}",
     "method": "deleteOption",
     "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Issue custom field options (apps)",
-    "typeScriptTag": "issueCustomFieldOptionsApps",
+    "tag": "Issue custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldOptionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Delete issue field option",
     "parameters": [
       {
         "name": "fieldKey",
         "schema": "string",
         "required": true,
-        "description": "The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
+        "description": "The field key is specified in the following format: **$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about\\_\\_$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
         "example": "FIELDKEY"
       },
       {
@@ -4323,15 +4323,15 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/field/{fieldKey}/option/{optionId}",
     "method": "getIssueFieldOption",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Issue custom field options (apps)",
-    "typeScriptTag": "issueCustomFieldOptionsApps",
+    "tag": "Issue custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldOptionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Get issue field option",
     "parameters": [
       {
         "name": "fieldKey",
         "schema": "string",
         "required": true,
-        "description": "The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
+        "description": "The field key is specified in the following format: **$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about\\_\\_$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
         "example": "FIELDKEY"
       },
       {
@@ -4365,15 +4365,15 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/field/{fieldKey}/option/{optionId}",
     "method": "updateOptionById",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "Issue custom field options (apps)",
-    "typeScriptTag": "issueCustomFieldOptionsApps",
+    "tag": "Issue custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldOptionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Update issue field option",
     "parameters": [
       {
         "name": "fieldKey",
         "schema": "string",
         "required": true,
-        "description": "The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
+        "description": "The field key is specified in the following format: **$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about\\_\\_$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
         "example": "FIELDKEY"
       },
       {
@@ -4433,8 +4433,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/field/{fieldKey}/option/{optionId}/issue",
     "method": "deselectOptionFromIssues",
     "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "Issue custom field options (apps)",
-    "typeScriptTag": "issueCustomFieldOptionsApps",
+    "tag": "Issue custom field options (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "issueCustomFieldOptionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Replace issue field option",
     "parameters": [
       {
@@ -4463,7 +4463,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "fieldKey",
         "schema": "string",
         "required": true,
-        "description": "The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
+        "description": "The field key is specified in the following format: **$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about\\_\\_$(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:\n\n *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.\n *  run [Get fields](https://dac-static.atlassian.com) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"`",
         "example": "FIELDKEY"
       },
       {
@@ -6815,7 +6815,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Issues",
     "typeScriptTag": "issues",
-    "description": "Archive issue(s) by JQL",
+    "description": "Archive issue(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about by JQL",
     "parameters": [
       {
         "name": "jql",
@@ -6852,7 +6852,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Issues",
     "typeScriptTag": "issues",
-    "description": "Archive issue(s) by issue ID/key",
+    "description": "Archive issue(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about by issue ID/key",
     "parameters": [
       {
         "name": "issueIdsOrKeys",
@@ -7277,7 +7277,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Issues",
     "typeScriptTag": "issues",
-    "description": "Unarchive issue(s) by issue keys/ID",
+    "description": "Unarchive issue(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about by issue keys/ID",
     "parameters": [
       {
         "name": "issueIdsOrKeys",
@@ -7397,7 +7397,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       {
         "name": "fields",
         "schema": "array",
-        "description": "A list of fields to return for the issue. This parameter accepts a comma-separated list. Use it to retrieve a subset of fields. Allowed values:\n\n *  `*all` Returns all fields.\n *  `*navigable` Returns navigable fields.\n *  Any issue field, prefixed with a minus to exclude.\n\nExamples:\n\n *  `summary,comment` Returns only the summary and comments fields.\n *  `-description` Returns all (default) fields except description.\n *  `*navigable,-comment` Returns all navigable fields except comment.\n\nThis parameter may be specified multiple times. For example, `fields=field1,field2& fields=field3`.\n\nNote: All fields are returned by default. This differs from [Search for issues using JQL (GET)](https://dac-static.atlassian.com) and [Search for issues using JQL (POST)](https://dac-static.atlassian.com) where the default is all navigable fields."
+        "description": "A list of fields to return for the issue. This parameter accepts a comma-separated list. Use it to retrieve a subset of fields. Allowed values:\n\n *  `*all` Returns all fields.\n *  `*navigable` Returns navigable fields.\n *  Any issue field, prefixed with a minus to exclude.\n\nExamples:\n\n *  `summary,comment` Returns only the summary and comments fields.\n *  `-description` Returns all (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about fields except description.\n *  `*navigable,-comment` Returns all navigable fields except comment.\n\nThis parameter may be specified multiple times. For example, `fields=field1,field2& fields=field3`.\n\nNote: All fields are returned by default. This differs from [Search for issues using JQL (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about](https://dac-static.atlassian.com) and [Search for issues using JQL (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about](https://dac-static.atlassian.com) where the default is all navigable fields."
       },
       {
         "name": "fieldsByKeys",
@@ -10029,7 +10029,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Issues",
     "typeScriptTag": "issues",
-    "description": "Export archived issue(s)",
+    "description": "Export archived issue(https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "archivedBy",
@@ -12459,7 +12459,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "JQL",
     "typeScriptTag": "jql",
-    "description": "Get field reference data (GET)",
+    "description": "Get field reference data (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [],
     "responses": [
       {
@@ -12478,7 +12478,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "JQL",
     "typeScriptTag": "jql",
-    "description": "Get field reference data (POST)",
+    "description": "Get field reference data (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "includeCollapsedFields",
@@ -12556,9 +12556,9 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/jql/function/computation",
     "method": "getPrecomputations",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "JQL functions (apps)",
-    "typeScriptTag": "jqlFunctionsApps",
-    "description": "Get precomputations (apps)",
+    "tag": "JQL functions (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "jqlFunctionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
+    "description": "Get precomputations (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "functionKey",
@@ -12610,9 +12610,9 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/jql/function/computation",
     "method": "updatePrecomputationValue",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "JQL functions (apps)",
-    "typeScriptTag": "jqlFunctionsApps",
-    "description": "Update precomputations (apps)",
+    "tag": "JQL functions (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "jqlFunctionsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
+    "description": "Update precomputations (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "values",
@@ -12885,7 +12885,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       {
         "name": "permissions",
         "schema": "string",
-        "description": "A list of permission keys. (Required) This parameter accepts a comma-separated list. To get the list of available permissions, use [Get all permissions](https://dac-static.atlassian.com).",
+        "description": "A list of permission keys. (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about This parameter accepts a comma-separated list. To get the list of available permissions, use [Get all permissions](https://dac-static.atlassian.com).",
         "example": "BROWSE_PROJECTS,EDIT_ISSUES"
       },
       {
@@ -14998,7 +14998,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The ID or (case-sensitive) key of the project.",
+        "description": "The ID or (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about key of the project.",
         "example": "PROJECTIDORKEY"
       },
       {
@@ -15076,7 +15076,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The project ID or (case-sensitive) key.",
+        "description": "The project ID or (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about key.",
         "example": "PROJECTIDORKEY"
       },
       {
@@ -15118,7 +15118,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The ID or (case-sensitive) key of the project.",
+        "description": "The ID or (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about key of the project.",
         "example": "PROJECTIDORKEY"
       },
       {
@@ -15175,7 +15175,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The ID or (case-sensitive) key of the project.",
+        "description": "The ID or (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about key of the project.",
         "example": "PROJECTIDORKEY"
       }
     ],
@@ -15206,7 +15206,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The project ID or project key (case-sensitive).",
+        "description": "The project ID or project key (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about.",
         "example": "PROJECTIDORKEY"
       }
     ],
@@ -15241,7 +15241,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The project ID or project key (case-sensitive).",
+        "description": "The project ID or project key (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about.",
         "example": "PROJECTIDORKEY"
       }
     ],
@@ -15272,7 +15272,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The project ID or project key (case-sensitive).",
+        "description": "The project ID or project key (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about.",
         "example": "PROJECTIDORKEY"
       },
       {
@@ -15337,7 +15337,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       {
         "name": "componentSource",
         "schema": "string",
-        "description": "The source of the components to return. Can be `jira` (default), `compass` or `auto`. When `auto` is specified, the API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira components. Defaults to `jira`.",
+        "description": "The source of the components to return. Can be `jira` (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about, `compass` or `auto`. When `auto` is specified, the API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira components. Defaults to `jira`.",
         "default": "jira"
       },
       {
@@ -15379,7 +15379,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       {
         "name": "componentSource",
         "schema": "string",
-        "description": "The source of the components to return. Can be `jira` (default), `compass` or `auto`. When `auto` is specified, the API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira components. Defaults to `jira`.",
+        "description": "The source of the components to return. Can be `jira` (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about, `compass` or `auto`. When `auto` is specified, the API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira components. Defaults to `jira`.",
         "default": "jira"
       }
     ],
@@ -15449,7 +15449,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The ID or (case-sensitive) key of the project.",
+        "description": "The ID or (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about key of the project.",
         "example": "PROJECTIDORKEY"
       }
     ],
@@ -15488,7 +15488,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "projectIdOrKey",
         "schema": "string",
         "required": true,
-        "description": "The ID or (case-sensitive) key of the project.",
+        "description": "The ID or (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about key of the project.",
         "example": "PROJECTIDORKEY"
       },
       {
@@ -18453,7 +18453,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Issue search",
     "typeScriptTag": "issueSearch",
-    "description": "Search for issues using JQL (GET)",
+    "description": "Search for issues using JQL (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "jql",
@@ -18482,7 +18482,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       {
         "name": "fields",
         "schema": "array",
-        "description": "A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a comma-separated list. Expand options include:\n\n *  `*all` Returns all fields.\n *  `*navigable` Returns navigable fields.\n *  Any issue field, prefixed with a minus to exclude.\n\nExamples:\n\n *  `summary,comment` Returns only the summary and comments fields.\n *  `-description` Returns all navigable (default) fields except description.\n *  `*all,-comment` Returns all fields except comments.\n\nThis parameter may be specified multiple times. For example, `fields=field1,field2&fields=field3`.\n\nNote: All navigable fields are returned by default. This differs from [GET issue](https://dac-static.atlassian.com) where the default is all fields."
+        "description": "A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a comma-separated list. Expand options include:\n\n *  `*all` Returns all fields.\n *  `*navigable` Returns navigable fields.\n *  Any issue field, prefixed with a minus to exclude.\n\nExamples:\n\n *  `summary,comment` Returns only the summary and comments fields.\n *  `-description` Returns all navigable (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about fields except description.\n *  `*all,-comment` Returns all fields except comments.\n\nThis parameter may be specified multiple times. For example, `fields=field1,field2&fields=field3`.\n\nNote: All navigable fields are returned by default. This differs from [GET issue](https://dac-static.atlassian.com) where the default is all fields."
       },
       {
         "name": "expand",
@@ -18522,7 +18522,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Issue search",
     "typeScriptTag": "issueSearch",
-    "description": "Search for issues using JQL (POST)",
+    "description": "Search for issues using JQL (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "expand",
@@ -19104,8 +19104,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/uiModifications",
     "method": "getModifications",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "UI modifications (apps)",
-    "typeScriptTag": "uiModificationsApps",
+    "tag": "UI modifications (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "uiModificationsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Get UI modifications",
     "parameters": [
       {
@@ -19149,8 +19149,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/uiModifications",
     "method": "createModification",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "UI modifications (apps)",
-    "typeScriptTag": "uiModificationsApps",
+    "tag": "UI modifications (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "uiModificationsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Create UI modification",
     "parameters": [
       {
@@ -19206,8 +19206,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/uiModifications/{uiModificationId}",
     "method": "deleteModification",
     "httpMethod": HttpMethodsEnum.DELETE,
-    "tag": "UI modifications (apps)",
-    "typeScriptTag": "uiModificationsApps",
+    "tag": "UI modifications (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "uiModificationsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Delete UI modification",
     "parameters": [
       {
@@ -19241,8 +19241,8 @@ export default function AtlassianJiraTypeScriptSdk() {
     "url": "/rest/api/3/uiModifications/{uiModificationId}",
     "method": "updateModificationById",
     "httpMethod": HttpMethodsEnum.PUT,
-    "tag": "UI modifications (apps)",
-    "typeScriptTag": "uiModificationsApps",
+    "tag": "UI modifications (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
+    "typeScriptTag": "uiModificationsHttps:DeveloperAtlassianComCloudJiraPlatformRestV3Intro_#about",
     "description": "Update UI modification",
     "parameters": [
       {
@@ -20300,7 +20300,7 @@ export default function AtlassianJiraTypeScriptSdk() {
         "name": "permissions",
         "schema": "string",
         "required": true,
-        "description": "A comma separated list of permissions. Permissions can be specified as any:\n\n *  permission returned by [Get all permissions](https://dac-static.atlassian.com).\n *  custom project permission added by Connect apps.\n *  (deprecated) one of the following:\n    \n     *  ASSIGNABLE\\_USER\n     *  ASSIGN\\_ISSUE\n     *  ATTACHMENT\\_DELETE\\_ALL\n     *  ATTACHMENT\\_DELETE\\_OWN\n     *  BROWSE\n     *  CLOSE\\_ISSUE\n     *  COMMENT\\_DELETE\\_ALL\n     *  COMMENT\\_DELETE\\_OWN\n     *  COMMENT\\_EDIT\\_ALL\n     *  COMMENT\\_EDIT\\_OWN\n     *  COMMENT\\_ISSUE\n     *  CREATE\\_ATTACHMENT\n     *  CREATE\\_ISSUE\n     *  DELETE\\_ISSUE\n     *  EDIT\\_ISSUE\n     *  LINK\\_ISSUE\n     *  MANAGE\\_WATCHER\\_LIST\n     *  MODIFY\\_REPORTER\n     *  MOVE\\_ISSUE\n     *  PROJECT\\_ADMIN\n     *  RESOLVE\\_ISSUE\n     *  SCHEDULE\\_ISSUE\n     *  SET\\_ISSUE\\_SECURITY\n     *  TRANSITION\\_ISSUE\n     *  VIEW\\_VERSION\\_CONTROL\n     *  VIEW\\_VOTERS\\_AND\\_WATCHERS\n     *  VIEW\\_WORKFLOW\\_READONLY\n     *  WORKLOG\\_DELETE\\_ALL\n     *  WORKLOG\\_DELETE\\_OWN\n     *  WORKLOG\\_EDIT\\_ALL\n     *  WORKLOG\\_EDIT\\_OWN\n     *  WORK\\_ISSUE",
+        "description": "A comma separated list of permissions. Permissions can be specified as any:\n\n *  permission returned by [Get all permissions](https://dac-static.atlassian.com).\n *  custom project permission added by Connect apps.\n *  (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about one of the following:\n    \n     *  ASSIGNABLE\\_USER\n     *  ASSIGN\\_ISSUE\n     *  ATTACHMENT\\_DELETE\\_ALL\n     *  ATTACHMENT\\_DELETE\\_OWN\n     *  BROWSE\n     *  CLOSE\\_ISSUE\n     *  COMMENT\\_DELETE\\_ALL\n     *  COMMENT\\_DELETE\\_OWN\n     *  COMMENT\\_EDIT\\_ALL\n     *  COMMENT\\_EDIT\\_OWN\n     *  COMMENT\\_ISSUE\n     *  CREATE\\_ATTACHMENT\n     *  CREATE\\_ISSUE\n     *  DELETE\\_ISSUE\n     *  EDIT\\_ISSUE\n     *  LINK\\_ISSUE\n     *  MANAGE\\_WATCHER\\_LIST\n     *  MODIFY\\_REPORTER\n     *  MOVE\\_ISSUE\n     *  PROJECT\\_ADMIN\n     *  RESOLVE\\_ISSUE\n     *  SCHEDULE\\_ISSUE\n     *  SET\\_ISSUE\\_SECURITY\n     *  TRANSITION\\_ISSUE\n     *  VIEW\\_VERSION\\_CONTROL\n     *  VIEW\\_VOTERS\\_AND\\_WATCHERS\n     *  VIEW\\_WORKFLOW\\_READONLY\n     *  WORKLOG\\_DELETE\\_ALL\n     *  WORKLOG\\_DELETE\\_OWN\n     *  WORKLOG\\_EDIT\\_ALL\n     *  WORKLOG\\_EDIT\\_OWN\n     *  WORK\\_ISSUE",
         "example": "PERMISSIONS"
       },
       {
@@ -24912,7 +24912,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "App properties",
     "typeScriptTag": "appProperties",
-    "description": "Delete app property (Forge)",
+    "description": "Delete app property (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "propertyKey",
@@ -24951,7 +24951,7 @@ export default function AtlassianJiraTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "App properties",
     "typeScriptTag": "appProperties",
-    "description": "Set app property (Forge)",
+    "description": "Set app property (https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#about",
     "parameters": [
       {
         "name": "propertyKey",
@@ -24989,7 +24989,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       language="TypeScript"
       apiTitle="The Jira Cloud platform REST API"
       apiBaseUrl="https://your-domain.atlassian.net"
-      apiVersion="1001.0.0-SNAPSHOT-a572a3fccec16cd1001dd8745ee0a174a9866605"
+      apiVersion="1001.0.0-SNAPSHOT-e207e3a88e19bebfd0fd5834088a20d22d89a0a2"
       endpoints={352}
       sdkMethods={532}
       schemas={1033}
