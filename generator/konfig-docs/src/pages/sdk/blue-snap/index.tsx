@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "BlueSnap",
-    "numberOfMethods": 36,
+    "numberOfMethods": 32,
     "categories": [
       "payments",
       "embedded_payments",
@@ -18,7 +18,7 @@ const sdks = [
   },
   {
     "name": "BlueSnap",
-    "numberOfMethods": 36,
+    "numberOfMethods": 32,
     "categories": [
       "payments",
       "embedded_payments",
@@ -32,7 +32,7 @@ const sdks = [
   },
   {
     "name": "BlueSnap",
-    "numberOfMethods": 36,
+    "numberOfMethods": 32,
     "categories": [
       "payments",
       "embedded_payments",

@@ -19,7 +19,7 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       companyKebabCase="ukg"
       clientNameCamelCase="ukg"
       homepage="ukg.com"
-      lastUpdated={new Date("2024-03-27T18:00:59.706Z")}
+      lastUpdated={new Date("2024-03-28T19:01:23.743Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ukg/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -95,6 +95,140 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "404",
         "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/configuration/v1/businessruleimport-tool/fileupload",
+    "method": "businessRuleImportFileUpload",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "BusinessRuleImportTool",
+    "typeScriptTag": "businessRuleImportTool",
+    "description": "Takes an XML transaction and feeds it into the Business Rule Import Tool",
+    "parameters": [
+      {
+        "name": "transaction",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "uniqueFileName",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/configuration/v1/businessruleimport-tool/filestatus/{fileId}",
+    "method": "getFileUploadStatus",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "BusinessRuleImportTool",
+    "typeScriptTag": "businessRuleImportTool",
+    "description": "Retrieves the status of an Business Rule Import Tool transaction",
+    "parameters": [
+      {
+        "name": "fileId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "FILEID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/configuration/v1/businessruleimport-tool/transactionstatus/{stagingId}",
+    "method": "getStagingStatus",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "BusinessRuleImportTool",
+    "typeScriptTag": "businessRuleImportTool",
+    "description": "Retrieves the status of an Business Rule Import Tool transaction",
+    "parameters": [
+      {
+        "name": "stagingId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "STAGINGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/configuration/v1/businessruleimport-tool/transaction",
+    "method": "importsBusinessRuleStagingData",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "BusinessRuleImportTool",
+    "typeScriptTag": "businessRuleImportTool",
+    "description": "Takes an XML transaction and feeds it into the Business Rule Import Tool (https://developer.ukg.com/hcm/reference",
+    "parameters": [
+      {
+        "name": "transaction",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "uniqueFileName",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
       },
       {
         "statusCode": "500",
@@ -288,135 +422,51 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/configuration/v1/businessruleimport-tool/fileupload",
-    "method": "businessRuleImportFileUpload",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "BusinessRuleImportTool",
-    "typeScriptTag": "businessRuleImportTool",
-    "description": "Takes an XML transaction and feeds it into the Business Rule Import Tool",
-    "parameters": [
-      {
-        "name": "transaction",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "uniqueFileName",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/configuration/v1/businessruleimport-tool/filestatus/{fileId}",
-    "method": "getFileUploadStatus",
+    "url": "/configuration/v1/code-tables",
+    "method": "getInfo",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "BusinessRuleImportTool",
-    "typeScriptTag": "businessRuleImportTool",
-    "description": "Retrieves the status of an Business Rule Import Tool transaction",
-    "parameters": [
-      {
-        "name": "fileId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "FILEID"
-      }
-    ],
+    "tag": "CodeTables",
+    "typeScriptTag": "codeTables",
+    "description": "Get Code Tables information",
+    "parameters": [],
     "responses": [
       {
         "statusCode": "200",
         "description": ""
       },
       {
-        "statusCode": "404",
-        "description": "NotFound"
+        "statusCode": "403",
+        "description": ""
       },
       {
-        "statusCode": "500",
+        "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "429",
         "description": ""
       }
     ]
   },
   {
-    "url": "/configuration/v1/businessruleimport-tool/transactionstatus/{stagingId}",
-    "method": "getStagingStatus",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "BusinessRuleImportTool",
-    "typeScriptTag": "businessRuleImportTool",
-    "description": "Retrieves the status of an Business Rule Import Tool transaction",
-    "parameters": [
-      {
-        "name": "stagingId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "STAGINGID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/configuration/v1/businessruleimport-tool/transaction",
-    "method": "importsBusinessRuleStagingData",
+    "url": "/configuration/v1/code-tables",
+    "method": "createCodeTables",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "BusinessRuleImportTool",
-    "typeScriptTag": "businessRuleImportTool",
-    "description": "Takes an XML transaction and feeds it into the Business Rule Import Tool (Staging)",
-    "parameters": [
-      {
-        "name": "transaction",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "uniqueFileName",
-        "schema": "string",
-        "description": ""
-      }
-    ],
+    "tag": "CodeTables",
+    "typeScriptTag": "codeTables",
+    "description": "Post Code Tables information",
+    "parameters": [],
     "responses": [
       {
-        "statusCode": "200",
+        "statusCode": "207",
         "description": ""
       },
       {
-        "statusCode": "404",
-        "description": "NotFound"
+        "statusCode": "403",
+        "description": ""
       },
       {
-        "statusCode": "500",
+        "statusCode": "429",
         "description": ""
       }
     ]
@@ -484,56 +534,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/configuration/v1/code-tables",
-    "method": "getInfo",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "CodeTables",
-    "typeScriptTag": "codeTables",
-    "description": "Get Code Tables information",
-    "parameters": [],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "403",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "429",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/configuration/v1/code-tables",
-    "method": "createCodeTables",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "CodeTables",
-    "typeScriptTag": "codeTables",
-    "description": "Post Code Tables information",
-    "parameters": [],
-    "responses": [
-      {
-        "statusCode": "207",
-        "description": ""
-      },
-      {
-        "statusCode": "403",
-        "description": ""
-      },
-      {
-        "statusCode": "429",
-        "description": ""
-      }
-    ]
-  },
-  {
     "url": "/configuration/v1/company-details",
     "method": "getCompanyDetails",
     "httpMethod": HttpMethodsEnum.GET,
@@ -590,6 +590,79 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "429",
         "description": "429"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/emp-deductions",
+    "method": "list",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "EmpDeductions",
+    "typeScriptTag": "empDeductions",
+    "description": "Get employee deductions",
+    "parameters": [
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dedCode",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "DEDCODE"
+      },
+      {
+        "name": "benStatus",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "benefitOption",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "endDateTime",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
       },
       {
         "statusCode": "500",
@@ -669,19 +742,19 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "dateInJob",
         "schema": "string",
         "required": false,
-        "description": "Used to find date in job less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date in job less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "dateLastPaid",
         "schema": "string",
         "required": false,
-        "description": "Used to find date last paid less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date last paid less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "datePaidThru",
         "schema": "string",
         "required": false,
-        "description": "Used to find date paid through less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date paid through less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "isAutoAllocated",
@@ -836,19 +909,19 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "dateInJob",
         "schema": "string",
         "required": false,
-        "description": "Used to find date in job less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date in job less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "dateLastPaid",
         "schema": "string",
         "required": false,
-        "description": "Used to find date last paid less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date last paid less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "datePaidThru",
         "schema": "string",
         "required": false,
-        "description": "Used to find date paid through less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date paid through less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "isAutoAllocated",
@@ -1010,19 +1083,19 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "dateInJob",
         "schema": "string",
         "required": false,
-        "description": "Used to find date in job less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date in job less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "dateLastPaid",
         "schema": "string",
         "required": false,
-        "description": "Used to find date last paid less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date last paid less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "datePaidThru",
         "schema": "string",
         "required": false,
-        "description": "Used to find date paid through less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date paid through less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "isAutoAllocated",
@@ -1126,79 +1199,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "500",
         "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/emp-deductions",
-    "method": "list",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "EmpDeductions",
-    "typeScriptTag": "empDeductions",
-    "description": "Get employee deductions",
-    "parameters": [
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "dedCode",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "DEDCODE"
-      },
-      {
-        "name": "benStatus",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "benefitOption",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "endDateTime",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "500",
-        "description": ""
       }
     ]
   },
@@ -1373,6 +1373,101 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "500",
         "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/employee-changes",
+    "method": "getAllEmployeeChangesSinceLastCall",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Changes By Date",
+    "typeScriptTag": "changesByDate",
+    "description": "Changes By Date",
+    "parameters": [
+      {
+        "name": "startDate",
+        "schema": "string",
+        "required": false,
+        "description": "Used to lookup employee changes within time span"
+      },
+      {
+        "name": "endDate",
+        "schema": "string",
+        "required": false,
+        "description": "Used to lookup employee changes within time span"
+      },
+      {
+        "name": "page",
+        "schema": "number",
+        "required": false,
+        "description": "Pagination, which page you want to see"
+      },
+      {
+        "name": "perPage",
+        "schema": "number",
+        "required": false,
+        "description": "Pagination, how many records per page you want to see"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden"
+      },
+      {
+        "statusCode": "404",
+        "description": "Not Found"
+      },
+      {
+        "statusCode": "429",
+        "description": "Too Many Requests (Exceeded Rate Limit)"
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/employee-changes/{employeeId}",
+    "method": "get",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Employee Changes",
+    "typeScriptTag": "employeeChanges",
+    "description": "Changes By Employee ID",
+    "parameters": [
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "EMPLOYEEID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden"
+      },
+      {
+        "statusCode": "404",
+        "description": "Not Found"
+      },
+      {
+        "statusCode": "429",
+        "description": "Too Many Requests (Exceeded Rate Limit)"
       }
     ]
   },
@@ -1678,75 +1773,66 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/personnel/v1/employee-changes",
-    "method": "getAllEmployeeChangesSinceLastCall",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Changes By Date",
-    "typeScriptTag": "changesByDate",
-    "description": "Changes By Date",
-    "parameters": [
-      {
-        "name": "startDate",
-        "schema": "string",
-        "required": false,
-        "description": "Used to lookup employee changes within time span"
-      },
-      {
-        "name": "endDate",
-        "schema": "string",
-        "required": false,
-        "description": "Used to lookup employee changes within time span"
-      },
-      {
-        "name": "page",
-        "schema": "number",
-        "required": false,
-        "description": "Pagination, which page you want to see"
-      },
-      {
-        "name": "perPage",
-        "schema": "number",
-        "required": false,
-        "description": "Pagination, how many records per page you want to see"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      },
-      {
-        "statusCode": "403",
-        "description": "Forbidden"
-      },
-      {
-        "statusCode": "404",
-        "description": "Not Found"
-      },
-      {
-        "statusCode": "429",
-        "description": "Too Many Requests (Exceeded Rate Limit)"
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/employee-changes/{employeeId}",
+    "url": "/personnel/v1/employee-contract-details",
     "method": "get",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Employee Changes",
-    "typeScriptTag": "employeeChanges",
-    "description": "Changes By Employee ID",
+    "tag": "EmployeeContract",
+    "typeScriptTag": "employeeContract",
+    "description": "Get all employment contract details",
     "parameters": [
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
       {
         "name": "employeeId",
         "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "EMPLOYEEID"
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "contractNumber",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "contractTypeCode",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "effectiveDate",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find contracts effective date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "dateTimeCreated",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find contract record created date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "rowLastChanged",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find contract record changed date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
       }
     ],
     "responses": [
@@ -1755,20 +1841,12 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "description": ""
       },
       {
-        "statusCode": "400",
-        "description": ""
-      },
-      {
-        "statusCode": "403",
-        "description": "Forbidden"
-      },
-      {
         "statusCode": "404",
-        "description": "Not Found"
+        "description": "NotFound"
       },
       {
-        "statusCode": "429",
-        "description": "Too Many Requests (Exceeded Rate Limit)"
+        "statusCode": "500",
+        "description": "InternalServerError"
       }
     ]
   },
@@ -1904,13 +1982,13 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "dateOfCobraEvent",
         "schema": "string",
         "required": false,
-        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "statusAsOfDate",
         "schema": "string",
         "required": false,
-        "description": "Used to find contact status as of date less than, greater than,equal to, or between passed date(s)"
+        "description": "Used to find contact status as of date less than, greater than,equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "page",
@@ -2013,91 +2091,13 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "dateOfCobraEvent",
         "schema": "string",
         "required": false,
-        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "statusAsOfDate",
         "schema": "string",
         "required": false,
-        "description": "Used to find contact status as of date less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/employee-contract-details",
-    "method": "get",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "EmployeeContract",
-    "typeScriptTag": "employeeContract",
-    "description": "Get all employment contract details",
-    "parameters": [
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "contractNumber",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "contractTypeCode",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "effectiveDate",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find contracts effective date less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "dateTimeCreated",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find contract record created date less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "rowLastChanged",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find contract record changed date less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find contact status as of date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "page",
@@ -2178,6 +2178,157 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "500",
         "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/payroll/v1/direct-deposit",
+    "method": "listEmployeeDirectDepositDetails",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "DirectDeposit",
+    "typeScriptTag": "directDeposit",
+    "description": "Get list of direct deposit details for US and Canadian employees",
+    "parameters": [
+      {
+        "name": "accountIsInactive",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeBankRoutingNumber",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "countryCode",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dateTimeChanged",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find direct deposit record changed date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
+      }
+    ]
+  },
+  {
+    "url": "/payroll/v1/companies/{companyId}/direct-deposit",
+    "method": "listDirectDepositDetailsByCompany",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "DirectDeposit",
+    "typeScriptTag": "directDeposit",
+    "description": "Get list of direct deposit details for US and Canadian employees by company",
+    "parameters": [
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "COMPANYID"
+      },
+      {
+        "name": "accountIsInactive",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeBankRoutingNumber",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "countryCode",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dateTimeChanged",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find direct deposit record changed date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
       }
     ]
   },
@@ -2324,157 +2475,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/payroll/v1/direct-deposit",
-    "method": "listEmployeeDirectDepositDetails",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "DirectDeposit",
-    "typeScriptTag": "directDeposit",
-    "description": "Get list of direct deposit details for US and Canadian employees",
-    "parameters": [
-      {
-        "name": "accountIsInactive",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeBankRoutingNumber",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "countryCode",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "dateTimeChanged",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find direct deposit record changed date less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/payroll/v1/companies/{companyId}/direct-deposit",
-    "method": "listDirectDepositDetailsByCompany",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "DirectDeposit",
-    "typeScriptTag": "directDeposit",
-    "description": "Get list of direct deposit details for US and Canadian employees by company",
-    "parameters": [
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "COMPANYID"
-      },
-      {
-        "name": "accountIsInactive",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeBankRoutingNumber",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "countryCode",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "dateTimeChanged",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find direct deposit record changed date less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
     "url": "/personnel/v1/employee-education",
     "method": "get",
     "httpMethod": HttpMethodsEnum.GET,
@@ -2525,6 +2525,66 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "500",
         "description": "InternalServerError"
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/employee-extended-elements",
+    "method": "get",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "EmployeeExtendedElements",
+    "typeScriptTag": "employeeExtendedElements",
+    "description": "Get Employee Extended Elements",
+    "parameters": [
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dateTimeCreated",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dateTimeChanged",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
       }
     ]
   },
@@ -2697,66 +2757,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/personnel/v1/employee-extended-elements",
-    "method": "get",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "EmployeeExtendedElements",
-    "typeScriptTag": "employeeExtendedElements",
-    "description": "Get Employee Extended Elements",
-    "parameters": [
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "dateTimeCreated",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "dateTimeChanged",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
     "url": "/personnel/v1/employee-job-history-details",
     "method": "get",
     "httpMethod": HttpMethodsEnum.GET,
@@ -2810,13 +2810,13 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "jobEffectiveDate",
         "schema": "string",
         "required": false,
-        "description": "Used to find job history effective date less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find job history effective date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "dateTimeCreated",
         "schema": "string",
         "required": false,
-        "description": "Used to find job history created less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find job history created less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "page",
@@ -2907,13 +2907,13 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "jobEffectiveDate",
         "schema": "string",
         "required": false,
-        "description": "Used to find job history effective date less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find job history effective date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "dateTimeCreated",
         "schema": "string",
         "required": false,
-        "description": "Used to find job history created less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find job history created less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "page",
@@ -3201,301 +3201,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/payroll/v1/companies/pay-statements-summary",
-    "method": "getPaySummaries",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "CompanyPayStatement",
-    "typeScriptTag": "companyPayStatement",
-    "description": "Get employee(s) pay statement(s) summary for a company or pay group for a given date range.",
-    "parameters": [
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "startDate",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "STARTDATE"
-      },
-      {
-        "name": "endDate",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "ENDDATE"
-      },
-      {
-        "name": "payGroup",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "per_Page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "pagesCount",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "BadRequest"
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/payroll/v1/companies/pay-statements",
-    "method": "getByDateRange",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "CompanyPayStatement",
-    "typeScriptTag": "companyPayStatement",
-    "description": "Get employee(s) pay statement(s) for a company or pay group for a given date range.",
-    "parameters": [
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "startDate",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "STARTDATE"
-      },
-      {
-        "name": "endDate",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "ENDDATE"
-      },
-      {
-        "name": "payGroup",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "per_Page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "pagesCount",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "BadRequest"
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/payroll/v1/employees/pay-statements",
-    "method": "getByDateRange",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "EmployeePayStatement",
-    "typeScriptTag": "employeePayStatement",
-    "description": "Get employee pay statement(s) based on the passed employee identifier for a given date range.",
-    "parameters": [
-      {
-        "name": "employeeIdentifier",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "startDate",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "endDate",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "per_Page",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "pagesCount",
-        "schema": "integer",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "BadRequest"
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/payroll/v1/employees/pay-statement/last",
-    "method": "getLastPayStatement",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "EmployeePayStatement",
-    "typeScriptTag": "employeePayStatement",
-    "description": "Get employee last pay statement based on the passed employee identifier.",
-    "parameters": [
-      {
-        "name": "employeeIdentifier",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "startDate",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "endDate",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "per_Page",
-        "schema": "integer",
-        "description": ""
-      },
-      {
-        "name": "pagesCount",
-        "schema": "integer",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "BadRequest"
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/payroll/v1/employees/pay-statement/{PayIdentifier}",
-    "method": "getByPayIdentifier",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "EmployeePayStatement",
-    "typeScriptTag": "employeePayStatement",
-    "description": "Get employee pay statement based on the given pay identifier.",
-    "parameters": [
-      {
-        "name": "payIdentifier",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "PAYIDENTIFIER"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "BadRequest"
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
     "url": "/personnel/v1/integration/kronos/employee-profiles",
     "method": "getList",
     "httpMethod": HttpMethodsEnum.GET,
@@ -3679,6 +3384,301 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "500",
         "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/payroll/v1/companies/pay-statements-summary",
+    "method": "getPaySummaries",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "CompanyPayStatement",
+    "typeScriptTag": "companyPayStatement",
+    "description": "Get employee(https://developer.ukg.com/hcm/reference pay statement(https://developer.ukg.com/hcm/reference summary for a company or pay group for a given date range.",
+    "parameters": [
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "startDate",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "STARTDATE"
+      },
+      {
+        "name": "endDate",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ENDDATE"
+      },
+      {
+        "name": "payGroup",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "per_Page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "pagesCount",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "BadRequest"
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
+      }
+    ]
+  },
+  {
+    "url": "/payroll/v1/companies/pay-statements",
+    "method": "getByDateRange",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "CompanyPayStatement",
+    "typeScriptTag": "companyPayStatement",
+    "description": "Get employee(https://developer.ukg.com/hcm/reference pay statement(https://developer.ukg.com/hcm/reference for a company or pay group for a given date range.",
+    "parameters": [
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "startDate",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "STARTDATE"
+      },
+      {
+        "name": "endDate",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ENDDATE"
+      },
+      {
+        "name": "payGroup",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "per_Page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "pagesCount",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "BadRequest"
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
+      }
+    ]
+  },
+  {
+    "url": "/payroll/v1/employees/pay-statements",
+    "method": "getByDateRange",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "EmployeePayStatement",
+    "typeScriptTag": "employeePayStatement",
+    "description": "Get employee pay statement(https://developer.ukg.com/hcm/reference based on the passed employee identifier for a given date range.",
+    "parameters": [
+      {
+        "name": "employeeIdentifier",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "startDate",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "endDate",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "per_Page",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "pagesCount",
+        "schema": "integer",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "BadRequest"
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
+      }
+    ]
+  },
+  {
+    "url": "/payroll/v1/employees/pay-statement/last",
+    "method": "getLastPayStatement",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "EmployeePayStatement",
+    "typeScriptTag": "employeePayStatement",
+    "description": "Get employee last pay statement based on the passed employee identifier.",
+    "parameters": [
+      {
+        "name": "employeeIdentifier",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "startDate",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "endDate",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "per_Page",
+        "schema": "integer",
+        "description": ""
+      },
+      {
+        "name": "pagesCount",
+        "schema": "integer",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "BadRequest"
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
+      }
+    ]
+  },
+  {
+    "url": "/payroll/v1/employees/pay-statement/{PayIdentifier}",
+    "method": "getByPayIdentifier",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "EmployeePayStatement",
+    "typeScriptTag": "employeePayStatement",
+    "description": "Get employee pay statement based on the given pay identifier.",
+    "parameters": [
+      {
+        "name": "payIdentifier",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "PAYIDENTIFIER"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "BadRequest"
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
       }
     ]
   },
@@ -4436,67 +4436,7 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "dateModified",
         "schema": "string",
         "required": false,
-        "description": "Used to find global employee's direct deposit modified date less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/employee-global-localization-elements",
-    "method": "get",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "EmpGlobalLocalizationElement",
-    "typeScriptTag": "empGlobalLocalizationElement",
-    "description": "Get all global employee localization fields added to UKG Pro",
-    "parameters": [
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "created",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find employee localization fields created less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "effective",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find employee localization fields effective less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find global employee's direct deposit modified date less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "page",
@@ -4580,19 +4520,19 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "name": "modifiedDate",
         "schema": "string",
         "required": false,
-        "description": "Used to find a payment or deduction modified less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find a payment or deduction modified less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "startDate",
         "schema": "string",
         "required": false,
-        "description": "Used to find a payment or deduction where the pay period start is less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find a payment or deduction where the pay period start is less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "endDate",
         "schema": "string",
         "required": false,
-        "description": "Used to find a payment or deduction where the pay period end is less than, greater than, equal to, or between passed date(s)"
+        "description": "Used to find a payment or deduction where the pay period end is less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
       },
       {
         "name": "page",
@@ -4688,6 +4628,66 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
+    "url": "/personnel/v1/employee-global-localization-elements",
+    "method": "get",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "EmpGlobalLocalizationElement",
+    "typeScriptTag": "empGlobalLocalizationElement",
+    "description": "Get all global employee localization fields added to UKG Pro",
+    "parameters": [
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "created",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find employee localization fields created less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "effective",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find employee localization fields effective less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
+      }
+    ]
+  },
+  {
     "url": "/configuration/v1/insurance-rate",
     "method": "getInsRate",
     "httpMethod": HttpMethodsEnum.GET,
@@ -4734,6 +4734,237 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "500",
         "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/tenants/{tenantIdentifier}/new-hires/{id}",
+    "method": "getById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "New Hires",
+    "typeScriptTag": "newHires",
+    "description": "Gets a single New Hire by Id",
+    "parameters": [
+      {
+        "name": "tenantIdentifier",
+        "schema": "string",
+        "required": true,
+        "description": "Unique identifier of the tenant to interact with. Can be either the tenant alias or tenant ID.",
+        "example": "TENANTIDENTIFIER"
+      },
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "Unique identifier for the New Hire",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/tenants/{tenantIdentifier}/new-hires",
+    "method": "createSingleNewHire",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "New Hires",
+    "typeScriptTag": "newHires",
+    "description": "Creates a single New Hire",
+    "parameters": [
+      {
+        "name": "tenantIdentifier",
+        "schema": "string",
+        "required": true,
+        "description": "Unique identifier of the tenant to interact with. Can be either the tenant alias or tenant ID.",
+        "example": "TENANTIDENTIFIER"
+      },
+      {
+        "name": "contactInformation",
+        "schema": "object",
+        "description": "",
+        "example": {
+          "name": {
+            "prefix": {
+              "code": "MR"
+            },
+            "first": "Firstname",
+            "middle": "Middlename",
+            "last": "Lastname",
+            "formerLast": "Formerlastname",
+            "suffix": {
+              "id": "ba00d403-e240-4c16-b894-92036dbb4b0fX"
+            }
+          },
+          "emailAddress": "first@last.com",
+          "primaryPhone": "954-687-8909",
+          "secondaryPhone": "9545554567",
+          "address": {
+            "line1": "Line 1",
+            "line2": "Line 2",
+            "city": "Weston",
+            "zipCode": "33326",
+            "county": "Broward",
+            "stateCode": "FL",
+            "countryCode": "USA"
+          }
+        }
+      },
+      {
+        "name": "job",
+        "schema": "object",
+        "description": "",
+        "example": {
+          "code": "MGT",
+          "requisitionId": "1234",
+          "selectedFLSAStatus": 1,
+          "componentCompany": {
+            "code": "FZAJ2"
+          },
+          "workLocation": {
+            "code": "QU4FL"
+          },
+          "supervisor": {
+            "code": "89F8FA04-7055-47D2-943B-D2A409FFA3BF"
+          },
+          "employeeType": {
+            "code": "INT"
+          }
+        }
+      },
+      {
+        "name": "organizationLevels",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "compensation",
+        "schema": "object",
+        "description": "",
+        "example": {
+          "isFullTime": true,
+          "isSalaried": false,
+          "workHours": 40,
+          "weeklyHours": 168,
+          "currencyCode": "USD",
+          "payRate": 20,
+          "ratePer": "H"
+        }
+      },
+      {
+        "name": "onboardingOwnerId",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "hireDate",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "orientationDate",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "startDate",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "pastStartDateReason",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "mentor",
+        "schema": "object",
+        "description": "",
+        "example": {
+          "prefix": {
+            "description": "Suzie is THE person who knows the product best. She loves helping new team members.",
+            "id": "ba00d403-e240-4c16-b894-92036dbb4b0fX",
+            "code": "MR"
+          }
+        }
+      },
+      {
+        "name": "personalMessage",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "409",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/hoursWorked",
+    "method": "addTimeEntries",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "time",
+    "typeScriptTag": "time",
+    "description": "Add hours worked entries",
+    "parameters": [
+      {
+        "name": "xCorrelationId",
+        "schema": "string",
+        "required": true,
+        "description": "This value MUST be supplied by the originator, used for tracing",
+        "example": "X-CORRELATION-ID"
+      },
+      {
+        "name": "usTenantId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "US-TENANT-ID"
+      },
+      {
+        "name": "timeData",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad Request"
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden"
+      },
+      {
+        "statusCode": "500",
+        "description": "Internal Server Error"
       }
     ]
   },
@@ -4953,45 +5184,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/jobs/{code}",
-    "method": "getConfiguration",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "jobs",
-    "typeScriptTag": "jobs",
-    "description": "Retrieve a single job configuration",
-    "parameters": [
-      {
-        "name": "code",
-        "schema": "string",
-        "required": true,
-        "description": "Job code.",
-        "example": "CODE"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": "Unauthorized"
-      },
-      {
-        "statusCode": "403",
-        "description": "Forbidden"
-      },
-      {
-        "statusCode": "404",
-        "description": "Not Found"
-      }
-    ]
-  },
-  {
     "url": "/locations/{code}",
     "method": "getConfiguration",
     "httpMethod": HttpMethodsEnum.GET,
@@ -5031,42 +5223,29 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/hoursWorked",
-    "method": "addTimeEntries",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "time",
-    "typeScriptTag": "time",
-    "description": "Add hours worked entries",
+    "url": "/jobs/{code}",
+    "method": "getConfiguration",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "jobs",
+    "typeScriptTag": "jobs",
+    "description": "Retrieve a single job configuration",
     "parameters": [
       {
-        "name": "xCorrelationId",
+        "name": "code",
         "schema": "string",
         "required": true,
-        "description": "This value MUST be supplied by the originator, used for tracing",
-        "example": "X-CORRELATION-ID"
-      },
-      {
-        "name": "usTenantId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "US-TENANT-ID"
-      },
-      {
-        "name": "timeData",
-        "schema": "array",
-        "required": true,
-        "description": ""
+        "description": "Job code.",
+        "example": "CODE"
       }
     ],
     "responses": [
       {
-        "statusCode": "201",
+        "statusCode": "200",
         "description": ""
       },
       {
         "statusCode": "400",
-        "description": "Bad Request"
+        "description": ""
       },
       {
         "statusCode": "401",
@@ -5077,32 +5256,114 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
         "description": "Forbidden"
       },
       {
-        "statusCode": "500",
-        "description": "Internal Server Error"
+        "statusCode": "404",
+        "description": "Not Found"
       }
     ]
   },
   {
-    "url": "/tenants/{tenantIdentifier}/new-hires/{id}",
-    "method": "getById",
+    "url": "/configuration/v1/option-rate",
+    "method": "getData",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "New Hires",
-    "typeScriptTag": "newHires",
-    "description": "Gets a single New Hire by Id",
+    "tag": "OptionRate",
+    "typeScriptTag": "optionRate",
+    "description": "Get Option Rate Data",
     "parameters": [
       {
-        "name": "tenantIdentifier",
+        "name": "deductionCode",
         "schema": "string",
-        "required": true,
-        "description": "Unique identifier of the tenant to interact with. Can be either the tenant alias or tenant ID.",
-        "example": "TENANTIDENTIFIER"
+        "required": false,
+        "description": ""
       },
       {
-        "name": "id",
+        "name": "benefitOption",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "effectiveDate",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "payFrequency",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/open-enrollment-emp-deductions",
+    "method": "getAuditDetails",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "OpenEnrollmentEmployeeDeductions",
+    "typeScriptTag": "openEnrollmentEmployeeDeductions",
+    "description": "Get Open Enrollment Employee Deductions",
+    "parameters": [
+      {
+        "name": "startDateTime",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for the New Hire",
-        "example": "ID"
+        "description": "",
+        "example": "STARTDATETIME"
+      },
+      {
+        "name": "endDateTime",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ENDDATETIME"
+      },
+      {
+        "name": "sessionType",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "SESSIONTYPE"
+      },
+      {
+        "name": "deductionCode",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "DEDUCTIONCODE"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
       }
     ],
     "responses": [
@@ -5113,150 +5374,9 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "404",
         "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/tenants/{tenantIdentifier}/new-hires",
-    "method": "createSingleNewHire",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "New Hires",
-    "typeScriptTag": "newHires",
-    "description": "Creates a single New Hire",
-    "parameters": [
-      {
-        "name": "tenantIdentifier",
-        "schema": "string",
-        "required": true,
-        "description": "Unique identifier of the tenant to interact with. Can be either the tenant alias or tenant ID.",
-        "example": "TENANTIDENTIFIER"
       },
       {
-        "name": "contactInformation",
-        "schema": "object",
-        "description": "",
-        "example": {
-          "name": {
-            "prefix": {
-              "code": "MR"
-            },
-            "first": "Firstname",
-            "middle": "Middlename",
-            "last": "Lastname",
-            "formerLast": "Formerlastname",
-            "suffix": {
-              "id": "ba00d403-e240-4c16-b894-92036dbb4b0fX"
-            }
-          },
-          "emailAddress": "first@last.com",
-          "primaryPhone": "954-687-8909",
-          "secondaryPhone": "9545554567",
-          "address": {
-            "line1": "Line 1",
-            "line2": "Line 2",
-            "city": "Weston",
-            "zipCode": "33326",
-            "county": "Broward",
-            "stateCode": "FL",
-            "countryCode": "USA"
-          }
-        }
-      },
-      {
-        "name": "job",
-        "schema": "object",
-        "description": "",
-        "example": {
-          "code": "MGT",
-          "requisitionId": "1234",
-          "selectedFLSAStatus": 1,
-          "componentCompany": {
-            "code": "FZAJ2"
-          },
-          "workLocation": {
-            "code": "QU4FL"
-          },
-          "supervisor": {
-            "code": "89F8FA04-7055-47D2-943B-D2A409FFA3BF"
-          },
-          "employeeType": {
-            "code": "INT"
-          }
-        }
-      },
-      {
-        "name": "organizationLevels",
-        "schema": "array",
-        "description": ""
-      },
-      {
-        "name": "compensation",
-        "schema": "object",
-        "description": "",
-        "example": {
-          "isFullTime": true,
-          "isSalaried": false,
-          "workHours": 40,
-          "weeklyHours": 168,
-          "currencyCode": "USD",
-          "payRate": 20,
-          "ratePer": "H"
-        }
-      },
-      {
-        "name": "onboardingOwnerId",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "hireDate",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "orientationDate",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "startDate",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "pastStartDateReason",
-        "schema": "string",
-        "description": ""
-      },
-      {
-        "name": "mentor",
-        "schema": "object",
-        "description": "",
-        "example": {
-          "prefix": {
-            "description": "Suzie is THE person who knows the product best. She loves helping new team members.",
-            "id": "ba00d403-e240-4c16-b894-92036dbb4b0fX",
-            "code": "MR"
-          }
-        }
-      },
-      {
-        "name": "personalMessage",
-        "schema": "string",
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "201",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      },
-      {
-        "statusCode": "409",
+        "statusCode": "500",
         "description": ""
       }
     ]
@@ -5372,126 +5492,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       },
       {
         "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/open-enrollment-emp-deductions",
-    "method": "getAuditDetails",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "OpenEnrollmentEmployeeDeductions",
-    "typeScriptTag": "openEnrollmentEmployeeDeductions",
-    "description": "Get Open Enrollment Employee Deductions",
-    "parameters": [
-      {
-        "name": "startDateTime",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "STARTDATETIME"
-      },
-      {
-        "name": "endDateTime",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "ENDDATETIME"
-      },
-      {
-        "name": "sessionType",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "SESSIONTYPE"
-      },
-      {
-        "name": "deductionCode",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "DEDUCTIONCODE"
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/configuration/v1/option-rate",
-    "method": "getData",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "OptionRate",
-    "typeScriptTag": "optionRate",
-    "description": "Get Option Rate Data",
-    "parameters": [
-      {
-        "name": "deductionCode",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "benefitOption",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "effectiveDate",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "payFrequency",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
         "description": ""
       },
       {
@@ -5866,46 +5866,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/configuration/v1/organization-reporting-category",
-    "method": "get",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Organization Reporting Category",
-    "typeScriptTag": "organizationReportingCategory",
-    "description": "Get Organization Reporting Category",
-    "parameters": [
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "429",
-        "description": ""
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
     "url": "/payroll/v1/pay-register",
     "method": "get",
     "httpMethod": HttpMethodsEnum.GET,
@@ -6071,6 +6031,46 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       },
       {
         "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/configuration/v1/organization-reporting-category",
+    "method": "get",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Organization Reporting Category",
+    "typeScriptTag": "organizationReportingCategory",
+    "description": "Get Organization Reporting Category",
+    "parameters": [
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "429",
         "description": ""
       },
       {
@@ -6278,6 +6278,522 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
+    "url": "/personnel/v1/platform-configuration-fields/class-name/{className}",
+    "method": "getFieldsData",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "v1 PlatformConfigurationCustomFieldsData",
+    "typeScriptTag": "v1PlatformConfigurationCustomFieldsData",
+    "description": "Platform Configuration Fields Data v1",
+    "parameters": [
+      {
+        "name": "className",
+        "schema": "string",
+        "required": true,
+        "description": "The name of a supported class, as listed above, to pull custom fields from.",
+        "example": "CLASSNAME"
+      },
+      {
+        "name": "keyName",
+        "schema": "string",
+        "required": false,
+        "description": "Optional keyName to allow filtering results by the corresponding keyValue. keyNames are specific IDs that apply to the class in question."
+      },
+      {
+        "name": "keyValue",
+        "schema": "string",
+        "required": false,
+        "description": "Optional keyValue. Allows filtering results to only include a specific keyValue(https://developer.ukg.com/hcm/reference. keyValues correspond to a supplied keyName."
+      },
+      {
+        "name": "fields",
+        "schema": "string",
+        "required": false,
+        "description": "The exact name of a custom field or fields in a comma seperated list. Filters results to only fields with those names."
+      },
+      {
+        "name": "employmentStatus",
+        "schema": "string",
+        "required": false,
+        "description": "Use in junction with employment specific queries to filter custom field results by an internal employment status."
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": "Offsets results. Used with page number to allow filtering results to a specific range of custom fields."
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": "Offsets results. Used with page to allow filtering results to a specific range of custom fields."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v2/platform-configuration-fields/class-name/{className}",
+    "method": "getFieldsData",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "v2 PlatformConfigurationCustomFieldsData",
+    "typeScriptTag": "v2PlatformConfigurationCustomFieldsData",
+    "description": "Platform Configuration Fields Data v2",
+    "parameters": [
+      {
+        "name": "className",
+        "schema": "string",
+        "required": true,
+        "description": "The name of a supported class, as listed above, to pull custom fields from.",
+        "example": "CLASSNAME"
+      },
+      {
+        "name": "fields",
+        "schema": "string",
+        "required": false,
+        "description": "The exact name of a custom field or fields in a comma seperated list. Filters results to only fields with those names."
+      },
+      {
+        "name": "keyValue",
+        "schema": "string",
+        "required": false,
+        "description": "keyValue to filter results by, allowing filtering by specific Ids. This value is dependent on the className, as listed in the implementation notes."
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": "Offsets results. Used with page number to allow filtering results to a certain range of custom fields."
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": "Offsets results. Used with page to allow filtering results to a certain range of custom fields."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/person-details",
+    "method": "getAllDetails",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "PersonDetails",
+    "typeScriptTag": "personDetails",
+    "description": "Get all person details",
+    "parameters": [
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "lastName",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "emailAddress",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "addressState",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "addressCountry",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "cobraIsActive",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "cobraStatus",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dateOfCobraEvent",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "dateTimeCreated",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find person record created less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "dateTimeChanged",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find person record changed less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "nationalId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "nationalIdCountry",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/companies/{companyId}/person-details",
+    "method": "getSingleCompanyDetails",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "PersonDetails",
+    "typeScriptTag": "personDetails",
+    "description": "Get all person details for a single company",
+    "parameters": [
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "COMPANYID"
+      },
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "lastName",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "emailAddress",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "addressState",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "addressCountry",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "cobraIsActive",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "cobraStatus",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dateOfCobraEvent",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "dateTimeCreated",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find person record created less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "dateTimeChanged",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find person record changed less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "nationalId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "nationalIdCountry",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/companies/{companyId}/employees/{employeeId}/person-details",
+    "method": "getSingleRecord",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "PersonDetails",
+    "typeScriptTag": "personDetails",
+    "description": "Get a single person detail record for a single company",
+    "parameters": [
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "COMPANYID"
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "EMPLOYEEID"
+      },
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "lastName",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "emailAddress",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "addressState",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "addressCountry",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "cobraIsActive",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "cobraStatus",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dateOfCobraEvent",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "dateTimeCreated",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find person record created less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "dateTimeChanged",
+        "schema": "string",
+        "required": false,
+        "description": "Used to find person record changed less than, greater than, equal to, or between passed date(https://developer.ukg.com/hcm/reference"
+      },
+      {
+        "name": "nationalId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "nationalIdCountry",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/person-details/{employeeId}",
+    "method": "getSingleDetailRecord",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "PersonDetails",
+    "typeScriptTag": "personDetails",
+    "description": "Get a single person detail record",
+    "parameters": [
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "EMPLOYEEID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "NotFound"
+      },
+      {
+        "statusCode": "500",
+        "description": "InternalServerError"
+      }
+    ]
+  },
+  {
     "url": "/services/payroll/v1/import-pay-items/earnings",
     "method": "addTimeClockData",
     "httpMethod": HttpMethodsEnum.POST,
@@ -6413,522 +6929,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "404",
         "description": "Not Found"
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/person-details",
-    "method": "getAllDetails",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "PersonDetails",
-    "typeScriptTag": "personDetails",
-    "description": "Get all person details",
-    "parameters": [
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "lastName",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "emailAddress",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "addressState",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "addressCountry",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "cobraIsActive",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "cobraStatus",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "dateOfCobraEvent",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "dateTimeCreated",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find person record created less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "dateTimeChanged",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find person record changed less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "nationalId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "nationalIdCountry",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/companies/{companyId}/person-details",
-    "method": "getSingleCompanyDetails",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "PersonDetails",
-    "typeScriptTag": "personDetails",
-    "description": "Get all person details for a single company",
-    "parameters": [
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "COMPANYID"
-      },
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "lastName",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "emailAddress",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "addressState",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "addressCountry",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "cobraIsActive",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "cobraStatus",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "dateOfCobraEvent",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "dateTimeCreated",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find person record created less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "dateTimeChanged",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find person record changed less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "nationalId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "nationalIdCountry",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/companies/{companyId}/employees/{employeeId}/person-details",
-    "method": "getSingleRecord",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "PersonDetails",
-    "typeScriptTag": "personDetails",
-    "description": "Get a single person detail record for a single company",
-    "parameters": [
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "COMPANYID"
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "EMPLOYEEID"
-      },
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "lastName",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "emailAddress",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "addressState",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "addressCountry",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "cobraIsActive",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "cobraStatus",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "dateOfCobraEvent",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find date of COBRA event less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "dateTimeCreated",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find person record created less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "dateTimeChanged",
-        "schema": "string",
-        "required": false,
-        "description": "Used to find person record changed less than, greater than, equal to, or between passed date(s)"
-      },
-      {
-        "name": "nationalId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "nationalIdCountry",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/person-details/{employeeId}",
-    "method": "getSingleDetailRecord",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "PersonDetails",
-    "typeScriptTag": "personDetails",
-    "description": "Get a single person detail record",
-    "parameters": [
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "EMPLOYEEID"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": "InternalServerError"
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/platform-configuration-fields/class-name/{className}",
-    "method": "getFieldsData",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "v1 PlatformConfigurationCustomFieldsData",
-    "typeScriptTag": "v1PlatformConfigurationCustomFieldsData",
-    "description": "Platform Configuration Fields Data v1",
-    "parameters": [
-      {
-        "name": "className",
-        "schema": "string",
-        "required": true,
-        "description": "The name of a supported class, as listed above, to pull custom fields from.",
-        "example": "CLASSNAME"
-      },
-      {
-        "name": "keyName",
-        "schema": "string",
-        "required": false,
-        "description": "Optional keyName to allow filtering results by the corresponding keyValue. keyNames are specific IDs that apply to the class in question."
-      },
-      {
-        "name": "keyValue",
-        "schema": "string",
-        "required": false,
-        "description": "Optional keyValue. Allows filtering results to only include a specific keyValue(s). keyValues correspond to a supplied keyName."
-      },
-      {
-        "name": "fields",
-        "schema": "string",
-        "required": false,
-        "description": "The exact name of a custom field or fields in a comma seperated list. Filters results to only fields with those names."
-      },
-      {
-        "name": "employmentStatus",
-        "schema": "string",
-        "required": false,
-        "description": "Use in junction with employment specific queries to filter custom field results by an internal employment status."
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": "Offsets results. Used with page number to allow filtering results to a specific range of custom fields."
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": "Offsets results. Used with page to allow filtering results to a specific range of custom fields."
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v2/platform-configuration-fields/class-name/{className}",
-    "method": "getFieldsData",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "v2 PlatformConfigurationCustomFieldsData",
-    "typeScriptTag": "v2PlatformConfigurationCustomFieldsData",
-    "description": "Platform Configuration Fields Data v2",
-    "parameters": [
-      {
-        "name": "className",
-        "schema": "string",
-        "required": true,
-        "description": "The name of a supported class, as listed above, to pull custom fields from.",
-        "example": "CLASSNAME"
-      },
-      {
-        "name": "fields",
-        "schema": "string",
-        "required": false,
-        "description": "The exact name of a custom field or fields in a comma seperated list. Filters results to only fields with those names."
-      },
-      {
-        "name": "keyValue",
-        "schema": "string",
-        "required": false,
-        "description": "keyValue to filter results by, allowing filtering by specific Ids. This value is dependent on the className, as listed in the implementation notes."
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": "Offsets results. Used with page number to allow filtering results to a certain range of custom fields."
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": "Offsets results. Used with page to allow filtering results to a certain range of custom fields."
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": "NotFound"
-      },
-      {
-        "statusCode": "500",
-        "description": ""
       }
     ]
   },
@@ -7585,6 +7585,102 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
+    "url": "/personnel/v1/user-details",
+    "method": "getUserDetails",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "UserDetails",
+    "typeScriptTag": "userDetails",
+    "description": "Get User Details",
+    "parameters": [
+      {
+        "name": "userName",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "userStatus",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/personnel/v1/user-preferences",
+    "method": "getUserPreferencesDetails",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "User Preferences",
+    "typeScriptTag": "userPreferences",
+    "description": "Get User Preferences Details",
+    "parameters": [
+      {
+        "name": "userId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/simpleschedule/activities",
     "method": "getAll",
     "httpMethod": HttpMethodsEnum.GET,
@@ -7854,179 +7950,6 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
       {
         "statusCode": "200",
         "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/time/clock_transactions",
-    "method": "getProcessedTransactions",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "time",
-    "typeScriptTag": "time",
-    "description": "Get processed clock transactions.",
-    "parameters": [
-      {
-        "name": "empName",
-        "schema": "string",
-        "required": false,
-        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
-      },
-      {
-        "name": "empId",
-        "schema": "integer",
-        "required": false,
-        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
-      },
-      {
-        "name": "date",
-        "schema": "string",
-        "required": true,
-        "description": "Date of clock transaction",
-        "example": "DATE"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": "Unauthorized"
-      },
-      {
-        "statusCode": "429",
-        "description": "Too many requests"
-      }
-    ]
-  },
-  {
-    "url": "/time/pending_clock_transactions",
-    "method": "getPendingTransactions",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "time",
-    "typeScriptTag": "time",
-    "description": "Get pending clock transactions.",
-    "parameters": [
-      {
-        "name": "empName",
-        "schema": "string",
-        "required": false,
-        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
-      },
-      {
-        "name": "empId",
-        "schema": "integer",
-        "required": false,
-        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": "Unauthorized"
-      },
-      {
-        "statusCode": "429",
-        "description": "Too many requests"
-      }
-    ]
-  },
-  {
-    "url": "/time/work_summaries",
-    "method": "getWorkSummaries",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "time",
-    "typeScriptTag": "time",
-    "description": "Obtain work summaries.",
-    "parameters": [
-      {
-        "name": "empName",
-        "schema": "string",
-        "required": false,
-        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
-      },
-      {
-        "name": "empId",
-        "schema": "integer",
-        "required": false,
-        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
-      },
-      {
-        "name": "from",
-        "schema": "string",
-        "required": true,
-        "description": "Start range for work summaries",
-        "example": "FROM"
-      },
-      {
-        "name": "to",
-        "schema": "string",
-        "required": true,
-        "description": "End range for work summaries",
-        "example": "TO"
-      },
-      {
-        "name": "full",
-        "schema": "boolean",
-        "required": false,
-        "description": "Specifies if both clock and work detail data should be loaded",
-        "default": false
-      },
-      {
-        "name": "authStatus",
-        "schema": "boolean",
-        "required": false,
-        "description": "If specified will load only work summaries with Authorized status equal to true or false"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": "Unauthorized"
-      },
-      {
-        "statusCode": "429",
-        "description": "Too many requests"
-      }
-    ]
-  },
-  {
-    "url": "/time/work_summary",
-    "method": "getWorkSummaryById",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "time",
-    "typeScriptTag": "time",
-    "description": "Obtain a work summary.",
-    "parameters": [
-      {
-        "name": "workSummaryId",
-        "schema": "integer",
-        "required": true,
-        "description": "Work Summary id",
-        "example": 0
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": "Unauthorized"
-      },
-      {
-        "statusCode": "429",
-        "description": "Too many requests"
       }
     ]
   },
@@ -8806,6 +8729,255 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
+    "url": "/personnel/v1/user-profile-details",
+    "method": "getAllDetails",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "User Profile Details",
+    "typeScriptTag": "userProfileDetails",
+    "description": "Get all user profile details",
+    "parameters": [
+      {
+        "name": "masterCompany",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "userStatus",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "userId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "roleId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "companyId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "employeeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "perPage",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "429",
+        "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/time/clock_transactions",
+    "method": "getProcessedTransactions",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "time",
+    "typeScriptTag": "time",
+    "description": "Get processed clock transactions.",
+    "parameters": [
+      {
+        "name": "empName",
+        "schema": "string",
+        "required": false,
+        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
+      },
+      {
+        "name": "empId",
+        "schema": "integer",
+        "required": false,
+        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
+      },
+      {
+        "name": "date",
+        "schema": "string",
+        "required": true,
+        "description": "Date of clock transaction",
+        "example": "DATE"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "429",
+        "description": "Too many requests"
+      }
+    ]
+  },
+  {
+    "url": "/time/pending_clock_transactions",
+    "method": "getPendingTransactions",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "time",
+    "typeScriptTag": "time",
+    "description": "Get pending clock transactions.",
+    "parameters": [
+      {
+        "name": "empName",
+        "schema": "string",
+        "required": false,
+        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
+      },
+      {
+        "name": "empId",
+        "schema": "integer",
+        "required": false,
+        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "429",
+        "description": "Too many requests"
+      }
+    ]
+  },
+  {
+    "url": "/time/work_summaries",
+    "method": "getWorkSummaries",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "time",
+    "typeScriptTag": "time",
+    "description": "Obtain work summaries.",
+    "parameters": [
+      {
+        "name": "empName",
+        "schema": "string",
+        "required": false,
+        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
+      },
+      {
+        "name": "empId",
+        "schema": "integer",
+        "required": false,
+        "description": "Employee can be specified by their emp_name or emp_id.  At least one parameter must be specified."
+      },
+      {
+        "name": "from",
+        "schema": "string",
+        "required": true,
+        "description": "Start range for work summaries",
+        "example": "FROM"
+      },
+      {
+        "name": "to",
+        "schema": "string",
+        "required": true,
+        "description": "End range for work summaries",
+        "example": "TO"
+      },
+      {
+        "name": "full",
+        "schema": "boolean",
+        "required": false,
+        "description": "Specifies if both clock and work detail data should be loaded",
+        "default": false
+      },
+      {
+        "name": "authStatus",
+        "schema": "boolean",
+        "required": false,
+        "description": "If specified will load only work summaries with Authorized status equal to true or false"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "429",
+        "description": "Too many requests"
+      }
+    ]
+  },
+  {
+    "url": "/time/work_summary",
+    "method": "getWorkSummaryById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "time",
+    "typeScriptTag": "time",
+    "description": "Obtain a work summary.",
+    "parameters": [
+      {
+        "name": "workSummaryId",
+        "schema": "integer",
+        "required": true,
+        "description": "Work Summary id",
+        "example": 0
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "429",
+        "description": "Too many requests"
+      }
+    ]
+  },
+  {
     "url": "/personnel/v1/user-defined-fields",
     "method": "get",
     "httpMethod": HttpMethodsEnum.GET,
@@ -8953,190 +9125,18 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/personnel/v1/user-details",
-    "method": "getUserDetails",
+    "url": "/locations",
+    "method": "getConfigurations",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "UserDetails",
-    "typeScriptTag": "userDetails",
-    "description": "Get User Details",
-    "parameters": [
-      {
-        "name": "userName",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "userStatus",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/user-preferences",
-    "method": "getUserPreferencesDetails",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "User Preferences",
-    "typeScriptTag": "userPreferences",
-    "description": "Get User Preferences Details",
-    "parameters": [
-      {
-        "name": "userId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/personnel/v1/user-profile-details",
-    "method": "getAllDetails",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "User Profile Details",
-    "typeScriptTag": "userProfileDetails",
-    "description": "Get all user profile details",
-    "parameters": [
-      {
-        "name": "masterCompany",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "userStatus",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "userId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "roleId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "companyId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "employeeId",
-        "schema": "string",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      },
-      {
-        "name": "perPage",
-        "schema": "integer",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      },
-      {
-        "statusCode": "429",
-        "description": ""
-      },
-      {
-        "statusCode": "500",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/jobs",
-    "method": "getAllConfigurations",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "jobs",
-    "typeScriptTag": "jobs",
-    "description": "Retrieve all jobs configurations",
+    "tag": "locations",
+    "typeScriptTag": "locations",
+    "description": "Retrieve all locations configurations",
     "parameters": [
       {
         "name": "countryCode",
         "schema": "string",
         "required": false,
-        "description": "Job country code."
+        "description": "location country code."
       },
       {
         "name": "isActive",
@@ -9165,18 +9165,18 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
     ]
   },
   {
-    "url": "/locations",
-    "method": "getConfigurations",
+    "url": "/jobs",
+    "method": "getAllConfigurations",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "locations",
-    "typeScriptTag": "locations",
-    "description": "Retrieve all locations configurations",
+    "tag": "jobs",
+    "typeScriptTag": "jobs",
+    "description": "Retrieve all jobs configurations",
     "parameters": [
       {
         "name": "countryCode",
         "schema": "string",
         "required": false,
-        "description": "location country code."
+        "description": "Job country code."
       },
       {
         "name": "isActive",
@@ -10732,7 +10732,7 @@ UKG Social Media Guidelines available at https://www.ukg.com/ukg-social-media-gu
 ]
     }
       language="TypeScript"
-      apiTitle="User Profile Details"
+      apiTitle="User Defined Fields"
       apiBaseUrl="{hostname}"
       apiVersion="v1"
       endpoints={171}

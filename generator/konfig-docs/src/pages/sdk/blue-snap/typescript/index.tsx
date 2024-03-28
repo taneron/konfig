@@ -25,7 +25,7 @@ Learn more at BlueSnap.com`}
       companyKebabCase="blue-snap"
       clientNameCamelCase="blueSnap"
       homepage="www.bluesnap.com/"
-      lastUpdated={new Date("2024-03-27T18:19:15.740Z")}
+      lastUpdated={new Date("2024-03-28T17:53:35.242Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/bluesnap/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -142,7 +142,7 @@ Learn more at BlueSnap.com`}
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Transaction",
     "typeScriptTag": "transaction",
-    "description": "Create Sofort Transaction",
+    "description": "Create SEPA DD Transaction",
     "parameters": [
       {
         "name": "ecpTransaction",
@@ -153,7 +153,7 @@ Learn more at BlueSnap.com`}
         "name": "amount",
         "schema": "number",
         "description": "",
-        "default": 42
+        "default": 9.65
       },
       {
         "name": "payerInfo",
@@ -170,7 +170,7 @@ Learn more at BlueSnap.com`}
         "name": "currency",
         "schema": "string",
         "description": "",
-        "default": "GBP"
+        "default": "EUR"
       },
       {
         "name": "authorizedByShopper",
@@ -205,11 +205,6 @@ Learn more at BlueSnap.com`}
       },
       {
         "name": "sepaDirectDebitTransaction",
-        "schema": "object",
-        "description": ""
-      },
-      {
-        "name": "sofortTransaction",
         "schema": "object",
         "description": ""
       }
@@ -424,30 +419,6 @@ Learn more at BlueSnap.com`}
         "name": "batchTransaction",
         "schema": "object",
         "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      }
-    ]
-  },
-  {
-    "url": "/batch-transactions/{batchId}",
-    "method": "getBatchTransaction",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Transaction",
-    "typeScriptTag": "transaction",
-    "description": "Retrieve Batch Transaction",
-    "parameters": [
-      {
-        "name": "batchId",
-        "schema": "string",
-        "required": true,
-        "description": "batch ID sent in the Create Batch Transaction request",
-        "example": "BATCHID",
-        "default": "567890"
       }
     ],
     "responses": [
@@ -1011,80 +982,6 @@ Learn more at BlueSnap.com`}
     ]
   },
   {
-    "url": "/recurring/subscriptions?{parameters}",
-    "method": "listAllSubscriptions",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Subscription",
-    "typeScriptTag": "subscription",
-    "description": "Retrieve All Subscriptions",
-    "parameters": [
-      {
-        "name": "pagesize",
-        "schema": "string",
-        "description": "",
-        "default": "5"
-      },
-      {
-        "name": "after",
-        "schema": "string",
-        "description": "",
-        "default": "34567"
-      },
-      {
-        "name": "gettotal",
-        "schema": "boolean",
-        "description": "",
-        "default": true
-      },
-      {
-        "name": "fulldescription",
-        "schema": "boolean",
-        "description": "",
-        "default": false
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      }
-    ]
-  },
-  {
-    "url": "/:subscriptionId/charges?{parameters}",
-    "method": "listCharges",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Subscription",
-    "typeScriptTag": "subscription",
-    "description": "Retrieve All Charges for a Subscription",
-    "parameters": [
-      {
-        "name": "pagesize",
-        "schema": "string",
-        "description": "",
-        "default": "3"
-      },
-      {
-        "name": "after",
-        "schema": "string",
-        "description": "",
-        "default": "163193"
-      },
-      {
-        "name": "fulldescription",
-        "schema": "boolean",
-        "description": "",
-        "default": false
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      }
-    ]
-  },
-  {
     "url": "/recurring/subscriptions/:subscriptionId/switch-charge-amount",
     "method": "getSwitchChargeAmount",
     "httpMethod": HttpMethodsEnum.GET,
@@ -1382,28 +1279,6 @@ Learn more at BlueSnap.com`}
         "description": "OK"
       }
     ]
-  },
-  {
-    "url": "/vendors?{parameters}",
-    "method": "getAllVendors",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Vendor",
-    "typeScriptTag": "vendor",
-    "description": "Retrieve All Vendors",
-    "parameters": [
-      {
-        "name": "gettotal",
-        "schema": "boolean",
-        "description": "",
-        "default": true
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
-      }
-    ]
   }
 ]
     }
@@ -1411,10 +1286,10 @@ Learn more at BlueSnap.com`}
       apiTitle="API Settings"
       apiBaseUrl="https://sandbox.bluesnap.com/services/2"
       apiVersion="8976-Tools"
-      endpoints={29}
-      sdkMethods={36}
+      endpoints={27}
+      sdkMethods={34}
       schemas={16}
-      parameters={131}
+      parameters={128}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/bluesnap/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/bluesnap/openapi.yaml"

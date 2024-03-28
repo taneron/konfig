@@ -17,7 +17,7 @@ export default function BrexBudgetsTypeScriptSdk() {
       companyKebabCase="brex"
       clientNameCamelCase="brexBudgets"
       homepage="brex.com"
-      lastUpdated={new Date("2024-03-24T21:42:09.454Z")}
+      lastUpdated={new Date("2024-03-28T19:01:23.743Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/budgets/favicon.png"
       contactUrl="https://brex.com"
       contactEmail="developer-access@brex.com"
@@ -617,7 +617,7 @@ export default function BrexBudgetsTypeScriptSdk() {
       sdkMethods={10}
       schemas={22}
       parameters={46}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/budgets/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/brex/budgets/openapi.yaml"
       developerDocumentation="developer.brex.com/openapi/budgets_api/"
