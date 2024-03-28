@@ -1,0 +1,204 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /dashboards:
+    get: Dashboard_listAllDashboards
+    post: Dashboard_createNewDashboard
+  /dashboards/provisioning:
+    get: Dashboard_getProvisionedNumbers
+  /dashboards/{dashboard_id}:
+    delete: Dashboard_deleteDashboardById
+    get: Dashboard_getInfo
+    put: Dashboard_updateName
+  /dashboards/{dashboard_id}/activate_payments:
+    post: Payments_activateDashboardPayments
+  /dashboards/{dashboard_id}/campaigns:
+    get: Reviews_getAllCampaigns
+  /dashboards/{dashboard_id}/campaigns/{campaign_id}:
+    get: Reviews_getCampaignById
+  /dashboards/{dashboard_id}/contacts:
+    get: Contacts_getMatches
+    post: Contacts_bulkUpdate
+  /dashboards/{dashboard_id}/contacts/{phone_number}:
+    delete: Contacts_deleteByPhoneNumber
+    get: Contacts_getByPhoneNumber
+    post: Contacts_createOrUpdateByPhoneNumber
+  /dashboards/{dashboard_id}/contacts/{phone_number}/conversations/archive:
+    put: Conversations_archiveConversation
+  /dashboards/{dashboard_id}/contacts/{phone_number}/conversations/unarchive:
+    put: Conversations_unarchiveConversation
+  /dashboards/{dashboard_id}/contacts/{phone_number}/messages:
+    get: Conversations_getConversationMessagesByContactPhone
+    post: Conversations_sendMessageToContact
+  /dashboards/{dashboard_id}/conversations:
+    get: Conversations_getAllDashboardMessages
+  /dashboards/{dashboard_id}/fields:
+    get: CustomFields_getAllFields
+    post: CustomFields_createNewField
+  /dashboards/{dashboard_id}/fields/{field_id}:
+    delete: CustomFields_deleteFieldById
+    get: CustomFields_getFieldById
+    put: CustomFields_updateFieldName
+  /dashboards/{dashboard_id}/groups:
+    get: Groups_getAll
+    post: Groups_createNewGroup
+  /dashboards/{dashboard_id}/groups/{group_id}:
+    delete: Groups_deleteGroupById
+    get: Groups_getById
+    put: Groups_updateGroupName
+  /dashboards/{dashboard_id}/hooks:
+    get: Webhooks_getAllForDashboard
+    post: Webhooks_registerNewWebhook
+  /dashboards/{dashboard_id}/hooks/{webhook_id}:
+    delete: Webhooks_deleteWebhookFromPhoneNumber
+  /dashboards/{dashboard_id}/keywords:
+    get: Keywords_getAll
+    post: Keywords_createNewKeyword
+  /dashboards/{dashboard_id}/keywords/{keyword_id}:
+    delete: Keywords_deleteKeywordById
+    get: Keywords_getById
+    put: Keywords_updateKeywordById
+  /dashboards/{dashboard_id}/messages:
+    get: Conversations_getDashboardMessages
+  /dashboards/{dashboard_id}/payments:
+    get: Payments_getAll
+    post: Payments_createNewPayment
+  /dashboards/{dashboard_id}/payments/{payment_id}:
+    get: Payments_getPaymentById
+  /dashboards/{dashboard_id}/payments/{payment_id}/cancel:
+    post: Payments_cancelPayment
+  /dashboards/{dashboard_id}/payments/{payment_id}/mark_as_paid:
+    post: Payments_markAsPaid
+  /dashboards/{dashboard_id}/payments/{payment_id}/resend:
+    post: Payments_sendReminder
+  /dashboards/{dashboard_id}/reviews:
+    get: Reviews_getMatchingReviews
+  /dashboards/{dashboard_id}/tags:
+    get: Tags_getAllDashboardTags
+    post: Tags_createNewTag
+  /dashboards/{dashboard_id}/tags/{tag_id}:
+    delete: Tags_deleteTagById
+    get: Tags_getTagById
+    put: Tags_updateTagById
+  /eventTypes:
+    get: Webhooks_getAllTypes
+  /messages:
+    post: Messages_sendMessageWithLocationRequestCallback
+  /messages/{message_id}/redact:
+    put: Messages_redactMessage
+  /messages/{message_id}/unredact:
+    put: Messages_unredactMessage
+  /mms:
+    post: Messages_postMmsAttachment
+  /users:
+    get: Users_getAllUsers
+    post: Users_createUser
+  /users/{user_id}:
+    delete: Users_deleteUserWithPermissions
+    get: Users_getById
+    put: Users_updateUserDetails
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /dashboards/{dashboard_id}/activate_payments:
+    post:
+      application/json: PaymentsActivateDashboardPaymentsRequest
+  /dashboards/{dashboard_id}/contacts:
+    post:
+      application/json: ContactsBulkUpdateRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /dashboards/provisioning:
+    get:
+      '200':
+        application/json: DashboardGetProvisionedNumbersResponse
+  /dashboards/{dashboard_id}/contacts:
+    post:
+      '200':
+        application/json: ContactsBulkUpdateResponse
+  /dashboards/{dashboard_id}/fields:
+    get:
+      '200':
+        application/json: CustomFieldsGetAllFieldsResponse
+  /eventTypes:
+    get:
+      '200':
+        application/json: WebhooksGetAllTypesResponse
+securityParameters:
+  area_code:
+    query: false
+  contact_created_after:
+    query: false
+  contact_created_before:
+    query: false
+  contact_phone_number:
+    query: false
+  custom_field_id_1:
+    query: false
+  custom_field_id_2:
+    query: false
+  custom_field_id_3:
+    query: false
+  custom_field_value_1:
+    query: false
+  custom_field_value_2:
+    query: false
+  custom_field_value_3:
+    query: false
+  email:
+    query: false
+  end_date:
+    query: false
+  external_user_id:
+    query: false
+  groups:
+    query: false
+  has_message_history:
+    query: false
+  has_opted_out:
+    query: false
+  include_archived:
+    query: false
+  is_archived:
+    query: false
+  is_blocked:
+    query: false
+  is_resolved:
+    query: false
+  is_suppressed:
+    query: false
+  last_message_received_after:
+    query: false
+  last_message_received_before:
+    query: false
+  last_message_sent_after:
+    query: false
+  last_message_sent_before:
+    query: false
+  last_message_timestamp_after_utc:
+    query: false
+  last_message_timestamp_before_utc:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  phone_number:
+    query: false
+  reference_number:
+    query: false
+  search:
+    query: false
+  show_unresolved_only:
+    query: false
+  sort_direction:
+    query: false
+  sort_type:
+    query: false
+  start_date:
+    query: false
+  tags:
+    query: false
+validServerUrls: {}

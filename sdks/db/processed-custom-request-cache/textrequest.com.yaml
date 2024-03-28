@@ -1,0 +1,122 @@
+processed:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+  apiBaseUrl: https://api.textrequest.com/api/v3/
+  apiVersion: 3.0.0
+  apiDescription: >
+    This page contains documentation for Text Request's v3 API. [Click
+    here](https://www.textrequest.com/api/v2) for v2 documentation.
+
+
+    The Text Request API makes it easy to programmatically interact with your
+    Text Request account. It provides the ability to **send messages**,
+    **retrieve conversations**, **send payment requests**, **manage contacts,
+    groups, dashboards, and users**, and **create and delete web hooks**. 
+
+
+    Web hooks allow you to get notifications when **messages are sent**, **new
+    messages are received**, **contacts are created**, **contacts are updated**,
+    **payment requests are updated**, and when **location requests are
+    received**.
+
+
+    # Security
+
+
+    All calls to the Text Request API will be authenticated with an API key. All
+    API keys will be transmitted in the request **x-api-key** header. 
+      
+    ```
+
+    x-api-key: 095E5113DE4142C28FB7815CC10BEB56
+
+    ```
+      
+    Failure to specify an authorization header for any request will result in a
+    HTTP `400 (Bad Request)` response.
+      
+    You can find your account's API key on your Text Request account:
+
+    * Log into Text Request as an administrator
+
+    * Click on the Integrations sidebar menu item
+
+    * Choose the API tile near the top of the screen. If your account does not
+    have api access, you can upgrade your account by clicking the "Buy Now"
+    option on the API tile.
+
+    * Copy your API Key from the box on-screen
+      
+    # Error Handling
+      
+      In the event of a failed request, the API will return an appropriate HTTP response code. If the error is due to an invalid request, a human readable error will also be returned is the response's *message* property. For blatantly obvious errors (`404 (Not Found)` responses, for example), this may be left blank. 
+      
+      Here's an example of an error response for an omitted field.
+      
+      ```
+      HTTP 400
+      
+      Response Body
+      
+      {
+        "status": 400,
+        "errorCode": null,
+        "message": "A first name must be specified."
+      } 
+      ```
+      
+      # Pagination for Returned Collections
+      
+      When querying a collection such as users or conversations, there may be thousands of results. To prevent responses from getting massively large, these collections are paginated. For any request to a resource that returns a collection, `page` and `page_size` querystring parameters may be specified to return a subset of entities.
+      
+      API endpoints that return a collection also include `meta` properties in the response, specifying **the returned page**, **the returned page size**, and **the total number of items in the collection**.
+      
+      Here's an example collection return, with the items represented by the ellipses (...):
+      
+      ```
+      HTTP 200
+      
+      Response Body
+      
+      {
+        "items": [
+          ...
+        ],
+        "meta": {
+            "page": 0,
+            "page_size": 100,
+            "total_items": 276
+        }
+      } 
+      ```
+      
+      Here are the rules for how page, page_size, and link headers work:
+      
+      * If omitted, page = 0 and page_size = 100 is implied.
+      * If page or page_size is invalid (negative number or non-numeric), a HTTP `400 (Bad Request)` response is returned.
+      * If page * page_size is greater than the number of entities in the collection, the `items` array will be empty.
+      * Collection `GET` requests will always return the `page`, `page_size`, and `total_items` properties.
+      
+      # Web hook Payloads
+
+      Text Request has a variety of web hooks for hitting URLs you own if you want extra functionality in your own apps. Each webhook has a unique data payload that is sent whenever the trigger is set off. To see the payloads:
+      * Scroll down to the `POST /dashboards/{dashboard_id}/hooks` API call on this page
+      * Between the **Parameters** tab and the **Try it out** button, click the "Callbacks" tab
+      * Click to view the payload sent in any of these web hooks. The payload will be the same regardless of whether it's a `POST`, `PUT`, or `DELETE` request.
+
+      Web hooks can be created in the [web app](https://app.textrequest.com), or through the `POST` endpoint. Web hooks created by endpoints will not appear in the web app, but web hooks created in the web app will be seen by the `GET /dashboards/{dashboard_id}/hooks` api endpoint.
+
+      Now that security and pagination are out of the way, lets take a look at the endpoints. You can try out each endpoint from directly within your browser by clicking the Authorize button below and entering your Text Request API key.
+  apiTitle: Text Request API v3
+  endpoints: 36
+  sdkMethods: 66
+  schemas: 59
+  parameters: 207
+  originalCustomRequest:
+    type: GET
+    url: https://www.textrequest.com/dist/swagger/apiv3docs.yml
+  customRequestSpecFilename: textrequest.com.yaml
+  difficultyScore: 147.25

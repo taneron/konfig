@@ -2139,6 +2139,10 @@ const customRequests: Record<string, CustomRequest> = {
   "vegapay.tech": {
     type: "GET",
     url: "https://www.vegapay.tech/docs/openapi.yaml"
+  },
+  "textrequest.com": {
+    type: "GET",
+    url: "https://www.textrequest.com/dist/swagger/apiv3docs.yml"
   }
 };
 
