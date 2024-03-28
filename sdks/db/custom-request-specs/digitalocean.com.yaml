@@ -18392,6 +18392,8 @@ paths:
         parameter to specify if the results should be for the `private` or
         `public` interface. Use the `direction` query parameter to specify if
         the results should be for `inbound` or `outbound` traffic.
+
+        The metrics in the response body are in megabits per second (Mbps).
       tags:
         - Monitoring
       responses:
@@ -25726,7 +25728,7 @@ components:
     metric_timestamp_start:
       in: query
       name: start
-      description: Timestamp to start metric window.
+      description: UNIX timestamp to start metric window.
       example: '1620683817'
       required: true
       schema:
@@ -25734,7 +25736,7 @@ components:
     metric_timestamp_end:
       in: query
       name: end
-      description: Timestamp to end metric window.
+      description: UNIX timestamp to end metric window.
       example: '1620705417'
       required: true
       schema:

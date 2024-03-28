@@ -1,4 +1,4 @@
-hash: fe5bc557d9ba0acac52c46a9cb4348065b6ff28dd9dc27657b1b55ee6861a9e9
+hash: 5bc3c66e5a79f8838fc3d59af06be08cb3bb71cb8b809eb0a652be12a58d7805
 methodObjects:
   - url: /authorize
     method: authorize
@@ -310,7 +310,7 @@ methodObjects:
           Additionally this field can be used to query any metadata
           applied to the file by specifying the `metadata` field as well
           as the scope and key of the template to retrieve, for example
-          `?field=metadata.enterprise_12345.contractTemplate`.
+          `?fields=metadata.enterprise_12345.contractTemplate`.
         example:
           - id
           - type
@@ -791,8 +791,8 @@ methodObjects:
   - url: /files/upload_sessions
     method: createSessionForUpload
     httpMethod: post
-    tag: Uploads (Chunked)
-    typeScriptTag: uploadsChunked
+    tag: Uploads (https://developer.box.com/reference/
+    typeScriptTag: uploadsHttps:DeveloperBoxComReference
     description: Create upload session
     parameters:
       - name: folder_id
@@ -826,8 +826,8 @@ methodObjects:
   - url: /files/{file_id}/upload_sessions
     method: createSessionForUpload
     httpMethod: post
-    tag: Uploads (Chunked)
-    typeScriptTag: uploadsChunked
+    tag: Uploads (https://developer.box.com/reference/
+    typeScriptTag: uploadsHttps:DeveloperBoxComReference
     description: Create upload session for existing file
     parameters:
       - name: fileId
@@ -862,8 +862,8 @@ methodObjects:
   - url: /files/upload_sessions/{upload_session_id}
     method: removeUploadSession
     httpMethod: delete
-    tag: Uploads (Chunked)
-    typeScriptTag: uploadsChunked
+    tag: Uploads (https://developer.box.com/reference/
+    typeScriptTag: uploadsHttps:DeveloperBoxComReference
     description: Remove upload session
     parameters:
       - name: uploadSessionId
@@ -881,8 +881,8 @@ methodObjects:
   - url: /files/upload_sessions/{upload_session_id}
     method: info
     httpMethod: get
-    tag: Uploads (Chunked)
-    typeScriptTag: uploadsChunked
+    tag: Uploads (https://developer.box.com/reference/
+    typeScriptTag: uploadsHttps:DeveloperBoxComReference
     description: Get upload session
     parameters:
       - name: uploadSessionId
@@ -898,8 +898,8 @@ methodObjects:
   - url: /files/upload_sessions/{upload_session_id}
     method: filePartUpdate
     httpMethod: put
-    tag: Uploads (Chunked)
-    typeScriptTag: uploadsChunked
+    tag: Uploads (https://developer.box.com/reference/
+    typeScriptTag: uploadsHttps:DeveloperBoxComReference
     description: Upload part of file
     parameters:
       - name: uploadSessionId
@@ -957,8 +957,8 @@ methodObjects:
   - url: /files/upload_sessions/{upload_session_id}/parts
     method: listParts
     httpMethod: get
-    tag: Uploads (Chunked)
-    typeScriptTag: uploadsChunked
+    tag: Uploads (https://developer.box.com/reference/
+    typeScriptTag: uploadsHttps:DeveloperBoxComReference
     description: List parts
     parameters:
       - name: uploadSessionId
@@ -992,8 +992,8 @@ methodObjects:
   - url: /files/upload_sessions/{upload_session_id}/commit
     method: commitSession
     httpMethod: post
-    tag: Uploads (Chunked)
-    typeScriptTag: uploadsChunked
+    tag: Uploads (https://developer.box.com/reference/
+    typeScriptTag: uploadsHttps:DeveloperBoxComReference
     description: Commit upload session
     parameters:
       - name: uploadSessionId
@@ -1199,8 +1199,8 @@ methodObjects:
   - url: /files/{file_id}/collaborations
     method: fileAccessList
     httpMethod: get
-    tag: Collaborations (List)
-    typeScriptTag: collaborationsList
+    tag: Collaborations (https://developer.box.com/reference/
+    typeScriptTag: collaborationsHttps:DeveloperBoxComReference
     description: List file collaborations
     parameters:
       - name: fileId
@@ -1649,8 +1649,8 @@ methodObjects:
   - url: /files/{file_id}/metadata
     method: listFileMetadata
     httpMethod: get
-    tag: Metadata instances (Files)
-    typeScriptTag: metadataInstancesFiles
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: List metadata instances on file
     parameters:
       - name: fileId
@@ -1818,8 +1818,8 @@ methodObjects:
   - url: /files/{file_id}/metadata/{scope}/{template_key}
     method: removeInstance
     httpMethod: delete
-    tag: Metadata instances (Files)
-    typeScriptTag: metadataInstancesFiles
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: Remove metadata instance from file
     parameters:
       - name: fileId
@@ -1860,8 +1860,8 @@ methodObjects:
   - url: /files/{file_id}/metadata/{scope}/{template_key}
     method: getInstance
     httpMethod: get
-    tag: Metadata instances (Files)
-    typeScriptTag: metadataInstancesFiles
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: Get metadata instance on file
     parameters:
       - name: fileId
@@ -1904,8 +1904,8 @@ methodObjects:
   - url: /files/{file_id}/metadata/{scope}/{template_key}
     method: applyTemplate
     httpMethod: post
-    tag: Metadata instances (Files)
-    typeScriptTag: metadataInstancesFiles
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: Create metadata instance on file
     parameters:
       - name: fileId
@@ -1948,8 +1948,8 @@ methodObjects:
   - url: /files/{file_id}/metadata/{scope}/{template_key}
     method: updateInstanceOnFile
     httpMethod: put
-    tag: Metadata instances (Files)
-    typeScriptTag: metadataInstancesFiles
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: Update metadata instance on file
     parameters:
       - name: fileId
@@ -2104,8 +2104,8 @@ methodObjects:
   - url: /files/{file_id}/watermark
     method: removeWatermark
     httpMethod: delete
-    tag: Watermarks (Files)
-    typeScriptTag: watermarksFiles
+    tag: Watermarks (https://developer.box.com/reference/
+    typeScriptTag: watermarksHttps:DeveloperBoxComReference
     description: Remove watermark from file
     parameters:
       - name: fileId
@@ -2130,8 +2130,8 @@ methodObjects:
   - url: /files/{file_id}/watermark
     method: get
     httpMethod: get
-    tag: Watermarks (Files)
-    typeScriptTag: watermarksFiles
+    tag: Watermarks (https://developer.box.com/reference/
+    typeScriptTag: watermarksHttps:DeveloperBoxComReference
     description: Get watermark on file
     parameters:
       - name: fileId
@@ -2159,8 +2159,8 @@ methodObjects:
   - url: /files/{file_id}/watermark
     method: applyWatermarkToFile
     httpMethod: put
-    tag: Watermarks (Files)
-    typeScriptTag: watermarksFiles
+    tag: Watermarks (https://developer.box.com/reference/
+    typeScriptTag: watermarksHttps:DeveloperBoxComReference
     description: Apply watermark to file
     parameters:
       - name: fileId
@@ -2461,7 +2461,7 @@ methodObjects:
           Additionally this field can be used to query any metadata
           applied to the file by specifying the `metadata` field as well
           as the scope and key of the template to retrieve, for example
-          `?field=metadata.enterprise_12345.contractTemplate`.
+          `?fields=metadata.enterprise_12345.contractTemplate`.
         example:
           - id
           - type
@@ -2782,7 +2782,7 @@ methodObjects:
           Additionally this field can be used to query any metadata
           applied to the file by specifying the `metadata` field as well
           as the scope and key of the template to retrieve, for example
-          `?field=metadata.enterprise_12345.contractTemplate`.
+          `?fields=metadata.enterprise_12345.contractTemplate`.
         example:
           - id
           - type
@@ -3033,8 +3033,8 @@ methodObjects:
   - url: /folders/{folder_id}/collaborations
     method: folderAccess
     httpMethod: get
-    tag: Collaborations (List)
-    typeScriptTag: collaborationsList
+    tag: Collaborations (https://developer.box.com/reference/
+    typeScriptTag: collaborationsHttps:DeveloperBoxComReference
     description: List folder collaborations
     parameters:
       - name: folderId
@@ -3151,8 +3151,8 @@ methodObjects:
   - url: /folders/{folder_id}/metadata
     method: listOnFolder
     httpMethod: get
-    tag: Metadata instances (Folders)
-    typeScriptTag: metadataInstancesFolders
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: List metadata instances on folder
     parameters:
       - name: folderId
@@ -3339,8 +3339,8 @@ methodObjects:
   - url: /folders/{folder_id}/metadata/{scope}/{template_key}
     method: removeInstance
     httpMethod: delete
-    tag: Metadata instances (Folders)
-    typeScriptTag: metadataInstancesFolders
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: Remove metadata instance from folder
     parameters:
       - name: folderId
@@ -3384,8 +3384,8 @@ methodObjects:
   - url: /folders/{folder_id}/metadata/{scope}/{template_key}
     method: getFolderMetadataInstance
     httpMethod: get
-    tag: Metadata instances (Folders)
-    typeScriptTag: metadataInstancesFolders
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: Get metadata instance on folder
     parameters:
       - name: folderId
@@ -3431,8 +3431,8 @@ methodObjects:
   - url: /folders/{folder_id}/metadata/{scope}/{template_key}
     method: applyTemplate
     httpMethod: post
-    tag: Metadata instances (Folders)
-    typeScriptTag: metadataInstancesFolders
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: Create metadata instance on folder
     parameters:
       - name: folderId
@@ -3478,8 +3478,8 @@ methodObjects:
   - url: /folders/{folder_id}/metadata/{scope}/{template_key}
     method: updateInstanceOnFolder
     httpMethod: put
-    tag: Metadata instances (Folders)
-    typeScriptTag: metadataInstancesFolders
+    tag: Metadata instances (https://developer.box.com/reference/
+    typeScriptTag: metadataInstancesHttps:DeveloperBoxComReference
     description: Update metadata instance on folder
     parameters:
       - name: folderId
@@ -3618,8 +3618,8 @@ methodObjects:
   - url: /folders/{folder_id}/watermark
     method: removeFolderWatermark
     httpMethod: delete
-    tag: Watermarks (Folders)
-    typeScriptTag: watermarksFolders
+    tag: Watermarks (https://developer.box.com/reference/
+    typeScriptTag: watermarksHttps:DeveloperBoxComReference
     description: Remove watermark from folder
     parameters:
       - name: folderId
@@ -3649,8 +3649,8 @@ methodObjects:
   - url: /folders/{folder_id}/watermark
     method: getFolderWatermark
     httpMethod: get
-    tag: Watermarks (Folders)
-    typeScriptTag: watermarksFolders
+    tag: Watermarks (https://developer.box.com/reference/
+    typeScriptTag: watermarksHttps:DeveloperBoxComReference
     description: Get watermark for folder
     parameters:
       - name: folderId
@@ -3681,8 +3681,8 @@ methodObjects:
   - url: /folders/{folder_id}/watermark
     method: applyToFolder
     httpMethod: put
-    tag: Watermarks (Folders)
-    typeScriptTag: watermarksFolders
+    tag: Watermarks (https://developer.box.com/reference/
+    typeScriptTag: watermarksHttps:DeveloperBoxComReference
     description: Apply watermark to folder
     parameters:
       - name: folderId
@@ -4636,8 +4636,8 @@ methodObjects:
   - url: /collaborations
     method: collaborations
     httpMethod: get
-    tag: Collaborations (List)
-    typeScriptTag: collaborationsList
+    tag: Collaborations (https://developer.box.com/reference/
+    typeScriptTag: collaborationsHttps:DeveloperBoxComReference
     description: List pending collaborations
     parameters:
       - name: status
@@ -4888,7 +4888,7 @@ methodObjects:
           a given file size range. This applied to files and folders.
 
           Size ranges are defined as comma separated list of a lower
-          and upper byte size limit (inclusive).
+          and upper byte size limit (https://developer.box.com/reference/.
 
           The upper and lower bound can be omitted to create open ranges.
         example:
@@ -5051,7 +5051,8 @@ methodObjects:
           explicitly specified.
 
 
-          * `relevance` (default) returns the results sorted by relevance to the
+          * `relevance` (https://developer.box.com/reference/ returns the
+          results sorted by relevance to the
 
           query search term. The relevance is based on the occurrence of the
           search
@@ -5453,8 +5454,8 @@ methodObjects:
   - url: /shared_items
     method: getBySharedLink
     httpMethod: get
-    tag: Shared links (Files)
-    typeScriptTag: sharedLinksFiles
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Find file for shared link
     parameters:
       - name: ifNoneMatch
@@ -5511,8 +5512,8 @@ methodObjects:
   - url: /files/{file_id}#get_shared_link
     method: getSharedLinkInfo
     httpMethod: get
-    tag: Shared links (Files)
-    typeScriptTag: sharedLinksFiles
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Get shared link for file
     parameters:
       - name: fileId
@@ -5550,8 +5551,8 @@ methodObjects:
   - url: /files/{file_id}#add_shared_link
     method: addSharedLinkToFile
     httpMethod: put
-    tag: Shared links (Files)
-    typeScriptTag: sharedLinksFiles
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Add shared link to file
     parameters:
       - name: fileId
@@ -5598,8 +5599,8 @@ methodObjects:
   - url: /files/{file_id}#update_shared_link
     method: updateLinkOnFile
     httpMethod: put
-    tag: Shared links (Files)
-    typeScriptTag: sharedLinksFiles
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Update shared link on file
     parameters:
       - name: fileId
@@ -5646,8 +5647,8 @@ methodObjects:
   - url: /files/{file_id}#remove_shared_link
     method: removeSharedLink
     httpMethod: put
-    tag: Shared links (Files)
-    typeScriptTag: sharedLinksFiles
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Remove shared link from file
     parameters:
       - name: fileId
@@ -5693,8 +5694,8 @@ methodObjects:
   - url: /shared_items#folders
     method: findFolderBySharedLink
     httpMethod: get
-    tag: Shared links (Folders)
-    typeScriptTag: sharedLinksFolders
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Find folder for shared link
     parameters:
       - name: ifNoneMatch
@@ -5751,8 +5752,8 @@ methodObjects:
   - url: /folders/{folder_id}#get_shared_link
     method: getSharedLinkForFolder
     httpMethod: get
-    tag: Shared links (Folders)
-    typeScriptTag: sharedLinksFolders
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Get shared link for folder
     parameters:
       - name: folderId
@@ -5793,8 +5794,8 @@ methodObjects:
   - url: /folders/{folder_id}#add_shared_link
     method: addLinkToFolder
     httpMethod: put
-    tag: Shared links (Folders)
-    typeScriptTag: sharedLinksFolders
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Add shared link to folder
     parameters:
       - name: folderId
@@ -5844,8 +5845,8 @@ methodObjects:
   - url: /folders/{folder_id}#update_shared_link
     method: updateFolderSharedLink
     httpMethod: put
-    tag: Shared links (Folders)
-    typeScriptTag: sharedLinksFolders
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Update shared link on folder
     parameters:
       - name: folderId
@@ -5895,8 +5896,8 @@ methodObjects:
   - url: /folders/{folder_id}#remove_shared_link
     method: removeFromFolder
     httpMethod: put
-    tag: Shared links (Folders)
-    typeScriptTag: sharedLinksFolders
+    tag: Shared links (https://developer.box.com/reference/
+    typeScriptTag: sharedLinksHttps:DeveloperBoxComReference
     description: Remove shared link from folder
     parameters:
       - name: folderId
@@ -7486,8 +7487,8 @@ methodObjects:
   - url: /groups/{group_id}/collaborations
     method: groupAccessDetails
     httpMethod: get
-    tag: Collaborations (List)
-    typeScriptTag: collaborationsList
+    tag: Collaborations (https://developer.box.com/reference/
+    typeScriptTag: collaborationsHttps:DeveloperBoxComReference
     description: List group collaborations
     parameters:
       - name: groupId

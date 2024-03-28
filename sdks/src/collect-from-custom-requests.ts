@@ -2186,7 +2186,11 @@ const customRequests: Record<string, CustomRequest> = {
   "bulksms.com": {
     type: "GET",
     url: "https://www.bulksms.com/developer/json/v1/swagger.yaml?v=9"
-  }
+  },
+  "pappers.fr": {
+    type: "GET",
+    url: "https://www.pappers.fr/api_v2.yaml?20231125",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
@@ -2518,7 +2522,7 @@ async function processCustomRequest({
   if (
     lastFetched !== undefined &&
     process.env.FILTER_CUSTOM === undefined &&
-    lastFetched > new Date(Date.now() - 1000 * 60 * 60 * 24)
+    lastFetched > new Date(Date.now() - 1000 * 60 * 60 * 24 * 7)
   ) {
     console.log(`Skip fetching ${key} due to last fetched being recent`);
     const cachedProcessedCustomRequest = getCachedProcessedCustomRequest({

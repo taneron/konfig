@@ -1,0 +1,288 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /association:
+    get: FicheAssociation_getInfo
+  /conformite/personne_physique:
+    get: Conformit_personnePhysiqueStatusCheck
+  /document/avis_situation_insee:
+    get: Documents_downloadInseeSituation
+  /document/declaration_beneficiaires_effectifs:
+    get: Documents_telechargementBeneficiairesEffectifs
+  /document/extrait_inpi:
+    get: Documents_getExtraitInpi
+  /document/extrait_pappers:
+    get: Documents_downloadPappersExtrait
+  /document/rapport_solvabilite:
+    get: Documents_downloadSolvabilityReport
+  /document/statuts:
+    get: Documents_telechargementStatuts
+  /document/telechargement:
+    get: Documents_downloadDocumentByToken
+  /entreprise:
+    get: FicheEntreprise_getInformation
+  /entreprise/cartographie:
+    get: Cartographie_getData
+  /entreprise/comptes:
+    get: ComptesAnnuels_getBySiren
+  /liste:
+    post: Surveillance_listeAjouter
+  /liste-informations:
+    post: Surveillance_addNotifications
+  /liste/:
+    delete: Surveillance_listDelete
+    post: Surveillance_listeDirigeantsAjout
+  /recherche:
+    get: Recherche_criteriaEnterprisesGet
+  /recherche-beneficiaires:
+    get: Recherche_effectiveBeneficiariesSearch
+  /recherche-dirigeants:
+    get: Recherche_leadersSearchCriteriaGet
+  /recherche-documents:
+    get: Recherche_matchingDocumentsGet
+  /recherche-publications:
+    get: Recherche_matchingPublicationsGet
+  /suggestions:
+    get: SuggestionsAutocomplete_searchText
+  /suivi-jetons:
+    get: SuiviUtilisation_getTokenUsage
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /liste:
+    post:
+      application/json: SurveillanceListeDirigeantsAjoutRequest
+  /liste-informations:
+    post:
+      application/json: SurveillanceAddNotificationsRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /conformite/personne_physique:
+    get:
+      '200':
+        application/json: ConformitPersonnePhysiqueStatusCheckResponse
+  /document/avis_situation_insee:
+    get:
+      '200':
+        application/pdf: DocumentsDownloadInseeSituationResponse
+  /document/declaration_beneficiaires_effectifs:
+    get:
+      '200':
+        application/pdf: DocumentsTelechargementBeneficiairesEffectifsResponse
+  /document/extrait_inpi:
+    get:
+      '200':
+        application/pdf: DocumentsGetExtraitInpiResponse
+  /document/extrait_pappers:
+    get:
+      '200':
+        application/pdf: DocumentsDownloadPappersExtraitResponse
+  /document/rapport_solvabilite:
+    get:
+      '200':
+        application/pdf: DocumentsDownloadSolvabilityReportResponse
+  /document/statuts:
+    get:
+      '200':
+        application/pdf: DocumentsTelechargementStatutsResponse
+  /document/telechargement:
+    get:
+      '200':
+        application/pdf: DocumentsDownloadDocumentByTokenResponse
+  /entreprise/comptes:
+    get:
+      '200':
+        application/json: ComptesAnnuelsGetBySirenResponse
+  /liste:
+    delete:
+      '200':
+        application/json: SurveillanceListDeleteResponse
+    post:
+      '200':
+        application/json: SurveillanceListeDirigeantsAjoutResponse
+      '201':
+        application/json: SurveillanceListeDirigeantsAjout201Response
+  /recherche:
+    get:
+      '200':
+        application/json: RechercheCriteriaEnterprisesGetResponse
+  /recherche-beneficiaires:
+    get:
+      '200':
+        application/json: RechercheEffectiveBeneficiariesSearchResponse
+  /recherche-dirigeants:
+    get:
+      '200':
+        application/json: RechercheLeadersSearchCriteriaGetResponse
+  /recherche-documents:
+    get:
+      '200':
+        application/json: RechercheMatchingDocumentsGetResponse
+  /recherche-publications:
+    get:
+      '200':
+        application/json: RechercheMatchingPublicationsGetResponse
+  /suggestions:
+    get:
+      '200':
+        application/json: SuggestionsAutocompleteSearchTextResponse
+  /suivi-jetons:
+    get:
+      '200':
+        application/json: SuiviUtilisationGetTokenUsageResponse
+securityParameters:
+  age_beneficiaire_max:
+    query: false
+  age_beneficiaire_min:
+    query: false
+  age_dirigeant_max:
+    query: false
+  age_dirigeant_min:
+    query: false
+  annee:
+    query: false
+  api_token:
+    query: false
+  autoriser_modifications:
+    query: false
+  bases:
+    query: false
+  capital_max:
+    query: false
+  capital_min:
+    query: false
+  categorie_juridique:
+    query: false
+  champs_supplementaires:
+    query: false
+  chiffre_affaires_max:
+    query: false
+  chiffre_affaires_min:
+    query: false
+  cibles:
+    query: false
+  code_naf:
+    query: false
+  code_postal:
+    query: false
+  convention_collective:
+    query: false
+  curseur:
+    query: false
+  date_creation_max:
+    query: false
+  date_creation_min:
+    query: false
+  date_de_naissance:
+    query: false
+  date_de_naissance_beneficiaire_max:
+    query: false
+  date_de_naissance_beneficiaire_min:
+    query: false
+  date_de_naissance_dirigeant_max:
+    query: false
+  date_de_naissance_dirigeant_min:
+    query: false
+  date_depot_document_max:
+    query: false
+  date_depot_document_min:
+    query: false
+  date_immatriculation_rcs_max:
+    query: false
+  date_immatriculation_rcs_min:
+    query: false
+  date_publication_max:
+    query: false
+  date_publication_min:
+    query: false
+  date_radiation_rcs_max:
+    query: false
+  date_radiation_rcs_min:
+    query: false
+  degre:
+    query: false
+  departement:
+    query: false
+  entreprise_cessee:
+    query: false
+  format_publications_bodacc:
+    query: false
+  id:
+    query: false
+  id_association:
+    query: false
+  id_liste:
+    query: false
+  inclure_entreprises_citees:
+    query: false
+  inclure_entreprises_dirigees:
+    query: false
+  inclure_sci:
+    query: false
+  integrer_diffusions_partielles:
+    query: false
+  longueur:
+    query: false
+  marques:
+    query: false
+  nationalite_beneficiaire:
+    query: false
+  nationalite_dirigeant:
+    query: false
+  nom:
+    query: false
+  nom_dirigeant:
+    query: false
+  objet_social:
+    query: false
+  page:
+    query: false
+  par_curseur:
+    query: false
+  par_page:
+    query: false
+  precision:
+    query: false
+  prenom:
+    query: false
+  prenom_dirigeant:
+    query: false
+  publications_bodacc_brutes:
+    query: false
+  q:
+    query: false
+  qualite_dirigeant:
+    query: false
+  region:
+    query: false
+  rejeter_premier_degre:
+    query: false
+  resultat_max:
+    query: false
+  resultat_min:
+    query: false
+  siege:
+    query: false
+  siren:
+    query: false
+  siret:
+    query: false
+  statut_rcs:
+    query: false
+  supprimer_totalite:
+    query: false
+  token:
+    query: false
+  tranche_effectif_max:
+    query: false
+  tranche_effectif_min:
+    query: false
+  type_dirigeant:
+    query: false
+  type_publication:
+    query: false
+  validite_tva_intracommunautaire:
+    query: false
+validServerUrls: {}
