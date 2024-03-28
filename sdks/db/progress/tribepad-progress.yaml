@@ -1,0 +1,231 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v2/api/v1/options/business-region:
+    get:
+      '200':
+        application/json: {}
+  /v2/oauth/token:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v2/api/v1/applications:
+    get: Applications_getList
+  /v2/api/v1/applications/{application_id}:
+    get: Applications_get
+  /v2/api/v1/applications/{application_id}/files:
+    get: Applications_listFiles
+  /v2/api/v1/applications/{application_id}/files/contract:
+    get: Applications_getApplicationContract
+  /v2/api/v1/applications/{application_id}/files/cv:
+    get: Applications_getCvFile
+  /v2/api/v1/applications/{application_id}/files/integrations:
+    get: Applications_getIntegrationFiles
+  /v2/api/v1/applications/{application_id}/files/onboarding:
+    get: Applications_getOnboardingFiles
+  /v2/api/v1/applications/{application_id}/files/profile:
+    get: Applications_getProfileFiles
+  /v2/api/v1/data-security/preference:
+    get: RegisterAndApply_dataSecurityPreferencesList
+  /v2/api/v1/job/options/business-unit:
+    get: Options_getBusinessUnit
+  /v2/api/v1/jobs/search:
+    get: Job_searchJobs
+  /v2/api/v1/jobs/{job_id}:
+    get: Job_getDetails
+  /v2/api/v1/options/all:
+    get: Options_listValues
+  /v2/api/v1/options/anonymous-policies:
+    get: Options_getAnonymousPolicies
+  /v2/api/v1/options/application/status:
+    get: Options_getApplicationStatus
+  /v2/api/v1/options/business-region:
+    get: Options_getBusinessRegion
+  /v2/api/v1/options/business-unit:
+    get: Options_getBusinessUnit
+  /v2/api/v1/options/country:
+    get: Options_getCountryList
+  /v2/api/v1/options/currency:
+    get: Options_getCurrencyOptions
+  /v2/api/v1/options/job/category:
+    get: Options_getJobCategories
+  /v2/api/v1/options/job/custom-fields:
+    get: Options_getJobCustomFields
+  /v2/api/v1/options/job/type:
+    get: Options_getJobTypes
+  /v2/api/v1/options/mapping:
+    get: Options_getMapping
+  /v2/api/v1/options/piwik:
+    get: Options_getJobPiwik
+  /v2/api/v1/options/region:
+    get: Options_getRegion
+  /v2/api/v1/options/reject-reason:
+    get: Options_getRejectReason
+  /v2/api/v1/options/salary-frequency:
+    get: Options_getSalaryFrequency
+  /v2/api/v1/options/withdraw-reason:
+    get: Options_getWithdrawReason
+  /v2/api/v1/register-and-apply:
+    post: RegisterAndApply_candidateApplicationCreate
+  /v2/oauth/token:
+    post: Authentication_requestToken
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v2/api/v1/register-and-apply:
+    post:
+      multipart/form-data: RegisterAndApplyCandidateApplicationCreateRequest
+  /v2/oauth/token:
+    post:
+      multipart/form-data: AuthenticationRequestTokenRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/api/v1/applications:
+    get:
+      '200':
+        application/json: ApplicationsGetListResponse
+  /v2/api/v1/applications/{application_id}:
+    get:
+      '200':
+        application/json: ApplicationsGetResponse
+  /v2/api/v1/applications/{application_id}/files:
+    get:
+      '200':
+        application/json: ApplicationsListFilesResponse
+  /v2/api/v1/applications/{application_id}/files/contract:
+    get:
+      '200':
+        application/json: ApplicationsGetApplicationContractResponse
+  /v2/api/v1/applications/{application_id}/files/cv:
+    get:
+      '200':
+        application/json: ApplicationsGetCvFileResponse
+  /v2/api/v1/applications/{application_id}/files/integrations:
+    get:
+      '200':
+        application/json: ApplicationsGetIntegrationFilesResponse
+  /v2/api/v1/applications/{application_id}/files/onboarding:
+    get:
+      '200':
+        application/json: ApplicationsGetOnboardingFilesResponse
+  /v2/api/v1/applications/{application_id}/files/profile:
+    get:
+      '200':
+        application/json: ApplicationsGetProfileFilesResponse
+  /v2/api/v1/data-security/preference:
+    get:
+      '200':
+        application/json: RegisterAndApplyDataSecurityPreferencesListResponse
+  /v2/api/v1/job/options/business-unit:
+    get:
+      '200':
+        text/plain: OptionsGetBusinessUnit200Response
+  /v2/api/v1/jobs/search:
+    get:
+      '200':
+        application/json: JobSearchJobsResponse
+  /v2/api/v1/jobs/{job_id}:
+    get:
+      '200':
+        text/plain: JobGetDetailsResponse
+  /v2/api/v1/options/all:
+    get:
+      '200':
+        application/json: OptionsListValuesResponse
+  /v2/api/v1/options/anonymous-policies:
+    get:
+      '200':
+        text/plain: OptionsGetAnonymousPoliciesResponse
+  /v2/api/v1/options/application/status:
+    get:
+      '200':
+        text/plain: OptionsGetApplicationStatusResponse
+  /v2/api/v1/options/business-region:
+    get:
+      '200':
+        application/json: OptionsGetBusinessRegionResponse
+  /v2/api/v1/options/business-unit:
+    get:
+      '200':
+        text/plain: OptionsGetBusinessUnitResponse
+  /v2/api/v1/options/country:
+    get:
+      '200':
+        text/plain: OptionsGetCountryListResponse
+  /v2/api/v1/options/currency:
+    get:
+      '200':
+        text/plain: OptionsGetCurrencyOptionsResponse
+  /v2/api/v1/options/job/category:
+    get:
+      '200':
+        text/plain: OptionsGetJobCategoriesResponse
+  /v2/api/v1/options/job/custom-fields:
+    get:
+      '200':
+        text/plain: OptionsGetJobCustomFieldsResponse
+  /v2/api/v1/options/job/type:
+    get:
+      '200':
+        text/plain: OptionsGetJobTypesResponse
+  /v2/api/v1/options/mapping:
+    get:
+      '200':
+        text/plain: OptionsGetMappingResponse
+  /v2/api/v1/options/piwik:
+    get:
+      '200':
+        text/plain: OptionsGetJobPiwikResponse
+  /v2/api/v1/options/region:
+    get:
+      '200':
+        text/plain: OptionsGetRegionResponse
+  /v2/api/v1/options/reject-reason:
+    get:
+      '200':
+        text/plain: OptionsGetRejectReasonResponse
+  /v2/api/v1/options/salary-frequency:
+    get:
+      '200':
+        text/plain: OptionsGetSalaryFrequencyResponse
+  /v2/api/v1/options/withdraw-reason:
+    get:
+      '200':
+        text/plain: OptionsGetWithdrawReasonResponse
+  /v2/api/v1/register-and-apply:
+    post:
+      '200':
+        application/json: RegisterAndApplyCandidateApplicationCreateResponse
+  /v2/oauth/token:
+    post:
+      '200':
+        application/json: AuthenticationRequestTokenResponse
+securityParameters:
+  filter[category]:
+    query: false
+  filter[evergreen]:
+    query: false
+  filter[id]:
+    query: false
+  filter[job_type]:
+    query: false
+  filter[keywords]:
+    query: false
+  filter[location]:
+    query: false
+  filter[location_country]:
+    query: false
+  filter[location_range]:
+    query: false
+  filter[salary_range_from]:
+    query: false
+  filter[salary_range_to]:
+    query: false
+  sort:
+    query: false
+validServerUrls:
+  https://{example.com}:
+    url: https://{example.com}
