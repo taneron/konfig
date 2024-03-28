@@ -34,12 +34,12 @@ export function Breadcrumbs({
       <div
         data-dark={dark}
         className={cn(
-          "data-[dark=true]:text-black text-white mx-0 sm:mx-auto px-3 max-w-[375px] sm:max-w-none sm:px-24 text-lg font-semibold",
+          "data-[dark=true]:text-black text-white mx-0 sm:mx-auto px-3 max-w-[375px] sm:max-w-none sm:px-24 text-sm sm:text-lg font-semibold",
           className
         )}
       >
         <nav>
-          <ol className="px-0 mb-0 flex gap-1 list-none items-center">
+          <ol className="px-0 mb-0 flex gap-0 sm:gap-1 list-none items-center">
             <li>
               <BreadcrumbLink href="/sdk/category/all">SDKs</BreadcrumbLink>
             </li>
@@ -107,7 +107,7 @@ function BreadcrumbSeparator() {
   return (
     <IconChevronRight
       data-dark={dark}
-      className="h-5 data-[dark=true]:text-slate-800 text-blue-200"
+      className="h-4 sm:h-5 shrink-0 data-[dark=true]:text-slate-800 text-blue-200"
     />
   );
 }
