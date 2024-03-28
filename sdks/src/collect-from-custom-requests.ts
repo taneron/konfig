@@ -360,6 +360,21 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(openapi);
     },
   },
+  "freeagent.com": {
+    apiBaseUrl: "https://api.freeagent.com",
+    lambda: async ({ key }) => {
+      const postmanUrl =
+        "https://raw.githubusercontent.com/fac/postman-freeagent-api-collection/master/FreeAgent.postman_collection.json";
+      const postmanCollection = await fetch(postmanUrl).then((res) =>
+        res.json()
+      );
+      const openapi = transpilePostmanToOpenApiCached({
+        key,
+        postmanCollection,
+      });
+      return JSON.stringify(openapi);
+    },
+  },
   "withterminal.com": {
     lambda: async ({ key }) => {
       const postmanUrl =
@@ -2481,15 +2496,16 @@ async function processCustomRequest({
 
   let apiBaseUrl = spec.spec.servers?.[0]?.url;
   if (apiBaseUrl === undefined) {
-    if (customRequest.apiBaseUrl !== undefined) {
-      apiBaseUrl = customRequest.apiBaseUrl;
-      spec.spec.servers = [{ url: apiBaseUrl }];
-    } else if (customRequest.servers !== undefined) {
+    if (customRequest.servers !== undefined) {
       spec.spec.servers = customRequest.servers;
       apiBaseUrl = customRequest.servers[0].url;
     } else {
       throw Error(`❌ ${key} is missing apiBaseUrl.`);
     }
+  }
+  if (customRequest.apiBaseUrl !== undefined) {
+    apiBaseUrl = customRequest.apiBaseUrl;
+    spec.spec.servers = [{ url: apiBaseUrl }];
   }
 
   const numberOfEndpoints = getNumberOfEndpoints(spec);

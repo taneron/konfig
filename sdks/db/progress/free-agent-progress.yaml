@@ -1,0 +1,458 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v2//bank_transactions/statement:
+    post: BankTransactions_uploadStatement
+  /v2/account_managers:
+    get: AccountancyPracticeApi_listAccountManagers
+  /v2/account_managers/{id}:
+    get: AccountancyPracticeApi_getAccountManager
+  /v2/accounting/profit_and_loss/summary:
+    get: ProfitLoss_summaryGet
+  /v2/accounting/trial_balance/summary:
+    get: TrialBalance_summaryGet
+  /v2/accounting/trial_balance/summary/opening_balances:
+    get: TrialBalance_getOpeningBalances
+  /v2/attachments/{id}:
+    delete: Attachments_deleteAttachment
+    get: Attachments_showAttachment
+  /v2/bank_accounts:
+    get: BankAccounts_listBankAccounts
+    post: BankAccounts_createNewAccount
+  /v2/bank_accounts/{id}:
+    delete: BankAccounts_deleteAccount
+    get: BankAccounts_showDetails
+    put: BankAccounts_updateAccount
+  /v2/bank_transaction_explanations:
+    get: BankTransactionExplanations_listAll
+    post: BankTransactionExplanations_createExplanation
+    put: BankTransactionExplanations_updateExplanation
+  /v2/bank_transaction_explanations/{id}:
+    delete: BankTransactionExplanations_deleteExplanation
+    get: BankTransactionExplanations_getSingleExplanation
+  /v2/bank_transactions:
+    get: BankTransactions_listUnderAccount
+  /v2/bank_transactions/{id}:
+    get: BankTransactions_getSingleTransaction
+  /v2/bill_items:
+    get: BillItems_list
+  /v2/bill_items/{bill_item_id}:
+    get: BillItems_getItem
+  /v2/bills:
+    get: Bills_list
+    post: Bills_createBill
+  /v2/bills/{id}:
+    delete: Bills_deleteBill
+    get: Bills_getBill
+    put: Bills_updateBill
+  /v2/capital_asset_types:
+    get: CapitalAssetTypes_listAll
+    post: CapitalAssetTypes_createNewType
+  /v2/capital_asset_types/{id}:
+    delete: CapitalAssetTypes_deleteType
+    get: CapitalAssetTypes_getSingle
+    put: CapitalAssetTypes_updateType
+  /v2/capital_assets:
+    get: CapitalAssets_getAllAssets
+  /v2/capital_assets/{id}/:
+    get: CapitalAssets_getDetails
+  /v2/cashflow:
+    get: Cashflow_summaryForGivenDateRange
+  /v2/categories:
+    get: Categories_list
+    post: Categories_createCategory
+  /v2/categories/{nominal_code}:
+    delete: Categories_removeCategory
+    get: Categories_getSingleCategory
+    put: Categories_updateCategory
+  /v2/cis_bands:
+    get: CisBands_listAllForCompany
+  /v2/clients:
+    get: AccountancyPracticeApi_getAllClients
+  /v2/company:
+    get: Company_detailsGet
+  /v2/company/business_categories:
+    get: Company_listBusinessCategories
+  /v2/company/tax_timeline:
+    get: Company_showTaxTimeline
+  /v2/contacts:
+    get: Contacts_list
+    post: Contacts_addNewContact
+  /v2/contacts/{id}:
+    delete: Contacts_deleteContact
+    get: Contacts_getById
+    put: Contacts_updateContactById
+  /v2/credit_note_reconciliations:
+    get: CreditNoteReconciliations_list
+    post: CreditNoteReconciliations_createReconciliation
+  /v2/credit_note_reconciliations/{id}:
+    delete: CreditNoteReconciliations_deleteReconciliation
+    get: CreditNoteReconciliations_showReconciliation
+    put: CreditNoteReconciliations_updateReconciliation
+  /v2/credit_notes:
+    get: CreditNotes_list
+    post: CreditNotes_createNewCreditNote
+  /v2/credit_notes/{id}:
+    delete: CreditNotes_deleteCreditNote
+    get: CreditNotes_showCreditNote
+    put: CreditNotes_updateCreditNote
+  /v2/credit_notes/{id}/pdf:
+    get: CreditNotes_showPdf
+  /v2/credit_notes/{id}/send_email:
+    post: CreditNotes_sendEmail
+  /v2/credit_notes/{id}/transitions/mark_as_cancelled:
+    put: CreditNotes_markAsCancelled
+  /v2/credit_notes/{id}/transitions/mark_as_draft:
+    put: CreditNotes_markAsDraft
+  /v2/credit_notes/{id}/transitions/mark_as_sent:
+    put: CreditNotes_markAsSent
+  /v2/email_addresses:
+    get: EmailAddresses_listVerified
+  /v2/estimate_items:
+    post: Estimates_createItem
+  /v2/estimate_items/{id}:
+    delete: Estimates_deleteItem
+    put: Estimates_updateItem
+  /v2/estimates:
+    get: Estimates_list
+    post: Estimates_createNew
+  /v2/estimates/{id}:
+    delete: Estimates_deleteEstimate
+    get: Estimates_showDetails
+    put: Estimates_updateById
+  /v2/estimates/{id}/pdf:
+    get: Estimates_getAsPdf
+  /v2/estimates/{id}/transitions/mark_as_approved:
+    put: Estimates_markAsApproved
+  /v2/estimates/{id}/transitions/mark_as_draft:
+    put: Estimates_markAsDraft
+  /v2/estimates/{id}/transitions/mark_as_rejected:
+    put: Estimates_markAsRejected
+  /v2/estimates/{id}/transitions/mark_as_sent:
+    put: Estimates_markAsSent
+  /v2/expenses:
+    get: Expenses_getAll
+    post: Expenses_createExpense
+  /v2/expenses/mileage_settings:
+    get: Expenses_getMileageSettings
+  /v2/expenses/{id}:
+    delete: Expenses_deleteExpense
+    get: Expenses_getSingleExpense
+  /v2/invoice_items:
+    post: Invoices_addNewInvoiceItem
+  /v2/invoices:
+    get: Invoices_getAll
+    post: Invoices_createNewInvoice
+  /v2/invoices/timeline:
+    get: Invoices_getTimeline
+  /v2/invoices/{id}:
+    delete: Invoices_deleteInvoice
+    get: Invoices_showDetails
+    put: Invoices_updateInvoiceById
+  /v2/invoices/{id}/direct_debit:
+    post: Invoices_takePaymentUsingGoCardlessDirectDebitMandate
+  /v2/invoices/{id}/pdf:
+    get: Invoices_getPdf
+  /v2/invoices/{id}/send_email:
+    post: Invoices_sendEmail
+  /v2/invoices/{id}/transitions/mark_as_cancelled:
+    put: Invoices_markAsCancelled
+  /v2/invoices/{id}/transitions/mark_as_draft:
+    put: Invoices_markAsDraft
+  /v2/invoices/{id}/transitions/mark_as_scheduled:
+    put: Invoices_markAsScheduled
+  /v2/invoices/{id}/transitions/mark_as_sent:
+    put: Invoices_markAsSent
+  /v2/journal_sets:
+    get: JournalSets_listAll
+    post: JournalSets_createNewSet
+    put: JournalSets_updateJournalSet
+  /v2/journal_sets/opening_balances:
+    get: JournalSets_getOpeningBalances
+  /v2/journal_sets/{id}:
+    delete: JournalSets_deleteSet
+    get: JournalSets_getSingleSet
+  /v2/notes:
+    get: Notes_getAllNotes
+  /v2/notes/{id}:
+    delete: Notes_deleteNote
+    get: Notes_getById
+    post: Notes_createNote
+    put: Notes_updateNoteById
+  /v2/payroll/{year}:
+    get: Payroll_listPeriodsForYear
+  /v2/payroll/{year}/{period}:
+    get: Payroll_payslipsForPeriod
+  /v2/payroll_profiles/{year}:
+    get: PayrollProfiles_listForGivenYear
+  /v2/price_list_items:
+    get: PriceListItems_getAll
+  /v2/price_list_items/{id}:
+    get: PriceListItems_getSingleItem
+  /v2/projects:
+    get: Projects_getAll
+    post: Projects_createNewProject
+  /v2/projects/{id}:
+    delete: Projects_remove
+    get: Projects_showProject
+    put: Projects_updateProject
+  /v2/properties:
+    get: Properties_listAllProperties
+    post: Properties_createNewProperty
+  /v2/properties/{id}:
+    delete: Properties_removeProperty
+    get: Properties_getById
+    put: Properties_updateProperty
+  /v2/recurring_invoices:
+    get: RecurringInvoices_listAll
+  /v2/recurring_invoices/{id}:
+    get: RecurringInvoices_showDetails
+  /v2/sales_tax_periods:
+    get: SalesTaxPeriods_getAllPeriods
+    post: SalesTaxPeriods_createPeriod
+  /v2/sales_tax_periods/{id}:
+    delete: SalesTaxPeriods_deletePeriod
+    get: SalesTaxPeriods_getSinglePeriod
+    put: SalesTaxPeriods_updatePeriod
+  /v2/stock_items:
+    get: StockItems_getAll
+  /v2/stock_items/{id}:
+    get: StockItems_getItemById
+  /v2/tasks:
+    get: Tasks_listAll
+    post: Tasks_createUnderProject
+  /v2/tasks/{id}:
+    delete: Tasks_removeTask
+    get: Tasks_getById
+    put: Tasks_updateTaskById
+  /v2/timeslips:
+    get: Timeslips_getAll
+    post: Timeslips_createNew
+  /v2/timeslips/{id}:
+    delete: Timeslips_removeById
+    get: Timeslips_getSingle
+    put: Timeslips_updateById
+  /v2/timeslips/{id}/timer:
+    delete: Timeslips_stopTimer
+    post: Timeslips_startTimer
+  /v2/token_endpoint:
+    post: Authorization_refreshAccessToken
+  /v2/users:
+    get: Users_listAll
+    post: Users_addNewUser
+  /v2/users/me:
+    get: Users_getPersonalProfile
+  /v2/users/{id}:
+    delete: Users_deleteUser
+    get: Users_getById
+    put: Users_updateUserById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v2//bank_transactions/statement:
+    post:
+      application/json: BankTransactionsUploadStatementRequest
+  /v2/bank_accounts:
+    post:
+      application/json: BankAccountsCreateNewAccountRequest
+  /v2/bank_accounts/{id}:
+    put:
+      application/json: BankAccountsUpdateAccountRequest
+  /v2/bank_transaction_explanations:
+    post:
+      application/json: BankTransactionExplanationsCreateExplanationRequest
+    put:
+      application/json: BankTransactionExplanationsUpdateExplanationRequest
+  /v2/bank_transaction_explanations/{id}:
+    delete:
+      application/json: BankTransactionExplanationsDeleteExplanationRequest
+  /v2/bills:
+    post:
+      application/json: BillsCreateBillRequest
+  /v2/bills/{id}:
+    delete:
+      application/json: BillsDeleteBillRequest
+    put:
+      application/json: BillsUpdateBillRequest
+  /v2/capital_asset_types:
+    post:
+      application/json: CapitalAssetTypesCreateNewTypeRequest
+  /v2/capital_asset_types/{id}:
+    put:
+      application/json: CapitalAssetTypesUpdateTypeRequest
+  /v2/categories:
+    post:
+      application/json: CategoriesCreateCategoryRequest
+  /v2/categories/{nominal_code}:
+    put:
+      application/json: CategoriesUpdateCategoryRequest
+  /v2/contacts:
+    post:
+      application/json: ContactsAddNewContactRequest
+  /v2/contacts/{id}:
+    delete:
+      application/json: ContactsDeleteContactRequest
+    put:
+      application/json: ContactsUpdateContactByIdRequest
+  /v2/credit_note_reconciliations:
+    post:
+      application/json: CreditNoteReconciliationsCreateReconciliationRequest
+  /v2/credit_note_reconciliations/{id}:
+    delete:
+      multipart/form-data: CreditNoteReconciliationsDeleteReconciliationRequest
+    put:
+      application/json: CreditNoteReconciliationsUpdateReconciliationRequest
+  /v2/credit_notes:
+    post:
+      application/json: CreditNotesCreateNewCreditNoteRequest
+  /v2/credit_notes/{id}:
+    delete:
+      multipart/form-data: CreditNotesDeleteCreditNoteRequest
+    put:
+      application/json: CreditNotesUpdateCreditNoteRequest
+  /v2/credit_notes/{id}/send_email:
+    post:
+      application/json: CreditNotesSendEmailRequest
+  /v2/estimate_items:
+    post:
+      application/json: EstimatesCreateItemRequest
+  /v2/estimate_items/{id}:
+    delete:
+      application/json: EstimatesDeleteItemRequest
+    put:
+      application/json: EstimatesUpdateItemRequest
+  /v2/estimates:
+    post:
+      application/json: EstimatesCreateNewRequest
+  /v2/estimates/{id}:
+    delete:
+      application/json: EstimatesDeleteEstimateRequest
+    put:
+      application/json: EstimatesUpdateByIdRequest
+  /v2/expenses:
+    post:
+      application/json: ExpensesCreateExpenseRequest
+  /v2/expenses/{id}:
+    delete:
+      multipart/form-data: ExpensesDeleteExpenseRequest
+  /v2/invoice_items:
+    post:
+      application/json: InvoicesAddNewInvoiceItemRequest
+  /v2/invoices:
+    post:
+      application/json: InvoicesCreateNewInvoiceRequest
+  /v2/invoices/{id}:
+    delete:
+      multipart/form-data: InvoicesDeleteInvoiceRequest
+    put:
+      application/json: InvoicesUpdateInvoiceByIdRequest
+  /v2/invoices/{id}/send_email:
+    post:
+      application/json: InvoicesSendEmailRequest
+  /v2/journal_sets:
+    post:
+      application/json: JournalSetsCreateNewSetRequest
+    put:
+      application/json: JournalSetsUpdateJournalSetRequest
+  /v2/notes/{id}:
+    post:
+      application/json: NotesCreateNoteRequest
+    put:
+      application/json: NotesUpdateNoteByIdRequest
+  /v2/projects:
+    post:
+      application/json: ProjectsCreateNewProjectRequest
+  /v2/projects/{id}:
+    delete:
+      multipart/form-data: ProjectsRemoveRequest
+    put:
+      application/json: ProjectsUpdateProjectRequest
+  /v2/properties:
+    post:
+      application/json: PropertiesCreateNewPropertyRequest
+  /v2/properties/{id}:
+    put:
+      application/json: PropertiesUpdatePropertyRequest
+  /v2/sales_tax_periods:
+    post:
+      application/json: SalesTaxPeriodsCreatePeriodRequest
+  /v2/sales_tax_periods/{id}:
+    put:
+      application/json: SalesTaxPeriodsUpdatePeriodRequest
+  /v2/tasks:
+    post:
+      application/json: TasksCreateUnderProjectRequest
+  /v2/tasks/{id}:
+    delete:
+      multipart/form-data: TasksRemoveTaskRequest
+    put:
+      application/json: TasksUpdateTaskByIdRequest
+  /v2/timeslips:
+    post:
+      application/json: TimeslipsCreateNewRequest
+  /v2/timeslips/{id}:
+    delete:
+      multipart/form-data: TimeslipsRemoveByIdRequest
+    put:
+      application/json: TimeslipsUpdateByIdRequest
+  /v2/timeslips/{id}/timer:
+    delete:
+      multipart/form-data: TimeslipsStopTimerRequest
+    post:
+      application/json: TimeslipsStartTimerRequest
+  /v2/token_endpoint:
+    post:
+      application/x-www-form-urlencoded: AuthorizationRefreshAccessTokenRequest
+  /v2/users:
+    post:
+      application/json: UsersAddNewUserRequest
+  /v2/users/{id}:
+    put:
+      application/json: UsersUpdateUserByIdRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  bank_account:
+    query: false
+  bill:
+    query: false
+  contact:
+    query: false
+  currency:
+    query: false
+  from_date:
+    query: false
+  include_history:
+    query: false
+  invoice:
+    query: false
+  last_uploaded:
+    query: false
+  nested:
+    query: false
+  nested_credit_note_items:
+    query: false
+  nested_estimate_items:
+    query: false
+  nested_invoice_items:
+    query: false
+  project:
+    query: false
+  sort:
+    query: false
+  tag:
+    query: false
+  task:
+    query: false
+  to_date:
+    query: false
+  updated_since:
+    query: false
+  user:
+    query: false
+  view:
+    query: false
+validServerUrls: {}
