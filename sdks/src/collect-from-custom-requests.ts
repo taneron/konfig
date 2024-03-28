@@ -2051,6 +2051,15 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "bl.ink": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developers.bl.ink/",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({

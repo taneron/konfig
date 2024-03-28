@@ -1,0 +1,19 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "https://{instance}.bl.ink/api/v4",
+  "apiVersion": "4.0.0",
+  "apiDescription": "# Introduction\nThis is version 4 of the BL.INK API. It follows common REST patterns. [Download a Postman file](https://blink.engineer/postman) to help you get gain knowledge of our API. Learn more about [Postman Desktop App](https://www.postman.com/downloads/).\n**NOTE: This version of tha API is exactly like v3 with responses that are more consistent.\nDocs for v3 can be found at: https://developers.bl.ink/api-v3.html\nEndpoints that have changed include Get Link, Create Link, and Update Link, and Validate Link, and Create Tag.\n Please test the responses before using in production systems.**\n\nAPI PRIMARY BASE URL\n\nhttps://app.bl.ink/api/v4\n\nNote: Enterprise customers must use the admin panel domain in place of https://app.bl.ink.\nPlease use SSL (https) for all requests.\nAll API calls are subject to a rate limit of 5 connections per second per IP address. All requests exceeding that limitation will receive an HTTP 533, HTTP 544, or HTTP 503 (Service Temporarily Unavailable).\n# Authentication\nAll endpoints require a valid access token for authentication:\n1. Invoke the ```POST /access_token``` endpoint to get a new access_token\n1. Add the following header to all endpoint requests:\n ```Authorization: Bearer <access_token>```\nIf you see a refresh token in your BL.INK UI, use that to get a new access_token\n\nThere are two types of tokens, access and refresh token. An access token is used with each api call to verify the user. A user requests an access token with either their username and password, or their username and their refresh token. An access token expires after 24 hours. Our api end point to retrieve an access token will always return a valid access token so the user doesn't need to keep track of expiration.\n\nIf you would rather not supply your password to receive an access token, you may use the refresh token instead..\n# Client\nTo generate client SDK code:\n\n1. Download the OpenApi specification file (above)\n1. Follow these instructions: [Swagger Code Generation](https://swagger.io/docs/swagger-tools/#swagger-codegen-documentation-9)",
+  "apiTitle": "Version 4 of the BL.INK API",
+  "endpoints": 31,
+  "sdkMethods": 41,
+  "schemas": 6,
+  "parameters": 170,
+  "contactUrl": "https://help.bl.ink",
+  "contactEmail": "help@bl.ink",
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "bl.ink.yaml",
+  "difficultyScore": 86.5,
+  "difficulty": "Easy"
+}

@@ -1,0 +1,276 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /domains/{domain_id}:
+    delete:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /access_token:
+    post: AccessToken_generateToken
+  /domains:
+    get: ListDomains_getActiveList
+    post: CreateDomain_newDomain
+  /domains/{domain_id}:
+    delete: DeleteDomain_andLinks
+    get: GetDomainById_userRequestedDomain
+    patch: UpdateDomain_objectAsPartOfResponse
+  /domains?domain_name={domain_name}:
+    get: GetDomainByDomainName_userRequestedDomainList
+  /error_codes:
+    get: ErrorCodes_listErrorCodes
+  /groups:
+    get: ListGroups_getAll
+  /links/validate:
+    post: ValidateLink_url
+  /tags:
+    get: Tags_listByDomainId
+    post: Tags_createNewTag
+  /users:
+    get: ListUsers_byAccountAdmin
+  /utm_templates:
+    get: ListUtmTemplates_getAll
+  /validate_login:
+    post: ValidateLogin_information
+  /{domain_id}/clicks/city:
+    get: DomainClickCountPerCity_getTotalClickCountPerCity
+  /{domain_id}/clicks/country:
+    get: DomainClickCountPerCountry_getTotalCountsByCountry
+  /{domain_id}/clicks/daily:
+    get: DomainClickCountPerDay_getCountByDay
+  /{domain_id}/clicks/device:
+    get: DomainClickCountPerDevice_getTotalClicksPerDevice
+  /{domain_id}/clicks/referrer:
+    get: DomainClickCountPerReferrer_totalClickPerReferrer
+  /{domain_id}/clicks/region:
+    get: DomainClickCountPerRegion_getByRegion
+  /{domain_id}/links:
+    get: ListLinks_byQueryParams
+    post: CreateLink_shortenedUrl
+  /{domain_id}/links/clicked?tag={tag}:
+    get: ListClickedLinks_withinTimeframe
+  /{domain_id}/links/exists?alias={alias}:
+    get: GetLinkByAlias_shortenedUrl
+  /{domain_id}/links/{link_id}:
+    get: GetLink_shortenedLink
+    patch: UpdateLink_withChanges
+  /{domain_id}/links/{link_id}/clicks:
+    get: LinkClickCount_getTotalClickCounts
+  /{domain_id}/links/{link_id}/clicks/city:
+    get: LinkClickCountPerCity_totalCountByCity
+  /{domain_id}/links/{link_id}/clicks/country:
+    get: LinkClickCountPerCountry_totalClicksByCountry
+  /{domain_id}/links/{link_id}/clicks/daily:
+    get: LinkClickCountPerDay_getTotalCountsByDay
+  /{domain_id}/links/{link_id}/clicks/device:
+    get: LinkClickCountPerDevice_getTotalClicksByDevice
+  /{domain_id}/links/{link_id}/clicks/hourly:
+    get: LinkClickCountPerHour_getTotalClicksByHour
+  /{domain_id}/links/{link_id}/clicks/referrer:
+    get: LinkClickCountPerReferrer_totalClicksByReferrer
+  /{domain_id}/links/{link_id}/clicks/region:
+    get: LinkClickCountPerRegion_totalByRegion
+  /{domain_id}/links/{link_id}/qr:
+    get: RetrieveQrCode_forLink
+  /{domain_id}/links/{link_id}/rawclicks:
+    get: LinkRawClicks_getClicksInfo
+operationTags:
+  /tags:
+    post: Tags
+renameTags: {}
+requestSchemaNames:
+  /access_token:
+    post:
+      application/json: AccessTokenGenerateTokenRequest
+  /domains:
+    post:
+      application/json: CreateDomainNewDomainRequest
+  /domains/{domain_id}:
+    patch:
+      application/json: UpdateDomainObjectAsPartOfResponseRequest
+  /links/validate:
+    post:
+      application/json: ValidateLinkUrlRequest
+  /tags:
+    post:
+      application/json: TagsCreateNewTagRequest
+  /{domain_id}/links:
+    post:
+      application/json: CreateLinkShortenedUrlRequest
+  /{domain_id}/links/{link_id}:
+    patch:
+      application/json: UpdateLinkWithChangesRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /access_token:
+    post:
+      '200':
+        application/json: AccessTokenGenerateTokenResponse
+  /domains/{domain_id}:
+    delete:
+      '200':
+        application/json: DeleteDomainAndLinksResponse
+  /error_codes:
+    get:
+      '200':
+        application/json: ErrorCodesListErrorCodesResponse
+  /groups:
+    get:
+      '200':
+        application/json: ListGroupsGetAllResponse
+  /links/validate:
+    post:
+      '200':
+        application/json: ValidateLinkUrlResponse
+  /tags:
+    get:
+      '200':
+        application/json: TagsListByDomainIdResponse
+    post:
+      '200':
+        application/json: TagsCreateNewTagResponse
+  /users:
+    get:
+      '200':
+        application/json: ListUsersByAccountAdminResponse
+  /utm_templates:
+    get:
+      '200':
+        application/json: ListUtmTemplatesGetAllResponse
+  /validate_login:
+    post:
+      '200':
+        application/json: ValidateLoginInformationResponse
+  /{domain_id}/clicks/city:
+    get:
+      '200':
+        application/json: DomainClickCountPerCityGetTotalClickCountPerCityResponse
+  /{domain_id}/clicks/country:
+    get:
+      '200':
+        application/json: DomainClickCountPerCountryGetTotalCountsByCountryResponse
+  /{domain_id}/clicks/daily:
+    get:
+      '200':
+        application/json: DomainClickCountPerDayGetCountByDayResponse
+  /{domain_id}/clicks/device:
+    get:
+      '200':
+        application/json: DomainClickCountPerDeviceGetTotalClicksPerDeviceResponse
+  /{domain_id}/clicks/referrer:
+    get:
+      '200':
+        application/json: DomainClickCountPerReferrerTotalClickPerReferrerResponse
+  /{domain_id}/clicks/region:
+    get:
+      '200':
+        application/json: DomainClickCountPerRegionGetByRegionResponse
+  /{domain_id}/links:
+    get:
+      '200':
+        application/json: ListLinksByQueryParamsResponse
+    post:
+      '200':
+        application/json: CreateLinkShortenedUrlResponse
+  /{domain_id}/links/clicked?tag={tag}:
+    get:
+      '200':
+        application/json: ListClickedLinksWithinTimeframeResponse
+  /{domain_id}/links/exists?alias={alias}:
+    get:
+      '200':
+        application/json: GetLinkByAliasShortenedUrlResponse
+  /{domain_id}/links/{link_id}:
+    get:
+      '200':
+        application/json: GetLinkShortenedLinkResponse
+    patch:
+      '200':
+        application/json: UpdateLinkWithChangesResponse
+  /{domain_id}/links/{link_id}/clicks:
+    get:
+      '200':
+        application/json: LinkClickCountGetTotalClickCountsResponse
+  /{domain_id}/links/{link_id}/clicks/city:
+    get:
+      '200':
+        application/json: LinkClickCountPerCityTotalCountByCityResponse
+  /{domain_id}/links/{link_id}/clicks/country:
+    get:
+      '200':
+        application/json: LinkClickCountPerCountryTotalClicksByCountryResponse
+  /{domain_id}/links/{link_id}/clicks/daily:
+    get:
+      '200':
+        application/json: LinkClickCountPerDayGetTotalCountsByDayResponse
+  /{domain_id}/links/{link_id}/clicks/device:
+    get:
+      '200':
+        application/json: LinkClickCountPerDeviceGetTotalClicksByDeviceResponse
+  /{domain_id}/links/{link_id}/clicks/hourly:
+    get:
+      '200':
+        application/json: LinkClickCountPerHourGetTotalClicksByHourResponse
+  /{domain_id}/links/{link_id}/clicks/referrer:
+    get:
+      '200':
+        application/json: LinkClickCountPerReferrerTotalClicksByReferrerResponse
+  /{domain_id}/links/{link_id}/clicks/region:
+    get:
+      '200':
+        application/json: LinkClickCountPerRegionTotalByRegionResponse
+  /{domain_id}/links/{link_id}/qr:
+    get:
+      '200':
+        image/eps: RetrieveQrCodeForLink200Response
+        image/png: RetrieveQrCodeForLinkResponse
+        image/svg: RetrieveQrCodeForLink200Response
+  /{domain_id}/links/{link_id}/rawclicks:
+    get:
+      '200':
+        application/json: LinkRawClicksGetClicksInfoResponse
+securityParameters:
+  city:
+    query: false
+  country:
+    query: false
+  device:
+    query: false
+  domain_id:
+    query: false
+  domain_name:
+    query: false
+  from_unix:
+    query: false
+  from_user:
+    query: false
+  group_id:
+    query: false
+  keyword:
+    query: false
+  label_id:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  referrer:
+    query: false
+  region:
+    query: false
+  search:
+    query: false
+  tag:
+    query: false
+  to_unix:
+    query: false
+  url:
+    query: false
+  user_id:
+    query: false
+  users:
+    query: false
+validServerUrls:
+  https://{instance}.bl.ink/api/v4:
+    url: https://{instance}.bl.ink/api/v4

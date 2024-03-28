@@ -1,0 +1,1238 @@
+hash: fd89e837380e490f714f3341f2d91b6ff6765c7f4d3b255bf65e4bef6843deb5
+methodObjects:
+  - url: /validate_login
+    method: information
+    httpMethod: post
+    tag: Validate Login
+    typeScriptTag: validateLogin
+    description: Validates login information
+    parameters:
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: bud@smartlinker.email
+      - name: password
+        schema: string
+        required: true
+        description: ''
+        example: PASSWORD
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+  - url: /access_token
+    method: generateToken
+    httpMethod: post
+    tag: Access Token
+    typeScriptTag: accessToken
+    description: Returns a valid authentication token
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+  - url: /users
+    method: byAccountAdmin
+    httpMethod: get
+    tag: List Users
+    typeScriptTag: listUsers
+    description: >-
+      Returns the users in an account for those who have account admin
+      authorization.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links
+    method: byQueryParams
+    httpMethod: get
+    tag: List Links
+    typeScriptTag: listLinks
+    description: Returns a list of user's links filtering by query params
+    parameters:
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: tag
+        schema: string
+        required: false
+        description: Search links by tag
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: page
+        schema: integer
+        description: Page number
+      - name: url
+        schema: string
+        description: long URL to search links by
+      - name: order
+        schema: string
+        description: >-
+          Orders results differently. Possible values 'oldest' or 'latest'. 
+          Defaults to 'oldest'
+      - name: groupId
+        schema: integer
+        description: Search links by group_id
+      - name: users
+        schema: string
+        description: >-
+          A flag for privileged users (domain admins or account admins) to
+          specify returning all links  from corresponding domain instead of just
+          links they created. Example users=all
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{domain_id}/links
+    method: shortenedUrl
+    httpMethod: post
+    tag: Create Link
+    typeScriptTag: createLink
+    description: Will take the passed in URL and create a new shortened link.
+    parameters:
+      - name: tags
+        schema: array
+        required: false
+        description: ''
+      - name: url
+        schema: string
+        required: true
+        description: ''
+        example: URL
+      - name: alias
+        schema: string
+        required: false
+        description: ''
+      - name: rand_alias_length
+        schema: integer
+        required: false
+        description: ''
+      - name: dupe_check
+        schema: integer
+        required: false
+        description: ''
+      - name: notes
+        schema: string
+        required: false
+        description: ''
+      - name: notify_on_click
+        schema: integer
+        required: false
+        description: ''
+      - name: override_404_check
+        schema: integer
+        required: false
+        description: ''
+      - name: utm_template_id
+        schema: integer
+        required: false
+        description: ''
+      - name: utm_fields
+        schema: object
+        required: false
+        description: ''
+        example:
+          field_1: value1
+          field_2: value2
+          field_3: value c
+      - name: archive_on
+        schema: integer
+        required: false
+        description: ''
+      - name: delete_on
+        schema: integer
+        required: false
+        description: ''
+      - name: redirect_type
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{domain_id}/links/clicked?tag={tag}
+    method: withinTimeframe
+    httpMethod: get
+    tag: List Clicked Links
+    typeScriptTag: listClickedLinks
+    description: >-
+      Returns links clicked on within a specified time range as well as the
+      number of clicks (lifetime and within range)
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: fromUser
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter. Valid value 'me' is allowed to only query for
+          your links.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: page
+        schema: integer
+        required: false
+        description: >-
+          The page of to query the values from the paginated results. Defaults
+          to 1.
+      - name: tag
+        schema: string
+        required: false
+        description: Search links by tag
+      - name: groupId
+        schema: integer
+        required: false
+        description: Search links by group_id
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /links/validate
+    method: url
+    httpMethod: post
+    tag: Validate Link
+    typeScriptTag: validateLink
+    description: Will take the passed in URL and validate it.
+    parameters:
+      - name: url
+        schema: string
+        required: true
+        description: ''
+        example: URL
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{domain_id}/links/{link_id}
+    method: shortenedLink
+    httpMethod: get
+    tag: Get Link
+    typeScriptTag: getLink
+    description: Returns a short link
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}
+    method: withChanges
+    httpMethod: patch
+    tag: Update Link
+    typeScriptTag: updateLink
+    description: Takes a series of change operations and applies them to the link
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /{domain_id}/links/exists?alias={alias}
+    method: shortenedUrl
+    httpMethod: get
+    tag: Get Link By Alias
+    typeScriptTag: getLinkByAlias
+    description: Returns a short link by the given alias
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/qr
+    method: forLink
+    httpMethod: get
+    tag: Retrieve QR Code
+    typeScriptTag: retrieveQrCode
+    description: Retrieve link in QR form
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+  - url: /{domain_id}/clicks/daily
+    method: getCountByDay
+    httpMethod: get
+    tag: Domain Click Count Per Day
+    typeScriptTag: domainClickCountPerDay
+    description: Returns the domain click count for each day.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/clicks/country
+    method: getTotalCountsByCountry
+    httpMethod: get
+    tag: Domain Click Count Per Country
+    typeScriptTag: domainClickCountPerCountry
+    description: Returns the total click count per country.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: country
+        schema: string
+        required: false
+        description: The country to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/clicks/region
+    method: getByRegion
+    httpMethod: get
+    tag: Domain Click Count Per Region
+    typeScriptTag: domainClickCountPerRegion
+    description: Returns the total click count per region.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: country
+        schema: string
+        required: false
+        description: The country to query the values
+      - name: region
+        schema: string
+        required: false
+        description: The region to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/clicks/city
+    method: getTotalClickCountPerCity
+    httpMethod: get
+    tag: Domain Click Count Per City
+    typeScriptTag: domainClickCountPerCity
+    description: Returns the total click count per city.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: country
+        schema: string
+        required: false
+        description: The country to query the values
+      - name: region
+        schema: string
+        required: false
+        description: The region to query the values
+      - name: city
+        schema: string
+        required: false
+        description: The city to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/clicks/device
+    method: getTotalClicksPerDevice
+    httpMethod: get
+    tag: Domain Click Count Per Device
+    typeScriptTag: domainClickCountPerDevice
+    description: Returns the total click count per device.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: device
+        schema: string
+        required: false
+        description: The device to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/clicks/referrer
+    method: totalClickPerReferrer
+    httpMethod: get
+    tag: Domain Click Count Per Referrer
+    typeScriptTag: domainClickCountPerReferrer
+    description: Returns the total click count per referrer.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: referrer
+        schema: string
+        required: false
+        description: The referrer to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: >-
+          The page of to query the values from the paginated results. Defaults
+          to 1.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/clicks
+    method: getTotalClickCounts
+    httpMethod: get
+    tag: Link Click Count
+    typeScriptTag: linkClickCount
+    description: >-
+      Returns the total and total unique click counts without filters or the
+      time-based filtered count.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/clicks/daily
+    method: getTotalCountsByDay
+    httpMethod: get
+    tag: Link Click Count Per Day
+    typeScriptTag: linkClickCountPerDay
+    description: Returns the link click count for each day.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/clicks/hourly
+    method: getTotalClicksByHour
+    httpMethod: get
+    tag: Link Click Count Per Hour
+    typeScriptTag: linkClickCountPerHour
+    description: Returns the link click count for each hour.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/clicks/country
+    method: totalClicksByCountry
+    httpMethod: get
+    tag: Link Click Count Per Country
+    typeScriptTag: linkClickCountPerCountry
+    description: Returns the total click count per country.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: country
+        schema: string
+        required: false
+        description: The country to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/clicks/region
+    method: totalByRegion
+    httpMethod: get
+    tag: Link Click Count Per Region
+    typeScriptTag: linkClickCountPerRegion
+    description: Returns the total click count per region.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: country
+        schema: string
+        required: false
+        description: The country to query the values
+      - name: region
+        schema: string
+        required: false
+        description: The region to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/clicks/city
+    method: totalCountByCity
+    httpMethod: get
+    tag: Link Click Count Per City
+    typeScriptTag: linkClickCountPerCity
+    description: Returns the total click count per city.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: country
+        schema: string
+        required: false
+        description: The country to query the values
+      - name: region
+        schema: string
+        required: false
+        description: The region to query the values
+      - name: city
+        schema: string
+        required: false
+        description: The city to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/clicks/device
+    method: getTotalClicksByDevice
+    httpMethod: get
+    tag: Link Click Count Per Device
+    typeScriptTag: linkClickCountPerDevice
+    description: Returns the total click count per device.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: device
+        schema: string
+        required: false
+        description: The device to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: The page of to query the values from the paginated results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/clicks/referrer
+    method: totalClicksByReferrer
+    httpMethod: get
+    tag: Link Click Count Per Referrer
+    typeScriptTag: linkClickCountPerReferrer
+    description: Returns the total click count per referrer.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+      - name: fromUnix
+        schema: integer
+        required: false
+        description: The UTC unix timestamp, query returns values after this date.
+      - name: toUnix
+        schema: integer
+        required: false
+        description: >-
+          The UTC unix timestamp, query returns values before this date.
+          Required if from_unix is specified.
+      - name: userId
+        schema: undefined
+        required: false
+        description: >-
+          An optional parameter containing the user's ID to query. Elevated
+          privileges are required to specify another. Defaults to current user.
+          Valid value 'all' is allowed for users of elevated privileges.
+      - name: labelId
+        schema: undefined
+        required: false
+        description: An optional parameter containing the label's ID to query.
+      - name: keyword
+        schema: string
+        description: Search link alias, notes, and redirect url for keyword
+      - name: referrer
+        schema: string
+        required: false
+        description: The referrer to query the values
+      - name: page
+        schema: integer
+        required: false
+        description: >-
+          The page of to query the values from the paginated results. Defaults
+          to 1.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{domain_id}/links/{link_id}/rawclicks
+    method: getClicksInfo
+    httpMethod: get
+    tag: Link Raw Clicks
+    typeScriptTag: linkRawClicks
+    description: Returns a list of clicks and their information based on the parameters.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: The unique domain identifier.
+        example: 0
+      - name: linkId
+        schema: integer
+        required: true
+        description: The unique link identifier.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /tags
+    method: listByDomainId
+    httpMethod: get
+    tag: Tags
+    typeScriptTag: tags
+    description: Returns a list of tags.
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: Domain ID to query by
+        example: 0
+      - name: search
+        schema: string
+        description: Tag name to query by
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /tags
+    method: createNewTag
+    httpMethod: post
+    tag: Tags
+    typeScriptTag: tags
+    description: Creates a new tag
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+      - name: domain_id
+        schema: integer
+        description: ''
+      - name: shared
+        schema: boolean
+        description: ''
+      - name: notes
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /domains
+    method: getActiveList
+    httpMethod: get
+    tag: List Domains
+    typeScriptTag: listDomains
+    description: Returns a list of the user's active domains
+    parameters:
+      - name: page
+        schema: integer
+        description: Page number
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /domains
+    method: newDomain
+    httpMethod: post
+    tag: Create Domain
+    typeScriptTag: createDomain
+    description: Creates a new domain on the user's account
+    parameters:
+      - name: domain
+        schema: string
+        required: true
+        description: ''
+        example: DOMAIN
+      - name: default
+        schema: boolean
+        required: false
+        description: ''
+      - name: url_404
+        schema: string
+        required: false
+        description: ''
+      - name: homepage
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /domains?domain_name={domain_name}
+    method: userRequestedDomainList
+    httpMethod: get
+    tag: Get Domain by Domain Name
+    typeScriptTag: getDomainByDomainName
+    description: Returns a list of the user's requested domain
+    parameters:
+      - name: domainName
+        schema: string
+        required: true
+        description: ''
+        example: DOMAIN_NAME
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /domains/{domain_id}
+    method: andLinks
+    httpMethod: delete
+    tag: Delete Domain
+    typeScriptTag: deleteDomain
+    description: Delete the domain in question including all its links
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /domains/{domain_id}
+    method: userRequestedDomain
+    httpMethod: get
+    tag: Get Domain by ID
+    typeScriptTag: getDomainById
+    description: Returns a list of the user's requested domain
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /domains/{domain_id}
+    method: objectAsPartOfResponse
+    httpMethod: patch
+    tag: Update Domain
+    typeScriptTag: updateDomain
+    description: Updates the domain in question
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: op
+        schema: string
+        description: ''
+      - name: path
+        schema: string
+        description: ''
+      - name: value
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /utm_templates
+    method: getAll
+    httpMethod: get
+    tag: List UTM Templates
+    typeScriptTag: listUtmTemplates
+    description: Returns a list of available UTM templates
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: Domain ID to query by
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /groups
+    method: getAll
+    httpMethod: get
+    tag: List Groups
+    typeScriptTag: listGroups
+    description: Returns a list of available groups
+    parameters:
+      - name: domainId
+        schema: integer
+        required: true
+        description: Domain ID to query by
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /error_codes
+    method: listErrorCodes
+    httpMethod: get
+    tag: Error Codes
+    typeScriptTag: errorCodes
+    description: List Error Codes
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 46
+apiDescription: >-
+  # Introduction
+
+  This is version 4 of the BL.INK API. It follows common REST patterns.
+  [Download a Postman file](https://blink.engineer/postman) to help you get gain
+  knowledge of our API. Learn more about [Postman Desktop
+  App](https://www.postman.com/downloads/).
+
+  **NOTE: This version of tha API is exactly like v3 with responses that are
+  more consistent.
+
+  Docs for v3 can be found at: https://developers.bl.ink/api-v3.html
+
+  Endpoints that have changed include Get Link, Create Link, and Update Link,
+  and Validate Link, and Create Tag.
+   Please test the responses before using in production systems.**
+
+  API PRIMARY BASE URL
+
+
+  https://app.bl.ink/api/v4
+
+
+  Note: Enterprise customers must use the admin panel domain in place of
+  https://app.bl.ink.
+
+  Please use SSL (https) for all requests.
+
+  All API calls are subject to a rate limit of 5 connections per second per IP
+  address. All requests exceeding that limitation will receive an HTTP 533, HTTP
+  544, or HTTP 503 (Service Temporarily Unavailable).
+
+  # Authentication
+
+  All endpoints require a valid access token for authentication:
+
+  1. Invoke the ```POST /access_token``` endpoint to get a new access_token
+
+  1. Add the following header to all endpoint requests:
+   ```Authorization: Bearer <access_token>```
+  If you see a refresh token in your BL.INK UI, use that to get a new
+  access_token
+
+
+  There are two types of tokens, access and refresh token. An access token is
+  used with each api call to verify the user. A user requests an access token
+  with either their username and password, or their username and their refresh
+  token. An access token expires after 24 hours. Our api end point to retrieve
+  an access token will always return a valid access token so the user doesn't
+  need to keep track of expiration.
+
+
+  If you would rather not supply your password to receive an access token, you
+  may use the refresh token instead..
+
+  # Client
+
+  To generate client SDK code:
+
+
+  1. Download the OpenApi specification file (above)
+
+  1. Follow these instructions: [Swagger Code
+  Generation](https://swagger.io/docs/swagger-tools/#swagger-codegen-documentation-9)
