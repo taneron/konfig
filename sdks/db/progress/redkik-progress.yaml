@@ -1,0 +1,304 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /api/v2/user/api-tokens:
+    post: ApiTokenController_createUserApiToken
+  /api/v2/user/api-tokens/{id}:
+    delete: ApiTokenController_deleteById
+  /api/v2/user/audits:
+    get: AuditController_getAudits
+    post: AuditController_createUserAudits
+  /api/v2/user/oauth/auth/login:
+    post: Authentications_postOauthLogin
+  /api/v2/user/oauth/auth/reset:
+    post: Authentications_resetOauthToken
+  /api/v2/user/oauth/authorize:
+    get: Authentications_authorizeOauthUser
+  /api/v2/user/oauth/check-mfa-code:
+    post: Authentications_checkMfaCode
+  /api/v2/user/oauth/exchange:
+    get: Authentications_exchangeOauthToken
+  /api/v2/user/oauth/forgotten:
+    get: Authentications_getForgottenOauth
+  /api/v2/user/oauth/logout:
+    post: Authentications_performLogout
+  /api/v2/user/oauth/mfa:
+    get: Authentications_getMfaDetails
+  /api/v2/user/oauth/token:
+    post: Authentications_createUserOauthToken
+  /api/v2/user/organizations:
+    get: OrganizationController_getOrganizations
+    post: OrganizationController_createUserOrganization
+  /api/v2/user/organizations/available-policies:
+    get: OrganizationController_listAvailablePolicies
+  /api/v2/user/organizations/chart:
+    get: OrganizationController_getOrganizationChart
+  /api/v2/user/organizations/find:
+    get: OrganizationController_findUserOrganizations
+  /api/v2/user/organizations/find/ids:
+    get: OrganizationController_findUserOrganizationIds
+  /api/v2/user/organizations/list:
+    get: OrganizationController_listUserOrganizations
+  /api/v2/user/organizations/organization-policies/{id}:
+    get: OrganizationPolicyController_getById
+  /api/v2/user/organizations/organization-policies/{policyId}:
+    delete: OrganizationPolicyController_deletePolicyById
+  /api/v2/user/organizations/{id}:
+    delete: OrganizationController_deleteOrganizationById
+    get: OrganizationController_getById
+    patch: OrganizationController_updateOrganizationById
+  /api/v2/user/organizations/{id}/api-tokens:
+    get: OrganizationController_getUserApiTokens
+  /api/v2/user/organizations/{id}/assigned-policies:
+    get: OrganizationController_getAssignedPolicies
+    post: OrganizationController_assignPolicies
+  /api/v2/user/organizations/{id}/closure-values:
+    get: OrganizationController_getClosureValues
+  /api/v2/user/organizations/{id}/descendantIds:
+    get: OrganizationController_getDescendantIds
+  /api/v2/user/organizations/{id}/details:
+    get: OrganizationController_getOrganizationDetails
+  /api/v2/user/organizations/{id}/endorsements:
+    get: OrganizationController_getUserEndorsements
+  /api/v2/user/organizations/{id}/insurers:
+    get: OrganizationController_listInsurerAssignedForOrganization
+    post: OrganizationController_updateInsurersList
+  /api/v2/user/organizations/{id}/name:
+    get: OrganizationController_getOrganizationNameById
+  /api/v2/user/organizations/{id}/policies:
+    get: OrganizationController_getPolicies
+  /api/v2/user/organizations/{id}/setup:
+    get: OrganizationController_getUserOrganizationSetup
+  /api/v2/user/organizations/{id}/stripe-account:
+    get: OrganizationController_getStripeAccount
+  /api/v2/user/roles:
+    get: RoleController_getUserRoles
+    post: RoleController_createRole
+  /api/v2/user/roles/{id}:
+    delete: RoleController_deleteUserRole
+    get: RoleController_getUserRolesById
+    patch: RoleController_updateUserRole
+  /api/v2/user/status:
+    get: StatusController_getUserStatus
+  /api/v2/user/users:
+    get: UserController_getUsersList
+    post: UserController_createUser
+  /api/v2/user/users/find:
+    get: UserController_findUsers
+  /api/v2/user/users/generate-mfa-code:
+    post: UserController_generateMfaCode
+  /api/v2/user/users/generate-otp-secret:
+    get: UserController_generateOtpSecret
+  /api/v2/user/users/password:
+    post: UserController_resetPassword
+  /api/v2/user/users/reset-mfa-type:
+    post: UserController_resetMfaType
+  /api/v2/user/users/reset-password:
+    post: UserController_resetPassword
+  /api/v2/user/users/setup-otp:
+    post: UserController_setupOtp
+  /api/v2/user/users/{id}:
+    delete: UserController_deleteUserById
+    get: UserController_getById
+    patch: UserController_updateUserById
+  /api/v2/user/users/{id}/profile:
+    get: UserController_getUserProfile
+    patch: UserController_updateUserProfile
+  /api/v2/user/users/{id}/reset-password:
+    post: UserController_resetUserPassword
+  /api/v2/user/users/{id}/roles:
+    get: UserController_getUserRolesById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v2/user/oauth/auth/login:
+    post:
+      application/json: AuthenticationsPostOauthLoginRequest
+  /api/v2/user/oauth/auth/reset:
+    post:
+      application/json: AuthenticationsResetOauthTokenRequest
+  /api/v2/user/organizations/{id}/assigned-policies:
+    post:
+      application/json: OrganizationControllerAssignPoliciesRequest
+  /api/v2/user/organizations/{id}/closure-values:
+    get:
+      application/json: OrganizationControllerGetClosureValuesRequest
+  /api/v2/user/organizations/{id}/insurers:
+    post:
+      application/json: OrganizationControllerUpdateInsurersListRequest
+  /api/v2/user/users/generate-mfa-code:
+    post:
+      application/json: UserControllerGenerateMfaCodeRequest
+  /api/v2/user/users/password:
+    post:
+      application/json: UserControllerResetPasswordRequest
+  /api/v2/user/users/setup-otp:
+    post:
+      application/json: UserControllerSetupOtpRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v2/user/api-tokens/{id}:
+    delete:
+      '200':
+        '*/*': ApiTokenControllerDeleteByIdResponse
+  /api/v2/user/audits:
+    get:
+      '200':
+        application/json: AuditControllerGetAuditsResponse
+      '206':
+        application/json: AuditControllerGetAudits206Response
+  /api/v2/user/oauth/authorize:
+    get:
+      '200':
+        '*/*': AuthenticationsAuthorizeOauthUserResponse
+  /api/v2/user/oauth/check-mfa-code:
+    post:
+      '200':
+        '*/*': AuthenticationsCheckMfaCodeResponse
+  /api/v2/user/oauth/forgotten:
+    get:
+      '200':
+        '*/*': AuthenticationsGetForgottenOauthResponse
+  /api/v2/user/organizations:
+    get:
+      '200':
+        application/json: OrganizationControllerGetOrganizationsResponse
+      '206':
+        application/json: OrganizationControllerGetOrganizations206Response
+  /api/v2/user/organizations/available-policies:
+    get:
+      '200':
+        application/json: OrganizationControllerListAvailablePoliciesResponse
+  /api/v2/user/organizations/find:
+    get:
+      '200':
+        application/json: OrganizationControllerFindUserOrganizationsResponse
+  /api/v2/user/organizations/find/ids:
+    get:
+      '200':
+        application/json: OrganizationControllerFindUserOrganizationIdsResponse
+  /api/v2/user/organizations/list:
+    get:
+      '200':
+        application/json: OrganizationControllerListUserOrganizationsResponse
+  /api/v2/user/organizations/organization-policies/{policyId}:
+    delete:
+      '200':
+        '*/*': OrganizationPolicyControllerDeletePolicyByIdResponse
+  /api/v2/user/organizations/{id}:
+    delete:
+      '200':
+        '*/*': OrganizationControllerDeleteOrganizationByIdResponse
+  /api/v2/user/organizations/{id}/api-tokens:
+    get:
+      '200':
+        application/json: OrganizationControllerGetUserApiTokensResponse
+      '206':
+        application/json: OrganizationControllerGetUserApiTokens206Response
+  /api/v2/user/organizations/{id}/assigned-policies:
+    get:
+      '200':
+        application/json: OrganizationControllerGetAssignedPoliciesResponse
+    post:
+      '200':
+        application/json: OrganizationControllerAssignPoliciesResponse
+  /api/v2/user/organizations/{id}/descendantIds:
+    get:
+      '200':
+        application/json: OrganizationControllerGetDescendantIdsResponse
+  /api/v2/user/organizations/{id}/endorsements:
+    get:
+      '200':
+        application/json: OrganizationControllerGetUserEndorsementsResponse
+      '206':
+        application/json: OrganizationControllerGetUserEndorsements206Response
+  /api/v2/user/organizations/{id}/insurers:
+    get:
+      '200':
+        application/json: OrganizationControllerListInsurerAssignedForOrganizationResponse
+  /api/v2/user/organizations/{id}/policies:
+    get:
+      '200':
+        application/json: OrganizationControllerGetPoliciesResponse
+  /api/v2/user/roles:
+    get:
+      '200':
+        application/json: RoleControllerGetUserRolesResponse
+      '206':
+        application/json: RoleControllerGetUserRoles206Response
+  /api/v2/user/users:
+    get:
+      '200':
+        application/json: UserControllerGetUsersListResponse
+      '206':
+        application/json: UserControllerGetUsersList206Response
+  /api/v2/user/users/find:
+    get:
+      '200':
+        application/json: UserControllerFindUsersResponse
+  /api/v2/user/users/generate-mfa-code:
+    post:
+      '200':
+        '*/*': UserControllerGenerateMfaCodeResponse
+  /api/v2/user/users/reset-password:
+    post:
+      '200':
+        '*/*': UserControllerResetPasswordResponse
+  /api/v2/user/users/{id}:
+    delete:
+      '200':
+        '*/*': UserControllerDeleteUserByIdResponse
+  /api/v2/user/users/{id}/reset-password:
+    post:
+      '200':
+        '*/*': UserControllerResetUserPasswordResponse
+  /api/v2/user/users/{id}/roles:
+    get:
+      '200':
+        application/json: UserControllerGetUserRolesByIdResponse
+securityParameters:
+  client_id:
+    query: false
+  code:
+    query: false
+  code_challenge:
+    query: false
+  code_challenge_method:
+    query: false
+  csrf_token:
+    query: false
+  error:
+    query: false
+  error_code:
+    query: false
+  globalFilter:
+    query: false
+  ids:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  perPage:
+    query: false
+  redirect_uri:
+    query: false
+  relations:
+    query: false
+  response_type:
+    query: false
+  scope:
+    query: false
+  select:
+    query: false
+  skip:
+    query: false
+  state:
+    query: false
+  take:
+    query: false
+  where:
+    query: false
+validServerUrls: {}

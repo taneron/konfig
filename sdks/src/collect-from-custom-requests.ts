@@ -2195,6 +2195,11 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://storage.googleapis.com/doc.api.ducky.eco/api-v3.json",
   },
+  "redkik.com": {
+    type: "GET",
+    url: "https://sales.app.redkik.com/api/v2/apidoc/doc/userservice.json",
+    apiBaseUrl: "https://sales.app.redkik.com/api/v2/"
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

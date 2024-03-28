@@ -1,0 +1,4513 @@
+openapi: 3.0.3
+info:
+  version: 2.0.0
+  title: userservice
+  description: "Redkik is a global InsurTech company with the mission to transform and improve the insurance industry for all parties within logistics and transportation. Redkik's innovative software eliminates the need for annual and complex insurance policies. Through Redkik's embedded integration with licensed insurance providers, existing platforms and online systems can offer their customers tailored and transactional insurance at the time of sale.\n\nStarting as a cargo insurance solution, the market's immediate response has since molded the flexible software to be used to solve additional inefficiencies for warehouse, gap, spike and cyber insurance while multiple other applications are currently being developed.\n\nThe team of Redkik\_has a big passion for innovation and technology,\_ together with great experience and deep knowledge from logistics and transportation, risk management, cargo insurance, machine learning, and software development.\n\nJoin Redkik's rapidly growing network of global partners and exceed your business goals by offering transactional insurance through Redkik's seamless API integration."
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ApiToken:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        organizationId:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        roles:
+          type: array
+          items:
+            format: isNotBlank
+        secret:
+          type: string
+          nullable: true
+      required:
+        - id
+        - name
+        - organizationId
+        - roles
+    Unauthorized:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The error name
+          minLength: 1
+          example: UNAUTHORIZED
+          default: UNAUTHORIZED
+        message:
+          type: string
+          description: An error message
+          minLength: 1
+        status:
+          type: number
+          description: The status code of the exception
+          example: 401
+          default: 401
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericError'
+          description: A list of related errors
+        stack:
+          type: string
+          description: The stack trace (only in development mode)
+      required:
+        - name
+        - message
+        - status
+    GenericError:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The error name
+          minLength: 1
+        message:
+          type: string
+          description: An error message
+          minLength: 1
+      additionalProperties: true
+      required:
+        - name
+        - message
+    Forbidden:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The error name
+          minLength: 1
+          example: FORBIDDEN
+          default: FORBIDDEN
+        message:
+          type: string
+          description: An error message
+          minLength: 1
+        status:
+          type: number
+          description: The status code of the exception
+          example: 403
+          default: 403
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericError'
+          description: A list of related errors
+        stack:
+          type: string
+          description: The stack trace (only in development mode)
+      required:
+        - name
+        - message
+        - status
+    ApiTokenCreation:
+      type: object
+      properties:
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        organizationId:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        roles:
+          type: array
+          items:
+            format: isNotBlank
+      required:
+        - name
+        - organizationId
+        - roles
+    Audit:
+      type: object
+      properties:
+        id:
+          type: number
+        userId:
+          type: string
+          format: uuid
+          nullable: true
+        entityId:
+          type: string
+          format: isNotBlank
+          description: The ID of the entity this audit is attached to
+          minLength: 1
+        entityType:
+          type: string
+          enum:
+            - BOOKING
+            - RISK
+            - CLAUSE
+            - REFERRAL
+            - CUSTOMER
+            - OFFER
+            - POLICY
+            - ENDORSEMENT
+            - ORGANIZATION
+            - USER
+            - EMAIL_TEMPLATE
+          format: isNotBlank
+          description: The type of entity this audit is attached to
+          minLength: 1
+        secondaryEntityId:
+          type: string
+          format: uuid
+          description: >-
+            A secondary ID of the entity this audit is attached to, for example
+            policy revision
+          nullable: true
+        message:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        createdAt:
+          type: string
+      required:
+        - entityId
+        - entityType
+        - message
+    WhereFilter:
+      type: object
+    AuditCreation:
+      type: object
+      properties:
+        id:
+          type: number
+        userId:
+          type: string
+          format: uuid
+          nullable: true
+        entityId:
+          type: string
+          format: isNotBlank
+          description: The ID of the entity this audit is attached to
+          minLength: 1
+        entityType:
+          type: string
+          enum:
+            - BOOKING
+            - RISK
+            - CLAUSE
+            - REFERRAL
+            - CUSTOMER
+            - OFFER
+            - POLICY
+            - ENDORSEMENT
+            - ORGANIZATION
+            - USER
+            - EMAIL_TEMPLATE
+          format: isNotBlank
+          description: The type of entity this audit is attached to
+          minLength: 1
+        secondaryEntityId:
+          type: string
+          format: uuid
+          description: >-
+            A secondary ID of the entity this audit is attached to, for example
+            policy revision
+          nullable: true
+        message:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        createdAt:
+          type: string
+      required:
+        - entityId
+        - entityType
+        - message
+    RenderDataResponse:
+      type: object
+      properties:
+        react:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        title:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        style:
+          type: string
+          format: isNotBlank
+          minLength: 1
+      required:
+        - react
+        - title
+        - style
+    OAuthTokenResponse:
+      type: object
+      properties:
+        token_type:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        expires_in:
+          type: number
+        access_token:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        refresh_token:
+          type: string
+        scope:
+          type: string
+      required:
+        - token_type
+        - access_token
+    OAuthTokenRequest:
+      type: object
+      properties:
+        grant_type:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        refresh_token:
+          type: string
+        code:
+          type: string
+        redirect_uri:
+          type: string
+        code_verifier:
+          type: string
+      required:
+        - grant_type
+    AccessToken:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        ttl:
+          type: number
+          format: isNotBlank
+        created:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        user:
+          $ref: '#/components/schemas/UserTokenDto'
+        organizationId:
+          type: string
+        organization:
+          $ref: '#/components/schemas/OrganizationTokenDto'
+        abac:
+          type: array
+          items:
+            $ref: '#/components/schemas/ABAC'
+        bearer:
+          type: string
+        scope:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessScope'
+        organizationDescendants:
+          type: array
+        organizationAncestors:
+          type: array
+        organizationInsured:
+          type: array
+        roles:
+          type: array
+      required:
+        - id
+        - ttl
+        - created
+    UserTokenDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        email:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        organizationId:
+          type: string
+        role:
+          type: number
+        timezone:
+          type: string
+        locale:
+          type: string
+        dateFormat:
+          type: string
+      required:
+        - id
+        - name
+        - email
+    OrganizationTokenDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        allowConfirm:
+          type: boolean
+        allowUserClaim:
+          type: boolean
+        allowQuotation:
+          type: boolean
+        hideCosts:
+          type: boolean
+          format: isNotBlank
+        costBreakdown:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        policyId:
+          type: object
+        type:
+          type: number
+          format: isNotBlank
+        hideZeroValues:
+          type: boolean
+          nullable: true
+      required:
+        - id
+        - hideCosts
+        - costBreakdown
+        - name
+        - type
+    ABAC:
+      type: object
+      properties:
+        accessScopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessScope'
+        where:
+          type: object
+        restrictions:
+          type: object
+      required:
+        - accessScopes
+    AccessScope:
+      type: object
+      properties:
+        subject:
+          type: array
+          items:
+            format: isNotBlank
+            type: string
+        action:
+          type: array
+          items:
+            format: isNotBlank
+            type: string
+      required:
+        - subject
+        - action
+    MfaRequest:
+      type: object
+      properties:
+        mfaCode:
+          type: string
+          minLength: 1
+        csrf_token:
+          type: string
+          minLength: 1
+        code:
+          type: string
+          minLength: 1
+        state:
+          type: string
+          minLength: 1
+      required:
+        - mfaCode
+        - csrf_token
+        - code
+        - state
+    OrganizationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        allowQuotation:
+          type: boolean
+          format: isNotBlank
+        allowUserClaim:
+          type: boolean
+        type:
+          type: number
+          format: isNotBlank
+        taxRulesetId:
+          type: string
+        publicUrl:
+          type: string
+        address:
+          type: string
+        allowPayInvoice:
+          type: boolean
+        allowPayCard:
+          type: boolean
+        parent:
+          type: object
+      required:
+        - id
+        - name
+        - allowQuotation
+        - type
+    OrganizationChartDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationChartDto'
+      required:
+        - id
+        - name
+        - children
+    OrganizationDtoSystem:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        allowQuotation:
+          type: boolean
+          format: isNotBlank
+        allowUserClaim:
+          type: boolean
+        type:
+          type: number
+          format: isNotBlank
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationPolicyDto'
+        taxRulesetId:
+          type: string
+        publicUrl:
+          type: string
+        address:
+          type: string
+        allowPayInvoice:
+          type: boolean
+        allowPayCard:
+          type: boolean
+        parent:
+          type: object
+      required:
+        - id
+        - name
+        - allowQuotation
+        - type
+    OrganizationPolicyDto:
+      type: object
+      properties:
+        policyId:
+          type: string
+          minLength: 1
+        alias:
+          type: string
+        id:
+          type: string
+      required:
+        - policyId
+    OrganizationNameDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+      required:
+        - id
+        - name
+    AvailablePolicyDto:
+      type: object
+      properties:
+        policyId:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+      required:
+        - policyId
+        - name
+    EndorsementDto:
+      type: object
+      properties:
+        id:
+          type: string
+        organizationId:
+          type: string
+        policyId:
+          type: string
+        reference:
+          type: string
+    OrganizationFormDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        allowQuotation:
+          type: boolean
+          format: isNotBlank
+        allowPayCard:
+          type: boolean
+        allowPayInvoice:
+          type: boolean
+        allowConfirmationPayCard:
+          type: boolean
+        allowConfirmationPayInvoice:
+          type: boolean
+        allowedImmediatePaymentTypes:
+          type: array
+          items:
+            type: string
+        allowConsignee:
+          type: boolean
+        allowLetterOfCredit:
+          type: boolean
+        allowUserClaim:
+          type: boolean
+        type:
+          type: number
+          format: isNotBlank
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        parentId:
+          type: string
+        stripeAccountId:
+          type: string
+        externalReference:
+          type: string
+        referencePrefix:
+          type: string
+        publicUrl:
+          type: string
+        publicDateFormat:
+          type: string
+        publicLocale:
+          type: string
+        allowReferrals:
+          type: boolean
+          format: isNotBlank
+        allowReferAccepted:
+          type: boolean
+        allowConfirm:
+          type: boolean
+          format: isNotBlank
+        allowModifyBookingFee:
+          type: boolean
+          format: isNotBlank
+        allowBeneficiary:
+          type: boolean
+          format: isNotBlank
+        allowMultiCommodity:
+          type: boolean
+          format: isNotBlank
+        allowClaims:
+          type: boolean
+          format: isNotBlank
+        claimTemplateId:
+          type: string
+        lastInvoicedAt:
+          type: string
+        invoiceCustomerId:
+          type: string
+        billingAddress:
+          type: string
+        billingEmail:
+          type: string
+        requireNotification:
+          type: boolean
+          format: isNotBlank
+        notificationMethod:
+          type: number
+          format: isNotBlank
+        contactEmail:
+          type: string
+        hideCosts:
+          type: boolean
+          format: isNotBlank
+        costBreakdown:
+          type: string
+          enum:
+            - NONE
+            - FULL
+            - COMBINED_FEES
+          format: isNotBlank
+          minLength: 1
+        hideZeroValues:
+          type: boolean
+        requireConfirmation:
+          type: boolean
+          format: isNotBlank
+        street:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+        postcode:
+          type: string
+          nullable: true
+        country:
+          type: string
+        formatted:
+          type: string
+          format: isNotBlank
+          nullable: true
+          minLength: 1
+        taxRulesetId:
+          type: string
+        descendants:
+          type: array
+          items:
+            type: string
+        allowedAddressTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - ADDRESS
+              - IATA
+              - LOCODE
+              - CITY
+              - FREETEXT
+        additionalFields:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/AdditionalFieldString'
+              - $ref: '#/components/schemas/AdditionalFieldEnum'
+        enforceTrackingCode:
+          type: boolean
+      required:
+        - name
+        - allowQuotation
+        - type
+        - allowReferrals
+        - allowConfirm
+        - allowModifyBookingFee
+        - allowBeneficiary
+        - allowMultiCommodity
+        - allowClaims
+        - requireNotification
+        - notificationMethod
+        - hideCosts
+        - costBreakdown
+        - requireConfirmation
+        - formatted
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        email:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        phone:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleMapping'
+        organization:
+          $ref: '#/components/schemas/Organization'
+        organizationId:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        profile:
+          type: object
+          nullable: true
+        dateFormat:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        timezone:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        locale:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        mfaType:
+          type: string
+          enum:
+            - OTP
+            - EMAIL
+            - SMS
+      required:
+        - name
+        - email
+        - roles
+        - organizationId
+        - dateFormat
+        - timezone
+        - locale
+    RoleMapping:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+        roleId:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        role:
+          $ref: '#/components/schemas/Role'
+        user:
+          type: object
+      required:
+        - roleId
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        description:
+          type: string
+          format: simple
+          nullable: true
+          minLength: 1
+        organizationId:
+          type: string
+          format: uuid
+          nullable: true
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleMapping'
+        clientMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientRoleMapping'
+        abac:
+          type: array
+          items:
+            $ref: '#/components/schemas/ABAC'
+        data:
+          type: object
+          nullable: true
+      required:
+        - name
+        - description
+        - abac
+    ClientRoleMapping:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clientId:
+          type: string
+        roleId:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        role:
+          $ref: '#/components/schemas/Role'
+        client:
+          $ref: '#/components/schemas/OAuthClient'
+      required:
+        - roleId
+    OAuthClient:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        redirectUris:
+          type: object
+          nullable: true
+        allowedGrants:
+          type: array
+          items:
+            format: isNotBlank
+        organizationId:
+          type: object
+        roles:
+          nullable: true
+          oneOf:
+            - $ref: '#/components/schemas/ClientRoleMapping'
+      required:
+        - name
+        - redirectUris
+        - allowedGrants
+        - roles
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        allowedImmediatePaymentTypes:
+          type: array
+          items:
+            type: string
+          description: >-
+            A list of payment types that allow immediate booking creation when
+            usually they would be pending
+        allowPayInvoice:
+          type: boolean
+          description: Allow payment to be taken later by invoice
+        allowPayCard:
+          type: boolean
+          description: Allow payment to be taken by credit card
+        allowConfirmationPayInvoice:
+          type: boolean
+          description: Allow payment to be taken later by invoice on confirmation flow
+        allowConfirmationPayCard:
+          type: boolean
+          description: Allow payment to be taken by credit card on confirmation flow
+        allowConsignee:
+          type: boolean
+          description: Allow consignees to be added during quotation
+        allowUserClaim:
+          type: boolean
+          description: Allow users to access claim form
+        allowLetterOfCredit:
+          type: boolean
+          description: Allow letter of credit information to be added during quotation
+        parent:
+          $ref: '#/components/schemas/Organization'
+        addressId:
+          type: string
+        address:
+          type: object
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationPolicy'
+        externalReference:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        referencePrefix:
+          type: string
+          deprecated: true
+        stripeAccountId:
+          type: string
+        type:
+          type: number
+          format: isNotBlank
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        invoiceCustomerId:
+          type: string
+          description: Invoice customer id
+        requireNotification:
+          type: boolean
+          format: isNotBlank
+        notificationMethod:
+          type: number
+          maximum: 1
+          minimum: 0
+          description: Notification method, 0 for nothing, 1 for email
+          format: isNotBlank
+        notificationEmail:
+          type: string
+          deprecated: true
+        billingAddress:
+          type: string
+        billingEmail:
+          type: string
+        allowConfirm:
+          type: boolean
+          format: isNotBlank
+        allowReferrals:
+          type: boolean
+          format: isNotBlank
+        allowReferAccepted:
+          type: boolean
+          description: Allow referring of accepted offers
+        allowQuotation:
+          type: boolean
+          format: isNotBlank
+        allowClaims:
+          type: boolean
+          format: isNotBlank
+        claimTemplateId:
+          type: string
+          description: UUID of email template used for sending claim by email
+        claimEmail:
+          type: string
+          deprecated: true
+          description: Email address of claim recipient, give in policy instead
+        allowModifyBookingFee:
+          type: boolean
+          format: isNotBlank
+        allowBeneficiary:
+          type: boolean
+          format: isNotBlank
+        allowMultiCommodity:
+          type: boolean
+          format: isNotBlank
+        publicUrl:
+          type: string
+        publicDateFormat:
+          type: string
+        publicLocale:
+          type: string
+        taxRulesetId:
+          type: string
+          description: The ruleset of taxes applied to this organization
+        hideCosts:
+          type: boolean
+          format: isNotBlank
+        costBreakdown:
+          type: string
+          description: Hide the cost breakdown in the customer & TI views
+          enum:
+            - NONE
+            - FULL
+            - COMBINED_FEES
+          format: isNotBlank
+          minLength: 1
+        hideZeroValues:
+          type: boolean
+          description: Hides zero values
+        requireConfirmation:
+          type: boolean
+          description: >-
+            Dictates should the end customer be directed to the confirmation
+            flow
+          format: isNotBlank
+        allowedAddressTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - ADDRESS
+              - IATA
+              - LOCODE
+              - CITY
+              - FREETEXT
+          description: A list of address types shown in client/public portal
+        contactEmail:
+          type: string
+        additionalFields:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/AdditionalFieldString'
+              - $ref: '#/components/schemas/AdditionalFieldEnum'
+        enforceTrackingCode:
+          type: boolean
+      required:
+        - name
+        - policies
+        - externalReference
+        - type
+        - requireNotification
+        - notificationMethod
+        - allowConfirm
+        - allowReferrals
+        - allowQuotation
+        - allowClaims
+        - allowModifyBookingFee
+        - allowBeneficiary
+        - allowMultiCommodity
+        - hideCosts
+        - costBreakdown
+        - requireConfirmation
+        - enforceTrackingCode
+    OrganizationPolicy:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        organizationId:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        policyId:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        alias:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        bookingFee:
+          type: number
+          minimum: 0
+          format: isNotBlank
+        bookingFeeType:
+          type: string
+          enum:
+            - PERCENT
+            - FLAT_FEE
+          description: Booking Fee type, PERCENT or FLAT_FEE
+          format: isNotBlank
+          minLength: 1
+        technologyFee:
+          type: number
+          minimum: 0
+          format: isNotBlank
+        technologyFeeType:
+          type: string
+          enum:
+            - PERCENT
+            - FLAT_FEE
+          description: Technology Fee type, PERCENT or FLAT_FEE
+          format: isNotBlank
+          minLength: 1
+      required:
+        - organizationId
+        - policyId
+        - alias
+        - bookingFee
+        - bookingFeeType
+        - technologyFee
+        - technologyFeeType
+    AdditionalFieldString:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        type:
+          type: string
+          enum:
+            - string
+          minLength: 1
+        mandatory:
+          type: boolean
+      required:
+        - id
+        - type
+        - mandatory
+    AdditionalFieldEnum:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        type:
+          type: string
+          enum:
+            - enum
+          minLength: 1
+        mandatory:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/EnumDataType'
+      required:
+        - id
+        - type
+        - mandatory
+        - data
+    EnumDataType:
+      type: object
+      properties:
+        options:
+          type: array
+          items:
+            type: string
+      required:
+        - options
+    OrganizationFormDtoCreation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        allowQuotation:
+          type: boolean
+          format: isNotBlank
+        allowPayCard:
+          type: boolean
+        allowPayInvoice:
+          type: boolean
+        allowConfirmationPayCard:
+          type: boolean
+        allowConfirmationPayInvoice:
+          type: boolean
+        allowedImmediatePaymentTypes:
+          type: array
+          items:
+            type: string
+        allowConsignee:
+          type: boolean
+        allowLetterOfCredit:
+          type: boolean
+        allowUserClaim:
+          type: boolean
+        type:
+          type: number
+          format: isNotBlank
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        parentId:
+          type: string
+        stripeAccountId:
+          type: string
+        externalReference:
+          type: string
+        referencePrefix:
+          type: string
+        publicUrl:
+          type: string
+        publicDateFormat:
+          type: string
+        publicLocale:
+          type: string
+        allowReferrals:
+          type: boolean
+          format: isNotBlank
+        allowReferAccepted:
+          type: boolean
+        allowConfirm:
+          type: boolean
+          format: isNotBlank
+        allowModifyBookingFee:
+          type: boolean
+          format: isNotBlank
+        allowBeneficiary:
+          type: boolean
+          format: isNotBlank
+        allowMultiCommodity:
+          type: boolean
+          format: isNotBlank
+        allowClaims:
+          type: boolean
+          format: isNotBlank
+        claimTemplateId:
+          type: string
+        lastInvoicedAt:
+          type: string
+        invoiceCustomerId:
+          type: string
+        billingAddress:
+          type: string
+        billingEmail:
+          type: string
+        requireNotification:
+          type: boolean
+          format: isNotBlank
+        notificationMethod:
+          type: number
+          format: isNotBlank
+        contactEmail:
+          type: string
+        hideCosts:
+          type: boolean
+          format: isNotBlank
+        costBreakdown:
+          type: string
+          enum:
+            - NONE
+            - FULL
+            - COMBINED_FEES
+          format: isNotBlank
+          minLength: 1
+        hideZeroValues:
+          type: boolean
+        requireConfirmation:
+          type: boolean
+          format: isNotBlank
+        street:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+        postcode:
+          type: string
+          nullable: true
+        country:
+          type: string
+        formatted:
+          type: string
+          format: isNotBlank
+          nullable: true
+          minLength: 1
+        taxRulesetId:
+          type: string
+        descendants:
+          type: array
+          items:
+            type: string
+        allowedAddressTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - ADDRESS
+              - IATA
+              - LOCODE
+              - CITY
+              - FREETEXT
+        additionalFields:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/AdditionalFieldString'
+              - $ref: '#/components/schemas/AdditionalFieldEnum'
+        enforceTrackingCode:
+          type: boolean
+      required:
+        - name
+        - allowQuotation
+        - type
+        - allowReferrals
+        - allowConfirm
+        - allowModifyBookingFee
+        - allowBeneficiary
+        - allowMultiCommodity
+        - allowClaims
+        - requireNotification
+        - notificationMethod
+        - hideCosts
+        - costBreakdown
+        - requireConfirmation
+        - formatted
+    OrganizationFormDtoUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+        name:
+          type: string
+          format: isNotBlank
+        allowQuotation:
+          type: boolean
+          format: isNotBlank
+        allowPayCard:
+          type: boolean
+        allowPayInvoice:
+          type: boolean
+        allowConfirmationPayCard:
+          type: boolean
+        allowConfirmationPayInvoice:
+          type: boolean
+        allowedImmediatePaymentTypes:
+          type: array
+          items:
+            type: string
+        allowConsignee:
+          type: boolean
+        allowLetterOfCredit:
+          type: boolean
+        allowUserClaim:
+          type: boolean
+        type:
+          type: number
+          format: isNotBlank
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        parentId:
+          type: string
+        stripeAccountId:
+          type: string
+        externalReference:
+          type: string
+        referencePrefix:
+          type: string
+        publicUrl:
+          type: string
+        publicDateFormat:
+          type: string
+        publicLocale:
+          type: string
+        allowReferrals:
+          type: boolean
+          format: isNotBlank
+        allowReferAccepted:
+          type: boolean
+        allowConfirm:
+          type: boolean
+          format: isNotBlank
+        allowModifyBookingFee:
+          type: boolean
+          format: isNotBlank
+        allowBeneficiary:
+          type: boolean
+          format: isNotBlank
+        allowMultiCommodity:
+          type: boolean
+          format: isNotBlank
+        allowClaims:
+          type: boolean
+          format: isNotBlank
+        claimTemplateId:
+          type: string
+        lastInvoicedAt:
+          type: string
+        invoiceCustomerId:
+          type: string
+        billingAddress:
+          type: string
+        billingEmail:
+          type: string
+        requireNotification:
+          type: boolean
+          format: isNotBlank
+        notificationMethod:
+          type: number
+          format: isNotBlank
+        contactEmail:
+          type: string
+        hideCosts:
+          type: boolean
+          format: isNotBlank
+        costBreakdown:
+          type: string
+          enum:
+            - NONE
+            - FULL
+            - COMBINED_FEES
+          format: isNotBlank
+        hideZeroValues:
+          type: boolean
+        requireConfirmation:
+          type: boolean
+          format: isNotBlank
+        street:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+        postcode:
+          type: string
+          nullable: true
+        country:
+          type: string
+        formatted:
+          type: string
+          format: isNotBlank
+          nullable: true
+        taxRulesetId:
+          type: string
+        descendants:
+          type: array
+          items:
+            type: string
+        allowedAddressTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - ADDRESS
+              - IATA
+              - LOCODE
+              - CITY
+              - FREETEXT
+        additionalFields:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/AdditionalFieldString'
+              - $ref: '#/components/schemas/AdditionalFieldEnum'
+        enforceTrackingCode:
+          type: boolean
+    PublicSetupResponse:
+      type: object
+      properties:
+        locale:
+          type: string
+          nullable: true
+        dateFormat:
+          type: string
+          nullable: true
+        allowQuotation:
+          type: boolean
+    OrganizationInsurersDto:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        insurers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationNameDto'
+      required:
+        - id
+        - name
+        - insurers
+    OrganizationPolicyFormDto:
+      type: object
+      properties:
+        policyId:
+          type: string
+          minLength: 1
+        alias:
+          type: string
+        id:
+          type: string
+        bookingFee:
+          type: number
+        bookingFeeType:
+          type: string
+          enum:
+            - PERCENT
+            - FLAT_FEE
+        technologyFee:
+          type: number
+        technologyFeeType:
+          type: string
+          enum:
+            - PERCENT
+            - FLAT_FEE
+      required:
+        - policyId
+    RoleCreation:
+      type: object
+      properties:
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        description:
+          type: string
+          format: simple
+          nullable: true
+          minLength: 1
+        organizationId:
+          type: string
+          format: uuid
+          nullable: true
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleMapping'
+        clientMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientRoleMapping'
+        abac:
+          type: array
+          items:
+            $ref: '#/components/schemas/ABAC'
+        data:
+          type: object
+          nullable: true
+      required:
+        - name
+        - description
+        - abac
+    DeletedEntity:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+      required:
+        - id
+    RoleUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          format: isNotBlank
+        description:
+          type: string
+          format: simple
+          nullable: true
+        organizationId:
+          type: string
+          format: uuid
+          nullable: true
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleMapping'
+        clientMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientRoleMapping'
+        abac:
+          type: array
+          items:
+            $ref: '#/components/schemas/ABAC'
+        data:
+          type: object
+          nullable: true
+    Status:
+      type: object
+      properties:
+        statusMsg:
+          type: string
+          minLength: 1
+      required:
+        - statusMsg
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        email:
+          type: string
+        organization:
+          type: string
+      required:
+        - id
+        - name
+    UserCreationCreation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        email:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        roles:
+          type: array
+          items:
+            format: isNotBlank
+        organization:
+          $ref: '#/components/schemas/Organization'
+        organizationId:
+          type: string
+        profile:
+          type: object
+          nullable: true
+        dateFormat:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        timezone:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        locale:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+      required:
+        - name
+        - email
+        - roles
+        - dateFormat
+        - timezone
+        - locale
+    GenerateSecretResponse:
+      type: object
+      properties:
+        secret:
+          type: string
+          format: isNotBlank
+          minLength: 1
+      required:
+        - secret
+    UserFormDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        email:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        organization:
+          type: string
+        organizationId:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        dateFormat:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        timezone:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        locale:
+          type: string
+          format: isNotBlank
+          minLength: 1
+      required:
+        - id
+        - name
+        - email
+        - organizationId
+        - roles
+        - dateFormat
+        - timezone
+        - locale
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+      required:
+        - id
+        - name
+    UserProfileUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        email:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        dateFormat:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        timezone:
+          type: string
+          format: isNotBlank
+          minLength: 1
+        password:
+          type: string
+        oldPassword:
+          type: string
+        mfaType:
+          type: string
+          enum:
+            - OTP
+            - EMAIL
+            - SMS
+        phone:
+          type: string
+        mfaCode:
+          type: string
+      required:
+        - name
+        - email
+        - dateFormat
+        - timezone
+    UserUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          format: isNotBlank
+        email:
+          type: string
+          format: isNotBlank
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleMapping'
+        organization:
+          $ref: '#/components/schemas/Organization'
+        organizationId:
+          type: string
+          format: isNotBlank
+        profile:
+          type: object
+          nullable: true
+        dateFormat:
+          type: string
+          format: isNotBlank
+        timezone:
+          type: string
+          format: isNotBlank
+        locale:
+          type: string
+          format: isNotBlank
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+    ChangePassword:
+      type: object
+      properties:
+        password:
+          type: string
+    MfaVerificationRequest:
+      type: object
+      properties:
+        mfaCode:
+          type: string
+          minLength: 1
+        userId:
+          type: string
+          minLength: 1
+      required:
+        - mfaCode
+        - userId
+paths:
+  /api/v2/user/api-tokens:
+    post:
+      operationId: api-tokensCreateApiToken
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiToken'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiTokenCreation'
+      tags:
+        - ApiTokenController
+  /api/v2/user/api-tokens/{id}:
+    delete:
+      operationId: api-tokensDeleteApiToken
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - ApiTokenController
+  /api/v2/user/audits:
+    get:
+      operationId: auditsFetch
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Audit'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Success
+        '206':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Audit'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: >-
+        Fetches audits in batches set by perPage (default 20). Should be used
+        mainly from UI.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          required: false
+          name: page
+          description: Index of page
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: perPage
+          description: Page size
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: globalFilter
+          description: Global filter of filterable fields
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: order
+          description: Stringified TypeOrm order
+          schema:
+            type: object
+            example:
+              name: ASC
+              age: DESC
+        - in: query
+          required: false
+          name: where
+          description: Stringified TypeOrm where query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+            example:
+              name: John Smith
+              age: 24
+        - in: query
+          required: false
+          name: select
+          description: Stringified TypeOrm select query
+          schema:
+            type: object
+            example:
+              name: true
+              age: true
+      tags:
+        - AuditController
+    post:
+      operationId: auditsCreate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audit'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditCreation'
+      tags:
+        - AuditController
+  /api/v2/user/oauth/authorize:
+    get:
+      operationId: oauthAuthorize
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenderDataResponse'
+            '*/*':
+              schema:
+                type: object
+          description: Success
+          headers:
+            Cache-Control:
+              example: no-store
+              schema:
+                type: string
+            Pragma:
+              example: no-cache
+              schema:
+                type: string
+      parameters:
+        - in: query
+          required: true
+          name: response_type
+          schema:
+            type: string
+            format: isNotBlank
+            minLength: 1
+        - in: query
+          required: true
+          name: client_id
+          schema:
+            type: string
+            format: isNotBlank
+            minLength: 1
+        - in: query
+          required: false
+          name: redirect_uri
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: scope
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: state
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: code_challenge
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: code_challenge_method
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: error_code
+          schema:
+            type: string
+      tags:
+        - Authentications
+  /api/v2/user/oauth/forgotten:
+    get:
+      operationId: oauthForgotten
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenderDataResponse'
+            '*/*':
+              schema:
+                type: object
+          description: Success
+          headers:
+            Cache-Control:
+              example: no-store
+              schema:
+                type: string
+            Pragma:
+              example: no-cache
+              schema:
+                type: string
+      parameters:
+        - in: query
+          name: code
+          required: false
+          schema:
+            type: string
+      tags:
+        - Authentications
+  /api/v2/user/oauth/auth/login:
+    post:
+      operationId: oauthLogin
+      responses:
+        '200':
+          description: Success
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      tags:
+        - Authentications
+  /api/v2/user/oauth/auth/reset:
+    post:
+      operationId: oauthResetRequest
+      responses:
+        '200':
+          description: Success
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      tags:
+        - Authentications
+  /api/v2/user/oauth/token:
+    post:
+      operationId: oauthAccessTokenRequest
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthTokenResponse'
+          description: Success
+          headers:
+            Cache-Control:
+              example: no-store
+              schema:
+                type: string
+            Pragma:
+              example: no-cache
+              schema:
+                type: string
+      parameters:
+        - in: header
+          name: authorization
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequest'
+      tags:
+        - Authentications
+  /api/v2/user/oauth/exchange:
+    get:
+      operationId: oauthExchange
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+          description: Success
+      parameters:
+        - in: header
+          name: authorization
+          required: false
+          schema:
+            type: string
+      tags:
+        - Authentications
+  /api/v2/user/oauth/logout:
+    post:
+      operationId: oauthLogout
+      responses:
+        '200':
+          description: Success
+      parameters:
+        - in: header
+          name: authorization
+          required: false
+          schema:
+            type: string
+      tags:
+        - Authentications
+  /api/v2/user/oauth/mfa:
+    get:
+      operationId: oauthMfaForm
+      responses:
+        '200':
+          description: Success
+      parameters:
+        - in: query
+          name: code
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: csrf_token
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: state
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: error
+          required: false
+          schema:
+            type: string
+      tags:
+        - Authentications
+  /api/v2/user/oauth/check-mfa-code:
+    post:
+      operationId: oauthCheckMfaCode
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: Success
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MfaRequest'
+      tags:
+        - Authentications
+  /api/v2/user/organizations:
+    get:
+      operationId: organizationsFetch
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrganizationDto'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Success
+        '206':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrganizationDto'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: >-
+        Fetches organizations in batches set by perPage (default 20). Should be
+        used mainly from UI.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          required: false
+          name: page
+          description: Index of page
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: perPage
+          description: Page size
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: globalFilter
+          description: Global filter of filterable fields
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: order
+          description: Stringified TypeOrm order
+          schema:
+            type: object
+            example:
+              name: ASC
+              age: DESC
+        - in: query
+          required: false
+          name: where
+          description: Stringified TypeOrm where query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+            example:
+              name: John Smith
+              age: 24
+        - in: query
+          required: false
+          name: select
+          description: Stringified TypeOrm select query
+          schema:
+            type: object
+            example:
+              name: true
+              age: true
+      tags:
+        - OrganizationController
+    post:
+      operationId: organizationsCreate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationFormDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationFormDtoCreation'
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/chart:
+    get:
+      operationId: organizationsFetchChart
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationChartDto'
+          description: Success
+        '206':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationChartDto'
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: Fetches organization hierarchy chart
+      security:
+        - bearerAuth: []
+      parameters: []
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/find:
+    get:
+      operationId: organizationsFetchAll
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          required: false
+          name: skip
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: take
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: relations
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          required: false
+          name: order
+          schema:
+            type: object
+        - in: query
+          required: false
+          name: where
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+        - in: query
+          required: false
+          name: select
+          schema:
+            type: object
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/find/ids:
+    get:
+      operationId: organizationsFindByIds
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationDtoSystem'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: ids
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - required: false
+          in: query
+          name: select
+          schema:
+            type: object
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/list:
+    get:
+      operationId: organizationsListAll
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationNameDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          required: false
+          name: skip
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: take
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: relations
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          required: false
+          name: order
+          schema:
+            type: object
+        - in: query
+          required: false
+          name: where
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+        - in: query
+          required: false
+          name: select
+          schema:
+            type: object
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/available-policies:
+    get:
+      operationId: organizationsGetAvailablePolicies
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AvailablePolicyDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: >-
+        Returns a list of policies that can be assigned to organization of the
+        user
+      security:
+        - bearerAuth: []
+      parameters: []
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/endorsements:
+    get:
+      operationId: organizationsFetchEndorsements
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EndorsementDto'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Success
+        '206':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EndorsementDto'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: page
+          description: Index of page
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: perPage
+          description: Page size
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: globalFilter
+          description: Global filter of filterable fields
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: order
+          description: Stringified TypeOrm order
+          schema:
+            type: object
+            example:
+              name: ASC
+              age: DESC
+        - in: query
+          required: false
+          name: where
+          description: Stringified TypeOrm where query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+            example:
+              name: John Smith
+              age: 24
+        - in: query
+          required: false
+          name: select
+          description: Stringified TypeOrm select query
+          schema:
+            type: object
+            example:
+              name: true
+              age: true
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}:
+    get:
+      operationId: organizationsGet
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+    patch:
+      operationId: organizationsUpdate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationFormDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationFormDtoUpdate'
+      tags:
+        - OrganizationController
+    delete:
+      operationId: organizationsSoftDelete
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/stripe-account:
+    get:
+      operationId: organizationsGetStripeAccount
+      responses:
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/closure-values:
+    get:
+      operationId: organizationsGetValuesFromTree
+      responses:
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                nullable: true
+                oneOf:
+                  - type: integer
+                  - type: number
+                  - type: string
+                  - type: boolean
+                  - type: array
+                  - type: object
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/policies:
+    get:
+      operationId: organizationsFetchOrganizationPolicies
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationPolicyDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security: []
+      description: Returns the assigned policies of a requested organization
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/details:
+    get:
+      operationId: organizationsGetWithDetails
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationFormDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: Returns detailed information for an organization
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/api-tokens:
+    get:
+      operationId: organizationsFetchApiTokens
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiToken'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Success
+        '206':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiToken'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: page
+          description: Index of page
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: perPage
+          description: Page size
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: globalFilter
+          description: Global filter of filterable fields
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: order
+          description: Stringified TypeOrm order
+          schema:
+            type: object
+            example:
+              name: ASC
+              age: DESC
+        - in: query
+          required: false
+          name: where
+          description: Stringified TypeOrm where query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+            example:
+              name: John Smith
+              age: 24
+        - in: query
+          required: false
+          name: select
+          description: Stringified TypeOrm select query
+          schema:
+            type: object
+            example:
+              name: true
+              age: true
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/setup:
+    get:
+      operationId: organizationsGetPublicSetup
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicSetupResponse'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/descendantIds:
+    get:
+      operationId: organizationsGetDescendantIds
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/name:
+    get:
+      operationId: organizationsGetName
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationNameDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/insurers:
+    get:
+      operationId: organizationsFetchInsurers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationNameDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: Returns list of insurers assigned for requested organization
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+    post:
+      operationId: organizationsUpdateInsurers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationInsurersDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: Update list of insurers assigned for organization
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                insurerIds:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+              type: object
+              required:
+                - insurerIds
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/{id}/assigned-policies:
+    get:
+      operationId: organizationsFetchAssignedPolicies
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationPolicyFormDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: Returns the assigned policies of a requested organization
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationController
+    post:
+      operationId: organizationsAssignPolicies
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationPolicyDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: Assign policies for requested organization
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                policies:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/OrganizationPolicyFormDto'
+              type: object
+              required:
+                - policies
+      tags:
+        - OrganizationController
+  /api/v2/user/organizations/organization-policies/{id}:
+    get:
+      operationId: organizationsGetOrganizationPolicy
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationPolicy'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationPolicyController
+  /api/v2/user/organizations/organization-policies/{policyId}:
+    delete:
+      operationId: organizationsRemovePolicy
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: policyId
+          required: true
+          schema:
+            type: string
+      tags:
+        - OrganizationPolicyController
+  /api/v2/user/roles:
+    get:
+      operationId: rolesFetch
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Role'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Success
+        '206':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Role'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: >-
+        Fetches roles in batches set by perPage (default 20). Should be used
+        mainly from UI.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          required: false
+          name: page
+          description: Index of page
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: perPage
+          description: Page size
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: globalFilter
+          description: Global filter of filterable fields
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: order
+          description: Stringified TypeOrm order
+          schema:
+            type: object
+            example:
+              name: ASC
+              age: DESC
+        - in: query
+          required: false
+          name: where
+          description: Stringified TypeOrm where query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+            example:
+              name: John Smith
+              age: 24
+        - in: query
+          required: false
+          name: select
+          description: Stringified TypeOrm select query
+          schema:
+            type: object
+            example:
+              name: true
+              age: true
+      tags:
+        - RoleController
+    post:
+      operationId: rolesCreate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleCreation'
+      tags:
+        - RoleController
+  /api/v2/user/roles/{id}:
+    get:
+      operationId: rolesGet
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - RoleController
+    delete:
+      operationId: rolesDelete
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedEntity'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - RoleController
+    patch:
+      operationId: rolesUpdate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleUpdate'
+      tags:
+        - RoleController
+  /api/v2/user/status:
+    get:
+      operationId: statusCheckUserServiceStatus
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security: []
+      parameters: []
+      tags:
+        - StatusController
+  /api/v2/user/users:
+    get:
+      operationId: usersFetch
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserDto'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Success
+        '206':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserDto'
+                  count:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  page:
+                    type: integer
+                    default: 0
+                    minLength: 0
+                    multipleOf: 1
+                  perPage:
+                    type: integer
+                    default: 20
+                    minLength: 1
+                    multipleOf: 1
+                required:
+                  - data
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      description: >-
+        Fetches users in batches set by perPage (default 20). Should be used
+        mainly from UI.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          required: false
+          name: page
+          description: Index of page
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: perPage
+          description: Page size
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: globalFilter
+          description: Global filter of filterable fields
+          schema:
+            type: string
+        - in: query
+          required: false
+          name: order
+          description: Stringified TypeOrm order
+          schema:
+            type: object
+            example:
+              name: ASC
+              age: DESC
+        - in: query
+          required: false
+          name: where
+          description: Stringified TypeOrm where query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+            example:
+              name: John Smith
+              age: 24
+        - in: query
+          required: false
+          name: select
+          description: Stringified TypeOrm select query
+          schema:
+            type: object
+            example:
+              name: true
+              age: true
+      tags:
+        - UserController
+    post:
+      operationId: usersCreate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreationCreation'
+      tags:
+        - UserController
+  /api/v2/user/users/find:
+    get:
+      operationId: usersFetchAll
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          required: false
+          name: skip
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: take
+          schema:
+            type: number
+        - in: query
+          required: false
+          name: relations
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          required: false
+          name: order
+          schema:
+            type: object
+        - in: query
+          required: false
+          name: where
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WhereFilter'
+        - in: query
+          required: false
+          name: select
+          schema:
+            type: object
+      tags:
+        - UserController
+  /api/v2/user/users/generate-otp-secret:
+    get:
+      operationId: usersGenerateOtpSecret
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateSecretResponse'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      tags:
+        - UserController
+  /api/v2/user/users/{id}:
+    get:
+      operationId: usersGetById
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserFormDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - UserController
+    delete:
+      operationId: usersSoftDelete
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - UserController
+    patch:
+      operationId: usersUpdate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      tags:
+        - UserController
+  /api/v2/user/users/{id}/profile:
+    get:
+      operationId: usersProfile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Success
+        '206':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - UserController
+    patch:
+      operationId: usersUpdateProfile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileUpdate'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfileUpdate'
+      tags:
+        - UserController
+  /api/v2/user/users/setup-otp:
+    post:
+      operationId: usersSetupOtp
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileUpdate'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              properties:
+                mfaSecret:
+                  type: string
+              type: object
+      tags:
+        - UserController
+  /api/v2/user/users/{id}/roles:
+    get:
+      operationId: usersGetRoles
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleResponse'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - UserController
+  /api/v2/user/users/password:
+    post:
+      operationId: usersChangePassword
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              properties:
+                oldpassword:
+                  type: string
+                newpassword:
+                  type: string
+              type: object
+      tags:
+        - UserController
+  /api/v2/user/users/reset-password:
+    post:
+      operationId: usersResetPassword
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+      tags:
+        - UserController
+  /api/v2/user/users/{id}/reset-password:
+    post:
+      operationId: usersResetPasswordById
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      tags:
+        - UserController
+  /api/v2/user/users/generate-mfa-code:
+    post:
+      operationId: usersGenerateMfaCode
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              properties:
+                userId:
+                  type: string
+              type: object
+      tags:
+        - UserController
+  /api/v2/user/users/reset-mfa-type:
+    post:
+      operationId: usersResetMfaType
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Success
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+      security:
+        - bearerAuth: []
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MfaVerificationRequest'
+      tags:
+        - UserController
+tags:
+  - name: ApiTokenController
+  - name: AuditController
+  - name: Authentications
+  - name: OrganizationController
+  - name: OrganizationPolicyController
+  - name: RoleController
+  - name: StatusController
+  - name: UserController
+servers:
+  - url: https://sales.app.redkik.com/api/v2/
