@@ -210,9 +210,9 @@ export default function Adatree() {
       homepage="adatree.com.au/"
       companyKebabCase="adatree"
       categories={allCategories}
-      metaDescription={`Adatree is a CDR technology intermediary. What does that mean? Simply put, we're the poles and wires connecting Banking, Finance, Energy and Telecommunications with Open Data. Our platform is ready for implementation with out-of-the-box functionality to have you connected to compliant data within a matter of weeks. The new age of data regulations are changing the way FinTech operates. Adatree is your on-ramp to stay plugged into the digital economy. 
+      metaDescription={`Adatree is a CDR technology intermediary. What does that mean? Simply put, we're the poles and wires connecting Banking, Finance, Energy and Telecommunications with Open Data. Our platform is ready for implementation with out-of-the-box functionality to have you connected to compliant data within a matter of weeks. The new age of data regulations are changing the way FinTech operates. Adatree is your on-ramp to stay plugged into the digital economy.
 
-We work with organisations of all sizes and sectors to provide turnkey solutions. We've built a world-class CDR intermediary platform that is the most robust and flexible in market, ready to scale for any Open Data use case. If the scores of awards don't prove it, our list of satisfied clients ought to. 
+We work with organisations of all sizes and sectors to provide turnkey solutions. We've built a world-class CDR intermediary platform that is the most robust and flexible in market, ready to scale for any Open Data use case. If the scores of awards don't prove it, our list of satisfied clients ought to.
 
 When you work with Adatree you're working with genuine CDR experts. We live and breathe this stuff, and strive to make it easy for other businesses to access consumer data with confidence.
 
@@ -224,7 +224,7 @@ We'll help you:
 - Accelerate your time-to-market to weeks (not months!) with our proven streamlined integration process
 - Maintain consistent and secure connections to the Consumer Data Right network
 
-We know the Consumer Data Right back-to-front and promise to walk you through every stage of the journey. Ready to take the first step? 
+We know the Consumer Data Right back-to-front and promise to walk you through every stage of the journey. Ready to take the first step?
 
 Reach out to our team today: https://www.adatree.com.au/contact`}
     />
