@@ -1452,6 +1452,10 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(result, null, 2);
     },
   },
+  "jobsoid.com": {
+    type: "GET",
+    url: "https://apidocs.jobsoid.com/swagger.json",
+  },
   "jobadder.com": {
     type: "GET",
     url: "https://api.jobadder.com/v2/openapi.json",
