@@ -59,6 +59,20 @@ export function getMethodObjects(spec: Spec): Method[] {
         const example = getExample();
         const dflt = getDefault();
 
+        if (
+          typeof parameter.name !== "string" &&
+          !Array.isArray(parameter.name)
+        ) {
+          console.warn(JSON.stringify(operation, null, 2));
+          console.warn(
+            `Expect parameter name "${parameter.name}" to be a string or array`
+          );
+        }
+
+        if (typeof parameter.name === "undefined") {
+          parameter.name = "undefined";
+        }
+
         parameters.push({
           name: camelcase(parameter.name),
           schema: schemaType,
