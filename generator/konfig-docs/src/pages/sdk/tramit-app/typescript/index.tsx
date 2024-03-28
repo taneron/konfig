@@ -21,9 +21,9 @@ Es segura y cumple estrictamente con los requisitos legales. Incorpora firma ele
 Se trata de un sistema flexible para todos los sectores y con una implementación sencilla para grandes, medianas y pequeñas empresas a través de la integración de una API con otros sistemas.
 
 Además:
-· Sin costes de mantenimiento. 
-· Sin papeles. 
-· Con comunicación con tu gestoría. 
+· Sin costes de mantenimiento.
+· Sin papeles.
+· Con comunicación con tu gestoría.
 · Con posibilidad de integración con sistemas de nóminas.
 · Con soporte.`}
       company="TramitApp"
@@ -32,7 +32,7 @@ Además:
       companyKebabCase="tramit-app"
       clientNameCamelCase="tramitApp"
       homepage="www.tramitapp.com/en/"
-      lastUpdated={new Date("2024-03-28T22:19:23.800Z")}
+      lastUpdated={new Date("2024-03-28T23:15:08.809Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tramitapp/favicon.png"
       contactUrl="https://www.tramitapp.com"
       contactEmail="devs@tramitapp.com"

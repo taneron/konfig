@@ -21,7 +21,7 @@ Sign up today at www.tripadd.com`}
       companyKebabCase="trip-add"
       clientNameCamelCase="tripAdd"
       homepage="tripadd.com/"
-      lastUpdated={new Date("2024-03-27T22:24:36.753Z")}
+      lastUpdated={new Date("2024-03-28T23:15:08.809Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tripadd/favicon.jpg"
       // Missing contactUrl
       contactEmail="info@tripadd.com"
@@ -315,7 +315,7 @@ Sign up today at www.tripadd.com`}
       sdkMethods={5}
       schemas={32}
       parameters={23}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tripadd/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/tripadd/openapi.yaml"
       developerDocumentation="api.tripadd.com/docs/"

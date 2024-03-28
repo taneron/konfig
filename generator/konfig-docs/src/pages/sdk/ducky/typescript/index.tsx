@@ -10,9 +10,9 @@ export default function DuckyTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="ducky-typescript-sdk"
-      metaDescription={`Hello there! 👋🏼 We're Ducky, climate enthusiasts passionate about steering the world towards data-driven climate action. We empower YOU to seamlessly track, reduce, and report your climate emissions with our intuitive software solutions. 
+      metaDescription={`Hello there! 👋🏼 We're Ducky, climate enthusiasts passionate about steering the world towards data-driven climate action. We empower YOU to seamlessly track, reduce, and report your climate emissions with our intuitive software solutions.
 
-💪🏼 So far, we've assisted over 300 organisations and 90,000 individuals worldwide in becoming more sustainable – and we'd love to help you, too! 
+💪🏼 So far, we've assisted over 300 organisations and 90,000 individuals worldwide in becoming more sustainable – and we'd love to help you, too!
 
 Would any of our solutions be suitable for you?👇🏽
 
@@ -35,7 +35,7 @@ Turn climate actions into a fun, team-building, and engaging process. Set up edu
       companyKebabCase="ducky"
       clientNameCamelCase="ducky"
       homepage="www.ducky.eco/"
-      lastUpdated={new Date("2024-03-28T21:43:38.663Z")}
+      lastUpdated={new Date("2024-03-28T23:15:08.809Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ducky/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

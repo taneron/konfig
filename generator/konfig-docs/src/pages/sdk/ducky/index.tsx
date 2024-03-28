@@ -87,9 +87,9 @@ export default function Ducky() {
       homepage="www.ducky.eco/"
       companyKebabCase="ducky"
       categories={allCategories}
-      metaDescription={`Hello there! 👋🏼 We're Ducky, climate enthusiasts passionate about steering the world towards data-driven climate action. We empower YOU to seamlessly track, reduce, and report your climate emissions with our intuitive software solutions. 
+      metaDescription={`Hello there! 👋🏼 We're Ducky, climate enthusiasts passionate about steering the world towards data-driven climate action. We empower YOU to seamlessly track, reduce, and report your climate emissions with our intuitive software solutions.
 
-💪🏼 So far, we've assisted over 300 organisations and 90,000 individuals worldwide in becoming more sustainable – and we'd love to help you, too! 
+💪🏼 So far, we've assisted over 300 organisations and 90,000 individuals worldwide in becoming more sustainable – and we'd love to help you, too!
 
 Would any of our solutions be suitable for you?👇🏽
 
