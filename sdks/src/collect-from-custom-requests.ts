@@ -2019,6 +2019,11 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/Adatree/api-specs/main/insights.yaml",
   },
+  "recruiterflow.com": {
+    type: "GET",
+    url: "https://recruiterflow.com/swagger.yml",
+    apiBaseUrl: "https://recruiterflow.com",
+  },
   "currencyalliance.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
