@@ -2024,6 +2024,11 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://recruiterflow.com/swagger.yml",
     apiBaseUrl: "https://recruiterflow.com",
   },
+  "interviewstream.com": {
+    type: "GET",
+    url: "https://general-api.ivs-apps.com/api/swagger.json",
+    apiBaseUrl: "https://api.interviewstream.com/",
+  },
   "currencyalliance.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

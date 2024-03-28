@@ -1,0 +1,382 @@
+{
+  "securitySchemes": {
+    "HasApiKey": {
+      "type": "apiKey",
+      "name": "X-AUTH-TOKEN",
+      "in": "header"
+    }
+  },
+  "apiBaseUrl": "https://general-api.ivs-apps.com/api",
+  "apiVersion": "0.3.0",
+  "apiDescription": ">\nThis is a description of the API.  \n# Authentication\n## Token-based Authentication\nOne method of connecting to the API is to use a persistent access token that is associated with a specific user account. This access token should be passed using the Authorization header with each API request. For example, if your Authentication Token was VnJexj4MzMhLilaLz7MdYFEKFRBmuBUAJMkDjOdTp, the correct header would be:  \n\n```X-AUTH-TOKEN: VnJexj4MzMhLilaLz7MdYFEKFRBmuBUAJMkDjOdTp```",
+  "apiTitle": "General API",
+  "endpoints": 10,
+  "sdkMethods": 10,
+  "schemas": 0,
+  "parameters": 9,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://general-api.ivs-apps.com/api/swagger.json",
+    "apiBaseUrl": "https://api.interviewstream.com/"
+  },
+  "customRequestSpecFilename": "interviewstream.com.yaml",
+  "difficultyScore": 12.25,
+  "difficulty": "Very Easy",
+  "company": "interviewstream",
+  "sdkName": "interviewstream-{language}-sdk",
+  "clientName": "Interviewstream",
+  "metaDescription": "interviewstream exists to simplify your hiring process through our video interviewing and scheduling platform. We help you cut time, improve candidate experience, and automate scheduling so you can focus on what matters most–your candidates.\n\ninterviewstream is dedicated to the success of more than 900 clients from emerging businesses, midsize companies, large enterprises, colleges, and universities.",
+  "apiStatusUrls": [
+    "https://api.interviewstream.com/"
+  ],
+  "homepage": "interviewstream.com",
+  "developerDocumentation": "api.interviewstream.com/",
+  "categories": [
+    "video",
+    "hr_management",
+    "scheduling",
+    "recruitment_software"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/incoming-assessment",
+      "method": "getData",
+      "httpMethod": "get",
+      "tag": "Incoming Assessment",
+      "typeScriptTag": "incomingAssessment",
+      "description": "",
+      "parameters": [
+        {
+          "name": "ats",
+          "schema": "string",
+          "required": true,
+          "description": "ATS integration name",
+          "example": "ATS"
+        },
+        {
+          "name": "companyId",
+          "schema": "integer",
+          "required": true,
+          "description": "ID of the company",
+          "example": 0
+        },
+        {
+          "name": "assessmentOrderId",
+          "schema": "integer",
+          "required": true,
+          "description": "ID of the Assessment Order",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Perform an Incoming Assessment from the ATS SuccessFactors to IVS application. This General API changes the status of an interview."
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request: ATS, companyId, and assessmentOrderId are required. If ATS is present, greenhouse is not supported yet"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not found: ATS was not found"
+        }
+      ]
+    },
+    {
+      "url": "/candidates",
+      "method": "listAccessible",
+      "httpMethod": "get",
+      "tag": "Candidates",
+      "typeScriptTag": "candidates",
+      "description": "Returns a list of candidates that the API token has access to.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns a list of candidates that the API token has access to."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthenticated"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/candidates/{iCandidate}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Candidates",
+      "typeScriptTag": "candidates",
+      "description": "Gets a candidate by ID.",
+      "parameters": [
+        {
+          "name": "iCandidate",
+          "schema": "integer",
+          "required": true,
+          "description": "Candidate ID",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns detailed information about the specified Candidate."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/requisitions",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Requisitions",
+      "typeScriptTag": "requisitions",
+      "description": "Gets a list of Requisitions.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns a list of requisitions that the API token has access to."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthenticated"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/requisitions/{iRequisition}",
+      "method": "getRequisitionCandidate",
+      "httpMethod": "get",
+      "tag": "Requisitions",
+      "typeScriptTag": "requisitions",
+      "description": "Gets a Requisition Candidate by ID.",
+      "parameters": [
+        {
+          "name": "iRequisition",
+          "schema": "integer",
+          "required": true,
+          "description": "Requisition ID",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns detailed information about the specified Requisition."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/requisitions/{iRequisition}/candidates",
+      "method": "listCandidates",
+      "httpMethod": "get",
+      "tag": "Requisitions",
+      "typeScriptTag": "requisitions",
+      "description": "Returns a list of RequisitionCandidates belonging to the specified Requisition.",
+      "parameters": [
+        {
+          "name": "iRequisition",
+          "schema": "integer",
+          "required": true,
+          "description": "Requisition ID",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns a list of RequisitionCandidates belonging to the specified Requisition."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/requisitionCandidates",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "RequisitionCandidate",
+      "typeScriptTag": "requisitionCandidate",
+      "description": "Returns a list of requisition candidates that the API token has access to.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns a list of requisitions-candidates that the API token has access to."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/requisitionCandidates/{iRequisitionCandidates}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "RequisitionCandidate",
+      "typeScriptTag": "requisitionCandidate",
+      "description": "Returns detailed information about the specified requisition candidates.",
+      "parameters": [
+        {
+          "name": "iRequisitionCandidates",
+          "schema": "integer",
+          "required": true,
+          "description": "Requisition Candidate ID",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns a list of requisitions-candidates that the API token has access to."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/requisitionCandidates/{iRequisitionCandidates}/shareLinks",
+      "method": "getShareLinks",
+      "httpMethod": "get",
+      "tag": "RequisitionCandidate",
+      "typeScriptTag": "requisitionCandidate",
+      "description": "Returns a list of RequisitionCandidateShareLinks belonging to this RequisitionCandidate.",
+      "parameters": [
+        {
+          "name": "iRequisitionCandidates",
+          "schema": "integer",
+          "required": true,
+          "description": "Requisition Candidate ID",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns a list of requisitions-candidates that the API token has access to."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/requisitionCandidates/{iRequisitionCandidates}/requests",
+      "method": "getRequests",
+      "httpMethod": "get",
+      "tag": "RequisitionCandidate",
+      "typeScriptTag": "requisitionCandidate",
+      "description": "Returns a list of RequisitionCandidateRequests belonging to this RequisitionCandidate.",
+      "parameters": [
+        {
+          "name": "iRequisitionCandidates",
+          "schema": "integer",
+          "required": true,
+          "description": "Requisition Candidate ID",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Returns a list of requisitions-candidates that the API token has access to."
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Simplify hiring with interviewstream's video interviewing platform. Cut time, enhance candidate experience, and automate scheduling. Trusted by 900+ clients across various sectors. interviewstream's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/interviewstream/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/interviewstream/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/interviewstream/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/interviewstream/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/interviewstream/favicon.png",
+  "clientNameCamelCase": "interviewstream",
+  "lastUpdated": "2024-03-28T00:23:48.891Z",
+  "typescriptSdkUsageCode": "import { Interviewstream } from 'interviewstream-typescript-sdk';\n\nconst interviewstream = new Interviewstream({\n    hasApiKey: \"X_AUTH_TOKEN\"\n})",
+  "typescriptSdkFirstRequestCode": "// \nconst getDataResponse = interviewstream.incomingAssessment.getData({\n    ats: \"ATS\"\n    companyId: 0\n    assessmentOrderId: 0\n})",
+  "fixedSpecFileName": "interviewstream-fixed-spec.yaml"
+}
