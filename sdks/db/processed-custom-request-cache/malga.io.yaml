@@ -1,0 +1,77 @@
+processed:
+  securitySchemes:
+    X-Client-ID:
+      type: apiKey
+      in: header
+      name: X-Client-Id
+    X-Api-Key:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+  apiBaseUrl: https://api.malga.io
+  apiVersion: '0.5'
+  apiDescription: >
+    # Authentication
+
+
+    Os serviços de API da Malga são protegidos através de chaves de acesso. Você
+    pode gerenciar suas chaves de acesso através do seu dashboard.
+
+
+    É importante armazenar suas chaves de maneira privada e segura uma vez que
+    elas possuem privilégios de alteração na sua conta. Não compartilhe suas
+    chaves, não deixe elas fixadas no seu código e nem armazene elas no seu
+    servidor de controle de versão. Recomendamos utilizar variáveis de ambiente
+    secretas para deixar a chave disponível para sua aplicação.
+
+
+    A Autenticação para todos os chamadas da API é feita através de headers
+    HTTP, sendo necessário informar seu identificador de cliente na Malga e a
+    chave secreta de acesso.
+
+
+    ## X-Client-ID
+
+
+    Identificador única da sua conta na Malga. Deve ser enviado no header
+    obrigatóriamente em todas as requisições feitas a API.
+
+
+    | Security Scheme Type | API Key |
+
+    |-----------------------|-----------|
+
+    | Header parameter name | `X-Client-ID` |
+
+
+    ## X-Api-Key
+
+
+    Sua chave de acesso a API. Funciona em par com o client-id devendo ser
+    enviado no header obrigatóriamente em todas as requisições feitas a API.
+
+
+    | Security Scheme Type | API Key |
+
+    |-----------------------|-----------|
+
+    | Header parameter name | `X-Api-Key` |
+
+
+    ## Exemplo de requisicão autenticada
+
+
+    ```bash
+      curl --location --request GET 'https://api.malga.io/v1/' \
+        --header 'X-Client-Id: <YOUR_CLIENT_ID>' \
+        --header 'X-Api-Key: <YOUR_SECRET_KEY>'
+    ```
+  apiTitle: Documentação Malga API
+  endpoints: 31
+  sdkMethods: 46
+  schemas: 165
+  parameters: 150
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: malga.io.yaml
+  difficultyScore: 166

@@ -1,0 +1,490 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/auth:
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/cards:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/cards/{id}:
+    get:
+      '400':
+        application/json: {}
+      '424':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/charges:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/charges/{id}:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/charges/{id}/antifraud:
+    patch:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/charges/{id}/capture:
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/charges/{id}/void:
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/customers:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/customers/{id}:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/flows:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/flows/{id}:
+    get:
+      '500':
+        application/json: {}
+  /v1/reports:
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/reports/{id}:
+    get:
+      '400':
+        application/json: {}
+      '404':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/reports/{id}/files/{pageNumber}:
+    get:
+      '400':
+        application/json: {}
+      '404':
+        application/json: {}
+      '410':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/sellers:
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/sellers?id:
+    delete:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+    patch:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/sellers?id&email&status&limit&page:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/tokens:
+    post:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/webhooks:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+  /v1/webhooks/{id}:
+    get:
+      '400':
+        application/json: {}
+      '500':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /v1/auth:
+    post: Clienttoken_createPublicKey
+  /v1/cards:
+    get: Cards_list
+    post: Cards_createNewCardFromToken
+  /v1/cards/{id}:
+    get: Cards_getCardDetails
+  /v1/charges:
+    get: Charges_list
+    post: Charges_createNewCharge
+  /v1/charges/{id}:
+    get: Charges_getDetailsById
+    post: Charges_updateStatusById
+  /v1/charges/{id}/antifraud:
+    patch: Charges_alterAntifraudStatus
+  /v1/charges/{id}/capture:
+    post: Charges_captureCharge
+  /v1/charges/{id}/void:
+    post: Charges_voidApprovedCharge
+  /v1/customers:
+    get: Customers_listagemCadastrados
+    post: Customers_createNewCustomer
+  /v1/customers/{customer_id}/cards:
+    get: Customers_listCards
+    post: Customers_addCreditCard
+  /v1/customers/{id}:
+    delete: Customers_deleteById
+    get: Customers_recuperarDetalhes
+    patch: Customers_updateById
+  /v1/flows:
+    get: Flows_getPaged
+  /v1/flows/{id}:
+    get: Flows_consultarPeloId
+  /v1/merchants:
+    get: Merchants_listRegisteredMerchants
+    post: Merchants_createNewMerchant
+  /v1/merchants/{id}:
+    delete: Merchants_deleteById
+    get: Merchants_getDetailsById
+    patch: Merchants_atualizarConfiguracoes
+  /v1/reports:
+    post: Reports_exportBaseData
+  /v1/reports/{id}:
+    get: Reports_getDetailsById
+  /v1/reports/{id}/files/{pageNumber}:
+    get: Reports_downloadFile
+  /v1/sellers:
+    post: Sellers_createNew
+  /v1/sellers/{id}:
+    get: Sellers_consultById
+  /v1/sellers?id:
+    delete: Sellers_deleteById
+    patch: Sellers_updateById
+  /v1/sellers?id&email&status&limit&page:
+    get: Sellers_listPaged
+  /v1/sessions:
+    post: Sessions_createNewSession
+  /v1/sessions/{id}:
+    get: Sessions_getDetailsById
+    patch: Sessions_updateStatus
+  /v1/sessions/{id}/cancel:
+    post: Sessions_cancelarSessao
+  /v1/sessions/{id}/charge:
+    post: Sessions_chargePost
+  /v1/sessions/{id}/history:
+    get: Sessions_getHistory
+  /v1/sessions/{id}/link:
+    get: Sessions_getLink
+  /v1/webhooks:
+    get: Webhooks_listWebhooks
+    post: Webhooks_createNewNotification
+  /v1/webhooks/{id}:
+    delete: Webhooks_deleteById
+    get: Webhooks_getDetailsById
+    patch: Webhooks_atualizarPeloId
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/auth:
+    post:
+      '201':
+        application/json: ClienttokenCreatePublicKeyResponse
+      '400':
+        application/json: ClienttokenCreatePublicKey400Response
+      '500':
+        application/json: ClienttokenCreatePublicKey500Response
+  /v1/cards:
+    get:
+      '200':
+        application/json: CardsListResponse
+      '400':
+        application/json: CardsList400Response
+      '500':
+        application/json: CardsList500Response
+    post:
+      '201':
+        application/json: CardsCreateNewCardFromTokenResponse
+      '400':
+        application/json: CardsCreateNewCardFromToken400Response
+      '500':
+        application/json: CardsCreateNewCardFromToken500Response
+  /v1/cards/{id}:
+    get:
+      '200':
+        application/json: CardsGetCardDetailsResponse
+      '400':
+        application/json: CardsGetCardDetails400Response
+      '424':
+        application/json: CardsGetCardDetails424Response
+      '500':
+        application/json: CardsGetCardDetails500Response
+  /v1/charges:
+    get:
+      '200':
+        application/json: ChargesListResponse
+      '400':
+        application/json: ChargesList400Response
+      '500':
+        application/json: ChargesList500Response
+    post:
+      '201':
+        application/json: ChargesCreateNewChargeResponse
+      '400':
+        application/json: ChargesCreateNewCharge400Response
+      '500':
+        application/json: ChargesCreateNewCharge500Response
+  /v1/charges/{id}:
+    get:
+      '200':
+        application/json: ChargesGetDetailsByIdResponse
+      '400':
+        application/json: ChargesGetDetailsById400Response
+      '500':
+        application/json: ChargesGetDetailsById500Response
+    post:
+      '200':
+        application/json: ChargesUpdateStatusByIdResponse
+      '400':
+        application/json: ChargesUpdateStatusById400Response
+      '500':
+        application/json: ChargesUpdateStatusById500Response
+  /v1/charges/{id}/antifraud:
+    patch:
+      '200':
+        application/json: ChargesAlterAntifraudStatusResponse
+      '400':
+        application/json: ChargesAlterAntifraudStatus400Response
+      '500':
+        application/json: ChargesAlterAntifraudStatus500Response
+  /v1/charges/{id}/capture:
+    post:
+      '201':
+        application/json: ChargesCaptureChargeResponse
+      '400':
+        application/json: ChargesCaptureCharge400Response
+      '500':
+        application/json: ChargesCaptureCharge500Response
+  /v1/charges/{id}/void:
+    post:
+      '201':
+        application/json: ChargesVoidApprovedChargeResponse
+      '400':
+        application/json: ChargesVoidApprovedCharge400Response
+      '500':
+        application/json: ChargesVoidApprovedCharge500Response
+  /v1/customers:
+    get:
+      '200':
+        application/json: CustomersListagemCadastradosResponse
+      '400':
+        application/json: CustomersListagemCadastrados400Response
+      '500':
+        application/json: CustomersListagemCadastrados500Response
+  /v1/customers/{customer_id}/cards:
+    get:
+      '200':
+        application/json: CustomersListCardsResponse
+  /v1/customers/{id}:
+    get:
+      '400':
+        application/json: CustomersRecuperarDetalhesResponse
+      '500':
+        application/json: CustomersRecuperarDetalhes500Response
+  /v1/flows:
+    get:
+      '400':
+        application/json: FlowsGetPagedResponse
+      '500':
+        application/json: FlowsGetPaged500Response
+  /v1/flows/{id}:
+    get:
+      '500':
+        application/json: FlowsConsultarPeloIdResponse
+  /v1/merchants:
+    get:
+      '200':
+        application/json: MerchantsListRegisteredMerchantsResponse
+  /v1/reports:
+    post:
+      '400':
+        application/json: ReportsExportBaseDataResponse
+      '500':
+        application/json: ReportsExportBaseData500Response
+  /v1/reports/{id}:
+    get:
+      '400':
+        application/json: ReportsGetDetailsByIdResponse
+      '404':
+        application/json: ReportsGetDetailsById404Response
+      '500':
+        application/json: ReportsGetDetailsById500Response
+  /v1/reports/{id}/files/{pageNumber}:
+    get:
+      '200':
+        application/csv: ReportsDownloadFileResponse
+      '307':
+        application/csv: ReportsDownloadFile307Response
+      '400':
+        application/json: ReportsDownloadFile400Response
+      '404':
+        application/json: ReportsDownloadFile404Response
+      '410':
+        application/json: ReportsDownloadFile410Response
+      '500':
+        application/json: ReportsDownloadFile500Response
+  /v1/sellers:
+    post:
+      '400':
+        application/json: SellersCreateNewResponse
+      '500':
+        application/json: SellersCreateNew500Response
+  /v1/sellers?id:
+    delete:
+      '400':
+        application/json: SellersDeleteByIdResponse
+      '500':
+        application/json: SellersDeleteById500Response
+    patch:
+      '400':
+        application/json: SellersUpdateByIdResponse
+      '500':
+        application/json: SellersUpdateById500Response
+  /v1/sellers?id&email&status&limit&page:
+    get:
+      '400':
+        application/json: SellersListPagedResponse
+      '500':
+        application/json: SellersListPaged500Response
+  /v1/sessions:
+    post:
+      '201':
+        application/json: SessionsCreateNewSessionResponse
+  /v1/sessions/{id}:
+    get:
+      '201':
+        application/json: SessionsGetDetailsByIdResponse
+    patch:
+      '201':
+        application/json: SessionsUpdateStatusResponse
+  /v1/sessions/{id}/cancel:
+    post:
+      '201':
+        application/json: SessionsCancelarSessaoResponse
+  /v1/sessions/{id}/charge:
+    post:
+      '201':
+        application/json: SessionsChargePostResponse
+  /v1/sessions/{id}/link:
+    get:
+      '201':
+        application/json: SessionsGetLinkResponse
+  /v1/tokens:
+    post:
+      '201':
+        application/json: CreateTokenResponse
+      '400':
+        application/json: CreateToken400Response
+      '500':
+        application/json: CreateToken500Response
+  /v1/webhooks:
+    get:
+      '200':
+        application/json: WebhooksListWebhooksResponse
+      '400':
+        application/json: WebhooksListWebhooks400Response
+      '500':
+        application/json: WebhooksListWebhooks500Response
+  /v1/webhooks/{id}:
+    get:
+      '400':
+        application/json: WebhooksGetDetailsByIdResponse
+      '500':
+        application/json: WebhooksGetDetailsById500Response
+securityParameters:
+  X-User-Timezone:
+    header: false
+  accept-language:
+    header: false
+  created:
+    query: false
+  created.gt:
+    query: false
+  created.lt:
+    query: false
+  document.number:
+    query: false
+  document.type:
+    query: false
+  email:
+    query: false
+  id:
+    query: false
+  limit:
+    query: false
+  merchantId:
+    query: false
+  orderId:
+    query: false
+  originalAmount:
+    query: false
+  page:
+    query: false
+  paymentMethod:
+    query: false
+  paymentType:
+    query: false
+  sort:
+    query: false
+  status:
+    query: false
+validServerUrls: {}

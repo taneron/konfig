@@ -1,0 +1,28 @@
+{
+  "securitySchemes": {
+    "X-Client-ID": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-Client-Id"
+    },
+    "X-Api-Key": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-Api-Key"
+    }
+  },
+  "apiBaseUrl": "https://api.malga.io",
+  "apiVersion": "0.5",
+  "apiDescription": "# Authentication\n\nOs serviços de API da Malga são protegidos através de chaves de acesso. Você pode gerenciar suas chaves de acesso através do seu dashboard.\n\nÉ importante armazenar suas chaves de maneira privada e segura uma vez que elas possuem privilégios de alteração na sua conta. Não compartilhe suas chaves, não deixe elas fixadas no seu código e nem armazene elas no seu servidor de controle de versão. Recomendamos utilizar variáveis de ambiente secretas para deixar a chave disponível para sua aplicação.\n\nA Autenticação para todos os chamadas da API é feita através de headers HTTP, sendo necessário informar seu identificador de cliente na Malga e a chave secreta de acesso.\n\n## X-Client-ID\n\nIdentificador única da sua conta na Malga. Deve ser enviado no header obrigatóriamente em todas as requisições feitas a API.\n\n| Security Scheme Type | API Key |\n|-----------------------|-----------|\n| Header parameter name | `X-Client-ID` |\n\n## X-Api-Key\n\nSua chave de acesso a API. Funciona em par com o client-id devendo ser enviado no header obrigatóriamente em todas as requisições feitas a API.\n\n| Security Scheme Type | API Key |\n|-----------------------|-----------|\n| Header parameter name | `X-Api-Key` |\n\n## Exemplo de requisicão autenticada\n\n```bash\n  curl --location --request GET 'https://api.malga.io/v1/' \\\n    --header 'X-Client-Id: <YOUR_CLIENT_ID>' \\\n    --header 'X-Api-Key: <YOUR_SECRET_KEY>'\n```\n",
+  "apiTitle": "Documentação Malga API",
+  "endpoints": 31,
+  "sdkMethods": 46,
+  "schemas": 165,
+  "parameters": 150,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "malga.io.yaml",
+  "difficultyScore": 166,
+  "difficulty": "Medium"
+}

@@ -2324,6 +2324,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/DriveWealth/dw-openapi/main/dist/InvestingAPI.yaml",
   },
+  "malga.io": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.malga.io/api",
+        browser,
+      });
+    },
+  },
   "volt.io": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
