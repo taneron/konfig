@@ -1,0 +1,281 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v1/stores/{storeId}/payouts/{payoutId}:
+    get: StoresPayouts_getPayout
+  /misc/lang:
+    get: Miscelleneous_getSupportedLangCodes
+  /misc/permissions:
+    get: Miscelleneous_listPermissionsMetadata
+  /misc/rate-sources:
+    get: Miscelleneous_listRateSources
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/api-keys:
+    post:
+      application/json: ApiKeysCreateApiKeyRequest
+  /api/v1/pull-payments/{pullPaymentId}/boltcards:
+    post:
+      application/json: PullPaymentsLinkBoltcardRequest
+  /api/v1/stores/{storeId}/invoices/{invoiceId}/refund:
+    post:
+      application/json: InvoicesRefundRequest
+  /api/v1/stores/{storeId}/payment-methods/OnChain/{cryptoCode}/preview:
+    post:
+      application/json: StoreOnChainPaymentMethodsPostOnChainPaymentMethodPreviewRequest
+  /api/v1/stores/{storeId}/payment-requests/{paymentRequestId}/pay:
+    post:
+      application/json: PaymentRequestsPayRequest
+  /api/v1/stores/{storeId}/payouts/{payoutId}:
+    post:
+      application/json: PullPaymentsApprovePayoutRequest
+  /api/v1/stores/{storeId}/payouts/{payoutId}/mark:
+    post:
+      application/json: PullPaymentsMarkPayoutRequest
+  /api/v1/stores/{storeId}/pull-payments:
+    post:
+      application/json: PullPaymentsCreatePullPaymentRequest
+  /api/v1/users:
+    post:
+      application/json: UsersCreateUserRequest
+  /api/v1/users/{idOrEmail}/api-keys:
+    post:
+      application/json: ApiKeysCreateUserApiKeyRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/apps:
+    get:
+      '200':
+        application/json: AppsGetAllAppsResponse
+  /api/v1/custodians:
+    get:
+      '200':
+        application/json: CustodiansGetSupportedCustodiansResponse
+  /api/v1/payout-processors:
+    get:
+      '200':
+        application/json: PayoutProcessorsGetPayoutProcessorsResponse
+  /api/v1/pull-payments/{pullPaymentId}/boltcards:
+    post:
+      '200':
+        application/json: PullPaymentsLinkBoltcardResponse
+  /api/v1/server/lightning/{cryptoCode}/address:
+    post:
+      '200':
+        application/json: InternalLightningNodeApiGetDepositAddressResponse
+  /api/v1/server/lightning/{cryptoCode}/channels:
+    get:
+      '200':
+        application/json: InternalLightningNodeApiGetChannelsResponse
+  /api/v1/server/lightning/{cryptoCode}/invoices:
+    get:
+      '200':
+        application/json: InternalLightningNodeApiGetInvoicesResponse
+  /api/v1/server/lightning/{cryptoCode}/payments:
+    get:
+      '200':
+        application/json: InternalLightningNodeApiGetPaymentsResponse
+  /api/v1/stores/{storeId}/apps:
+    get:
+      '200':
+        application/json: AppsGetAllAppsForStoreResponse
+  /api/v1/stores/{storeId}/custodian-accounts:
+    get:
+      '200':
+        application/json: CustodiansGetStoreCustodianAccountsResponse
+  /api/v1/stores/{storeId}/custodian-accounts/{accountId}/addresses/{paymentMethod}:
+    get:
+      '200':
+        application/json: CustodiansGetStoreCustodianAccountDepositAddressResponse
+  /api/v1/stores/{storeId}/custodian-accounts/{accountId}/withdrawals:
+    post:
+      '403':
+        application/json: CustodiansWithdrawFromStoreCustodianAccountResponse
+  /api/v1/stores/{storeId}/custodian-accounts/{accountId}/withdrawals/simulation:
+    post:
+      '403':
+        application/json: CustodiansSimulateWithdrawFromStoreCustodianAccountResponse
+  /api/v1/stores/{storeId}/custodian-accounts/{accountId}/withdrawals/{withdrawalId}:
+    get:
+      '403':
+        application/json: CustodiansGetStoreCustodianAccountWithdrawalInfoResponse
+  /api/v1/stores/{storeId}/invoices/{invoiceId}/payment-methods:
+    get:
+      '200':
+        application/json: InvoicesGetInvoicePaymentMethodsResponse
+  /api/v1/stores/{storeId}/lightning-addresses:
+    get:
+      '200':
+        application/json: StoreLightningAddressesGetStoreLightningAddressesResponse
+  /api/v1/stores/{storeId}/lightning/{cryptoCode}/address:
+    post:
+      '200':
+        application/json: StoreLightningNodeApiGetDepositAddressResponse
+  /api/v1/stores/{storeId}/lightning/{cryptoCode}/channels:
+    get:
+      '200':
+        application/json: StoreLightningNodeApiGetChannelsResponse
+  /api/v1/stores/{storeId}/lightning/{cryptoCode}/invoices:
+    get:
+      '200':
+        application/json: StoreLightningNodeApiGetInvoicesResponse
+  /api/v1/stores/{storeId}/lightning/{cryptoCode}/payments:
+    get:
+      '200':
+        application/json: StoreLightningNodeApiGetPaymentsResponse
+  /api/v1/stores/{storeId}/payment-methods:
+    get:
+      '200':
+        application/json: StorePaymentMethodsGetStorePaymentMethodsResponse
+  /api/v1/stores/{storeId}/payment-methods/onchain/{cryptoCode}/wallet/objects:
+    get:
+      '200':
+        application/json: StoreOnChainWalletsGetOnChainWalletObjectsResponse
+  /api/v1/stores/{storeId}/payment-methods/onchain/{cryptoCode}/wallet/transactions:
+    get:
+      '200':
+        application/json: StoreOnChainWalletsShowOnChainWalletTransactionsResponse
+    post:
+      '200':
+        application/json: StoreOnChainWalletsCreateOnChainTransactionResponse
+  /api/v1/stores/{storeId}/payment-methods/onchain/{cryptoCode}/wallet/utxos:
+    get:
+      '200':
+        application/json: StoreOnChainWalletsGetOnChainWalletUtxOsResponse
+  /api/v1/stores/{storeId}/payout-processors:
+    get:
+      '200':
+        application/json: StorePayoutProcessorsGetStorePayoutProcessorsResponse
+  /api/v1/stores/{storeId}/payout-processors/LightningAutomatedPayoutSenderFactory:
+    get:
+      '200':
+        application/json: >-
+          GreenfieldStoreAutomatedLightningPayoutProcessorsControllerGetStoreLightningAutomatedPayoutSenderFactoryResponse
+  /api/v1/stores/{storeId}/payout-processors/LightningAutomatedPayoutSenderFactory/{paymentMethod}:
+    get:
+      '200':
+        application/json: >-
+          GreenfieldStoreAutomatedLightningPayoutProcessorsControllerGetStoreLightningAutomatedPayoutProcessorsForPaymentMethodResponse
+  /api/v1/stores/{storeId}/payout-processors/OnChainAutomatedPayoutSenderFactory/{paymentMethod}:
+    get:
+      '200':
+        application/json: >-
+          GreenfieldStoreAutomatedOnChainPayoutProcessorsControllerGetStoreOnChainAutomatedPayoutProcessorsForPaymentMethodResponse
+  /api/v1/stores/{storeId}/payout-processors/OnChainAutomatedTransferSenderFactory:
+    get:
+      '200':
+        application/json: >-
+          GreenfieldStoreAutomatedOnChainPayoutProcessorsControllerGetStoreOnChainAutomatedTransferSenderFactoryResponse
+  /api/v1/stores/{storeId}/rates:
+    get:
+      '200':
+        application/json: StoresGetStoreRatesResponse
+  /api/v1/stores/{storeId}/rates/configuration/preview:
+    post:
+      '200':
+        application/json: StoresPreviewStoreRateConfigurationResponse
+  /api/v1/stores/{storeId}/webhooks/{webhookId}/deliveries/{deliveryId}/redeliver:
+    post:
+      '200':
+        application/json: WebhooksRedeliverWebhookDeliveryResponse
+  /api/v1/stores/{storeId}/webhooks/{webhookId}/deliveries/{deliveryId}/request:
+    get:
+      '200':
+        application/json: WebhooksGetWebhookDeliveryRequestsResponse
+  /misc/lang:
+    get:
+      '200':
+        application/json: MiscelleneousGetSupportedLangCodesResponse
+  /misc/permissions:
+    get:
+      '200':
+        application/json: MiscelleneousListPermissionsMetadataResponse
+  /misc/rate-sources:
+    get:
+      '200':
+        application/json: MiscelleneousListRateSourcesResponse
+securityParameters:
+  amount:
+    query: false
+  applicationIdentifier:
+    query: false
+  applicationName:
+    query: false
+  assetBalances:
+    query: false
+  blockTarget:
+    query: false
+  count:
+    query: false
+  currencyPair:
+    query: false
+  enabled:
+    query: false
+  endDate:
+    query: false
+  force:
+    query: false
+  forceGenerate:
+    query: false
+  fromAsset:
+    query: false
+  ids:
+    query: false
+  includeArchived:
+    query: false
+  includeCancelled:
+    query: false
+  includeNeighbourData:
+    query: false
+  includePending:
+    query: false
+  labelFilter:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  offsetIndex:
+    query: false
+  onlyAccountedPayments:
+    query: false
+  orderId:
+    query: false
+  paymentMethod:
+    query: false
+  pendingOnly:
+    query: false
+  permissions:
+    query: false
+  qty:
+    query: false
+  redirect:
+    query: false
+  seen:
+    query: false
+  selectiveStores:
+    query: false
+  skip:
+    query: false
+  startDate:
+    query: false
+  status:
+    query: false
+  statusFilter:
+    query: false
+  strict:
+    query: false
+  take:
+    query: false
+  textSearch:
+    query: false
+  toAsset:
+    query: false
+  type:
+    query: false
+validServerUrls:
+  '':
+    url: ''

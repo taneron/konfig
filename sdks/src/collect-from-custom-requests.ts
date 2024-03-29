@@ -2414,6 +2414,10 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://raw.githubusercontent.com/buttondown/openapi/main/openapi.json",
     apiBaseUrl: "https://api.buttondown.email/v1/",
   },
+  "btcpayserver.org": {
+    type: "GET",
+    url: "https://docs.btcpayserver.org/API/Greenfield/v1/swagger.json",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
