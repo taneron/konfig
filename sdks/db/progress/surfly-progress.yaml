@@ -1,0 +1,221 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /agents/?api_key={API_KEY}:
+    get: Agents_getList
+    post: Agents_registerNewAgent
+  /agents/access-token/?api_key={API_KEY}:
+    post: Agents_generateAccessToken
+  /agents/{AGENT_ID}/?api_key={API_KEY}:
+    delete: Agents_removeAgent
+    get: Agents_getById
+    put: Agents_updateAgent
+  /clients/all/?api_key={API_KEY}:
+    get: Clients_getAll
+    post: Clients_addNewClient
+  /clients/all/{CLIENT_KEY}/?api_key={API_KEY}:
+    delete: Clients_deleteClient
+    get: Clients_infoById
+    post: Clients_setDomainList
+    put: Clients_updateClient
+  /company/options/?api_key={api_key}:
+    delete: Company_resetDefaultOptions
+    get: Company_getDefaultOptions
+    patch: Company_updateDefaultOptions
+    post: Company_postOptions
+  /history/?api_key={API_KEY}:
+    get: History_getAllSessions
+  /history/?api_key={api_key}&active_session={active_session}&agent_id={agent_id}&pin={pin}&tags={tags}&min_duration={min_duration}&max_duration={max_duration}&min_date={min_date}&max_date={max_date}:
+    get: History_filterSessionHistory
+  /servers/:
+    get: Servers_listAvailable
+  /sessions/?api_key={API_KEY}:
+    get: Sessions_getAll
+    post: Sessions_generateNewSession
+  /sessions/?api_key={API_KEY}&clientkey={CLIENT_KEY}&active_session=true&year=2015&month=01:
+    get: Clients_listActiveSessionsForResellerClient
+  /sessions/?api_key={api_key}&active_session={active_session}&agent_id={agent_id}&year={year}&month={month}&pin={pin}&tags={tags}:
+    get: Sessions_filter
+  /sessions/{ID}/?api_key={API_KEY}:
+    get: Sessions_getById
+  /sessions/{ID}/end/?api_key={API_KEY}:
+    post: Sessions_endById
+  /sessions/{ID}/screenshots/create/?api_key={API_KEY}:
+    post: Screenshots_startGeneration
+  /sessions/{ID}/screenshots/latest/?api_key={API_KEY}:
+    get: Screenshots_getLatest
+  /webhooks/?api_key={API_KEY}:
+    get: Webhooks_listAll
+    post: Webhooks_createWebhook
+  /webhooks/{WEBHOOK_ID}/?api_key={API_KEY}:
+    delete: Webhooks_removeWebhook
+    get: Webhooks_getWebhookInformation
+    put: Webhooks_updateWebhook
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /agents/?api_key={API_KEY}:
+    post:
+      application/json: AgentsRegisterNewAgentRequest
+  /agents/access-token/?api_key={API_KEY}:
+    post:
+      application/json: AgentsGenerateAccessTokenRequest
+  /agents/{AGENT_ID}/?api_key={API_KEY}:
+    put:
+      application/json: AgentsUpdateAgentRequest
+  /clients/all/?api_key={API_KEY}:
+    post:
+      application/json: ClientsAddNewClientRequest
+  /clients/all/{CLIENT_KEY}/?api_key={API_KEY}:
+    post:
+      application/json: ClientsSetDomainListRequest
+    put:
+      application/json: ClientsUpdateClientRequest
+  /sessions/?api_key={API_KEY}:
+    post:
+      application/json: SessionsGenerateNewSessionRequest
+  /sessions/{ID}/screenshots/create/?api_key={API_KEY}:
+    post:
+      application/json: ScreenshotsStartGenerationRequest
+  /webhooks/?api_key={API_KEY}:
+    post:
+      application/json: WebhooksCreateWebhookRequest
+  /webhooks/{WEBHOOK_ID}/?api_key={API_KEY}:
+    put:
+      application/json: WebhooksUpdateWebhookRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /agents/?api_key={API_KEY}:
+    get:
+      '200':
+        application/json: AgentsGetListResponse
+    post:
+      '200':
+        application/json: AgentsRegisterNewAgentResponse
+  /agents/access-token/?api_key={API_KEY}:
+    post:
+      '200':
+        application/json: AgentsGenerateAccessTokenResponse
+      '404':
+        application/json: AgentsGenerateAccessToken404Response
+  /agents/{AGENT_ID}/?api_key={API_KEY}:
+    delete:
+      '200':
+        application/json: AgentsRemoveAgentResponse
+    get:
+      '200':
+        application/json: AgentsGetByIdResponse
+    put:
+      '200':
+        application/json: AgentsUpdateAgentResponse
+  /clients/all/?api_key={API_KEY}:
+    get:
+      '200':
+        application/json: ClientsGetAllResponse
+    post:
+      '200':
+        application/json: ClientsAddNewClientResponse
+  /clients/all/{CLIENT_KEY}/?api_key={API_KEY}:
+    delete:
+      '200':
+        application/json: ClientsDeleteClientResponse
+    get:
+      '200':
+        application/json: ClientsInfoByIdResponse
+    post:
+      '200':
+        application/json: ClientsSetDomainListResponse
+    put:
+      '200':
+        application/json: ClientsUpdateClientResponse
+  /company/options/?api_key={api_key}:
+    get:
+      '200':
+        application/json: CompanyGetDefaultOptionsResponse
+    patch:
+      '200':
+        application/json: CompanyUpdateDefaultOptionsResponse
+    post:
+      '200':
+        application/json: CompanyPostOptionsResponse
+  /history/?api_key={api_key}&active_session={active_session}&agent_id={agent_id}&pin={pin}&tags={tags}&min_duration={min_duration}&max_duration={max_duration}&min_date={min_date}&max_date={max_date}:
+    get:
+      '200':
+        application/json: HistoryFilterSessionHistoryResponse
+  /servers:
+    get:
+      '200':
+        application/json: ServersListAvailableResponse
+  /sessions/?api_key={API_KEY}:
+    get:
+      '200':
+        application/json: SessionsGetAllResponse
+    post:
+      '200':
+        application/json: SessionsGenerateNewSessionResponse
+  /sessions/?api_key={API_KEY}&clientkey={CLIENT_KEY}&active_session=true&year=2015&month=01:
+    get:
+      '200':
+        application/json: ClientsListActiveSessionsForResellerClientResponse
+  /sessions/?api_key={api_key}&active_session={active_session}&agent_id={agent_id}&year={year}&month={month}&pin={pin}&tags={tags}:
+    get:
+      '200':
+        application/json: SessionsFilterResponse
+  /sessions/{ID}/?api_key={API_KEY}:
+    get:
+      '200':
+        application/json: SessionsGetByIdResponse
+  /sessions/{ID}/end/?api_key={API_KEY}:
+    post:
+      '200':
+        application/json: SessionsEndByIdResponse
+  /sessions/{ID}/screenshots/create/?api_key={API_KEY}:
+    post:
+      '200':
+        text/plain: ScreenshotsStartGenerationResponse
+  /sessions/{ID}/screenshots/latest/?api_key={API_KEY}:
+    get:
+      '200':
+        application/json: ScreenshotsGetLatestResponse
+  /webhooks/?api_key={API_KEY}:
+    get:
+      '200':
+        application/json: WebhooksListAllResponse
+    post:
+      '201':
+        application/json: WebhooksCreateWebhookResponse
+  /webhooks/{WEBHOOK_ID}/?api_key={API_KEY}:
+    get:
+      '200':
+        application/json: WebhooksGetWebhookInformationResponse
+    put:
+      '200':
+        application/json: WebhooksUpdateWebhookResponse
+securityParameters:
+  CLIENT_KEY:
+    query: false
+  active_session:
+    query: false
+  agent_id:
+    query: false
+  free:
+    query: false
+  max_date:
+    query: false
+  max_duration:
+    query: false
+  min_date:
+    query: false
+  min_duration:
+    query: false
+  month:
+    query: false
+  pin:
+    query: false
+  tags:
+    query: false
+  year:
+    query: false
+validServerUrls: {}
