@@ -2541,6 +2541,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://cdn.finshark.io/docs/openapi_v1.yaml",
   },
+  "ongoody.com": {
+    type: "GET",
+    url: "https://assets.ongoody.com/static/web/goody-api-openapi.json",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

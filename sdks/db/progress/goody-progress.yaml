@@ -1,0 +1,85 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1/me:
+    get: Me_getCurrentUser
+  /v1/order_batches:
+    get: OrderBatches_list
+    post: OrderBatches_createBatch
+  /v1/order_batches/{id}:
+    get: OrderBatches_get
+  /v1/order_batches/{id}/orders:
+    get: OrderBatches_getOrders
+  /v1/order_batches/{id}/recipients:
+    get: OrderBatches_getRecipients
+  /v1/orders:
+    get: Orders_getList
+  /v1/orders/{id}:
+    get: Orders_getById
+  /v1/orders/{id}/cancel:
+    post: Orders_cancelOrder
+  /v1/orders/{id}/update_expiration:
+    post: Orders_updateExpiration
+  /v1/payment_methods:
+    get: PaymentMethods_listAll
+  /v1/products:
+    get: Products_listActiveProducts
+  /v1/webhooks:
+    post: Webhooks_createEndpoint
+  /v1/webhooks/{id}:
+    delete: Webhooks_deleteEndpoint
+  /v1/workspaces:
+    get: Workspaces_getAll
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/orders/{id}/update_expiration:
+    post:
+      application/json: OrdersUpdateExpirationRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/order_batches:
+    get:
+      '200':
+        application/json: OrderBatchesListResponse
+  /v1/order_batches/{id}/orders:
+    get:
+      '200':
+        application/json: OrderBatchesGetOrdersResponse
+      '400':
+        application/json: OrderBatchesGetOrders400Response
+  /v1/order_batches/{id}/recipients:
+    get:
+      '200':
+        application/json: OrderBatchesGetRecipientsResponse
+      '400':
+        application/json: OrderBatchesGetRecipients400Response
+  /v1/orders:
+    get:
+      '200':
+        application/json: OrdersGetListResponse
+  /v1/payment_methods:
+    get:
+      '200':
+        application/json: PaymentMethodsListAllResponse
+  /v1/products:
+    get:
+      '200':
+        application/json: ProductsListActiveProductsResponse
+  /v1/webhooks:
+    post:
+      '201':
+        application/json: WebhooksCreateEndpointResponse
+  /v1/workspaces:
+    get:
+      '200':
+        application/json: WorkspacesGetAllResponse
+securityParameters:
+  page:
+    query: false
+  per_page:
+    query: false
+  use_custom_catalog:
+    query: false
+validServerUrls: {}
