@@ -17,7 +17,7 @@ export default function OysterTypeScriptSdk() {
       companyKebabCase="oyster"
       clientNameCamelCase="oyster"
       homepage="oysterhr.com"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-29T23:25:02.951Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oyster/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -659,7 +659,7 @@ export default function OysterTypeScriptSdk() {
       sdkMethods={18}
       schemas={39}
       parameters={38}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oyster/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/oyster/openapi.yaml"
       developerDocumentation="docs.oysterhr.com/reference"

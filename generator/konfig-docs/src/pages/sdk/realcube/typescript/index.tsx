@@ -10,16 +10,15 @@ export default function RealcubeTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="realcube-typescript-sdk"
-      metaDescription={`Realcube is the cloud solution for smart and flexible digitilization in real estate management. Our API-first platform is here to revolutionize the real estate industry. It is a one-stop-shop for intelligent solutions which are adaptive to every client's individual needs. 
+      metaDescription={`Realcube is the cloud solution for smart and flexible digitilization in real estate management. Our API-first platform is here to revolutionize the real estate industry. It is a one-stop-shop for intelligent solutions which are adaptive to every client's individual needs.
 
-Realcube's ecosystem offers a growing number of applications from our valuable and industry-leading partners which aggregate the customer's data. It is worth mentioning that we keep our customers' data privacy and well-being as our top priority. 
- 
-At Realcube, we enable the real estate companies and their contractual partners to consolidate their data in our state-of-the-art platform. This creates a uniform database that gives access to asset managers and other management levels to all relevant information at all times, just a click away! 
+Realcube's ecosystem offers a growing number of applications from our valuable and industry-leading partners which aggregate the customer's data. It is worth mentioning that we keep our customers' data privacy and well-being as our top priority.
+At Realcube, we enable the real estate companies and their contractual partners to consolidate their data in our state-of-the-art platform. This creates a uniform database that gives access to asset managers and other management levels to all relevant information at all times, just a click away!
 
-Have we grabbed your interest in our innovative solution for your real estate management? 
-Book a free demo today! 
+Have we grabbed your interest in our innovative solution for your real estate management?
+Book a free demo today!
 
-For more information feel free to visit our website or contact us at: 
+For more information feel free to visit our website or contact us at:
 info@realcube.com`}
       company="Realcube"
       // Missing serviceName
@@ -27,7 +26,7 @@ info@realcube.com`}
       companyKebabCase="realcube"
       clientNameCamelCase="realcube"
       homepage="realcube.com"
-      lastUpdated={new Date("2024-03-29T22:59:11.252Z")}
+      lastUpdated={new Date("2024-03-29T23:25:02.951Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/realcube/favicon.png"
       // Missing contactUrl
       contactEmail="uwe.forgber@realcube.com"

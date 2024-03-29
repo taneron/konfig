@@ -1,0 +1,111 @@
+```typescript index.ts
+import { Sellsy } from 'sellsy-typescript-sdk';
+
+const sellsy = new Sellsy({
+    /*
+     * ### Client OAuth
+     * You can generate a new OAuth 2 client for the V2 API, from the developer page of your Sellsy account (https://www.sellsy.fr/developer/api-v2).
+     * 
+     * Several types of clients are available:
+     * 
+     * - **Private:** API access limited to staffs of your SELLSY account.
+     *   A flow by authorization code will be required
+     * - **Personal**:   API access linked to an staff.
+     *    The use of client credentials flow is possible.
+     * - **Public**:  API access to connect to all SELLSY accounts.
+     *    A validation of SELLSY and a flow by authorization code will be required.
+     * 
+     * ### Authorization Code Flow
+     * See  https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/
+     * 
+     * **PKCE** is required when using the authorization code flow. https://www.oauth.com/oauth2-servers/pkce/
+     * 
+     * - **Authorization URL:** https://login.sellsy.com/oauth2/authorization
+     * - **Token URL:** https://login.sellsy.com/oauth2/access-tokens
+     * - **Refresh URL:** https://login.sellsy.com/oauth2/access-tokens
+     * 
+     * 
+     * #### Example:
+     * Call `https://login.sellsy.com/oauth2/authorization?response_type=code&client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&code_challenge=YOUR_PKCE_CODE_CHALENGE&code_challenge_method=S256`
+     * 
+     * After authentication, a redirection will be performed on the redirection uri. The authaurization code will be retrieved in the query parameter `code` .
+     * 
+     * This code can now be exchanged for an access token:
+     * ```bash
+     * curl -X POST \
+     *   https://login.sellsy.com/oauth2/access-tokens \
+     *   -d '{
+     * 	"grant_type": "authorization_code",
+     * 	"client_id": "YOUR_CLIENT_ID",
+     * 	"redirect_uri": "YOUR_REDIRECT_URI",
+     * 	"code_verifier": "YOUR_PKCE_CODE_VERIFIER",
+     * 	"code": "THE_CODE"
+     * }'
+     * # Response
+     * {
+     *     "token_type": "Bearer",
+     *     "expires_in": 3600,
+     *     "access_token": "YOUR_ACCESS_TOKEN",
+     *     "refresh_token": "YOUR_REFRESH_TOKEN"
+     * }
+     * # Use API
+     * curl  -X GET \
+     *   'https://api.sellsy.com/v2/teams' \
+     *    --header 'Authorization: Bearer YOUR_ACCESS_TOKEN'
+     * ```
+     * 
+     * You can request a new access token, from the refresh token previously retrieved:
+     * ```bash
+     * curl -X POST \
+     *   https://login.sellsy.com/oauth2/access-tokens \
+     *   -d '{
+     * 	"grant_type": "refresh_token",
+     * 	"client_id": "YOUR_CLIENT_ID",
+     * 	"client_secret": "YOUR_CLIENT_SECRET"
+     * 	"refresh_token": "YOUR_REFRESH_TOKEN"
+     * }'
+     * # Response
+     * {
+     *     "token_type": "Bearer",
+     *     "expires_in": 3600,
+     *     "access_token": "YOUR_NEW_ACCESS_TOKEN",
+     *     "refresh_token": "YOUR_NEW_REFRESH_TOKEN"
+     * }
+     * ```
+     * 
+     * ### Client Credential Flow
+     * See  https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/
+     * 
+     * Only personal clients can use this authentication flow.
+     * 
+     * **Token URL:** https://login.sellsy.com/oauth2/access-tokens
+     * 
+     * #### Example:
+     * ```bash
+     * curl -X POST \
+     *   https://login.sellsy.com/oauth2/access-tokens \
+     *   -d '{
+     * 	"grant_type": "client_credentials",
+     * 	"client_id": "YOUR_CLIENT_ID",
+     * 	"client_secret": "YOUR_CLIENT_SECRET"
+     * }'
+     * # Response
+     * {
+     *     "token_type": "Bearer",
+     *     "expires_in": 3600,
+     *     "access_token": "YOUR_ACCESS_TOKEN"
+     * }
+     * # Use API
+     * curl  -X GET \
+     *   'https://api.sellsy.com/v2/teams' \
+     *    --header 'Authorization: Bearer YOUR_ACCESS_TOKEN'
+     * ```
+     * ### Tokens expiration
+     * - **Authorization Code:** 10 min
+     * - **Access Token:** 24 hours
+     * - **Refresh Token:** 60 days
+     */
+    clientId: "CLIENT_ID",
+    clientSecret: "CLIENT_SECRET"
+})
+```

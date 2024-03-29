@@ -17,7 +17,7 @@ export default function NotionTypeScriptSdk() {
       companyKebabCase="notion"
       clientNameCamelCase="notion"
       homepage="developers.notion.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-29T23:25:02.951Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -962,7 +962,7 @@ export default function NotionTypeScriptSdk() {
       sdkMethods={20}
       schemas={58}
       parameters={78}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/notion/openapi.yaml"
       developerDocumentation="developers.notion.com/reference/intro"

@@ -1,0 +1,25 @@
+```typescript index.ts
+import { WeFitter } from 'we-fitter-typescript-sdk';
+
+const weFitter = new WeFitter({
+    /*
+     * Basic Authentication is used to create administrator bearer tokens.
+     * 
+     * Once a bearer token has been made, remove this auth. ('logout' in Swagger')
+     */
+    username: "USERNAME",
+    password: "PASSWORD",
+    /*
+     * Bearer authentication for logged-in profiles.
+     * 
+     * When using the GUI, please don't forget to prefix your bearer tokens with the text 'bearer', followed by a space.
+     */
+    bearerProfile: "AUTHORIZATION",
+    /*
+     * Bearer authentication for administrators.
+     * 
+     * When using the GUI, please don't forget to prefix your bearer tokens with the text 'bearer', followed by a space.
+     */
+    bearerAdmin: "AUTHORIZATION"
+})
+```

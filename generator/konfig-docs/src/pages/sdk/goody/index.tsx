@@ -69,7 +69,7 @@ export default function Goody() {
       homepage="www.ongoody.com/"
       companyKebabCase="goody"
       categories={allCategories}
-      metaDescription={`Goody is a new way to send personal and business gifts as easily as a text message. 
+      metaDescription={`Goody is a new way to send personal and business gifts as easily as a text message.
 
 Our business gifting platform, Goody for Business, powers employee engagement, client appreciation, and sales prospecting gifts at more than 12,000 leading companies. Goody integrates with 30 leading HR platforms, allowing companies to automatically gift employees on birthdays and work anniversaries.
 

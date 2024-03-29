@@ -10,7 +10,7 @@ export default function GoodyTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="goody-typescript-sdk"
-      metaDescription={`Goody is a new way to send personal and business gifts as easily as a text message. 
+      metaDescription={`Goody is a new way to send personal and business gifts as easily as a text message.
 
 Our business gifting platform, Goody for Business, powers employee engagement, client appreciation, and sales prospecting gifts at more than 12,000 leading companies. Goody integrates with 30 leading HR platforms, allowing companies to automatically gift employees on birthdays and work anniversaries.
 
@@ -21,7 +21,7 @@ Choose from a curated gift collection of 250+ brands. Send a gift with only an e
       companyKebabCase="goody"
       clientNameCamelCase="goody"
       homepage="www.ongoody.com/"
-      lastUpdated={new Date("2024-03-29T22:43:40.620Z")}
+      lastUpdated={new Date("2024-03-29T23:25:02.951Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/goody/favicon.png"
       // Missing contactUrl
       contactEmail="support@ongoody.com"
@@ -518,7 +518,7 @@ Choose from a curated gift collection of 250+ brands. Send a gift with only an e
       sdkMethods={19}
       schemas={37}
       parameters={30}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/goody/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/goody/openapi.yaml"
       developerDocumentation="developer.ongoody.com/introduction/overview"

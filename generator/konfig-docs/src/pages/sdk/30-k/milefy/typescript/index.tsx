@@ -21,7 +21,7 @@ export default function Sdk30KMilefyTypeScriptSdk() {
       companyKebabCase="30-k"
       clientNameCamelCase="30KMilefy"
       homepage="30k.com"
-      lastUpdated={new Date("2024-03-29T18:55:05.537Z")}
+      lastUpdated={new Date("2024-03-29T23:09:10.236Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/30-k/milefy/favicon.png"
       contactUrl="http://www.30k.com/"
       contactEmail="support@30k.com"
@@ -657,7 +657,7 @@ export default function Sdk30KMilefyTypeScriptSdk() {
       sdkMethods={18}
       schemas={41}
       parameters={36}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/30-k/milefy/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/30-k/milefy/openapi.yaml"
       developerDocumentation="milefy-api-docs.30k.com/"
