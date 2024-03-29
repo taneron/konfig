@@ -19,7 +19,13 @@ export const categoriesToMapTo = {
     "Video Generation",
     "Voice Generation",
   ],
-  "Business Intelligence": ["Analytics", "Dashboards", "Reviews", "Compliance & Security"],
+  "Business Intelligence": [
+    "Analytics",
+    "Dashboards",
+    "Reviews",
+    "Compliance & Security",
+    "Insurance",
+  ],
   Commerce: [
     "Accounting",
     "eCommerce",

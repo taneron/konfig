@@ -1,0 +1,506 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "https://gw.seyna.eu/2024-02",
+  "apiVersion": "2024-02",
+  "apiDescription": "documentation seyna - OpenAPI 3.0",
+  "apiTitle": "documentation seyna",
+  "endpoints": 14,
+  "sdkMethods": 18,
+  "schemas": 28,
+  "parameters": 28,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "seyna.eu.yaml",
+  "difficultyScore": 33,
+  "difficulty": "Very Easy",
+  "company": "Seyna",
+  "sdkName": "seyna-{language}-sdk",
+  "clientName": "Seyna",
+  "metaDescription": "Seyna est la plateforme pour les courtiers en assurance. En combinant produits d'assurance sur mesure et technologie, la plateforme Seyna permet aux courtiers de focaliser sur l'essentiel : leurs clients. Les courtiers opérant sur Seyna peuvent se concentrer sur l'expérience client en automatisant les tâches administratives et de conformité ainsi qu'en créant des expériences assurantielles sur-mesure. Infrastructure ouverte, les courtiers peuvent adapter Seyna à leurs besoins, brancher leur ecosystème de prestataires et piloter toute leur activité via une seule interface. \n\nAujourd'hui, plus de 90 courtiers d'assurance et retailers font déjà appel à Seyna pour protéger plus de 1 million de clients. Mais l'histoire ne s'arrête pas là. Seyna nourrit des ambitions mondiales et entend changer la façon dont l'ensemble du secteur protège les clients.",
+  "apiStatusUrls": "inherit",
+  "homepage": "seyna.eu",
+  "developerDocumentation": "developers.seyna.eu",
+  "categories": [
+    "insurance"
+  ],
+  "category": "Insurance",
+  "methods": [
+    {
+      "url": "/aml/alerts/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Alerts",
+      "typeScriptTag": "alerts",
+      "description": "Get an alert by ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/alerts/{id}",
+      "method": "updateStatus",
+      "httpMethod": "patch",
+      "tag": "Alerts",
+      "typeScriptTag": "alerts",
+      "description": "Update an alert's status.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "STATUS"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/alerts/{id}/timeline",
+      "method": "listTimelineItems",
+      "httpMethod": "get",
+      "tag": "Alerts",
+      "typeScriptTag": "alerts",
+      "description": "List an alert's timeline items.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/datasets",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Datasets",
+      "typeScriptTag": "datasets",
+      "description": "Get all available datasets.",
+      "parameters": [
+        {
+          "name": "productId",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/datasets/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Datasets",
+      "typeScriptTag": "datasets",
+      "description": "Get a dataset by ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/entities/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Entities",
+      "typeScriptTag": "entities",
+      "description": "Get an entity by ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/entities/{id}/dataset",
+      "method": "getDataset",
+      "httpMethod": "get",
+      "tag": "Entities",
+      "typeScriptTag": "entities",
+      "description": "Get an entity's dataset.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/products/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Products",
+      "typeScriptTag": "products",
+      "description": "Get a product by ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/products/{id}",
+      "method": "editConfig",
+      "httpMethod": "patch",
+      "tag": "Products",
+      "typeScriptTag": "products",
+      "description": "Edit a product's config.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "referents",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "risk",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/products/{id}/datasets",
+      "method": "getByProduct",
+      "httpMethod": "get",
+      "tag": "Datasets",
+      "typeScriptTag": "datasets",
+      "description": "Get a product's datasets.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/products/{id}/alerts",
+      "method": "getAlerts",
+      "httpMethod": "get",
+      "tag": "Products",
+      "typeScriptTag": "products",
+      "description": "Get a product's alerts.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/records",
+      "method": "getPaginatedRecords",
+      "httpMethod": "get",
+      "tag": "Records",
+      "typeScriptTag": "records",
+      "description": "Get paginated records of a product.",
+      "parameters": [
+        {
+          "name": "after",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "before",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "first",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "last",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "order",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "productId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PRODUCTID"
+        },
+        {
+          "name": "type",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/records",
+      "method": "createRecord",
+      "httpMethod": "post",
+      "tag": "Records",
+      "typeScriptTag": "records",
+      "description": "Create a record.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/records/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Records",
+      "typeScriptTag": "records",
+      "description": "Get a record by ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/records/{id}",
+      "method": "updateData",
+      "httpMethod": "patch",
+      "tag": "Records",
+      "typeScriptTag": "records",
+      "description": "Update a record's data : end date, external Link or external Ref.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "endDate",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "externalLink",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "externalRef",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/records/{id}/product",
+      "method": "getProduct",
+      "httpMethod": "get",
+      "tag": "Records",
+      "typeScriptTag": "records",
+      "description": "Get a record's product.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/aml/records/{id}/alerts",
+      "method": "getAlerts",
+      "httpMethod": "get",
+      "tag": "Records",
+      "typeScriptTag": "records",
+      "description": "Get a record's alerts.",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/batch/aml/records",
+      "method": "createBatch",
+      "httpMethod": "post",
+      "tag": "Records",
+      "typeScriptTag": "records",
+      "description": "Create several records in batch.",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "202",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Seyna: la plateforme d'assurance pour courtiers combinant produits sur mesure et technologie. Simplifie l'expérience client en automatisant les tâches et en créant des expériences assurantielles personnalisées. Plus de 90 courtiers et retailers, 1 million de clients protegés. Seyna's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/seyna/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/seyna/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/seyna/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/seyna/imagePreview.webp",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/seyna/favicon.png",
+  "clientNameCamelCase": "seyna",
+  "lastUpdated": "2024-03-29T17:51:31.047Z",
+  "typescriptSdkUsageCode": "import { Seyna } from 'seyna-typescript-sdk';\n\nconst seyna = new Seyna()",
+  "typescriptSdkFirstRequestCode": "// Get an alert by ID.\nconst getByIdResponse = seyna.alerts.getById({\n    id: \"ID\"\n})",
+  "fixedSpecFileName": "seyna-fixed-spec.yaml"
+}

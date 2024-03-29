@@ -1,0 +1,100 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /aml/alerts/{id}:
+    get: Alerts_getById
+    patch: Alerts_updateStatus
+  /aml/alerts/{id}/timeline:
+    get: Alerts_listTimelineItems
+  /aml/datasets:
+    get: Datasets_listAll
+  /aml/datasets/{id}:
+    get: Datasets_getById
+  /aml/entities/{id}:
+    get: Entities_getById
+  /aml/entities/{id}/dataset:
+    get: Entities_getDataset
+  /aml/products/{id}:
+    get: Products_getById
+    patch: Products_editConfig
+  /aml/products/{id}/alerts:
+    get: Products_getAlerts
+  /aml/products/{id}/datasets:
+    get: Datasets_getByProduct
+  /aml/records:
+    get: Records_getPaginatedRecords
+    post: Records_createRecord
+  /aml/records/{id}:
+    get: Records_getById
+    patch: Records_updateData
+  /aml/records/{id}/alerts:
+    get: Records_getAlerts
+  /aml/records/{id}/product:
+    get: Records_getProduct
+  /batch/aml/records:
+    post: Records_createBatch
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /aml/alerts/{id}:
+    patch:
+      application/json: AlertsUpdateStatusRequest
+  /aml/products/{id}:
+    patch:
+      application/json: ProductsEditConfigRequest
+  /aml/records:
+    post:
+      application/json: RecordsCreateRecordRequest
+  /aml/records/{id}:
+    patch:
+      application/json: RecordsUpdateDataRequest
+  /batch/aml/records:
+    post:
+      application/json: RecordsCreateBatchRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /aml/alerts/{id}/timeline:
+    get:
+      '200':
+        application/json: AlertsListTimelineItemsResponse
+  /aml/datasets:
+    get:
+      '200':
+        application/json: DatasetsListAllResponse
+  /aml/products/{id}/alerts:
+    get:
+      '200':
+        application/json: ProductsGetAlertsResponse
+  /aml/products/{id}/datasets:
+    get:
+      '200':
+        application/json: DatasetsGetByProductResponse
+  /aml/records:
+    get:
+      '200':
+        application/json: RecordsGetPaginatedRecordsResponse
+  /aml/records/{id}/alerts:
+    get:
+      '200':
+        application/json: RecordsGetAlertsResponse
+  /batch/aml/records:
+    post:
+      '202':
+        application/json: RecordsCreateBatchResponse
+securityParameters:
+  after:
+    query: false
+  before:
+    query: false
+  first:
+    query: false
+  last:
+    query: false
+  order:
+    query: false
+  productId:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

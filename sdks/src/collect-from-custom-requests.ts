@@ -407,6 +407,15 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://stoplight.io/api/v1/projects/beehiiv/v2/nodes/reference/Swarm-Public-API.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
   },
+  "seyna.eu": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developers.seyna.eu/",
+        filename: "openapi.json",
+        browser,
+      });
+    },
+  },
   "microsoft.com_Dynamics365BusinessCentral": {
     type: "GET",
     url: "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v1.0/contracts/bcoas1.0.yaml",

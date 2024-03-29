@@ -1,0 +1,307 @@
+hash: 9d76dbedfaa7613b7f9b337a5acf6a799496c03bf99a77927f80f704fcb9276f
+methodObjects:
+  - url: /aml/alerts/{id}
+    method: getById
+    httpMethod: get
+    tag: Alerts
+    typeScriptTag: alerts
+    description: Get an alert by ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/alerts/{id}
+    method: updateStatus
+    httpMethod: patch
+    tag: Alerts
+    typeScriptTag: alerts
+    description: Update an alert's status.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+      - name: status
+        schema: string
+        required: true
+        description: ''
+        example: STATUS
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/alerts/{id}/timeline
+    method: listTimelineItems
+    httpMethod: get
+    tag: Alerts
+    typeScriptTag: alerts
+    description: List an alert's timeline items.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/datasets
+    method: listAll
+    httpMethod: get
+    tag: Datasets
+    typeScriptTag: datasets
+    description: Get all available datasets.
+    parameters:
+      - name: productId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/datasets/{id}
+    method: getById
+    httpMethod: get
+    tag: Datasets
+    typeScriptTag: datasets
+    description: Get a dataset by ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/entities/{id}
+    method: getById
+    httpMethod: get
+    tag: Entities
+    typeScriptTag: entities
+    description: Get an entity by ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/entities/{id}/dataset
+    method: getDataset
+    httpMethod: get
+    tag: Entities
+    typeScriptTag: entities
+    description: Get an entity's dataset.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/products/{id}
+    method: getById
+    httpMethod: get
+    tag: Products
+    typeScriptTag: products
+    description: Get a product by ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/products/{id}
+    method: editConfig
+    httpMethod: patch
+    tag: Products
+    typeScriptTag: products
+    description: Edit a product's config.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+      - name: referents
+        schema: array
+        description: ''
+      - name: risk
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/products/{id}/datasets
+    method: getByProduct
+    httpMethod: get
+    tag: Datasets
+    typeScriptTag: datasets
+    description: Get a product's datasets.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/products/{id}/alerts
+    method: getAlerts
+    httpMethod: get
+    tag: Products
+    typeScriptTag: products
+    description: Get a product's alerts.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/records
+    method: getPaginatedRecords
+    httpMethod: get
+    tag: Records
+    typeScriptTag: records
+    description: Get paginated records of a product.
+    parameters:
+      - name: after
+        schema: string
+        required: false
+        description: ''
+      - name: before
+        schema: string
+        required: false
+        description: ''
+      - name: first
+        schema: integer
+        required: false
+        description: ''
+      - name: last
+        schema: integer
+        required: false
+        description: ''
+      - name: order
+        schema: string
+        required: false
+        description: ''
+      - name: productId
+        schema: string
+        required: true
+        description: ''
+        example: PRODUCTID
+      - name: type
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/records
+    method: createRecord
+    httpMethod: post
+    tag: Records
+    typeScriptTag: records
+    description: Create a record.
+    parameters: []
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /aml/records/{id}
+    method: getById
+    httpMethod: get
+    tag: Records
+    typeScriptTag: records
+    description: Get a record by ID.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/records/{id}
+    method: updateData
+    httpMethod: patch
+    tag: Records
+    typeScriptTag: records
+    description: 'Update a record''s data : end date, external Link or external Ref.'
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+      - name: endDate
+        schema: string
+        description: ''
+      - name: externalLink
+        schema: string
+        description: ''
+      - name: externalRef
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/records/{id}/product
+    method: getProduct
+    httpMethod: get
+    tag: Records
+    typeScriptTag: records
+    description: Get a record's product.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /aml/records/{id}/alerts
+    method: getAlerts
+    httpMethod: get
+    tag: Records
+    typeScriptTag: records
+    description: Get a record's alerts.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /batch/aml/records
+    method: createBatch
+    httpMethod: post
+    tag: Records
+    typeScriptTag: records
+    description: Create several records in batch.
+    parameters: []
+    responses:
+      - statusCode: '202'
+        description: ''
+numberOfSchemas: 28
+apiDescription: documentation seyna - OpenAPI 3.0
