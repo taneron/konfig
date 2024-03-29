@@ -95,7 +95,15 @@ export const categoriesToMapTo = {
     "Scheduling & Booking",
     "Signatures",
   ],
-  Data: ["Science", "Knowledge", "Legal", "Language", "Agriculture", "Finance"],
+  Data: [
+    "Science",
+    "Knowledge",
+    "Legal",
+    "Language",
+    "Agriculture",
+    "Finance",
+    "Travel",
+  ],
   Support: ["Customer Appreciation", "Customer Support"],
   "Website & App Building": ["App Builder", "Website Builders"],
 };

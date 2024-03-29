@@ -1,0 +1,27 @@
+{
+  "securitySchemes": {
+    "apiKey": {
+      "name": "apiKey",
+      "description": "We use SSL to transmit data from client to our service. You must authenticate client with provided API key passed as parameter in query string. [Don't have API key?](mailto:support@30k.com)\n\n#### URL example\n\n```https://milefy-api.30k.com/travelers?apiKey=eW91cmxvZ2luOnlvd```\n",
+      "type": "apiKey",
+      "in": "query"
+    }
+  },
+  "apiBaseUrl": "milefy-api.30k.com",
+  "apiVersion": "3.0",
+  "apiDescription": "## Introduction\n\nWelcome to the 30K Milefy API documentation!\n\n#### What does the Milefy API do?\n\nYou can use it to:\n1. Calculate **mileage earnings** for specific flights,\n2. Learn which flights are eligible for **upgrades to a higher cabin**, e.g. from Economy to Business,\n3. Get a list of all **status benefits** that apply for each flight based on the travelers’s frequent flyer program status tier.\n4. Get a full list of **fare attributes** including seat selection, checked baggage, changeability and others.\n5. Track traveler frequent flyer accounts.\n\nMilefy API is a REST service using HTTPS protocol and JSON format to encode both request and response data.\n\n#### Request headers\n\nTo enforce proper request encoding and its compression you should always set following headers:\n\n##### Data format\nWe use JSON format enchanced with <a href=\"http://stateless.co/hal_specification.html\" target=\"_blank\" title=\"Learn more about HAL and hypermedia\">HAL hypermedia type</a>.\n\nHeader: ```Accept: application/hal+json```\n\n##### Character encoding\n\nHeader: ```Content-Type: application/json;charset=UTF-8```\n\n##### API version\n\nSince version 2.5, we require the setting of an additional request header, which indicates which version of Milefy API you want to use. In case header is absent, version 2.4 will be used by default (not recommended).\n\nHeader: ```X-Api-Version: v3.0```\n\n## Performance\n\n#### Large flight result sets\n\nWhen working with large flight result sets processed by [Calculate attributes & benefits](http://milefy-api-docs.30k.com) method, it’s recommended to **divide them into smaller batches and send them in simultaneous requests**. When received, the multiple responses should then be remerged into a single result set. For example, instead of sending a single request containing a result set of 1,000 different flights, you can send 5 smaller requests simultaneously, each consisting of 200 flights.\n\nAll divided requests for the same result set are billed as only one request. In order to assure that, you only need to fulfill the following two conditions:\n\n1. All requests need to be send almost at the same time (we need to receive them within a frame of less than 30 seconds),\n2. The flights need to be split into chunks of 50-200 flights.\n\n## Used constants\n\nLists of constant values used in API and their definitions (click to expand):\n\n1. [Status tiers](http://milefy-api-docs.30k.com), used for example in [Get program](http://milefy-api-docs.30k.com) method.\n2. [Types of miles](http://milefy-api-docs.30k.com), used for example in [Get program](http://milefy-api-docs.30k.com) method.\n3. [Airline alliances](http://milefy-api-docs.30k.com), used for example in [Get program](http://milefy-api-docs.30k.com) method.\n4. [Cabin classes](http://milefy-api-docs.30k.com), used for example in [Calculate attributes & benefits](http://milefy-api-docs.30k.com) method.\n5. [Status benefits](http://milefy-api-docs.30k.com), used for example in [Get status benefit type](http://milefy-api-docs.30k.com) method.\n6. [Fare attributes](http://milefy-api-docs.30k.com), used for example in [Get fare attribute type](http://milefy-api-docs.30k.com) method.\n7. [Error codes](http://milefy-api-docs.30k.com), used across all methods.\n",
+  "apiTitle": "Milefy API",
+  "endpoints": 12,
+  "sdkMethods": 18,
+  "schemas": 24,
+  "parameters": 36,
+  "contactUrl": "http://www.30k.com/",
+  "contactEmail": "support@30k.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "http://milefy-api-docs.30k.com/milefy.yaml"
+  },
+  "customRequestSpecFilename": "30k.com_Milefy.yaml",
+  "difficultyScore": 39,
+  "difficulty": "Easy"
+}

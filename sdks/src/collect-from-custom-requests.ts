@@ -2169,6 +2169,10 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "30k.com_Milefy": {
+    type: "GET",
+    url: "http://milefy-api-docs.30k.com/milefy.yaml",
+  },
   "jiko.io": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

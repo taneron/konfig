@@ -1,0 +1,119 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /attributes:
+    get: StaticData_getFareAttributeTypes
+  /attributes/{code}:
+    get: StaticData_getFareAttributeType
+  /benefits:
+    get: StaticData_getStatusBenefitTypeCollection
+  /benefits/{code}:
+    get: StaticData_getStatusBenefitType
+  /calculate:
+    post: Flights_calculateAttributesBenefits
+  /fare-attributes:
+    post: Flights_calculateFareAttributes
+  /programs:
+    get: StaticData_getFrequentFlyerPrograms
+  /programs/{code}:
+    get: StaticData_getFrequentFlyerProgram
+  /travelers:
+    get: Travelers_listCollection
+    post: Travelers_createProfile
+  /travelers/{id}:
+    delete: Travelers_removeProfile
+    get: Travelers_getProfile
+    put: Travelers_updateProfile
+  /travelers/{id}/memberships:
+    get: Memberships_getList
+    post: Memberships_createFrequentFlyerProgramMembership
+  /travelers/{id}/memberships/{code}:
+    delete: Memberships_deleteMembership
+    get: Memberships_getMembershipByCode
+    put: Memberships_editTravelerMembership
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /calculate:
+    post:
+      application/json: FlightsCalculateAttributesBenefitsRequest
+  /fare-attributes:
+    post:
+      application/json: FlightsCalculateFareAttributesRequest
+  /travelers:
+    post:
+      application/json: TravelersCreateProfileRequest
+  /travelers/{id}/memberships:
+    post:
+      application/json: MembershipsCreateFrequentFlyerProgramMembershipRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /attributes:
+    get:
+      '200':
+        application/hal+json: StaticDataGetFareAttributeTypesResponse
+  /benefits:
+    get:
+      '200':
+        application/hal+json: StaticDataGetStatusBenefitTypeCollectionResponse
+  /calculate:
+    post:
+      '200':
+        application/hal+json: FlightsCalculateAttributesBenefitsResponse
+      '400':
+        application/hal+json: FlightsCalculateAttributesBenefits400Response
+  /fare-attributes:
+    post:
+      '200':
+        application/hal+json: FlightsCalculateFareAttributesResponse
+      '400':
+        application/hal+json: FlightsCalculateFareAttributes400Response
+  /programs:
+    get:
+      '200':
+        application/hal+json: StaticDataGetFrequentFlyerProgramsResponse
+  /travelers:
+    get:
+      '200':
+        application/hal+json: TravelersListCollectionResponse
+    post:
+      '400':
+        application/hal+json: TravelersCreateProfileResponse
+  /travelers/{id}/memberships:
+    get:
+      '200':
+        application/hal+json: MembershipsGetListResponse
+    post:
+      '400':
+        application/hal+json: MembershipsCreateFrequentFlyerProgramMembershipResponse
+  /travelers/{id}/memberships/{code}:
+    delete:
+      '404':
+        application/hal+json: MembershipsDeleteMembershipResponse
+    put:
+      '409':
+        application/hal+json: MembershipsEditTravelerMembershipResponse
+securityParameters:
+  authentication:
+    query: false
+  fields:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  scope:
+    query: false
+  sourceClientId:
+    query: false
+  traveler:
+    query: false
+  undefined:
+    query: false
+validServerUrls:
+  milefy-api-test.30k.com:
+    url: milefy-api-test.30k.com
+  milefy-api.30k.com:
+    url: milefy-api.30k.com
