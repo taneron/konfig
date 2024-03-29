@@ -1,0 +1,569 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /assessment/orders/open:
+    get: UnifiedAtsAssessmentApi_getOpenOrders
+  /assessment/orders/{assessment_order_id}/result:
+    put: UnifiedAtsAssessmentApi_updateOrderResult
+  /assessment/packages:
+    get: UnifiedAtsAssessmentApi_getAssessmentPackages
+    put: UnifiedAtsAssessmentApi_replaceAssessmentPackages
+  /ats/application-stages:
+    get: UnifiedAtsApi_getApplicationStages
+  /ats/applications:
+    get: UnifiedAtsApi_getAllApplications
+  /ats/applications/{application_id}/attachments:
+    post: UnifiedAtsApi_addAttachmentToApplication
+  /ats/applications/{application_id}/notes:
+    post: UnifiedAtsApi_addNoteToApplication
+  /ats/applications/{application_id}/result-links:
+    post: UnifiedAtsApi_addResultLink
+  /ats/applications/{application_id}/stage:
+    put: UnifiedAtsApi_moveApplicationToStage
+  /ats/candidates:
+    get: UnifiedAtsApi_getAllCandidates
+    post: UnifiedAtsApi_createApplication
+  /ats/candidates/{candidate_id}:
+    patch: UnifiedAtsApi_updateCandidate
+  /ats/candidates/{candidate_id}/attachments:
+    post: UnifiedAtsApi_addAttachmentToCandidate
+  /ats/candidates/{candidate_id}/result-links:
+    post: UnifiedAtsApi_addResultLinkToCandidate
+  /ats/candidates/{candidate_id}/tags:
+    delete: UnifiedAtsApi_removeCandidateTag
+    post: UnifiedAtsApi_addCandidateTag
+  /ats/jobs:
+    get: UnifiedAtsApi_getJobs
+  /ats/jobs/{job_id}/applications:
+    post: UnifiedAtsApi_createApplicationCandidate
+  /ats/tags:
+    get: UnifiedAtsApi_listTags
+  /ats/users:
+    get: UnifiedAtsApi_getAllUsers
+  /check-api-key:
+    get: General_verifyApiKey
+  /connect/activate-integration:
+    post: KomboConnect_activateIntegration
+  /connect/create-link:
+    post: KomboConnect_generateLink
+  /connect/integration-by-token/{token}:
+    get: KomboConnect_getIntegrationByToken
+  /custom/datev/data-pushes:
+    get: CustomEndpoints_getDataPushes
+  /custom/datev/employees/{employee_id}/compensations:
+    put: CustomEndpoints_setDatevCompensations
+  /custom/datev/employees/{employee_id}/prepare-payroll:
+    put: CustomEndpoints_prepareDatevPayroll
+  /custom/datev/passthrough:
+    post: CustomEndpoints_writeDatevAsciiFile
+  /custom/datev/push-data/general:
+    post: CustomEndpoints_pushGeneralDataToDatev
+  /custom/datev/push-data/payroll:
+    post: CustomEndpoints_pushPayrollData
+  /custom/silae/employees/{employee_id}/payroll-supplements:
+    post: CustomEndpoints_writePayrollSupplement
+  /force-sync:
+    post: General_triggerSyncSpecificIntegration
+  /hris/absence-types:
+    get: UnifiedHrisApi_listAbsenceTypes
+  /hris/absences:
+    get: UnifiedHrisApi_getAllAbsences
+    post: UnifiedHrisApi_createAbsence
+  /hris/absences/{absence_id}:
+    delete: UnifiedHrisApi_deleteAbsenceById
+  /hris/employees:
+    get: UnifiedHrisApi_listEmployees
+    post: UnifiedHrisApi_createEmployee
+  /hris/employees/{employee_id}:
+    patch: UnifiedHrisApi_updateEmployee
+  /hris/employees/{employee_id}/attachments:
+    post: UnifiedHrisApi_addAttachmentToEmployees
+  /hris/employments:
+    get: UnifiedHrisApi_listEmployments
+  /hris/groups:
+    get: UnifiedHrisApi_getAllGroups
+  /hris/legal-entities:
+    get: UnifiedHrisApi_getAllLegalEntities
+  /hris/locations:
+    get: UnifiedHrisApi_getWorkLocations
+  /hris/provisioning-groups/{group_id}/diff:
+    post: UnifiedHrisApi_getProvisioningDiff
+  /hris/provisioning-groups/{group_id}/setup-links:
+    post: UnifiedHrisApi_createProvisioningSetupLink
+  /hris/teams:
+    get: UnifiedHrisApi_listTeams
+  /hris/time-off-balances:
+    get: UnifiedHrisApi_getTimeOffBalances
+  /integrations/{integration_id}:
+    delete: General_deleteIntegration
+    get: General_getIntegrationDetails
+  /integrations/{integration_id}/relink:
+    post: General_createReconnectionLink
+  /passthrough/{tool}/{api}:
+    post: General_forwardRequestToApi
+  /tools/{category}:
+    get: General_getToolsCategory
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /assessment/orders/{assessment_order_id}/result:
+    put:
+      '401':
+        application/json: UnifiedAtsAssessmentApiUpdateOrderResultResponse
+      '403':
+        application/json: UnifiedAtsAssessmentApiUpdateOrderResult403Response
+      '404':
+        application/json: UnifiedAtsAssessmentApiUpdateOrderResult404Response
+      '503':
+        application/json: UnifiedAtsAssessmentApiUpdateOrderResult503Response
+  /ats/application-stages:
+    get:
+      '401':
+        application/json: UnifiedAtsApiGetApplicationStagesResponse
+      '403':
+        application/json: UnifiedAtsApiGetApplicationStages403Response
+      '404':
+        application/json: UnifiedAtsApiGetApplicationStages404Response
+      '503':
+        application/json: UnifiedAtsApiGetApplicationStages503Response
+  /ats/applications:
+    get:
+      '401':
+        application/json: UnifiedAtsApiGetAllApplicationsResponse
+      '403':
+        application/json: UnifiedAtsApiGetAllApplications403Response
+      '404':
+        application/json: UnifiedAtsApiGetAllApplications404Response
+      '503':
+        application/json: UnifiedAtsApiGetAllApplications503Response
+  /ats/applications/{application_id}/attachments:
+    post:
+      '401':
+        application/json: UnifiedAtsApiAddAttachmentToApplicationResponse
+      '403':
+        application/json: UnifiedAtsApiAddAttachmentToApplication403Response
+      '404':
+        application/json: UnifiedAtsApiAddAttachmentToApplication404Response
+      '503':
+        application/json: UnifiedAtsApiAddAttachmentToApplication503Response
+  /ats/applications/{application_id}/notes:
+    post:
+      '401':
+        application/json: UnifiedAtsApiAddNoteToApplicationResponse
+      '403':
+        application/json: UnifiedAtsApiAddNoteToApplication403Response
+      '404':
+        application/json: UnifiedAtsApiAddNoteToApplication404Response
+      '503':
+        application/json: UnifiedAtsApiAddNoteToApplication503Response
+  /ats/applications/{application_id}/result-links:
+    post:
+      '401':
+        application/json: UnifiedAtsApiAddResultLinkResponse
+      '403':
+        application/json: UnifiedAtsApiAddResultLink403Response
+      '404':
+        application/json: UnifiedAtsApiAddResultLink404Response
+      '503':
+        application/json: UnifiedAtsApiAddResultLink503Response
+  /ats/applications/{application_id}/stage:
+    put:
+      '401':
+        application/json: UnifiedAtsApiMoveApplicationToStageResponse
+      '403':
+        application/json: UnifiedAtsApiMoveApplicationToStage403Response
+      '404':
+        application/json: UnifiedAtsApiMoveApplicationToStage404Response
+      '503':
+        application/json: UnifiedAtsApiMoveApplicationToStage503Response
+  /ats/candidates:
+    get:
+      '401':
+        application/json: UnifiedAtsApiGetAllCandidatesResponse
+      '403':
+        application/json: UnifiedAtsApiGetAllCandidates403Response
+      '404':
+        application/json: UnifiedAtsApiGetAllCandidates404Response
+      '503':
+        application/json: UnifiedAtsApiGetAllCandidates503Response
+    post:
+      '401':
+        application/json: UnifiedAtsApiCreateApplicationResponse
+      '403':
+        application/json: UnifiedAtsApiCreateApplication403Response
+      '404':
+        application/json: UnifiedAtsApiCreateApplication404Response
+      '503':
+        application/json: UnifiedAtsApiCreateApplication503Response
+  /ats/candidates/{candidate_id}/attachments:
+    post:
+      '401':
+        application/json: UnifiedAtsApiAddAttachmentToCandidateResponse
+      '403':
+        application/json: UnifiedAtsApiAddAttachmentToCandidate403Response
+      '404':
+        application/json: UnifiedAtsApiAddAttachmentToCandidate404Response
+      '503':
+        application/json: UnifiedAtsApiAddAttachmentToCandidate503Response
+  /ats/candidates/{candidate_id}/result-links:
+    post:
+      '401':
+        application/json: UnifiedAtsApiAddResultLinkToCandidateResponse
+      '403':
+        application/json: UnifiedAtsApiAddResultLinkToCandidate403Response
+      '404':
+        application/json: UnifiedAtsApiAddResultLinkToCandidate404Response
+      '503':
+        application/json: UnifiedAtsApiAddResultLinkToCandidate503Response
+  /ats/candidates/{candidate_id}/tags:
+    delete:
+      '401':
+        application/json: UnifiedAtsApiRemoveCandidateTagResponse
+      '403':
+        application/json: UnifiedAtsApiRemoveCandidateTag403Response
+      '404':
+        application/json: UnifiedAtsApiRemoveCandidateTag404Response
+      '503':
+        application/json: UnifiedAtsApiRemoveCandidateTag503Response
+    post:
+      '401':
+        application/json: UnifiedAtsApiAddCandidateTagResponse
+      '403':
+        application/json: UnifiedAtsApiAddCandidateTag403Response
+      '404':
+        application/json: UnifiedAtsApiAddCandidateTag404Response
+      '503':
+        application/json: UnifiedAtsApiAddCandidateTag503Response
+  /ats/jobs:
+    get:
+      '401':
+        application/json: UnifiedAtsApiGetJobsResponse
+      '403':
+        application/json: UnifiedAtsApiGetJobs403Response
+      '404':
+        application/json: UnifiedAtsApiGetJobs404Response
+      '503':
+        application/json: UnifiedAtsApiGetJobs503Response
+  /ats/jobs/{job_id}/applications:
+    post:
+      '401':
+        application/json: UnifiedAtsApiCreateApplicationCandidateResponse
+      '403':
+        application/json: UnifiedAtsApiCreateApplicationCandidate403Response
+      '404':
+        application/json: UnifiedAtsApiCreateApplicationCandidate404Response
+      '503':
+        application/json: UnifiedAtsApiCreateApplicationCandidate503Response
+  /ats/tags:
+    get:
+      '401':
+        application/json: UnifiedAtsApiListTagsResponse
+      '403':
+        application/json: UnifiedAtsApiListTags403Response
+      '404':
+        application/json: UnifiedAtsApiListTags404Response
+      '503':
+        application/json: UnifiedAtsApiListTags503Response
+  /ats/users:
+    get:
+      '401':
+        application/json: UnifiedAtsApiGetAllUsersResponse
+      '403':
+        application/json: UnifiedAtsApiGetAllUsers403Response
+      '404':
+        application/json: UnifiedAtsApiGetAllUsers404Response
+      '503':
+        application/json: UnifiedAtsApiGetAllUsers503Response
+  /custom/datev/data-pushes:
+    get:
+      '401':
+        application/json: CustomEndpointsGetDataPushesResponse
+      '403':
+        application/json: CustomEndpointsGetDataPushes403Response
+      '404':
+        application/json: CustomEndpointsGetDataPushes404Response
+      '503':
+        application/json: CustomEndpointsGetDataPushes503Response
+  /custom/datev/employees/{employee_id}/compensations:
+    put:
+      '401':
+        application/json: CustomEndpointsSetDatevCompensationsResponse
+      '403':
+        application/json: CustomEndpointsSetDatevCompensations403Response
+      '404':
+        application/json: CustomEndpointsSetDatevCompensations404Response
+      '503':
+        application/json: CustomEndpointsSetDatevCompensations503Response
+  /custom/datev/employees/{employee_id}/prepare-payroll:
+    put:
+      '401':
+        application/json: CustomEndpointsPrepareDatevPayrollResponse
+      '403':
+        application/json: CustomEndpointsPrepareDatevPayroll403Response
+      '404':
+        application/json: CustomEndpointsPrepareDatevPayroll404Response
+      '503':
+        application/json: CustomEndpointsPrepareDatevPayroll503Response
+  /custom/datev/passthrough:
+    post:
+      '401':
+        application/json: CustomEndpointsWriteDatevAsciiFileResponse
+      '403':
+        application/json: CustomEndpointsWriteDatevAsciiFile403Response
+      '404':
+        application/json: CustomEndpointsWriteDatevAsciiFile404Response
+      '503':
+        application/json: CustomEndpointsWriteDatevAsciiFile503Response
+  /custom/datev/push-data/general:
+    post:
+      '401':
+        application/json: CustomEndpointsPushGeneralDataToDatevResponse
+      '403':
+        application/json: CustomEndpointsPushGeneralDataToDatev403Response
+      '404':
+        application/json: CustomEndpointsPushGeneralDataToDatev404Response
+      '503':
+        application/json: CustomEndpointsPushGeneralDataToDatev503Response
+  /custom/datev/push-data/payroll:
+    post:
+      '401':
+        application/json: CustomEndpointsPushPayrollDataResponse
+      '403':
+        application/json: CustomEndpointsPushPayrollData403Response
+      '404':
+        application/json: CustomEndpointsPushPayrollData404Response
+      '503':
+        application/json: CustomEndpointsPushPayrollData503Response
+  /custom/silae/employees/{employee_id}/payroll-supplements:
+    post:
+      '401':
+        application/json: CustomEndpointsWritePayrollSupplementResponse
+      '403':
+        application/json: CustomEndpointsWritePayrollSupplement403Response
+      '404':
+        application/json: CustomEndpointsWritePayrollSupplement404Response
+      '503':
+        application/json: CustomEndpointsWritePayrollSupplement503Response
+  /force-sync:
+    post:
+      '401':
+        application/json: GeneralTriggerSyncSpecificIntegrationResponse
+  /hris/absence-types:
+    get:
+      '401':
+        application/json: UnifiedHrisApiListAbsenceTypesResponse
+      '403':
+        application/json: UnifiedHrisApiListAbsenceTypes403Response
+      '404':
+        application/json: UnifiedHrisApiListAbsenceTypes404Response
+      '503':
+        application/json: UnifiedHrisApiListAbsenceTypes503Response
+  /hris/absences:
+    get:
+      '401':
+        application/json: UnifiedHrisApiGetAllAbsencesResponse
+      '403':
+        application/json: UnifiedHrisApiGetAllAbsences403Response
+      '404':
+        application/json: UnifiedHrisApiGetAllAbsences404Response
+      '503':
+        application/json: UnifiedHrisApiGetAllAbsences503Response
+    post:
+      '401':
+        application/json: UnifiedHrisApiCreateAbsenceResponse
+      '403':
+        application/json: UnifiedHrisApiCreateAbsence403Response
+      '404':
+        application/json: UnifiedHrisApiCreateAbsence404Response
+      '503':
+        application/json: UnifiedHrisApiCreateAbsence503Response
+  /hris/absences/{absence_id}:
+    delete:
+      '401':
+        application/json: UnifiedHrisApiDeleteAbsenceByIdResponse
+      '403':
+        application/json: UnifiedHrisApiDeleteAbsenceById403Response
+      '404':
+        application/json: UnifiedHrisApiDeleteAbsenceById404Response
+      '503':
+        application/json: UnifiedHrisApiDeleteAbsenceById503Response
+  /hris/employees:
+    get:
+      '401':
+        application/json: UnifiedHrisApiListEmployeesResponse
+      '403':
+        application/json: UnifiedHrisApiListEmployees403Response
+      '404':
+        application/json: UnifiedHrisApiListEmployees404Response
+      '503':
+        application/json: UnifiedHrisApiListEmployees503Response
+    post:
+      '401':
+        application/json: UnifiedHrisApiCreateEmployeeResponse
+      '403':
+        application/json: UnifiedHrisApiCreateEmployee403Response
+      '404':
+        application/json: UnifiedHrisApiCreateEmployee404Response
+      '503':
+        application/json: UnifiedHrisApiCreateEmployee503Response
+  /hris/employees/{employee_id}:
+    patch:
+      '401':
+        application/json: UnifiedHrisApiUpdateEmployeeResponse
+      '403':
+        application/json: UnifiedHrisApiUpdateEmployee403Response
+      '404':
+        application/json: UnifiedHrisApiUpdateEmployee404Response
+      '503':
+        application/json: UnifiedHrisApiUpdateEmployee503Response
+  /hris/employments:
+    get:
+      '401':
+        application/json: UnifiedHrisApiListEmploymentsResponse
+      '403':
+        application/json: UnifiedHrisApiListEmployments403Response
+      '404':
+        application/json: UnifiedHrisApiListEmployments404Response
+      '503':
+        application/json: UnifiedHrisApiListEmployments503Response
+  /hris/groups:
+    get:
+      '401':
+        application/json: UnifiedHrisApiGetAllGroupsResponse
+      '403':
+        application/json: UnifiedHrisApiGetAllGroups403Response
+      '404':
+        application/json: UnifiedHrisApiGetAllGroups404Response
+      '503':
+        application/json: UnifiedHrisApiGetAllGroups503Response
+  /hris/legal-entities:
+    get:
+      '401':
+        application/json: UnifiedHrisApiGetAllLegalEntitiesResponse
+      '403':
+        application/json: UnifiedHrisApiGetAllLegalEntities403Response
+      '404':
+        application/json: UnifiedHrisApiGetAllLegalEntities404Response
+      '503':
+        application/json: UnifiedHrisApiGetAllLegalEntities503Response
+  /hris/locations:
+    get:
+      '401':
+        application/json: UnifiedHrisApiGetWorkLocationsResponse
+      '403':
+        application/json: UnifiedHrisApiGetWorkLocations403Response
+      '404':
+        application/json: UnifiedHrisApiGetWorkLocations404Response
+      '503':
+        application/json: UnifiedHrisApiGetWorkLocations503Response
+  /hris/provisioning-groups/{group_id}/setup-links:
+    post:
+      '401':
+        application/json: UnifiedHrisApiCreateProvisioningSetupLinkResponse
+  /hris/teams:
+    get:
+      '401':
+        application/json: UnifiedHrisApiListTeamsResponse
+      '403':
+        application/json: UnifiedHrisApiListTeams403Response
+      '404':
+        application/json: UnifiedHrisApiListTeams404Response
+      '503':
+        application/json: UnifiedHrisApiListTeams503Response
+  /hris/time-off-balances:
+    get:
+      '401':
+        application/json: UnifiedHrisApiGetTimeOffBalancesResponse
+      '403':
+        application/json: UnifiedHrisApiGetTimeOffBalances403Response
+      '404':
+        application/json: UnifiedHrisApiGetTimeOffBalances404Response
+      '503':
+        application/json: UnifiedHrisApiGetTimeOffBalances503Response
+  /integrations/{integration_id}:
+    delete:
+      '401':
+        application/json: GeneralDeleteIntegrationResponse
+    get:
+      '401':
+        application/json: GeneralGetIntegrationDetailsResponse
+  /integrations/{integration_id}/relink:
+    post:
+      '401':
+        application/json: GeneralCreateReconnectionLinkResponse
+  /passthrough/{tool}/{api}:
+    post:
+      '401':
+        application/json: GeneralForwardRequestToApiResponse
+      '403':
+        application/json: GeneralForwardRequestToApi403Response
+      '404':
+        application/json: GeneralForwardRequestToApi404Response
+      '503':
+        application/json: GeneralForwardRequestToApi503Response
+securityParameters:
+  X-Integration-Id:
+    header: false
+  cursor:
+    query: false
+  date_from:
+    query: false
+  date_until:
+    query: false
+  email:
+    query: false
+  employee_id:
+    query: false
+  employment_status:
+    query: false
+  employment_statuses:
+    query: false
+  group_ids:
+    query: false
+  ids:
+    query: false
+  include_deleted:
+    query: false
+  job_codes:
+    query: false
+  legal_entity_ids:
+    query: false
+  name_contains:
+    query: false
+  outcome:
+    query: false
+  outcomes:
+    query: false
+  page_size:
+    query: false
+  personal_emails:
+    query: false
+  post_url:
+    query: false
+  remote_created_after:
+    query: false
+  remote_ids:
+    query: false
+  status:
+    query: false
+  statuses:
+    query: false
+  time_from:
+    query: false
+  time_until:
+    query: false
+  type_ids:
+    query: false
+  updated_after:
+    query: false
+  visibilities:
+    query: false
+  work_emails:
+    query: false
+  work_location_ids:
+    query: false
+validServerUrls: {}

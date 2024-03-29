@@ -2333,6 +2333,18 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://api.ilert.com/api-docs/swagger.json",
   },
+  "localizely.com": {
+    type: "GET",
+    url: "https://api.localizely.com/api-docs",
+  },
+  "kombo.dev": {
+    type: "GET",
+    url: "https://api.kombo.dev/openapi.json",
+  },
+  "mambu.com_PaymentOrder": {
+    type: "GET",
+    url: "https://api.mambu.com/payments-api/mambu-payments-api-spec-oas3.json",
+  },
   "inmobile.com": {
     type: "GET",
     url: "https://api.inmobile.com/swagger/v1/swagger.json",

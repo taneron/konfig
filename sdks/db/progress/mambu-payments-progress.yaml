@@ -1,0 +1,191 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /collections/{collectionId}:
+    get:
+      default:
+        application/json: {}
+  /log:
+    post:
+      default:
+        application/json: {}
+  /payments/credit-transfers:
+    post:
+      default:
+        application/json: {}
+  /payments/credit-transfers/{paymentId}:
+    get:
+      default:
+        application/json: {}
+  /payments/financial-institution-credit-transfers:
+    post:
+      default:
+        application/json: {}
+  /payments/{paymentId}:
+    get:
+      default:
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /accounts/identifications:
+    put: ExternalAccountRepresentation_associateIban
+  /accounts/identifications:mask:
+    post: ExternalAccountRepresentation_maskIdentifications
+  /accounts/identifications:search:
+    post: ExternalAccountRepresentation_searchIdentifications
+  /accounts/{accountId}/blocking-rules:
+    delete: SepaDirectDebit_removeBlockingRules
+    post: SepaDirectDebit_addBlockingRule
+  /accounts/{accountId}/identifications:
+    get: ExternalAccountRepresentation_getIdentifications
+    post: ExternalAccountRepresentation_addIdentificationAssociation
+  /aml:resendCallouts:
+    post: Aml_resendCalloutsOperation
+  /collections:
+    post: SepaDirectDebit_createCollectionInitiationRequest
+  /collections/aml:
+    post: Aml_submitAmlCheckResults
+  /collections/{collectionId}:
+    get: SepaDirectDebit_getCollectionDetails
+  /collections/{collectionId}/aml:resendCallout:
+    post: Aml_resendCallout
+  /collections/{collectionId}:refund:
+    post: SepaDirectDebit_refundCollectionInstruction
+  /collections/{collectionId}:reverse:
+    post: SepaDirectDebit_reverseCollectionInstruction
+  /collections/{collectionOrderId}:reject:
+    post: SepaDirectDebit_manuallyRejectCollection
+  /collections/{collectionOrderId}:rejectIncoming:
+    post: SepaDirectDebit_manuallyRejectCollection
+  /inquiries:acceptStatusUpdateOnRecall:
+    post: SepaCreditTransferInquiries_acceptStatusUpdateOnRecall
+  /inquiries:claimNonReceipt:
+    post: SepaCreditTransferInquiries_createNonReceiptInquiry
+  /inquiries:claimValueDateCorrection:
+    post: SepaCreditTransferInquiries_requestValueDateChange
+  /inquiries:rejectStatusUpdateOnRecall:
+    post: SepaCreditTransferInquiries_handleNegativeStatusUpdateOnRecall
+  /inquiries:requestStatusUpdateOnInquiry:
+    post: SepaCreditTransferInquiries_createStatusUpdateRequest
+  /inquiries:requestStatusUpdateOnRecall:
+    post: SepaCreditTransferInquiries_requestStatusUpdate
+  /inquiries:skipStatusUpdateOnRecall:
+    post: SepaCreditTransferInquiries_skipRecallStatusUpdate
+  /instructions:
+    get: SearchMessages_details
+  /log:
+    post: ExternalAccountRepresentation_createOrUpdateLog
+  /payments:
+    post: SepaCreditTransfers_createPaymentRequest
+  /payments/aml:
+    post: Aml_submitAmlCheckResult
+  /payments/credit-transfers:
+    post: SepaCreditTransfers_createRequest
+  /payments/credit-transfers/{paymentId}:
+    get: SepaCreditTransfers_getPaymentDetails
+  /payments/financial-institution-credit-transfers:
+    post: CreditTransfer_submitPaymentRequest
+  /payments/incoming:
+    post: IncomingMessages_createRequest
+  /payments/standing-orders:
+    post: StandingOrder_createStandingOrderRequest
+  /payments/standing-orders/{id}:
+    delete: StandingOrder_cancel
+    get: StandingOrder_getInformation
+  /payments/standing-orders/{id}/executions:
+    get: StandingOrder_listExecutions
+  /payments/standing-orders:search:
+    post: StandingOrder_searchByFilters
+  /payments/standing-orders:suspend:
+    post: StandingOrder_suspendRequest
+  /payments/{paymentId}:
+    get: SepaCreditTransfers_getPaymentDetails
+  /payments/{paymentOrderId}/aml:resendCallout:
+    post: Aml_resendCallout
+  /payments/{paymentOrderId}:approveIncomingRecall:
+    post: SepaCreditTransfers_approveIncomingRecall
+  /payments/{paymentOrderId}:approveOutgoingRecall:
+    post: SepaCreditTransfers_approveOutgoingRecallAction
+  /payments/{paymentOrderId}:denyIncomingRecall:
+    post: SepaCreditTransfers_denyIncomingRecallAction
+  /payments/{paymentOrderId}:denyOutgoingRecall:
+    post: SepaCreditTransfers_denyOutgoingRecallAction
+  /payments/{paymentOrderId}:recall:
+    post: SepaCreditTransfers_recallPaymentRequest
+  /payments/{paymentOrderId}:reject:
+    post: SepaCreditTransfers_manuallyRejectPayment
+  /payments:settleInstantPayment:
+    post: SepaCreditTransfers_acceptInstantPaymentSettlement
+operationTags:
+  /payments/financial-institution-credit-transfers:
+    post: CreditTransfer
+renameTags: {}
+requestSchemaNames:
+  /payments/incoming:
+    post:
+      application/xml: IncomingMessagesCreateRequestRequest
+      text/plain: IncomingMessagesCreateRequestRequest1
+responseDescriptions: {}
+responseSchemaNames:
+  /accounts/identifications:search:
+    post:
+      '200':
+        application/json: ExternalAccountRepresentationSearchIdentificationsResponse
+  /accounts/{accountId}/identifications:
+    get:
+      '200':
+        application/json: ExternalAccountRepresentationGetIdentificationsResponse
+  /collections/aml:
+    post:
+      '200':
+        '*/*': AmlSubmitAmlCheckResultsResponse
+      '503':
+        '*/*': AmlSubmitAmlCheckResults503Response
+  /collections/{collectionId}:
+    get:
+      default:
+        application/json: SepaDirectDebitGetCollectionDetailsResponse
+  /log:
+    post:
+      default:
+        application/json: ExternalAccountRepresentationCreateOrUpdateLogResponse
+  /payments/aml:
+    post:
+      '200':
+        '*/*': AmlSubmitAmlCheckResultResponse
+      '503':
+        '*/*': AmlSubmitAmlCheckResult503Response
+  /payments/credit-transfers:
+    post:
+      default:
+        application/json: SepaCreditTransfersCreateRequestResponse
+  /payments/credit-transfers/{paymentId}:
+    get:
+      default:
+        application/json: SepaCreditTransfersGetPaymentDetailsResponse
+  /payments/financial-institution-credit-transfers:
+    post:
+      default:
+        application/json: CreditTransferSubmitPaymentRequestResponse
+  /payments/{paymentId}:
+    get:
+      default:
+        application/json: SepaCreditTransfersGetPaymentDetailsdefaultResponse
+securityParameters:
+  ApiKey:
+    header: false
+  Idempotency-Key:
+    header: false
+  X-Payment-Scheme:
+    header: false
+  X-Request-ID:
+    header: false
+  detailsLevel:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  sepaMessageFilter:
+    query: false
+validServerUrls: {}
