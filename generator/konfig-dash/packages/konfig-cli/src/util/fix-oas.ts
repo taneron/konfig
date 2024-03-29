@@ -30,6 +30,7 @@ import { fixUnstructuredRequestBody } from './fix-unstructured-request-body'
 import { ignoreObjectsWithNoProperties } from './ignore-objects-with-no-properties'
 import { ignorePotentialIncorrectTypeIfConfirmed } from './ignore-potential-incorrect-type-if-confirmed'
 import { fixInvalidServerUrlsOas3 } from './fix-invalid-server-urls-oas3'
+import { fixPathsWithoutLeadingSlash } from './fix-paths-without-leading-slash'
 import { fixOas31Usage } from './fix-oas-3-1-usage'
 import { fixAnyOfTypeNullUsage } from './fix-any-of-type-null-usage'
 import { fixExamplesUsage } from './fix-examples-usage'
@@ -133,6 +134,12 @@ export async function fixOas({
     progress,
     alwaysYes,
   })
+
+  // Fix paths that don't start with "/"
+  const numberOfPathsWithoutLeadingSlashFixed =
+    await fixPathsWithoutLeadingSlash({
+      spec,
+    })
 
   // Operation IDs
   const numberOfUpdatedOperationIds = await fixOperationIds({
@@ -364,6 +371,7 @@ export async function fixOas({
     numberOfSecurityInFieldsLowercased,
     numberOfFixedRequestMediaTypeObjectsMissingSchema,
     numberOfFixedArraySchemasMissingItems,
+    numberOfPathsWithoutLeadingSlashFixed,
     numberOfFixedEnumTypes,
     numberOfMissingResponsesObjectsFixed,
   }
