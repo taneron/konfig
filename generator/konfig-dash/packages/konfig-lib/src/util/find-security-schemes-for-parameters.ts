@@ -37,6 +37,7 @@ export async function findSecuritySchemesForParameters({
       if (caseInsensitive)
         return !!filteredByIn.find(
           (parameter) =>
+            parameter.name !== undefined &&
             parameter.name.toLowerCase() === securityName.toLowerCase()
         )
       const found = !!filteredByIn.find(

@@ -77,65 +77,65 @@ export async function fixAdvSecuritySchemesDefined({
       }
 
       const existingSecurity =
-      spec.spec.components?.securitySchemes !== undefined
-        ? Object.entries(spec.spec.components.securitySchemes).find(
-            ([securityName, s]) => {
-              const resolved = resolveRef({ refOrObject: s, $ref: spec.$ref })
-              if (resolved.type !== 'apiKey') return
-              return (
-                resolved.name.toLowerCase() === parameter.name.toLowerCase()
-              )
-            }
+        spec.spec.components?.securitySchemes !== undefined
+          ? Object.entries(spec.spec.components.securitySchemes).find(
+              ([securityName, s]) => {
+                const resolved = resolveRef({ refOrObject: s, $ref: spec.$ref })
+                if (resolved.type !== 'apiKey') return
+                if (parameter.name === undefined) return
+                return (
+                  resolved.name.toLowerCase() === parameter.name.toLowerCase()
+                )
+              }
+            )
+          : undefined
+      if (existingSecurity !== undefined) {
+        const securitySchemeObject = resolveRef({
+          refOrObject: existingSecurity[1],
+          $ref: spec.$ref,
+        })
+        if (securitySchemeObject.type !== 'apiKey')
+          throw Error(
+            'unexpected security scheme type when replacing case in-sensitive parameter'
           )
-        : undefined
-    if (existingSecurity !== undefined) {
-      const securitySchemeObject = resolveRef({
-        refOrObject: existingSecurity[1],
-        $ref: spec.$ref,
-      })
-      if (securitySchemeObject.type !== 'apiKey')
-        throw Error(
-          'unexpected security scheme type when replacing case in-sensitive parameter'
-        )
-      const securityScheme: SecuritySchemeObject = {
-        in: securitySchemeObject.in as any,
-        name: securitySchemeObject.name,
-        type: 'apiKey',
-        securityName: existingSecurity[0],
+        const securityScheme: SecuritySchemeObject = {
+          in: securitySchemeObject.in as any,
+          name: securitySchemeObject.name,
+          type: 'apiKey',
+          securityName: existingSecurity[0],
+        }
+        await removeParameterForSecurityRequirement({
+          spec,
+          name: parameter.name,
+          parameterIn: parameter.in,
+          securityScheme,
+          operation,
+        })
+        continue
       }
-      await removeParameterForSecurityRequirement({
-        spec,
-        name: parameter.name,
-        parameterIn: parameter.in,
-        securityScheme,
-        operation,
-      })
-      continue;
-    }
 
       const { securityName, isSecurity } = await inquirerPromptCI<{
         securityName: string
         isSecurity: boolean
       }>({
-          ci,
-          ciDefault: { securityName: '', isSecurity: false },
-          questions: 
-            [
-              {
-                type: 'confirm',
-                name: 'isSecurity',
-                message: `Is parameter(name: ${parameter.name}, in: ${parameter.in}) a security requirement?`,
-              },
-              {
-                type: 'input',
-                name: 'securityName',
-                message: `Enter a name for security scheme name for parameter(name: ${parameter.name}, in: ${parameter.in}): `,
-                when({ isSecurity }) {
-                  return isSecurity
-                },
-              },
-            ]
-        })
+        ci,
+        ciDefault: { securityName: '', isSecurity: false },
+        questions: [
+          {
+            type: 'confirm',
+            name: 'isSecurity',
+            message: `Is parameter(name: ${parameter.name}, in: ${parameter.in}) a security requirement?`,
+          },
+          {
+            type: 'input',
+            name: 'securityName',
+            message: `Enter a name for security scheme name for parameter(name: ${parameter.name}, in: ${parameter.in}): `,
+            when({ isSecurity }) {
+              return isSecurity
+            },
+          },
+        ],
+      })
       if (!isSecurity) {
         progress.saveSecuritySchemeParameter({
           name: parameter.name,
