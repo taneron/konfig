@@ -1,0 +1,288 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /mass-payments:
+    post:
+      '202':
+        application/json: {}
+  /mass-payments/$mass_payment_id/confirm:
+    post:
+      '202':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /account-details:
+    get: AccountDetails_getList
+  /account-details/{account_details_id}:
+    patch: AccountDetails_updateAlias
+  /account-details/{account_details_id}/make-default:
+    post: AccountDetails_markAsPrimary
+  /accounts:
+    get: Accounts_listRetrieve
+  /accounts/{account_id}:
+    get: Accounts_getAccount
+  /accounts/{account_id}/balances:
+    get: Balances_getSingleAccountBalance
+  /accounts/{account_id}/statements/file:
+    post: StatementsCreate_statementFile
+  /accounts/{account_id}/statements/{statement_id}/file:
+    get: StatementFetch_byUuidFile
+  /accounts/{account_id}/transactions:
+    get: Transactions_getByAccountId
+  /accounts/{account_id}/transactions/{transaction_id}:
+    get: Transactions_getSingleTransaction
+  /authenticate:
+    get: OAuth20_getLoginTemplate
+    post: OAuth20_getLoginTemplate
+  /balances:
+    get: Balances_getList
+  /currencies:
+    get: Currencies_getList
+  /info/available-contacts:
+    get: OAuth20_getAvailableContacts
+  /login:
+    post: OAuth20_loginTemplateRetrieve
+  /mass-payments:
+    get: MultiPayments_getPaymentInstructions
+    post: MultiPayments_createInstruction
+  /mass-payments/$mass_payment_id/confirm:
+    post: MultiPayments_confirmInstruction
+  /mass-payments/{mass_payment_id}/errors:
+    get: MultiPayments_getPaymentInstructionsWithErrors
+  /mass-payments/{mass_payment_id}/payments-received:
+    get: MultiPayments_getPaymentInstructions
+  /metadata/beneficiary:
+    get: Metadata_describeNewBeneficiary
+  /metadata/currency:
+    get: Metadata_getCurrencyMetadata
+  /multipayments:
+    post: MultiPayments_createInstruction
+  /multipayments/{multipayment_id}:
+    delete: MultiPayments_rejectMultiPayment
+    patch: MultiPayments_acceptMultiPayment
+  /payments:
+    get: Payments_getAllForClient
+    post: Payments_createPayments
+  /payments/fees:
+    get: Payments_getFee
+  /payments/fees_estimate:
+    get: Payments_estimateFee
+  /payments/{payment_id}:
+    delete: Payments_deletePaymentById
+    get: Payments_getPaymentById
+    patch: Payments_authorisePayment
+  /ping:
+    get: Ping_connectivityTest
+    post: Ping_connectivityTest
+  /quotes:
+    post: Quotes_createFirmQuote
+  /quotes/fx-availability:
+    get: Quotes_getFxAvailability
+  /send-verification-code:
+    post: OAuth20_sendVerificationCode
+  /token:
+    post: OAuth20_tokenAccess
+  /token/{contact_id}:
+    post: TrustedAuthentication_tokenForContact
+  /trades:
+    get: Trades_getAllForClient
+    post: Trades_createTrade
+  /trades/{trade_id}:
+    get: Trades_getTradeById
+  /transactions:
+    get: Transactions_getAll
+  /verify:
+    post: OAuth20_verify2faCode
+  /webhooks/graphql:
+    post: Webhooks_executeGraphqlQuery
+  /webhooks/ping/{subscription_id}:
+    post: Webhooks_pingSubscription
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /accounts:
+    get:
+      '200':
+        application/json: AccountsListRetrieveResponse
+  /accounts/{account_id}/balances:
+    get:
+      '200':
+        application/json: BalancesGetSingleAccountBalanceResponse
+  /accounts/{account_id}/transactions:
+    get:
+      '200':
+        application/json: TransactionsGetByAccountIdResponse
+  /authenticate:
+    get:
+      '200':
+        application/json: OAuth20GetLoginTemplateResponse
+        text/html: OAuth20GetLoginTemplate200Response
+    post:
+      '200':
+        application/json: OAuth20GetLoginTemplate200Response
+        text/html: OAuth20GetLoginTemplate200Response
+  /balances:
+    get:
+      '200':
+        application/json: BalancesGetListResponse
+  /beneficiaries:
+    get:
+      '200':
+        application/json: BeneficiariesGetResponse
+  /clients:
+    get:
+      '200':
+        application/json: ClientsGetResponse
+  /contacts:
+    get:
+      '200':
+        application/json: ContactsGetResponse
+  /currencies:
+    get:
+      '200':
+        application/json: CurrenciesGetListResponse
+  /documents:
+    get:
+      '200':
+        application/json: DocumentGetResponse
+  /login:
+    post:
+      '200':
+        application/json: OAuth20LoginTemplateRetrieveResponse
+        text/html: OAuth20LoginTemplateRetrieve200Response
+      '302':
+        application/json: OAuth20LoginTemplateRetrieve302Response
+        text/html: OAuth20LoginTemplateRetrieve302Response
+  /mass-payments:
+    post:
+      '202':
+        application/json: MultiPaymentsCreateInstructionResponse
+  /mass-payments/$mass_payment_id/confirm:
+    post:
+      '202':
+        application/json: MultiPaymentsConfirmInstructionResponse
+  /payments:
+    post:
+      '201':
+        application/json: PaymentsCreatePaymentsResponse
+      '204':
+        application/json: PaymentsCreatePayments204Response
+  /trades:
+    get:
+      '200':
+        application/json: TradesGetAllForClientResponse
+  /transactions:
+    get:
+      '200':
+        application/json: TransactionsGetAllResponse
+  /verify:
+    post:
+      '302':
+        application/json: OAuth20Verify2FaCodeResponse
+        text/html: OAuth20Verify2FaCode302Response
+securityParameters:
+  Authorization:
+    header: false
+  X-Contact-ID:
+    header: false
+  accept_immediately:
+    query: false
+  accept_partial:
+    query: false
+  account_details_type:
+    query: false
+  account_id:
+    query: false
+  account_number:
+    query: false
+  action:
+    query: false
+  alias:
+    query: false
+  balance_types:
+    query: false
+  bank_identifier:
+    query: false
+  beneficiary_id:
+    query: false
+  buy_currency:
+    query: false
+  client_id:
+    query: false
+  code:
+    query: false
+  country:
+    query: false
+  credit_debit_indicator:
+    query: false
+  currencies:
+    query: false
+  currency:
+    query: false
+  external_reference_id:
+    query: false
+  format:
+    query: false
+  from_created_date:
+    query: false
+  from_payment_date:
+    query: false
+  from_value_datetime:
+    query: false
+  iban:
+    query: false
+  mass_payment_external_reference_id:
+    query: false
+  mass_payment_id:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  parent_trade_id:
+    query: false
+  password:
+    query: false
+  payment_amount:
+    query: false
+  payment_country:
+    query: false
+  payment_currency:
+    query: false
+  payment_intra_Ebury:
+    query: false
+  quote_id:
+    query: false
+  quote_type:
+    query: false
+  redirect_uri:
+    query: false
+  reference:
+    query: false
+  response_type:
+    query: false
+  scope:
+    query: false
+  sell_currency:
+    query: false
+  state:
+    query: false
+  status:
+    query: false
+  to_created_date:
+    query: false
+  to_payment_date:
+    query: false
+  to_value_datetime:
+    query: false
+  trade_id:
+    query: false
+  trade_type:
+    query: false
+  transaction_type:
+    query: false
+validServerUrls:
+  https://{environment}.ebury.io:
+    url: https://{environment}.ebury.io

@@ -2329,6 +2329,10 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://api.apaleo.com/swagger/inventory-v1/swagger.json",
     apiBaseUrl: "api.apaleo.com",
   },
+  "ebury.io": {
+    type: "GET",
+    url: "https://api.ebury.io/openapi.yaml",
+  },
   "verifiable.com": {
     type: "GET",
     url: "https://api.discovery.verifiable.com/.well-known/openapi/vCurrent.json",
