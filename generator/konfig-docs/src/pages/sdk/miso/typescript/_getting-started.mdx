@@ -1,0 +1,31 @@
+```typescript index.ts
+import { Miso } from 'miso-typescript-sdk';
+
+const miso = new Miso({
+    /*
+     * 
+     * Your secret API key is used to access every Miso API endpoint. You should secure this key and only use it on a backend 
+     * server. Never leave this key in your client-side JavaScript code. If the private key is compromised, you can revoke it 
+     * in [Dojo](https://dojo.askmiso.com/docs/api-browser) and get a new one.
+     * 
+     * Specify your secret key in the `api_key` query parameter. For example:
+     * ```
+     * POST /v1/users?api_key=039c501ac8dfcac91c6f05601cee876e1cc07e17
+     * ```
+     * 
+     * 
+     */
+    secretApiKey: "API_KEY",
+    /*
+     * 
+     * Your publishable API key is used to call Miso's APIs from your front-end code. It can be used to stream interactions from the browser using Miso's Interactions Upload API or to access read-only search and recommendation results for a given user. When using the publishable API key, the requested user_id will need to be hashed to maintain the necessary security compliance. 
+     * 
+     * Specify your publishable key in the `api_key` query parameter. For example:
+     * ```
+     * POST /v1/interactions?api_key=039c501ac8dfcac91c6f05601cee876e1cc07e17
+     * ```
+     * 
+     */
+    publishableApiKey: "API_KEY"
+})
+```

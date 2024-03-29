@@ -73,7 +73,7 @@ export default function Beam() {
 
 Beam's state-of-the-art software solution sources traditional and alternative data to give you a real-time affordability analysis of your customer and makes manual analysis, fragmented data sources, high costs and slow processes a thing of the past so that you and your team get better data with sharper insight.
 
-Beam makes it easy and seamless to access multiple data sources like bank statements from multiple accounts, bureau data and alternative data for thin-file customers, giving you the most up-to-date and precise view of your customer's financial position so that your organisation can make accelerated credit decisions. 
+Beam makes it easy and seamless to access multiple data sources like bank statements from multiple accounts, bureau data and alternative data for thin-file customers, giving you the most up-to-date and precise view of your customer's financial position so that your organisation can make accelerated credit decisions.
 
 Our completely digital customer onboarding process allows for near-instant credit approval.
 

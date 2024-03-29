@@ -14,7 +14,7 @@ export default function BeamTypeScriptSdk() {
 
 Beam's state-of-the-art software solution sources traditional and alternative data to give you a real-time affordability analysis of your customer and makes manual analysis, fragmented data sources, high costs and slow processes a thing of the past so that you and your team get better data with sharper insight.
 
-Beam makes it easy and seamless to access multiple data sources like bank statements from multiple accounts, bureau data and alternative data for thin-file customers, giving you the most up-to-date and precise view of your customer's financial position so that your organisation can make accelerated credit decisions. 
+Beam makes it easy and seamless to access multiple data sources like bank statements from multiple accounts, bureau data and alternative data for thin-file customers, giving you the most up-to-date and precise view of your customer's financial position so that your organisation can make accelerated credit decisions.
 
 Our completely digital customer onboarding process allows for near-instant credit approval.
 
@@ -25,7 +25,7 @@ Beam's API-first solution reduces credit decision-making time from days to secon
       companyKebabCase="beam"
       clientNameCamelCase="beam"
       homepage="beamlend.com/"
-      lastUpdated={new Date("2024-03-29T20:32:07.929Z")}
+      lastUpdated={new Date("2024-03-29T20:45:46.288Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/beam/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
