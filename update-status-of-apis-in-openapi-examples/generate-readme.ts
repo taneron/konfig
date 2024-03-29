@@ -42,10 +42,10 @@ function generateReadme({
   banner: string;
 }) {
   const charts = responseTimeCharts.map((imageFile) => {
-    const url = Buffer.from(path.basename(imageFile, ".png"), "hex").toString();
+    const url = Buffer.from(path.basename(imageFile, ".svg"), "hex").toString();
     return {
       file: imageFile,
-      // without .png and URL decode the filename to get the URL
+      // without .svg and URL decode the filename to get the URL
       url,
     };
   });
@@ -79,8 +79,13 @@ for (const apiDirectory of apiDirectories) {
   if (fs.existsSync(responseTimeChartsDir)) {
     responseTimeCharts = fs
       .readdirSync(responseTimeChartsDir)
-      .filter((file) => file.endsWith(".png"))
+      .filter((file) => file.endsWith(".svg"))
       .map((file) => path.join("response-time-charts", file));
+
+    // delete any .png files
+    fs.readdirSync(responseTimeChartsDir)
+      .filter((file) => file.endsWith(".png"))
+      .forEach((file) => fs.unlinkSync(path.join(responseTimeChartsDir, file)));
   }
 
   const imagePreviewFiles = fs

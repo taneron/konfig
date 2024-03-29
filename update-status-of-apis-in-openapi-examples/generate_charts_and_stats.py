@@ -123,13 +123,13 @@ def generate_charts_and_stats(file_path, average_response_time):
         # url encode the URL
         url_without_scheme = url.replace('https://', '').replace('http://', '')
         file_name = url_without_scheme.encode('utf-8').hex()
-        file_name = f'{file_name}.png'
+        file_name = f'{file_name}.svg'
         chart_file_path = os.path.join(os.path.dirname(file_path), "response-time-charts", file_name)
 
         # ensure the directory exists
         os.makedirs(os.path.dirname(chart_file_path), exist_ok=True)
 
-        plt.savefig(chart_file_path)  # Save the chart next to the status_log.yaml file
+        plt.savefig(chart_file_path, format='svg')  # Save the chart next to the status_log.yaml file
         plt.close()  # Close the plot after saving to file
         logging.info(f"Chart generated and saved successfully at {chart_file_path}.")
 
