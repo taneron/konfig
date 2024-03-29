@@ -2329,6 +2329,19 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://api.apaleo.com/swagger/inventory-v1/swagger.json",
     apiBaseUrl: "api.apaleo.com",
   },
+  "verifiable.com": {
+    type: "GET",
+    url: "https://api.discovery.verifiable.com/.well-known/openapi/vCurrent.json",
+  },
+  "crusoecloud.com": {
+    type: "GET",
+    url: "https://api.crusoecloud.com/v1alpha5/openapi.json",
+  },
+  "clarifai.com": {
+    type: "GET",
+    url: "https://api.clarifai.com/v2/swagger.json",
+    apiBaseUrl: "api.clarifia.com",
+  },
   "chatkitty.com": {
     type: "GET",
     url: "https://api.chatkitty.com/docs/v1",

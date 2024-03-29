@@ -1,0 +1,592 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+fixOnlyOneTagName: false
+operationIds: {}
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v2/concepts/{conceptId}/languages:
+    patch:
+      application/json: V2PatchConceptLanguages2Request
+    post:
+      application/json: V2PostConceptLanguages2Request
+  /v2/datasets/{datasetId}/inputs:
+    delete:
+      application/json: V2DeleteDatasetInputs2Request
+    post:
+      application/json: V2PostDatasetInputs2Request
+  /v2/datasets/{datasetId}/versions:
+    delete:
+      application/json: V2DeleteDatasetVersions2Request
+    patch:
+      application/json: V2PatchDatasetVersions2Request
+    post:
+      application/json: V2PostDatasetVersions2Request
+  /v2/datasets/{datasetId}/versions/{datasetVersionId}/exports:
+    put:
+      application/json: V2PutDatasetVersionExports2Request
+  /v2/inputs/jobs/add/{id}:
+    patch:
+      application/json: V2CancelInputsAddJob2Request
+  /v2/models/{modelId}/check_consents:
+    patch:
+      application/json: V2PatchModelCheckConsents2Request
+  /v2/models/{modelId}/languages:
+    patch:
+      application/json: V2PatchModelLanguages2Request
+  /v2/models/{modelId}/outputs:
+    post:
+      application/json: V2PostModelOutputs4Request
+  /v2/models/{modelId}/publish:
+    post:
+      application/json: V2PostModelVersionsPublish2Request
+  /v2/models/{modelId}/toolkits:
+    patch:
+      application/json: V2PatchModelToolkits2Request
+  /v2/models/{modelId}/unpublish:
+    post:
+      application/json: V2PostModelVersionsUnPublish2Request
+  /v2/models/{modelId}/usecases:
+    patch:
+      application/json: V2PatchModelUseCases2Request
+  /v2/models/{modelId}/versions:
+    post:
+      application/json: V2PostModelVersions2Request
+  /v2/models/{modelId}/versions/time_estimate:
+    post:
+      application/json: V2PostModelVersionsTrainingTimeEstimate2Request
+  /v2/models/{modelId}/versions/{modelVersionId}/evaluations:
+    post:
+      application/json: V2PostModelVersionEvaluations2Request
+  /v2/models/{modelId}/versions/{versionId}/metrics:
+    post:
+      application/json: V2PostModelVersionMetrics2Request
+  /v2/models/{modelId}/versions/{versionId}/outputs:
+    post:
+      application/json: V2PostModelOutputs2Request
+  /v2/searches/{id}:
+    post:
+      application/json: V2PostSearchesById2Request
+  /v2/users/{runnerSelector.deployment.userId}/deployments/{runnerSelector.deployment.id}/outputs:
+    post:
+      application/json: V2PostModelOutputs5Request
+  /v2/users/{userAppId.userId}/apps:
+    patch:
+      application/json: V2PatchAppsRequest
+    post:
+      application/json: V2PostAppsRequest
+  /v2/users/{userAppId.userId}/apps/ids:
+    patch:
+      application/json: V2PatchAppsIdsRequest
+  /v2/users/{userAppId.userId}/apps/searches:
+    post:
+      application/json: V2PostAppsSearchesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}:
+    patch:
+      application/json: V2PatchAppRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/annotation_filters:
+    delete:
+      application/json: V2DeleteAnnotationFiltersRequest
+    patch:
+      application/json: V2PatchAnnotationFiltersRequest
+    post:
+      application/json: V2PostAnnotationFiltersRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/annotations:
+    delete:
+      application/json: V2DeleteAnnotations3Request
+    patch:
+      application/json: V2PatchAnnotationsRequest
+    post:
+      application/json: V2PostAnnotationsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/annotations/searches:
+    patch:
+      application/json: V2PatchAnnotationsSearchesRequest
+    post:
+      application/json: V2PostAnnotationsSearchesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/annotations/searches/metrics:
+    post:
+      application/json: V2PostAnnotationSearchMetricsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/bulk_operations:
+    delete:
+      application/json: V2DeleteBulkOperationsRequest
+    patch:
+      application/json: V2CancelBulkOperationsRequest
+    post:
+      application/json: V2PostBulkOperationsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/collaborators:
+    delete:
+      application/json: V2DeleteCollaboratorsRequest
+    patch:
+      application/json: V2PatchCollaboratorsRequest
+    post:
+      application/json: V2PostCollaboratorsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/collectors:
+    delete:
+      application/json: V2DeleteCollectorsRequest
+    patch:
+      application/json: V2PatchCollectorsRequest
+    post:
+      application/json: V2PostCollectorsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/concepts:
+    patch:
+      application/json: V2PatchConceptsRequest
+    post:
+      application/json: V2PostConceptsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/concepts/knowledge_graphs:
+    post:
+      application/json: V2PostKnowledgeGraphsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/concepts/mappings/jobs:
+    post:
+      application/json: V2PostConceptMappingJobsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/concepts/searches:
+    post:
+      application/json: V2PostConceptsSearchesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/concepts/{conceptId}/languages:
+    patch:
+      application/json: V2PatchConceptLanguagesRequest
+    post:
+      application/json: V2PostConceptLanguagesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/concepts/{conceptId}/relations:
+    delete:
+      application/json: V2DeleteConceptRelationsRequest
+    post:
+      application/json: V2PostConceptRelationsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/datasets:
+    delete:
+      application/json: V2DeleteDatasetsRequest
+    patch:
+      application/json: V2PatchDatasetsRequest
+    post:
+      application/json: V2PostDatasetsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/datasets/{datasetId}/inputs:
+    delete:
+      application/json: V2DeleteDatasetInputsRequest
+    post:
+      application/json: V2PostDatasetInputsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/datasets/{datasetId}/versions:
+    delete:
+      application/json: V2DeleteDatasetVersionsRequest
+    patch:
+      application/json: V2PatchDatasetVersionsRequest
+    post:
+      application/json: V2PostDatasetVersionsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/datasets/{datasetId}/versions/{datasetVersionId}/exports:
+    put:
+      application/json: V2PutDatasetVersionExportsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/duplications:
+    post:
+      application/json: V2PostAppDuplicationsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/evaluations:
+    post:
+      application/json: V2PostEvaluationsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/inputs:
+    delete:
+      application/json: V2DeleteInputsRequest
+    patch:
+      application/json: V2PatchInputsRequest
+    post:
+      application/json: V2PostInputsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/inputs/data_sources:
+    post:
+      application/json: V2PostInputsDataSourcesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/inputs/jobs/add/{id}:
+    patch:
+      application/json: V2CancelInputsAddJobRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/inputs/jobs/extraction:
+    patch:
+      application/json: V2CancelInputsExtractionJobsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/inputs/searches:
+    post:
+      application/json: V2PostInputsSearchesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/inputs/uploads:
+    post:
+      application/json: V2PostInputsUploadsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/installed_module_versions:
+    delete:
+      application/json: V2DeleteInstalledModuleVersionsRequest
+    post:
+      application/json: V2PostInstalledModuleVersionsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/installed_module_versions/{installedModuleVersionId}/key:
+    post:
+      application/json: V2PostInstalledModuleVersionsKeyRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/label_orders:
+    delete:
+      application/json: V2DeleteLabelOrdersRequest
+    patch:
+      application/json: V2PatchLabelOrdersRequest
+    post:
+      application/json: V2PostLabelOrdersRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models:
+    patch:
+      application/json: V2PatchModelsRequest
+    post:
+      application/json: V2PostModelsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/ids:
+    patch:
+      application/json: V2PatchModelIdsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/searches:
+    post:
+      application/json: V2PostModelsSearchesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/check_consents:
+    patch:
+      application/json: V2PatchModelCheckConsentsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/languages:
+    patch:
+      application/json: V2PatchModelLanguagesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/outputs:
+    post:
+      application/json: V2PostModelOutputs3Request
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/publish:
+    post:
+      application/json: V2PostModelVersionsPublishRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/toolkits:
+    patch:
+      application/json: V2PatchModelToolkitsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/unpublish:
+    post:
+      application/json: V2PostModelVersionsUnPublishRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/usecases:
+    patch:
+      application/json: V2PatchModelUseCasesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/versions:
+    patch:
+      application/json: V2PatchModelVersionsRequest
+    post:
+      application/json: V2PostModelVersionsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/versions/time_estimate:
+    post:
+      application/json: V2PostModelVersionsTrainingTimeEstimateRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/versions/{modelVersionId}/evaluations:
+    post:
+      application/json: V2PostModelVersionEvaluationsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/versions/{versionId}/metrics:
+    post:
+      application/json: V2PostModelVersionMetricsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/versions/{versionId}/outputs:
+    post:
+      application/json: V2PostModelOutputsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/modules:
+    patch:
+      application/json: V2PatchModulesRequest
+    post:
+      application/json: V2PostModulesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/modules/{moduleId}/versions:
+    delete:
+      application/json: V2DeleteModuleVersionsRequest
+    patch:
+      application/json: V2PatchModuleVersionsRequest
+    post:
+      application/json: V2PostModuleVersionsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/searches:
+    patch:
+      application/json: V2PatchSearchesRequest
+    post:
+      application/json: V2PostSearchesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/searches/{id}:
+    post:
+      application/json: V2PostSearchesByIdRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/stats/values:
+    post:
+      application/json: V2PostStatValuesRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/stats/values/aggregate:
+    post:
+      application/json: V2PostStatValuesAggregateRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/task/{taskId}/annotations/status:
+    patch:
+      application/json: V2PatchAnnotationsStatusRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/tasks:
+    delete:
+      application/json: V2DeleteTasksRequest
+    patch:
+      application/json: V2PatchTasksRequest
+    post:
+      application/json: V2PostTasksRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/tasks/{taskId}/assignments:
+    put:
+      application/json: V2PutTaskAssignmentsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/trending_metrics/views/{viewType}/{objectId}:
+    post:
+      application/json: V2PostTrendingMetricsViewRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/uploads:
+    delete:
+      application/json: V2DeleteUploadsRequest
+    post:
+      application/json: V2PostUploadsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/uploads/{uploadId}/content_parts:
+    put:
+      application/json: V2PutUploadContentPartsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows:
+    patch:
+      application/json: V2PatchWorkflowsRequest
+    post:
+      application/json: V2PostWorkflowsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows/ids:
+    patch:
+      application/json: V2PatchWorkflowIdsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows/{workflowId}/publish:
+    post:
+      application/json: V2PostWorkflowVersionsPublishRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows/{workflowId}/results:
+    post:
+      application/json: V2PostWorkflowResults2Request
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows/{workflowId}/results/similarity:
+    post:
+      application/json: V2PostWorkflowResultsSimilarity2Request
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows/{workflowId}/unpublish:
+    post:
+      application/json: V2PostWorkflowVersionsUnPublishRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows/{workflowId}/versions:
+    delete:
+      application/json: V2DeleteWorkflowVersionsRequest
+    patch:
+      application/json: V2PatchWorkflowVersionsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows/{workflowId}/versions/{versionId}/results:
+    post:
+      application/json: V2PostWorkflowResultsRequest
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/workflows/{workflowId}/versions/{versionId}/results/similarity:
+    post:
+      application/json: V2PostWorkflowResultsSimilarityRequest
+  /v2/users/{userAppId.userId}/keys:
+    patch:
+      application/json: V2PatchKeysRequest
+    post:
+      application/json: V2PostKeysRequest
+  /v2/users/{userAppId.userId}/runners:
+    delete:
+      application/json: V2DeleteRunnersRequest
+    post:
+      application/json: V2PostRunnersRequest
+  /v2/users/{userAppId.userId}/runners/{runnerId}/items/{itemId}/outputs:
+    post:
+      application/json: V2PostRunnerItemOutputsRequest
+  /v2/users/{userAppId.userId}/validate_password:
+    post:
+      application/json: V2PostValidatePasswordRequest
+  /v2/workflows/{workflowId}/publish:
+    post:
+      application/json: V2PostWorkflowVersionsPublish2Request
+  /v2/workflows/{workflowId}/results:
+    post:
+      application/json: V2PostWorkflowResults3Request
+  /v2/workflows/{workflowId}/results/similarity:
+    post:
+      application/json: V2PostWorkflowResultsSimilarity3Request
+  /v2/workflows/{workflowId}/unpublish:
+    post:
+      application/json: V2PostWorkflowVersionsUnPublish2Request
+  /v2/workflows/{workflowId}/versions:
+    delete:
+      application/json: V2DeleteWorkflowVersions2Request
+    patch:
+      application/json: V2PatchWorkflowVersions2Request
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/models/versions/upload:
+    post:
+      '200':
+        application/json: V2PostModelVersionsUploadResponse
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/outputs/generate:
+    post:
+      '200':
+        application/json: V2GenerateModelOutputs2Response
+  /v2/users/{userAppId.userId}/apps/{userAppId.appId}/models/{modelId}/versions/{versionId}/outputs/generate:
+    post:
+      '200':
+        application/json: V2GenerateModelOutputsResponse
+securityParameters:
+  additionalFields:
+    query: false
+  bookmark:
+    query: false
+  conceptId:
+    query: false
+  conceptIds:
+    query: false
+  descending:
+    query: false
+  dontFetchFromMain:
+    query: false
+  endpoints:
+    query: false
+  evalDatasetIds:
+    query: false
+  excludeClarifaiWorkflows:
+    query: false
+  favorClarifaiWorkflows:
+    query: false
+  featuredOnly:
+    query: false
+  fields.binaryMetrics:
+    query: false
+  fields.confusionMatrix:
+    query: false
+  fields.cooccurrenceMatrix:
+    query: false
+  fields.labelCounts:
+    query: false
+  fields.metricsByArea:
+    query: false
+  fields.metricsByClass:
+    query: false
+  fields.testSet:
+    query: false
+  filterByUserId:
+    query: false
+  id:
+    query: false
+  ids:
+    query: false
+  includingLabelOrderTasks:
+    query: false
+  inputFields:
+    query: false
+  inputIds:
+    query: false
+  keyType:
+    query: false
+  knowledgeGraphId:
+    query: false
+  labelOrderIds:
+    query: false
+  language:
+    query: false
+  languages:
+    query: false
+  lastId:
+    query: false
+  license:
+    query: false
+  listAllAnnotations:
+    query: false
+  listAllCollaborators:
+    query: false
+  modelTypeId:
+    query: false
+  modelVersionIds:
+    query: false
+  name:
+    query: false
+  notExpired:
+    query: false
+  orderById:
+    query: false
+  outputFields:
+    query: false
+  page:
+    query: false
+  parentPaths:
+    query: false
+  perPage:
+    query: false
+  predicate:
+    query: false
+  query:
+    query: false
+  returnModelOutput:
+    query: false
+  reviewUserIds:
+    query: false
+  scopes:
+    query: false
+  search:
+    query: false
+  searchTerm:
+    query: false
+  showFailedMetrics:
+    query: false
+  sortAscending:
+    query: false
+  sortByAppId:
+    query: false
+  sortByCreatedAt:
+    query: false
+  sortByDescription:
+    query: false
+  sortByEvalDatasetId:
+    query: false
+  sortByF1:
+    query: false
+  sortById:
+    query: false
+  sortByMeanAvgPrecision:
+    query: false
+  sortByModelId:
+    query: false
+  sortByModifiedAt:
+    query: false
+  sortByName:
+    query: false
+  sortByNumInputs:
+    query: false
+  sortByPrecision:
+    query: false
+  sortByRecall:
+    query: false
+  sortByRocAuc:
+    query: false
+  sortByStarCount:
+    query: false
+  sortByStatusCode:
+    query: false
+  sortByTrainDatasetId:
+    query: false
+  starredOnly:
+    query: false
+  status.code:
+    query: false
+  status.description:
+    query: false
+  status.details:
+    query: false
+  status.developerNotes:
+    query: false
+  status.internalDetails:
+    query: false
+  status.percentCompleted:
+    query: false
+  status.redirectInfo.newResourceId:
+    query: false
+  status.redirectInfo.oldResourceId:
+    query: false
+  status.redirectInfo.resourceType:
+    query: false
+  status.redirectInfo.url:
+    query: false
+  status.reqId:
+    query: false
+  status.stackTrace:
+    query: false
+  status.timeRemaining:
+    query: false
+  taskId:
+    query: false
+  templateOnly:
+    query: false
+  toolkits:
+    query: false
+  trainDatasetIds:
+    query: false
+  trainedBefore:
+    query: false
+  trainedOnly:
+    query: false
+  trustedOnly:
+    query: false
+  types:
+    query: false
+  useCases:
+    query: false
+  userAppId.appId:
+    query: false
+  userAppId.userId:
+    query: false
+  userIds:
+    query: false
+  versionId:
+    query: false
+  workerUserIds:
+    query: false
+validServerUrls:
+  api.clarifia.com:
+    url: api.clarifia.com

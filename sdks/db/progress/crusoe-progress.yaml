@@ -1,0 +1,229 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /capacities:
+    get: Capacities_listAvailable
+  /compute/images:
+    get: Images_listAvailableVMImages
+  /compute/images/{image_id}:
+    get: Images_getDetails
+  /featureflags:
+    get: FeatureFlags_getUserFlags
+  /locations:
+    get: Locations_listUsableLocations
+  /organizations/billing/intent:
+    get: Billing_getIntent
+  /organizations/entities:
+    delete: Entities_removeOrganization
+    get: Entities_getDetailsAllActive
+    post: Entities_createNewOrganization
+    put: Entities_updateOrganizationDetails
+  /organizations/projects:
+    get: Projects_getDetails
+    post: Projects_createOwnedProject
+    put: Projects_updateDetails
+  /organizations/projects/{project_id}:
+    delete: Projects_deleteOwnedProject
+    get: Projects_getDetails
+  /organizations/prospects:
+    post: Prospects_createNewProspect
+  /organizations/usage:
+    get: Usage_getProjectUsage
+  /organizations/usage/export:
+    get: Usage_exportResourceUsage
+  /organizations/usage/options:
+    get: Usage_getOptionFilters
+  /projects/{project_id}/compute/instance-groups:
+    get: InstanceGroups_listAll
+    post: InstanceGroups_createInstanceGroup
+  /projects/{project_id}/compute/instance-groups/{instance_group_id}:
+    delete: InstanceGroups_removeInstanceGroup
+    get: InstanceGroups_getDetails
+    patch: InstanceGroups_updateInstanceGroup
+  /projects/{project_id}/compute/instance-templates:
+    get: InstanceTemplates_listAvailableVmTemplates
+    post: InstanceTemplates_createVmTemplate
+  /projects/{project_id}/compute/instance-templates/{instance_template_id}:
+    delete: InstanceTemplates_deleteVmTemplate
+    get: InstanceTemplates_getDetails
+  /projects/{project_id}/compute/vms/bulk-instances:
+    post: VMs_createBulkInstances
+  /projects/{project_id}/compute/vms/instances:
+    get: VMs_getAllOwnedInstances
+    post: VMs_createInstance
+  /projects/{project_id}/compute/vms/instances/operations:
+    get: VmOperations_getStatusOfOperations
+  /projects/{project_id}/compute/vms/instances/operations/{operation_id}:
+    get: VmOperations_getStatusOfOperation
+  /projects/{project_id}/compute/vms/instances/{vm_id}:
+    delete: VMs_deleteInstance
+    get: VMs_getDetails
+    patch: VMs_changeState
+  /projects/{project_id}/compute/vms/instances/{vm_id}/attach-disks:
+    post: VMs_attachDisksToInstance
+  /projects/{project_id}/compute/vms/instances/{vm_id}/detach-disks:
+    post: VMs_detachDiskFromInstance
+  /projects/{project_id}/compute/vms/types:
+    get: VMs_getAvailableTypes
+  /projects/{project_id}/networking/ib-networks:
+    get: IbNetworks_getAllDetails
+  /projects/{project_id}/networking/ib-networks/{ib_network_id}:
+    get: IbNetworks_getDetails
+  /projects/{project_id}/networking/ib-partitions:
+    get: IbPartitions_getAllPartitionsBelongsToUser
+    post: IbPartitions_createNewPartition
+  /projects/{project_id}/networking/ib-partitions/{ib_partition_id}:
+    delete: IbPartitions_deleteById
+    get: IbPartitions_getDetails
+  /projects/{project_id}/networking/load-balancers:
+    get: LoadBalancers_getAllDetails
+    post: LoadBalancers_createOwnedBalancer
+  /projects/{project_id}/networking/load-balancers/operations:
+    get: LoadBalancerOperations_getStatus
+  /projects/{project_id}/networking/load-balancers/operations/{operation_id}:
+    get: LoadBalancerOperations_getStatus
+  /projects/{project_id}/networking/load-balancers/{load_balancer_id}:
+    delete: LoadBalancers_removeOwnedBalancer
+    get: LoadBalancers_getDetails
+    patch: LoadBalancers_updateAsyncOperation
+  /projects/{project_id}/networking/vpc-firewall-rules:
+    get: VpcFirewallRules_getAllDetails
+    post: VpcFirewallRules_createNewRule
+  /projects/{project_id}/networking/vpc-firewall-rules/operations:
+    get: VpcFirewallRuleOperations_getStatus
+  /projects/{project_id}/networking/vpc-firewall-rules/operations/{operation_id}:
+    get: VpcFirewallRuleOperations_getStatus
+  /projects/{project_id}/networking/vpc-firewall-rules/{vpc_firewall_rule_id}:
+    delete: VpcFirewallRules_deleteRule
+    get: VpcFirewallRules_getDetails
+    patch: VpcFirewallRules_updateOwnedRule
+  /projects/{project_id}/networking/vpc-networks:
+    get: VpcNetworks_getAllDetails
+    post: VpcNetworks_createNewVpcNetwork
+  /projects/{project_id}/networking/vpc-networks/operations:
+    get: VpcNetworkOperations_getStatusAsynchronousOperations
+  /projects/{project_id}/networking/vpc-networks/operations/{operation_id}:
+    get: VpcNetworkOperations_getStatus
+  /projects/{project_id}/networking/vpc-networks/{vpc_network_id}:
+    delete: VpcNetworks_deleteOwnedNetwork
+    get: VpcNetworks_getDetails
+    patch: VpcNetworks_updateAsyncOperation
+  /projects/{project_id}/networking/vpc-subnets:
+    get: VpcSubnets_list
+    post: VpcSubnets_createNewSubnet
+  /projects/{project_id}/networking/vpc-subnets/operations:
+    get: VpcSubnetOperations_getStatus
+  /projects/{project_id}/networking/vpc-subnets/operations/{operation_id}:
+    get: VpcSubnetOperations_getStatus
+  /projects/{project_id}/networking/vpc-subnets/{vpc_subnet_id}:
+    delete: VpcSubnets_deleteOwnedSubnet
+    get: VpcSubnets_getDetails
+    patch: VpcSubnets_updateAsyncOperation
+  /projects/{project_id}/storage/disks:
+    get: Disks_getAllDetails
+    post: Disks_createOwnedDisk
+  /projects/{project_id}/storage/disks/operations:
+    get: DiskOperations_getStatus
+  /projects/{project_id}/storage/disks/operations/{operation_id}:
+    get: DiskOperations_getStatus
+  /projects/{project_id}/storage/disks/{disk_id}:
+    delete: Disks_deleteById
+    get: Disks_getDetails
+    patch: Disks_resizeDiskSize
+  /projects/{project_id}/storage/snapshots:
+    get: Snapshots_listUserSnapshots
+    post: Snapshots_createDiskSnapshot
+  /projects/{project_id}/storage/snapshots/operations:
+    get: SnapshotOperations_getStatus
+  /projects/{project_id}/storage/snapshots/operations/{operation_id}:
+    get: SnapshotOperations_getStatusSingle
+  /projects/{project_id}/storage/snapshots/{snapshot_id}:
+    delete: Snapshots_deleteOwnedSnapshot
+    get: Snapshots_getDetails
+  /users/identities:
+    delete: Identities_deleteUserAccount
+    get: Identities_getUserDetails
+    put: Identities_updateUserDetails
+  /users/ssh-keys:
+    delete: SshKeys_deleteUserSshKey
+    get: SshKeys_listUserKeys
+    post: SshKeys_registerNewKey
+  /users/tokens:
+    delete: Tokens_deleteOwnedToken
+    get: Tokens_getAll
+    post: Tokens_generateOwnedToken
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /capacities:
+    get:
+      '400':
+        application/json: CapacitiesListAvailableResponse
+      '401':
+        application/json: CapacitiesListAvailable401Response
+      '403':
+        application/json: CapacitiesListAvailable403Response
+      '500':
+        application/json: CapacitiesListAvailable500Response
+  /compute/images/{image_id}:
+    get:
+      '404':
+        application/json: ImagesGetDetailsResponse
+securityParameters:
+  access_key:
+    query: false
+  end_date:
+    query: false
+  id:
+    query: false
+  ids:
+    query: false
+  intent_type:
+    query: false
+  limit:
+    query: false
+  location:
+    query: false
+  locations:
+    query: false
+  lower_time_bound:
+    query: false
+  names:
+    query: false
+  next_token:
+    query: false
+  org_id:
+    query: false
+  prev_token:
+    query: false
+  product_name:
+    query: false
+  project_id:
+    query: false
+  project_name:
+    query: false
+  projects:
+    query: false
+  regions:
+    query: false
+  resource_id:
+    query: false
+  resource_types:
+    query: false
+  resources:
+    query: false
+  sort:
+    query: false
+  start_date:
+    query: false
+  state:
+    query: false
+  states:
+    query: false
+  types:
+    query: false
+validServerUrls: {}

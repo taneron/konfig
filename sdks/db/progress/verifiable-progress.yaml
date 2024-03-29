@@ -1,0 +1,537 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /alerts:
+    get: Alerts_getPage
+  /alerts/aggregations:
+    get: Alerts_getAggregations
+  /alerts/{alertId}:
+    get: Alerts_getData
+  /alerts/{alertId}/dismiss:
+    post: Alerts_dismissAlert
+  /auth/password/requestreset:
+    post: Authentication_requestPasswordReset
+  /auth/password/reset:
+    post: Authentication_resetPassword
+  /auth/token:
+    get: Authentication_listActiveAccessTokens
+  /auth/token/google:
+    post: Authentication_googleTokenPost
+  /auth/token/invalidate:
+    post: Authentication_invalidateMultipleTokens
+  /auth/token/password:
+    post: Authentication_authenticateWithPassword
+  /auth/token/{tokenId}/invalidate:
+    post: Authentication_invalidateToken
+  /credentialing-requests:
+    get: CredentialingRequests_listRequests
+    post: CredentialingRequests_submitNewRequest
+  /credentialing-requests/aggregations:
+    get: CredentialingRequests_getAggregations
+  /credentialing-requests/aggregations/owners:
+    get: CredentialingRequests_aggregateProviderOwners
+  /credentialing-requests/{requestId}:
+    get: CredentialingRequests_getSpecificRequest
+    patch: CredentialingRequests_updateProperties
+  /credentialing-requests/{requestId}/checklist:
+    put: CredentialingRequests_replaceChecklist
+  /credentialing-requests/{requestId}/events:
+    post: CredentialingRequests_createEvent
+  /credentialing-requests/{requestId}/events/{eventId}:
+    get: CredentialingRequests_specificEventData
+  /datasets:
+    get: Datasets_getMetadata
+  /datasets/matches:
+    get: Datasets_listMatches
+  /datasets/matches/aggregations:
+    get: Datasets_getMatchesAggregations
+  /datasets/matches/{matchId}:
+    patch: Datasets_modifyMatchStatus
+  /datasets/nsc/schoolCodes:
+    get: Datasets_listSchools
+  /datasets/scans:
+    get: Datasets_listScans
+    post: Datasets_startScan
+  /datasets/scans/{scanId}:
+    get: Datasets_getScanResults
+  /datasets/scans/{scanId}/refresh:
+    post: Datasets_refreshScan
+  /datasets/{datasetType}:
+    get: Datasets_getMetadata
+  /datasets/{datasetType}/parameters/{providerId}:
+    get: Datasets_getScanParameters
+  /facilities/{facilityId}/info:
+    get: GetFacilityInfo_details
+  /files/exports:
+    get: Files_listExportedEventLogs
+  /files/uploads:
+    get: Files_listUploadedFilesMetadata
+  /files/uploads/{pathOrId}:
+    delete: Files_removeFile
+  /files/uploads/{path}:
+    post: Files_uploadFile
+    put: Files_uploadAndOverwrite
+  /files/{pathOrId}:
+    get: Files_downloadFile
+    head: Files_getFileMetadata
+  /groups:
+    get: Groups_getAll
+    post: Groups_registerNewProviderGroup
+  /groups/{groupId}:
+    delete: Groups_deleteGroupWithAssociations
+    get: Groups_getData
+    patch: Groups_updateGroupProperties
+  /groups/{groupId}/enrollments:
+    get: Groups_listEnrollments
+  /groups/{groupId}/payer-plans:
+    patch: Groups_updatePayerPlansGroupRelations
+  /groups/{groupId}/providers:
+    get: Groups_listProviders
+    patch: Groups_updateProvidersGroupRelations
+  /integrations/cognito-forms/webhook/{type}:
+    post: CognitoFormsWebhook_receiveData
+  /integrations/fountain/webhook/{organizationId}:
+    post: Integrations_fountainWebhookPost
+  /integrations/salesforce/documentrequest:
+    post: Integrations_createSalesforceDocumentRequest
+  /licenses/{licenseId}:
+    patch: Licenses_updateExistingLicense
+  /licensetypes:
+    get: Licenses_listLicenseTypes
+  /licensetypes/status:
+    get: Licenses_listLicenseSourceStatus
+  /log/events:
+    get: Audit_listEventLogEntries
+  /monitors:
+    get: Monitoring_listMonitoredItems
+    post: Monitoring_initiateProviderMonitoring
+  /monitors/{id}:
+    delete: Monitoring_stopItem
+    get: Monitoring_getMonitoredItem
+    patch: Monitoring_updateMonitoredItem
+  /organization/reports/sanctionsandexclusions:
+    get: Reports_listSanctionsAndExclusions
+  /payer-plans:
+    get: PayerPlans_list
+    post: PayerPlans_createNewPlan
+  /payer-plans/{payerPlanId}:
+    delete: PayerPlans_deleteExistingPlan
+    get: PayerPlans_getPlanData
+    patch: PayerPlans_updatePlanProperties
+  /payers:
+    get: Payers_getAll
+    post: Payers_registerNewPayer
+  /payers/{payerId}:
+    delete: Payers_deletePayer
+    get: Payers_getPayerData
+    patch: Payers_updatePayerData
+  /provider-licenses:
+    get: Licenses_listProvider
+  /provider-licenses/aggregations:
+    get: Licenses_getAggregations
+  /providers:
+    get: Providers_listPage
+    post: Providers_createNewProvider
+  /providers/aggregations:
+    get: Providers_getAggregations
+  /providers/enrollments:
+    get: ProviderEnrollments_listPage
+    post: ProviderEnrollments_createNewEnrollment
+  /providers/enrollments/{providerEnrollmentId}:
+    delete: ProviderEnrollments_deleteEnrollment
+    get: ProviderEnrollments_getData
+    patch: ProviderEnrollments_updateDataProperties
+  /providers/profiles/import:
+    get: ProviderProfiles_listImports
+    post: ProviderProfiles_createProfileImport
+  /providers/profiles/import/sources:
+    get: ProviderProfiles_listImportSources
+  /providers/profiles/import/{importId}:
+    get: ProviderProfiles_getExistingImport
+  /providers/{providerId}:
+    delete: Providers_deleteExistingProvider
+    get: Providers_getData
+    patch: Providers_updateProviderData
+  /providers/{providerId}/credentialing-data:
+    get: GetProviderCredentialingData_details
+  /providers/{providerId}/info:
+    get: ProvidersInfo_get
+  /providers/{providerId}/info/addresses:
+    get: ProvidersInfo_listAddresses
+    post: ProvidersInfo_addAddress
+  /providers/{providerId}/info/addresses/{id}:
+    delete: ProvidersInfo_deleteAddress
+    get: ProvidersInfo_getAddress
+    put: ProvidersInfo_updateAddress
+  /providers/{providerId}/info/aliases:
+    get: ProvidersInfo_listAliases
+    post: ProvidersInfo_createAlias
+  /providers/{providerId}/info/aliases/{aliasId}:
+    put: ProvidersInfo_changeAlias
+  /providers/{providerId}/info/aliases/{id}:
+    delete: ProvidersInfo_deleteAlias
+    get: ProvidersInfo_getAlias
+  /providers/{providerId}/info/boardCertifications:
+    get: ProvidersInfo_listBoardCertifications
+    post: ProvidersInfo_addBoardCertification
+  /providers/{providerId}/info/boardCertifications/{id}:
+    delete: ProvidersInfo_deleteBoardCertificationById
+    get: ProvidersInfo_getBoardCertification
+    patch: ProvidersInfo_updateCertificationInfo
+  /providers/{providerId}/info/caqh:
+    delete: ProvidersInfo_deleteCaqhLogin
+    get: ProvidersInfo_getCaqhLoginInfo
+    patch: ProvidersInfo_changeCAQHLogin
+    put: ProvidersInfo_createOrUpdateCaqhLogin
+  /providers/{providerId}/info/certificates:
+    get: ProvidersInfo_listCertificates
+    post: ProvidersInfo_createCertificateInfo
+  /providers/{providerId}/info/certificates/{id}:
+    delete: ProvidersInfo_deleteCertificateInfo
+    get: ProvidersInfo_getCertificate
+    patch: ProvidersInfo_updateCertificateInfo
+  /providers/{providerId}/info/dea:
+    get: ProvidersInfo_listDeaRegistrations
+    post: ProvidersInfo_createDeaRegistrationInfo
+  /providers/{providerId}/info/dea/{id}:
+    delete: ProvidersInfo_deleteDeaRegistration
+    get: ProvidersInfo_getDeaRegistration
+    patch: ProvidersInfo_updateDea
+  /providers/{providerId}/info/educations:
+    get: ProvidersInfo_listEducations
+    post: ProvidersInfo_createEducationInfo
+  /providers/{providerId}/info/educations/{id}:
+    delete: ProvidersInfo_deleteExistingEducation
+    get: ProvidersInfo_getEducation
+    patch: ProvidersInfo_updateEducationInfo
+  /providers/{providerId}/info/emails:
+    get: ProvidersInfo_listEmails
+    post: ProvidersInfo_createEmail
+  /providers/{providerId}/info/emails/{id}:
+    delete: ProvidersInfo_deleteEmail
+    get: ProvidersInfo_getEmail
+    put: ProvidersInfo_updateEmail
+  /providers/{providerId}/info/liabilityInsurances:
+    get: ProvidersInfo_listLiabilityInsurances
+    post: ProvidersInfo_createLiabilityInsurance
+  /providers/{providerId}/info/liabilityInsurances/{id}:
+    delete: ProvidersInfo_deleteLiabilityInsuranceById
+    get: ProvidersInfo_getLiabilityInsurance
+    patch: ProvidersInfo_updateLiabilityInsurance
+  /providers/{providerId}/info/trainings:
+    get: ProvidersInfo_listTrainings
+    post: ProvidersInfo_createTraining
+  /providers/{providerId}/info/trainings/{id}:
+    delete: ProvidersInfo_deleteTrainingInfo
+    get: ProvidersInfo_getTraining
+    patch: ProvidersInfo_updateTrainingInfo
+  /providers/{providerId}/info/workHistory:
+    get: ProvidersInfo_listWorkHistory
+    post: ProvidersInfo_createWorkHistory
+  /providers/{providerId}/info/workHistory/{id}:
+    delete: ProvidersInfo_deleteWorkHistoryInfo
+    get: ProvidersInfo_getWorkHistoryById
+    patch: ProvidersInfo_updateWorkHistory
+  /providers/{providerId}/licenses:
+    get: Licenses_listFromProvider
+    post: Licenses_attachProviderLicense
+  /providers/{providerId}/licenses/verify:
+    post: Licenses_triggerVerification
+  /providers/{providerId}/licenses/{licenseId}:
+    delete: Licenses_detachProviderLicense
+    get: Licenses_getSpecificProviderLicense
+  /providers/{providerId}/licenses/{licenseId}/verifications:
+    get: Licenses_listVerifications
+  /providers/{providerId}/licenses/{licenseId}/verifications/{verificationId}:
+    get: Licenses_getVerificationData
+    patch: Licenses_resolveVerificationProblem
+  /providers/{providerId}/licenses/{licenseId}/verifications/{verificationId}/diff:
+    get: Licenses_diffVerification
+  /providers/{providerId}/licenses/{licenseId}/verify:
+    post: Licenses_triggerNewVerification
+  /providers/{providerId}/notes:
+    get: Notes_listProviderNotes
+    post: Notes_createNewProviderNote
+  /providers/{providerId}/notes/{noteId}:
+    delete: Notes_deleteExistingNote
+    get: Notes_getExistingProviderNote
+    put: Notes_updateExistingProviderNote
+  /providers/{providerId}/report:
+    post: Providers_generateReport
+  /providertypes:
+    get: Providers_listProviderTypes
+  /users/me/password:
+    post: Users_changePassword
+  /webhooks:
+    get: Webhooks_listAll
+    post: Webhooks_createNewWebhook
+  /webhooks/{webhookId}:
+    delete: Webhooks_deleteWebhook
+    get: Webhooks_getDetails
+    patch: Webhooks_updateWebhook
+  /webhookslog:
+    get: Webhooks_listAllLogs
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /integrations/cognito-forms/webhook/{type}:
+    post:
+      application/json: CognitoFormsWebhookReceiveDataRequest
+  /providers/{providerId}/licenses/verify:
+    post:
+      application/json: LicensesTriggerVerificationRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /credentialing-requests/aggregations/owners:
+    get:
+      '200':
+        application/json: CredentialingRequestsAggregateProviderOwnersResponse
+  /datasets/{datasetType}/parameters/{providerId}:
+    get:
+      '200':
+        application/json: DatasetsGetScanParametersResponse
+  /facilities/{facilityId}/info:
+    get:
+      '200':
+        application/json: GetFacilityInfoDetailsResponse
+  /files/{pathOrId}:
+    get:
+      '200':
+        application/json: FilesDownloadFileResponse
+  /groups:
+    get:
+      '200':
+        application/json: GroupsGetAllResponse
+  /organization/reports/sanctionsandexclusions:
+    get:
+      '200':
+        application/json: ReportsListSanctionsAndExclusionsResponse
+  /payer-plans:
+    get:
+      '200':
+        application/json: PayerPlansListResponse
+  /payers:
+    get:
+      '200':
+        application/json: PayersGetAllResponse
+  /providers/{providerId}/info:
+    get:
+      '200':
+        application/json: ProvidersInfoGetResponse
+  /providers/{providerId}/info/addresses:
+    get:
+      '200':
+        application/json: ProvidersInfoListAddressesResponse
+  /providers/{providerId}/info/aliases:
+    get:
+      '200':
+        application/json: ProvidersInfoListAliasesResponse
+  /providers/{providerId}/info/boardCertifications:
+    get:
+      '200':
+        application/json: ProvidersInfoListBoardCertificationsResponse
+  /providers/{providerId}/info/certificates:
+    get:
+      '200':
+        application/json: ProvidersInfoListCertificatesResponse
+  /providers/{providerId}/info/dea:
+    get:
+      '200':
+        application/json: ProvidersInfoListDeaRegistrationsResponse
+  /providers/{providerId}/info/educations:
+    get:
+      '200':
+        application/json: ProvidersInfoListEducationsResponse
+  /providers/{providerId}/info/emails:
+    get:
+      '200':
+        application/json: ProvidersInfoListEmailsResponse
+  /providers/{providerId}/info/liabilityInsurances:
+    get:
+      '200':
+        application/json: ProvidersInfoListLiabilityInsurancesResponse
+  /providers/{providerId}/info/trainings:
+    get:
+      '200':
+        application/json: ProvidersInfoListTrainingsResponse
+  /providers/{providerId}/info/workHistory:
+    get:
+      '200':
+        application/json: ProvidersInfoListWorkHistoryResponse
+  /providers/{providerId}/licenses:
+    get:
+      '200':
+        application/json: LicensesListFromProviderResponse
+  /providers/{providerId}/licenses/{licenseId}/verifications:
+    get:
+      '200':
+        application/json: LicensesListVerificationsResponse
+  /providers/{providerId}/notes:
+    get:
+      '200':
+        application/json: NotesListProviderNotesResponse
+  /providers/{providerId}/report:
+    post:
+      '200':
+        application/json: ProvidersGenerateReportResponse
+  /providertypes:
+    get:
+      '200':
+        application/json: ProvidersListProviderTypesResponse
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhooksListAllResponse
+securityParameters:
+  after:
+    query: false
+  afterInclusive:
+    query: false
+  before:
+    query: false
+  beforeInclusive:
+    query: false
+  category:
+    query: false
+  code:
+    query: false
+  correlationId:
+    query: false
+  count:
+    query: false
+  credentialingRequestId:
+    query: false
+  credentialingRequestType:
+    query: false
+  credentialingStatus:
+    query: false
+  currentEventStatus:
+    query: false
+  cursor:
+    query: false
+  datasetTypes:
+    query: false
+  deactivated:
+    query: false
+  distinctPerProvider:
+    query: false
+  effectiveDate:
+    query: false
+  enrollmentStatus:
+    query: false
+  entityDeactivated:
+    query: false
+  entityId:
+    query: false
+  entityName:
+    query: false
+  entityNpi:
+    query: false
+  entityType:
+    query: false
+  export:
+    query: false
+  facilityInfoTypes:
+    query: false
+  groupId:
+    query: false
+  includeFailedRequests:
+    query: false
+  includeOldMatches:
+    query: false
+  includeOldScans:
+    query: false
+  includeReadRequests:
+    query: false
+  includeUnassigned:
+    query: false
+  latest:
+    query: false
+  licenseApprovedStatus:
+    query: false
+  licenseIds:
+    query: false
+  licenseState:
+    query: false
+  licenseStatus:
+    query: false
+  licenseType:
+    query: false
+  licenseTypeId:
+    query: false
+  licenseVerificationStatus:
+    query: false
+  matchRelevance:
+    query: false
+  name:
+    query: false
+  networkStatus:
+    query: false
+  npi:
+    query: false
+  offset:
+    query: false
+  ownerId:
+    query: false
+  parameterSetId:
+    query: false
+  payerId:
+    query: false
+  payerPlanId:
+    query: false
+  prefix:
+    query: false
+  priority:
+    query: false
+  providerCredentialingStatus:
+    query: false
+  providerDeactivated:
+    query: false
+  providerId:
+    query: false
+  providerIds:
+    query: false
+  providerInfoType:
+    query: false
+  providerName:
+    query: false
+  providerNpi:
+    query: false
+  providerTypeId:
+    query: false
+  referenceId:
+    query: false
+  rosterType:
+    query: false
+  sort:
+    query: false
+  sortDirection:
+    query: false
+  sortedBy:
+    query: false
+  source:
+    query: false
+  specialistType:
+    query: false
+  state:
+    query: false
+  status:
+    query: false
+  subcategory:
+    query: false
+  submissionDate:
+    query: false
+  tags:
+    query: false
+  traceId:
+    query: false
+  type:
+    query: false
+  types:
+    query: false
+  userActionNeeded:
+    query: false
+  userActionResolution:
+    query: false
+validServerUrls: {}

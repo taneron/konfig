@@ -1,0 +1,722 @@
+processed:
+  securitySchemes: {}
+  apiBaseUrl: https://api.discovery.verifiable.com
+  apiVersion: 24.12.2.676
+  apiDescription: >+
+    # Introduction
+
+
+    This document contains the official documentation for the latest version of
+    the Verifiable API. Our solution has been built API-first. That means we
+    first design our API's and build our own user interfaces on top of these
+    API's afterwards. This results in a reusable API that can be used by 3rd
+    parties to offer the exact same functionality as we can provide ourselves.
+    Both the product and API are still subject to significant and potentially
+    breaking changes, so please refer back to this documentation frequently. Any
+    breaking change will be communicated ahead of time to our partners
+    integrating with our API's.
+
+
+    # Getting Started
+
+
+    This is a RESTful API that can be accessed using convential HTTP methods. It
+    doesn't matter what programming language you use, there is already tooling
+    available that can jumpstart you to access our API's. This documentation is
+    based on OpenAPI 3.0 specifications and as such it is possible to
+    dynamically generate a client in a language of your choice by simply loading
+    our [specification
+    document](https://api.discovery.verifiable.com/.well-known/openapi/vCurrent.json)
+    in a tool such as [Swagger
+    Codegen](https://swagger.io/tools/swagger-codegen/). It is not necessary to
+    generate such a client and it is also possible to simply use any HTTP client
+    to access our API. You can refer to the reference below to find the correct
+    HTTP method, endpoint and model to use.
+
+
+    ### Environments
+
+
+    When developing an integration with our API we typicially request you to use
+    our `staging` environment for development and only start using `production`
+    when your integration is stable and tested thoroughly. Please contact
+    [Verifiable support](https://verifiable.com/contact) to be granted access to
+    our environments.
+
+
+    **Staging Base URL**
+
+    ```
+
+    https://api.discovery-staging.verifiable.com/
+
+    ```
+
+
+    **Production Base URL**
+
+    ```
+
+    https://api.discovery.verifiable.com/
+
+    ```
+
+
+    ## Authentication
+
+
+    Most endpoints require authentication to be used. You can authenticate to
+    the API by passing an access token in the `Authentication` header using the
+    `Bearer` scheme. An access token can be requested by authenticating against
+    one of the [Authentication endpoints](https://api.discovery.verifiable.com).
+
+
+    ### Example using password authentication endpoint
+
+
+    **Request:**
+
+
+    ```http
+
+    POST /auth/token/password HTTP/1.1
+
+    Content-Type: application/json
+
+    Host: https://<SERVER>
+
+    {
+        "email": "john.doe@mail.com",
+        "password": "secret"
+    }
+
+    ```
+
+
+    **Response:**
+
+
+    ```http
+
+    HTTP/1.1 200 OK
+
+    Date: Fri, 25 Sep 2020 12:59:56 GMT
+
+    Content-Type: application/json; charset=utf-8
+
+    {
+        "tokenId": "2e5db76c-4c48-4cce-b11f-23a57ac5824c",
+        "token": "MtetyFcIW...xgXXX-Z4yy"
+    }
+
+    ```
+
+
+    ### Example using access token
+
+
+    **Request**
+
+
+    ```http
+
+    GET /audit/log HTTP/1.1
+
+    Authorization: Bearer <ACCESS_TOKEN>
+
+    Host: https://<SERVER>
+
+    ```
+
+
+    An access token is bound to a single user in an organization. The access
+    token should remain secret and be treated as if it were a password. We
+    recommend you to create access tokens with a short time to live and
+    frequently rotate them. Note that time to live requested might be lowered to
+    a shorter duration based on your organization settings. These can be
+    configured to enforce a suitable maximum time to live for your use-cases
+    that facilitate users and service integrations.
+
+
+    ## Create a new provider
+
+
+    A provider must be created and associated with license numbers, NPI numbers
+    or other identifiers that can be used to perform lookups to fetch associated
+    data for this provider.
+
+
+    ### Example creating a new provider
+
+
+    To create a new provider that can be used for license lookups:
+
+
+    **Request:**
+
+
+    ```http
+
+    POST /providers HTTP/1.1
+
+    Content-Type: application/json
+
+    Authorization: Bearer <ACCESS_TOKEN>
+
+    Host: https://<SERVER>
+
+    {
+        "firstName": "John",
+        "lastName": "Doe"
+    }
+
+    ```
+
+
+    **Response:**
+
+
+    ```http
+
+    HTTP/1.1 201 Created
+
+    Date: Fri, 25 Sep 2020 15:25:12 GMT
+
+    Content-Type: application/json; charset=utf-8
+
+    Location: https://<SERVER>/providers/9706f2ea-9c1d-49f3-9a57-871159878c9c
+
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "id": "9706f2ea-9c1d-49f3-9a57-871159878c9c",
+        "licenses": []
+    }
+
+    ```
+
+
+    **Note:**
+
+    The `id` in the response is the `Provider id`. It can be used as a `Path
+    Parameter` to add the licenses to the provider, using Attach license API.
+
+    Also you need `licenseTypeId` which can be picked from the [List License
+    Types](https://api.discovery.verifiable.com) API, we will handle this next.
+    For more details on providers see [Provider
+    endpoints](https://api.discovery.verifiable.com)
+
+
+    ## Get license types
+
+
+    The list of license types which are supported for license verification.
+
+
+    ### Example get license types
+
+
+    Returns a list of all license types that are currently supported and used
+    for license verifications.
+
+
+    **Request**
+
+
+    ```http
+
+    GET /licensetypes HTTP/1.1
+
+    Authorization: Bearer <ACCESS_TOKEN>
+
+    Host: https://<SERVER>
+
+    ```
+
+
+    **Response:**
+
+
+    ```http
+
+    HTTP/1.1 200 OK
+
+    Date: Fri, 25 Sep 2020 15:32:47 GMT
+
+    Content-Type: application/json; charset=utf-8
+
+    {
+        "nextOffset": "100",
+        "nextCursor": "100",
+        "pageSize": 100,
+        "items": [
+            {
+                "id": "0059f76a-280a-377a-73e2-ddfe86f4113c",
+                "name": "Medical Physician & Surgeon",
+                "source": {
+                    "id": "72dcec62-a0d3-4af8-955d-07ecac8f1e4d",
+                    "name": "Missouri Division of ProfessionalRegistration",
+                    "state": "MO",
+                    "availability": "Available",
+                    "isDegraded": false,
+                    "url": "https://pr.mo.gov/licensee-search.asp"
+                }
+            },
+        ],
+        "sortedBy": "Id",
+        "sortDirection": "Asc"
+    }
+
+    ```
+
+
+    **Note:**
+
+    `id` in response refers to `licenseTypeId`. It will be unique for each
+    license type. Please see [List License
+    Types](https://api.discovery.verifiable.com) for more details.
+
+
+    ## Attach a license to a provider
+
+
+    To perform a license verification you must attach a license to a provider.
+    The first time you do this will automatically trigger a license verification
+    on that provider. Once attached you can re-verify the same license without
+    reattaching it. A provider can have more than one license attached.
+
+
+    ### Example attach license to a provider
+
+
+    **Request:**
+
+
+    ```http
+
+    POST /providers/{providerId}/licenses HTTP/1.1
+
+    Content-Type: application/json
+
+    Authorization: Bearer <ACCESS_TOKEN>
+
+    Host: https://<SERVER>
+
+    {
+        "licenseNumber": "123456",
+        "licenseTypeId": "0059f76a-280a-377a-73e2-ddfe86f4113c"
+    }
+
+    ```
+
+
+    **Response:**
+
+
+    ```http
+
+    HTTP/1.1 201 Created
+
+    Date: Fri, 25 Sep 2020 15:35:00 GMT
+
+    Content-Type: application/json; charset=utf-8
+
+    Location:
+    https://<SERVER>/providers/9706f2ea-9c1d-49f3-9a57-871159878c9c?licenseId=bfb028f0-52ca-47f4-8181-6b4c8262d29c
+
+    {
+        "providerId": "9706f2ea-9c1d-49f3-9a57-871159878c9c",
+        "licenseNumber": "123456",
+        "licenseType": {
+            "id": "0059f76a-280a-377a-73e2-ddfe86f4113c",
+            "name": "Registered Nurse - RN",
+            "source": {
+                "id": "679b4f9a-cc3c-49e8-b560-0d0a9af47fd3”,
+                "name": "Missouri Division of ProfessionalRegistration",
+                "state": "MO",
+                "availability": "Available",
+                "url": "https://pr.mo.gov/licensee-search.asp"
+            }
+        }
+        "jobStatus": "Pending",
+        "id": "b45cbeb0-873e-495b-8182-1b9a8b6d379d"
+    }
+
+    ```
+
+
+    **Note:**
+
+    Register a Webhook to get notified on HTTP endpoint, this prevents the need
+    to poll the API for completion checks. For more details on Webhooks please
+    see [Webhooks endpoint](https://api.discovery.verifiable.com) and for
+    details on attaching a license see [Attach License
+    endpoint](https://api.discovery.verifiable.com).
+
+
+    ## Fetch created provider
+
+
+    Returns the data for a specific provider.
+
+
+    ### Example to fetch created provider
+
+
+    **Request**
+
+
+    ```http
+
+    GET /providers/{providerId} HTTP/1.1
+
+    Authorization: Bearer <ACCESS_TOKEN>
+
+    Host: https://<SERVER>
+
+    ```
+
+
+    **Response:**
+
+
+    ```http
+
+    HTTP/1.1 200 OK
+
+    Date: Fri, 25 Sep 2020 15:36:30 GMT
+
+    Content-Type: application/json; charset=utf-8
+
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "id": "9706f2ea-9c1d-49f3-9a57-871159878c9c",
+        "npis": [],
+        "licenses": [
+            {
+                "providerId": "9706f2ea-9c1d-49f3-9a57-871159878c9c",
+                "licenseNumber": "123456",
+                "licenseType": {
+                    "id": "0059f76a-280a-377a-73e2-ddfe86f4113c",
+                    "name": "Registered Nurse - RN",
+                    "source": {
+                        "id": "679b4f9a-cc3c-49e8-b560-0d0a9af47fd3”,
+                        "name": "Missouri Division of ProfessionalRegistration",
+                        "state": "MO",
+                        "availability": "Available",
+                        "url": "https://pr.mo.gov/licensee-search.asp"
+                    }
+                }
+                "jobStatus": "Idle",
+                "currentVerificationStatus": "NeedsReview",
+                "id": "b45cbeb0-873e-495b-8182-1b9a8b6d379d"
+            }
+        ]
+    }
+
+    ```
+
+
+    **Note:**
+
+    Response contains attached licenses, NPI details for the given provider. To
+    get details of these individual items (a particular License or an NPI), use
+    unique identifiers in each of these categories. For more details check [Get
+    specific license endpoint](https://api.discovery.verifiable.com) or [Get
+    specific NPI record](https://api.discovery.verifiable.com). Further details
+    on providers are at [Providers
+    endpoint](https://api.discovery.verifiable.com).
+
+
+    # Common Concepts
+
+
+    ## Pagination, filtering and sorting
+
+
+    Some endpoints can return a large list of data. To allow you to efficiently
+    iterate through this data these endpoints offer pagination, sorting and
+    filtering. The concept will be similar for each endpoint that supports it:
+
+
+    * Pagination, filtering and sorting parameters are provided through the
+    query string.
+
+    * Pagination, filtering and sorting is only supported for endpoints that
+    return lists of data.
+
+    * Filters is only supported for certain endpoints. You can refer to the
+    documentation of the endpoint to find out if filtering is supported.
+
+    * The `sortedBy` and `sortDirection` parameters can be used to specify the
+    sorting method.
+
+    * The `count` parameter can be used to specify the page size. Please note
+    that the maximum and default page size can differ per endpoint.
+
+    * (Deprecated) The `offset` parameter influences the start of the page. For
+    the first page you can always omit this parameter. For any subsequent page
+    you can supply the value from the `nextOffset` parameter as returned by the
+    server.
+
+    * The `cursor` parameter influences the start of the page. For the first
+    page you can always omit this parameter. For any subsequent page you can
+    supply the value from the `nextCursor` or `previousCursor` parameter as
+    returned by the server.
+
+
+    Example on how to make a paginated request:
+
+
+    ```http
+
+    GET /audit/log?sortDirection=Asc&sortedBy=Id&count=10 HTTP/1.1
+
+    Authorization: Bearer <ACCESS_TOKEN>
+
+    Host: https://<SERVER>
+
+    ```
+
+
+    In addition to returning a list of `items`, a paginated response will also
+    return `nextCursor` and/or `previousCursor`. The value of this property can
+    be used to fetch the next or previous page by passing it in the `cursor`
+    parameter.
+
+
+    ## Error handling
+
+
+    All responses that do not indicate a success status code will return an
+    error using the error model as specified by [RFC
+    7807](https://tools.ietf.org/html/rfc7807). The amount of details exposed by
+    the error model varies and depends on the nature of the error. We attempt to
+    include as much information as is necessary to be able to self-diagnose the
+    problem that led to the error. Should this information not be enough, then
+    we also supply a `correlationId` in the response. We kindly request you to
+    make note of this value when contacting Verifiable support as this will help
+    us to quickly locate more information on this error.
+
+
+    Example error result on a malformed request:
+
+    ```json
+
+    {
+        "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "correlationId": "5e94110e-45a8-404c-831d-77eaeaa73ad6",
+        "errors": {
+            "$.firstName": [
+                "The JSON value could not be converted to System.String. Path: $.firstName | LineNumber: 1 | BytePositionInLine: 18."
+            ]
+        }
+    }
+
+    ```
+
+
+    ## Nullable properties
+
+
+    If an input parameter is required it is marked as such. If an input
+    parameter is not marked as required and you do not wish or need to use it,
+    you should omit the parameter completely in the request.
+
+
+    For response parameters you should always code defensively and assume that a
+    parameter might be missing from the response. This could happen in case the
+    parameter is not applicable (yet) or simply because the data is missing. By
+    coding defensively and assuming that a parameter might be missing you also
+    future proof your solution for potential future (otherwise) breaking
+    changes.
+
+
+    ## Flexible data model
+
+
+    In some cases we collect data from external sources that are hard to fit in
+    a single predefined schema. For these cases we have come up with a flexible
+    data model that allows us to store structured data in 3 different ways:
+     - Form 
+     - Table 
+     - Section
+     
+    ### Table
+
+
+    Data that can be represented in a table structure. The keys of every
+    element/object in the data array is expected to be the same.
+
+
+    ```json
+
+    {
+       "type": "Table",
+       "data": [
+          {
+             "Status Code": "CB",
+             "Effective Date": "06/10/2016",
+             "Description": "CANCELLED BY BOARD"
+          },
+          {
+             "Status Code": "NA",
+             "Effective Date": "06/10/2016",
+             "Description": "NOT ACTIVE"
+          }
+       ]
+    }
+
+    ```
+
+
+    ### Section
+
+    Sections are used to represent multiple different data representations. For
+    example, additional properties can 
+
+    have three sections with section one being a Form, while the other two could
+    be a table. 
+
+    Also note there could be sections with and without heading.
+
+
+    #### With section heading
+
+    ```json
+
+    {
+       "type": "Section",
+       "data": {
+          "Discipline": {
+             "type": "Form",
+             "data": {
+                "Discipline/Final Orders state": "ILLINOIS",
+                "Date action was taken": "02/03/2020",
+                "Against privilege to practice (PTP)": "N/A"
+             }
+          },
+          "NPDB code": {
+             "type": "Form",
+             "data": {
+                "NPDB code": "39 - LICENSE REVOCATION, SUSPENSION OR OTHER DISCIPLINARY ACTION TAKEN BY A FEDERAL, STATE OR LOCAL LICENSING AUTHORITY"
+             }
+          },
+          "Actions": {
+             "type": "Form",
+             "data": {
+                "Initial action date": "02/03/2020",
+                "Effective date(s)": "02/03/2020 - INDEFINITE/UNSPECIFIED",
+                "Is license automatically reinstated after the effective date(s)": "NOT SUPPLIED",
+                "NPDB code": "1148 - DENIAL OF LICENSE RENEWAL"
+             }
+          }
+       }
+    }
+
+    ```
+
+
+    #### Without section heading
+
+    ```json
+
+    {
+       "type": "Section",
+       "data": [
+          {
+             "type": "Form",
+             "data": {
+                "Discipline/Final Orders state": "ILLINOIS",
+                "Date action was taken": "02/03/2020",
+                "Against privilege to practice (PTP)": "N/A"
+             }
+          },
+          {
+             "type": "Form",
+             "data": {
+                "NPDB code": "39 - LICENSE REVOCATION, SUSPENSION OR OTHER DISCIPLINARY ACTION TAKEN BY A FEDERAL, STATE OR LOCAL LICENSING AUTHORITY"
+             }
+          },
+          {
+             "type": "Form",
+             "data": {
+                "Initial action date": "02/03/2020",
+                "Effective date(s)": "02/03/2020 - INDEFINITE/UNSPECIFIED",
+                "Is license automatically reinstated after the effective date(s)": "NOT SUPPLIED",
+                "NPDB code": "1148 - DENIAL OF LICENSE RENEWAL"
+             }
+          }
+       ]
+    }
+
+    ```
+
+
+    ### Form
+
+
+    A form is essentially a simple key/value collection, but it can also have
+    nested flexible data.
+
+
+    #### Simple form
+
+    ```json
+
+    {
+       "type": "Form",
+       "data": {
+          "Date of Birth": "1958",
+          "Registration Date": "06/13/2016",
+          "Disciplinary Status": "CANCELLED BY BOARD"
+       }
+    }
+
+    ```
+
+
+    #### Nested form
+
+
+    ```json
+
+    {
+       "type": "Form",
+       "data": {
+          "Date of Birth": "1958",
+          "Registration Date": "06/13/2016",
+          "Disciplinary Status": "CANCELLED BY BOARD",
+          "Status Change": {
+             "type": "Table",
+             "data": [
+                {
+                   "Status Code": "CB",
+                   "Effective Date": "06/10/2016",
+                   "Description": "CANCELLED BY BOARD"
+                },
+                {
+                   "Status Code": "NA",
+                   "Effective Date": "06/10/2016",
+                   "Description": "NOT ACTIVE"
+                }
+             ]
+          }
+       }
+    }
+
+    ```
+
+  apiTitle: Verifiable API Documentation
+  endpoints: 102
+  sdkMethods: 168
+  schemas: 337
+  parameters: 718
+  originalCustomRequest:
+    type: GET
+    url: https://api.discovery.verifiable.com/.well-known/openapi/vCurrent.json
+  customRequestSpecFilename: verifiable.com.yaml
+  difficultyScore: 516
