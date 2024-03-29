@@ -1,0 +1,143 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/v1/collections:
+    get: Collections_getListAll
+  /api/v1/collections/{collection_safename}:
+    get: Collections_getTracks
+  /api/v1/tracks/genre_groups:
+    get: GenreGroups_getAllGenreGroups
+  /api/v1/tracks/genres:
+    get: Genres_getAllGenres
+  /api/v1/tracks/instruments:
+    get: Instruments_getAllInstruments
+  /api/v1/tracks/moods:
+    get: Moods_getAll
+  /api/v1/tracks/purposes:
+    get: Purposes_getAll
+  /api/v1/tracks/search:
+    get: Search_tracks
+  /api/v1/tracks/simplified_search:
+    get: Search_mainTracksInfoGet
+  /api/v1/tracks/simplified_trending:
+    get: Trending_getPopularTracks
+  /api/v1/tracks/trending:
+    get: Trending_getPopularTracks
+  /api/v1/tracks/{track_id}/download:
+    get: Download_trackFile
+  /api/v1/tracks/{track_id}/info:
+    get: Info_trackInfoGet
+  /api/v1/tracks/{track_version_id}/download_version:
+    get: DownloadTrackVersion_getVersionDownload
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/collections:
+    get:
+      '200':
+        application/json: CollectionsGetListAllResponse
+  /api/v1/collections/{collection_safename}:
+    get:
+      '200':
+        application/json: CollectionsGetTracksResponse
+  /api/v1/tracks/genre_groups:
+    get:
+      '200':
+        application/json: GenreGroupsGetAllGenreGroupsResponse
+  /api/v1/tracks/genres:
+    get:
+      '200':
+        application/json: GenresGetAllGenresResponse
+  /api/v1/tracks/instruments:
+    get:
+      '200':
+        application/json: InstrumentsGetAllInstrumentsResponse
+  /api/v1/tracks/moods:
+    get:
+      '200':
+        application/json: MoodsGetAllResponse
+  /api/v1/tracks/purposes:
+    get:
+      '200':
+        application/json: PurposesGetAllResponse
+  /api/v1/tracks/search:
+    get:
+      '200':
+        application/json: SearchTracksResponse
+  /api/v1/tracks/simplified_search:
+    get:
+      '200':
+        application/json: SearchMainTracksInfoGetResponse
+  /api/v1/tracks/simplified_trending:
+    get:
+      '200':
+        application/json: TrendingGetPopularTracks200Response
+  /api/v1/tracks/trending:
+    get:
+      '200':
+        application/json: TrendingGetPopularTracksResponse
+  /api/v1/tracks/{track_id}/download:
+    get:
+      '200':
+        application/zip: DownloadTrackFileResponse
+  /api/v1/tracks/{track_id}/info:
+    get:
+      '200':
+        application/json: InfoTrackInfoGetResponse
+  /api/v1/tracks/{track_version_id}/download_version:
+    get:
+      '200':
+        application/wav: DownloadTrackVersionGetVersionDownloadResponse
+securityParameters:
+  Authorization:
+    header: false
+  genreGroupOperator:
+    query: false
+  genreGroup[]:
+    query: false
+  genreOperator:
+    query: false
+  genre[]:
+    query: false
+  instrument[]:
+    query: false
+  key[]:
+    query: false
+  max_duration:
+    query: false
+  max_tempo:
+    query: false
+  min_duration:
+    query: false
+  min_tempo:
+    query: false
+  mood[]:
+    query: false
+  notGenreGroup[]:
+    query: false
+  notGenre[]:
+    query: false
+  notInstrument[]:
+    query: false
+  notMood[]:
+    query: false
+  notPurpose[]:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  purpose[]:
+    query: false
+  q:
+    query: false
+  sort:
+    query: false
+  variable_tempo:
+    query: false
+  version:
+    query: false
+validServerUrls: {}

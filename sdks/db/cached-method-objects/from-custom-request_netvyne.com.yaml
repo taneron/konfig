@@ -1,0 +1,102 @@
+hash: 422fb09cfa4f1e60a101ddeed1b374b45016e0257e17a632c3f4e0a001133f7b
+methodObjects:
+  - url: /categories
+    method: updateCategories
+    httpMethod: post
+    tag: settings
+    typeScriptTag: settings
+    description: Set/update the categories used for moderation of comments
+    parameters:
+      - name: Categories
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /comments
+    method: submitProcessingDetails
+    httpMethod: post
+    tag: comment
+    typeScriptTag: comment
+    description: Submit a comment for processing
+    parameters:
+      - name: ID
+        schema: string
+        description: ''
+      - name: ParentCommentID
+        schema: string
+        description: ''
+      - name: Text
+        schema: string
+        description: ''
+      - name: UserName
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /demo_webhook
+    method: webhookResponseHandling
+    httpMethod: post
+    tag: example
+    typeScriptTag: example
+    description: Sample of a route that receives the webhook response
+    parameters:
+      - name: APIVersion
+        schema: string
+        description: ''
+      - name: Categories
+        schema: array
+        description: ''
+      - name: ID
+        schema: string
+        description: ''
+      - name: LastComputedAt
+        schema: string
+        description: ''
+      - name: Type
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /instructions
+    method: setInstructionsUrl
+    httpMethod: post
+    tag: settings
+    typeScriptTag: settings
+    description: >-
+      Set/update the instructions url at which moderation instructions are
+      provided
+    parameters:
+      - name: InstructionsURL
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /webhooks
+    method: updateWebhookUrl
+    httpMethod: post
+    tag: webhook
+    typeScriptTag: webhook
+    description: Set/update the webhook url at which results are received
+    parameters:
+      - name: WebhookURL
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '500'
+        description: ''
+numberOfSchemas: 16
+apiDescription: Moderation API Service

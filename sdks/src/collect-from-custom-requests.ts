@@ -2333,6 +2333,19 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://api.ilert.com/api-docs/swagger.json",
   },
+  "marketdata.app": {
+    type: "GET",
+    url: "https://api.marketdata.app/schema/",
+    apiBaseUrl: "https://api.marketdata.app/",
+  },
+  "melod.ie": {
+    type: "GET",
+    url: "https://api.melod.ie/openapi.yml",
+  },
+  "netvyne.com": {
+    type: "GET",
+    url: "https://api.netvyne.com/documentation/doc.json",
+  },
   "localizely.com": {
     type: "GET",
     url: "https://api.localizely.com/api-docs",

@@ -1,0 +1,212 @@
+{
+  "securitySchemes": {
+    "Bearer": {
+      "description": "\"Type 'Bearer TOKEN' to correctly set the API Key\"",
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "apiBaseUrl": "https://api.netvyne.com/v1",
+  "apiVersion": "1.0",
+  "apiDescription": "Moderation API Service",
+  "apiTitle": "Netvyne API",
+  "endpoints": 5,
+  "sdkMethods": 5,
+  "schemas": 16,
+  "parameters": 12,
+  "contactUrl": "https://blog.netvyne.com/blog/support",
+  "contactEmail": "info@netvyne.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://api.netvyne.com/documentation/doc.json"
+  },
+  "customRequestSpecFilename": "netvyne.com.yaml",
+  "difficultyScore": 14,
+  "difficulty": "Very Easy",
+  "company": "Netvyne",
+  "sdkName": "netvyne-{language}-sdk",
+  "clientName": "Netvyne",
+  "metaDescription": "Netvyne provides the APIs and tools for discussion platforms to effortlessly manage and curate their users' comments.\n\nNetvyne's API enforces your own content policy criterion and is tailored to your platform's needs. Netvyne takes a hybrid man-machine approach to bring both low latency and high accuracy moderation, resulting in increased user safety and community growth.",
+  "apiStatusUrls": "inherit",
+  "homepage": "netvyne.com",
+  "developerDocumentation": "api.netvyne.com/documentation/index.html",
+  "categories": [
+    "discussion",
+    "moderation"
+  ],
+  "category": "AI Tools",
+  "methods": [
+    {
+      "url": "/categories",
+      "method": "updateCategories",
+      "httpMethod": "post",
+      "tag": "settings",
+      "typeScriptTag": "settings",
+      "description": "Set/update the categories used for moderation of comments",
+      "parameters": [
+        {
+          "name": "Categories",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/comments",
+      "method": "submitProcessingDetails",
+      "httpMethod": "post",
+      "tag": "comment",
+      "typeScriptTag": "comment",
+      "description": "Submit a comment for processing",
+      "parameters": [
+        {
+          "name": "ID",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "ParentCommentID",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "Text",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "UserName",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/demo_webhook",
+      "method": "webhookResponseHandling",
+      "httpMethod": "post",
+      "tag": "example",
+      "typeScriptTag": "example",
+      "description": "Sample of a route that receives the webhook response",
+      "parameters": [
+        {
+          "name": "APIVersion",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "Categories",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "ID",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "LastComputedAt",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "Type",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/instructions",
+      "method": "setInstructionsUrl",
+      "httpMethod": "post",
+      "tag": "settings",
+      "typeScriptTag": "settings",
+      "description": "Set/update the instructions url at which moderation instructions are provided",
+      "parameters": [
+        {
+          "name": "InstructionsURL",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/webhooks",
+      "method": "updateWebhookUrl",
+      "httpMethod": "post",
+      "tag": "webhook",
+      "typeScriptTag": "webhook",
+      "description": "Set/update the webhook url at which results are received",
+      "parameters": [
+        {
+          "name": "WebhookURL",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Netvyne offers API tools for discussion platforms to manage & curate user comments. Enforcing content policy criteria, it ensures low latency & high accuracy moderation for user safety & community growth. Netvyne's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/netvyne/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/netvyne/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/netvyne/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/netvyne/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/netvyne/favicon.png",
+  "clientNameCamelCase": "netvyne",
+  "lastUpdated": "2024-03-29T22:42:59.082Z",
+  "typescriptSdkUsageCode": "import { Netvyne } from 'netvyne-typescript-sdk';\n\nconst netvyne = new Netvyne({\n    // \"Type 'Bearer TOKEN' to correctly set the API Key\"\n    bearer: \"AUTHORIZATION\"\n})",
+  "typescriptSdkFirstRequestCode": "// Set/update the categories used for moderation of comments\nconst updateCategoriesResponse = netvyne.settings.updateCategories()",
+  "fixedSpecFileName": "netvyne-fixed-spec.yaml"
+}
