@@ -1,0 +1,82 @@
+processed:
+  securitySchemes: {}
+  apiBaseUrl: https://sandbox.moffin.mx
+  apiVersion: 0.1.0
+  apiDescription: >
+    # Introduction
+
+
+    Moffin allows you to validate and evaluate the credit profile of your
+    clients in an instant. Consult and automatically evaluate their financial
+    information.
+
+
+    Moffin API is implemented as a [REST
+    API](https://en.wikipedia.org/wiki/Representational_State_Transfer)
+    architecture.
+
+    Our API has predictable resource-oriented URLs, accepts form-encoded request
+    bodies, returns JSON responses, and uses standard HTTP response codes,
+    authentication, and verbs.
+
+
+    Click [here](https://guides.moffin.mx) to consult our guides.
+
+
+    # Environments
+
+
+    | Name           |
+    Description                                                                                                                                                                                                                                                   
+    | Base URL                         |
+
+    | -------------- |
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    | -------------------------------- |
+
+    | **Sandbox**    | The Sandbox environment is dedicated to development and
+    testing. In this environment, no real taxpayer credentials are required and
+    all interaction with the Moffin is simulated generating life-like data,
+    allowing you to pull test data from all endpoints. |
+    https://sandbox.moffin.mx/api/v1 |
+
+    | **Production** | The Production environment is dedicated to the
+    application with real connections to Moffin. In this environment, real
+    client credentials are required and you will get real data through
+    Moffin.                                                               |
+    https://app.moffin.mx/api/v1     |
+
+
+    Each environment has a different API Key for authentication.
+
+
+    # Generate access token
+
+
+    Go to the settings panel in Moffin to create an access token.
+
+    Go to 'Configuración' > 'API' > 'Crear nuevo token':
+
+
+    - [Set up token in sandbox](https://sandbox.moffin.mx/configuracion/api)
+
+    - [Set up token in production](https://app.moffin.mx/configuracion/api)
+
+
+    You can then set the token as shown in this example:
+
+
+    ```sh
+      curl --location 'https://sandbox.moffin.mx/api/v1/report' \
+        --header 'Authorization: Token $TOKEN'
+    ```
+  apiTitle: Moffin API
+  endpoints: 32
+  sdkMethods: 36
+  schemas: 0
+  parameters: 282
+  originalCustomRequest:
+    type: GET
+    url: https://app.moffin.mx/api/v1/docs
+  customRequestSpecFilename: moffin.mx.yaml
+  difficultyScore: 106.5

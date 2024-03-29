@@ -1,0 +1,359 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v1/evaluations:
+    get: Customers_listWithPagination
+  /api/v1/form/nip/send-email/{formId}:
+    post: Form_sendEmailVerification
+  /api/v1/form/nip/send-sms/{formId}:
+    post: Form_sendSmsVerification
+  /api/v1/form/nip/validate/{formId}:
+    post: Form_validateNipForm
+  /api/v1/form/submit/{formId}:
+    post: Form_submitFormById
+  /api/v1/form/{formConfigId}:
+    post: Form_createNewForm
+  /api/v1/form/{formId}:
+    patch: Form_updateForm
+  /api/v1/formconfigs:
+    get: Formconfigs_getWithPagination
+    post: Formconfigs_createConfig
+  /api/v1/formconfigs/{id}:
+    get: Formconfigs_getById
+    patch: Formconfigs_editConfig
+  /api/v1/forms:
+    get: Forms_getFormSubmissions
+  /api/v1/forms/{id}:
+    get: Forms_getSubmission
+  /api/v1/forms/{id}/query:
+    post: Forms_createFormQuery
+  /api/v1/postal-codes/{postalCode}:
+    get: PostalCodes_getNeighborhoodsByZip
+  /api/v1/profiles:
+    get: Profiles_listWithPagination
+    post: Profiles_createProfile
+  /api/v1/profiles/info:
+    post: Profiles_createMultiple
+  /api/v1/profiles/{id}:
+    get: Profiles_getById
+    put: Profiles_updateProfile
+  /api/v1/profiles/{id}/info:
+    get: Profiles_getMoffinReducedInfo
+  /api/v1/profiles/{id}/query:
+    post: Profiles_queryProfileServices
+  /api/v1/query/bureau_pf:
+    post: QueryDataSources_bureauPersonaFisicaReport
+  /api/v1/query/bureau_pm:
+    post: QueryDataSources_bureauPmReport
+  /api/v1/query/bureau_pm/resume/{id}:
+    get: QueryDataSources_getPendingReportById
+  /api/v1/query/ca-blacklist:
+    post: Beta_getComplyAdvantageBlacklist
+  /api/v1/query/circulo_credito_pf:
+    post: Beta_consolidatedReportWithScore
+  /api/v1/query/id_validation/jumio:
+    post: QueryDataSources_createJumioKycLink
+  /api/v1/query/imss-job-history:
+    post: QueryDataSources_getImssJobHistory
+  /api/v1/query/prospector_pf:
+    post: QueryDataSources_prospectorPfScore
+  /api/v1/query/renapo_curp:
+    post: QueryDataSources_getRenapoCurp
+  /api/v1/query/sat_blacklist:
+    post: QueryDataSources_satBlacklistProfileQuery
+  /api/v1/query/sat_rfc:
+    post: QueryDataSources_getSatRfcCertificatesProfile
+  /api/v1/report:
+    get: Reports_getData
+  /api/v1/report/{id}:
+    get: Reports_getById
+  /api/v1/service_queries:
+    get: ServiceQueries_getServiceQueries
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/form/nip/send-email/{formId}:
+    post:
+      application/json: FormSendEmailVerificationRequest
+  /api/v1/form/nip/send-sms/{formId}:
+    post:
+      application/json: FormSendSmsVerificationRequest
+  /api/v1/form/nip/validate/{formId}:
+    post:
+      application/json: FormValidateNipFormRequest
+  /api/v1/form/submit/{formId}:
+    post:
+      application/json: FormSubmitFormByIdRequest
+  /api/v1/form/{formConfigId}:
+    post:
+      application/json: FormCreateNewFormRequest
+  /api/v1/form/{formId}:
+    patch:
+      application/json: FormUpdateFormRequest
+  /api/v1/formconfigs:
+    post:
+      application/json: FormconfigsCreateConfigRequest
+  /api/v1/formconfigs/{id}:
+    patch:
+      application/json: FormconfigsEditConfigRequest
+  /api/v1/forms/{id}/query:
+    post:
+      application/json: FormsCreateFormQueryRequest
+  /api/v1/profiles:
+    post:
+      application/json: ProfilesCreateProfileRequest
+  /api/v1/profiles/info:
+    post:
+      application/json: ProfilesCreateMultipleRequest
+  /api/v1/profiles/{id}:
+    put:
+      application/json: ProfilesUpdateProfileRequest
+  /api/v1/profiles/{id}/query:
+    post:
+      application/json: ProfilesQueryProfileServicesRequest
+  /api/v1/query/bureau_pf:
+    post:
+      application/json: QueryDataSourcesBureauPersonaFisicaReportRequest
+  /api/v1/query/bureau_pm:
+    post:
+      application/json: QueryDataSourcesBureauPmReportRequest
+  /api/v1/query/ca-blacklist:
+    post:
+      application/json: BetaGetComplyAdvantageBlacklistRequest
+  /api/v1/query/circulo_credito_pf:
+    post:
+      application/json: BetaConsolidatedReportWithScoreRequest
+  /api/v1/query/id_validation/jumio:
+    post:
+      application/json: QueryDataSourcesCreateJumioKycLinkRequest
+  /api/v1/query/imss-job-history:
+    post:
+      application/json: QueryDataSourcesGetImssJobHistoryRequest
+  /api/v1/query/prospector_pf:
+    post:
+      application/json: QueryDataSourcesProspectorPfScoreRequest
+  /api/v1/query/renapo_curp:
+    post:
+      application/json: QueryDataSourcesGetRenapoCurpRequest
+  /api/v1/query/sat_blacklist:
+    post:
+      application/json: QueryDataSourcesSatBlacklistProfileQueryRequest
+  /api/v1/query/sat_rfc:
+    post:
+      application/json: QueryDataSourcesGetSatRfcCertificatesProfileRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/evaluations:
+    get:
+      '200':
+        application/json: CustomersListWithPaginationResponse
+  /api/v1/form/nip/validate/{formId}:
+    post:
+      '400':
+        application/json: FormValidateNipFormResponse
+      '401':
+        application/json: FormValidateNipForm401Response
+      '409':
+        application/json: FormValidateNipForm409Response
+  /api/v1/form/{formConfigId}:
+    post:
+      '201':
+        application/json: FormCreateNewFormResponse
+  /api/v1/formconfigs:
+    get:
+      '200':
+        application/json: FormconfigsGetWithPaginationResponse
+    post:
+      '201':
+        application/json: FormconfigsCreateConfigResponse
+  /api/v1/formconfigs/{id}:
+    get:
+      '200':
+        application/json: FormconfigsGetByIdResponse
+  /api/v1/forms:
+    get:
+      '200':
+        application/json: FormsGetFormSubmissionsResponse
+  /api/v1/forms/{id}:
+    get:
+      '200':
+        application/json: FormsGetSubmissionResponse
+  /api/v1/forms/{id}/query:
+    post:
+      '201':
+        application/json: FormsCreateFormQueryResponse
+      '500':
+        application/json: FormsCreateFormQuery500Response
+  /api/v1/postal-codes/{postalCode}:
+    get:
+      '200':
+        application/json: PostalCodesGetNeighborhoodsByZipResponse
+      '400':
+        application/json: PostalCodesGetNeighborhoodsByZip400Response
+      '404':
+        application/json: PostalCodesGetNeighborhoodsByZip404Response
+  /api/v1/profiles:
+    get:
+      '200':
+        application/json: ProfilesListWithPaginationResponse
+    post:
+      '201':
+        application/json: ProfilesCreateProfileResponse
+  /api/v1/profiles/info:
+    post:
+      '200':
+        application/json: ProfilesCreateMultipleResponse
+  /api/v1/profiles/{id}:
+    get:
+      '200':
+        application/json: ProfilesGetByIdResponse
+    put:
+      '200':
+        application/json: ProfilesUpdateProfileResponse
+  /api/v1/profiles/{id}/info:
+    get:
+      '200':
+        application/json: ProfilesGetMoffinReducedInfoResponse
+  /api/v1/profiles/{id}/query:
+    post:
+      '201':
+        application/json: ProfilesQueryProfileServicesResponse
+      '500':
+        application/json: ProfilesQueryProfileServices500Response
+  /api/v1/query/bureau_pf:
+    post:
+      '201':
+        application/json: QueryDataSourcesBureauPersonaFisicaReportResponse
+      '400':
+        application/json: QueryDataSourcesBureauPersonaFisicaReport400Response
+      '429':
+        application/json: QueryDataSourcesBureauPersonaFisicaReport429Response
+      '500':
+        application/json: QueryDataSourcesBureauPersonaFisicaReport500Response
+  /api/v1/query/bureau_pm:
+    post:
+      '201':
+        application/json: QueryDataSourcesBureauPmReportResponse
+      '400':
+        application/json: QueryDataSourcesBureauPmReport400Response
+      '429':
+        application/json: QueryDataSourcesBureauPmReport429Response
+      '500':
+        application/json: QueryDataSourcesBureauPmReport500Response
+  /api/v1/query/bureau_pm/resume/{id}:
+    get:
+      '200':
+        application/json: QueryDataSourcesGetPendingReportByIdResponse
+      '401':
+        application/json: QueryDataSourcesGetPendingReportById401Response
+      '409':
+        application/json: QueryDataSourcesGetPendingReportById409Response
+      '500':
+        application/json: QueryDataSourcesGetPendingReportById500Response
+  /api/v1/query/ca-blacklist:
+    post:
+      '201':
+        application/json: BetaGetComplyAdvantageBlacklistResponse
+  /api/v1/query/circulo_credito_pf:
+    post:
+      '201':
+        application/json: BetaConsolidatedReportWithScoreResponse
+      '400':
+        application/json: BetaConsolidatedReportWithScore400Response
+      '401':
+        application/json: BetaConsolidatedReportWithScore401Response
+      '403':
+        application/json: BetaConsolidatedReportWithScore403Response
+      '404':
+        application/json: BetaConsolidatedReportWithScore404Response
+      '429':
+        application/json: BetaConsolidatedReportWithScore429Response
+      '500':
+        application/json: BetaConsolidatedReportWithScore500Response
+  /api/v1/query/id_validation/jumio:
+    post:
+      '201':
+        application/json: QueryDataSourcesCreateJumioKycLinkResponse
+      '400':
+        application/json: QueryDataSourcesCreateJumioKycLink400Response
+      '401':
+        application/json: QueryDataSourcesCreateJumioKycLink401Response
+      '403':
+        application/json: QueryDataSourcesCreateJumioKycLink403Response
+  /api/v1/query/imss-job-history:
+    post:
+      '201':
+        application/json: QueryDataSourcesGetImssJobHistoryResponse
+      '400':
+        application/json: QueryDataSourcesGetImssJobHistory400Response
+  /api/v1/query/prospector_pf:
+    post:
+      '201':
+        application/json: QueryDataSourcesProspectorPfScoreResponse
+      '400':
+        application/json: QueryDataSourcesProspectorPfScore400Response
+      '500':
+        application/json: QueryDataSourcesProspectorPfScore500Response
+  /api/v1/query/renapo_curp:
+    post:
+      '201':
+        application/json: QueryDataSourcesGetRenapoCurpResponse
+      '400':
+        application/json: QueryDataSourcesGetRenapoCurp400Response
+  /api/v1/query/sat_blacklist:
+    post:
+      '201':
+        application/json: QueryDataSourcesSatBlacklistProfileQueryResponse
+      '400':
+        application/json: QueryDataSourcesSatBlacklistProfileQuery400Response
+  /api/v1/query/sat_rfc:
+    post:
+      '201':
+        application/json: QueryDataSourcesGetSatRfcCertificatesProfileResponse
+      '400':
+        application/json: QueryDataSourcesGetSatRfcCertificatesProfile400Response
+  /api/v1/report:
+    get:
+      '200':
+        application/json: ReportsGetDataResponse
+  /api/v1/report/{id}:
+    get:
+      '200':
+        application/json: ReportsGetByIdResponse
+  /api/v1/service_queries:
+    get:
+      '200':
+        application/json: ServiceQueriesGetServiceQueriesResponse
+securityParameters:
+  createdAt:
+    query: false
+  externalId:
+    query: false
+  formId:
+    query: false
+  hideDuplicates:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  order:
+    query: false
+  profileId:
+    query: false
+  rfc:
+    query: false
+  search:
+    query: false
+  service:
+    query: false
+  status:
+    query: false
+  withFileURL:
+    query: false
+  withPDF:
+    query: false
+validServerUrls: {}
