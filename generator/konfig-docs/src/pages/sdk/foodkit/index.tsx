@@ -64,10 +64,10 @@ One powerful platform, complete flexibility, less cost - so you can focus on gro
 We believe in building exceptional technology,  empowering restaurants and removing the expense of building and maintaining complicated technology infrastructure.
 
 WHY FOODKIT?
-✔ We power the world's best restaurant brands from the cloud 
-✔ We provide a best-in-class platform and open API  
+✔ We power the world's best restaurant brands from the cloud
+✔ We provide a best-in-class platform and open API
 ✔ We eliminate the complexity and high costs associated with developing and maintaining a digital restaurant business
-✔ We offer outstanding customer service 24/7 
+✔ We offer outstanding customer service 24/7
 
 Contact us at:
 ✎ https://www.foodkit.io/`}

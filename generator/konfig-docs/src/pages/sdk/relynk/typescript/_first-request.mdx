@@ -1,0 +1,12 @@
+```typescript index.ts
+// Query for point data
+const pointDataFiltersResponse = relynk.query.pointDataFilters({
+    filters: [{"filter_on":"point_subtype","value":["https://brickschema.org/schema/Brick#Air_Temperature_Sensor"]}]
+    group_on: "https://w3id.org/rec#Building"
+    to: "2020-01-01T00:00:00.000Z"
+    from: "2020-01-02T00:00:00.000Z"
+    resolution: "RESOLUTION"
+    is_timeseries: true
+    only_latest_value: true
+})
+```

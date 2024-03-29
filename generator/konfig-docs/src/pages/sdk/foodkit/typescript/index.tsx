@@ -17,10 +17,10 @@ One powerful platform, complete flexibility, less cost - so you can focus on gro
 We believe in building exceptional technology,  empowering restaurants and removing the expense of building and maintaining complicated technology infrastructure.
 
 WHY FOODKIT?
-✔ We power the world's best restaurant brands from the cloud 
-✔ We provide a best-in-class platform and open API  
+✔ We power the world's best restaurant brands from the cloud
+✔ We provide a best-in-class platform and open API
 ✔ We eliminate the complexity and high costs associated with developing and maintaining a digital restaurant business
-✔ We offer outstanding customer service 24/7 
+✔ We offer outstanding customer service 24/7
 
 Contact us at:
 ✎ https://www.foodkit.io/`}
@@ -30,7 +30,7 @@ Contact us at:
       companyKebabCase="foodkit"
       clientNameCamelCase="foodkit"
       homepage="foodkit.io"
-      lastUpdated={new Date("2024-03-29T17:59:37.016Z")}
+      lastUpdated={new Date("2024-03-29T18:20:16.115Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/foodkit/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
