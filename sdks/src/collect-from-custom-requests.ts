@@ -2161,6 +2161,14 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "goshippo.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.goshippo.com/shippoapi/public-api/",
+        browser,
+      });
+    },
+  },
   "bossinsights.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

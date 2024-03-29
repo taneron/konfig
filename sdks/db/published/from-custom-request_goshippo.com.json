@@ -1,0 +1,2144 @@
+{
+  "securitySchemes": {
+    "APIKeyHeader": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "apiBaseUrl": "https://api.goshippo.com",
+  "apiVersion": "2018-02-08",
+  "apiDescription": "Use this API to integrate with the Shippo service",
+  "apiTitle": "Shippo external API.",
+  "endpoints": 45,
+  "sdkMethods": 64,
+  "schemas": 203,
+  "parameters": 159,
+  "contactUrl": "https://goshippo.com/contact/",
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "goshippo.com.yaml",
+  "difficultyScore": 208.75,
+  "difficulty": "Hard",
+  "company": "Shippo",
+  "sdkName": "shippo-{language}-sdk",
+  "clientName": "Shippo",
+  "metaDescription": "Shippo lowers the barriers to shipping for businesses around the world. As free and fast shipping becomes the norm, better access to shipping is a competitive advantage for businesses. \n\nThrough Shippo, ecommerce businesses, marketplaces, and platforms are able to connect to multiple shipping carriers around the world from one API and dashboard. Businesses can get shipping rates, print labels, automate international documents, track shipments, and facilitate returns. Internally, we think of Shippo as the building blocks of shipping.\n\nEveryday we solve core operational problems for our users and businesses. We work hard to provide value and deliver quality results. We understand that our success is directly tied to the success of our customers. \n\nShippo is made up of a diverse set of individuals from around the world and across a variety backgrounds. Specifically, we look for culture and skill add from each person. We believe in self-directed growth, putting away our egos and rolling up our sleeves to get important work done everyday. If that sounds like you, join our team and help build the foundation of something great. https://goshippo.com/jobs/\n\nFounded in 2013, we are a proud team of 200+ based out of San Francisco and Austin. Shippo's investors include Union Square Ventures, Uncork Capital, VersionOne Ventures, FundersClub and others.\n\nLearn more about Shippo: https://goshippo.com/",
+  "apiStatusUrls": "inherit",
+  "homepage": "goshippo.com",
+  "developerDocumentation": "docs.goshippo.com/shippoapi/public-api/",
+  "categories": [
+    "shipping_api",
+    "multi_carrier",
+    "logistics_provider",
+    "shipping_integration"
+  ],
+  "category": "eCommerce",
+  "methods": [
+    {
+      "url": "/addresses",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Addresses",
+      "typeScriptTag": "addresses",
+      "description": "List all addresses",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/addresses",
+      "method": "createNewAddress",
+      "httpMethod": "post",
+      "tag": "Addresses",
+      "typeScriptTag": "addresses",
+      "description": "Create a new address",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/addresses/{AddressId}",
+      "method": "getAddressById",
+      "httpMethod": "get",
+      "tag": "Addresses",
+      "typeScriptTag": "addresses",
+      "description": "Retrieve an address",
+      "parameters": [
+        {
+          "name": "addressId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the address",
+          "example": "ADDRESSID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/addresses/{AddressId}/validate",
+      "method": "validateAddress",
+      "httpMethod": "get",
+      "tag": "Addresses",
+      "typeScriptTag": "addresses",
+      "description": "Validate an address",
+      "parameters": [
+        {
+          "name": "addressId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the address",
+          "example": "ADDRESSID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/batches",
+      "method": "createBatchShipments",
+      "httpMethod": "post",
+      "tag": "Batches",
+      "typeScriptTag": "batches",
+      "description": "Create a batch",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/batches/{BatchId}",
+      "method": "getBatchById",
+      "httpMethod": "get",
+      "tag": "Batches",
+      "typeScriptTag": "batches",
+      "description": "Retrieve a batch",
+      "parameters": [
+        {
+          "name": "batchId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the batch",
+          "example": "BATCHID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/batches/{BatchId}/add_shipments",
+      "method": "addShipmentsToBatch",
+      "httpMethod": "post",
+      "tag": "Batches",
+      "typeScriptTag": "batches",
+      "description": "Add shipments to a batch",
+      "parameters": [
+        {
+          "name": "batchId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the batch",
+          "example": "BATCHID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/batches/{BatchId}/purchase",
+      "method": "purchaseBatch",
+      "httpMethod": "post",
+      "tag": "Batches",
+      "typeScriptTag": "batches",
+      "description": "Purchase a batch",
+      "parameters": [
+        {
+          "name": "batchId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the batch",
+          "example": "BATCHID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/batches/{BatchId}/remove_shipments",
+      "method": "removeShipments",
+      "httpMethod": "post",
+      "tag": "Batches",
+      "typeScriptTag": "batches",
+      "description": "Remove shipments from a batch",
+      "parameters": [
+        {
+          "name": "batchId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the batch",
+          "example": "BATCHID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/carrier_accounts",
+      "method": "listAllAccounts",
+      "httpMethod": "get",
+      "tag": "Carrier Accounts",
+      "typeScriptTag": "carrierAccounts",
+      "description": "List all carrier accounts",
+      "parameters": [
+        {
+          "name": "serviceLevels",
+          "schema": "boolean",
+          "required": false,
+          "description": "Appends the property `service_levels` to each returned carrier account"
+        },
+        {
+          "name": "carrier",
+          "schema": "string",
+          "required": false,
+          "description": "Filter the response by the specified carrier"
+        },
+        {
+          "name": "accountId",
+          "schema": "string",
+          "required": false,
+          "description": "Filter the response by the specified carrier account Id"
+        },
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/carrier_accounts",
+      "method": "createNewAccount",
+      "httpMethod": "post",
+      "tag": "Carrier Accounts",
+      "typeScriptTag": "carrierAccounts",
+      "description": "Create a new carrier account",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "parameters",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "account_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ACCOUNT_ID"
+        },
+        {
+          "name": "active",
+          "schema": "boolean",
+          "required": true,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "carrier",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "ups"
+        },
+        {
+          "name": "metadata",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "UPS Account"
+        },
+        {
+          "name": "test",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/carrier_accounts/{CarrierAccountId}",
+      "method": "getAccountById",
+      "httpMethod": "get",
+      "tag": "Carrier Accounts",
+      "typeScriptTag": "carrierAccounts",
+      "description": "Retrieve a carrier account",
+      "parameters": [
+        {
+          "name": "carrierAccountId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the carrier account",
+          "example": "CARRIERACCOUNTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/carrier_accounts/{CarrierAccountId}",
+      "method": "updateAccount",
+      "httpMethod": "put",
+      "tag": "Carrier Accounts",
+      "typeScriptTag": "carrierAccounts",
+      "description": "Update a carrier account",
+      "parameters": [
+        {
+          "name": "carrierAccountId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the carrier account",
+          "example": "CARRIERACCOUNTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "parameters",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "account_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "****"
+        },
+        {
+          "name": "active",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "carrier",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "usps"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/carrier_accounts/register/new",
+      "method": "addShippoAccount",
+      "httpMethod": "post",
+      "tag": "Carrier Accounts",
+      "typeScriptTag": "carrierAccounts",
+      "description": "Add a Shippo carrier account",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/carrier_accounts/reg-status",
+      "method": "getRegStatus",
+      "httpMethod": "get",
+      "tag": "Carrier Accounts",
+      "typeScriptTag": "carrierAccounts",
+      "description": "Get Carrier Registration status",
+      "parameters": [
+        {
+          "name": "carrier",
+          "schema": "string",
+          "required": true,
+          "description": "filter by specific carrier",
+          "example": "CARRIER"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customs/declarations",
+      "method": "listAllDeclarations",
+      "httpMethod": "get",
+      "tag": "Customs Declarations",
+      "typeScriptTag": "customsDeclarations",
+      "description": "List all customs declarations",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customs/declarations",
+      "method": "createNewDeclaration",
+      "httpMethod": "post",
+      "tag": "Customs Declarations",
+      "typeScriptTag": "customsDeclarations",
+      "description": "Create a new customs declaration",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customs/declarations/{CustomsDeclarationId}",
+      "method": "getDeclarationById",
+      "httpMethod": "get",
+      "tag": "Customs Declarations",
+      "typeScriptTag": "customsDeclarations",
+      "description": "Retrieve a customs declaration",
+      "parameters": [
+        {
+          "name": "customsDeclarationId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the customs declaration",
+          "example": "CUSTOMSDECLARATIONID"
+        },
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customs/items",
+      "method": "listAllItems",
+      "httpMethod": "get",
+      "tag": "Customs Items",
+      "typeScriptTag": "customsItems",
+      "description": "List all customs items",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customs/items",
+      "method": "createNewCustomsItem",
+      "httpMethod": "post",
+      "tag": "Customs Items",
+      "typeScriptTag": "customsItems",
+      "description": "Create a new customs item",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "T-Shirt"
+        },
+        {
+          "name": "eccn_ear99",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "mass_unit",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "lb"
+        },
+        {
+          "name": "metadata",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Order ID \"123454\""
+        },
+        {
+          "name": "net_weight",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "5"
+        },
+        {
+          "name": "origin_country",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ORIGIN_COUNTRY"
+        },
+        {
+          "name": "quantity",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 20
+        },
+        {
+          "name": "sku_code",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "HM-123"
+        },
+        {
+          "name": "tariff_number",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "value_amount",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "200"
+        },
+        {
+          "name": "value_currency",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "USD"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/customs/items/{CustomsItemId}",
+      "method": "getExistingItem",
+      "httpMethod": "get",
+      "tag": "Customs Items",
+      "typeScriptTag": "customsItems",
+      "description": "Retrieve a customs item",
+      "parameters": [
+        {
+          "name": "customsItemId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the customs item",
+          "example": "CUSTOMSITEMID"
+        },
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/live-rates",
+      "method": "initiateLiveRatesRequest",
+      "httpMethod": "post",
+      "tag": "Rates at Checkout",
+      "typeScriptTag": "ratesAtCheckout",
+      "description": "Generate a live rates request",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "address_from",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "address_to",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "line_items",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "parcel",
+          "schema": "undefined",
+          "required": false,
+          "description": "",
+          "example": "5df144dca289442cv7a06"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/live-rates/settings/parcel-template",
+      "method": "clearDefaultParcelTemplate",
+      "httpMethod": "delete",
+      "tag": "Rates at Checkout",
+      "typeScriptTag": "ratesAtCheckout",
+      "description": "Clear current default parcel template",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "The parcel template was successfully deleted."
+        }
+      ]
+    },
+    {
+      "url": "/live-rates/settings/parcel-template",
+      "method": "showDefaultParcelTemplate",
+      "httpMethod": "get",
+      "tag": "Rates at Checkout",
+      "typeScriptTag": "ratesAtCheckout",
+      "description": "Show current default parcel template",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/live-rates/settings/parcel-template",
+      "method": "updateDefaultParcelTemplate",
+      "httpMethod": "put",
+      "tag": "Rates at Checkout",
+      "typeScriptTag": "ratesAtCheckout",
+      "description": "Update default parcel template",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "object_id",
+          "schema": "string",
+          "description": "",
+          "example": "b958d3690bb04bb8b2986724872750f5"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/manifests",
+      "method": "listAllManifests",
+      "httpMethod": "get",
+      "tag": "Manifests",
+      "typeScriptTag": "manifests",
+      "description": "List all manifests",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/manifests",
+      "method": "createNewManifest",
+      "httpMethod": "post",
+      "tag": "Manifests",
+      "typeScriptTag": "manifests",
+      "description": "Create a new manifest",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/manifests/{ManifestId}",
+      "method": "getManifestById",
+      "httpMethod": "get",
+      "tag": "Manifests",
+      "typeScriptTag": "manifests",
+      "description": "Retrieve a manifest",
+      "parameters": [
+        {
+          "name": "manifestId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the manifest to update",
+          "example": "MANIFESTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/orders",
+      "method": "listAllOrders",
+      "httpMethod": "get",
+      "tag": "Orders",
+      "typeScriptTag": "orders",
+      "description": "List all orders",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/orders",
+      "method": "createNewOrder",
+      "httpMethod": "post",
+      "tag": "Orders",
+      "typeScriptTag": "orders",
+      "description": "Create a new order",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/orders/{OrderId}",
+      "method": "getOrderById",
+      "httpMethod": "get",
+      "tag": "Orders",
+      "typeScriptTag": "orders",
+      "description": "Retrieve an order",
+      "parameters": [
+        {
+          "name": "orderId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the order",
+          "example": "ORDERID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/parcel-templates",
+      "method": "listAllCarrierParcelTemplates",
+      "httpMethod": "get",
+      "tag": "Carrier Parcel Templates",
+      "typeScriptTag": "carrierParcelTemplates",
+      "description": "List all carrier parcel templates",
+      "parameters": [
+        {
+          "name": "include",
+          "schema": "string",
+          "description": "filter by user or enabled"
+        },
+        {
+          "name": "carrier",
+          "schema": "string",
+          "description": "filter by specific carrier",
+          "example": "fedex"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/parcel-templates/{CarrierParcelTemplateToken}",
+      "method": "getTemplateById",
+      "httpMethod": "get",
+      "tag": "Carrier Parcel Templates",
+      "typeScriptTag": "carrierParcelTemplates",
+      "description": "Retrieve a carrier parcel templates",
+      "parameters": [
+        {
+          "name": "carrierParcelTemplateToken",
+          "schema": "string",
+          "required": true,
+          "description": "The unique string representation of the carrier parcel template",
+          "example": "CARRIERPARCELTEMPLATETOKEN"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/parcels",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Parcels",
+      "typeScriptTag": "parcels",
+      "description": "List all parcels",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/parcels",
+      "method": "createNewParcel",
+      "httpMethod": "post",
+      "tag": "Parcels",
+      "typeScriptTag": "parcels",
+      "description": "Create a new parcel",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "distance_unit",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "in"
+        },
+        {
+          "name": "extra",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "height",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "1"
+        },
+        {
+          "name": "length",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "1"
+        },
+        {
+          "name": "mass_unit",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "lb"
+        },
+        {
+          "name": "metadata",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "template",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "test",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "weight",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "1"
+        },
+        {
+          "name": "width",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "1"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/parcels/{ParcelId}",
+      "method": "getParcelDetails",
+      "httpMethod": "get",
+      "tag": "Parcels",
+      "typeScriptTag": "parcels",
+      "description": "Retrieve an existing parcel",
+      "parameters": [
+        {
+          "name": "parcelId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the parcel",
+          "example": "PARCELID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/pickups",
+      "method": "createObject",
+      "httpMethod": "post",
+      "tag": "Pickups",
+      "typeScriptTag": "pickups",
+      "description": "Create a pickup",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "carrier_account",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "adcfdddf8ec64b84ad22772bce3ea37a"
+        },
+        {
+          "name": "location",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "requested_end_time",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REQUESTED_END_TIME"
+        },
+        {
+          "name": "requested_start_time",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REQUESTED_START_TIME"
+        },
+        {
+          "name": "transactions",
+          "schema": "array",
+          "required": true,
+          "description": "",
+          "example": [
+            "adcfdddf8ec64b84ad22772bce3ea37a"
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/rates/{RateId}",
+      "method": "getRateById",
+      "httpMethod": "get",
+      "tag": "Rates",
+      "typeScriptTag": "rates",
+      "description": "Retrieve a rate",
+      "parameters": [
+        {
+          "name": "rateId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the rate",
+          "example": "RATEID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/refunds",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Refunds",
+      "typeScriptTag": "refunds",
+      "description": "List all refunds",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/refunds/{RefundId}",
+      "method": "getRefundById",
+      "httpMethod": "get",
+      "tag": "Refunds",
+      "typeScriptTag": "refunds",
+      "description": "Retrieve a refund",
+      "parameters": [
+        {
+          "name": "refundId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the refund to update",
+          "example": "REFUNDID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/service-groups",
+      "method": "listAllServiceGroups",
+      "httpMethod": "get",
+      "tag": "Service Groups",
+      "typeScriptTag": "serviceGroups",
+      "description": "List all service groups",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/service-groups",
+      "method": "createNewGroup",
+      "httpMethod": "post",
+      "tag": "Service Groups",
+      "typeScriptTag": "serviceGroups",
+      "description": "Create a new service group",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/service-groups",
+      "method": "updateExistingGroup",
+      "httpMethod": "put",
+      "tag": "Service Groups",
+      "typeScriptTag": "serviceGroups",
+      "description": "Update an existing service group",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/service-groups/{ServiceGroupId}",
+      "method": "deleteServiceGroup",
+      "httpMethod": "delete",
+      "tag": "Service Groups",
+      "typeScriptTag": "serviceGroups",
+      "description": "Delete a service group",
+      "parameters": [
+        {
+          "name": "serviceGroupId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the service group",
+          "example": "SERVICEGROUPID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "The service group was successfully deleted."
+        }
+      ]
+    },
+    {
+      "url": "/shipments",
+      "method": "listAllShipments",
+      "httpMethod": "get",
+      "tag": "Shipments",
+      "typeScriptTag": "shipments",
+      "description": "List all shipments",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/shipments",
+      "method": "createNewShipment",
+      "httpMethod": "post",
+      "tag": "Shipments",
+      "typeScriptTag": "shipments",
+      "description": "Create a new shipment",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/shipments/{ShipmentId}",
+      "method": "getShipmentById",
+      "httpMethod": "get",
+      "tag": "Shipments",
+      "typeScriptTag": "shipments",
+      "description": "Retrieve a shipment",
+      "parameters": [
+        {
+          "name": "shipmentId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the shipment to update",
+          "example": "SHIPMENTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/shipments/{ShipmentId}/rates",
+      "method": "getShipmentRates",
+      "httpMethod": "get",
+      "tag": "Rates",
+      "typeScriptTag": "rates",
+      "description": "Retrieve shipment rates",
+      "parameters": [
+        {
+          "name": "shipmentId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the shipment to update",
+          "example": "SHIPMENTID"
+        },
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/shipments/{ShipmentId}/rates/{CurrencyCode}",
+      "method": "getShipmentRatesInCurrency",
+      "httpMethod": "get",
+      "tag": "Rates",
+      "typeScriptTag": "rates",
+      "description": "Retrieve shipment rates in currency",
+      "parameters": [
+        {
+          "name": "shipmentId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the shipment to update",
+          "example": "SHIPMENTID"
+        },
+        {
+          "name": "currencyCode",
+          "schema": "string",
+          "required": true,
+          "description": "ISO currency code for the rates",
+          "example": "CURRENCYCODE",
+          "default": "USD"
+        },
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tracks",
+      "method": "registerWebhook",
+      "httpMethod": "post",
+      "tag": "Tracking Status",
+      "typeScriptTag": "trackingStatus",
+      "description": "Register a tracking webhook",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "carrier",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "usps"
+        },
+        {
+          "name": "metadata",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Order 000123"
+        },
+        {
+          "name": "tracking_number",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "9205590164917312751089"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tracks/{Carrier}/{TrackingNumber}",
+      "method": "getStatus",
+      "httpMethod": "get",
+      "tag": "Tracking Status",
+      "typeScriptTag": "trackingStatus",
+      "description": "Get a tracking status",
+      "parameters": [
+        {
+          "name": "trackingNumber",
+          "schema": "string",
+          "required": true,
+          "description": "Tracking number",
+          "example": "TRACKINGNUMBER"
+        },
+        {
+          "name": "carrier",
+          "schema": "string",
+          "required": true,
+          "description": "Name of the carrier",
+          "example": "CARRIER"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/transactions",
+      "method": "listAllShippingLabels",
+      "httpMethod": "get",
+      "tag": "Transactions",
+      "typeScriptTag": "transactions",
+      "description": "List all shipping labels",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/transactions",
+      "method": "createShippingLabel",
+      "httpMethod": "post",
+      "tag": "Transactions",
+      "typeScriptTag": "transactions",
+      "description": "Create a shipping label",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/transactions/{TransactionId}",
+      "method": "getShippingLabel",
+      "httpMethod": "get",
+      "tag": "Transactions",
+      "typeScriptTag": "transactions",
+      "description": "Retrieve a shipping label",
+      "parameters": [
+        {
+          "name": "transactionId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the transaction to update",
+          "example": "TRANSACTIONID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user-parcel-templates",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "User Parcel Templates",
+      "typeScriptTag": "userParcelTemplates",
+      "description": "List all user parcel templates",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user-parcel-templates",
+      "method": "createNewTemplate",
+      "httpMethod": "post",
+      "tag": "User Parcel Templates",
+      "typeScriptTag": "userParcelTemplates",
+      "description": "Create a new user parcel template",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user-parcel-templates/{UserParcelTemplateObjectId}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "User Parcel Templates",
+      "typeScriptTag": "userParcelTemplates",
+      "description": "Delete a user parcel template",
+      "parameters": [
+        {
+          "name": "userParcelTemplateObjectId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the user parcel template",
+          "example": "USERPARCELTEMPLATEOBJECTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "The user parcel template was successfully deleted."
+        }
+      ]
+    },
+    {
+      "url": "/user-parcel-templates/{UserParcelTemplateObjectId}",
+      "method": "getTemplateById",
+      "httpMethod": "get",
+      "tag": "User Parcel Templates",
+      "typeScriptTag": "userParcelTemplates",
+      "description": "Retrieves a user parcel template",
+      "parameters": [
+        {
+          "name": "userParcelTemplateObjectId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the user parcel template",
+          "example": "USERPARCELTEMPLATEOBJECTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user-parcel-templates/{UserParcelTemplateObjectId}",
+      "method": "updateTemplate",
+      "httpMethod": "put",
+      "tag": "User Parcel Templates",
+      "typeScriptTag": "userParcelTemplates",
+      "description": "Update an existing user parcel template",
+      "parameters": [
+        {
+          "name": "userParcelTemplateObjectId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the user parcel template",
+          "example": "USERPARCELTEMPLATEOBJECTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/shippo-accounts",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Shippo Accounts",
+      "typeScriptTag": "shippoAccounts",
+      "description": "List all Shippo Accounts",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "The page number you want to select",
+          "default": 1
+        },
+        {
+          "name": "results",
+          "schema": "integer",
+          "description": "The number of results to return per page (max 100)",
+          "default": 25
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/shippo-accounts",
+      "method": "createNewAccount",
+      "httpMethod": "post",
+      "tag": "Shippo Accounts",
+      "typeScriptTag": "shippoAccounts",
+      "description": "Create a Shippo Account",
+      "parameters": [
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "hippo@shippo.com"
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Shippo"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Meister"
+        },
+        {
+          "name": "company_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Acme"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/shippo-accounts/{ShippoAccountId}",
+      "method": "getAccountById",
+      "httpMethod": "get",
+      "tag": "Shippo Accounts",
+      "typeScriptTag": "shippoAccounts",
+      "description": "Retrieve a Shippo Account",
+      "parameters": [
+        {
+          "name": "shippoAccountId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the ShippoAccount",
+          "example": "SHIPPOACCOUNTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/shippo-accounts/{ShippoAccountId}",
+      "method": "updateAccountObject",
+      "httpMethod": "put",
+      "tag": "Shippo Accounts",
+      "typeScriptTag": "shippoAccounts",
+      "description": "Update a Shippo Account",
+      "parameters": [
+        {
+          "name": "shippoAccountId",
+          "schema": "string",
+          "required": true,
+          "description": "Object ID of the ShippoAccount",
+          "example": "SHIPPOACCOUNTID"
+        },
+        {
+          "name": "shippoApiVersion",
+          "schema": "string",
+          "description": "String used to pick a non-default API version to use"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "hippo@shippo.com"
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Shippo"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Meister"
+        },
+        {
+          "name": "company_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Acme"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Shippo simplifies global shipping for businesses with one API and dashboard. Get rates, print labels, track shipments, and streamline operations. Join our diverse team in SF and Austin. https://goshippo.com/ Shippo's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shippo/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shippo/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/shippo/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shippo/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shippo/favicon.png",
+  "clientNameCamelCase": "shippo",
+  "lastUpdated": "2024-03-29T18:04:34.339Z",
+  "typescriptSdkUsageCode": "import { Shippo } from 'shippo-typescript-sdk';\n\nconst shippo = new Shippo({\n    apiKeyHeader: \"AUTHORIZATION\"\n})",
+  "typescriptSdkFirstRequestCode": "// List all addresses\nconst listAllResponse = shippo.addresses.listAll({\n    page: 1\n    results: 25\n})",
+  "fixedSpecFileName": "shippo-fixed-spec.yaml"
+}

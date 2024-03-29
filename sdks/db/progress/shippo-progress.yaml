@@ -1,0 +1,160 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /addresses:
+    get: Addresses_listAll
+    post: Addresses_createNewAddress
+  /addresses/{AddressId}:
+    get: Addresses_getAddressById
+  /addresses/{AddressId}/validate:
+    get: Addresses_validateAddress
+  /batches:
+    post: Batches_createBatchShipments
+  /batches/{BatchId}:
+    get: Batches_getBatchById
+  /batches/{BatchId}/add_shipments:
+    post: Batches_addShipmentsToBatch
+  /batches/{BatchId}/purchase:
+    post: Batches_purchaseBatch
+  /batches/{BatchId}/remove_shipments:
+    post: Batches_removeShipments
+  /carrier_accounts:
+    get: CarrierAccounts_listAllAccounts
+    post: CarrierAccounts_createNewAccount
+  /carrier_accounts/reg-status:
+    get: CarrierAccounts_getRegStatus
+  /carrier_accounts/register/new:
+    post: CarrierAccounts_addShippoAccount
+  /carrier_accounts/{CarrierAccountId}:
+    get: CarrierAccounts_getAccountById
+    put: CarrierAccounts_updateAccount
+  /customs/declarations:
+    get: CustomsDeclarations_listAllDeclarations
+    post: CustomsDeclarations_createNewDeclaration
+  /customs/declarations/{CustomsDeclarationId}:
+    get: CustomsDeclarations_getDeclarationById
+  /customs/items:
+    get: CustomsItems_listAllItems
+    post: CustomsItems_createNewCustomsItem
+  /customs/items/{CustomsItemId}:
+    get: CustomsItems_getExistingItem
+  /live-rates:
+    post: RatesAtCheckout_initiateLiveRatesRequest
+  /live-rates/settings/parcel-template:
+    delete: RatesAtCheckout_clearDefaultParcelTemplate
+    get: RatesAtCheckout_showDefaultParcelTemplate
+    put: RatesAtCheckout_updateDefaultParcelTemplate
+  /manifests:
+    get: Manifests_listAllManifests
+    post: Manifests_createNewManifest
+  /manifests/{ManifestId}:
+    get: Manifests_getManifestById
+  /orders:
+    get: Orders_listAllOrders
+    post: Orders_createNewOrder
+  /orders/{OrderId}:
+    get: Orders_getOrderById
+  /parcel-templates:
+    get: CarrierParcelTemplates_listAllCarrierParcelTemplates
+  /parcel-templates/{CarrierParcelTemplateToken}:
+    get: CarrierParcelTemplates_getTemplateById
+  /parcels:
+    get: Parcels_listAll
+    post: Parcels_createNewParcel
+  /parcels/{ParcelId}:
+    get: Parcels_getParcelDetails
+  /pickups:
+    post: Pickups_createObject
+  /rates/{RateId}:
+    get: Rates_getRateById
+  /refunds:
+    post: Refunds_createNewRefund
+  /refunds/:
+    get: Refunds_listAll
+  /refunds/{RefundId}:
+    get: Refunds_getRefundById
+  /service-groups:
+    get: ServiceGroups_listAllServiceGroups
+    post: ServiceGroups_createNewGroup
+    put: ServiceGroups_updateExistingGroup
+  /service-groups/{ServiceGroupId}:
+    delete: ServiceGroups_deleteServiceGroup
+  /shipments:
+    get: Shipments_listAllShipments
+    post: Shipments_createNewShipment
+  /shipments/{ShipmentId}:
+    get: Shipments_getShipmentById
+  /shipments/{ShipmentId}/rates:
+    get: Rates_getShipmentRates
+  /shipments/{ShipmentId}/rates/{CurrencyCode}:
+    get: Rates_getShipmentRatesInCurrency
+  /shippo-accounts:
+    get: ShippoAccounts_listAll
+    post: ShippoAccounts_createNewAccount
+  /shippo-accounts/{ShippoAccountId}:
+    get: ShippoAccounts_getAccountById
+    put: ShippoAccounts_updateAccountObject
+  /tracks:
+    post: TrackingStatus_registerWebhook
+  /tracks/{Carrier}/{TrackingNumber}:
+    get: TrackingStatus_getStatus
+  /transactions:
+    get: Transactions_listAllShippingLabels
+    post: Transactions_createShippingLabel
+  /transactions/{TransactionId}:
+    get: Transactions_getShippingLabel
+  /user-parcel-templates:
+    get: UserParcelTemplates_listAll
+    post: UserParcelTemplates_createNewTemplate
+  /user-parcel-templates/{UserParcelTemplateObjectId}:
+    delete: UserParcelTemplates_deleteById
+    get: UserParcelTemplates_getTemplateById
+    put: UserParcelTemplates_updateTemplate
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /batches/{BatchId}/add_shipments:
+    post:
+      application/json: BatchesAddShipmentsToBatchRequest
+  /batches/{BatchId}/remove_shipments:
+    post:
+      application/json: BatchesRemoveShipmentsRequest
+  /carrier_accounts/register/new:
+    post:
+      application/json: CarrierAccountsAddShippoAccountRequest
+  /transactions:
+    post:
+      application/json: TransactionsCreateShippingLabelRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /parcel-templates:
+    get:
+      '200':
+        application/json: CarrierParcelTemplatesListAllCarrierParcelTemplatesResponse
+  /service-groups:
+    get:
+      '200':
+        application/json: ServiceGroupsListAllServiceGroupsResponse
+  /user-parcel-templates:
+    get:
+      '200':
+        application/json: UserParcelTemplatesListAllResponse
+securityParameters:
+  SHIPPO-API-VERSION:
+    header: false
+  account_id:
+    query: false
+  carrier:
+    query: false
+  include:
+    query: false
+  page:
+    query: false
+  results:
+    query: false
+  service_levels:
+    query: false
+validServerUrls: {}
