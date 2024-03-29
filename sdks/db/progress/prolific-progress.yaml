@@ -1,0 +1,260 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /api/v1/surveys/{survey_id}:
+    delete:
+      '200':
+        application/json: {}
+  /api/v1/surveys/{survey_id}/responses:
+    delete:
+      '200':
+        application/json: {}
+  /api/v1/surveys/{survey_id}/responses/{response_id}:
+    delete:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v1/bulk-bonus-payments/{id}/pay/:
+    post: Bonuses_makePayment
+  /api/v1/eligibility-count/:
+    post: Filters_countParticipantsMeetingFilters
+  /api/v1/eligibility-requirements/:
+    get: EligibilityRequirements_getAllRequirements
+  /api/v1/filter-sets/:
+    get: FilterSets_listAll
+    post: FilterSets_createFromFilters
+  /api/v1/filter-sets/{id}/:
+    delete: FilterSets_deleteSet
+    get: FilterSets_getDetails
+    patch: FilterSets_updateDetails
+  /api/v1/filter-sets/{id}/clone/:
+    post: FilterSets_cloneFilterSet
+  /api/v1/filter-sets/{id}/lock/:
+    post: FilterSets_lockForEditing
+  /api/v1/filter-sets/{id}/unlock/:
+    post: FilterSets_unlockForEditing
+  /api/v1/filters/:
+    get: Filters_listAll
+  /api/v1/hooks/event-types/:
+    get: Hooks_listEventTypes
+  /api/v1/hooks/secrets/:
+    get: Hooks_listSecrets
+    post: Hooks_createSecret
+  /api/v1/hooks/subscriptions/:
+    get: Hooks_getAllSubscriptions
+    post: Hooks_createSubscription
+  /api/v1/hooks/subscriptions/{subscription_id}/:
+    delete: Hooks_deleteSubscription
+    get: Hooks_getSubscription
+    patch: Hooks_updateSubscription
+    post: Hooks_confirmSubscription
+  /api/v1/hooks/subscriptions/{subscription_id}/events/:
+    get: Hooks_getSubscriptionEvents
+  /api/v1/invitations/:
+    post: Invitations_initiateProcess
+  /api/v1/messages/:
+    get: Messages_getMessages
+    post: Messages_sendNewMessage
+  /api/v1/messages/bulk/:
+    post: Messages_sendToMultipleParticipants
+  /api/v1/messages/unread/:
+    get: Messages_getUnread
+  /api/v1/participant-groups/:
+    get: ParticipantGroups_listAll
+    post: ParticipantGroups_createNewGroup
+  /api/v1/participant-groups/{id}/:
+    delete: ParticipantGroups_removeGroup
+    get: ParticipantGroups_getById
+    patch: ParticipantGroups_updateGroupById
+  /api/v1/participant-groups/{id}/participants/:
+    delete: ParticipantGroups_removeParticipants
+    get: ParticipantGroups_getAllParticipants
+    post: ParticipantGroups_addParticipantsToGroup
+  /api/v1/projects/{project_id}/:
+    get: Projects_getDetails
+    patch: Projects_updateDetails
+  /api/v1/projects/{project_id}/studies/:
+    get: Studies_listInProject
+  /api/v1/studies/:
+    get: Studies_listAll
+    post: Studies_createDraftStudy
+  /api/v1/studies/{id}/:
+    delete: Studies_deleteStudy
+    get: Studies_getById
+    patch: Studies_updateStudyDetails
+  /api/v1/studies/{id}/clone/:
+    post: Studies_duplicateStudy
+  /api/v1/studies/{id}/export/:
+    get: Studies_downloadDemographicData
+  /api/v1/studies/{id}/submissions/:
+    get: Studies_listSubmissions
+  /api/v1/studies/{id}/transition/:
+    post: Studies_publishDraftStudy
+  /api/v1/study-collections/mutually-exclusive/:
+    get: StudyCollections_listMutuallyExclusive
+    post: StudyCollections_createMutuallyExclusiveCollection
+  /api/v1/study-collections/mutually-exclusive/{id}/:
+    delete: StudyCollections_deleteMutuallyExclusive
+    get: StudyCollections_getMutuallyExclusive
+    patch: StudyCollections_updateMutuallyExclusive
+  /api/v1/study-collections/mutually-exclusive/{id}/transition/:
+    post: StudyCollections_transitionMutuallyExclusive
+  /api/v1/study-cost-calculator/:
+    post: Studies_calculateStudyCostWithVat
+  /api/v1/submissions/:
+    get: Submissions_listBasicInfo
+  /api/v1/submissions/bonus-payments/:
+    post: Bonuses_setUpPayments
+  /api/v1/submissions/bulk-approve/:
+    post: Submissions_bulkApprove
+  /api/v1/submissions/{id}/:
+    get: Submissions_getDetail
+  /api/v1/submissions/{id}/request-return/:
+    post: Submissions_requestReturn
+  /api/v1/submissions/{id}/transition/:
+    post: Submissions_transitionById
+  /api/v1/surveys/:
+    get: Surveys_getAll
+    post: Surveys_createOrUpdate
+  /api/v1/surveys/{survey_id}:
+    delete: Surveys_deleteSingleSurvey
+    get: Surveys_getSurveyById
+  /api/v1/surveys/{survey_id}/responses/:
+    delete: Surveys_deleteAllResponses
+    get: Surveys_getAllResponses
+    post: Surveys_createResponse
+  /api/v1/surveys/{survey_id}/responses/summary/:
+    get: Surveys_getSummaryResponses
+  /api/v1/surveys/{survey_id}/responses/{response_id}:
+    delete: Surveys_deleteResponse
+    get: Surveys_getResponse
+  /api/v1/users/me/:
+    get: Users_getUser
+  /api/v1/workspaces/:
+    get: Workspaces_getAllUserWorkspaces
+    post: Workspaces_createWorkspaceAdmin
+  /api/v1/workspaces/{workspace_id}/:
+    get: Workspaces_getDetails
+    patch: Workspaces_updateDetails
+  /api/v1/workspaces/{workspace_id}/balance/:
+    get: Workspaces_getBalance
+  /api/v1/workspaces/{workspace_id}/projects/:
+    get: Projects_getWorkspaceProjects
+    post: Projects_createNewProject
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/filter-sets/{id}/clone:
+    post:
+      application/json: FilterSetsCloneFilterSetRequest
+  /api/v1/participant-groups:
+    post:
+      application/json: ParticipantGroupsCreateNewGroupRequest
+  /api/v1/studies/{id}/clone:
+    post:
+      application/json: StudiesDuplicateStudyRequest
+  /api/v1/study-collections/mutually-exclusive/{id}/transition:
+    post:
+      application/json: StudyCollectionsTransitionMutuallyExclusiveRequest
+  /api/v1/submissions/bonus-payments:
+    post:
+      application/json: BonusesSetUpPaymentsRequest
+  /api/v1/submissions/bulk-approve:
+    post:
+      application/json: SubmissionsBulkApproveRequest
+  /api/v1/submissions/{id}/request-return:
+    post:
+      application/json: SubmissionsRequestReturnRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/bulk-bonus-payments/{id}/pay:
+    post:
+      '202':
+        application/json: BonusesMakePaymentResponse
+  /api/v1/filter-sets:
+    post:
+      '201':
+        application/json: FilterSetsCreateFromFiltersResponse
+  /api/v1/filter-sets/{id}:
+    get:
+      '200':
+        application/json: FilterSetsGetDetailsResponse
+    patch:
+      '200':
+        application/json: FilterSetsUpdateDetailsResponse
+  /api/v1/filter-sets/{id}/clone:
+    post:
+      '201':
+        application/json: FilterSetsCloneFilterSetResponse
+  /api/v1/filter-sets/{id}/lock:
+    post:
+      '200':
+        application/json: FilterSetsLockForEditingResponse
+  /api/v1/filter-sets/{id}/unlock:
+    post:
+      '200':
+        application/json: FilterSetsUnlockForEditingResponse
+  /api/v1/studies/{id}/export:
+    get:
+      '200':
+        application/json: StudiesDownloadDemographicData200Response
+        text/csv: StudiesDownloadDemographicDataResponse
+  /api/v1/submissions/bulk-approve:
+    post:
+      '200':
+        application/json: SubmissionsBulkApproveResponse
+  /api/v1/surveys/{survey_id}:
+    delete:
+      '200':
+        application/json: SurveysDeleteSingleSurveyResponse
+  /api/v1/surveys/{survey_id}/responses:
+    delete:
+      '200':
+        application/json: SurveysDeleteAllResponsesResponse
+    get:
+      '200':
+        application/json: SurveysGetAllResponsesResponse
+  /api/v1/surveys/{survey_id}/responses/{response_id}:
+    delete:
+      '200':
+        application/json: SurveysDeleteResponseResponse
+securityParameters:
+  active:
+    query: false
+  created_after:
+    query: false
+  detailed:
+    query: false
+  filter:
+    query: false
+  is_enabled:
+    query: false
+  limit:
+    query: false
+  method:
+    query: false
+  offset:
+    query: false
+  organisation_id:
+    query: false
+  project_id:
+    query: false
+  researcher_id:
+    query: false
+  resource_id:
+    query: false
+  state:
+    query: false
+  status:
+    query: false
+  study:
+    query: false
+  user_id:
+    query: false
+  version_number:
+    query: false
+  workspace_id:
+    query: false
+validServerUrls: {}

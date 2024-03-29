@@ -2336,7 +2336,11 @@ const customRequests: Record<string, CustomRequest> = {
   "relynk.io": {
     type: "GET",
     url: "https://docs.relynk.io/redocusaurus/api-v2_0_0.yaml",
-  }
+  },
+  "prolific.com": {
+    type: "GET",
+    url: "https://docs.prolific.com/docs/api-docs/public-openapi",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
