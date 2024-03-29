@@ -1,0 +1,31 @@
+```typescript index.ts
+import { EpidemicSound } from 'epidemic-sound-typescript-sdk';
+
+const epidemicSound = new EpidemicSound({
+    /*
+     * Partner authentication is handled with short lived partner access tokens.
+     * Use your api credentials to request these tokens.
+     * The access token is of JWT format and should be passed in a header with your API requests:
+     * 
+     * > **Example Header:** `Authorization: Bearer your-partner-token`
+     */
+    partnerAuth: "PARTNER_AUTH",
+    /*
+     * User authentication is handled with short lived user access tokens.
+     *  Use a partner token to request these tokens.
+     *  The access token is of JWT format and should be passed in a header with your API requests:
+     *  
+     *  > **Example Header:** `Authorization: Bearer a-user-token`
+     */
+    userAuth: "USER_AUTH",
+    /*
+     * For users signing in with an Epidemic Sound account, user authentication is
+     * handled with OpenID Connect, which is a layer on top of OAuth 2.0.
+     * 
+     * > **Example Header:** `Authorization: Bearer es-connect-token`
+     */
+    clientId: "CLIENT_ID",
+    clientSecret: "CLIENT_SECRET",
+    redirectUri: "REDIRECT_URI"
+})
+```

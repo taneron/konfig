@@ -12,7 +12,7 @@ export default function PodiumTypeScriptSdk() {
       sdkName="podium-typescript-sdk"
       metaDescription={`A few years back, Eric (Co-Founder and CEO) got a frustrated call from his dad. His dad's tire shop had plenty of happy customers, but only a handful of angry ones were leaving reviews. So we built a product that made getting more reviews as easy as sending a text.
 
-Launching in 2014, we set out to solve the same problem for local businesses everywhere, but we realized that messaging with customers wasn't just the better way to get reviews—it's the better way to do business. We've since built a multi-product platform that's modernizing the way local business gets done. 
+Launching in 2014, we set out to solve the same problem for local businesses everywhere, but we realized that messaging with customers wasn't just the better way to get reviews—it's the better way to do business. We've since built a multi-product platform that's modernizing the way local business gets done.
 
 We are here to provide local businesses with everything they need to win. Get more reviews, collect payments, send text marketing campaigns, and centralize your communications—all from one easy-to-use platform.
 
@@ -23,7 +23,7 @@ We are here to provide local businesses with everything they need to win. Get mo
       companyKebabCase="podium"
       clientNameCamelCase="podium"
       homepage="podium.com"
-      lastUpdated={new Date("2024-03-28T23:15:08.809Z")}
+      lastUpdated={new Date("2024-03-29T17:12:48.443Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/podium/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
