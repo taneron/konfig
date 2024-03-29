@@ -1,0 +1,193 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /v1/analytics/messages:
+    post: Analytics_exportMessageAnalyticsData
+  /v1/analytics/users:
+    post: Analytics_exportUserAnalyticsData
+  /v1/application:
+    get: Application_getAuthenticated
+  /v1/application/settings:
+    get: Application_getSettings
+    put: Application_updateSettings
+  /v1/channels:
+    get: Channels_list
+    post: Channels_createChannel
+  /v1/channels/{id}:
+    delete: Channels_deleteById
+    get: Channels_getById
+    patch: Channels_updateProperties
+  /v1/channels/{id}/events:
+    post: Channels_sendEvent
+  /v1/channels/{id}/invites:
+    get: Channels_listInvites
+    post: Channels_sendInvite
+  /v1/channels/{id}/keystrokes:
+    post: Channels_sendKeystrokes
+  /v1/channels/{id}/members:
+    get: Channels_listMembersPage
+    post: Channels_addMember
+  /v1/channels/{id}/members/{user_id}:
+    delete: Channels_removeMember
+  /v1/channels/{id}/memberships:
+    get: Channels_listMembershipsPage
+  /v1/channels/{id}/messages:
+    get: Channels_listMessagesPage
+    post: Channels_sendChannelMessage
+  /v1/channels/{id}/moderators:
+    get: Channels_listModeratorsPage
+    post: Channels_addModerator
+  /v1/channels/{id}/moderators/{user_id}:
+    delete: Channels_removeModerator
+  /v1/channels/{id}/participants:
+    get: Channels_listParticipantsPage
+  /v1/channels/{id}/reported-messages:
+    get: Channels_listReportedMessagesPage
+  /v1/chat-sessions:
+    get: Chatsessions_listPage
+  /v1/function-versions/{id}:
+    get: Functionversions_getById
+  /v1/functions/{id}:
+    get: Functions_getById
+  /v1/functions/{id}/current-version:
+    get: Functions_getCurrentVersion
+  /v1/functions/{id}/invocations:
+    get: Functions_listInvocationsPage
+  /v1/functions/{id}/versions:
+    get: Functions_listVersionsPage
+    post: Functions_createFunctionVersion
+  /v1/imports/channels:
+    post: Imports_batchChannels
+  /v1/imports/channels/{id}/members:
+    post: Imports_channelMembersBatch
+  /v1/imports/messages:
+    post: Imports_batchMessagesFromJson
+  /v1/imports/users:
+    post: Imports_jsonUsersBatch
+  /v1/jobs:
+    get: Jobs_listJobsPage
+  /v1/jobs/{id}:
+    get: Jobs_getJobById
+  /v1/messages:
+    delete: Messages_deleteAll
+    get: Messages_listPage
+  /v1/messages/{id}:
+    delete: Messages_removeById
+    get: Messages_getById
+    patch: Messages_updateProperties
+  /v1/messages/{id}/read-receipts:
+    get: Messages_listReadReceipts
+  /v1/runtimes/nodejs:
+    get: Runtime_getNodejsChatRuntime
+  /v1/runtimes/nodejs/dependencies:
+    put: Runtime_updateNodejsChatDependencies
+  /v1/runtimes/nodejs/environment-variables:
+    put: Runtime_updateNodejsChatEnvironmentVariables
+  /v1/runtimes/nodejs/functions:
+    get: Runtime_listNodejsChatFunctions
+    post: Runtime_createNodejsChatFunction
+  /v1/runtimes/nodejs/initialization-script:
+    put: Runtime_updateNodejsChatInitializationScript
+  /v1/threads/{id}:
+    get: Threads_getById
+  /v1/threads/{id}/keystrokes:
+    post: Threads_sendKeystrokes
+  /v1/threads/{id}/messages:
+    get: Threads_listThreadMessages
+    post: Threads_sendReplyMessage
+  /v1/user-sessions:
+    get: Usersessions_listUserSessions
+  /v1/users:
+    get: Users_getPage
+    head: Users_checkExists
+    post: Users_createUser
+  /v1/users/{id}:
+    delete: Users_removeUser
+    get: Users_getById
+    patch: Users_updateUserById
+  /v1/users/{id}/channels:
+    get: Users_listChannelsPage
+  /v1/users/{id}/display-picture:
+    post: Users_updateDisplayPicture
+  /v1/users/{id}/messages:
+    get: Users_listMessagesPage
+  /v1/users/{id}/notifications:
+    get: Users_listNotificationsPage
+  /v1/users/{id}/secrets/{name}:
+    delete: Users_removeSecretValue
+    get: Users_getSecret
+    put: Users_setUserSecret
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/channels/{id}/messages:
+    post:
+      multipart/form-data: ChannelsSendChannelMessageRequest
+  /v1/imports/channels:
+    post:
+      multipart/form-data: ImportsBatchChannelsRequest
+  /v1/imports/channels/{id}/members:
+    post:
+      multipart/form-data: ImportsChannelMembersBatchRequest
+  /v1/imports/messages:
+    post:
+      multipart/form-data: ImportsBatchMessagesFromJsonRequest
+  /v1/imports/users:
+    post:
+      multipart/form-data: ImportsJsonUsersBatchRequest
+  /v1/runtimes/nodejs/dependencies:
+    put:
+      application/vnd.chatkitty+json: RuntimeUpdateNodejsChatDependenciesRequest
+  /v1/threads/{id}/messages:
+    post:
+      multipart/form-data: ThreadsSendReplyMessageRequest
+  /v1/users/{id}/display-picture:
+    post:
+      multipart/form-data: UsersUpdateDisplayPictureRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/users:
+    head:
+      '200':
+        application/hal+json: UsersCheckExists200Response
+        application/json: UsersCheckExistsResponse
+        application/vnd.chatkitty+json: UsersCheckExists200Response
+        application/vnd.hal+json: UsersCheckExists200Response
+securityParameters:
+  endTime:
+    query: false
+  members:
+    query: false
+  name:
+    query: false
+  next:
+    query: false
+  page:
+    query: false
+  properties:
+    query: false
+  query:
+    query: false
+  relation:
+    query: false
+  running:
+    query: false
+  size:
+    query: false
+  sort:
+    query: false
+  start:
+    query: false
+  startTime:
+    query: false
+  state:
+    query: false
+  type:
+    query: false
+  unread:
+    query: false
+  username:
+    query: false
+validServerUrls: {}

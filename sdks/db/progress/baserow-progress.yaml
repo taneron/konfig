@@ -1,0 +1,2148 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /api/database/views/{slug}/public/auth:
+    post:
+      '401':
+        application/json: {}
+  /api/user-source-auth-refresh:
+    post:
+      '401':
+        application/json: {}
+  /api/user-source-token-blacklist:
+    post:
+      '401':
+        application/json: {}
+  /api/user-source/{user_source_id}/force-token-auth:
+    post:
+      '401':
+        application/json: {}
+  /api/user-source/{user_source_id}/token-auth:
+    post:
+      '401':
+        application/json: {}
+  /api/user/token-auth:
+    post:
+      '401':
+        application/json: {}
+  /api/user/token-blacklist:
+    post:
+      '401':
+        application/json: {}
+  /api/user/token-refresh:
+    post:
+      '401':
+        application/json: {}
+  /api/user/token-verify:
+    post:
+      '401':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /api/_health/full/:
+    get: Health_runFullCheck
+  /api/admin/audit-log/:
+    get: AuditLog_listEntriesForWorkspace
+  /api/admin/audit-log/action-types/:
+    get: AuditLog_listActionTypes
+  /api/admin/audit-log/export/:
+    post: AuditLog_createExportJob
+  /api/admin/audit-log/users/:
+    get: AuditLog_listUsers
+  /api/admin/audit-log/workspaces/:
+    get: AuditLog_listDistinctWorkspaceNames
+  /api/admin/auth-provider/:
+    get: Auth_listProviders
+    post: Auth_registerAuthProvider
+  /api/admin/auth-provider/{auth_provider_id}/:
+    delete: Auth_deleteAuthProvider
+    get: Auth_getAuthProvider
+    patch: Auth_updateAuthProvider
+  /api/admin/groups/:
+    get: Admin_getAllGroups
+  /api/admin/groups/{group_id}/:
+    delete: Admin_deleteGroup
+  /api/admin/users/:
+    get: Admin_getUsersDetail
+    post: Admin_createNewUser
+  /api/admin/users/impersonate/:
+    post: Admin_impersonateUser
+  /api/admin/users/{user_id}/:
+    delete: Admin_deleteUserPremium
+    patch: Admin_updateUserAttributes
+  /api/admin/workspaces/:
+    get: Admin_getWorkspaceDetails
+  /api/admin/workspaces/{workspace_id}/:
+    delete: Admin_deleteWorkspaceAndApplications
+  /api/application/{application_id}/integrations/:
+    get: Integrations_listApplicationIntegrations
+    post: Integrations_createNewIntegration
+  /api/application/{application_id}/list-user-source-users/:
+    get: UserSources_listAvailableUsers
+  /api/application/{application_id}/user-sources/:
+    get: UserSources_list
+    post: UserSources_createNewUserSource
+  /api/applications/:
+    get: Applications_listUserApplications
+  /api/applications/group/{group_id}/:
+    get: Applications_listGroupApplications
+    post: Applications_createGroupApplication
+  /api/applications/group/{group_id}/order/:
+    post: Applications_changeOrderOfGroupApplications
+  /api/applications/workspace/{workspace_id}/:
+    get: Applications_listUserApplications
+    post: Applications_createApplicationInWorkspace
+  /api/applications/workspace/{workspace_id}/order/:
+    post: Applications_changeApplicationOrder
+  /api/applications/{application_id}/:
+    get: Applications_getApplicationById
+  /api/applications/{application_id}/duplicate/async/:
+    post: Applications_duplicateAsync
+  /api/audit-log/:
+    get: AuditLog_listEntries
+  /api/audit-log/action-types/:
+    get: AuditLog_listActionTypes
+  /api/audit-log/export/:
+    post: AuditLog_exportJob
+  /api/audit-log/users/:
+    get: AuditLog_listUsers
+  /api/audit-log/workspaces/:
+    get: AuditLog_listDistinctWorkspaceNames
+  /api/auth-provider/login-options/:
+    get: Auth_listLoginOptions
+  /api/builder/data-source/{data_source_id}/:
+    delete: BuilderDataSources_deleteById
+    patch: BuilderDataSources_updateExistingDataSource
+  /api/builder/data-source/{data_source_id}/dispatch/:
+    post: BuilderDataSources_dispatchServiceResult
+  /api/builder/data_source/{data_source_id}/move/:
+    patch: BuilderDataSources_moveDataSource
+  /api/builder/domains/ask-public-domain-exists/:
+    get: BuilderDomains_checkDomainExists
+  /api/builder/domains/published/by_id/{builder_id}/:
+    get: BuilderPublic_serializedVersionById
+  /api/builder/domains/published/by_name/{domain_name}/:
+    get: BuilderPublic_serializedVersion
+  /api/builder/domains/published/page/{page_id}/data_sources/:
+    get: BuilderDataSources_listPageDataSources
+  /api/builder/domains/published/page/{page_id}/elements/:
+    get: BuilderElements_getPageElements
+  /api/builder/domains/published/page/{page_id}/workflow_actions/:
+    get: BuilderWorkflowActions_listPageWorkflowActions
+  /api/builder/domains/{domain_id}/:
+    delete: BuilderDomains_removeExistingDomain
+    patch: BuilderDomains_updateExistingDomain
+  /api/builder/domains/{domain_id}/publish/async/:
+    post: BuilderDomains_startPublishJob
+  /api/builder/element/{element_id}/:
+    delete: BuilderElements_removeElementById
+    patch: BuilderElements_updateExistingElement
+  /api/builder/element/{element_id}/duplicate/:
+    post: BuilderElements_duplicateElementChildren
+  /api/builder/element/{element_id}/move/:
+    patch: BuilderElements_moveElement
+  /api/builder/page/{page_id}/data-sources/:
+    get: BuilderDataSources_listPageDataSources
+    post: BuilderDataSources_createNew
+  /api/builder/page/{page_id}/dispatch-data-sources/:
+    post: BuilderDataSources_dispatchPageDataSources
+  /api/builder/page/{page_id}/elements/:
+    get: BuilderElements_getPageElements
+    post: BuilderElements_createNewElement
+  /api/builder/page/{page_id}/workflow_actions/:
+    get: BuilderWorkflowActions_listPageWorkflowActions
+    post: BuilderWorkflowActions_createNewAction
+  /api/builder/page/{page_id}/workflow_actions/order/:
+    post: BuilderWorkflowActions_applyNewOrder
+  /api/builder/pages/{page_id}/:
+    delete: BuilderPages_deletePage
+    patch: BuilderPages_updateExistingPage
+  /api/builder/pages/{page_id}/duplicate/async/:
+    post: BuilderPages_startDuplicationJob
+  /api/builder/workflow_action/{workflow_action_id}/:
+    delete: BuilderWorkflowActions_deleteWorkflowActionById
+    patch: BuilderWorkflowActions_updateExistingAction
+  /api/builder/workflow_action/{workflow_action_id}/dispatch/:
+    post: BuilderWorkflowActions_dispatchServiceResult
+  /api/builder/{builder_id}/domains/:
+    get: BuilderDomains_getAll
+    post: BuilderDomains_createNewDomain
+  /api/builder/{builder_id}/domains/order/:
+    post: BuilderDomains_applyOrder
+  /api/builder/{builder_id}/pages/:
+    post: BuilderPages_createNewPage
+  /api/builder/{builder_id}/pages/order/:
+    post: BuilderPages_applyOrderToPages
+  /api/builder/{builder_id}/theme/:
+    patch: BuilderTheme_updateProperties
+  /api/database/export/{job_id}/:
+    get: DatabaseTableExport_exportJobDetails
+  /api/database/fields/table/{table_id}/:
+    get: DatabaseTableFields_getTableFields
+    post: DatabaseTableFields_createNewField
+  /api/database/fields/{field_id}/:
+    delete: DatabaseTableFields_deleteField
+    get: DatabaseTableFields_getFieldProperties
+    patch: DatabaseTableFields_updateField
+  /api/database/fields/{field_id}/duplicate/async/:
+    post: DatabaseTableFields_duplicateAsync
+  /api/database/fields/{field_id}/unique_row_values/:
+    get: DatabaseTableFields_getUniqueRowValues
+  /api/database/formula/{table_id}/type/:
+    post: DatabaseTableFields_calculateFormulaType
+  /api/database/rows/names/:
+    get: DatabaseTableRows_getNamesOfRow
+  /api/database/rows/table/{table_id}/:
+    get: DatabaseTableRows_listTableRows
+    post: DatabaseTableRows_createRow
+  /api/database/rows/table/{table_id}/batch-delete/:
+    post: DatabaseTableRows_batchDelete
+  /api/database/rows/table/{table_id}/batch/:
+    patch: DatabaseTableRows_updateBatchRows
+    post: DatabaseTableRows_createBatchRows
+  /api/database/rows/table/{table_id}/{row_id}/:
+    delete: DatabaseTableRows_deleteRow
+    get: DatabaseTableRows_getRowByTableIdAndRowId
+    patch: DatabaseTableRows_updateRow
+  /api/database/rows/table/{table_id}/{row_id}/adjacent/:
+    get: DatabaseTableRows_getAdjacentRow
+  /api/database/rows/table/{table_id}/{row_id}/history/:
+    get: DatabaseTableRows_getRowChangeHistory
+  /api/database/rows/table/{table_id}/{row_id}/move/:
+    patch: DatabaseTableRows_moveRowTo
+  /api/database/tables/database/{database_id}/:
+    get: DatabaseTables_listByDatabaseId
+    post: DatabaseTables_createTable
+  /api/database/tables/database/{database_id}/async/:
+    post: DatabaseTables_createTableJob
+  /api/database/tables/database/{database_id}/order/:
+    post: DatabaseTables_updateTableOrder
+  /api/database/tables/{table_id}/:
+    delete: DatabaseTables_deleteTable
+    get: DatabaseTables_getTable
+    patch: DatabaseTables_updateTable
+  /api/database/tables/{table_id}/duplicate/async/:
+    post: DatabaseTables_duplicateAsyncJob
+  /api/database/tables/{table_id}/import/async/:
+    post: DatabaseTables_importAsyncJob
+  /api/database/tokens/:
+    get: DatabaseTokens_list
+    post: DatabaseTokens_createNewToken
+  /api/database/tokens/check/:
+    get: DatabaseTokens_verifyTokenValidity
+  /api/database/tokens/{token_id}/:
+    delete: DatabaseTokens_deleteToken
+    get: DatabaseTokens_getToken
+    patch: DatabaseTokens_updateTokenOwnership
+  /api/database/view/{view_id}/premium:
+    patch: DatabaseTableViews_setPremiumAttributes
+  /api/database/views/calendar/{slug}/public/rows/:
+    get: DatabaseTableCalendarView_getPublicRows
+  /api/database/views/calendar/{view_id}/:
+    get: DatabaseTableCalendarView_getGroupedRows
+  /api/database/views/decoration/{view_decoration_id}/:
+    delete: DatabaseTableViewDecorations_deleteExistingDecoration
+    get: DatabaseTableViewDecorations_getViewDecoration
+    patch: DatabaseTableViewDecorations_updateDecoration
+  /api/database/views/filter-group/{filter_group_id}/:
+    delete: DatabaseTableViewFilters_deleteFilterGroup
+    get: DatabaseTableViewFilters_getFilterGroupById
+    patch: DatabaseTableViewFilters_updateFilterGroup
+  /api/database/views/filter/{view_filter_id}/:
+    delete: DatabaseTableViewFilters_deleteFilter
+    get: DatabaseTableViewFilters_getViewFilter
+    patch: DatabaseTableViewFilters_updateExistingFilter
+  /api/database/views/form/{slug}/submit/:
+    get: DatabaseTableFormView_getFormMetadataBySlug
+    post: DatabaseTableFormView_submitForm
+  /api/database/views/form/{slug}/upload-file/:
+    post: DatabaseTableFormView_uploadFile
+  /api/database/views/gallery/{slug}/public/rows/:
+    get: DatabaseTableGalleryView_listPublicRows
+  /api/database/views/gallery/{view_id}/:
+    get: DatabaseTableGalleryView_listRowsByViewId
+  /api/database/views/grid/{slug}/public/rows/:
+    get: DatabaseTableGridView_listPublicRows
+  /api/database/views/grid/{view_id}/:
+    get: DatabaseTableGridView_getViewRows
+    post: DatabaseTableGridView_getFilteredData
+  /api/database/views/grid/{view_id}/aggregation/{field_id}/:
+    get: DatabaseTableGridView_computeAggregation
+  /api/database/views/grid/{view_id}/aggregations/:
+    get: DatabaseTableGridView_getFieldAggregations
+  /api/database/views/group_by/{view_group_by_id}/:
+    delete: DatabaseTableViewGroupings_deleteGroupBy
+    get: DatabaseTableViewGroupings_getViewGroupBy
+    patch: DatabaseTableViewGroupings_updateGroupBy
+  /api/database/views/kanban/{slug}/public/rows/:
+    get: DatabaseTableKanbanView_getPublicRowsBySlug
+  /api/database/views/kanban/{view_id}/:
+    get: DatabaseTableKanbanView_getSerializedRowsByViewId
+  /api/database/views/sort/{view_sort_id}/:
+    delete: DatabaseTableViewSortings_deleteById
+    get: DatabaseTableViewSortings_getSortById
+    patch: DatabaseTableViewSortings_updateById
+  /api/database/views/table/{table_id}/:
+    get: DatabaseTableViews_listTableViews
+    post: DatabaseTableViews_createNewView
+  /api/database/views/table/{table_id}/order/:
+    post: DatabaseTableViews_reorderTableOrder
+  /api/database/views/{slug}/link-row-field-lookup/{field_id}/:
+    get: DatabaseTableViews_getLinkRowFieldValue
+  /api/database/views/{slug}/public/auth/:
+    post: DatabaseTableViews_generateToken
+  /api/database/views/{slug}/public/info/:
+    get: DatabaseTableViews_getPublicInfo
+  /api/database/views/{view_id}/:
+    delete: DatabaseTableViews_deleteView
+    get: DatabaseTableViews_getViewById
+    patch: DatabaseTableViews_updateView
+  /api/database/views/{view_id}/decorations/:
+    get: DatabaseTableViewDecorations_list
+    post: DatabaseTableViewDecorations_createNew
+  /api/database/views/{view_id}/duplicate/:
+    post: DatabaseTableViews_duplicateView
+  /api/database/views/{view_id}/field-options/:
+    get: DatabaseTableViews_getFieldOptions
+    patch: DatabaseTableViews_updateFieldOptions
+  /api/database/views/{view_id}/filter-groups/:
+    post: DatabaseTableViewFilters_createNewFilterGroup
+  /api/database/views/{view_id}/filters/:
+    get: DatabaseTableViewFilters_getList
+    post: DatabaseTableViewFilters_createNewFilter
+  /api/database/views/{view_id}/group_bys/:
+    get: DatabaseTableViewGroupings_list
+    post: DatabaseTableViewGroupings_createNewGrouping
+  /api/database/views/{view_id}/rotate-slug/:
+    post: DatabaseTableViews_rotateSlug
+  /api/database/views/{view_id}/sortings/:
+    get: DatabaseTableViewSortings_list
+    post: DatabaseTableViewSortings_createNewSort
+  /api/database/webhooks/table/{table_id}/:
+    get: DatabaseTableWebhooks_list
+    post: DatabaseTableWebhooks_createWebhook
+  /api/database/webhooks/table/{table_id}/test-call/:
+    post: DatabaseTableWebhooks_triggerTestCall
+  /api/database/webhooks/{webhook_id}/:
+    delete: DatabaseTableWebhooks_deleteWebhook
+    get: DatabaseTableWebhooks_getExistingWebhook
+    patch: DatabaseTableWebhooks_updateView
+  /api/groups/invitations/group/{group_id}/:
+    get: GroupInvitations_listForGroup
+    post: GroupInvitations_createNewInvitation
+  /api/groups/invitations/token/{token}/:
+    get: GroupInvitations_findByToken
+  /api/groups/invitations/{group_invitation_id}/:
+    delete: GroupInvitations_deleteInvitation
+    get: GroupInvitations_getById
+    patch: GroupInvitations_updateRelatedInvitation
+  /api/groups/invitations/{group_invitation_id}/accept/:
+    post: GroupInvitations_acceptGroupInvitation
+  /api/groups/invitations/{group_invitation_id}/reject/:
+    post: GroupInvitations_rejectGroupInvitation
+  /api/groups/users/group/{group_id}/:
+    get: Groups_listGroupUsers
+  /api/groups/users/{group_user_id}/:
+    delete: Groups_deleteGroupUser
+    patch: Groups_updateGroupUser
+  /api/integration/{integration_id}/:
+    delete: Integrations_deleteById
+    patch: Integrations_updateExistingIntegration
+  /api/integration/{integration_id}/move/:
+    patch: Integrations_moveIntegration
+  /api/licenses/:
+    post: Admin_registerLicense
+  /api/licenses/{id}/:
+    delete: Admin_removeLicense
+    get: Admin_getLicenseDetails
+  /api/licenses/{id}/check/:
+    get: Admin_checkLicenseStatus
+  /api/licenses/{id}/fill-seats/:
+    post: Admin_fillSeatsLicense
+  /api/licenses/{id}/lookup-users/:
+    get: Admin_lookupUsers
+  /api/licenses/{id}/remove-all-users/:
+    post: Admin_removeAllUsers
+  /api/licenses/{id}/{user_id}/:
+    delete: Admin_removeUserFromLicense
+    post: Admin_addUserToLicense
+  /api/notifications/{workspace_id}/:
+    delete: Notifications_clearWorkspaceNotifications
+    get: Notifications_listForWorkspaceAndUser
+  /api/notifications/{workspace_id}/mark-all-as-read/:
+    post: Notifications_markAllAsRead
+  /api/notifications/{workspace_id}/{notification_id}/:
+    patch: Notifications_markAsRead
+  /api/role/{group_id}/:
+    get: RoleAssignments_listWithinGroup
+    post: RoleAssignments_assignRoleToGroup
+  /api/role/{group_id}/batch/:
+    post: RoleAssignments_assignMultipleSubjectsToGroup
+  /api/role/{workspace_id}/:
+    get: RoleAssignments_listWithinWorkspaceScope
+  /api/role/{workspace_id}/batch/:
+    post: RoleAssignments_assignRoleToGroup
+  /api/row_comments/{table_id}/comment/{comment_id}/:
+    delete: DatabaseTableRows_deleteComment
+    patch: DatabaseTableRows_updateComment
+  /api/row_comments/{table_id}/{row_id}/:
+    get: DatabaseTableRows_getAllComments
+    post: DatabaseTableRows_createComment
+  /api/row_comments/{table_id}/{row_id}/notification-mode/:
+    put: DatabaseTableRows_updateNotificationMode
+  /api/settings/instance-id/:
+    get: Settings_getInstanceId
+  /api/sso/oauth2/callback/{provider_id}/:
+    get: Auth_completeProviderCallback
+  /api/sso/oauth2/login/{provider_id}/:
+    get: Auth_redirectToProvider
+  /api/sso/saml/acs/:
+    post: Auth_completeSamlAuthenticationFlow
+  /api/sso/saml/login-url/:
+    get: Auth_getSamlLoginUrl
+  /api/sso/saml/login/:
+    get: Auth_initiateSsoSamlLogin
+  /api/teams/group/{group_id}/:
+    get: Teams_getAllInGroup
+    post: Teams_createInGroup
+  /api/teams/workspace/{workspace_id}/:
+    get: Teams_listInWorkspace
+    post: Teams_createNewTeam
+  /api/teams/{team_id}/subjects/:
+    get: Teams_listSubjects
+  /api/templates/install/{group_id}/{template_id}/:
+    post: Templates_installApplications
+  /api/templates/install/{group_id}/{template_id}/async/:
+    post: Templates_startAsyncJob
+  /api/templates/install/{workspace_id}/{template_id}/async/:
+    post: Templates_startAsyncJob
+  /api/trash/:
+    get: Trash_inspectTrashContents
+  /api/trash/group/{group_id}/:
+    delete: Trash_emptyGroupContents
+    get: Trash_getGroupContents
+  /api/trash/restore/:
+    patch: Trash_restoreItem
+  /api/trash/workspace/{workspace_id}/:
+    delete: Trash_emptyWorkspace
+    get: Trash_getWorkspaceTrashContents
+  /api/user-files/upload-via-url/:
+    post: UserFiles_uploadViaUrl
+  /api/user-source-auth-refresh/:
+    post: UserSources_refreshAccessToken
+  /api/user-source-token-blacklist/:
+    post: UserSources_blacklistToken
+  /api/user-source/{user_source_id}/:
+    delete: UserSources_removeById
+    patch: UserSources_updateExistingUserSource
+  /api/user-source/{user_source_id}/force-token-auth:
+    post: UserSources_forceTokenAuth
+  /api/user-source/{user_source_id}/move/:
+    patch: UserSources_rearrangeUserSource
+  /api/user-source/{user_source_id}/token-auth:
+    post: UserSources_authenticateUserWithToken
+  /api/user/dashboard/:
+    get: User_viewPendingWorkspaceInvitations
+  /api/user/redo/:
+    patch: User_redoAction
+  /api/user/schedule-account-deletion/:
+    post: User_scheduleAccountDeletion
+  /api/user/send-reset-password-email/:
+    post: User_sendResetPasswordEmail
+  /api/user/undo/:
+    patch: User_undoLatestUndoableAction
+  /api/workspaces/invitations/token/{token}/:
+    get: WorkspaceInvitations_getByToken
+  /api/workspaces/invitations/workspace/{workspace_id}/:
+    get: WorkspaceInvitations_list
+    post: WorkspaceInvitations_createInvite
+  /api/workspaces/invitations/{workspace_invitation_id}/:
+    delete: WorkspaceInvitations_deleteInvitation
+    get: WorkspaceInvitations_getById
+    patch: WorkspaceInvitations_updateExistingInvitation
+  /api/workspaces/invitations/{workspace_invitation_id}/accept/:
+    post: WorkspaceInvitations_acceptInvitation
+  /api/workspaces/invitations/{workspace_invitation_id}/reject/:
+    post: WorkspaceInvitations_rejectInvitation
+  /api/workspaces/users/workspace/{workspace_id}/:
+    get: Workspaces_listUsersInWorkspace
+  /api/workspaces/users/{workspace_user_id}/:
+    delete: Workspaces_deleteUser
+    patch: Workspaces_updateWorkspaceUser
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/_health/email:
+    post:
+      '400':
+        application/json: EmailTester400Response
+  /api/admin/audit-log:
+    get:
+      '400':
+        application/json: AuditLogListEntriesForWorkspaceResponse
+  /api/admin/audit-log/action-types:
+    get:
+      '200':
+        application/json: AuditLogListActionTypesResponse
+      '400':
+        application/json: AuditLogListActionTypes400Response
+  /api/admin/audit-log/export:
+    post:
+      '400':
+        application/json: AuditLogCreateExportJobResponse
+      '404':
+        application/json: AuditLogCreateExportJob404Response
+  /api/admin/audit-log/users:
+    get:
+      '400':
+        application/json: AuditLogListUsersResponse
+  /api/admin/audit-log/workspaces:
+    get:
+      '400':
+        application/json: AuditLogListDistinctWorkspaceNamesResponse
+  /api/admin/auth-provider:
+    get:
+      '200':
+        application/json: AuthListProvidersResponse
+    post:
+      '400':
+        application/json: AuthRegisterAuthProviderResponse
+  /api/admin/auth-provider/{auth_provider_id}:
+    delete:
+      '404':
+        application/json: AuthDeleteAuthProviderResponse
+    get:
+      '404':
+        application/json: AuthGetAuthProviderResponse
+    patch:
+      '400':
+        application/json: AuthUpdateAuthProviderResponse
+      '404':
+        application/json: AuthUpdateAuthProvider404Response
+  /api/admin/groups:
+    get:
+      '400':
+        application/json: AdminGetAllGroupsResponse
+  /api/admin/groups/{group_id}:
+    delete:
+      '400':
+        application/json: AdminDeleteGroupResponse
+  /api/admin/users:
+    get:
+      '400':
+        application/json: AdminGetUsersDetailResponse
+    post:
+      '400':
+        application/json: AdminCreateNewUserResponse
+  /api/admin/users/impersonate:
+    post:
+      '200':
+        application/json: AdminImpersonateUserResponse
+  /api/admin/users/{user_id}:
+    delete:
+      '400':
+        application/json: AdminDeleteUserPremiumResponse
+    patch:
+      '400':
+        application/json: AdminUpdateUserAttributesResponse
+  /api/admin/workspaces:
+    get:
+      '400':
+        application/json: AdminGetWorkspaceDetailsResponse
+  /api/admin/workspaces/{workspace_id}:
+    delete:
+      '400':
+        application/json: AdminDeleteWorkspaceAndApplicationsResponse
+  /api/application/{application_id}/integrations:
+    get:
+      '200':
+        application/json: IntegrationsListApplicationIntegrationsResponse
+      '404':
+        application/json: IntegrationsListApplicationIntegrations404Response
+    post:
+      '400':
+        application/json: IntegrationsCreateNewIntegrationResponse
+      '404':
+        application/json: IntegrationsCreateNewIntegration404Response
+  /api/application/{application_id}/list-user-source-users:
+    get:
+      '404':
+        application/json: UserSourcesListAvailableUsersResponse
+  /api/application/{application_id}/user-sources:
+    get:
+      '200':
+        application/json: UserSourcesListResponse
+      '404':
+        application/json: UserSourcesList404Response
+    post:
+      '400':
+        application/json: UserSourcesCreateNewUserSourceResponse
+      '404':
+        application/json: UserSourcesCreateNewUserSource404Response
+  /api/applications:
+    get:
+      '200':
+        application/json: ApplicationsListUserApplicationsResponse
+      '400':
+        application/json: ApplicationsListUserApplications400Response
+  /api/applications/group/{group_id}:
+    get:
+      '200':
+        application/json: ApplicationsListGroupApplicationsResponse
+      '400':
+        application/json: ApplicationsListGroupApplications400Response
+      '404':
+        application/json: ApplicationsListGroupApplications404Response
+    post:
+      '400':
+        application/json: ApplicationsCreateGroupApplicationResponse
+      '404':
+        application/json: ApplicationsCreateGroupApplication404Response
+  /api/applications/group/{group_id}/order:
+    post:
+      '400':
+        application/json: ApplicationsChangeOrderOfGroupApplicationsResponse
+      '404':
+        application/json: ApplicationsChangeOrderOfGroupApplications404Response
+  /api/applications/workspace/{workspace_id}:
+    get:
+      '200':
+        application/json: ApplicationsListUserApplications200Response
+      '400':
+        application/json: ApplicationsListUserApplications400Response
+      '404':
+        application/json: ApplicationsListUserApplications404Response
+    post:
+      '400':
+        application/json: ApplicationsCreateApplicationInWorkspaceResponse
+      '404':
+        application/json: ApplicationsCreateApplicationInWorkspace404Response
+  /api/applications/workspace/{workspace_id}/order:
+    post:
+      '400':
+        application/json: ApplicationsChangeApplicationOrderResponse
+      '404':
+        application/json: ApplicationsChangeApplicationOrder404Response
+  /api/applications/{application_id}:
+    delete:
+      '400':
+        application/json: DeleteApplicationResponse
+      '404':
+        application/json: DeleteApplication404Response
+    get:
+      '400':
+        application/json: ApplicationsGetApplicationByIdResponse
+      '404':
+        application/json: ApplicationsGetApplicationById404Response
+    patch:
+      '400':
+        application/json: UpdateApplicationResponse
+      '404':
+        application/json: UpdateApplication404Response
+  /api/applications/{application_id}/duplicate/async:
+    post:
+      '400':
+        application/json: ApplicationsDuplicateAsyncResponse
+      '404':
+        application/json: ApplicationsDuplicateAsync404Response
+  /api/audit-log:
+    get:
+      '400':
+        application/json: AuditLogListEntriesResponse
+  /api/audit-log/action-types:
+    get:
+      '200':
+        application/json: AuditLogListActionTypes200Response
+      '400':
+        application/json: AuditLogListActionTypes400Response
+  /api/audit-log/export:
+    post:
+      '400':
+        application/json: AuditLogExportJobResponse
+      '404':
+        application/json: AuditLogExportJob404Response
+  /api/audit-log/users:
+    get:
+      '400':
+        application/json: AuditLogListUsers400Response
+  /api/audit-log/workspaces:
+    get:
+      '400':
+        application/json: AuditLogListDistinctWorkspaceNames400Response
+  /api/auth-provider/login-options:
+    get:
+      '200':
+        application/json: AuthListLoginOptionsResponse
+  /api/builder/data-source/{data_source_id}:
+    delete:
+      '400':
+        application/json: BuilderDataSourcesDeleteByIdResponse
+      '404':
+        application/json: BuilderDataSourcesDeleteById404Response
+    patch:
+      '400':
+        application/json: BuilderDataSourcesUpdateExistingDataSourceResponse
+      '404':
+        application/json: BuilderDataSourcesUpdateExistingDataSource404Response
+  /api/builder/data-source/{data_source_id}/dispatch:
+    post:
+      '404':
+        application/json: BuilderDataSourcesDispatchServiceResultResponse
+  /api/builder/data_source/{data_source_id}/move:
+    patch:
+      '400':
+        application/json: BuilderDataSourcesMoveDataSourceResponse
+      '404':
+        application/json: BuilderDataSourcesMoveDataSource404Response
+  /api/builder/domains/published/by_id/{builder_id}:
+    get:
+      '404':
+        application/json: BuilderPublicSerializedVersionByIdResponse
+  /api/builder/domains/published/by_name/{domain_name}:
+    get:
+      '404':
+        application/json: BuilderPublicSerializedVersionResponse
+  /api/builder/domains/published/page/{page_id}/data_sources:
+    get:
+      '200':
+        application/json: BuilderDataSourcesListPageDataSourcesResponse
+      '404':
+        application/json: BuilderDataSourcesListPageDataSources404Response
+  /api/builder/domains/published/page/{page_id}/elements:
+    get:
+      '200':
+        application/json: BuilderElementsGetPageElementsResponse
+      '404':
+        application/json: BuilderElementsGetPageElements404Response
+  /api/builder/domains/published/page/{page_id}/workflow_actions:
+    get:
+      '200':
+        application/json: BuilderWorkflowActionsListPageWorkflowActionsResponse
+      '404':
+        application/json: BuilderWorkflowActionsListPageWorkflowActions404Response
+  /api/builder/domains/{domain_id}:
+    delete:
+      '400':
+        application/json: BuilderDomainsRemoveExistingDomainResponse
+      '404':
+        application/json: BuilderDomainsRemoveExistingDomain404Response
+    patch:
+      '400':
+        application/json: BuilderDomainsUpdateExistingDomainResponse
+      '404':
+        application/json: BuilderDomainsUpdateExistingDomain404Response
+  /api/builder/domains/{domain_id}/publish/async:
+    post:
+      '400':
+        application/json: BuilderDomainsStartPublishJobResponse
+      '404':
+        application/json: BuilderDomainsStartPublishJob404Response
+  /api/builder/element/{element_id}:
+    delete:
+      '400':
+        application/json: BuilderElementsRemoveElementByIdResponse
+      '404':
+        application/json: BuilderElementsRemoveElementById404Response
+    patch:
+      '400':
+        application/json: BuilderElementsUpdateExistingElementResponse
+      '404':
+        application/json: BuilderElementsUpdateExistingElement404Response
+  /api/builder/element/{element_id}/duplicate:
+    post:
+      '400':
+        application/json: BuilderElementsDuplicateElementChildrenResponse
+      '404':
+        application/json: BuilderElementsDuplicateElementChildren404Response
+  /api/builder/element/{element_id}/move:
+    patch:
+      '400':
+        application/json: BuilderElementsMoveElementResponse
+      '404':
+        application/json: BuilderElementsMoveElement404Response
+  /api/builder/page/{page_id}/data-sources:
+    get:
+      '200':
+        application/json: BuilderDataSourcesListPageDataSources200Response
+      '404':
+        application/json: BuilderDataSourcesListPageDataSources404Response
+    post:
+      '400':
+        application/json: BuilderDataSourcesCreateNewResponse
+      '404':
+        application/json: BuilderDataSourcesCreateNew404Response
+  /api/builder/page/{page_id}/dispatch-data-sources:
+    post:
+      '404':
+        application/json: BuilderDataSourcesDispatchPageDataSourcesResponse
+  /api/builder/page/{page_id}/elements:
+    get:
+      '200':
+        application/json: BuilderElementsGetPageElements200Response
+      '404':
+        application/json: BuilderElementsGetPageElements404Response
+    post:
+      '400':
+        application/json: BuilderElementsCreateNewElementResponse
+      '404':
+        application/json: BuilderElementsCreateNewElement404Response
+  /api/builder/page/{page_id}/workflow_actions:
+    get:
+      '200':
+        application/json: BuilderWorkflowActionsListPageWorkflowActions200Response
+      '404':
+        application/json: BuilderWorkflowActionsListPageWorkflowActions404Response
+    post:
+      '400':
+        application/json: BuilderWorkflowActionsCreateNewActionResponse
+      '404':
+        application/json: BuilderWorkflowActionsCreateNewAction404Response
+  /api/builder/page/{page_id}/workflow_actions/order:
+    post:
+      '400':
+        application/json: BuilderWorkflowActionsApplyNewOrderResponse
+      '404':
+        application/json: BuilderWorkflowActionsApplyNewOrder404Response
+  /api/builder/pages/{page_id}:
+    delete:
+      '400':
+        application/json: BuilderPagesDeletePageResponse
+      '404':
+        application/json: BuilderPagesDeletePage404Response
+    patch:
+      '400':
+        application/json: BuilderPagesUpdateExistingPageResponse
+      '404':
+        application/json: BuilderPagesUpdateExistingPage404Response
+  /api/builder/pages/{page_id}/duplicate/async:
+    post:
+      '400':
+        application/json: BuilderPagesStartDuplicationJobResponse
+      '404':
+        application/json: BuilderPagesStartDuplicationJob404Response
+  /api/builder/workflow_action/{workflow_action_id}:
+    delete:
+      '400':
+        application/json: BuilderWorkflowActionsDeleteWorkflowActionByIdResponse
+      '404':
+        application/json: BuilderWorkflowActionsDeleteWorkflowActionById404Response
+    patch:
+      '400':
+        application/json: BuilderWorkflowActionsUpdateExistingActionResponse
+      '404':
+        application/json: BuilderWorkflowActionsUpdateExistingAction404Response
+  /api/builder/workflow_action/{workflow_action_id}/dispatch:
+    post:
+      '400':
+        application/json: BuilderWorkflowActionsDispatchServiceResultResponse
+  /api/builder/{builder_id}/domains:
+    get:
+      '200':
+        application/json: BuilderDomainsGetAllResponse
+      '400':
+        application/json: BuilderDomainsGetAll400Response
+      '404':
+        application/json: BuilderDomainsGetAll404Response
+    post:
+      '400':
+        application/json: BuilderDomainsCreateNewDomainResponse
+      '404':
+        application/json: BuilderDomainsCreateNewDomain404Response
+  /api/builder/{builder_id}/domains/order:
+    post:
+      '400':
+        application/json: BuilderDomainsApplyOrderResponse
+      '404':
+        application/json: BuilderDomainsApplyOrder404Response
+  /api/builder/{builder_id}/pages:
+    post:
+      '400':
+        application/json: BuilderPagesCreateNewPageResponse
+      '404':
+        application/json: BuilderPagesCreateNewPage404Response
+  /api/builder/{builder_id}/pages/order:
+    post:
+      '400':
+        application/json: BuilderPagesApplyOrderToPagesResponse
+      '404':
+        application/json: BuilderPagesApplyOrderToPages404Response
+  /api/builder/{builder_id}/theme:
+    patch:
+      '400':
+        application/json: BuilderThemeUpdatePropertiesResponse
+      '404':
+        application/json: BuilderThemeUpdateProperties404Response
+  /api/database/export/table/{table_id}:
+    post:
+      '400':
+        application/json: ExportTableResponse
+      '404':
+        application/json: ExportTable404Response
+  /api/database/export/{job_id}:
+    get:
+      '404':
+        application/json: DatabaseTableExportExportJobDetailsResponse
+  /api/database/fields/table/{table_id}:
+    get:
+      '200':
+        application/json: DatabaseTableFieldsGetTableFieldsResponse
+      '400':
+        application/json: DatabaseTableFieldsGetTableFields400Response
+      '401':
+        application/json: DatabaseTableFieldsGetTableFields401Response
+      '404':
+        application/json: DatabaseTableFieldsGetTableFields404Response
+    post:
+      '400':
+        application/json: DatabaseTableFieldsCreateNewFieldResponse
+      '401':
+        application/json: DatabaseTableFieldsCreateNewField401Response
+      '404':
+        application/json: DatabaseTableFieldsCreateNewField404Response
+  /api/database/fields/{field_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableFieldsDeleteFieldResponse
+      '404':
+        application/json: DatabaseTableFieldsDeleteField404Response
+    get:
+      '400':
+        application/json: DatabaseTableFieldsGetFieldPropertiesResponse
+      '404':
+        application/json: DatabaseTableFieldsGetFieldProperties404Response
+    patch:
+      '400':
+        application/json: DatabaseTableFieldsUpdateFieldResponse
+      '404':
+        application/json: DatabaseTableFieldsUpdateField404Response
+  /api/database/fields/{field_id}/duplicate/async:
+    post:
+      '400':
+        application/json: DatabaseTableFieldsDuplicateAsyncResponse
+      '404':
+        application/json: DatabaseTableFieldsDuplicateAsync404Response
+  /api/database/fields/{field_id}/unique_row_values:
+    get:
+      '400':
+        application/json: DatabaseTableFieldsGetUniqueRowValuesResponse
+      '404':
+        application/json: DatabaseTableFieldsGetUniqueRowValues404Response
+  /api/database/formula/{table_id}/type:
+    post:
+      '400':
+        application/json: DatabaseTableFieldsCalculateFormulaTypeResponse
+      '404':
+        application/json: DatabaseTableFieldsCalculateFormulaType404Response
+  /api/database/rows/names:
+    get:
+      '200':
+        application/json: DatabaseTableRowsGetNamesOfRowResponse
+      '400':
+        application/json: DatabaseTableRowsGetNamesOfRow400Response
+      '401':
+        application/json: DatabaseTableRowsGetNamesOfRow401Response
+      '404':
+        application/json: DatabaseTableRowsGetNamesOfRow404Response
+  /api/database/rows/table/{table_id}:
+    get:
+      '400':
+        application/json: DatabaseTableRowsListTableRowsResponse
+      '401':
+        application/json: DatabaseTableRowsListTableRows401Response
+      '404':
+        application/json: DatabaseTableRowsListTableRows404Response
+    post:
+      '400':
+        application/json: DatabaseTableRowsCreateRowResponse
+      '401':
+        application/json: DatabaseTableRowsCreateRow401Response
+      '404':
+        application/json: DatabaseTableRowsCreateRow404Response
+  /api/database/rows/table/{table_id}/batch:
+    patch:
+      '400':
+        application/json: DatabaseTableRowsUpdateBatchRowsResponse
+      '401':
+        application/json: DatabaseTableRowsUpdateBatchRows401Response
+      '404':
+        application/json: DatabaseTableRowsUpdateBatchRows404Response
+    post:
+      '400':
+        application/json: DatabaseTableRowsCreateBatchRowsResponse
+      '401':
+        application/json: DatabaseTableRowsCreateBatchRows401Response
+      '404':
+        application/json: DatabaseTableRowsCreateBatchRows404Response
+  /api/database/rows/table/{table_id}/batch-delete:
+    post:
+      '400':
+        application/json: DatabaseTableRowsBatchDeleteResponse
+      '404':
+        application/json: DatabaseTableRowsBatchDelete404Response
+  /api/database/rows/table/{table_id}/{row_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableRowsDeleteRowResponse
+      '404':
+        application/json: DatabaseTableRowsDeleteRow404Response
+    get:
+      '400':
+        application/json: DatabaseTableRowsGetRowByTableIdAndRowIdResponse
+      '401':
+        application/json: DatabaseTableRowsGetRowByTableIdAndRowId401Response
+      '404':
+        application/json: DatabaseTableRowsGetRowByTableIdAndRowId404Response
+    patch:
+      '400':
+        application/json: DatabaseTableRowsUpdateRowResponse
+      '401':
+        application/json: DatabaseTableRowsUpdateRow401Response
+      '404':
+        application/json: DatabaseTableRowsUpdateRow404Response
+  /api/database/rows/table/{table_id}/{row_id}/adjacent:
+    get:
+      '400':
+        application/json: DatabaseTableRowsGetAdjacentRowResponse
+      '404':
+        application/json: DatabaseTableRowsGetAdjacentRow404Response
+  /api/database/rows/table/{table_id}/{row_id}/history:
+    get:
+      '400':
+        application/json: DatabaseTableRowsGetRowChangeHistoryResponse
+      '404':
+        application/json: DatabaseTableRowsGetRowChangeHistory404Response
+  /api/database/rows/table/{table_id}/{row_id}/move:
+    patch:
+      '400':
+        application/json: DatabaseTableRowsMoveRowToResponse
+      '401':
+        application/json: DatabaseTableRowsMoveRowTo401Response
+      '404':
+        application/json: DatabaseTableRowsMoveRowTo404Response
+  /api/database/tables/database/{database_id}:
+    get:
+      '200':
+        application/json: DatabaseTablesListByDatabaseIdResponse
+      '400':
+        application/json: DatabaseTablesListByDatabaseId400Response
+      '404':
+        application/json: DatabaseTablesListByDatabaseId404Response
+    post:
+      '400':
+        application/json: DatabaseTablesCreateTableResponse
+      '404':
+        application/json: DatabaseTablesCreateTable404Response
+  /api/database/tables/database/{database_id}/async:
+    post:
+      '400':
+        application/json: DatabaseTablesCreateTableJobResponse
+      '404':
+        application/json: DatabaseTablesCreateTableJob404Response
+  /api/database/tables/database/{database_id}/order:
+    post:
+      '400':
+        application/json: DatabaseTablesUpdateTableOrderResponse
+      '404':
+        application/json: DatabaseTablesUpdateTableOrder404Response
+  /api/database/tables/{table_id}:
+    delete:
+      '400':
+        application/json: DatabaseTablesDeleteTableResponse
+      '404':
+        application/json: DatabaseTablesDeleteTable404Response
+    get:
+      '400':
+        application/json: DatabaseTablesGetTableResponse
+      '404':
+        application/json: DatabaseTablesGetTable404Response
+    patch:
+      '400':
+        application/json: DatabaseTablesUpdateTableResponse
+      '404':
+        application/json: DatabaseTablesUpdateTable404Response
+  /api/database/tables/{table_id}/duplicate/async:
+    post:
+      '400':
+        application/json: DatabaseTablesDuplicateAsyncJobResponse
+      '404':
+        application/json: DatabaseTablesDuplicateAsyncJob404Response
+  /api/database/tables/{table_id}/import/async:
+    post:
+      '400':
+        application/json: DatabaseTablesImportAsyncJobResponse
+      '404':
+        application/json: DatabaseTablesImportAsyncJob404Response
+  /api/database/tokens:
+    get:
+      '200':
+        application/json: DatabaseTokensListResponse
+    post:
+      '400':
+        application/json: DatabaseTokensCreateNewTokenResponse
+  /api/database/tokens/check:
+    get:
+      '403':
+        application/json: DatabaseTokensVerifyTokenValidityResponse
+  /api/database/tokens/{token_id}:
+    delete:
+      '400':
+        application/json: DatabaseTokensDeleteTokenResponse
+      '404':
+        application/json: DatabaseTokensDeleteToken404Response
+    get:
+      '400':
+        application/json: DatabaseTokensGetTokenResponse
+      '404':
+        application/json: DatabaseTokensGetToken404Response
+    patch:
+      '400':
+        application/json: DatabaseTokensUpdateTokenOwnershipResponse
+      '404':
+        application/json: DatabaseTokensUpdateTokenOwnership404Response
+  /api/database/view/{view_id}/premium:
+    patch:
+      '400':
+        application/json: DatabaseTableViewsSetPremiumAttributesResponse
+      '404':
+        application/json: DatabaseTableViewsSetPremiumAttributes404Response
+  /api/database/views/calendar/{slug}/public/rows:
+    get:
+      '400':
+        application/json: DatabaseTableCalendarViewGetPublicRowsResponse
+      '401':
+        application/json: DatabaseTableCalendarViewGetPublicRows401Response
+      '404':
+        application/json: DatabaseTableCalendarViewGetPublicRows404Response
+  /api/database/views/calendar/{view_id}:
+    get:
+      '400':
+        application/json: DatabaseTableCalendarViewGetGroupedRowsResponse
+      '404':
+        application/json: DatabaseTableCalendarViewGetGroupedRows404Response
+  /api/database/views/decoration/{view_decoration_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableViewDecorationsDeleteExistingDecorationResponse
+      '404':
+        application/json: DatabaseTableViewDecorationsDeleteExistingDecoration404Response
+    get:
+      '400':
+        application/json: DatabaseTableViewDecorationsGetViewDecorationResponse
+      '404':
+        application/json: DatabaseTableViewDecorationsGetViewDecoration404Response
+    patch:
+      '400':
+        application/json: DatabaseTableViewDecorationsUpdateDecorationResponse
+      '404':
+        application/json: DatabaseTableViewDecorationsUpdateDecoration404Response
+  /api/database/views/filter-group/{filter_group_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableViewFiltersDeleteFilterGroupResponse
+      '404':
+        application/json: DatabaseTableViewFiltersDeleteFilterGroup404Response
+    get:
+      '400':
+        application/json: DatabaseTableViewFiltersGetFilterGroupByIdResponse
+      '404':
+        application/json: DatabaseTableViewFiltersGetFilterGroupById404Response
+    patch:
+      '400':
+        application/json: DatabaseTableViewFiltersUpdateFilterGroupResponse
+      '404':
+        application/json: DatabaseTableViewFiltersUpdateFilterGroup404Response
+  /api/database/views/filter/{view_filter_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableViewFiltersDeleteFilterResponse
+      '404':
+        application/json: DatabaseTableViewFiltersDeleteFilter404Response
+    get:
+      '400':
+        application/json: DatabaseTableViewFiltersGetViewFilterResponse
+      '404':
+        application/json: DatabaseTableViewFiltersGetViewFilter404Response
+    patch:
+      '400':
+        application/json: DatabaseTableViewFiltersUpdateExistingFilterResponse
+      '404':
+        application/json: DatabaseTableViewFiltersUpdateExistingFilter404Response
+  /api/database/views/form/{slug}/submit:
+    get:
+      '401':
+        application/json: DatabaseTableFormViewGetFormMetadataBySlugResponse
+      '404':
+        application/json: DatabaseTableFormViewGetFormMetadataBySlug404Response
+    post:
+      '401':
+        application/json: DatabaseTableFormViewSubmitFormResponse
+      '404':
+        application/json: DatabaseTableFormViewSubmitForm404Response
+  /api/database/views/form/{slug}/upload-file:
+    post:
+      '400':
+        application/json: DatabaseTableFormViewUploadFileResponse
+      '401':
+        application/json: DatabaseTableFormViewUploadFile401Response
+      '404':
+        application/json: DatabaseTableFormViewUploadFile404Response
+  /api/database/views/gallery/{slug}/public/rows:
+    get:
+      '400':
+        application/json: DatabaseTableGalleryViewListPublicRowsResponse
+      '401':
+        application/json: DatabaseTableGalleryViewListPublicRows401Response
+      '404':
+        application/json: DatabaseTableGalleryViewListPublicRows404Response
+  /api/database/views/gallery/{view_id}:
+    get:
+      '400':
+        application/json: DatabaseTableGalleryViewListRowsByViewIdResponse
+      '404':
+        application/json: DatabaseTableGalleryViewListRowsByViewId404Response
+  /api/database/views/grid/{slug}/public/rows:
+    get:
+      '400':
+        application/json: DatabaseTableGridViewListPublicRowsResponse
+      '401':
+        application/json: DatabaseTableGridViewListPublicRows401Response
+      '404':
+        application/json: DatabaseTableGridViewListPublicRows404Response
+  /api/database/views/grid/{view_id}:
+    get:
+      '400':
+        application/json: DatabaseTableGridViewGetViewRowsResponse
+      '404':
+        application/json: DatabaseTableGridViewGetViewRows404Response
+    post:
+      '200':
+        application/json: DatabaseTableGridViewGetFilteredDataResponse
+      '400':
+        application/json: DatabaseTableGridViewGetFilteredData400Response
+      '404':
+        application/json: DatabaseTableGridViewGetFilteredData404Response
+  /api/database/views/grid/{view_id}/aggregation/{field_id}:
+    get:
+      '200':
+        application/json: DatabaseTableGridViewComputeAggregationResponse
+      '400':
+        application/json: DatabaseTableGridViewComputeAggregation400Response
+      '404':
+        application/json: DatabaseTableGridViewComputeAggregation404Response
+  /api/database/views/grid/{view_id}/aggregations:
+    get:
+      '200':
+        application/json: DatabaseTableGridViewGetFieldAggregationsResponse
+      '400':
+        application/json: DatabaseTableGridViewGetFieldAggregations400Response
+      '404':
+        application/json: DatabaseTableGridViewGetFieldAggregations404Response
+  /api/database/views/group_by/{view_group_by_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableViewGroupingsDeleteGroupByResponse
+      '404':
+        application/json: DatabaseTableViewGroupingsDeleteGroupBy404Response
+    get:
+      '400':
+        application/json: DatabaseTableViewGroupingsGetViewGroupByResponse
+      '404':
+        application/json: DatabaseTableViewGroupingsGetViewGroupBy404Response
+    patch:
+      '400':
+        application/json: DatabaseTableViewGroupingsUpdateGroupByResponse
+      '404':
+        application/json: DatabaseTableViewGroupingsUpdateGroupBy404Response
+  /api/database/views/kanban/{slug}/public/rows:
+    get:
+      '400':
+        application/json: DatabaseTableKanbanViewGetPublicRowsBySlugResponse
+      '401':
+        application/json: DatabaseTableKanbanViewGetPublicRowsBySlug401Response
+      '404':
+        application/json: DatabaseTableKanbanViewGetPublicRowsBySlug404Response
+  /api/database/views/kanban/{view_id}:
+    get:
+      '400':
+        application/json: DatabaseTableKanbanViewGetSerializedRowsByViewIdResponse
+      '404':
+        application/json: DatabaseTableKanbanViewGetSerializedRowsByViewId404Response
+  /api/database/views/sort/{view_sort_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableViewSortingsDeleteByIdResponse
+      '404':
+        application/json: DatabaseTableViewSortingsDeleteById404Response
+    get:
+      '400':
+        application/json: DatabaseTableViewSortingsGetSortByIdResponse
+      '404':
+        application/json: DatabaseTableViewSortingsGetSortById404Response
+    patch:
+      '400':
+        application/json: DatabaseTableViewSortingsUpdateByIdResponse
+      '404':
+        application/json: DatabaseTableViewSortingsUpdateById404Response
+  /api/database/views/table/{table_id}:
+    get:
+      '200':
+        application/json: DatabaseTableViewsListTableViewsResponse
+      '400':
+        application/json: DatabaseTableViewsListTableViews400Response
+      '404':
+        application/json: DatabaseTableViewsListTableViews404Response
+    post:
+      '400':
+        application/json: DatabaseTableViewsCreateNewViewResponse
+      '404':
+        application/json: DatabaseTableViewsCreateNewView404Response
+  /api/database/views/table/{table_id}/order:
+    post:
+      '400':
+        application/json: DatabaseTableViewsReorderTableOrderResponse
+      '404':
+        application/json: DatabaseTableViewsReorderTableOrder404Response
+  /api/database/views/{slug}/link-row-field-lookup/{field_id}:
+    get:
+      '401':
+        application/json: DatabaseTableViewsGetLinkRowFieldValueResponse
+      '404':
+        application/json: DatabaseTableViewsGetLinkRowFieldValue404Response
+  /api/database/views/{slug}/public/auth:
+    post:
+      '401':
+        application/json: DatabaseTableViewsGenerateTokenResponse
+      '404':
+        application/json: DatabaseTableViewsGenerateToken404Response
+  /api/database/views/{slug}/public/info:
+    get:
+      '400':
+        application/json: DatabaseTableViewsGetPublicInfoResponse
+      '401':
+        application/json: DatabaseTableViewsGetPublicInfo401Response
+      '404':
+        application/json: DatabaseTableViewsGetPublicInfo404Response
+  /api/database/views/{view_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableViewsDeleteViewResponse
+      '404':
+        application/json: DatabaseTableViewsDeleteView404Response
+    get:
+      '400':
+        application/json: DatabaseTableViewsGetViewByIdResponse
+      '404':
+        application/json: DatabaseTableViewsGetViewById404Response
+    patch:
+      '400':
+        application/json: DatabaseTableViewsUpdateViewResponse
+      '404':
+        application/json: DatabaseTableViewsUpdateView404Response
+  /api/database/views/{view_id}/decorations:
+    get:
+      '200':
+        application/json: DatabaseTableViewDecorationsListResponse
+      '400':
+        application/json: DatabaseTableViewDecorationsList400Response
+      '404':
+        application/json: DatabaseTableViewDecorationsList404Response
+    post:
+      '400':
+        application/json: DatabaseTableViewDecorationsCreateNewResponse
+      '404':
+        application/json: DatabaseTableViewDecorationsCreateNew404Response
+  /api/database/views/{view_id}/duplicate:
+    post:
+      '400':
+        application/json: DatabaseTableViewsDuplicateViewResponse
+      '404':
+        application/json: DatabaseTableViewsDuplicateView404Response
+  /api/database/views/{view_id}/field-options:
+    get:
+      '400':
+        application/json: DatabaseTableViewsGetFieldOptionsResponse
+      '404':
+        application/json: DatabaseTableViewsGetFieldOptions404Response
+    patch:
+      '400':
+        application/json: DatabaseTableViewsUpdateFieldOptionsResponse
+      '404':
+        application/json: DatabaseTableViewsUpdateFieldOptions404Response
+  /api/database/views/{view_id}/filter-groups:
+    post:
+      '400':
+        application/json: DatabaseTableViewFiltersCreateNewFilterGroupResponse
+      '404':
+        application/json: DatabaseTableViewFiltersCreateNewFilterGroup404Response
+  /api/database/views/{view_id}/filters:
+    get:
+      '200':
+        application/json: DatabaseTableViewFiltersGetListResponse
+      '400':
+        application/json: DatabaseTableViewFiltersGetList400Response
+      '404':
+        application/json: DatabaseTableViewFiltersGetList404Response
+    post:
+      '400':
+        application/json: DatabaseTableViewFiltersCreateNewFilterResponse
+      '404':
+        application/json: DatabaseTableViewFiltersCreateNewFilter404Response
+  /api/database/views/{view_id}/group_bys:
+    get:
+      '200':
+        application/json: DatabaseTableViewGroupingsListResponse
+      '400':
+        application/json: DatabaseTableViewGroupingsList400Response
+      '404':
+        application/json: DatabaseTableViewGroupingsList404Response
+    post:
+      '400':
+        application/json: DatabaseTableViewGroupingsCreateNewGroupingResponse
+      '404':
+        application/json: DatabaseTableViewGroupingsCreateNewGrouping404Response
+  /api/database/views/{view_id}/rotate-slug:
+    post:
+      '400':
+        application/json: DatabaseTableViewsRotateSlugResponse
+      '404':
+        application/json: DatabaseTableViewsRotateSlug404Response
+  /api/database/views/{view_id}/sortings:
+    get:
+      '200':
+        application/json: DatabaseTableViewSortingsListResponse
+      '400':
+        application/json: DatabaseTableViewSortingsList400Response
+      '404':
+        application/json: DatabaseTableViewSortingsList404Response
+    post:
+      '400':
+        application/json: DatabaseTableViewSortingsCreateNewSortResponse
+      '404':
+        application/json: DatabaseTableViewSortingsCreateNewSort404Response
+  /api/database/webhooks/table/{table_id}:
+    get:
+      '200':
+        application/json: DatabaseTableWebhooksListResponse
+      '400':
+        application/json: DatabaseTableWebhooksList400Response
+      '404':
+        application/json: DatabaseTableWebhooksList404Response
+    post:
+      '400':
+        application/json: DatabaseTableWebhooksCreateWebhookResponse
+      '404':
+        application/json: DatabaseTableWebhooksCreateWebhook404Response
+  /api/database/webhooks/table/{table_id}/test-call:
+    post:
+      '400':
+        application/json: DatabaseTableWebhooksTriggerTestCallResponse
+      '404':
+        application/json: DatabaseTableWebhooksTriggerTestCall404Response
+  /api/database/webhooks/{webhook_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableWebhooksDeleteWebhookResponse
+      '404':
+        application/json: DatabaseTableWebhooksDeleteWebhook404Response
+    get:
+      '400':
+        application/json: DatabaseTableWebhooksGetExistingWebhookResponse
+      '404':
+        application/json: DatabaseTableWebhooksGetExistingWebhook404Response
+    patch:
+      '400':
+        application/json: DatabaseTableWebhooksUpdateViewResponse
+      '404':
+        application/json: DatabaseTableWebhooksUpdateView404Response
+  /api/groups:
+    get:
+      '200':
+        application/json: ListGroupsResponse
+  /api/groups/invitations/group/{group_id}:
+    get:
+      '200':
+        application/json: GroupInvitationsListForGroupResponse
+      '400':
+        application/json: GroupInvitationsListForGroup400Response
+      '404':
+        application/json: GroupInvitationsListForGroup404Response
+    post:
+      '400':
+        application/json: GroupInvitationsCreateNewInvitationResponse
+      '404':
+        application/json: GroupInvitationsCreateNewInvitation404Response
+  /api/groups/invitations/token/{token}:
+    get:
+      '400':
+        application/json: GroupInvitationsFindByTokenResponse
+      '404':
+        application/json: GroupInvitationsFindByToken404Response
+  /api/groups/invitations/{group_invitation_id}:
+    delete:
+      '400':
+        application/json: GroupInvitationsDeleteInvitationResponse
+      '404':
+        application/json: GroupInvitationsDeleteInvitation404Response
+    get:
+      '400':
+        application/json: GroupInvitationsGetByIdResponse
+      '404':
+        application/json: GroupInvitationsGetById404Response
+    patch:
+      '400':
+        application/json: GroupInvitationsUpdateRelatedInvitationResponse
+      '404':
+        application/json: GroupInvitationsUpdateRelatedInvitation404Response
+  /api/groups/invitations/{group_invitation_id}/accept:
+    post:
+      '400':
+        application/json: GroupInvitationsAcceptGroupInvitationResponse
+      '404':
+        application/json: GroupInvitationsAcceptGroupInvitation404Response
+  /api/groups/invitations/{group_invitation_id}/reject:
+    post:
+      '400':
+        application/json: GroupInvitationsRejectGroupInvitationResponse
+      '404':
+        application/json: GroupInvitationsRejectGroupInvitation404Response
+  /api/groups/users/group/{group_id}:
+    get:
+      '200':
+        application/json: GroupsListGroupUsersResponse
+      '400':
+        application/json: GroupsListGroupUsers400Response
+      '404':
+        application/json: GroupsListGroupUsers404Response
+  /api/groups/users/{group_user_id}:
+    delete:
+      '400':
+        application/json: GroupsDeleteGroupUserResponse
+      '404':
+        application/json: GroupsDeleteGroupUser404Response
+    patch:
+      '400':
+        application/json: GroupsUpdateGroupUserResponse
+      '404':
+        application/json: GroupsUpdateGroupUser404Response
+  /api/groups/{group_id}:
+    delete:
+      '400':
+        application/json: DeleteGroupResponse
+      '404':
+        application/json: DeleteGroup404Response
+    patch:
+      '400':
+        application/json: UpdateGroupResponse
+      '404':
+        application/json: UpdateGroup404Response
+  /api/groups/{group_id}/leave:
+    post:
+      '400':
+        application/json: LeaveGroupResponse
+      '404':
+        application/json: LeaveGroup404Response
+  /api/groups/{group_id}/permissions:
+    get:
+      '200':
+        application/json: GroupPermissionsResponse
+      '404':
+        application/json: GroupPermissions404Response
+  /api/integration/{integration_id}:
+    delete:
+      '400':
+        application/json: IntegrationsDeleteByIdResponse
+      '404':
+        application/json: IntegrationsDeleteById404Response
+    patch:
+      '400':
+        application/json: IntegrationsUpdateExistingIntegrationResponse
+      '404':
+        application/json: IntegrationsUpdateExistingIntegration404Response
+  /api/integration/{integration_id}/move:
+    patch:
+      '400':
+        application/json: IntegrationsMoveIntegrationResponse
+      '404':
+        application/json: IntegrationsMoveIntegration404Response
+  /api/jobs:
+    get:
+      '200':
+        application/json: ListJobResponse
+    post:
+      '400':
+        application/json: CreateJobResponse
+      '404':
+        application/json: CreateJob404Response
+  /api/jobs/{job_id}:
+    get:
+      '404':
+        application/json: GetJobResponse
+  /api/licenses:
+    get:
+      '200':
+        application/json: AdminLicensesResponse
+    post:
+      '400':
+        application/json: AdminRegisterLicenseResponse
+  /api/licenses/{id}:
+    delete:
+      '404':
+        application/json: AdminRemoveLicenseResponse
+    get:
+      '404':
+        application/json: AdminGetLicenseDetailsResponse
+  /api/licenses/{id}/check:
+    get:
+      '404':
+        application/json: AdminCheckLicenseStatusResponse
+  /api/licenses/{id}/fill-seats:
+    post:
+      '200':
+        application/json: AdminFillSeatsLicenseResponse
+      '400':
+        application/json: AdminFillSeatsLicense400Response
+      '404':
+        application/json: AdminFillSeatsLicense404Response
+  /api/licenses/{id}/lookup-users:
+    get:
+      '404':
+        application/json: AdminLookupUsersResponse
+  /api/licenses/{id}/remove-all-users:
+    post:
+      '400':
+        application/json: AdminRemoveAllUsersResponse
+      '404':
+        application/json: AdminRemoveAllUsers404Response
+  /api/licenses/{id}/{user_id}:
+    delete:
+      '400':
+        application/json: AdminRemoveUserFromLicenseResponse
+      '404':
+        application/json: AdminRemoveUserFromLicense404Response
+    post:
+      '400':
+        application/json: AdminAddUserToLicenseResponse
+      '404':
+        application/json: AdminAddUserToLicense404Response
+  /api/notifications/{workspace_id}:
+    delete:
+      '400':
+        application/json: NotificationsClearWorkspaceNotificationsResponse
+      '404':
+        application/json: NotificationsClearWorkspaceNotifications404Response
+    get:
+      '400':
+        application/json: NotificationsListForWorkspaceAndUserResponse
+      '404':
+        application/json: NotificationsListForWorkspaceAndUser404Response
+  /api/notifications/{workspace_id}/mark-all-as-read:
+    post:
+      '400':
+        application/json: NotificationsMarkAllAsReadResponse
+      '404':
+        application/json: NotificationsMarkAllAsRead404Response
+  /api/notifications/{workspace_id}/{notification_id}:
+    patch:
+      '400':
+        application/json: NotificationsMarkAsReadResponse
+      '404':
+        application/json: NotificationsMarkAsRead404Response
+  /api/role/{group_id}:
+    get:
+      '200':
+        application/json: RoleAssignmentsListWithinGroupResponse
+      '400':
+        application/json: RoleAssignmentsListWithinGroup400Response
+      '404':
+        application/json: RoleAssignmentsListWithinGroup404Response
+    post:
+      '400':
+        application/json: RoleAssignmentsAssignRoleToGroupResponse
+      '404':
+        application/json: RoleAssignmentsAssignRoleToGroup404Response
+  /api/role/{group_id}/batch:
+    post:
+      '200':
+        application/json: RoleAssignmentsAssignMultipleSubjectsToGroupResponse
+      '400':
+        application/json: RoleAssignmentsAssignMultipleSubjectsToGroup400Response
+      '404':
+        application/json: RoleAssignmentsAssignMultipleSubjectsToGroup404Response
+  /api/role/{workspace_id}:
+    get:
+      '200':
+        application/json: RoleAssignmentsListWithinWorkspaceScopeResponse
+      '400':
+        application/json: RoleAssignmentsListWithinWorkspaceScope400Response
+      '404':
+        application/json: RoleAssignmentsListWithinWorkspaceScope404Response
+    post:
+      '400':
+        application/json: AssignRoleResponse
+      '404':
+        application/json: AssignRole404Response
+  /api/role/{workspace_id}/batch:
+    post:
+      '200':
+        application/json: RoleAssignmentsAssignRoleToGroup200Response
+      '400':
+        application/json: RoleAssignmentsAssignRoleToGroup400Response
+      '404':
+        application/json: RoleAssignmentsAssignRoleToGroup404Response
+  /api/row_comments/{table_id}/comment/{comment_id}:
+    delete:
+      '400':
+        application/json: DatabaseTableRowsDeleteCommentResponse
+      '401':
+        application/json: DatabaseTableRowsDeleteComment401Response
+      '404':
+        application/json: DatabaseTableRowsDeleteComment404Response
+    patch:
+      '400':
+        application/json: DatabaseTableRowsUpdateCommentResponse
+      '401':
+        application/json: DatabaseTableRowsUpdateComment401Response
+      '404':
+        application/json: DatabaseTableRowsUpdateComment404Response
+  /api/row_comments/{table_id}/{row_id}:
+    get:
+      '400':
+        application/json: DatabaseTableRowsGetAllCommentsResponse
+      '404':
+        application/json: DatabaseTableRowsGetAllComments404Response
+    post:
+      '400':
+        application/json: DatabaseTableRowsCreateCommentResponse
+      '404':
+        application/json: DatabaseTableRowsCreateComment404Response
+  /api/row_comments/{table_id}/{row_id}/notification-mode:
+    put:
+      '400':
+        application/json: DatabaseTableRowsUpdateNotificationModeResponse
+      '404':
+        application/json: DatabaseTableRowsUpdateNotificationMode404Response
+  /api/snapshots/application/{application_id}:
+    get:
+      '200':
+        application/json: ListSnapshotsResponse
+      '400':
+        application/json: ListSnapshots400Response
+      '404':
+        application/json: ListSnapshots404Response
+    post:
+      '400':
+        application/json: CreateSnapshotResponse
+      '404':
+        application/json: CreateSnapshot404Response
+  /api/snapshots/{snapshot_id}:
+    delete:
+      '400':
+        application/json: DeleteSnapshotResponse
+      '404':
+        application/json: DeleteSnapshot404Response
+  /api/snapshots/{snapshot_id}/restore:
+    post:
+      '400':
+        application/json: RestoreSnapshotResponse
+      '404':
+        application/json: RestoreSnapshot404Response
+  /api/sso/saml/login-url:
+    get:
+      '200':
+        application/json: AuthGetSamlLoginUrlResponse
+      '400':
+        application/json: AuthGetSamlLoginUrl400Response
+  /api/teams/group/{group_id}:
+    get:
+      '200':
+        application/json: TeamsGetAllInGroupResponse
+      '404':
+        application/json: TeamsGetAllInGroup404Response
+    post:
+      '400':
+        application/json: TeamsCreateInGroupResponse
+      '404':
+        application/json: TeamsCreateInGroup404Response
+  /api/teams/workspace/{workspace_id}:
+    get:
+      '200':
+        application/json: TeamsListInWorkspaceResponse
+      '404':
+        application/json: TeamsListInWorkspace404Response
+    post:
+      '400':
+        application/json: TeamsCreateNewTeamResponse
+      '404':
+        application/json: TeamsCreateNewTeam404Response
+  /api/teams/{team_id}:
+    delete:
+      '400':
+        application/json: DeleteTeamResponse
+      '404':
+        application/json: DeleteTeam404Response
+    get:
+      '404':
+        application/json: GetTeamResponse
+    put:
+      '400':
+        application/json: UpdateTeamResponse
+      '404':
+        application/json: UpdateTeam404Response
+  /api/teams/{team_id}/subjects:
+    get:
+      '200':
+        application/json: TeamsListSubjectsResponse
+      '400':
+        application/json: TeamsListSubjects400Response
+    post:
+      '400':
+        application/json: CreateSubjectResponse
+      '404':
+        application/json: CreateSubject404Response
+  /api/teams/{team_id}/subjects/{subject_id}:
+    delete:
+      '400':
+        application/json: DeleteSubjectResponse
+      '404':
+        application/json: DeleteSubject404Response
+    get:
+      '404':
+        application/json: GetSubjectResponse
+  /api/templates:
+    get:
+      '200':
+        application/json: ListTemplatesResponse
+  /api/templates/install/{group_id}/{template_id}:
+    post:
+      '200':
+        application/json: TemplatesInstallApplicationsResponse
+      '400':
+        application/json: TemplatesInstallApplications400Response
+      '404':
+        application/json: TemplatesInstallApplications404Response
+  /api/templates/install/{group_id}/{template_id}/async:
+    post:
+      '400':
+        application/json: TemplatesStartAsyncJobResponse
+      '404':
+        application/json: TemplatesStartAsyncJob404Response
+  /api/templates/install/{workspace_id}/{template_id}:
+    post:
+      '200':
+        application/json: InstallTemplateResponse
+      '400':
+        application/json: InstallTemplate400Response
+      '404':
+        application/json: InstallTemplate404Response
+  /api/templates/install/{workspace_id}/{template_id}/async:
+    post:
+      '400':
+        application/json: TemplatesStartAsyncJob400Response
+      '404':
+        application/json: TemplatesStartAsyncJob404Response
+  /api/trash/group/{group_id}:
+    delete:
+      '400':
+        application/json: TrashEmptyGroupContentsResponse
+    get:
+      '400':
+        application/json: TrashGetGroupContentsResponse
+  /api/trash/restore:
+    patch:
+      '400':
+        application/json: TrashRestoreItemResponse
+  /api/trash/workspace/{workspace_id}:
+    delete:
+      '400':
+        application/json: TrashEmptyWorkspaceResponse
+    get:
+      '400':
+        application/json: TrashGetWorkspaceTrashContentsResponse
+  /api/user:
+    post:
+      '200':
+        application/json: CreateUserResponse
+      '400':
+        application/json: CreateUser400Response
+      '404':
+        application/json: CreateUser404Response
+  /api/user-files/upload-file:
+    post:
+      '400':
+        application/json: UploadFileResponse
+  /api/user-files/upload-via-url:
+    post:
+      '400':
+        application/json: UserFilesUploadViaUrlResponse
+  /api/user-source-auth-refresh:
+    post:
+      '200':
+        application/json: UserSourcesRefreshAccessTokenResponse
+      '401':
+        application/json: UserSourcesRefreshAccessToken401Response
+  /api/user-source-token-blacklist:
+    post:
+      '401':
+        application/json: UserSourcesBlacklistTokenResponse
+  /api/user-source/{user_source_id}:
+    delete:
+      '400':
+        application/json: UserSourcesRemoveByIdResponse
+      '404':
+        application/json: UserSourcesRemoveById404Response
+    patch:
+      '400':
+        application/json: UserSourcesUpdateExistingUserSourceResponse
+      '404':
+        application/json: UserSourcesUpdateExistingUserSource404Response
+  /api/user-source/{user_source_id}/force-token-auth:
+    post:
+      '200':
+        application/json: UserSourcesForceTokenAuthResponse
+      '401':
+        application/json: UserSourcesForceTokenAuth401Response
+  /api/user-source/{user_source_id}/move:
+    patch:
+      '400':
+        application/json: UserSourcesRearrangeUserSourceResponse
+      '404':
+        application/json: UserSourcesRearrangeUserSource404Response
+  /api/user-source/{user_source_id}/token-auth:
+    post:
+      '200':
+        application/json: UserSourcesAuthenticateUserWithTokenResponse
+      '401':
+        application/json: UserSourcesAuthenticateUserWithToken401Response
+  /api/user/account:
+    patch:
+      '400':
+        application/json: UpdateAccountResponse
+  /api/user/change-password:
+    post:
+      '400':
+        application/json: ChangePasswordResponse
+  /api/user/reset-password:
+    post:
+      '400':
+        application/json: ResetPasswordResponse
+  /api/user/schedule-account-deletion:
+    post:
+      '400':
+        application/json: UserScheduleAccountDeletionResponse
+  /api/user/send-reset-password-email:
+    post:
+      '400':
+        application/json: UserSendResetPasswordEmailResponse
+  /api/user/token-auth:
+    post:
+      '200':
+        application/json: TokenAuthResponse
+      '401':
+        application/json: TokenAuth401Response
+  /api/user/token-blacklist:
+    post:
+      '401':
+        application/json: TokenBlacklistResponse
+  /api/user/token-refresh:
+    post:
+      '200':
+        application/json: TokenRefreshResponse
+      '401':
+        application/json: TokenRefresh401Response
+  /api/user/token-verify:
+    post:
+      '200':
+        application/json: TokenVerifyResponse
+      '401':
+        application/json: TokenVerify401Response
+  /api/workspaces:
+    get:
+      '200':
+        application/json: ListWorkspacesResponse
+  /api/workspaces/invitations/token/{token}:
+    get:
+      '400':
+        application/json: WorkspaceInvitationsGetByTokenResponse
+      '404':
+        application/json: WorkspaceInvitationsGetByToken404Response
+  /api/workspaces/invitations/workspace/{workspace_id}:
+    get:
+      '200':
+        application/json: WorkspaceInvitationsListResponse
+      '400':
+        application/json: WorkspaceInvitationsList400Response
+      '404':
+        application/json: WorkspaceInvitationsList404Response
+    post:
+      '400':
+        application/json: WorkspaceInvitationsCreateInviteResponse
+      '404':
+        application/json: WorkspaceInvitationsCreateInvite404Response
+  /api/workspaces/invitations/{workspace_invitation_id}:
+    delete:
+      '400':
+        application/json: WorkspaceInvitationsDeleteInvitationResponse
+      '404':
+        application/json: WorkspaceInvitationsDeleteInvitation404Response
+    get:
+      '400':
+        application/json: WorkspaceInvitationsGetByIdResponse
+      '404':
+        application/json: WorkspaceInvitationsGetById404Response
+    patch:
+      '400':
+        application/json: WorkspaceInvitationsUpdateExistingInvitationResponse
+      '404':
+        application/json: WorkspaceInvitationsUpdateExistingInvitation404Response
+  /api/workspaces/invitations/{workspace_invitation_id}/accept:
+    post:
+      '400':
+        application/json: WorkspaceInvitationsAcceptInvitationResponse
+      '404':
+        application/json: WorkspaceInvitationsAcceptInvitation404Response
+  /api/workspaces/invitations/{workspace_invitation_id}/reject:
+    post:
+      '400':
+        application/json: WorkspaceInvitationsRejectInvitationResponse
+      '404':
+        application/json: WorkspaceInvitationsRejectInvitation404Response
+  /api/workspaces/users/workspace/{workspace_id}:
+    get:
+      '200':
+        application/json: WorkspacesListUsersInWorkspaceResponse
+      '400':
+        application/json: WorkspacesListUsersInWorkspace400Response
+      '404':
+        application/json: WorkspacesListUsersInWorkspace404Response
+  /api/workspaces/users/{workspace_user_id}:
+    delete:
+      '400':
+        application/json: WorkspacesDeleteUserResponse
+      '404':
+        application/json: WorkspacesDeleteUser404Response
+    patch:
+      '400':
+        application/json: WorkspacesUpdateWorkspaceUserResponse
+      '404':
+        application/json: WorkspacesUpdateWorkspaceUser404Response
+  /api/workspaces/{workspace_id}:
+    delete:
+      '400':
+        application/json: DeleteWorkspaceResponse
+      '404':
+        application/json: DeleteWorkspace404Response
+    patch:
+      '400':
+        application/json: UpdateWorkspaceResponse
+      '404':
+        application/json: UpdateWorkspace404Response
+  /api/workspaces/{workspace_id}/leave:
+    post:
+      '400':
+        application/json: LeaveWorkspaceResponse
+      '404':
+        application/json: LeaveWorkspace404Response
+  /api/workspaces/{workspace_id}/permissions:
+    get:
+      '200':
+        application/json: WorkspacePermissionsResponse
+      '404':
+        application/json: WorkspacePermissions404Response
+securityParameters:
+  ClientSessionId:
+    header: false
+  ClientUndoRedoActionGroupId:
+    header: false
+  action_type:
+    query: false
+  application_id:
+    query: false
+  before:
+    query: false
+  before_id:
+    query: false
+  code:
+    query: false
+  count:
+    query: false
+  domain:
+    query: false
+  email:
+    query: false
+  exclude:
+    query: false
+  exclude_fields:
+    query: false
+  filter__{field}__{filter}:
+    query: false
+  filter_type:
+    query: false
+  filters:
+    query: false
+  from_timestamp:
+    query: false
+  group_by:
+    query: false
+  group_invitation_token:
+    query: false
+  include:
+    query: false
+  include_fields:
+    query: false
+  job_ids:
+    query: false
+  language:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  order_by:
+    query: false
+  original:
+    query: false
+  page:
+    query: false
+  previous:
+    query: false
+  scope_id:
+    query: false
+  scope_type:
+    query: false
+  search:
+    query: false
+  search_mode:
+    query: false
+  select_option:
+    query: false
+  size:
+    query: false
+  sorts:
+    query: false
+  split_comma_separated:
+    query: false
+  states:
+    query: false
+  table__{id}:
+    query: false
+  to_timestamp:
+    query: false
+  type:
+    query: false
+  user_field_names:
+    query: false
+  user_id:
+    query: false
+  user_timezone:
+    query: false
+  view_id:
+    query: false
+  workspace_id:
+    query: false
+  workspace_invitation_token:
+    query: false
+validServerUrls:
+  api.baserow.io:
+    url: api.baserow.io

@@ -2329,6 +2329,23 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://api.apaleo.com/swagger/inventory-v1/swagger.json",
     apiBaseUrl: "api.apaleo.com",
   },
+  "chatkitty.com": {
+    type: "GET",
+    url: "https://api.chatkitty.com/docs/v1",
+  },
+  "browse.ai": {
+    type: "GET",
+    url: "https://api.browse.ai/v2/openapi",
+  },
+  "askmiso.com": {
+    type: "GET",
+    url: "https://api.askmiso.com/swagger.json",
+  },
+  "baserow.io": {
+    type: "GET",
+    url: "https://api.baserow.io/api/schema.json",
+    apiBaseUrl: "api.baserow.io",
+  },
   "wallester.com": {
     type: "GET",
     url: "https://api-doc.wallester.com/swagger.json",
@@ -2438,7 +2455,7 @@ const customRequests: Record<string, CustomRequest> = {
   "beamlend.com": {
     type: "GET",
     url: "https://docs.beamlend.com/redocusaurus/plugin-redoc-0.yaml",
-    apiBaseUrl: "https://api.beamlend.com"
+    apiBaseUrl: "https://api.beamlend.com",
   },
   "banksapi.de": {
     type: "GET",

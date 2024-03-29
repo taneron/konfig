@@ -1,0 +1,218 @@
+processed:
+  securitySchemes:
+    Secret API Key:
+      type: apiKey
+      description: >+
+
+        Your secret API key is used to access every Miso API endpoint. You
+        should secure this key and only use it on a backend 
+
+        server. Never leave this key in your client-side JavaScript code. If the
+        private key is compromised, you can revoke it 
+
+        in [Dojo](https://dojo.askmiso.com/docs/api-browser) and get a new one.
+
+
+        Specify your secret key in the `api_key` query parameter. For example:
+
+        ```
+
+        POST /v1/users?api_key=039c501ac8dfcac91c6f05601cee876e1cc07e17
+
+        ```
+
+      in: query
+      name: api_key
+    Publishable API Key:
+      type: apiKey
+      description: >
+
+        Your publishable API key is used to call Miso's APIs from your front-end
+        code. It can be used to stream interactions from the browser using
+        Miso's Interactions Upload API or to access read-only search and
+        recommendation results for a given user. When using the publishable API
+        key, the requested user_id will need to be hashed to maintain the
+        necessary security compliance. 
+
+
+        Specify your publishable key in the `api_key` query parameter. For
+        example:
+
+        ```
+
+        POST /v1/interactions?api_key=039c501ac8dfcac91c6f05601cee876e1cc07e17
+
+        ```
+      in: query
+      name: api_key
+  apiBaseUrl: https://api.askmiso.com
+  apiVersion: 1.1.4
+  apiDescription: >
+
+    # Overview
+
+    Miso’s approach to personalization is to train machine learning Engines on
+    three core data sets:
+
+
+    1. Your site’s log of historical and real-time interactions,
+
+    2. Your catalog of products and content, and
+
+    3. Your users. Miso provides the output of its Engines to you, so you can
+    build search and recommendation
+
+    experiences that are personalized down to the individual level (n=1
+    personalization).
+
+
+    To see how Miso works and explore the power of its Engines, we recommend
+    following
+
+    [this tutorial](https://docs.askmiso.com/) to get
+
+    started with our Playground data. Integrating your site or application with
+    Miso happens in three basic steps:
+
+
+    1. Upload your data
+
+    2. Train your Engines
+
+    3. Build search and recommendation experiences with the output of your
+    Engines.
+
+
+
+    Miso provides two main integration points. The first is your [Dojo
+    Dashboard](https://dojo.askmiso.com/),
+
+    which is used to set up your Engines with the conversions you want to
+    optimize and your training schedule.
+
+    Dojo is also a great way to get familiar with Miso by manually uploading
+    data and exploring the output of
+
+    Miso’s Engines. In Dojo’s Sandboxes, you can tweak your Engine settings and
+    see visual examples of Miso’s search
+
+    and recommendations running on your live data.
+
+
+    The second integration point is Miso’s API, which lets you automatically
+    manage your data in Miso and build
+
+    experiences that leverage the output of Miso’s personalization Engines.
+
+
+
+    Miso’s API is composed of two major groups of REST API endpoints: Data APIs
+    and Engine APIs.
+
+
+    ### Data APIs
+
+    Data APIs collect input to Miso's personalization Engines. These APIs all
+    support high-throughput
+
+    data ingestion through bulk insert, and satisfy GDPR and CCPA compliance by
+    letting users delete their data
+
+    from Miso. Subcategories of Data APIs are:
+
+
+    * [Interaction APIs](https://api.askmiso.com), for managing your Interaction
+    records. By uploading historical and real-time Interaction
+
+    records, you tell Miso how users are engaging with the products and content
+    on your site, and in turn, Miso’s
+
+    Engines learn how to optimize your conversion funnels.
+
+    * [Product / Content APIs](https://api.askmiso.com), for managing your
+    Product / Content records. These records provide a deep semantic
+
+    understanding of your catalog and keep Miso up to date about your offerings
+    so it can make smart and timely
+
+    suggestions. The `product_id` is how Miso links Product / Content records to
+    your Interaction records.
+
+    * [User APIs](https://api.askmiso.com), for managing your User records.
+    These records tell Miso about your site’s users and visitors,
+
+    so Miso can build an understanding of user segmentation and behavior in
+    relation to products and content.
+
+    The `user_id` is how Miso links User records to your Interaction records.
+
+
+    As a rule of thumb, we recommend batching up data to avoid timeout risks.
+    For the Product / Content and User
+
+    Upload APIs, we recommend limiting each API upload call to about 100 records
+    at a time. For the Interaction
+
+    Upload API, we recommend limiting your calls to around 10,000 records at a
+    time.
+
+
+    ### Engine APIs
+
+    Engine APIs provide the output of Miso's personalization Engines. We
+    designed these APIs with a focus on low
+
+    latency and high availability. Most of these APIs' 95th percentile response
+    time is under 75ms,
+
+    and the services are replicated to at least three separate instances for
+    high availability.
+
+    The types of Engine APIs are:
+
+
+    * [Search APIs](https://api.askmiso.com), for getting Miso’s personalized
+    search results for a user, with search-as-you-type and
+
+    autocompletion.
+
+    * [Recommendation APIs](https://api.askmiso.com), for retrieving Miso’s
+    recommendations that match users with
+
+    the products, categories, and product attributes that are likely to drive
+    conversions.
+
+
+    # Authentication
+
+    [View your API Keys in your Dojo
+    Dashboard.](https://dojo.askmiso.com/docs/api-browser)
+
+
+    There are three environments in Miso:
+
+    * **Playground**, a read-only tutorial environment with sample data.
+
+    * **Development**, for staging, QA, and experimentation.
+
+    * **Production**, where you run your live integration with Miso.
+
+
+    Access a Miso environment by passing in the corresponding API key in your
+    API calls. There is one publishable
+
+    key and one secret key per environment.
+
+
+    API Key can passed with query parameter `api_key`, or using the `X-API-KEY`
+    header.
+  apiTitle: Miso API
+  endpoints: 23
+  sdkMethods: 26
+  schemas: 134
+  parameters: 212
+  originalCustomRequest:
+    type: GET
+    url: https://api.askmiso.com/swagger.json
+  customRequestSpecFilename: askmiso.com.yaml
+  difficultyScore: 146

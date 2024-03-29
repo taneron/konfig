@@ -1,0 +1,2105 @@
+hash: 8af5484d1b3b7acbcb012ffc4a77fb153e6067d089cea1df669283674eaacab9
+methodObjects:
+  - url: /v1/analytics/messages
+    method: exportMessageAnalyticsData
+    httpMethod: post
+    tag: analytics
+    typeScriptTag: analytics
+    description: Export message analytics
+    parameters: []
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/analytics/users
+    method: exportUserAnalyticsData
+    httpMethod: post
+    tag: analytics
+    typeScriptTag: analytics
+    description: Export user analytics
+    parameters: []
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/application
+    method: getAuthenticated
+    httpMethod: get
+    tag: application
+    typeScriptTag: application
+    description: Retrieve the authenticated application
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/application/settings
+    method: getSettings
+    httpMethod: get
+    tag: application
+    typeScriptTag: application
+    description: Retrieve the authenticated application settings
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/application/settings
+    method: updateSettings
+    httpMethod: put
+    tag: application
+    typeScriptTag: application
+    description: Update the authenticated application settings
+    parameters:
+      - name: guest_users
+        schema: string
+        required: true
+        description: ''
+        example: GUEST_USERS
+      - name: user_created_channels
+        schema: string
+        required: true
+        description: ''
+        example: USER_CREATED_CHANNELS
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels
+    method: list
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: List channels
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+      - name: type
+        schema: string
+        required: false
+        description: Filters by channel type
+      - name: members
+        schema: array
+        required: false
+        description: Filters by channel members using their usernames
+      - name: startTime
+        schema: string
+        required: false
+        description: 'Filters for channels created within a time range: start time'
+      - name: endTime
+        schema: string
+        required: false
+        description: 'Filters for channels created within a time range: end time'
+      - name: properties
+        schema: string
+        required: false
+        description: Filters by channel custom properties
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels
+    method: createChannel
+    httpMethod: post
+    tag: channels
+    typeScriptTag: channels
+    description: Create a channel
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: creator
+        schema: object
+        required: false
+        description: ''
+        example: &ref_0
+          username: jane@chatkitty.com
+      - name: members
+        schema: array
+        required: false
+        description: ''
+      - name: properties
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}
+    method: deleteById
+    httpMethod: delete
+    tag: channels
+    typeScriptTag: channels
+    description: Delete a channel
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}
+    method: getById
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: Retrieve a channel
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}
+    method: updateProperties
+    httpMethod: patch
+    tag: channels
+    typeScriptTag: channels
+    description: Update a channel
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/events
+    method: sendEvent
+    httpMethod: post
+    tag: channels
+    typeScriptTag: channels
+    description: Send a channel event
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: properties
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/invites
+    method: listInvites
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: List channel invites
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/invites
+    method: sendInvite
+    httpMethod: post
+    tag: channels
+    typeScriptTag: channels
+    description: Send a channel invite
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: user
+        schema: object
+        required: true
+        description: ''
+        example: *ref_0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/keystrokes
+    method: sendKeystrokes
+    httpMethod: post
+    tag: channels
+    typeScriptTag: channels
+    description: Send channel keystrokes
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: keys
+        schema: string
+        required: true
+        description: ''
+        example: KEYS
+      - name: user
+        schema: object
+        required: true
+        description: ''
+        example: *ref_0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/members
+    method: listMembersPage
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: List a channel's members
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/members
+    method: addMember
+    httpMethod: post
+    tag: channels
+    typeScriptTag: channels
+    description: Add a channel member
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: username
+        schema: string
+        description: ''
+        example: jane@chatkitty.com
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/members/{user_id}
+    method: removeMember
+    httpMethod: delete
+    tag: channels
+    typeScriptTag: channels
+    description: Remove a channel member
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: userId
+        schema: integer
+        required: true
+        description: User ID of member to be removed
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/memberships
+    method: listMembershipsPage
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: List channel memberships
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/messages
+    method: listMessagesPage
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: List channel messages
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+      - name: start
+        schema: integer
+        required: false
+        description: >-
+          Start cursor value. Do not set manually. Provided by the Platform API
+          pagination engine to fetch previous or next pages
+      - name: next
+        schema: integer
+        required: false
+        description: >-
+          Next page cursor value. Do not set manually. Provided by the Platform
+          API pagination engine to fetch subsequent pages
+      - name: relation
+        schema: string
+        required: false
+        description: >-
+          Page cursor relation. Do not set manually. Provided by the Platform
+          API pagination engine to fetch previous or next pages
+      - name: username
+        schema: string
+        required: false
+        description: ''
+      - name: query
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/messages
+    method: sendChannelMessage
+    httpMethod: post
+    tag: channels
+    typeScriptTag: channels
+    description: Send a channel message
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: group_tag
+        schema: string
+        required: false
+        description: ''
+      - name: properties
+        schema: object
+        required: false
+        description: ''
+      - name: user
+        schema: object
+        required: false
+        description: ''
+        example: *ref_0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/moderators
+    method: listModeratorsPage
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: Lists a channel's moderators
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/moderators
+    method: addModerator
+    httpMethod: post
+    tag: channels
+    typeScriptTag: channels
+    description: Add a channel moderator
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: username
+        schema: string
+        description: ''
+        example: jane@chatkitty.com
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/moderators/{user_id}
+    method: removeModerator
+    httpMethod: delete
+    tag: channels
+    typeScriptTag: channels
+    description: Remove a channel moderator
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: userId
+        schema: integer
+        required: true
+        description: User ID of moderator to be removed
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/participants
+    method: listParticipantsPage
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: List channel participants
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/channels/{id}/reported-messages
+    method: listReportedMessagesPage
+    httpMethod: get
+    tag: channels
+    typeScriptTag: channels
+    description: List channel reported messages
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Channel ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/chat-sessions
+    method: listPage
+    httpMethod: get
+    tag: chat-sessions
+    typeScriptTag: chatSessions
+    description: List chat sessions
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+      - name: state
+        schema: string
+        required: false
+        description: Filters by state
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/function-versions/{id}
+    method: getById
+    httpMethod: get
+    tag: function-versions
+    typeScriptTag: functionVersions
+    description: Retrieve a chat function version
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Chat function version ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/functions/{id}
+    method: getById
+    httpMethod: get
+    tag: functions
+    typeScriptTag: functions
+    description: Retrieve a chat function
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Chat function ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/functions/{id}/current-version
+    method: getCurrentVersion
+    httpMethod: get
+    tag: functions
+    typeScriptTag: functions
+    description: Retrieve chat function current version
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Chat function ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/functions/{id}/invocations
+    method: listInvocationsPage
+    httpMethod: get
+    tag: functions
+    typeScriptTag: functions
+    description: List chat function invocations
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Chat function ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/functions/{id}/versions
+    method: listVersionsPage
+    httpMethod: get
+    tag: functions
+    typeScriptTag: functions
+    description: List chat function versions
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Chat function ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/functions/{id}/versions
+    method: createFunctionVersion
+    httpMethod: post
+    tag: functions
+    typeScriptTag: functions
+    description: Create a chat function version
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Chat function ID
+        example: 0
+      - name: handler_script
+        schema: string
+        required: true
+        description: ''
+        example: HANDLER_SCRIPT
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/imports/channels
+    method: batchChannels
+    httpMethod: post
+    tag: imports
+    typeScriptTag: imports
+    description: Import channels
+    parameters:
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/imports/channels/{id}/members
+    method: channelMembersBatch
+    httpMethod: post
+    tag: imports
+    typeScriptTag: imports
+    description: Import channel members
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/imports/messages
+    method: batchMessagesFromJson
+    httpMethod: post
+    tag: imports
+    typeScriptTag: imports
+    description: Import messages
+    parameters:
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/imports/users
+    method: jsonUsersBatch
+    httpMethod: post
+    tag: imports
+    typeScriptTag: imports
+    description: Import users
+    parameters:
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/jobs
+    method: listJobsPage
+    httpMethod: get
+    tag: jobs
+    typeScriptTag: jobs
+    description: List jobs
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+      - name: running
+        schema: boolean
+        required: false
+        description: Filters for jobs currently running
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/jobs/{id}
+    method: getJobById
+    httpMethod: get
+    tag: jobs
+    typeScriptTag: jobs
+    description: Retrieve a job
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Job ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/messages
+    method: deleteAll
+    httpMethod: delete
+    tag: messages
+    typeScriptTag: messages
+    description: Delete messages
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/messages
+    method: listPage
+    httpMethod: get
+    tag: messages
+    typeScriptTag: messages
+    description: List messages
+    parameters:
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+      - name: start
+        schema: integer
+        required: false
+        description: >-
+          Start cursor value. Do not set manually. Provided by the Platform API
+          pagination engine to fetch previous or next pages
+      - name: next
+        schema: integer
+        required: false
+        description: >-
+          Next page cursor value. Do not set manually. Provided by the Platform
+          API pagination engine to fetch subsequent pages
+      - name: relation
+        schema: string
+        required: false
+        description: >-
+          Page cursor relation. Do not set manually. Provided by the Platform
+          API pagination engine to fetch previous or next pages
+      - name: username
+        schema: string
+        required: false
+        description: Filters messages by a sender's username
+      - name: query
+        schema: string
+        required: false
+        description: Filters text messages by text contained in the message body
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/messages/{id}
+    method: removeById
+    httpMethod: delete
+    tag: messages
+    typeScriptTag: messages
+    description: Delete a message
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Message ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/messages/{id}
+    method: getById
+    httpMethod: get
+    tag: messages
+    typeScriptTag: messages
+    description: Retrieve a message
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Message ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/messages/{id}
+    method: updateProperties
+    httpMethod: patch
+    tag: messages
+    typeScriptTag: messages
+    description: Update a message
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Message ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/messages/{id}/read-receipts
+    method: listReadReceipts
+    httpMethod: get
+    tag: messages
+    typeScriptTag: messages
+    description: List message read receipts
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/runtimes/nodejs
+    method: getNodejsChatRuntime
+    httpMethod: get
+    tag: runtime
+    typeScriptTag: runtime
+    description: Retrieve NodeJS chat runtime
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/runtimes/nodejs/dependencies
+    method: updateNodejsChatDependencies
+    httpMethod: put
+    tag: runtime
+    typeScriptTag: runtime
+    description: Update NodeJS chat runtime NPM dependencies
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/runtimes/nodejs/environment-variables
+    method: updateNodejsChatEnvironmentVariables
+    httpMethod: put
+    tag: runtime
+    typeScriptTag: runtime
+    description: Update NodeJS chat runtime environment variables
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/runtimes/nodejs/functions
+    method: listNodejsChatFunctions
+    httpMethod: get
+    tag: runtime
+    typeScriptTag: runtime
+    description: List NodeJS chat runtime functions
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/runtimes/nodejs/functions
+    method: createNodejsChatFunction
+    httpMethod: post
+    tag: runtime
+    typeScriptTag: runtime
+    description: Create a NodeJS chat runtime function
+    parameters:
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: initialize_asynchronously
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/runtimes/nodejs/initialization-script
+    method: updateNodejsChatInitializationScript
+    httpMethod: put
+    tag: runtime
+    typeScriptTag: runtime
+    description: Update NodeJS chat runtime initialization script
+    parameters:
+      - name: script
+        schema: string
+        required: true
+        description: ''
+        example: SCRIPT
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/threads/{id}
+    method: getById
+    httpMethod: get
+    tag: threads
+    typeScriptTag: threads
+    description: Retrieve a thread
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: Reply thread ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/threads/{id}/keystrokes
+    method: sendKeystrokes
+    httpMethod: post
+    tag: threads
+    typeScriptTag: threads
+    description: Send thread keystrokes
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: keys
+        schema: string
+        required: true
+        description: ''
+        example: KEYS
+      - name: user
+        schema: object
+        required: true
+        description: ''
+        example: *ref_0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/threads/{id}/messages
+    method: listThreadMessages
+    httpMethod: get
+    tag: threads
+    typeScriptTag: threads
+    description: List reply thread messages
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+      - name: start
+        schema: integer
+        required: false
+        description: >-
+          Start cursor value. Do not set manually. Provided by the Platform API
+          pagination engine to fetch previous or next pages
+      - name: next
+        schema: integer
+        required: false
+        description: >-
+          Next page cursor value. Do not set manually. Provided by the Platform
+          API pagination engine to fetch subsequent pages
+      - name: relation
+        schema: string
+        required: false
+        description: >-
+          Page cursor relation. Do not set manually. Provided by the Platform
+          API pagination engine to fetch previous or next pages
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/threads/{id}/messages
+    method: sendReplyMessage
+    httpMethod: post
+    tag: threads
+    typeScriptTag: threads
+    description: Send a reply thread message
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: group_tag
+        schema: string
+        required: false
+        description: ''
+      - name: properties
+        schema: object
+        required: false
+        description: ''
+      - name: user
+        schema: object
+        required: false
+        description: ''
+        example: *ref_0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/user-sessions
+    method: listUserSessions
+    httpMethod: get
+    tag: user-sessions
+    typeScriptTag: userSessions
+    description: List user sessions
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+      - name: state
+        schema: string
+        required: false
+        description: Filters by state
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users
+    method: getPage
+    httpMethod: get
+    tag: users
+    typeScriptTag: users
+    description: List users
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+      - name: name
+        schema: string
+        required: false
+        description: Filters by username
+      - name: properties
+        schema: string
+        required: false
+        description: Filters by user custom properties
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users
+    method: checkExists
+    httpMethod: head
+    tag: users
+    typeScriptTag: users
+    description: Check a user exists
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: Username of the user
+        example: NAME
+    responses:
+      - statusCode: '200'
+        description: Empty object
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users
+    method: createUser
+    httpMethod: post
+    tag: users
+    typeScriptTag: users
+    description: Create a user
+    parameters:
+      - name: display_name
+        schema: string
+        required: true
+        description: ''
+        example: DISPLAY_NAME
+      - name: is_guest
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: properties
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}
+    method: removeUser
+    httpMethod: delete
+    tag: users
+    typeScriptTag: users
+    description: Delete a user
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}
+    method: getById
+    httpMethod: get
+    tag: users
+    typeScriptTag: users
+    description: Retrieve a user
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}
+    method: updateUserById
+    httpMethod: patch
+    tag: users
+    typeScriptTag: users
+    description: Update a user
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}/channels
+    method: listChannelsPage
+    httpMethod: get
+    tag: users
+    typeScriptTag: users
+    description: List a user's channels
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+      - name: page
+        schema: integer
+        required: false
+        description: Zero-based page index (0..N)
+        default: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+        default: 25
+      - name: sort
+        schema: array
+        required: false
+        description: >-
+          Sorting criteria in the format: property,(asc|desc). Default sort
+          order is ascending. Multiple sort criteria are supported.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}/display-picture
+    method: updateDisplayPicture
+    httpMethod: post
+    tag: users
+    typeScriptTag: users
+    description: Update a user's display picture
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+      - name: content_type
+        schema: string
+        required: true
+        description: ''
+        example: CONTENT_TYPE
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: size
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: url
+        schema: string
+        required: true
+        description: ''
+        example: URL
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}/messages
+    method: listMessagesPage
+    httpMethod: get
+    tag: users
+    typeScriptTag: users
+    description: List a user's messages
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+      - name: start
+        schema: integer
+        required: false
+        description: >-
+          Start cursor value. Do not set manually. Provided by the Platform API
+          pagination engine to fetch previous or next pages
+      - name: next
+        schema: integer
+        required: false
+        description: >-
+          Next page cursor value. Do not set manually. Provided by the Platform
+          API pagination engine to fetch subsequent pages
+      - name: relation
+        schema: string
+        required: false
+        description: >-
+          Page cursor relation. Do not set manually. Provided by the Platform
+          API pagination engine to fetch previous or next pages
+      - name: unread
+        schema: boolean
+        required: false
+        description: Filters by returning unread messages
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}/notifications
+    method: listNotificationsPage
+    httpMethod: get
+    tag: users
+    typeScriptTag: users
+    description: List a user's notifications
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+      - name: size
+        schema: integer
+        required: false
+        description: The size of the page to be returned
+      - name: start
+        schema: integer
+        required: false
+        description: >-
+          Start cursor value. Do not set manually. Provided by the Platform API
+          pagination engine to fetch previous or next pages
+      - name: next
+        schema: integer
+        required: false
+        description: >-
+          Next page cursor value. Do not set manually. Provided by the Platform
+          API pagination engine to fetch subsequent pages
+      - name: relation
+        schema: string
+        required: false
+        description: >-
+          Page cursor relation. Do not set manually. Provided by the Platform
+          API pagination engine to fetch previous or next pages
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}/secrets/{name}
+    method: removeSecretValue
+    httpMethod: delete
+    tag: users
+    typeScriptTag: users
+    description: Remove a user secret
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+      - name: name
+        schema: string
+        required: true
+        description: The secret's name
+        example: NAME
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}/secrets/{name}
+    method: getSecret
+    httpMethod: get
+    tag: users
+    typeScriptTag: users
+    description: Retrieve a user secret
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+      - name: name
+        schema: string
+        required: true
+        description: The secret's name
+        example: NAME
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v1/users/{id}/secrets/{name}
+    method: setUserSecret
+    httpMethod: put
+    tag: users
+    typeScriptTag: users
+    description: Set a user secret
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: User ID
+        example: 0
+      - name: name
+        schema: string
+        required: true
+        description: The secret's name
+        example: NAME
+      - name: secret
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+numberOfSchemas: 125
+apiDescription: |-
+  OpenAPI specification (OAS) for the ChatKitty Platform API.
+  See the Interactive Docs to try ChatKitty API methods without writing code,
+  and get the complete schema of resources exposed by the API.

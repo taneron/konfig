@@ -1,0 +1,64 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /robots:
+    get: Robots_listRetrieval
+  /robots/{robotId}:
+    get: Robots_getById
+  /robots/{robotId}/bulk-runs:
+    get: BulkRuns_getList
+    post: BulkRuns_executeTasks
+  /robots/{robotId}/bulk-runs/{bulkRunId}:
+    get: BulkRuns_getRobotBulkRun
+  /robots/{robotId}/cookies:
+    patch: Robots_updateCookies
+  /robots/{robotId}/monitors:
+    get: Monitors_getList
+    post: Monitors_createNew
+  /robots/{robotId}/monitors/{monitorId}:
+    delete: Monitors_deleteRobotMonitor
+    get: Monitors_getRobotMonitor
+    patch: Monitors_updateRobotMonitor
+  /robots/{robotId}/tasks:
+    get: Tasks_getAllByRobot
+    post: Tasks_runRobotTask
+  /robots/{robotId}/tasks/{taskId}:
+    get: Tasks_getTaskDetails
+  /robots/{robotId}/webhooks:
+    get: Webhooks_getList
+    post: Webhooks_createNewOnRobot
+  /robots/{robotId}/webhooks/{webhookId}:
+    delete: Webhooks_deleteRobotWebhook
+  /status:
+    get: System_checkInfrastructureStatus
+  /teams:
+    get: Internal_getTeamsByAuth0AccessToken
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /robots/{robotId}/cookies:
+    patch:
+      application/json: RobotsUpdateCookiesRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  authorization:
+    header: false
+  fromDate:
+    query: false
+  includeRetried:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  robotBulkRunId:
+    query: false
+  sort:
+    query: false
+  status:
+    query: false
+  toDate:
+    query: false
+validServerUrls: {}
