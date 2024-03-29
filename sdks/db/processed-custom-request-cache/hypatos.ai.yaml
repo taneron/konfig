@@ -1,0 +1,178 @@
+processed:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /auth/token
+          scopes:
+            companies.read: Read companies
+            documents.read: Read documents
+            documents.write: Edit your documents
+            enrichment.read: Read enrichment training data
+            enrichment.write: Create/edit enrichment training data
+            enrichment.delete: Delete enrichment training data
+            files.read: Uploading files for processing
+            files.write: Downloading uploaded files
+    Basic:
+      type: http
+      scheme: basic
+  apiBaseUrl: https://api.cloud.hypatos.ai/v2
+  apiVersion: 2.13.0
+  apiDescription: >
+    # Introduction
+
+
+    The Hypatos API is organized around REST. The majority of the endpoints
+    provide CRUD 
+
+    functionality for resources. The API is also exposing Intent Resources which
+    mimic user intents 
+
+    or actions.
+
+
+    The Hypatos API uses [OAuth 2.0 Client Credential
+    Grant](https://www.rfc-editor.org/rfc/rfc6749#section-4.4) 
+
+    to authenticate requests. Before making any requests to any endpoint a
+    client must authenticate 
+
+    with the authorization server and requests an access token from the [token
+    endpoint](https://hypatos.redoc.ly/). 
+
+
+    ````sh
+      POST /auth/token HTTP/1.1
+      Host: api.cloud.hypatos.ai
+      Content-Type: application/x-www-form-urlencoded
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+
+      grant_type=client_credentials
+    ````
+
+
+    `Authorization` header contains `client_id:client_secret` encoded as
+    explained in [RFC Client Password
+    section](https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1).
+         
+    If the authorization server authenticated the client successfully, an access
+    token is issued. 
+
+    Here is an example successful response:
+
+
+    ````sh
+      HTTP/1.1 200 OK
+      Content-Type: application/json;charset=UTF-8
+      Cache-Control: no-store
+      Pragma: no-cache
+
+      {
+        "access_token": "mF_9.B5f-4.1JqM",
+        "expires_in": 86400,
+        "scope": "enrichment.write files.read",
+        "token_type": "Bearer",
+      }
+    ````
+
+    This token can be used to authenticate the requests to API endpoints by
+    sending a Bearer token 
+
+    in the `Authorization` HTTP header. The following example demonstrates how
+    to use the access token 
+
+    to retrieve a list of documents.
+
+
+    ````sh
+      GET /v2/documents HTTP/1.1
+      Host: api.cloud.hypatos.ai
+      Authorization: Bearer mF_9.B5f-4.1JqM
+    ````
+
+
+    # Versioning
+
+
+    Changes to this API are released regularly. We use [Semantic Versioning
+    2.0.0](https://semver.org/spec/v2.0.0.html) 
+
+    scheme for versioning so that the clients can identify any
+    backward-incompatible changes 
+
+    easily. Briefly summarized one can say, if the MAJOR version of the new API
+    version didn't 
+
+    change you can expect the new version to be backward-compatible.
+
+
+    # Rate limits
+
+
+    In order to maximise the stability of our API, we institue rate limits for
+    all of API 
+
+    endpoints. Clients who send too many requests over a given period of time
+    will see error 
+
+    responses that show up as status code [429 Too Many
+    Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429). 
+
+
+    When you see error responses with status code 429, it means you exhausted
+    your current 
+
+    quota and need to withhold from sending further requests until the quota is
+    reset. We 
+
+    encourage you not to wait until you get a 429 error but to monitor your
+    quota in each 
+
+    request. In each response you receive from the API, you will find HTTP
+    headers providing 
+
+    the details about your current quota. Here is the list of the HTTP headers:
+
+
+    * `x-ratelimit-limit`: Indicates the quota associated to the client in the 
+
+    current time-window followed by the description of the quota policy.
+
+    * `x-ratelimit-remaining`: Indicates the number of remaining requests in the
+    current 
+
+    time-window
+
+    * `x-ratelimit-reset`: Indicates the number of seconds until quota reset of
+    the current 
+
+    time-window
+
+
+    Please note that IETF is currently in the process of publishing a standard
+    for these 
+
+    headers. Please explore the
+    [draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/) 
+
+    for more details.
+
+
+    A basic technique to gracefully handle rate limits is watch for your quota
+    permanently 
+
+    and increase the time between your request as the quota is decreasing. To
+    recover from a 
+
+    429 error you need a retry mechanism following an exponential backoff
+    schedule.
+  apiTitle: Hypatos REST API
+  endpoints: 33
+  sdkMethods: 34
+  schemas: 68
+  parameters: 155
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: hypatos.ai.yaml
+  difficultyScore: 106.75

@@ -1,0 +1,195 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /companies/{company-uuid}:
+    delete:
+      '200':
+        application/json: {}
+  /companies/{company-uuid}/customer-insights:
+    get:
+      '200':
+        application/json: {}
+  /companies/{company-uuid}/supplier-insights:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /companies:
+    get: Company_listCompanies
+    post: Company_createNewCompany
+  /companies/{company-uuid}:
+    delete: Company_removeByUuid
+    get: Company_getSingle
+  /companies/{company-uuid}/account-bundles:
+    get: Account_getBundles
+  /companies/{company-uuid}/account-charts:
+    get: AccountChart_get
+  /companies/{company-uuid}/account-transactions:
+    get: AccountTransaction_listForCompany
+  /companies/{company-uuid}/accounts:
+    get: Account_listAccounts
+  /companies/{company-uuid}/balance-sheets:
+    get: BalanceSheet_getBundledAccountBalances
+  /companies/{company-uuid}/balance-sheets/pdf:
+    get: BalanceSheet_getPdf
+  /companies/{company-uuid}/connections:
+    get: Connection_getAll
+    post: Connection_createNew
+  /companies/{company-uuid}/connections/{connection-uuid}:
+    patch: Connection_updateByUuid
+  /companies/{company-uuid}/consistencies:
+    get: Consistency_getDates
+  /companies/{company-uuid}/customer-insights:
+    get: CustomerInsight_getInsights
+  /companies/{company-uuid}/customer-invoices:
+    get: CustomerInvoice_list
+  /companies/{company-uuid}/customer-invoices/{invoice-uuid}:
+    get: CustomerInvoice_getSingleInvoice
+  /companies/{company-uuid}/customer-invoices/{invoice-uuid}/payments:
+    get: CustomerInvoicePayment_list
+  /companies/{company-uuid}/customers:
+    get: Customer_list
+  /companies/{company-uuid}/fiscal-years:
+    get: FiscalYear_getList
+  /companies/{company-uuid}/income-statements:
+    get: IncomeStatement_getBundledResults
+  /companies/{company-uuid}/income-statements/pdf:
+    get: IncomeStatement_getPdf
+  /companies/{company-uuid}/journals:
+    get: Journal_listEntries
+  /companies/{company-uuid}/journals/{journal-uuid}:
+    get: Journal_getEntryByUuid
+  /companies/{company-uuid}/liquidities:
+    get: Liquidity_getForecasts
+  /companies/{company-uuid}/messages:
+    get: Message_listForCompany
+  /companies/{company-uuid}/metrics:
+    get: Metrics_getCompanyMetrics
+  /companies/{company-uuid}/reliabilities:
+    get: Reliability_getDates
+  /companies/{company-uuid}/supplier-insights:
+    get: SupplierInsight_getInsights
+  /companies/{company-uuid}/supplier-invoices:
+    get: SupplierInvoice_list
+  /companies/{company-uuid}/supplier-invoices/{supplier-invoice-uuid}/payments:
+    get: SupplierInvoicePayment_listPayments
+  /companies/{company-uuid}/suppliers:
+    get: Supplier_listSuppliers
+  /integrations:
+    get: Integration_listSupported
+  /integrations/{integration-key}:
+    get: Integration_getSingle
+  /subscriptions:
+    get: Subscription_listRegisteredSubscriptions
+    post: Subscription_createNewSubscription
+  /subscriptions/{subscription-uuid}:
+    delete: Subscription_removeByUuid
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /companies:
+    post:
+      application/json: CompanyCreateNewCompanyRequest
+  /companies/{company-uuid}/connections:
+    post:
+      application/json: ConnectionCreateNewRequest
+  /companies/{company-uuid}/connections/{connection-uuid}:
+    patch:
+      application/json: ConnectionUpdateByUuidRequest
+  /subscriptions:
+    post:
+      application/json: SubscriptionCreateNewSubscriptionRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /companies/{company-uuid}:
+    delete:
+      '200':
+        application/json: CompanyRemoveByUuidResponse
+  /companies/{company-uuid}/balance-sheets:
+    get:
+      '200':
+        application/json: BalanceSheetGetBundledAccountBalancesResponse
+  /companies/{company-uuid}/balance-sheets/pdf:
+    get:
+      '200':
+        application/pdf: BalanceSheetGetPdfResponse
+  /companies/{company-uuid}/connections:
+    get:
+      '200':
+        application/json: ConnectionGetAllResponse
+  /companies/{company-uuid}/consistencies:
+    get:
+      '200':
+        application/json: ConsistencyGetDatesResponse
+  /companies/{company-uuid}/customer-insights:
+    get:
+      '200':
+        application/json: CustomerInsightGetInsightsResponse
+  /companies/{company-uuid}/customer-invoices/{invoice-uuid}/payments:
+    get:
+      '200':
+        application/json: CustomerInvoicePaymentListResponse
+  /companies/{company-uuid}/income-statements:
+    get:
+      '200':
+        application/json: IncomeStatementGetBundledResultsResponse
+  /companies/{company-uuid}/income-statements/pdf:
+    get:
+      '200':
+        application/pdf: IncomeStatementGetPdfResponse
+  /companies/{company-uuid}/liquidities:
+    get:
+      '200':
+        application/json: LiquidityGetForecastsResponse
+  /companies/{company-uuid}/metrics:
+    get:
+      '200':
+        application/json: MetricsGetCompanyMetricsResponse
+  /companies/{company-uuid}/reliabilities:
+    get:
+      '200':
+        application/json: ReliabilityGetDatesResponse
+  /companies/{company-uuid}/supplier-insights:
+    get:
+      '200':
+        application/json: SupplierInsightGetInsightsResponse
+  /companies/{company-uuid}/supplier-invoices/{supplier-invoice-uuid}/payments:
+    get:
+      '200':
+        application/json: SupplierInvoicePaymentListPaymentsResponse
+securityParameters:
+  accounts:
+    query: false
+  classic:
+    query: false
+  createdAt:
+    query: false
+  fromDate:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  resultType:
+    query: false
+  search:
+    query: false
+  size:
+    query: false
+  sortedBy:
+    query: false
+  status:
+    query: false
+  syncStatus:
+    query: false
+  toDate:
+    query: false
+  updatedAt:
+    query: false
+validServerUrls:
+  http://localhost:3030:
+    url: http://localhost:3030
+  https://localhost:
+    url: https://localhost

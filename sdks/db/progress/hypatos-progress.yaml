@@ -1,0 +1,105 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /auth/token:
+    post: Authorization_requestAccessToken
+  /companies:
+    get: Companies_list
+  /companies/{id}:
+    get: Companies_getById
+  /documents:
+    get: Documents_getList
+  /documents/process-file:
+    post: Documents_processFileIntoDocument
+  /documents/{id}:
+    get: Documents_getById
+  /documents/{id}/external-data:
+    post: Documents_updateExternalData
+  /documents/{id}/external-id:
+    post: Documents_provideExternalId
+  /documents/{id}/states:
+    get: Documents_getDocumentStates
+  /documents/{id}/title:
+    post: Documents_provideTitle
+  /documents/{id}/transfer:
+    post: Documents_updateTransferInformation
+  /emails/{id}/content:
+    get: Emails_getMergedContentById
+  /enrichment/approvers:
+    post: Enrichment_insertApproverRecord
+  /enrichment/approvers/{externalId}:
+    delete: Enrichment_markApproverDeleted
+  /enrichment/companies:
+    post: Enrichment_addCompanyData
+  /enrichment/companies/{externalId}:
+    delete: Enrichment_markCompanyDeleted
+  /enrichment/cost-centers:
+    post: Enrichment_insertCostCenter
+  /enrichment/cost-centers/{externalId}:
+    delete: Enrichment_markCostCenterDeleted
+  /enrichment/customers:
+    post: Enrichment_insertCustomer
+  /enrichment/customers/{externalId}:
+    delete: Enrichment_markCustomerAsDeleted
+  /enrichment/gl-accounts:
+    post: Enrichment_insertGlAccount
+  /enrichment/gl-accounts/{externalId}:
+    delete: Enrichment_markGlAccountDeleted
+  /enrichment/invoices:
+    post: Enrichment_insertInvoiceIncludingInvoiceLines
+  /enrichment/invoices/{externalId}:
+    delete: Enrichment_markInvoiceDeleted
+  /enrichment/purchase-orders:
+    post: Enrichment_insertPurchaseOrder
+  /enrichment/purchase-orders/{externalId}:
+    delete: Enrichment_markPurchaseOrderDeleted
+  /enrichment/suppliers:
+    post: Enrichment_insertSupplierIncludingSubsidiaries
+  /enrichment/suppliers/{externalId}:
+    delete: Enrichment_markSupplierDeleted
+  /files:
+    post: Files_uploadFile
+  /files/{id}:
+    get: Files_downloadById
+  /projects:
+    get: Projects_listForGivenSearchCriteria
+    post: Projects_createProject
+  /projects/{id}:
+    get: Projects_getById
+  /projects/{id}/schema:
+    get: Projects_getSchemaByProjectId
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /emails/{id}/content:
+    get:
+      '200':
+        application/pdf: EmailsGetMergedContentByIdResponse
+  /enrichment/invoices:
+    post:
+      '200':
+        application/json: EnrichmentInsertInvoiceIncludingInvoiceLinesResponse
+securityParameters:
+  X-Hy-Filename:
+    header: false
+  fileId:
+    query: false
+  limit:
+    query: false
+  lineNumber:
+    query: false
+  offset:
+    query: false
+  projectId:
+    query: false
+  search:
+    query: false
+  sort:
+    query: false
+  state:
+    query: false
+validServerUrls: {}

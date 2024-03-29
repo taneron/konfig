@@ -1,0 +1,1016 @@
+hash: 7d1543239b6422d6939432099594e54a4552f57249dbc9575e5f5a51559b46d0
+methodObjects:
+  - url: /integrations
+    method: listSupported
+    httpMethod: get
+    tag: Integration
+    typeScriptTag: integration
+    description: Get integrations
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /integrations/{integration-key}
+    method: getSingle
+    httpMethod: get
+    tag: Integration
+    typeScriptTag: integration
+    description: Get integration
+    parameters:
+      - name: integrationKey
+        schema: string
+        required: true
+        description: The key of a specific [Integration](https://monto.redoc.ly/).
+        example: FORTNOX
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /subscriptions
+    method: listRegisteredSubscriptions
+    httpMethod: get
+    tag: Subscription
+    typeScriptTag: subscription
+    description: Get subscriptions
+    parameters:
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /subscriptions
+    method: createNewSubscription
+    httpMethod: post
+    tag: Subscription
+    typeScriptTag: subscription
+    description: Create subscription
+    parameters:
+      - name: protocol
+        schema: string
+        description: ''
+        example: HTTPS
+      - name: endpoint
+        schema: string
+        description: ''
+        example: https://api.my-service.com/webhook
+      - name: topics
+        schema: array
+        description: ''
+        example:
+          - '*'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /subscriptions/{subscription-uuid}
+    method: removeByUuid
+    httpMethod: delete
+    tag: Subscription
+    typeScriptTag: subscription
+    description: Delete subscription
+    parameters:
+      - name: subscriptionUuid
+        schema: string
+        required: true
+        description: Unique identifier of a subscription
+        example: e9bb5e02-b2e1-46a3-93fb-82dbe277087e
+    responses:
+      - statusCode: '200'
+        description: OK
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies
+    method: listCompanies
+    httpMethod: get
+    tag: Company
+    typeScriptTag: company
+    description: Get companies
+    parameters:
+      - name: search
+        schema: string
+        description: Search for companies by `name`, `legalName`, or `businessId`.
+      - name: syncStatus
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /companies
+    method: createNewCompany
+    httpMethod: post
+    tag: Company
+    typeScriptTag: company
+    description: Create company
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+        example: Monto AB
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}
+    method: removeByUuid
+    httpMethod: delete
+    tag: Company
+    typeScriptTag: company
+    description: Delete company
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}
+    method: getSingle
+    httpMethod: get
+    tag: Company
+    typeScriptTag: company
+    description: Get company
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/customer-invoices
+    method: list
+    httpMethod: get
+    tag: Customer Invoice
+    typeScriptTag: customerInvoice
+    description: Get customer invoices
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: search
+        schema: string
+        description: Search for invoices by `invoice_number` or by its customer's `name`.
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+      - name: fromDate
+        schema: string
+        required: false
+        description: Filter on issueDate
+        example: '2021-12-31'
+      - name: toDate
+        schema: string
+        required: false
+        description: Filter on issueDate
+        example: '2021-12-31'
+      - name: sortedBy
+        schema: string
+        description: >
+          Comma-separated list of columns to sort by. This parameter is required
+          if `order` has a value. Available options:
+            - uuid,
+            - invoiceNumber,
+            - amount.amount,
+            - amount.currency,
+            - balance.amount,
+            - balance.currency,
+            - issueDate,
+            - dueDate,
+            - paidInFullDate,
+            - customer.name
+        example: amount, invoiceNumber
+      - name: order
+        schema: string
+        description: >
+          Comma-separated list of sorting orders corresponding to the columns in
+          `sortedBy`.
+
+          Use 'asc' for ascending and 'desc' for descending. This parameter is
+          required if `sortedBy` has a value.
+        example: desc, asc
+      - name: createdAt
+        schema: string
+        required: false
+        description: Filter on createdAt
+        example: '2022-12-31'
+      - name: updatedAt
+        schema: string
+        required: false
+        description: Filter on updatedAt
+        example: '2022-12-31'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/suppliers
+    method: listSuppliers
+    httpMethod: get
+    tag: Supplier
+    typeScriptTag: supplier
+    description: Get suppliers
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/customers
+    method: list
+    httpMethod: get
+    tag: Customer
+    typeScriptTag: customer
+    description: Get customers
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/customer-insights
+    method: getInsights
+    httpMethod: get
+    tag: Customer Insight
+    typeScriptTag: customerInsight
+    description: Get customer insights
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/customer-invoices/{invoice-uuid}
+    method: getSingleInvoice
+    httpMethod: get
+    tag: Customer Invoice
+    typeScriptTag: customerInvoice
+    description: Get customer invoice
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: invoiceUuid
+        schema: string
+        required: true
+        description: Unique identifier of customer invoice
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/customer-invoices/{invoice-uuid}/payments
+    method: list
+    httpMethod: get
+    tag: Customer Invoice Payment
+    typeScriptTag: customerInvoicePayment
+    description: Get payments
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: invoiceUuid
+        schema: string
+        required: true
+        description: Unique identifier of customer invoice
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/supplier-invoices
+    method: list
+    httpMethod: get
+    tag: Supplier Invoice
+    typeScriptTag: supplierInvoice
+    description: Get supplier invoices
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: search
+        schema: string
+        description: >-
+          Search for supplier invoices by `invoice_number` or by its supplier's
+          `name`.
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+      - name: fromDate
+        schema: string
+        required: false
+        description: Filter on issueDate
+        example: '2021-12-31'
+      - name: toDate
+        schema: string
+        required: false
+        description: Filter on issueDate
+        example: '2021-12-31'
+      - name: sortedBy
+        schema: string
+        description: >
+          Comma-separated list of columns to sort by. This parameter is required
+          if `order` has a value. Available options:
+            - uuid,
+            - externalId,
+            - invoiceNumber,
+            - amount.amount,
+            - amount.currency,
+            - issueDate,
+            - dueDate,
+            - balance.amount,
+            - balance.currency,
+            - paidInFullDate,
+            - supplier.name
+        example: amount, invoiceNumber
+      - name: order
+        schema: string
+        description: >
+          Comma-separated list of sorting orders corresponding to the columns in
+          `sortedBy`.
+
+          Use 'asc' for ascending and 'desc' for descending. This parameter is
+          required if `sortedBy` has a value.
+        example: desc, asc
+      - name: createdAt
+        schema: string
+        required: false
+        description: Filter on createdAt
+        example: '2022-12-31'
+      - name: updatedAt
+        schema: string
+        required: false
+        description: Filter on updatedAt
+        example: '2022-12-31'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/supplier-insights
+    method: getInsights
+    httpMethod: get
+    tag: Supplier Insight
+    typeScriptTag: supplierInsight
+    description: Get supplier insights
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: >-
+      /companies/{company-uuid}/supplier-invoices/{supplier-invoice-uuid}/payments
+    method: listPayments
+    httpMethod: get
+    tag: Supplier Invoice Payment
+    typeScriptTag: supplierInvoicePayment
+    description: Get payments
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: supplierInvoiceUuid
+        schema: string
+        required: true
+        description: Unique identifier of supplier invoice
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/connections
+    method: getAll
+    httpMethod: get
+    tag: Connection
+    typeScriptTag: connection
+    description: Get connections
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/connections
+    method: createNew
+    httpMethod: post
+    tag: Connection
+    typeScriptTag: connection
+    description: Create connection
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: integrationKey
+        schema: string
+        description: ''
+        example: FORTNOX
+      - name: redirectUrl
+        schema: string
+        description: ''
+        example: https://www.monto.ai
+      - name: fields
+        schema: array
+        description: ''
+        example: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}/connections/{connection-uuid}
+    method: updateByUuid
+    httpMethod: patch
+    tag: Connection
+    typeScriptTag: connection
+    description: Update connection
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: connectionUuid
+        schema: string
+        required: true
+        description: Unique identifier of connection.
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: status
+        schema: string
+        description: ''
+        example: DISABLED_MANUALLY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}/fiscal-years
+    method: getList
+    httpMethod: get
+    tag: Fiscal Year
+    typeScriptTag: fiscalYear
+    description: Get fiscal years
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/journals
+    method: listEntries
+    httpMethod: get
+    tag: Journal
+    typeScriptTag: journal
+    description: Get journal entries
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+      - name: fromDate
+        schema: string
+        required: false
+        description: Filter from specified Journal date
+        example: '2021-12-31'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/journals/{journal-uuid}
+    method: getEntryByUuid
+    httpMethod: get
+    tag: Journal
+    typeScriptTag: journal
+    description: Get journal entry
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: journalUuid
+        schema: string
+        required: true
+        description: Unique identifier of journal
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/consistencies
+    method: getDates
+    httpMethod: get
+    tag: Consistency
+    typeScriptTag: consistency
+    description: Get consistency dates
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of a company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/reliabilities
+    method: getDates
+    httpMethod: get
+    tag: Reliability
+    typeScriptTag: reliability
+    description: Get reliability dates
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of a company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/liquidities
+    method: getForecasts
+    httpMethod: get
+    tag: Liquidity
+    typeScriptTag: liquidity
+    description: Get liquidity forecasts (alpha version)
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of a company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/accounts
+    method: listAccounts
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: Get accounts
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: accounts
+        schema: string
+        required: true
+        description: >-
+          A text explaining which account(https://monto.redoc.ly/ to be
+          included. This can either be a range of accounts
+          (https://monto.redoc.ly/ or a single account (https://monto.redoc.ly/.
+        example: 1500-1599,1667,1200,1299
+      - name: fromDate
+        schema: string
+        required: false
+        description: Starting date
+        example: '2021-12-31'
+        default: Default fromDate is 36 months back
+      - name: toDate
+        schema: string
+        required: false
+        description: ending date
+        example: '2021-12-31'
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}/account-charts
+    method: get
+    httpMethod: get
+    tag: Account chart
+    typeScriptTag: accountChart
+    description: Get account chart
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: search
+        schema: string
+        required: false
+        description: Search for an account by either its name or number.
+        example: Patent
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/account-bundles
+    method: getBundles
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: Get account bundles
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: accounts
+        schema: string
+        required: true
+        description: >-
+          A text explaining which account(https://monto.redoc.ly/ to be
+          included. This can either be a range of accounts
+          (https://monto.redoc.ly/ or a single account (https://monto.redoc.ly/.
+        example: 1500-1599,1667,1200-1299
+      - name: fromDate
+        schema: string
+        required: false
+        description: Starting date
+        example: '2021-12-31'
+      - name: toDate
+        schema: string
+        required: false
+        description: ending date
+        example: '2021-12-31'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}/metrics
+    method: getCompanyMetrics
+    httpMethod: get
+    tag: Metrics
+    typeScriptTag: metrics
+    description: Get metrics
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: fromDate
+        schema: string
+        required: false
+        description: Starting date
+        example: '2021-12-31'
+      - name: toDate
+        schema: string
+        required: false
+        description: ending date
+        example: '2021-12-31'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}/account-transactions
+    method: listForCompany
+    httpMethod: get
+    tag: Account Transaction
+    typeScriptTag: accountTransaction
+    description: Get account transactions
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: accounts
+        schema: string
+        description: A text explaining which account(https://monto.redoc.ly/ to be included
+        example: 1500-1599,1667,1200-1299
+      - name: page
+        schema: integer
+        description: The paginated page number.
+        default: 1
+      - name: size
+        schema: integer
+        description: The pagination page size.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/income-statements
+    method: getBundledResults
+    httpMethod: get
+    tag: Income Statement
+    typeScriptTag: incomeStatement
+    description: Get income statements
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: resultType
+        schema: string
+        description: >
+          **Monthly results** for the latest 36 months or **aggregated rolling**
+          results per 12 months.
+        default: MONTHLY36
+      - name: fromDate
+        schema: string
+        required: false
+        description: Starting date
+        example: '2021-12-31'
+      - name: toDate
+        schema: string
+        required: false
+        description: ending date
+        example: '2021-12-31'
+      - name: classic
+        schema: boolean
+        required: false
+        description: >-
+          A classic income statement will not include the following account
+          groups: interestToCreditInstitutions, otherFinancialExpenses and
+          financialIncome
+        example: 'true'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}/income-statements/pdf
+    method: getPdf
+    httpMethod: get
+    tag: Income Statement
+    typeScriptTag: incomeStatement
+    description: Get income statements PDF
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: fromDate
+        schema: string
+        required: false
+        description: Starting date
+        example: '2021-12-31'
+      - name: toDate
+        schema: string
+        required: false
+        description: Ending date
+        example: '2021-12-31'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}/balance-sheets
+    method: getBundledAccountBalances
+    httpMethod: get
+    tag: Balance Sheet
+    typeScriptTag: balanceSheet
+    description: Get balance sheets
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: fromDate
+        schema: string
+        required: false
+        description: Starting date
+        example: '2021-12-31'
+      - name: toDate
+        schema: string
+        required: false
+        description: ending date
+        example: '2021-12-31'
+      - name: classic
+        schema: boolean
+        required: false
+        description: >-
+          A classic balance sheet will not include the following account groups:
+          longTermLiabilitiesToCreditInstitutions, otherLongTermLiabilities,
+          accountPayables, totalLiabilities
+        example: 'true'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+  - url: /companies/{company-uuid}/balance-sheets/pdf
+    method: getPdf
+    httpMethod: get
+    tag: Balance Sheet
+    typeScriptTag: balanceSheet
+    description: Get balance sheets PDF
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+      - name: fromDate
+        schema: string
+        required: false
+        description: Starting date
+        example: '2021-12-31'
+      - name: toDate
+        schema: string
+        required: false
+        description: Ending date
+        example: '2021-12-31'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '422'
+        description: Unprocessable Entity
+  - url: /companies/{company-uuid}/messages
+    method: listForCompany
+    httpMethod: get
+    tag: Message
+    typeScriptTag: message
+    description: Get messages
+    parameters:
+      - name: companyUuid
+        schema: string
+        required: true
+        description: Unique identifier of company
+        example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not Found
+numberOfSchemas: 64
+apiDescription: >
+  ## About this API
+
+  The API is built as a \"RESTFUL\" API with JSON as data transfer.
+
+
+  ### RateLimit
+
+
+  This API has a rate limit of **10 request / second** for each unique
+  IP-address. A status code of 429 (Too Many Requests) will be returned if
+  breached.
+
+
+  ### Page size limit
+
+
+  For endpoints that supports pagination with page and size query parameters,
+  there is a maximum page-size of 100. A status code of 422 (Unprocessable
+  Entity) will be returned if max page size is breached.
+
+
+  ### DateTime fields
+
+
+  All date-time fields are using the
+  [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format (ex
+  2019-06-13T09:29:12+02:00). Usually specified in local time.
+
+  Dates are specified in the Y-m-d format (ex 2001-03-10).
+
+
+  ### Postman
+
+
+  Postman supports open api, click on the download button above and import
+  directly to postman.

@@ -2324,6 +2324,46 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "token.io": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://reference.token.io/",
+        browser,
+      });
+    },
+  },
+  "monto.ai": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://monto.redoc.ly/",
+        browser,
+      });
+    },
+  },
+  "hypatos.ai": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://hypatos.redoc.ly/",
+        browser,
+      });
+    },
+  },
+  "tryedge.io": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.tryedge.io/",
+        browser,
+      });
+    },
+  },
+  "linkcy.io": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.sandbox.linkcy.io/",
+        browser,
+      });
+    },
+  },
   "nuapay.com": {
     type: "GET",
     url: "https://raw.githubusercontent.com/sentenial/open-banking-swagger/master/tpp-swagger.yaml",
@@ -2372,7 +2412,7 @@ const customRequests: Record<string, CustomRequest> = {
   "buttondown.email": {
     type: "GET",
     url: "https://raw.githubusercontent.com/buttondown/openapi/main/openapi.json",
-    apiBaseUrl: "https://api.buttondown.email/v1/"
+    apiBaseUrl: "https://api.buttondown.email/v1/",
   },
 };
 

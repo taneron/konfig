@@ -1,0 +1,759 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/partner:
+    get: Partner_getConfiguration
+    patch: Partner_updateConfiguration
+  /api/partner/accounts:
+    get: Partner_listUserAccounts
+    post: Partner_createUserAccount
+  /api/partner/accounts/{accountId}:
+    patch: Partner_updateUserAccount
+  /api/partner/acquiring-configuration:
+    get: Partner_acquiringConfigurationGet
+  /api/partner/acquiring/account-load:
+    post: Acquiring_initiateTransaction
+  /api/partner/acquiring/payment:
+    post: Acquiring_initiateTransaction
+  /api/partner/acquiring/transactions/{transactionId}:
+    get: Acquiring_transactionInfo
+  /api/partner/beneficiaries:
+    get: Beneficiary_listAll
+    post: Beneficiary_addNew
+  /api/partner/beneficiaries/{beneficiaryId}:
+    get: Beneficiary_getInfo
+    patch: Beneficiary_updateDetails
+  /api/partner/beneficiaries/{beneficiaryId}/status:
+    patch: Sandbox_bypassBeneficiaryStatus
+  /api/partner/card-designs:
+    get: Card_getDesigns
+  /api/partner/card-profiles:
+    get: Card_getProfiles
+    post: Card_createProfileBasedOnDesign
+  /api/partner/card-profiles/{cardProfileId}:
+    patch: Card_updateProfile
+  /api/partner/card-profiles/{cardProfileId}/rules:
+    put: Card_createDefaultRule
+  /api/partner/card-profiles/{cardProfileId}/rules/{ruleType}:
+    delete: Card_removeDefaultRule
+  /api/partner/cards:
+    get: Card_listCards
+    post: Card_createForLedger
+  /api/partner/cards/{cardId}:
+    get: Card_getInformation
+    patch: Card_updateInformation
+  /api/partner/cards/{cardId}/activate:
+    post: Card_activateCard
+  /api/partner/cards/{cardId}/close:
+    post: Card_closeCard
+  /api/partner/cards/{cardId}/pan:
+    get: Sandbox_getTruncatedPAN
+  /api/partner/cards/{cardId}/pan/credentials:
+    get: Card_getPanCredentials
+  /api/partner/cards/{cardId}/pin:
+    get: Card_getPin
+  /api/partner/cards/{cardId}/pin/reset:
+    post: Card_resetPinAttempts
+  /api/partner/cards/{cardId}/rules:
+    put: Card_updateRule
+  /api/partner/cards/{cardId}/rules/{ruleType}:
+    delete: Card_removeRule
+  /api/partner/cards/{cardId}/suspend:
+    post: Card_suspendCard
+  /api/partner/consumers:
+    get: Consumer_listEndUsers
+    post: Consumer_createIndividualConsumer
+  /api/partner/consumers/{consumerId}:
+    delete: Sandbox_deleteConsumerById
+    get: Consumer_getInformation
+    patch: Consumer_updateInformation
+  /api/partner/corporates:
+    get: Corporate_listCorporates
+    post: Corporate_createEndUser
+  /api/partner/corporates/{corporateId}:
+    delete: Sandbox_deleteCorporateById
+    get: Corporate_getInformation
+    patch: Corporate_updateInformation
+  /api/partner/corporates/{corporateId}/kyb:
+    patch: Sandbox_bypassKycStatus
+  /api/partner/corporates/{corporateId}/kyb/verification/ask:
+    post: Kyb_requestVerification
+  /api/partner/corporates/{corporateId}/related:
+    get: Kyb_getCorporateRelated
+    post: Kyb_declareCorporateRelatedEntity
+  /api/partner/corporates/{corporateId}/related/{corporateRelatedId}:
+    get: Kyb_getCorporateRelatedInfo
+    patch: Kyb_updateCorporateRelatedEntity
+  /api/partner/docs/terms:
+    get: Additional_getTermsAndConditions
+  /api/partner/documents:
+    get: Documents_listForEndUser
+    post: Documents_uploadForEndUser
+  /api/partner/documents/bank-details/{ledgerId}:
+    get: Ledger_getBankingDetails
+  /api/partner/documents/diligence-review/{corporateId}:
+    get: Kyb_getDiligenceReview
+  /api/partner/documents/ledger-statement/{ledgerId}:
+    get: Ledger_getStatementById
+  /api/partner/documents/{documentId}:
+    get: Documents_getDownloadLink
+  /api/partner/end-users/{endUserId}/suspensions:
+    post: Enduser_suspendCardRuleLinkcy
+  /api/partner/end-users/{endUserId}/suspensions/{operator}:
+    delete: Enduser_unsuspendById
+  /api/partner/kyc:
+    get: Kyc_listApplications
+    post: Kyc_requestValidationLink
+  /api/partner/kyc/simulate:
+    post: Sandbox_simulateKyc
+  /api/partner/kyc/{kycId}:
+    get: Kyc_getApplication
+  /api/partner/ledgers:
+    get: Ledger_getAll
+    post: Ledger_createIban
+  /api/partner/ledgers/credit:
+    post: Sandbox_simulateLedgerCredit
+  /api/partner/ledgers/{ledgerId}:
+    get: Ledger_getInfo
+    patch: Ledger_updateInformation
+  /api/partner/ledgers/{ledgerId}/close:
+    post: Ledger_closeLedgerAndCards
+  /api/partner/ledgers/{ledgerId}/suspensions:
+    post: Ledger_suspendLedgerAndCards
+  /api/partner/ledgers/{ledgerId}/suspensions/{operator}:
+    delete: Ledger_unsuspendLedger
+  /api/partner/ledgers/{ledgerId}/upgrade:
+    post: Ledger_upgradeLedger
+  /api/partner/login:
+    post: Authentication_userLogin
+  /api/partner/mandates:
+    get: DirectDebitMandate_list
+    post: DirectDebitMandate_createNewMandate
+  /api/partner/mandates/{mandateId}:
+    get: DirectDebitMandate_getInformation
+    patch: DirectDebitMandate_updateMandate
+  /api/partner/mandates/{mandateId}/activate:
+    post: DirectDebitMandate_activateMandate
+  /api/partner/mandates/{mandateId}/cancel:
+    post: DirectDebitMandate_cancelMandate
+  /api/partner/passwords/change:
+    post: Authentication_changeUserPassword
+  /api/partner/passwords/reset:
+    post: Authentication_initializePasswordReset
+  /api/partner/passwords/reset/sandbox:
+    post: Sandbox_initializePasswordWithSecretInResponse
+  /api/partner/refresh:
+    post: Authentication_refreshLogin
+  /api/partner/sca:
+    post: StrongAuthentication_onboardDeviceSca
+  /api/partner/sca/qr-codes:
+    post: StrongAuthentication_generateQrCode
+  /api/partner/sca/{scaDeviceId}:
+    delete: StrongAuthentication_resetUserDeviceSca
+    patch: StrongAuthentication_updateFactor
+  /api/partner/shares:
+    post: Kyb_createShare
+  /api/partner/shares/{shareId}:
+    delete: Kyb_deleteShare
+    get: Kyb_getShareInformation
+    patch: Kyb_updateShareInformation
+  /api/partner/sms:
+    post: Additional_sendSms
+  /api/partner/transactions:
+    get: Transaction_getAll
+    post: Transaction_createBeneficiaryTransaction
+  /api/partner/transactions/direct-debit:
+    post: Transaction_createDirectDebit
+  /api/partner/transactions/inter-ledger:
+    post: Transaction_createInterLedgerTransaction
+  /api/partner/transactions/{transactionId}:
+    get: Transaction_getInformation
+  /api/partner/verifications/address:
+    post: Kyc_verifyAddress
+  /api/partner/verifications/email/send:
+    post: Kyc_sendEmailVerification
+  /api/partner/verifications/phone/send:
+    post: Kyc_sendPhoneVerificationSms
+  /api/partner/verifications/phone/verify:
+    post: Kyc_verifyPhoneVerificationCode
+  /api/partner/web-page/{pageId}:
+    get: WebPages_getHtmlPage
+  /api/partner/webhooks:
+    get: Webhook_portalUrlGet
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/partner/verifications/address:
+    post:
+      application/json: KycVerifyAddressRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/partner:
+    patch:
+      '400':
+        application/json: PartnerUpdateConfigurationResponse
+  /api/partner/accounts:
+    post:
+      '403':
+        application/json: PartnerCreateUserAccountResponse
+      '409':
+        application/json: PartnerCreateUserAccount409Response
+  /api/partner/accounts/{accountId}:
+    patch:
+      '403':
+        application/json: PartnerUpdateUserAccountResponse
+      '404':
+        application/json: PartnerUpdateUserAccount404Response
+  /api/partner/acquiring-configuration:
+    get:
+      '404':
+        application/json: PartnerAcquiringConfigurationGetResponse
+  /api/partner/acquiring/account-load:
+    post:
+      '409':
+        application/json: AcquiringInitiateTransactionResponse
+  /api/partner/acquiring/transactions/{transactionId}:
+    get:
+      '404':
+        application/json: AcquiringTransactionInfoResponse
+  /api/partner/beneficiaries:
+    post:
+      '202':
+        application/json: BeneficiaryAddNewResponse
+      '400':
+        application/json: BeneficiaryAddNew400Response
+      '409':
+        application/json: BeneficiaryAddNew409Response
+  /api/partner/beneficiaries/{beneficiaryId}:
+    get:
+      '200':
+        application/json: BeneficiaryGetInfoResponse
+      '404':
+        application/json: BeneficiaryGetInfo404Response
+    patch:
+      '202':
+        application/json: BeneficiaryUpdateDetailsResponse
+      '400':
+        application/json: BeneficiaryUpdateDetails400Response
+      '404':
+        application/json: BeneficiaryUpdateDetails404Response
+  /api/partner/beneficiaries/{beneficiaryId}/status:
+    patch:
+      '404':
+        application/json: SandboxBypassBeneficiaryStatusResponse
+  /api/partner/card-profiles:
+    post:
+      '400':
+        application/json: CardCreateProfileBasedOnDesignResponse
+  /api/partner/card-profiles/{cardProfileId}:
+    patch:
+      '404':
+        application/json: CardUpdateProfileResponse
+  /api/partner/card-profiles/{cardProfileId}/rules:
+    put:
+      '404':
+        application/json: CardCreateDefaultRuleResponse
+  /api/partner/card-profiles/{cardProfileId}/rules/{ruleType}:
+    delete:
+      '404':
+        application/json: CardRemoveDefaultRuleResponse
+  /api/partner/cards:
+    get:
+      '400':
+        application/json: CardListCardsResponse
+    post:
+      '202':
+        application/json: CardCreateForLedgerResponse
+      '400':
+        application/json: CardCreateForLedger400Response
+      '409':
+        application/json: CardCreateForLedger409Response
+  /api/partner/cards/{cardId}:
+    get:
+      '404':
+        application/json: CardGetInformationResponse
+    patch:
+      '404':
+        application/json: CardUpdateInformationResponse
+  /api/partner/cards/{cardId}/activate:
+    post:
+      '400':
+        application/json: CardActivateCardResponse
+      '404':
+        application/json: CardActivateCard404Response
+      '409':
+        application/json: CardActivateCard409Response
+  /api/partner/cards/{cardId}/close:
+    post:
+      '404':
+        application/json: CardCloseCardResponse
+  /api/partner/cards/{cardId}/pan:
+    get:
+      '200':
+        application/json: SandboxGetTruncatedPanResponse
+      '404':
+        application/json: SandboxGetTruncatedPan404Response
+      '409':
+        application/json: SandboxGetTruncatedPan409Response
+  /api/partner/cards/{cardId}/pan/credentials:
+    get:
+      '202':
+        application/json: CardGetPanCredentialsResponse
+      '409':
+        application/json: CardGetPanCredentials409Response
+  /api/partner/cards/{cardId}/pin:
+    get:
+      '202':
+        application/json: CardGetPinResponse
+      '404':
+        application/json: CardGetPin404Response
+      '409':
+        application/json: CardGetPin409Response
+  /api/partner/cards/{cardId}/pin/reset:
+    post:
+      '202':
+        application/json: CardResetPinAttemptsResponse
+      '404':
+        application/json: CardResetPinAttempts404Response
+      '409':
+        application/json: CardResetPinAttempts409Response
+  /api/partner/cards/{cardId}/rules:
+    put:
+      '202':
+        application/json: CardUpdateRuleResponse
+      '404':
+        application/json: CardUpdateRule404Response
+  /api/partner/cards/{cardId}/rules/{ruleType}:
+    delete:
+      '202':
+        application/json: CardRemoveRuleResponse
+      '404':
+        application/json: CardRemoveRule404Response
+  /api/partner/cards/{cardId}/suspend:
+    post:
+      '400':
+        application/json: CardSuspendCardResponse
+      '404':
+        application/json: CardSuspendCard404Response
+      '409':
+        application/json: CardSuspendCard409Response
+  /api/partner/consumers:
+    post:
+      '400':
+        application/json: ConsumerCreateIndividualConsumerResponse
+      '409':
+        application/json: ConsumerCreateIndividualConsumer409Response
+  /api/partner/consumers/{consumerId}:
+    delete:
+      '404':
+        application/json: SandboxDeleteConsumerByIdResponse
+    get:
+      '404':
+        application/json: ConsumerGetInformationResponse
+    patch:
+      '202':
+        application/json: ConsumerUpdateInformationResponse
+      '400':
+        application/json: ConsumerUpdateInformation400Response
+      '403':
+        application/json: ConsumerUpdateInformation403Response
+      '404':
+        application/json: ConsumerUpdateInformation404Response
+  /api/partner/corporates:
+    post:
+      '400':
+        application/json: CorporateCreateEndUserResponse
+      '409':
+        application/json: CorporateCreateEndUser409Response
+  /api/partner/corporates/{corporateId}:
+    delete:
+      '404':
+        application/json: SandboxDeleteCorporateByIdResponse
+    get:
+      '404':
+        application/json: CorporateGetInformationResponse
+    patch:
+      '400':
+        application/json: CorporateUpdateInformationResponse
+      '404':
+        application/json: CorporateUpdateInformation404Response
+      '409':
+        application/json: CorporateUpdateInformation409Response
+  /api/partner/corporates/{corporateId}/kyb:
+    patch:
+      '404':
+        application/json: SandboxBypassKycStatusResponse
+      '409':
+        application/json: SandboxBypassKycStatus409Response
+  /api/partner/corporates/{corporateId}/kyb/verification/ask:
+    post:
+      '404':
+        application/json: KybRequestVerificationResponse
+  /api/partner/corporates/{corporateId}/related:
+    get:
+      '404':
+        application/json: KybGetCorporateRelatedResponse
+    post:
+      '400':
+        application/json: KybDeclareCorporateRelatedEntityResponse
+      '404':
+        application/json: KybDeclareCorporateRelatedEntity404Response
+      '409':
+        application/json: KybDeclareCorporateRelatedEntity409Response
+  /api/partner/corporates/{corporateId}/related/{corporateRelatedId}:
+    get:
+      '404':
+        application/json: KybGetCorporateRelatedInfoResponse
+    patch:
+      '400':
+        application/json: KybUpdateCorporateRelatedEntityResponse
+      '404':
+        application/json: KybUpdateCorporateRelatedEntity404Response
+      '409':
+        application/json: KybUpdateCorporateRelatedEntity409Response
+  /api/partner/documents:
+    post:
+      '400':
+        application/json: DocumentsUploadForEndUserResponse
+      '409':
+        application/json: DocumentsUploadForEndUser409Response
+  /api/partner/documents/bank-details/{ledgerId}:
+    get:
+      '404':
+        application/json: LedgerGetBankingDetailsResponse
+      '409':
+        application/json: LedgerGetBankingDetails409Response
+  /api/partner/documents/diligence-review/{corporateId}:
+    get:
+      '404':
+        application/json: KybGetDiligenceReviewResponse
+  /api/partner/documents/ledger-statement/{ledgerId}:
+    get:
+      '404':
+        application/json: LedgerGetStatementByIdResponse
+  /api/partner/documents/{documentId}:
+    get:
+      '404':
+        application/json: DocumentsGetDownloadLinkResponse
+  /api/partner/end-users/{endUserId}/suspensions:
+    post:
+      '403':
+        application/json: EnduserSuspendCardRuleLinkcyResponse
+      '404':
+        application/json: EnduserSuspendCardRuleLinkcy404Response
+      '409':
+        application/json: EnduserSuspendCardRuleLinkcy409Response
+  /api/partner/end-users/{endUserId}/suspensions/{operator}:
+    delete:
+      '403':
+        application/json: EnduserUnsuspendByIdResponse
+  /api/partner/kyc:
+    get:
+      '400':
+        application/json: KycListApplicationsResponse
+    post:
+      '400':
+        application/json: KycRequestValidationLinkResponse
+      '403':
+        application/json: KycRequestValidationLink403Response
+      '409':
+        application/json: KycRequestValidationLink409Response
+  /api/partner/kyc/simulate:
+    post:
+      '400':
+        application/json: SandboxSimulateKycResponse
+  /api/partner/kyc/{kycId}:
+    get:
+      '404':
+        application/json: KycGetApplicationResponse
+  /api/partner/ledgers:
+    post:
+      '400':
+        application/json: LedgerCreateIbanResponse
+      '409':
+        application/json: LedgerCreateIban409Response
+  /api/partner/ledgers/credit:
+    post:
+      '404':
+        application/json: SandboxSimulateLedgerCreditResponse
+      '409':
+        application/json: SandboxSimulateLedgerCredit409Response
+  /api/partner/ledgers/{ledgerId}:
+    get:
+      '404':
+        application/json: LedgerGetInfoResponse
+    patch:
+      '404':
+        application/json: LedgerUpdateInformationResponse
+  /api/partner/ledgers/{ledgerId}/close:
+    post:
+      '403':
+        application/json: LedgerCloseLedgerAndCardsResponse
+      '404':
+        application/json: LedgerCloseLedgerAndCards404Response
+      '409':
+        application/json: LedgerCloseLedgerAndCards409Response
+  /api/partner/ledgers/{ledgerId}/suspensions:
+    post:
+      '403':
+        application/json: LedgerSuspendLedgerAndCardsResponse
+      '404':
+        application/json: LedgerSuspendLedgerAndCards404Response
+      '409':
+        application/json: LedgerSuspendLedgerAndCards409Response
+  /api/partner/ledgers/{ledgerId}/suspensions/{operator}:
+    delete:
+      '403':
+        application/json: LedgerUnsuspendLedgerResponse
+  /api/partner/ledgers/{ledgerId}/upgrade:
+    post:
+      '400':
+        application/json: LedgerUpgradeLedgerResponse
+      '404':
+        application/json: LedgerUpgradeLedger404Response
+      '409':
+        application/json: LedgerUpgradeLedger409Response
+  /api/partner/login:
+    post:
+      '202':
+        application/json: AuthenticationUserLoginResponse
+      '403':
+        application/json: AuthenticationUserLogin403Response
+  /api/partner/mandates:
+    get:
+      '400':
+        application/json: DirectDebitMandateListResponse
+    post:
+      '400':
+        application/json: DirectDebitMandateCreateNewMandateResponse
+      '409':
+        application/json: DirectDebitMandateCreateNewMandate409Response
+  /api/partner/mandates/{mandateId}:
+    get:
+      '404':
+        application/json: DirectDebitMandateGetInformationResponse
+    patch:
+      '400':
+        application/json: DirectDebitMandateUpdateMandateResponse
+      '404':
+        application/json: DirectDebitMandateUpdateMandate404Response
+      '409':
+        application/json: DirectDebitMandateUpdateMandate409Response
+  /api/partner/mandates/{mandateId}/activate:
+    post:
+      '404':
+        application/json: DirectDebitMandateActivateMandateResponse
+      '409':
+        application/json: DirectDebitMandateActivateMandate409Response
+  /api/partner/mandates/{mandateId}/cancel:
+    post:
+      '404':
+        application/json: DirectDebitMandateCancelMandateResponse
+      '409':
+        application/json: DirectDebitMandateCancelMandate409Response
+  /api/partner/passwords/reset:
+    post:
+      '403':
+        application/json: AuthenticationInitializePasswordResetResponse
+  /api/partner/refresh:
+    post:
+      '202':
+        application/json: AuthenticationRefreshLoginResponse
+  /api/partner/sca:
+    post:
+      '400':
+        application/json: StrongAuthenticationOnboardDeviceScaResponse
+      '409':
+        application/json: StrongAuthenticationOnboardDeviceSca409Response
+  /api/partner/sca/qr-codes:
+    post:
+      '400':
+        application/json: StrongAuthenticationGenerateQrCodeResponse
+      '409':
+        application/json: StrongAuthenticationGenerateQrCode409Response
+  /api/partner/sca/{scaDeviceId}:
+    delete:
+      '404':
+        application/json: StrongAuthenticationResetUserDeviceScaResponse
+    patch:
+      '404':
+        application/json: StrongAuthenticationUpdateFactorResponse
+      '409':
+        application/json: StrongAuthenticationUpdateFactor409Response
+  /api/partner/shares:
+    post:
+      '400':
+        application/json: KybCreateShareResponse
+      '409':
+        application/json: KybCreateShare409Response
+  /api/partner/shares/{shareId}:
+    delete:
+      '404':
+        application/json: KybDeleteShareResponse
+    get:
+      '404':
+        application/json: KybGetShareInformationResponse
+    patch:
+      '400':
+        application/json: KybUpdateShareInformationResponse
+      '404':
+        application/json: KybUpdateShareInformation404Response
+  /api/partner/sms:
+    post:
+      '400':
+        application/json: AdditionalSendSmsResponse
+      '409':
+        application/json: AdditionalSendSms409Response
+  /api/partner/transactions:
+    post:
+      '202':
+        application/json: TransactionCreateBeneficiaryTransactionResponse
+      '400':
+        application/json: TransactionCreateBeneficiaryTransaction400Response
+      '409':
+        application/json: TransactionCreateBeneficiaryTransaction409Response
+  /api/partner/transactions/direct-debit:
+    post:
+      '400':
+        application/json: TransactionCreateDirectDebitResponse
+      '409':
+        application/json: TransactionCreateDirectDebit409Response
+  /api/partner/transactions/inter-ledger:
+    post:
+      '202':
+        application/json: TransactionCreateInterLedgerTransactionResponse
+      '400':
+        application/json: TransactionCreateInterLedgerTransaction400Response
+      '409':
+        application/json: TransactionCreateInterLedgerTransaction409Response
+  /api/partner/transactions/{transactionId}:
+    get:
+      '404':
+        application/json: TransactionGetInformationResponse
+  /api/partner/verifications/address:
+    post:
+      '400':
+        application/json: KycVerifyAddressResponse
+      '409':
+        application/json: KycVerifyAddress409Response
+  /api/partner/verifications/email/send:
+    post:
+      '404':
+        application/json: KycSendEmailVerificationResponse
+      '409':
+        application/json: KycSendEmailVerification409Response
+  /api/partner/verifications/phone/send:
+    post:
+      '400':
+        application/json: KycSendPhoneVerificationSmsResponse
+      '409':
+        application/json: KycSendPhoneVerificationSms409Response
+  /api/partner/verifications/phone/verify:
+    post:
+      '400':
+        application/json: KycVerifyPhoneVerificationCodeResponse
+      '409':
+        application/json: KycVerifyPhoneVerificationCode409Response
+  /api/partner/web-page/{pageId}:
+    get:
+      '200':
+        text/html: WebPagesGetHtmlPageResponse
+      '404':
+        application/json: WebPagesGetHtmlPage404Response
+      '409':
+        application/json: WebPagesGetHtmlPage409Response
+securityParameters:
+  Linkcy-SCA-Factor:
+    header: false
+  Linkcy-SCA-Id:
+    header: false
+  Linkcy-SCA-Strategy:
+    header: false
+  active:
+    query: false
+  bankingStatus:
+    query: false
+  cardId:
+    query: false
+  cardType:
+    query: false
+  cardTypes:
+    query: false
+  complianceStatus:
+    query: false
+  display:
+    query: false
+  endDate:
+    query: false
+  endUserId:
+    query: false
+  iban:
+    query: false
+  kybStatus:
+    query: false
+  kycStatus:
+    query: false
+  lastName:
+    query: false
+  layer:
+    query: false
+  ledgerId:
+    query: false
+  ledgerType:
+    query: false
+  ledgerTypes:
+    query: false
+  linkcyStatus:
+    query: false
+  overallStatus:
+    query: false
+  ownedCorporateId:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  parentId:
+    query: false
+  paymentTypes:
+    query: false
+  personId:
+    query: false
+  personType:
+    query: false
+  phone:
+    query: false
+  profileId:
+    query: false
+  registeredName:
+    query: false
+  scheme:
+    query: false
+  showDeclinedTransaction:
+    query: false
+  showReleasedTransaction:
+    query: false
+  sortAttribute:
+    query: false
+  sortDirection:
+    query: false
+  startDate:
+    query: false
+  status:
+    query: false
+  suspensionStatus:
+    query: false
+  termsAndConditionsInfoRequestDto:
+    query: false
+  transactionTypes:
+    query: false
+  type:
+    query: false
+  userType:
+    query: false
+  userTypes:
+    query: false
+validServerUrls: {}

@@ -1,0 +1,5013 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "2.13.0",
+    "title": "Hypatos REST API",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "description": "# Introduction\n\nThe Hypatos API is organized around REST. The majority of the endpoints provide CRUD \nfunctionality for resources. The API is also exposing Intent Resources which mimic user intents \nor actions.\n\nThe Hypatos API uses [OAuth 2.0 Client Credential Grant](https://www.rfc-editor.org/rfc/rfc6749#section-4.4) \nto authenticate requests. Before making any requests to any endpoint a client must authenticate \nwith the authorization server and requests an access token from the [token endpoint](#operation/requestAccessToken). \n\n````sh\n  POST /auth/token HTTP/1.1\n  Host: api.cloud.hypatos.ai\n  Content-Type: application/x-www-form-urlencoded\n  Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=\n\n  grant_type=client_credentials\n````\n\n`Authorization` header contains `client_id:client_secret` encoded as explained in [RFC Client Password section](https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1).\n     \nIf the authorization server authenticated the client successfully, an access token is issued. \nHere is an example successful response:\n\n````sh\n  HTTP/1.1 200 OK\n  Content-Type: application/json;charset=UTF-8\n  Cache-Control: no-store\n  Pragma: no-cache\n\n  {\n    \"access_token\": \"mF_9.B5f-4.1JqM\",\n    \"expires_in\": 86400,\n    \"scope\": \"enrichment.write files.read\",\n    \"token_type\": \"Bearer\",\n  }\n````\nThis token can be used to authenticate the requests to API endpoints by sending a Bearer token \nin the `Authorization` HTTP header. The following example demonstrates how to use the access token \nto retrieve a list of documents.\n\n````sh\n  GET /v2/documents HTTP/1.1\n  Host: api.cloud.hypatos.ai\n  Authorization: Bearer mF_9.B5f-4.1JqM\n````\n\n# Versioning\n\nChanges to this API are released regularly. We use [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) \nscheme for versioning so that the clients can identify any backward-incompatible changes \neasily. Briefly summarized one can say, if the MAJOR version of the new API version didn't \nchange you can expect the new version to be backward-compatible.\n\n# Rate limits\n\nIn order to maximise the stability of our API, we institue rate limits for all of API \nendpoints. Clients who send too many requests over a given period of time will see error \nresponses that show up as status code [429 Too Many Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429). \n\nWhen you see error responses with status code 429, it means you exhausted your current \nquota and need to withhold from sending further requests until the quota is reset. We \nencourage you not to wait until you get a 429 error but to monitor your quota in each \nrequest. In each response you receive from the API, you will find HTTP headers providing \nthe details about your current quota. Here is the list of the HTTP headers:\n\n* `x-ratelimit-limit`: Indicates the quota associated to the client in the \ncurrent time-window followed by the description of the quota policy.\n* `x-ratelimit-remaining`: Indicates the number of remaining requests in the current \ntime-window\n* `x-ratelimit-reset`: Indicates the number of seconds until quota reset of the current \ntime-window\n\nPlease note that IETF is currently in the process of publishing a standard for these \nheaders. Please explore the [draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/) \nfor more details.\n\nA basic technique to gracefully handle rate limits is watch for your quota permanently \nand increase the time between your request as the quota is decreasing. To recover from a \n429 error you need a retry mechanism following an exponential backoff schedule.\n"
+  },
+  "servers": [
+    {
+      "description": "API EU",
+      "url": "https://api.cloud.hypatos.ai/v2"
+    },
+    {
+      "description": "API US",
+      "url": "https://api.cloud.hypatos.com/v2"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authorization",
+      "description": "Endpoints for handling the [OAuth 2.0 Client Credentials Grant](https://www.rfc-editor.org/rfc/rfc6749#section-4.4) flow."
+    },
+    {
+      "name": "Files",
+      "description": "Endpoints for management of files\n"
+    },
+    {
+      "name": "Documents",
+      "description": "Endpoints for document management"
+    },
+    {
+      "name": "Enrichment",
+      "description": "Endpoints for data enrichment"
+    },
+    {
+      "name": "Companies",
+      "description": "Endpoints for company management"
+    },
+    {
+      "name": "Projects",
+      "description": "Endpoints for project management"
+    }
+  ],
+  "paths": {
+    "/auth/token": {
+      "post": {
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "Request an access token",
+        "operationId": "requestAccessToken",
+        "description": "Request an access token using your client credentials",
+        "security": [
+          {
+            "Basic": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Access token provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Client Credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "detail": "The provided client credentials are not valid",
+                  "status": 401,
+                  "title": "Invalid client credentials"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/AccessTokenRequest"
+              }
+            }
+          },
+          "description": "Access token request"
+        }
+      }
+    },
+    "/files": {
+      "post": {
+        "summary": "Upload a file",
+        "operationId": "uploadFile",
+        "description": "This endpoint allows a client to upload a binary file. The ``id`` returned in the reponse is representing the file in Hypatos systems. It can be used in other endpoints, for example to initiate a processing of the file to create document holding captured data.\n",
+        "tags": [
+          "Files"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "files.write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Hy-Filename",
+            "description": "Optional name of the file to be stored along with the content. If not provided, a filename will be generated",
+            "schema": {
+              "type": "string",
+              "maxLength": 256
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload of the file",
+          "required": true,
+          "content": {
+            "application/pdf": {
+              "schema": {
+                "$ref": "#/components/schemas/BinaryFile"
+              }
+            },
+            "image/jpeg": {
+              "schema": {
+                "$ref": "#/components/schemas/BinaryFile"
+              }
+            },
+            "image/png": {
+              "schema": {
+                "$ref": "#/components/schemas/BinaryFile"
+              }
+            },
+            "image/tiff": {
+              "schema": {
+                "$ref": "#/components/schemas/BinaryFile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Document uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Content type is not supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "detail": "The provided content type is not supported",
+                  "status": 400,
+                  "title": "Content type not supported"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/files/{id}": {
+      "get": {
+        "summary": "Download a file by id",
+        "operationId": "retrieveFile",
+        "description": "Download the content of a file with the given identifier.\n",
+        "tags": [
+          "Files"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "files.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "File id to download"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Binary content of a file",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinaryFile"
+                }
+              },
+              "image/jpeg": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinaryFile"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinaryFile"
+                }
+              },
+              "image/tiff": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinaryFile"
+                }
+              }
+            },
+            "headers": {
+              "X-Hy-Filename": {
+                "description": "If a filename was provided during the file upload via the `X-Hy-Filename` request header, it will be returned in this header.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No file with given identifier exist",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "detail": "File with given identifier does not exist",
+                  "status": 404,
+                  "title": "File not found"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/documents": {
+      "get": {
+        "summary": "Retrieve a list of documents",
+        "operationId": "documentsList",
+        "description": "Retrieve a list of documents.",
+        "security": [
+          {
+            "OAuth2": [
+              "documents.read"
+            ]
+          }
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/projectId"
+          },
+          {
+            "$ref": "#/components/parameters/pagingOffset"
+          },
+          {
+            "$ref": "#/components/parameters/pagingLimit"
+          },
+          {
+            "$ref": "#/components/parameters/sortByCreatedAtUpdatedAt"
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DocumentState"
+              }
+            },
+            "style": "form",
+            "explode": true,
+            "required": false,
+            "description": "Used to retrieve documents that are in specific states only. Multiple states can be used for this filtering. By default, documents in all states are returned."
+          },
+          {
+            "in": "query",
+            "name": "fileId",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "File identifier to retrieve documents that were created from that file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of documents",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "InvalidProjectId": {
+                    "value": {
+                      "detail": "One of the given project identifier provided as projectId query parameter is invalid",
+                      "status": 400,
+                      "title": "Provided project identifier is invalid"
+                    }
+                  },
+                  "OffsetOutOfRange": {
+                    "value": {
+                      "detail": "The provided offset is out of range",
+                      "status": 400,
+                      "title": "Offset out of range"
+                    }
+                  },
+                  "LimitOutOfRange": {
+                    "value": {
+                      "detail": "Limit is out of range",
+                      "status": 400,
+                      "title": "Limit out of range"
+                    }
+                  },
+                  "InvalidSortDefinition": {
+                    "value": {
+                      "detail": "Limit is out of range",
+                      "status": 400,
+                      "title": "Limit out of range"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/documents/process-file": {
+      "post": {
+        "summary": "Request processing of a file",
+        "operationId": "processFileIntoDocument",
+        "description": "Request a processing of a file that was previously uploaded. \nThe `fileId` in the request body is representing the identifier of the file that was returned by the upload endpoint. \nAs a result of this request a document will be created and its identifier will be returned in the response.\nThe `projectId` in the request body is an identifier of the project to create the document in.\n",
+        "security": [
+          {
+            "OAuth2": [
+              "documents.write"
+            ]
+          }
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "requestBody": {
+          "description": "Payload for processing the given file",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessFileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Processing accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/documents/{id}": {
+      "get": {
+        "summary": "Retrieve a document by id",
+        "operationId": "documentsGetById",
+        "description": "Retrieve a document by id",
+        "security": [
+          {
+            "OAuth2": [
+              "documents.read"
+            ]
+          }
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the document to get."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Document retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/documents/{id}/transfer": {
+      "post": {
+        "summary": "Provide information about a transfer of a document to the target system",
+        "operationId": "documentsUpdateTransfer",
+        "description": "Update information about the transfer for the given document",
+        "security": [
+          {
+            "OAuth2": [
+              "documents.write"
+            ]
+          }
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of of the document to update."
+          }
+        ],
+        "requestBody": {
+          "description": "Payload about the transfer",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentsUpdateTransferRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Document transfer infor accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/documents/{id}/external-data": {
+      "post": {
+        "summary": "Provide external data for a document with given id",
+        "operationId": "documentUpdateExternalData",
+        "description": "Update the external data for a document with given identifier. The external data are provided as a flat JSON object. The payload of this requests completley overrides the existing external data of a document. To remove the data, justsend empty JSON object `{}` in the payload.\n\nPlease note that the maximum lenght of an key is 50 characters. Any value with a longer key will be omitted. The maximum amount of key-value pairs is limited to 20.\n",
+        "tags": [
+          "Documents"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "documents.write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the document to update."
+          }
+        ],
+        "requestBody": {
+          "description": "Payload containing the external data.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentsUpdateExternalDataRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "External data provided for the document accepted."
+          },
+          "400": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/documents/{id}/external-id": {
+      "post": {
+        "summary": "Provide an external identifier for a document with given id",
+        "operationId": "documentsUpdateExternalId",
+        "description": "Provide an external identifier for a document with given id",
+        "security": [
+          {
+            "OAuth2": [
+              "documents.write"
+            ]
+          }
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the document to update."
+          }
+        ],
+        "requestBody": {
+          "description": "Update external id for a given document.",
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentsUpdateExternalIdRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "External ID provided for the document accepted."
+          },
+          "400": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/documents/{id}/title": {
+      "post": {
+        "summary": "Provide a title for a document with given id",
+        "operationId": "documentsUpdateTitle",
+        "description": "Provide a title for a document with given id.",
+        "security": [
+          {
+            "OAuth2": [
+              "documents.write"
+            ]
+          }
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the document to update."
+          }
+        ],
+        "requestBody": {
+          "description": "Title for a given document.",
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentsUpdateTitleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Document title provided for the document accepted."
+          },
+          "400": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/documents/{id}/states": {
+      "get": {
+        "summary": "Retrieve a document states",
+        "operationId": "retrieveDocumentStates",
+        "description": "Provides a list of states the given document passed through. If the document is still in processing, the number of states returend must not be considered as final. Subsequent calls to this endpoint might get more states as the document is progressing the processing pipeline.",
+        "security": [
+          {
+            "OAuth2": [
+              "documents.read"
+            ]
+          }
+        ],
+        "tags": [
+          "Documents"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the document to get states of."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Document states.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentStatesResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/DocumentErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/invoices": {
+      "post": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Insert invoice including invoice lines",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.write"
+            ]
+          }
+        ],
+        "operationId": "insertInvoice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/invoice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/successfullyInserted"
+          },
+          "422": {
+            "$ref": "#/components/responses/validationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/invoices/{externalId}": {
+      "delete": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Mark invoice as deleted",
+        "operationId": "deleteInvoice",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.delete"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "description": "Previously sent `externalId`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "lineNumber",
+            "description": "Line number of one of the line numbers inside the Invoice.\nOptional, omitting means the whole Invoice is deleted.\n",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully marked as deleted"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/companies": {
+      "post": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Insert company",
+        "operationId": "insertCompany",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/company"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/successfullyInserted"
+          },
+          "422": {
+            "$ref": "#/components/responses/validationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/companies/{externalId}": {
+      "delete": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Mark company as deleted",
+        "operationId": "deleteCompany",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.delete"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "description": "Previously sent `externalId`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully marked as deleted"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/suppliers": {
+      "post": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Insert supplier including related subsidiaries",
+        "operationId": "insertSupplier",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/supplier"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/successfullyInserted"
+          },
+          "422": {
+            "$ref": "#/components/responses/validationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/suppliers/{externalId}": {
+      "delete": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Mark supplier as deleted",
+        "operationId": "deleteSupplier",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.delete"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "description": "Previously sent `externalId`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully marked as deleted"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/purchase-orders": {
+      "post": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Insert purchase order including purchase order lines",
+        "operationId": "insertPurchaseOrder",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/purchaseOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/successfullyInserted"
+          },
+          "422": {
+            "$ref": "#/components/responses/validationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/purchase-orders/{externalId}": {
+      "delete": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Mark purchase Order as deleted",
+        "operationId": "deletePurchaseOrder",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.delete"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "description": "Previously sent `externalId`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "lineNumber",
+            "description": "Line number of one of the line numbers inside the PO.\nOptional, omitting means the whole PO is deleted.\n",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully marked as deleted"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/gl-accounts": {
+      "post": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Insert general ledger account",
+        "operationId": "insertGLAccount",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/glAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/successfullyInserted"
+          },
+          "422": {
+            "$ref": "#/components/responses/validationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/gl-accounts/{externalId}": {
+      "delete": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Mark general ledger account as deleted",
+        "operationId": "deleteGlAccount",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.delete"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "description": "Previously sent `externalId`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully marked as deleted"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/cost-centers": {
+      "post": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Insert cost center",
+        "operationId": "insertCostCenter",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/costCenter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/successfullyInserted"
+          },
+          "422": {
+            "$ref": "#/components/responses/validationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/cost-centers/{externalId}": {
+      "delete": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Mark cost Center as deleted",
+        "operationId": "deleteCostCenter",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.delete"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "description": "Previously sent `externalId`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully marked as deleted"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/approvers": {
+      "post": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Insert approver",
+        "operationId": "insertApprover",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/approver"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/successfullyInserted"
+          },
+          "422": {
+            "$ref": "#/components/responses/validationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/approvers/{externalId}": {
+      "delete": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Mark approver as deleted",
+        "operationId": "deleteApprover",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.delete"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "description": "Previously sent `externalId`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully marked as deleted"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/customers": {
+      "post": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Insert customer",
+        "operationId": "insertCustomer",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/customer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/successfullyInserted"
+          },
+          "422": {
+            "$ref": "#/components/responses/validationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/enrichment/customers/{externalId}": {
+      "delete": {
+        "tags": [
+          "Enrichment"
+        ],
+        "summary": "Mark customer as deleted",
+        "operationId": "deleteCustomer",
+        "security": [
+          {
+            "OAuth2": [
+              "enrichment.delete"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "description": "Previously sent `externalId`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully marked as deleted"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/companies/{id}": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Retrieve a company by id",
+        "operationId": "companiesGetById",
+        "security": [
+          {
+            "OAuth2": [
+              "companies.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CompaniesId"
+            },
+            "name": "id",
+            "in": "path",
+            "description": "Id of the company to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompaniesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 400,
+                  "title": "Invalid company ID",
+                  "detail": "Error details"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 401,
+                  "title": "Invalid token",
+                  "detail": "Error details"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 403,
+                  "title": "Forbidden",
+                  "detail": "Error details"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 404,
+                  "title": "Company does not exists",
+                  "detail": "Error details"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 500,
+                  "title": "Internal Server Error",
+                  "detail": "Error details"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companies": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Retrieve a list of companies",
+        "description": "Note: For now pagination is not implemented",
+        "operationId": "companiesList",
+        "security": [
+          {
+            "OAuth2": [
+              "companies.read"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompaniesListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "post": {
+        "summary": "Create a project",
+        "operationId": "projectsCreate",
+        "description": "Creates a project based on the request",
+        "security": [
+          {
+            "OAuth2": [
+              "projects.write"
+            ]
+          }
+        ],
+        "tags": [
+          "Projects"
+        ],
+        "requestBody": {
+          "description": "Project data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Project created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProjectClientBadRequestErrorResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedErrorResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenErrorResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundErrorResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProjectRequestValidationErrorResponse"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Retrieve a projects list for given search criteria",
+        "operationId": "projectsList",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pagingOffset"
+          },
+          {
+            "$ref": "#/components/parameters/pagingLimit"
+          },
+          {
+            "$ref": "#/components/parameters/sortByCreatedAt"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Search text used to find projects.",
+              "type": "string",
+              "description": "Search text is used against projects name and id"
+            },
+            "name": "search",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Projects list retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedErrorResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenErrorResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProjectRequestValidationErrorResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "projects.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "summary": "Retrieve a project by id",
+        "operationId": "projectsGetById",
+        "description": "Retrieve a project by id",
+        "security": [
+          {
+            "OAuth2": [
+              "projects.read"
+            ]
+          }
+        ],
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProjectIdPathParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedErrorResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenErrorResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundErrorResponse"
+          }
+        }
+      }
+    },
+    "/projects/{id}/schema": {
+      "get": {
+        "summary": "Retrieve a schema by project id",
+        "operationId": "schemasGetByProjectId",
+        "description": "Retrieve a schema by project id",
+        "security": [
+          {
+            "OAuth2": [
+              "projects.read"
+            ]
+          }
+        ],
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProjectIdPathParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schema retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/SchemaClientBadRequestErrorResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedErrorResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenErrorResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundErrorResponse"
+          }
+        }
+      }
+    },
+    "/emails/{id}/content": {
+      "get": {
+        "tags": [
+          "Emails"
+        ],
+        "summary": "Retrieve an email merged content for given document ID",
+        "operationId": "emailsContentGetByDocumentId",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Document identifier",
+              "type": "string"
+            },
+            "example": "6295dcd39db1ab740c3e296c",
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 401,
+                  "title": "Invalid token",
+                  "detail": "Error details"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 403,
+                  "title": "Forbidden",
+                  "detail": "Error details"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 404,
+                  "title": "Company does not exists",
+                  "detail": "Error details"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 422,
+                  "title": "Request validation error",
+                  "detail": "Error details"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "status": 500,
+                  "title": "Internal Server Error",
+                  "detail": "Error details"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "emails.read"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessTokenRequest": {
+        "type": "object",
+        "required": [
+          "grant_type"
+        ],
+        "properties": {
+          "grant_type": {
+            "type": "string",
+            "enum": [
+              "client_credentials"
+            ]
+          }
+        }
+      },
+      "AccessTokenResponse": {
+        "type": "object",
+        "required": [
+          "access_token",
+          "token_type",
+          "expires_in"
+        ],
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "The access token issued by the authorization server",
+            "example": "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3"
+          },
+          "expires_in": {
+            "type": "integer",
+            "description": "The lifetime of the access token in seconds",
+            "example": 3600
+          },
+          "token_type": {
+            "type": "string",
+            "enum": [
+              "Bearer"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "description": "Scopes allowed for the client",
+            "example": "document.create project.create"
+          }
+        }
+      },
+      "BinaryFile": {
+        "type": "string",
+        "format": "binary"
+      },
+      "UploadResponse": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6040dc9680b782b365ea77d5"
+          }
+        }
+      },
+      "DocumentsUpdateExternalDataRequest": {
+        "type": "object",
+        "description": "External data to be associated with the document. The data are provided as a flat JSON object. The properties of that object are case-insensitive. The maximum amount of properties is limited to 20.",
+        "properties": {
+          "key1": {
+            "type": "string",
+            "example": "value1"
+          },
+          "key2": {
+            "type": "string",
+            "example": "value2"
+          }
+        }
+      },
+      "DocumentsUpdateExternalIdRequest": {
+        "type": "string",
+        "description": "External ID",
+        "example": "15b884b0-d551-4865-bda9-4168800c9d87"
+      },
+      "DocumentsUpdateTitleRequest": {
+        "type": "string",
+        "description": "New Title",
+        "example": "New Title of Document",
+        "maxLength": 256
+      },
+      "DocumentsUpdateTransferRequest": {
+        "type": "object",
+        "required": [
+          "successful"
+        ],
+        "properties": {
+          "successful": {
+            "type": "boolean",
+            "description": "Indicates if the transfer was successful or not",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "May be used to provide additional details about the transfer. Especially in the erroneous case this field is valueable.",
+            "example": "Upload failed due to ERP being down"
+          }
+        }
+      },
+      "DocumentsListResponse": {
+        "type": "object",
+        "required": [
+          "documents"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentResponse"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeds the maximal allowed value.",
+            "example": 20
+          },
+          "offset": {
+            "type": "integer",
+            "description": "The offset used for this page of results. This will be the same as the offset query parameter",
+            "example": 0
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of elements in the data attribute",
+            "example": 1000
+          }
+        }
+      },
+      "DocumentResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "createdAt",
+          "createdBy",
+          "state",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6040dc9680b782b365ea77d5"
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1990-12-31T15:59:60-08:00"
+          },
+          "completedBy": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1990-12-31T15:59:60-08:00"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "fileId": {
+            "type": "string",
+            "example": "5349b4ddd2781d08c09890f4"
+          },
+          "entities": {
+            "type": "object",
+            "example": {
+              "currency": "EUR",
+              "items": [
+                {
+                  "name": "High quality cement for rabbit hole sealing",
+                  "qty": 1
+                }
+              ],
+              "number": "2018-DE-0011122351",
+              "qty": 2
+            }
+          },
+          "externalId": {
+            "type": "string",
+            "example": "doc-0001"
+          },
+          "externalData": {
+            "type": "object",
+            "example": {
+              "internalSystemId": "sap-01"
+            }
+          },
+          "projectId": {
+            "type": "string",
+            "example": "6040dc9680b782b365ea77d5"
+          },
+          "state": {
+            "$ref": "#/components/schemas/DocumentState"
+          },
+          "title": {
+            "type": "string",
+            "example": "scan-doc-1.jpg"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1990-12-31T15:59:60-08:00"
+          },
+          "updatedBy": {
+            "type": "string"
+          }
+        }
+      },
+      "DocumentState": {
+        "type": "string",
+        "enum": [
+          "done",
+          "doneAutomatically",
+          "extracted",
+          "failed",
+          "inCompletion",
+          "junk",
+          "new",
+          "processing",
+          "rejected",
+          "reviewRequired",
+          "split",
+          "transferFailed",
+          "transferred"
+        ]
+      },
+      "DocumentStatesResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "$ref": "#/components/schemas/DocumentState"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time",
+              "example": "1990-12-31T15:59:60-08:00"
+            }
+          }
+        }
+      },
+      "ProcessFileRequest": {
+        "type": "object",
+        "required": [
+          "fileId",
+          "projectId"
+        ],
+        "properties": {
+          "fileId": {
+            "type": "string",
+            "example": "5349b4ddd2781d08c09890f4"
+          },
+          "projectId": {
+            "type": "string",
+            "example": "00000020f51bb4362eee2a4d"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "External id of the file. Can be used if you want to link the file with an identifier in your system.",
+            "example": "doc-0001"
+          },
+          "externalData": {
+            "$ref": "#/components/schemas/DocumentsUpdateExternalDataRequest"
+          }
+        }
+      },
+      "ProcessingAccepted": {
+        "type": "object",
+        "required": [
+          "documentId",
+          "fileId",
+          "projectId"
+        ],
+        "properties": {
+          "documentId": {
+            "type": "string",
+            "example": "6040dc9680b782b365ea77d5"
+          },
+          "fileId": {
+            "type": "string",
+            "example": "5349b4ddd2781d08c09890f4"
+          },
+          "projectId": {
+            "type": "string",
+            "example": "00000020f51bb4362eee2a4d"
+          }
+        }
+      },
+      "validationError": {
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "msg": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "type": "object",
+        "properties": {
+          "detail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/validationError"
+            }
+          }
+        }
+      },
+      "Problem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "format": "uri-reference",
+            "description": "A URI reference that uniquely identifies the problem type only in the context of the provided API. Opposed to the specification in RFC-7807, it is neither recommended to be dereferenceable and point to a human-readable documentation nor globally unique for the problem type.\n",
+            "default": "about:blank",
+            "example": "/some/uri-reference"
+          },
+          "title": {
+            "type": "string",
+            "description": "A short summary of the problem type. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.\n",
+            "example": "some title for the error situation"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The HTTP status code generated by the origin server for this occurrence of the problem.\n",
+            "minimum": 100,
+            "maximum": 599
+          },
+          "detail": {
+            "type": "string",
+            "description": "A human readable explanation specific to this occurrence of the problem that is helpful to locate the problem and give advice on how to proceed. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.\n",
+            "example": "some description for the error situation"
+          },
+          "instance": {
+            "type": "string",
+            "format": "uri-reference",
+            "description": "A URI reference that identifies the specific occurrence of the problem, e.g. by adding a fragment identifier or sub-path to the problem type. May be used to locate the root of this problem in the source code.\n",
+            "example": "/some/uri-reference#specific-occurrence-context"
+          }
+        }
+      },
+      "CompaniesId": {
+        "title": "CompaniesId",
+        "type": "string",
+        "example": "63e6663823b4c1f5287398bb"
+      },
+      "CompaniesAdminRequest": {
+        "title": "CompaniesAdminRequest",
+        "required": [
+          "name",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Companies admin display name",
+            "type": "string",
+            "example": "Mr. Bean"
+          },
+          "email": {
+            "title": "Companies admin email",
+            "type": "string",
+            "example": "bean@example.com"
+          }
+        }
+      },
+      "CompaniesListResponse": {
+        "title": "CompaniesListResponse",
+        "required": [
+          "data",
+          "limit",
+          "offset",
+          "totalCount"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "title": "Companies list",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompaniesResponse"
+            }
+          },
+          "limit": {
+            "title": "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeds the maximal allowed value.",
+            "type": "integer",
+            "example": 20
+          },
+          "offset": {
+            "title": "The offset used for this page of results. This will be the same as the offset query parameter.",
+            "type": "integer",
+            "example": 0
+          },
+          "totalCount": {
+            "title": "The total number of elements of the data attribute.",
+            "type": "integer",
+            "example": 1000
+          }
+        }
+      },
+      "CompaniesRequest": {
+        "title": "CompaniesRequest",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Companies display name",
+            "type": "string",
+            "example": "Companies Name Inc."
+          }
+        }
+      },
+      "CompaniesResponse": {
+        "title": "CompaniesResponse",
+        "required": [
+          "name",
+          "id",
+          "active",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Companies display name",
+            "type": "string",
+            "example": "Companies Name Inc."
+          },
+          "id": {
+            "title": "Companies identifier",
+            "type": "string",
+            "example": "63e6663823b4c1f5287398bb"
+          },
+          "active": {
+            "title": "Companies activity flag",
+            "type": "boolean",
+            "example": true
+          },
+          "createdAt": {
+            "title": "Companies creation date",
+            "type": "string",
+            "example": "1990-12-31T15:46:19.384990Z"
+          }
+        }
+      },
+      "ProjectResponse": {
+        "type": "object",
+        "description": "Project response",
+        "required": [
+          "id",
+          "name",
+          "ocr",
+          "extractionModelId",
+          "createdAt",
+          "createdBy",
+          "updatedAt",
+          "updatedBy",
+          "completion",
+          "duplicates",
+          "members"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectId"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1990-12-31T15:46:19.384990Z"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/ProjectMemberId"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1990-12-31T15:46:19.384990Z"
+          },
+          "updatedBy": {
+            "$ref": "#/components/schemas/ProjectMemberId"
+          },
+          "name": {
+            "$ref": "#/components/schemas/ProjectName"
+          },
+          "note": {
+            "$ref": "#/components/schemas/ProjectNote"
+          },
+          "extractionModelId": {
+            "$ref": "#/components/schemas/ProjectExtractionModelId"
+          },
+          "ocr": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProjectOCRAbbyy"
+              },
+              {
+                "$ref": "#/components/schemas/ProjectOCRGoogle"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "engine",
+              "mapping": {
+                "abbyy": "#/components/schemas/ProjectOCRAbbyy",
+                "google": "#/components/schemas/ProjectOCRGoogle"
+              }
+            }
+          },
+          "completion": {
+            "$ref": "#/components/schemas/ProjectCompletion"
+          },
+          "duplicates": {
+            "$ref": "#/components/schemas/ProjectDuplicates"
+          },
+          "members": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProjectAllMembers"
+              },
+              {
+                "$ref": "#/components/schemas/ProjectMembers"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "allow",
+              "mapping": {
+                "all": "#/components/schemas/ProjectAllMembers",
+                "members": "#/components/schemas/ProjectMembers"
+              }
+            }
+          }
+        }
+      },
+      "ProjectId": {
+        "title": "ProjectId",
+        "description": "Project ID",
+        "type": "string",
+        "example": "63e6663823b4c1f5287398bb"
+      },
+      "ProjectName": {
+        "description": "Project name",
+        "type": "string",
+        "example": "My Project",
+        "minLength": 1,
+        "maxLength": 60
+      },
+      "ProjectNote": {
+        "description": "Project note",
+        "type": "string",
+        "example": "My project description note",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "ProjectExtractionModelId": {
+        "title": "ProjectExtractionModelId",
+        "description": "Extraction Model id",
+        "type": "string",
+        "example": "63e6663823b4c1f5287398bb"
+      },
+      "ProjectOCRAbbyy": {
+        "type": "object",
+        "description": "Abbyy OCR configuration",
+        "required": [
+          "engine",
+          "features",
+          "languages"
+        ],
+        "properties": {
+          "engine": {
+            "type": "string",
+            "enum": [
+              "abbyy"
+            ]
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectOCRAbbyyFeatures"
+            }
+          },
+          "languages": {
+            "$ref": "#/components/schemas/ProjectOCRAbbyyLanguages"
+          }
+        }
+      },
+      "ProjectOCRAbbyyFeatures": {
+        "type": "string",
+        "enum": [
+          "barcodes"
+        ]
+      },
+      "ProjectOCRAbbyyLanguages": {
+        "type": "array",
+        "description": "Array of abbyy ocr languages used within a project",
+        "maxItems": 5,
+        "minItems": 1,
+        "items": {
+          "$ref": "#/components/schemas/ProjectOCRAbbyyLanguage"
+        },
+        "example": [
+          "German",
+          "English"
+        ]
+      },
+      "ProjectOCRAbbyyLanguage": {
+        "type": "string",
+        "description": "Abbyy ocr supported languages",
+        "enum": [
+          "Arabic",
+          "ArmenianEastern",
+          "ArmenianGrabar",
+          "ArmenianWestern",
+          "Bulgarian",
+          "Catalan",
+          "ChinesePRC",
+          "ChineseTaiwan",
+          "Croatian",
+          "Czech",
+          "Danish",
+          "Dutch",
+          "DutchBelgian",
+          "English",
+          "Estonian",
+          "Farsi",
+          "Finnish",
+          "French",
+          "German",
+          "Greek",
+          "Hebrew",
+          "Hungarian",
+          "Icelandic",
+          "Indonesian",
+          "Irish",
+          "Italian",
+          "Japanese",
+          "Korean",
+          "KoreanHangul",
+          "Latin",
+          "Latvian",
+          "Lithuanian",
+          "Macedonian",
+          "Malay",
+          "Mongol",
+          "Norwegian",
+          "Polish",
+          "PortugueseBrazilian",
+          "PortugueseStandard",
+          "Romanian",
+          "Russian",
+          "SerbianCyrillic",
+          "SerbianLatin",
+          "Slovenian",
+          "Spanish",
+          "Swedish",
+          "Thai",
+          "Turkish",
+          "UighurCyrillic",
+          "UighurLatin",
+          "Ukrainian",
+          "Vietnamese",
+          "Welsh"
+        ]
+      },
+      "ProjectOCRGoogle": {
+        "type": "object",
+        "description": "Google OCR configuration",
+        "required": [
+          "engine",
+          "features"
+        ],
+        "properties": {
+          "engine": {
+            "type": "string",
+            "enum": [
+              "google"
+            ]
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectOCRGoogleFeatures"
+            }
+          }
+        }
+      },
+      "ProjectOCRGoogleFeatures": {
+        "type": "string",
+        "enum": [
+          "barcodes",
+          "disableBoxFilter",
+          "plainText"
+        ]
+      },
+      "ProjectCompletion": {
+        "type": "string",
+        "description": "ProjectCompletion type\n* `automatic` - Mark documents as completed after succesfull validation\n* `manual` - Mark documents to review after succesfull validation\n",
+        "enum": [
+          "automatic",
+          "manual"
+        ],
+        "example": "manual",
+        "default": "manual"
+      },
+      "ProjectDuplicates": {
+        "type": "string",
+        "description": "How duplicates documents show be handle\n* `allow` - Allow documents duplicates to be processed\n* `fail` - Mark documents duplicates as failed\n",
+        "enum": [
+          "allow",
+          "fail"
+        ],
+        "example": "allow",
+        "default": "fail"
+      },
+      "ProjectAllMembers": {
+        "title": "ProjectAllMembers",
+        "description": "Allow all users to access a project",
+        "type": "object",
+        "properties": {
+          "allow": {
+            "type": "string",
+            "enum": [
+              "all"
+            ]
+          }
+        }
+      },
+      "ProjectMembers": {
+        "title": "ProjectMembers",
+        "description": "Allow provided members to access project",
+        "type": "object",
+        "properties": {
+          "allow": {
+            "type": "string",
+            "enum": [
+              "members"
+            ]
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectMemberId"
+            }
+          }
+        }
+      },
+      "ProjectMemberId": {
+        "description": "Project member id",
+        "type": "string",
+        "example": "63e6663823b4c1f5287398bb"
+      },
+      "ProjectCreateRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "ocr",
+          "extractionModelId",
+          "members"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/ProjectName"
+          },
+          "note": {
+            "$ref": "#/components/schemas/ProjectNote"
+          },
+          "ocr": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProjectOCRAbbyy"
+              },
+              {
+                "$ref": "#/components/schemas/ProjectOCRGoogle"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "engine",
+              "mapping": {
+                "abbyy": "#/components/schemas/ProjectOCRAbbyy",
+                "google": "#/components/schemas/ProjectOCRGoogle"
+              }
+            }
+          },
+          "extractionModelId": {
+            "$ref": "#/components/schemas/ProjectExtractionModelId"
+          },
+          "completion": {
+            "$ref": "#/components/schemas/ProjectCompletion"
+          },
+          "duplicates": {
+            "$ref": "#/components/schemas/ProjectDuplicates"
+          },
+          "members": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProjectAllMembers"
+              },
+              {
+                "$ref": "#/components/schemas/ProjectMembers"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "allow",
+              "mapping": {
+                "all": "#/components/schemas/ProjectAllMembers",
+                "members": "#/components/schemas/ProjectMembers"
+              }
+            }
+          },
+          "schema": {
+            "$ref": "#/components/schemas/Schema"
+          }
+        }
+      },
+      "ProjectListResponse": {
+        "title": "ProjectListResponse",
+        "required": [
+          "data",
+          "totalCount",
+          "limit",
+          "offset"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "title": "Data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectResponse"
+            }
+          },
+          "limit": {
+            "title": "limit",
+            "type": "integer",
+            "example": 20
+          },
+          "offset": {
+            "title": "offset",
+            "type": "integer",
+            "example": 0
+          },
+          "totalCount": {
+            "title": "Totalcount",
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "Schema": {
+        "title": "Schema",
+        "type": "object",
+        "properties": {
+          "version": {
+            "title": "Version",
+            "type": "integer",
+            "example": 1
+          },
+          "dataPoints": {
+            "title": "DataPoints",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "internalName": {
+                  "type": "string"
+                },
+                "displayName": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "normalization": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "rules": {
+                  "type": "object"
+                }
+              }
+            },
+            "example": [
+              {
+                "internalName": "type",
+                "displayName": "Type",
+                "type": "string",
+                "source": {
+                  "type": "extractor"
+                },
+                "normalization": [],
+                "rules": {}
+              },
+              {
+                "internalName": "number",
+                "displayName": "Number",
+                "type": "string",
+                "source": {
+                  "type": "extractor"
+                },
+                "normalization": [],
+                "rules": {}
+              },
+              {
+                "internalName": "issuedAt",
+                "displayName": "Issued At",
+                "type": "date",
+                "preferDayOfMonth": "last",
+                "source": {
+                  "type": "extractor"
+                },
+                "normalization": [],
+                "rules": {}
+              },
+              {
+                "internalName": "deliveredAt",
+                "displayName": "Delivered At",
+                "type": "date",
+                "preferDayOfMonth": "last",
+                "source": {
+                  "type": "extractor"
+                },
+                "normalization": [],
+                "rules": {}
+              },
+              {
+                "internalName": "currency",
+                "displayName": "Currency",
+                "type": "string",
+                "source": {
+                  "type": "extractor"
+                },
+                "normalization": [],
+                "rules": {}
+              }
+            ]
+          },
+          "features": {
+            "type": "object",
+            "properties": {
+              "derivation": {
+                "type": "boolean",
+                "example": false
+              }
+            }
+          },
+          "enrichment": {
+            "type": "object"
+          },
+          "normalization": {
+            "type": "object"
+          },
+          "validation": {
+            "type": "object"
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "detail",
+          "status",
+          "title"
+        ],
+        "properties": {
+          "detail": {
+            "type": "string",
+            "description": "A human readable explanation of the error."
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The HTTP status code.",
+            "minimum": 100,
+            "maximum": 599
+          },
+          "title": {
+            "type": "string",
+            "description": "A short summary of the error"
+          }
+        }
+      },
+      "document": {
+        "type": "object",
+        "description": "Reference to document uploaded to Hypatos Studio",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Document id that was assigned during upload to Hypatos",
+            "example": "63cac12c37bb02accb396cae",
+            "pattern": "^[0-9a-fA-F]{24}$"
+          },
+          "type": {
+            "type": "string",
+            "description": "Document type that was assigned during upload to Hypatos",
+            "example": "invoice",
+            "pattern": "^\\S+$"
+          }
+        }
+      },
+      "CurrencyCode": {
+        "type": "string",
+        "nullable": true,
+        "description": "Three letter currency code as defined in ISO 4217",
+        "example": "EUR",
+        "enum": [
+          "AED",
+          "AFN",
+          "ALL",
+          "AMD",
+          "ANG",
+          "AOA",
+          "ARS",
+          "AUD",
+          "AWG",
+          "AZN",
+          "BAM",
+          "BBD",
+          "BDT",
+          "BGN",
+          "BHD",
+          "BIF",
+          "BMD",
+          "BND",
+          "BOB",
+          "BOV",
+          "BRL",
+          "BSD",
+          "BTN",
+          "BWP",
+          "BYN",
+          "BZD",
+          "CAD",
+          "CDF",
+          "CHE",
+          "CHF",
+          "CHW",
+          "CLF",
+          "CLP",
+          "CNY",
+          "COP",
+          "COU",
+          "CRC",
+          "CUC",
+          "CUP",
+          "CVE",
+          "CZK",
+          "DJF",
+          "DKK",
+          "DOP",
+          "DZD",
+          "EGP",
+          "ERN",
+          "ETB",
+          "EUR",
+          "FJD",
+          "FKP",
+          "GBP",
+          "GEL",
+          "GHS",
+          "GIP",
+          "GMD",
+          "GNF",
+          "GTQ",
+          "GYD",
+          "HKD",
+          "HNL",
+          "HRK",
+          "HTG",
+          "HUF",
+          "IDR",
+          "ILS",
+          "INR",
+          "IQD",
+          "IRR",
+          "ISK",
+          "JMD",
+          "JOD",
+          "JPY",
+          "KES",
+          "KGS",
+          "KHR",
+          "KMF",
+          "KPW",
+          "KRW",
+          "KWD",
+          "KYD",
+          "KZT",
+          "LAK",
+          "LBP",
+          "LKR",
+          "LRD",
+          "LSL",
+          "LYD",
+          "MAD",
+          "MDL",
+          "MGA",
+          "MKD",
+          "MMK",
+          "MNT",
+          "MOP",
+          "MRU",
+          "MUR",
+          "MVR",
+          "MWK",
+          "MXN",
+          "MXV",
+          "MYR",
+          "MZN",
+          "NAD",
+          "NGN",
+          "NIO",
+          "NOK",
+          "NPR",
+          "NZD",
+          "OMR",
+          "PAB",
+          "PEN",
+          "PGK",
+          "PHP",
+          "PKR",
+          "PLN",
+          "PYG",
+          "QAR",
+          "RON",
+          "RSD",
+          "RUB",
+          "RWF",
+          "SAR",
+          "SBD",
+          "SCR",
+          "SDG",
+          "SEK",
+          "SGD",
+          "SHP",
+          "SLE",
+          "SLL",
+          "SOS",
+          "SRD",
+          "SSP",
+          "STN",
+          "SVC",
+          "SYP",
+          "SZL",
+          "THB",
+          "TJS",
+          "TMT",
+          "TND",
+          "TOP",
+          "TRY",
+          "TTD",
+          "TWD",
+          "TZS",
+          "UAH",
+          "UGX",
+          "USD",
+          "USN",
+          "UYI",
+          "UYU",
+          "UYW",
+          "UZS",
+          "VED",
+          "VES",
+          "VND",
+          "VUV",
+          "WST",
+          "XAF",
+          "XAG",
+          "XAU",
+          "XBA",
+          "XBB",
+          "XBC",
+          "XBD",
+          "XCD",
+          "XDR",
+          "XOF",
+          "XPD",
+          "XPF",
+          "XPT",
+          "XSU",
+          "XTS",
+          "XUA",
+          "XXX",
+          "YER",
+          "ZAR",
+          "ZMW",
+          "ZWL",
+          null
+        ]
+      },
+      "LanguageCode": {
+        "type": "string",
+        "nullable": true,
+        "description": "Two letter language code as defined in ISO 639-1",
+        "example": "en",
+        "enum": [
+          "aa",
+          "ab",
+          "ae",
+          "af",
+          "ak",
+          "am",
+          "an",
+          "ar",
+          "as",
+          "av",
+          "ay",
+          "az",
+          "ba",
+          "be",
+          "bg",
+          "bh",
+          "bi",
+          "bm",
+          "bn",
+          "bo",
+          "br",
+          "bs",
+          "ca",
+          "ce",
+          "ch",
+          "co",
+          "cr",
+          "cs",
+          "cu",
+          "cv",
+          "cy",
+          "da",
+          "de",
+          "dv",
+          "dz",
+          "ee",
+          "el",
+          "en",
+          "eo",
+          "es",
+          "et",
+          "eu",
+          "fa",
+          "ff",
+          "fi",
+          "fj",
+          "fo",
+          "fr",
+          "fy",
+          "ga",
+          "gd",
+          "gl",
+          "gn",
+          "gu",
+          "gv",
+          "ha",
+          "he",
+          "hi",
+          "ho",
+          "hr",
+          "ht",
+          "hu",
+          "hy",
+          "hz",
+          "ia",
+          "id",
+          "ie",
+          "ig",
+          "ii",
+          "ik",
+          "io",
+          "is",
+          "it",
+          "iu",
+          "ja",
+          "jv",
+          "ka",
+          "kg",
+          "ki",
+          "kj",
+          "kk",
+          "kl",
+          "km",
+          "kn",
+          "ko",
+          "kr",
+          "ks",
+          "ku",
+          "kv",
+          "kw",
+          "ky",
+          "la",
+          "lb",
+          "lg",
+          "li",
+          "ln",
+          "lo",
+          "lt",
+          "lu",
+          "lv",
+          "mg",
+          "mh",
+          "mi",
+          "mk",
+          "ml",
+          "mn",
+          "mr",
+          "ms",
+          "mt",
+          "my",
+          "na",
+          "nb",
+          "nd",
+          "ne",
+          "ng",
+          "nl",
+          "nn",
+          "no",
+          "nr",
+          "nv",
+          "ny",
+          "oc",
+          "oj",
+          "om",
+          "or",
+          "os",
+          "pa",
+          "pi",
+          "pl",
+          "ps",
+          "pt",
+          "qu",
+          "rm",
+          "rn",
+          "ro",
+          "ru",
+          "rw",
+          "sa",
+          "sc",
+          "sd",
+          "se",
+          "sg",
+          "si",
+          "sk",
+          "sl",
+          "sm",
+          "sn",
+          "so",
+          "sq",
+          "sr",
+          "ss",
+          "st",
+          "su",
+          "sv",
+          "sw",
+          "ta",
+          "te",
+          "tg",
+          "th",
+          "ti",
+          "tk",
+          "tl",
+          "tn",
+          "to",
+          "tr",
+          "ts",
+          "tt",
+          "tw",
+          "ty",
+          "ug",
+          "uk",
+          "ur",
+          "uz",
+          "ve",
+          "vi",
+          "vo",
+          "wa",
+          "wo",
+          "xh",
+          "yi",
+          "yo",
+          "za",
+          "zh",
+          "zu",
+          null
+        ]
+      },
+      "languagedText": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Text content",
+            "example": "Fish & Chips"
+          },
+          "language": {
+            "$ref": "#/components/schemas/LanguageCode"
+          }
+        }
+      },
+      "paymentTerms": {
+        "type": "object",
+        "properties": {
+          "paymentTermKey": {
+            "type": "string",
+            "description": "Key of the payment term as defined in the source system",
+            "example": "T10"
+          },
+          "descriptions": {
+            "type": "array",
+            "description": "Descriptions of the payment terms in different languages",
+            "items": {
+              "$ref": "#/components/schemas/languagedText"
+            },
+            "example": [
+              {
+                "text": "Please pay us",
+                "language": "en"
+              }
+            ]
+          }
+        }
+      },
+      "customFields": {
+        "type": "object",
+        "description": "List of key value pairs containing custom fields from the source system",
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "accountAssignment": {
+        "type": "object",
+        "properties": {
+          "externalGlAccountId": {
+            "type": "string",
+            "description": "External unique id of the general ledger account in the source system",
+            "example": "0000100GL1"
+          },
+          "externalCostCenterId": {
+            "type": "string",
+            "description": "External unique id of the cost center in the source system",
+            "example": "0000100CO1"
+          },
+          "glAccountCode": {
+            "type": "string",
+            "description": "General ledger account code",
+            "example": "GL1"
+          },
+          "costCenterCode": {
+            "type": "string",
+            "description": "Cost center code",
+            "example": "CO1"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantity of the invoice line (split of the quantity in case of several accountAssignments)",
+            "example": 2
+          }
+        }
+      },
+      "taxCode": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Unique code of the type of tax in the source system",
+            "example": "DEU_Standard"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the type of tax in the source system",
+            "example": "DEU - Standard (19%)"
+          }
+        }
+      },
+      "invoiceLine": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the invoice line in the source system",
+            "example": "00000001",
+            "pattern": "^\\S+$"
+          },
+          "externalCompanyId": {
+            "type": "string",
+            "description": "Company that the invoice line is assgined to",
+            "example": "DE01"
+          },
+          "accountAssignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/accountAssignment"
+            }
+          },
+          "type": {
+            "type": "string",
+            "description": "type of the invoice line as defined in the source system",
+            "example": "Service"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantity of the invoice line (sum of all quantity splits in case of several accountAssignments)",
+            "example": 2
+          },
+          "netAmount": {
+            "type": "number",
+            "description": "Net amount of the invoice line",
+            "example": 1.23
+          },
+          "totalTaxAmount": {
+            "type": "number",
+            "description": "Total tax amount of the invoice line",
+            "example": 1.23
+          },
+          "grossAmount": {
+            "type": "number",
+            "description": "Gross amount of the invoice line",
+            "example": 100.01
+          },
+          "unitOfMeasure": {
+            "type": "string",
+            "description": "Unit of measure of the invoice line",
+            "example": "kg"
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "Price for one unit of the invoice line",
+            "example": 19.0123
+          },
+          "taxCode": {
+            "$ref": "#/components/schemas/taxCode"
+          },
+          "taxJurisdictionCode": {
+            "type": "string",
+            "description": "tax jurisdiction code assigned to the invoice",
+            "example": "PA0000000"
+          },
+          "itemText": {
+            "type": "string",
+            "description": "Text describing the invoice line item",
+            "example": "Virtual Event ABC"
+          },
+          "externalPurchaseOrderId": {
+            "type": "string",
+            "description": "Purchase order related to the invoice line item",
+            "example": "4500016221"
+          },
+          "purchaseOrderLineNumber": {
+            "type": "string",
+            "description": "Reference to the purchase order line item assigned to the invoice line item",
+            "example": "00010"
+          },
+          "centralBankIndicator": {
+            "type": "string",
+            "description": "State Central Bank Indicator for reporting foreign payment transactions according to the German Foreign Trade and Payments Ordinance (Außenwirtschaftsverordnung - AWV)",
+            "example": "123"
+          },
+          "customFields": {
+            "$ref": "#/components/schemas/customFields"
+          }
+        }
+      },
+      "withholdingTax": {
+        "type": "object",
+        "description": "Withholding tax information related to a posted invoice",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key that the source system uses to clearly identify the type of withholding tax that needs to be paid",
+            "example": "WHT-432"
+          },
+          "baseAmount": {
+            "type": "number",
+            "description": "Base amount that the tax rate of the specific withholding tax type is applied to",
+            "example": 632.78
+          },
+          "amount": {
+            "type": "number",
+            "description": "Tax amount that was paid for the specific withholding tax type",
+            "example": 21.39
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyCode"
+          }
+        }
+      },
+      "invoice": {
+        "required": [
+          "externalId",
+          "invoiceLines"
+        ],
+        "type": "object",
+        "description": "Please notice one property of [documentId, documents] is required in payload",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the invoice in the source system",
+            "example": "SUPPLIER_INVOICE-3-1",
+            "pattern": "^\\S+$"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "Document id that was assigned during upload to Hypatos",
+            "example": "63cac12c37bb02accb396cae",
+            "pattern": "^[0-9a-fA-F]{24}$"
+          },
+          "documents": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/document"
+            }
+          },
+          "supplierInvoiceNumber": {
+            "type": "string",
+            "description": "Invoice number provided by the issuing supplier",
+            "example": "10000001"
+          },
+          "invoiceNumber": {
+            "type": "string",
+            "description": "Invoice number defined by the recipient company (not globally unique)",
+            "example": "12345"
+          },
+          "externalCompanyId": {
+            "type": "string",
+            "description": "External unique id of the company in the source system",
+            "example": "DE01"
+          },
+          "externalSupplierId": {
+            "type": "string",
+            "description": "External unique id of the supplier in the source system",
+            "example": "0000100000"
+          },
+          "externalBankAccountId": {
+            "type": "string",
+            "description": "External unique id of the bank account that the invoice payment was transferred to",
+            "example": "12341234"
+          },
+          "fiscalYearLabel": {
+            "type": "string",
+            "description": "Label used in the source system for the fiscal year that the invoice was posted in",
+            "example": "2023"
+          },
+          "issuedDate": {
+            "type": "string",
+            "description": "Date when the invoice was issued by the supplier (printed on invoice document)",
+            "format": "date",
+            "example": "2000-12-31"
+          },
+          "receivedDate": {
+            "type": "string",
+            "description": "Date when the invoice was recieved by the company",
+            "format": "date",
+            "example": "2000-12-31"
+          },
+          "postingDate": {
+            "type": "string",
+            "description": "Date when the invoice was posted in the source system",
+            "format": "date",
+            "example": "2000-12-31"
+          },
+          "isCanceled": {
+            "type": "boolean",
+            "description": "Indicator if the invoice is canceled",
+            "example": false
+          },
+          "relatedInvoice": {
+            "type": "string",
+            "description": "externalInvoiceId of related invoice",
+            "example": "SUPPLIER_INVOICE-3-2"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyCode"
+          },
+          "totalNetAmount": {
+            "type": "number",
+            "description": "Total net amount of invoice (sum of line item net amounts)",
+            "example": 81
+          },
+          "totalFreightCharges": {
+            "type": "number",
+            "description": "Sum of all freight charges",
+            "example": 9
+          },
+          "totalOtherCharges": {
+            "type": "number",
+            "description": "Sum of all charges other than freight charges",
+            "example": 10
+          },
+          "totalTaxAmount": {
+            "type": "number",
+            "description": "Total tax amount of invoice (sum of all taxes)",
+            "example": 19
+          },
+          "totalGrossAmount": {
+            "type": "number",
+            "description": "Total gross amount of invoice (total net amount + total freight charges + total other charges + total tax amount)",
+            "example": 119
+          },
+          "paymentTerms": {
+            "$ref": "#/components/schemas/paymentTerms"
+          },
+          "externalApproverId": {
+            "type": "string",
+            "description": "External unique id of the first approver of an invoice in the source system",
+            "example": "UserID#1234"
+          },
+          "customFields": {
+            "$ref": "#/components/schemas/customFields"
+          },
+          "headerText": {
+            "type": "string",
+            "description": "Header Text describing the invoice",
+            "example": "doc header text"
+          },
+          "type": {
+            "type": "string",
+            "description": "type of the invoice as defined in th source system",
+            "example": "FI"
+          },
+          "invoiceLines": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/invoiceLine"
+            }
+          },
+          "withholdingTax": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/withholdingTax"
+            }
+          }
+        }
+      },
+      "CountryCode": {
+        "type": "string",
+        "nullable": true,
+        "description": "Two letter country code as defined in ISO 3166-1 alpha-2",
+        "example": "DE",
+        "enum": [
+          "AF",
+          "AX",
+          "AL",
+          "DZ",
+          "AS",
+          "AD",
+          "AO",
+          "AI",
+          "AQ",
+          "AG",
+          "AR",
+          "AM",
+          "AW",
+          "AU",
+          "AT",
+          "AZ",
+          "BS",
+          "BH",
+          "BD",
+          "BB",
+          "BY",
+          "BE",
+          "BZ",
+          "BJ",
+          "BM",
+          "BT",
+          "BO",
+          "BQ",
+          "BA",
+          "BW",
+          "BV",
+          "BR",
+          "IO",
+          "BN",
+          "BG",
+          "BF",
+          "BI",
+          "KH",
+          "CM",
+          "CA",
+          "CV",
+          "KY",
+          "CF",
+          "TD",
+          "CL",
+          "CN",
+          "CX",
+          "CC",
+          "CO",
+          "KM",
+          "CG",
+          "CD",
+          "CK",
+          "CR",
+          "CI",
+          "HR",
+          "CU",
+          "CW",
+          "CY",
+          "CZ",
+          "DK",
+          "DJ",
+          "DM",
+          "DO",
+          "EC",
+          "EG",
+          "SV",
+          "GQ",
+          "ER",
+          "EE",
+          "ET",
+          "FK",
+          "FO",
+          "FJ",
+          "FI",
+          "FR",
+          "GF",
+          "PF",
+          "TF",
+          "GA",
+          "GM",
+          "GE",
+          "DE",
+          "GH",
+          "GI",
+          "GR",
+          "GL",
+          "GD",
+          "GP",
+          "GU",
+          "GT",
+          "GG",
+          "GN",
+          "GW",
+          "GY",
+          "HT",
+          "HM",
+          "VA",
+          "HN",
+          "HK",
+          "HU",
+          "IS",
+          "IN",
+          "ID",
+          "IR",
+          "IQ",
+          "IE",
+          "IM",
+          "IL",
+          "IT",
+          "JM",
+          "JP",
+          "JE",
+          "JO",
+          "KZ",
+          "KE",
+          "KI",
+          "KP",
+          "KR",
+          "KW",
+          "KG",
+          "LA",
+          "LV",
+          "LB",
+          "LS",
+          "LR",
+          "LY",
+          "LI",
+          "LT",
+          "LU",
+          "MO",
+          "MK",
+          "MG",
+          "MW",
+          "MY",
+          "MV",
+          "ML",
+          "MT",
+          "MH",
+          "MQ",
+          "MR",
+          "MU",
+          "YT",
+          "MX",
+          "FM",
+          "MD",
+          "MC",
+          "MN",
+          "ME",
+          "MS",
+          "MA",
+          "MZ",
+          "MM",
+          "NA",
+          "NR",
+          "NP",
+          "NL",
+          "NC",
+          "NZ",
+          "NI",
+          "NE",
+          "NG",
+          "NU",
+          "NF",
+          "MP",
+          "NO",
+          "OM",
+          "PK",
+          "PW",
+          "PS",
+          "PA",
+          "PG",
+          "PY",
+          "PE",
+          "PH",
+          "PN",
+          "PL",
+          "PT",
+          "PR",
+          "QA",
+          "RE",
+          "RO",
+          "RU",
+          "RW",
+          "BL",
+          "SH",
+          "KN",
+          "LC",
+          "MF",
+          "PM",
+          "VC",
+          "WS",
+          "SM",
+          "ST",
+          "SA",
+          "SN",
+          "RS",
+          "SC",
+          "SL",
+          "SG",
+          "SX",
+          "SK",
+          "SI",
+          "SB",
+          "SO",
+          "ZA",
+          "GS",
+          "SS",
+          "ES",
+          "LK",
+          "SD",
+          "SR",
+          "SJ",
+          "SZ",
+          "SE",
+          "CH",
+          "SY",
+          "TW",
+          "TJ",
+          "TZ",
+          "TH",
+          "TL",
+          "TG",
+          "TK",
+          "TO",
+          "TT",
+          "TN",
+          "TR",
+          "TM",
+          "TC",
+          "TV",
+          "UG",
+          "UA",
+          "AE",
+          "GB",
+          "US",
+          "UM",
+          "UY",
+          "UZ",
+          "VU",
+          "VE",
+          "VN",
+          "VG",
+          "VI",
+          "WF",
+          "EH",
+          "YE",
+          "ZM",
+          "ZW",
+          null
+        ]
+      },
+      "vatId": {
+        "type": "object",
+        "description": "List of VAT IDs assigned to the company",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "countryCode": {
+            "$ref": "#/components/schemas/CountryCode"
+          }
+        },
+        "example": [
+          {
+            "id": "DE123456789",
+            "countryCode": "DE"
+          }
+        ]
+      },
+      "taxId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "example": [
+          {
+            "id": "123-456-789",
+            "type": "TIN"
+          }
+        ]
+      },
+      "company": {
+        "required": [
+          "name",
+          "externalId"
+        ],
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the company in the source system",
+            "example": "DE01",
+            "pattern": "^\\S+$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the company",
+            "example": "Acmne Corp.",
+            "pattern": "^[\\S ]*\\S[\\S ]*$"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street and street number where the company is located",
+            "example": "Hauptstr. 1"
+          },
+          "addressAdditional": {
+            "type": "string",
+            "description": "Additional address data (e.g. apartment or suite)",
+            "example": "Eingang B"
+          },
+          "postcode": {
+            "type": "string",
+            "description": "Postcode where the company is located",
+            "example": "10001"
+          },
+          "city": {
+            "type": "string",
+            "description": "City where the company is located",
+            "example": "Berlin"
+          },
+          "state": {
+            "type": "string",
+            "description": "State where the company is located",
+            "example": "Berlin"
+          },
+          "countryCode": {
+            "$ref": "#/components/schemas/CountryCode"
+          },
+          "vatIds": {
+            "type": "array",
+            "description": "List of VAT IDs assigned to the company",
+            "example": [
+              {
+                "id": "DE123456789",
+                "countryCode": "DE"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/vatId"
+            }
+          },
+          "taxIds": {
+            "type": "array",
+            "description": "List of Tax IDs assigned to the company",
+            "example": [
+              {
+                "id": "123-456-789",
+                "type": "TIN"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/taxId"
+            }
+          },
+          "customFields": {
+            "$ref": "#/components/schemas/customFields"
+          }
+        }
+      },
+      "withholdingTaxInfo": {
+        "type": "object",
+        "description": "Withholding tax information related to a supplier",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key that the source system uses to clearly identify the type of withholding tax that needs to be paid",
+            "example": "WHT-432"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the type of withholding tax",
+            "example": "Some very deep description of the type of withholding tax"
+          }
+        }
+      },
+      "subsidiary": {
+        "type": "object",
+        "properties": {
+          "externalCompanyId": {
+            "type": "string",
+            "description": "External unique id of the company that the subsidiary is assigned to",
+            "example": "DE01"
+          },
+          "paymentTerms": {
+            "$ref": "#/components/schemas/paymentTerms"
+          },
+          "blockedForPosting": {
+            "type": "boolean",
+            "description": "Indicator if the subsidiary is blocked for posting",
+            "example": false
+          },
+          "blockedForPayment": {
+            "type": "boolean",
+            "description": "Indicator if the subsidiary is blocked for payment",
+            "example": false
+          },
+          "enabledForAutoPosting": {
+            "type": "boolean",
+            "description": "Indicator if the subsidiary is enabled for auto posting",
+            "example": true
+          },
+          "defaultGlAccountCode": {
+            "type": "string",
+            "description": "Default general ledger account code that is assigned to the subsidiary",
+            "example": "0000100GL1"
+          },
+          "withholdingTaxInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/withholdingTaxInfo"
+            }
+          }
+        }
+      },
+      "bankAccount": {
+        "type": "object",
+        "required": [
+          "externalId"
+        ],
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the bank account in the source system",
+            "example": "12341234",
+            "pattern": "^\\S+$"
+          },
+          "countryCode": {
+            "$ref": "#/components/schemas/CountryCode"
+          },
+          "bankAccountNumber": {
+            "type": "string",
+            "description": "Bank account number of the bank account",
+            "example": "78090"
+          },
+          "bankAccountHolder": {
+            "type": "string",
+            "description": "Name of the bank account holder",
+            "example": "Maximilian Mustermann"
+          },
+          "iban": {
+            "type": "string",
+            "description": "IBAN of the bank account",
+            "example": "DE91100000000123456789"
+          },
+          "bic": {
+            "type": "string",
+            "description": "Bank identifier code",
+            "example": "CHASUS33XXX"
+          },
+          "bankName": {
+            "type": "string",
+            "description": "Name of the bank where the bank account is held",
+            "example": "Deutsche Bank"
+          },
+          "bankStreet": {
+            "type": "string",
+            "description": "Street and street number where the bank is located",
+            "example": "Hauptstr. 1"
+          },
+          "bankPostcode": {
+            "type": "string",
+            "description": "Postcode where the bank is located.",
+            "example": "10001"
+          },
+          "bankCity": {
+            "type": "string",
+            "description": "City where the bank is located.",
+            "example": "Berlin"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "supplier": {
+        "type": "object",
+        "required": [
+          "name",
+          "externalId"
+        ],
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the supplier in the source system",
+            "example": "0000100000",
+            "pattern": "^\\S+$"
+          },
+          "name": {
+            "type": "string",
+            "description": "name of the supplier",
+            "example": "Acmne Corp.",
+            "pattern": "^[\\S ]*\\S[\\S ]*$"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street and street number where the supplier is located",
+            "example": "Hauptstr. 1"
+          },
+          "addressAdditional": {
+            "type": "string",
+            "description": "Additional address data (e.g. apartment or suite)",
+            "example": "Eingang B"
+          },
+          "postcode": {
+            "type": "string",
+            "description": "Postcode where the supplier is located",
+            "example": "10001"
+          },
+          "city": {
+            "type": "string",
+            "description": "City where the supplier is located",
+            "example": "Berlin"
+          },
+          "state": {
+            "type": "string",
+            "description": "State where the company is located",
+            "example": "Berlin"
+          },
+          "countryCode": {
+            "$ref": "#/components/schemas/CountryCode"
+          },
+          "vatIds": {
+            "type": "array",
+            "description": "List of VAT IDs assigned to the supplier",
+            "example": [
+              {
+                "id": "DE123456789",
+                "countryCode": "DE"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/vatId"
+            }
+          },
+          "taxIds": {
+            "type": "array",
+            "description": "List of Tax IDs assigned to the supplier",
+            "example": [
+              {
+                "id": "123-456-789",
+                "type": "TIN"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/taxId"
+            }
+          },
+          "blockedForPosting": {
+            "type": "boolean",
+            "description": "Indicator if the supplier is blocked for posting",
+            "example": false
+          },
+          "blockedForPayment": {
+            "type": "boolean",
+            "description": "Indicator if the supplier is blocked for payment",
+            "example": false
+          },
+          "defaultGlAccountCode": {
+            "type": "string",
+            "description": "Default general ledger account that is assigned to the supplier",
+            "example": "0000100GL1"
+          },
+          "supplierSubsidiaries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/subsidiary"
+            }
+          },
+          "supplierBankAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/bankAccount"
+            }
+          },
+          "customFields": {
+            "$ref": "#/components/schemas/customFields"
+          }
+        }
+      },
+      "purchaseOrderLine": {
+        "required": [
+          "purchaseOrderLineNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "purchaseOrderLineNumber": {
+            "type": "string",
+            "description": "Number of the purchase order line assigned to the invoice line item (unique within the purchase order)",
+            "example": "00010"
+          },
+          "externalCompanyId": {
+            "type": "string",
+            "description": "Company that the purchase order line is assgined to",
+            "example": "DE01"
+          },
+          "accountAssignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/accountAssignment"
+            }
+          },
+          "type": {
+            "type": "string",
+            "description": "type of the purchase order line as defined in the source system",
+            "example": "Service"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantity of the purchase order line (sum of all quantity splits in case of several accountAssignments)",
+            "example": 2
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of purchase order line as defined in source system",
+            "example": "OPEN"
+          },
+          "netAmount": {
+            "type": "number",
+            "description": "Net amount of the purchase order line",
+            "example": 1.23
+          },
+          "totalTaxAmount": {
+            "type": "number",
+            "description": "Total tax amount of the purchase order line",
+            "example": 1.23
+          },
+          "grossAmount": {
+            "type": "number",
+            "description": "Gross amount of the purchase order line",
+            "example": 100.01
+          },
+          "unitOfMeasure": {
+            "type": "string",
+            "description": "Unit of measure of the purchase order line",
+            "example": "kg"
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "Price for one unit of the purchase order line",
+            "example": 19.0123
+          },
+          "taxCode": {
+            "$ref": "#/components/schemas/taxCode"
+          },
+          "itemText": {
+            "type": "string",
+            "description": "Text describing the purchase order line",
+            "example": "Dell Laptop Latitude D630"
+          },
+          "material": {
+            "type": "object",
+            "properties": {
+              "externalId": {
+                "type": "string",
+                "description": "Id of the material as defined in the material master of the company",
+                "example": "2a6300181f08402e710ea3f180214bc1",
+                "pattern": "^\\S+$"
+              },
+              "supplierNumber": {
+                "type": "string",
+                "description": "Number of the material as defined by the supplier",
+                "example": "123456789"
+              },
+              "type": {
+                "type": "string",
+                "description": "Type of the material as defined in the material master of the company",
+                "example": "Operating Supplies"
+              },
+              "group": {
+                "type": "string",
+                "description": "Group of the material as defined in the material master of the company",
+                "example": "Electronics"
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the material",
+                "example": "Dell Laptop Latitude D630"
+              }
+            }
+          },
+          "customFields": {
+            "$ref": "#/components/schemas/customFields"
+          }
+        }
+      },
+      "purchaseOrder": {
+        "type": "object",
+        "required": [
+          "externalId"
+        ],
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the purchase order in the source system",
+            "example": "4500016221",
+            "pattern": "^\\S+$"
+          },
+          "createdDate": {
+            "type": "string",
+            "description": "Date when the purchase order was created in the external system",
+            "format": "date",
+            "example": "2000-12-31"
+          },
+          "fiscalYearLabel": {
+            "type": "string",
+            "description": "Label used in the source system for the fiscal year that the purchase order was created in",
+            "example": "2023"
+          },
+          "language": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LanguageCode"
+              },
+              {
+                "description": "Language assigned to the purchase order. If the source system allows for storing data of text fields in different languages, the data should be transferred to Hypatos in the language that is assigned to the purchase order (exception: for payment terms all languages should be transferred)."
+              }
+            ]
+          },
+          "externalCompanyId": {
+            "type": "string",
+            "description": "Company that the purchase order is assigned to",
+            "example": "DE01"
+          },
+          "type": {
+            "description": "type of the purchase order as defined in the source system",
+            "type": "string",
+            "example": "Service"
+          },
+          "externalSupplierId": {
+            "type": "string",
+            "description": "External unique id of the supplier in the source system",
+            "example": "0000100000"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of purchase order as defined in source system",
+            "example": "OPEN"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyCode"
+          },
+          "totalNetAmount": {
+            "type": "number",
+            "description": "Total net amount of purchase order (sum of line item net amounts)",
+            "example": 81
+          },
+          "totalFreightCharges": {
+            "type": "number",
+            "description": "Sum of all freight charges as defined on the purchase order",
+            "example": 9
+          },
+          "totalOtherCharges": {
+            "type": "number",
+            "description": "Sum of all charges other than freight charges as defined on the purchase order",
+            "example": 10
+          },
+          "totalTaxAmount": {
+            "type": "number",
+            "description": "Total tax amount of purchase order (sum of all taxes)",
+            "example": 19
+          },
+          "totalGrossAmount": {
+            "type": "number",
+            "description": "Total gross amount of purchase order (total net amount + total freight charges + total other charges + total tax amount)",
+            "example": 119
+          },
+          "paymentTerms": {
+            "$ref": "#/components/schemas/paymentTerms"
+          },
+          "customFields": {
+            "$ref": "#/components/schemas/customFields"
+          },
+          "purchaseOrderLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/purchaseOrderLine"
+            }
+          }
+        }
+      },
+      "languagedTextWithValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Text Value",
+            "example": "OE"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/languagedText"
+            }
+          }
+        }
+      },
+      "glAccount": {
+        "type": "object",
+        "required": [
+          "externalId",
+          "code"
+        ],
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the general ledger account in the source system",
+            "example": "0000100GL1",
+            "pattern": "^\\S+$"
+          },
+          "code": {
+            "type": "string",
+            "description": "Code of the general ledger account in the source system",
+            "example": "GL1",
+            "pattern": "^\\S([\\S ]*\\S)?$"
+          },
+          "companyAssignment": {
+            "type": "array",
+            "description": "List of externalCompanyIds that the approver is assigned to",
+            "example": [
+              "DE01",
+              "US01"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/languagedTextWithValue"
+          },
+          "category": {
+            "$ref": "#/components/schemas/languagedTextWithValue"
+          },
+          "label": {
+            "type": "array",
+            "description": "Label describing the general ledger account",
+            "items": {
+              "$ref": "#/components/schemas/languagedText"
+            },
+            "example": [
+              {
+                "text": "Entertainment Expenses",
+                "language": "en"
+              }
+            ]
+          },
+          "shortLabel": {
+            "type": "array",
+            "description": "Short label describing the general ledger account",
+            "items": {
+              "$ref": "#/components/schemas/languagedText"
+            },
+            "example": [
+              {
+                "text": "Entertainment Exp.",
+                "language": "en"
+              }
+            ]
+          }
+        }
+      },
+      "costCenter": {
+        "type": "object",
+        "required": [
+          "externalId",
+          "code"
+        ],
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the cost center in the source system",
+            "example": "0000100CO1",
+            "pattern": "^\\S+$"
+          },
+          "code": {
+            "type": "string",
+            "description": "Code of the cost center in the source system",
+            "example": "CO1",
+            "pattern": "^\\S([\\S ]*\\S)?$"
+          },
+          "companyAssignment": {
+            "type": "array",
+            "description": "List of externalCompanyIds that the approver is assigned to",
+            "example": [
+              "DE01",
+              "US01"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/languagedTextWithValue"
+          },
+          "category": {
+            "$ref": "#/components/schemas/languagedTextWithValue"
+          },
+          "label": {
+            "type": "array",
+            "description": "Label describing the cost center",
+            "items": {
+              "$ref": "#/components/schemas/languagedText"
+            },
+            "example": [
+              {
+                "text": "Sales Engineers",
+                "language": "en"
+              }
+            ]
+          },
+          "shortLabel": {
+            "type": "array",
+            "description": "Short label describing the cost center",
+            "items": {
+              "$ref": "#/components/schemas/languagedText"
+            },
+            "example": [
+              {
+                "text": "Sales Eng.",
+                "language": "en"
+              }
+            ]
+          }
+        }
+      },
+      "approver": {
+        "type": "object",
+        "required": [
+          "externalId"
+        ],
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the first approver of an invoice in the source system",
+            "example": "UserID#1234",
+            "pattern": "^\\S+$"
+          },
+          "companyAssignment": {
+            "type": "array",
+            "description": "List of externalCompanyIds that the approver is assigned to",
+            "example": [
+              "DE01",
+              "US01"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First name of the approving person",
+            "example": "Koala"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last name of the approving person",
+            "example": "Hinze"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address of the approving person",
+            "format": "email",
+            "example": "accountant@sap.com"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number of the approving person",
+            "example": 491001234567891
+          }
+        }
+      },
+      "customer": {
+        "type": "object",
+        "required": [
+          "name",
+          "externalId"
+        ],
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "External unique id of the customer in the source system",
+            "example": "0000100000",
+            "pattern": "^\\S+$"
+          },
+          "name": {
+            "type": "string",
+            "description": "name of the customer",
+            "example": "Acmne Corp.",
+            "pattern": "^[\\S ]*\\S[\\S ]*$"
+          },
+          "street": {
+            "type": "string",
+            "description": "Street and street number where the customer is located",
+            "example": "Hauptstr. 1"
+          },
+          "addressAdditional": {
+            "type": "string",
+            "description": "Additional address data (e.g. apartment or suite)",
+            "example": "Eingang B"
+          },
+          "postcode": {
+            "type": "string",
+            "description": "Postcode where the customer is located",
+            "example": "10001"
+          },
+          "city": {
+            "type": "string",
+            "description": "City where the customer is located",
+            "example": "Berlin"
+          },
+          "countryCode": {
+            "$ref": "#/components/schemas/CountryCode"
+          },
+          "vatIds": {
+            "type": "array",
+            "description": "List of VAT IDs assigned to the customer",
+            "example": [
+              {
+                "id": "DE123456789",
+                "countryCode": "DE"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/vatId"
+            }
+          },
+          "taxIds": {
+            "type": "array",
+            "description": "List of Tax IDs assigned to the customer",
+            "example": [
+              {
+                "id": "123-456-789",
+                "type": "TIN"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/taxId"
+            }
+          },
+          "blockedForPosting": {
+            "type": "boolean",
+            "description": "Indicator if the customer is blocked for posting",
+            "example": false
+          },
+          "blockedForPayment": {
+            "type": "boolean",
+            "description": "Indicator if the customer is blocked for payment",
+            "example": false
+          },
+          "customerSubsidiaries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/subsidiary"
+            }
+          },
+          "customerBankAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/bankAccount"
+            }
+          },
+          "customFields": {
+            "$ref": "#/components/schemas/customFields"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "/auth/token",
+            "scopes": {
+              "companies.read": "Read companies",
+              "documents.read": "Read documents",
+              "documents.write": "Edit your documents",
+              "enrichment.read": "Read enrichment training data",
+              "enrichment.write": "Create/edit enrichment training data",
+              "enrichment.delete": "Delete enrichment training data",
+              "files.read": "Uploading files for processing",
+              "files.write": "Downloading uploaded files"
+            }
+          }
+        }
+      },
+      "Basic": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "responses": {
+      "DocumentErrorResponse": {
+        "description": "Error occured while processing request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "detail": "The document with given identifier does not exist",
+              "status": 404,
+              "title": "Document does not exist"
+            }
+          }
+        }
+      },
+      "successfullyInserted": {
+        "description": "Successfully inserted",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "3a429dc8-56d4-42ef-a4cf-2ebc9ad1ef38"
+                }
+              }
+            }
+          }
+        }
+      },
+      "validationError": {
+        "description": "Validation error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      },
+      "notFound": {
+        "description": "Not Found error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problem"
+            },
+            "example": {
+              "status": 404,
+              "title": "Not found"
+            }
+          }
+        }
+      },
+      "UnauthorizedErrorResponse": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "detail": "Provided no credentials or invalid credentials",
+              "status": 401,
+              "title": "Unauthorized"
+            }
+          }
+        }
+      },
+      "ForbiddenErrorResponse": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "detail": "Not enough privileges to perform an action on a resource",
+              "status": 403,
+              "title": "Forbidden"
+            }
+          }
+        }
+      },
+      "ProjectClientBadRequestErrorResponse": {
+        "description": "Response when client request is wrong",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "Invalid request parameter": {
+                "value": {
+                  "detail": "One of the given query parameters is invalid",
+                  "status": 400,
+                  "title": "Provided project identifier is invalid"
+                }
+              },
+              "Invalid payload data": {
+                "value": {
+                  "detail": "Payload data couldn't be deserialised",
+                  "status": 400,
+                  "title": "Payload data is invalid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ProjectRequestValidationErrorResponse": {
+        "description": "Validation error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "Request validation error": {
+                "value": {
+                  "detail": "Error details",
+                  "status": 422,
+                  "title": "Request validation error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "InternalServerErrorResponse": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "status": 500,
+              "title": "Internal Server Error",
+              "detail": "Error details"
+            }
+          }
+        }
+      },
+      "SchemaClientBadRequestErrorResponse": {
+        "description": "Response when client request is wrong",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "Invalid request parameter": {
+                "value": {
+                  "detail": "One of the given query parameters is invalid",
+                  "status": 400,
+                  "title": "Provided project identifier is invalid"
+                }
+              },
+              "Invalid payload data": {
+                "value": {
+                  "detail": "One or more of the payload parameters are invalid",
+                  "status": 400,
+                  "title": "Provided payload is invalid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFoundErrorResponse": {
+        "description": "Response when resource was not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "Project not found": {
+                "value": {
+                  "detail": "The project with given identifier does not exist",
+                  "status": 404,
+                  "title": "Project does not exist"
+                }
+              }
+            }
+          }
+        }
+      },
+      "RateLimitExceeded": {
+        "description": "Rate limit exceeded",
+        "headers": {
+          "x-ratelimit-limit": {
+            "$ref": "#/components/headers/x-ratelimit-limit"
+          },
+          "x-ratelimit-remaining": {
+            "$ref": "#/components/headers/x-ratelimit-remaining"
+          },
+          "x-ratelimit-reset": {
+            "$ref": "#/components/headers/x-ratelimit-reset"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "ProjectIdPathParameter": {
+        "in": "path",
+        "name": "id",
+        "schema": {
+          "$ref": "#/components/schemas/ProjectId"
+        },
+        "required": true,
+        "description": "Project id"
+      },
+      "pagingOffset": {
+        "in": "query",
+        "name": "offset",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "required": false,
+        "description": "A zero-based offset of the first item in the data collection to return."
+      },
+      "sortByCreatedAt": {
+        "in": "query",
+        "name": "sort",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "-createdAt",
+            "+createdAt"
+          ],
+          "default": "-createdAt"
+        },
+        "required": false,
+        "description": "The field to sort reponse items by."
+      },
+      "projectId": {
+        "in": "query",
+        "name": "projectId",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "style": "form",
+        "explode": true,
+        "required": false,
+        "description": "Project ids to to find items by. If ommitted, items from all existing projects are returned."
+      },
+      "pagingLimit": {
+        "in": "query",
+        "name": "limit",
+        "schema": {
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 50
+        },
+        "required": false,
+        "description": "Limit the amount of items returned in the response. If the value exceeds the maximum, then the maximum value will be used."
+      },
+      "sortByCreatedAtUpdatedAt": {
+        "in": "query",
+        "name": "sort",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "createdAt",
+            "-createdAt",
+            "+createdAt",
+            "updatedAt",
+            "-updatedAt",
+            "+updatedAt"
+          ],
+          "default": "-createdAt"
+        },
+        "required": false,
+        "description": "The field to sort reponse items by."
+      }
+    },
+    "headers": {
+      "x-ratelimit-limit": {
+        "description": "Indicates the request-quota associated to the client in the current time-window followed by the description of the quota policy.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "10, 10;w=1"
+      },
+      "x-ratelimit-remaining": {
+        "description": "The number of remaining requests in the current time-window",
+        "schema": {
+          "type": "integer"
+        },
+        "example": 94
+      },
+      "x-ratelimit-reset": {
+        "description": "The number of seconds until quota reset of the current time-window",
+        "schema": {
+          "type": "integer"
+        },
+        "example": 21
+      }
+    }
+  }
+}

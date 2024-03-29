@@ -1,0 +1,286 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /attachments/{id}:
+    get: Attachments_showIndividualAttachment
+  /charges:
+    get: Charges_getList
+    post: Charges_createNewCharge
+  /charges/{id}:
+    get: Charges_showIndividualCharge
+  /consumer_addresses:
+    get: ConsumerAddresses_listGetAll
+    post: ConsumerAddresses_createNewAddress
+  /consumer_addresses/{id}:
+    get: ConsumerAddresses_showIndividualAddress
+  /customers:
+    get: Customers_getList
+    post: Customers_createNewCustomer
+  /customers/{id}:
+    get: Customers_showIndividualCustomer
+    patch: Customers_updateExistingCustomer
+  /events:
+    get: Events_getAll
+  /events/{id}:
+    get: Events_showIndividualEvent
+  /legal_addresses:
+    get: LegalAddresses_listAll
+    post: LegalAddresses_createNew
+  /legal_addresses/{id}:
+    get: LegalAddresses_showIndividual
+    patch: LegalAddresses_updateExistingAddress
+  /merchant_accounts:
+    get: MerchantAccounts_listAll
+  /merchant_accounts/{id}:
+    get: MerchantAccounts_showIndividual
+    patch: MerchantAccounts_updateExistingAccount
+  /payment_methods:
+    get: PaymentMethods_list
+    post: PaymentMethods_createNewMethod
+  /payment_methods/{id}:
+    get: PaymentMethods_showIndividual
+  /payout_methods:
+    get: PayoutMethods_getList
+    post: PayoutMethods_createNew
+  /payout_methods/{id}:
+    get: PayoutMethods_showIndividual
+  /payouts:
+    get: Payouts_list
+    post: Payouts_createNewPayout
+  /payouts/{id}:
+    get: Payouts_getIndividualPayout
+  /subscriptions:
+    get: Subscriptions_listGetAll
+    post: Subscriptions_createNew
+  /subscriptions/{id}:
+    get: Subscriptions_showIndividual
+    patch: Subscriptions_updateExistingSubscription
+  /users:
+    get: Users_getList
+  /users/{id}:
+    get: Users_showIndividualUser
+    patch: Users_updateUserDetails
+  /webhook_subscriptions:
+    get: WebhookSubscriptions_listAll
+    post: WebhookSubscriptions_createNewSubscription
+  /webhook_subscriptions/{id}:
+    delete: WebhookSubscriptions_destroySubscription
+    get: WebhookSubscriptions_showIndividual
+    patch: WebhookSubscriptions_updateExistingSubscription
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /charges:
+    post:
+      application/vnd.api+json: ChargesCreateNewChargeRequest
+  /consumer_addresses:
+    post:
+      application/vnd.api+json: ConsumerAddressesCreateNewAddressRequest
+  /customers:
+    post:
+      application/vnd.api+json: CustomersCreateNewCustomerRequest
+  /customers/{id}:
+    patch:
+      application/vnd.api+json: CustomersUpdateExistingCustomerRequest
+  /legal_addresses:
+    post:
+      application/vnd.api+json: LegalAddressesCreateNewRequest
+  /legal_addresses/{id}:
+    patch:
+      application/vnd.api+json: LegalAddressesUpdateExistingAddressRequest
+  /merchant_accounts/{id}:
+    patch:
+      application/vnd.api+json: MerchantAccountsUpdateExistingAccountRequest
+  /payment_methods:
+    post:
+      application/vnd.api+json: PaymentMethodsCreateNewMethodRequest
+  /payout_methods:
+    post:
+      application/vnd.api+json: PayoutMethodsCreateNewRequest
+  /payouts:
+    post:
+      application/vnd.api+json: PayoutsCreateNewPayoutRequest
+  /subscriptions:
+    post:
+      application/vnd.api+json: SubscriptionsCreateNewRequest
+  /subscriptions/{id}:
+    patch:
+      application/vnd.api+json: SubscriptionsUpdateExistingSubscriptionRequest
+  /users/{id}:
+    patch:
+      application/vnd.api+json: UsersUpdateUserDetailsRequest
+  /webhook_subscriptions:
+    post:
+      application/vnd.api+json: WebhookSubscriptionsCreateNewSubscriptionRequest
+  /webhook_subscriptions/{id}:
+    patch:
+      application/vnd.api+json: WebhookSubscriptionsUpdateExistingSubscriptionRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  fields[addresses]:
+    query: false
+  fields[billing_addresses]:
+    query: false
+  fields[charges]:
+    query: false
+  fields[consumer_addresses]:
+    query: false
+  fields[customers]:
+    query: false
+  fields[events]:
+    query: false
+  fields[merchant_accounts]:
+    query: false
+  fields[payment_methods]:
+    query: false
+  fields[payout_methods]:
+    query: false
+  fields[payouts]:
+    query: false
+  fields[records]:
+    query: false
+  fields[resources]:
+    query: false
+  fields[shipping_addresses]:
+    query: false
+  fields[subscriptions]:
+    query: false
+  fields[webhook_subscriptions]:
+    query: false
+  filter[account_number]:
+    query: false
+  filter[account_status]:
+    query: false
+  filter[account_type]:
+    query: false
+  filter[active]:
+    query: false
+  filter[amount_cents]:
+    query: false
+  filter[amount_currency]:
+    query: false
+  filter[average_monthly_transaction_volume_cents]:
+    query: false
+  filter[average_transaction_size_cents]:
+    query: false
+  filter[billing_period]:
+    query: false
+  filter[business_address]:
+    query: false
+  filter[business_address_line_2]:
+    query: false
+  filter[business_city_name]:
+    query: false
+  filter[business_country]:
+    query: false
+  filter[business_description]:
+    query: false
+  filter[business_name]:
+    query: false
+  filter[business_privacy_url]:
+    query: false
+  filter[business_state]:
+    query: false
+  filter[business_support_email]:
+    query: false
+  filter[business_support_url]:
+    query: false
+  filter[business_terms_url]:
+    query: false
+  filter[business_timezone]:
+    query: false
+  filter[business_website]:
+    query: false
+  filter[business_zip_code]:
+    query: false
+  filter[captured]:
+    query: false
+  filter[card_bin]:
+    query: false
+  filter[card_cvv_token]:
+    query: false
+  filter[card_last_four]:
+    query: false
+  filter[card_pan_token]:
+    query: false
+  filter[city]:
+    query: false
+  filter[code]:
+    query: false
+  filter[concurrency_limit]:
+    query: false
+  filter[country]:
+    query: false
+  filter[currency]:
+    query: false
+  filter[description]:
+    query: false
+  filter[email]:
+    query: false
+  filter[external_state]:
+    query: false
+  filter[fee_cents]:
+    query: false
+  filter[fee_currency]:
+    query: false
+  filter[first_name]:
+    query: false
+  filter[gateway_fee_cents]:
+    query: false
+  filter[institution_name]:
+    query: false
+  filter[job_title]:
+    query: false
+  filter[kind]:
+    query: false
+  filter[last_name]:
+    query: false
+  filter[line_1]:
+    query: false
+  filter[line_2]:
+    query: false
+  filter[max_transaction_size_cents]:
+    query: false
+  filter[name]:
+    query: false
+  filter[net_amount_cents]:
+    query: false
+  filter[net_amount_currency]:
+    query: false
+  filter[net_cents]:
+    query: false
+  filter[next_billing_day]:
+    query: false
+  filter[payout_method_type]:
+    query: false
+  filter[phone_number]:
+    query: false
+  filter[processor_state]:
+    query: false
+  filter[public_business_name]:
+    query: false
+  filter[refund_amount_cents]:
+    query: false
+  filter[routing_number]:
+    query: false
+  filter[shortened_descriptor]:
+    query: false
+  filter[state]:
+    query: false
+  filter[statement_descriptor]:
+    query: false
+  filter[status]:
+    query: false
+  filter[transfer_credit_type]:
+    query: false
+  filter[url]:
+    query: false
+  filter[zip]:
+    query: false
+  include:
+    query: false
+validServerUrls:
+  https://{apiHost}:
+    url: https://{apiHost}

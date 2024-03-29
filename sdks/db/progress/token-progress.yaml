@@ -1,0 +1,698 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /account-balance:
+    get:
+      '500':
+        application/json: {}
+  /accounts:
+    get:
+      '500':
+        application/json: {}
+  /accounts/{accountId}:
+    get:
+      '500':
+        application/json: {}
+  /accounts/{accountId}/balance:
+    get:
+      '500':
+        application/json: {}
+  /accounts/{accountId}/funds-confirmation:
+    put:
+      '500':
+        application/json: {}
+  /accounts/{accountId}/standing-orders:
+    get:
+      '500':
+        application/json: {}
+  /accounts/{accountId}/transaction/{transactionId}:
+    get:
+      '500':
+        application/json: {}
+  /accounts/{accountId}/transactions:
+    get:
+      '500':
+        application/json: {}
+  /bank/countries:
+    get:
+      '500':
+        application/json: {}
+  /banks:
+    get:
+      '500':
+        application/json: {}
+  /callback/initiation:
+    post:
+      '500':
+        application/json: {}
+  /member/sub-tpps:
+    get:
+      '500':
+        application/json: {}
+    post:
+      '500':
+        application/json: {}
+  /member/sub-tpps/{subTppId}:
+    delete:
+      '500':
+        application/json: {}
+    get:
+      '500':
+        application/json: {}
+  /member/sub-tpps/{subTppId}/children:
+    get:
+      '500':
+        application/json: {}
+  /payouts:
+    get:
+      '500':
+        application/json: {}
+    post:
+      '500':
+        application/json: {}
+  /payouts/{id}:
+    get:
+      '500':
+        application/json: {}
+  /refunds:
+    get:
+      '500':
+        application/json: {}
+    post:
+      '500':
+        application/json: {}
+  /refunds/{id}:
+    get:
+      '500':
+        application/json: {}
+  /reports/banks/status:
+    get:
+      '500':
+        application/json: {}
+  /reports/banks/{bankId}/status:
+    get:
+      '500':
+        application/json: {}
+  /secrets/upload/key-and-certificate:
+    post:
+      '500':
+        application/json: {}
+  /token-requests:
+    post:
+      '500':
+        application/json: {}
+  /token-requests/{tokenRequestId}/authorization:
+    post:
+      '500':
+        application/json: {}
+  /token-requests/{tokenRequestId}/result:
+    get:
+      '500':
+        application/json: {}
+  /tokens:
+    get:
+      '500':
+        application/json: {}
+  /tokens/{tokenId}:
+    get:
+      '500':
+        application/json: {}
+  /tokens/{tokenId}/cancel:
+    put:
+      '500':
+        application/json: {}
+  /transfers:
+    get:
+      '500':
+        application/json: {}
+    post:
+      '500':
+        application/json: {}
+  /transfers/{id}/refunds:
+    get:
+      '500':
+        application/json: {}
+  /transfers/{transferId}:
+    get:
+      '500':
+        application/json: {}
+  /v2/banks:
+    get:
+      '500':
+        application/json: {}
+  /v2/payments:
+    get:
+      '500':
+        application/json: {}
+    post:
+      '500':
+        application/json: {}
+  /v2/payments/{paymentId}:
+    get:
+      '500':
+        application/json: {}
+  /v2/payments/{paymentId}/embedded-auth:
+    post:
+      '500':
+        application/json: {}
+  /virtual-accounts:
+    get:
+      '500':
+        application/json: {}
+  /vrp-consents:
+    get:
+      '500':
+        application/json: {}
+    post:
+      '500':
+        application/json: {}
+  /vrp-consents/{id}:
+    delete:
+      '500':
+        application/json: {}
+    get:
+      '500':
+        application/json: {}
+  /vrp-consents/{id}/payments:
+    get:
+      '500':
+        application/json: {}
+  /vrps:
+    get:
+      '500':
+        application/json: {}
+    post:
+      '500':
+        application/json: {}
+  /vrps/{id}:
+    get:
+      '500':
+        application/json: {}
+  /vrps/{id}/confirm-funds:
+    get:
+      '500':
+        application/json: {}
+  /webhook/config:
+    delete:
+      '500':
+        application/json: {}
+    get:
+      '500':
+        application/json: {}
+    put:
+      '500':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /account-balance:
+    get: Accounts_getMultipleBalances
+  /accounts:
+    get: Accounts_getAllAccounts
+  /accounts/{accountId}:
+    get: Accounts_getInfo
+  /accounts/{accountId}/balance:
+    get: Accounts_getBalance
+  /accounts/{accountId}/funds-confirmation:
+    put: Accounts_confirmFundsAvailability
+  /accounts/{accountId}/standing-orders:
+    get: Accounts_getStandingOrders
+  /accounts/{accountId}/standing-orders/{standingOrderId}:
+    get: Accounts_getStandingOrder
+  /accounts/{accountId}/transaction/{transactionId}:
+    get: Accounts_getTransactionDetails
+  /accounts/{accountId}/transactions:
+    get: Accounts_getTransactions
+  /bank/countries:
+    get: BanksV1_getBankCountries
+  /banks:
+    get: BanksV1_getList
+  /callback/initiation:
+    post: Tsp_processBankCallback
+  /member/sub-tpps:
+    get: SubTpPs_getList
+    post: SubTpPs_createSubTpp
+  /member/sub-tpps/{subTppId}:
+    delete: SubTpPs_deleteSubTpp
+    get: SubTpPs_getSubTppInfo
+  /member/sub-tpps/{subTppId}/children:
+    get: SubTpPs_getChildren
+  /payouts:
+    get: PayoutsBeta_getList
+    post: PayoutsBeta_initializePayout
+  /payouts/{id}:
+    get: PayoutsBeta_getPayout
+  /refunds:
+    get: RefundsBeta_getList
+    post: RefundsBeta_initiateRefund
+  /refunds/{id}:
+    get: RefundsBeta_getRefund
+  /reports/banks/status:
+    get: Reports_getBankStatus
+  /reports/banks/{bankId}/status:
+    get: Reports_bankStatus
+  /secrets/upload/key-and-certificate:
+    post: RefundsBeta_uploadKeyAndCertificate
+  /token-requests:
+    post: Requests_initiateTokenRequest
+  /token-requests/{tokenRequestId}/authorization:
+    post: SingleImmediatePaymentsV1_initiateBankAuthorization
+  /token-requests/{tokenRequestId}/result:
+    get: Requests_checkTokenResult
+  /tokens:
+    get: Tokens_getAll
+  /tokens/{tokenId}:
+    get: Tokens_getInfo
+  /tokens/{tokenId}/cancel:
+    put: Tokens_cancelToken
+  /transfers:
+    get: SingleImmediatePaymentsV1_getTransfers
+    post: SingleImmediatePaymentsV1_createTransferRequest
+  /transfers/{id}/refunds:
+    get: RefundsBeta_getAllRefunds
+  /transfers/{transferId}:
+    get: SingleImmediatePaymentsV1_getTransferDetails
+  /v2/banks:
+    get: BanksV2_getList
+  /v2/payments:
+    get: SingleImmediatePaymentsV2_listPayments
+    post: SingleImmediatePaymentsV2_initiatePayment
+  /v2/payments/{paymentId}:
+    get: SingleImmediatePaymentsV2_getPaymentDetails
+  /v2/payments/{paymentId}/embedded-auth:
+    post: SingleImmediatePaymentsV2_provideEmbeddedAuthInfo
+  /virtual-accounts:
+    get: VirtualAccountsBeta_getAll
+    post: VirtualAccountsBeta_createAccount
+  /virtual-accounts/{accountId}:
+    get: VirtualAccountsBeta_getInfo
+  /virtual-accounts/{accountId}/transactions:
+    get: VirtualAccountsBeta_getTransactions
+  /virtual-accounts/{accountId}/transactions/{providerPaymentId}:
+    get: VirtualAccountsBeta_getTransaction
+  /virtual-accounts/{account_id}/settlement-rule:
+    post: VirtualAccountsBeta_createSettlementRule
+  /virtual-accounts/{account_id}/settlement-rule-payouts:
+    get: VirtualAccountsBeta_getSettlementPayouts
+  /virtual-accounts/{account_id}/settlement-rules:
+    get: VirtualAccountsBeta_getSettlementRules
+  /virtual-accounts/{account_id}/settlement-rules/{settlement_rule_id}:
+    delete: VirtualAccountsBeta_deleteSettlementRule
+    get: VirtualAccountsBeta_getRule
+  /vrp-consents:
+    get: VariableRecurringPayments_getConsents
+    post: VariableRecurringPayments_createConsent
+  /vrp-consents/{id}:
+    delete: VariableRecurringPayments_revokeConsent
+    get: VariableRecurringPayments_getConsentDetails
+  /vrp-consents/{id}/payments:
+    get: VariableRecurringPayments_getPaymentsUnderConsent
+  /vrps:
+    get: VariableRecurringPayments_listPayments
+    post: VariableRecurringPayments_initiatePayment
+  /vrps/{id}:
+    get: VariableRecurringPayments_getPaymentDetails
+  /vrps/{id}/confirm-funds:
+    get: VariableRecurringPayments_checkFundsAvailability
+  /webhook/config:
+    delete: Webhooks_deleteConfig
+    get: Webhooks_getConfig
+    put: Webhooks_setConfig
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /account-balance:
+    get:
+      '500':
+        application/json: AccountsGetMultipleBalancesResponse
+  /accounts:
+    get:
+      '500':
+        application/json: AccountsGetAllAccountsResponse
+  /accounts/{accountId}:
+    get:
+      '500':
+        application/json: AccountsGetInfoResponse
+  /accounts/{accountId}/balance:
+    get:
+      '500':
+        application/json: AccountsGetBalanceResponse
+  /accounts/{accountId}/funds-confirmation:
+    put:
+      '500':
+        application/json: AccountsConfirmFundsAvailabilityResponse
+  /accounts/{accountId}/standing-orders:
+    get:
+      '500':
+        application/json: AccountsGetStandingOrdersResponse
+  /accounts/{accountId}/transaction/{transactionId}:
+    get:
+      '500':
+        application/json: AccountsGetTransactionDetailsResponse
+  /accounts/{accountId}/transactions:
+    get:
+      '500':
+        application/json: AccountsGetTransactionsResponse
+  /bank/countries:
+    get:
+      '500':
+        application/json: BanksV1GetBankCountriesResponse
+  /banks:
+    get:
+      '500':
+        application/json: BanksV1GetListResponse
+  /callback/initiation:
+    post:
+      '500':
+        application/json: TspProcessBankCallbackResponse
+  /member/sub-tpps:
+    get:
+      '500':
+        application/json: SubTpPsGetListResponse
+    post:
+      '500':
+        application/json: SubTpPsCreateSubTppResponse
+  /member/sub-tpps/{subTppId}:
+    delete:
+      '500':
+        application/json: SubTpPsDeleteSubTppResponse
+    get:
+      '500':
+        application/json: SubTpPsGetSubTppInfoResponse
+  /member/sub-tpps/{subTppId}/children:
+    get:
+      '500':
+        application/json: SubTpPsGetChildrenResponse
+  /payouts:
+    get:
+      '500':
+        application/json: PayoutsBetaGetListResponse
+    post:
+      '500':
+        application/json: PayoutsBetaInitializePayoutResponse
+  /payouts/{id}:
+    get:
+      '500':
+        application/json: PayoutsBetaGetPayoutResponse
+  /refunds:
+    get:
+      '500':
+        application/json: RefundsBetaGetListResponse
+    post:
+      '500':
+        application/json: RefundsBetaInitiateRefundResponse
+  /refunds/{id}:
+    get:
+      '500':
+        application/json: RefundsBetaGetRefundResponse
+  /reports/banks/status:
+    get:
+      '500':
+        application/json: ReportsGetBankStatusResponse
+  /reports/banks/{bankId}/status:
+    get:
+      '500':
+        application/json: ReportsBankStatusResponse
+  /secrets/upload/key-and-certificate:
+    post:
+      '500':
+        application/json: RefundsBetaUploadKeyAndCertificateResponse
+  /token-requests:
+    post:
+      '500':
+        application/json: RequestsInitiateTokenRequestResponse
+  /token-requests/{tokenRequestId}/authorization:
+    post:
+      '500':
+        application/json: SingleImmediatePaymentsV1InitiateBankAuthorizationResponse
+  /token-requests/{tokenRequestId}/result:
+    get:
+      '500':
+        application/json: RequestsCheckTokenResultResponse
+  /tokens:
+    get:
+      '500':
+        application/json: TokensGetAllResponse
+  /tokens/{tokenId}:
+    get:
+      '500':
+        application/json: TokensGetInfoResponse
+  /tokens/{tokenId}/cancel:
+    put:
+      '500':
+        application/json: TokensCancelTokenResponse
+  /transfers:
+    get:
+      '500':
+        application/json: SingleImmediatePaymentsV1GetTransfersResponse
+    post:
+      '500':
+        application/json: SingleImmediatePaymentsV1CreateTransferRequestResponse
+  /transfers/{id}/refunds:
+    get:
+      '500':
+        application/json: RefundsBetaGetAllRefundsResponse
+  /transfers/{transferId}:
+    get:
+      '500':
+        application/json: SingleImmediatePaymentsV1GetTransferDetailsResponse
+  /v2/banks:
+    get:
+      '500':
+        application/json: BanksV2GetListResponse
+  /v2/payments:
+    get:
+      '500':
+        application/json: SingleImmediatePaymentsV2ListPaymentsResponse
+    post:
+      '500':
+        application/json: SingleImmediatePaymentsV2InitiatePaymentResponse
+  /v2/payments/{paymentId}:
+    get:
+      '500':
+        application/json: SingleImmediatePaymentsV2GetPaymentDetailsResponse
+  /v2/payments/{paymentId}/embedded-auth:
+    post:
+      '500':
+        application/json: SingleImmediatePaymentsV2ProvideEmbeddedAuthInfoResponse
+  /virtual-accounts:
+    get:
+      '500':
+        application/json: VirtualAccountsBetaGetAllResponse
+  /vrp-consents:
+    get:
+      '500':
+        application/json: VariableRecurringPaymentsGetConsentsResponse
+    post:
+      '500':
+        application/json: VariableRecurringPaymentsCreateConsentResponse
+  /vrp-consents/{id}:
+    delete:
+      '500':
+        application/json: VariableRecurringPaymentsRevokeConsentResponse
+    get:
+      '500':
+        application/json: VariableRecurringPaymentsGetConsentDetailsResponse
+  /vrp-consents/{id}/payments:
+    get:
+      '500':
+        application/json: VariableRecurringPaymentsGetPaymentsUnderConsentResponse
+  /vrps:
+    get:
+      '500':
+        application/json: VariableRecurringPaymentsListPaymentsResponse
+    post:
+      '500':
+        application/json: VariableRecurringPaymentsInitiatePaymentResponse
+  /vrps/{id}:
+    get:
+      '500':
+        application/json: VariableRecurringPaymentsGetPaymentDetailsResponse
+  /vrps/{id}/confirm-funds:
+    get:
+      '500':
+        application/json: VariableRecurringPaymentsCheckFundsAvailabilityResponse
+  /webhook/config:
+    delete:
+      '500':
+        application/json: WebhooksDeleteConfigResponse
+    get:
+      '500':
+        application/json: WebhooksGetConfigResponse
+    put:
+      '500':
+        application/json: WebhooksSetConfigResponse
+securityParameters:
+  accountId:
+    query: false
+  amount:
+    query: false
+  bankCode:
+    query: false
+  bankGroup:
+    query: false
+  bankSubGroup:
+    query: false
+  bank_features.requires_one_step_payment.value:
+    query: false
+  bank_features.supports_account_information.value:
+    query: false
+  bank_features.supports_balance.value:
+    query: false
+  bank_features.supports_funds_confirmation.value:
+    query: false
+  bank_features.supports_receive_payment.value:
+    query: false
+  bank_features.supports_return_refund_account.value:
+    query: false
+  bank_features.supports_scheduled_payment.value:
+    query: false
+  bank_features.supports_send_payment.value:
+    query: false
+  bank_features.supports_single_payment.value:
+    query: false
+  bank_features.supports_standing_order.value:
+    query: false
+  bank_features.supports_transactions_date_filter.value:
+    query: false
+  bank_features.supports_variable_recurring_payment.value:
+    query: false
+  bics:
+    query: false
+  countries:
+    query: false
+  country:
+    query: false
+  createdAfter:
+    query: false
+  createdBefore:
+    query: false
+  currency:
+    query: false
+  endDate:
+    query: false
+  filter.actingAsRefId:
+    query: false
+  filter.byCompanyNames:
+    query: false
+  filter.byRegistrationDates:
+    query: false
+  filter.destinationAccountId:
+    query: false
+  filter.endTimeMs:
+    query: false
+  filter.refId:
+    query: false
+  filter.role:
+    query: false
+  filter.sourceAccountId:
+    query: false
+  filter.startTimeMs:
+    query: false
+  filter.tokenId:
+    query: false
+  filter.transactionStatus:
+    query: false
+  filter.transferRefundStatus:
+    query: false
+  ids:
+    query: false
+  invertIds:
+    query: false
+  invertStatuses:
+    query: false
+  limit:
+    query: false
+  memberId:
+    query: false
+  nickname:
+    query: false
+  offset:
+    query: false
+  onBehalfOfId:
+    query: false
+  onBehalfOfIds:
+    query: false
+  openBankingStandards:
+    query: false
+  page:
+    query: false
+  page.limit:
+    query: false
+  page.offset:
+    query: false
+  partial:
+    query: false
+  perPage:
+    query: false
+  providerPaymentId:
+    query: false
+  providers:
+    query: false
+  refId:
+    query: false
+  refIds:
+    query: false
+  refundStatuses:
+    query: false
+  request-timeout:
+    header: false
+  requiresOneStepPayment:
+    query: false
+  search:
+    query: false
+  skipTransferUpdate:
+    query: false
+  sort:
+    query: false
+  startDate:
+    query: false
+  statuses:
+    query: false
+  supportedLocalInstruments:
+    query: false
+  supportedPaymentNetworks:
+    query: false
+  supportsAccountBalance:
+    query: false
+  supportsAccountDetails:
+    query: false
+  supportsAccountList:
+    query: false
+  supportsFundsConfirmation:
+    query: false
+  supportsReturnRefundAccount:
+    query: false
+  supportsReturnRefundAccountHolderName:
+    query: false
+  supportsScheduledPayment:
+    query: false
+  supportsSinglePayment:
+    query: false
+  supportsStandingOrder:
+    query: false
+  supportsStandingOrderList:
+    query: false
+  supportsTransactionDetails:
+    query: false
+  supportsTransactionList:
+    query: false
+  supportsTransactionsDateFilter:
+    query: false
+  supportsVariableRecurringPayment:
+    query: false
+  token-customer-ip-address:
+    header: false
+  tokenId:
+    query: false
+  tppId:
+    query: false
+  transactionType:
+    query: false
+  type:
+    query: false
+  vrpConsentId:
+    query: false
+validServerUrls: {}

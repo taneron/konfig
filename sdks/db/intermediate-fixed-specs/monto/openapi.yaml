@@ -1,0 +1,3777 @@
+openapi: 3.0.0
+info:
+  title: Monto API
+  description: >
+    ## About this API
+
+    The API is built as a \"RESTFUL\" API with JSON as data transfer.
+
+
+    ### RateLimit
+
+
+    This API has a rate limit of **10 request / second** for each unique
+    IP-address. A status code of 429 (Too Many Requests) will be returned if
+    breached.
+
+
+    ### Page size limit
+
+
+    For endpoints that supports pagination with page and size query parameters,
+    there is a maximum page-size of 100. A status code of 422 (Unprocessable
+    Entity) will be returned if max page size is breached.
+
+
+    ### DateTime fields
+
+
+    All date-time fields are using the
+    [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format (ex
+    2019-06-13T09:29:12+02:00). Usually specified in local time.
+
+    Dates are specified in the Y-m-d format (ex 2001-03-10).
+
+
+    ### Postman
+
+
+    Postman supports open api, click on the download button above and import
+    directly to postman.
+  version: v1
+  license:
+    name: Monto AB
+    url: https://monto.ai
+  contact:
+    email: dev@monto.ai
+  x-api-status-urls:
+    - https://api.monto.ai
+servers:
+  - description: Production
+    url: https://api.monto.ai
+  - description: Test
+    url: https://test-api.monto.ai
+  - description: Local
+    url: http://localhost:3030
+  - description: Local (ssl)
+    url: https://localhost
+security:
+  - APIKeyAuth: []
+tags:
+  - name: Integration
+    description: >-
+      An Integration represents a data source, that a
+      [Company](https://monto.redoc.ly/) can connect towards via
+      [Connection](https://monto.redoc.ly/)'s.
+  - name: Connection
+    description: >-
+      A Connection represents a link between a
+      [Company](https://monto.redoc.ly/) and a third-party
+      [Integration](https://monto.redoc.ly/).
+  - name: Company
+    description: >-
+      A Company represents a business, sharing access to their data via
+      [Connections](https://monto.redoc.ly/).
+  - name: Account Transaction
+    description: >-
+      Account Transactions represents all activities within a [Journal
+      Entry](https://monto.redoc.ly/).
+  - name: Journal
+    description: >-
+      A Journal represents all business activies registered as [Journal
+      Entries](https://monto.redoc.ly/).
+  - name: Consistency
+    description: >-
+      A Consistency date represents a date interval where a company's ERP
+      accounting data contains noise, missing data, or is lagging with
+      reporting.
+  - name: Liquidity
+    description: >-
+      A Liquidity forecast contains predictions on a company's future liquidity
+      position.
+  - name: Account chart
+    description: >-
+      An account chart is a list of all accounts that a company has in its
+      general ledger.
+  - name: Account
+    description: >-
+      Accounts are used to register account transactions in [Journal
+      Entries](https://monto.redoc.ly/).
+  - name: Metrics
+    description: >-
+      A financial KPI or metric is a measurable value that indicates a company’s
+      financial results and performance, provides information about expenses,
+      sales, profit, and cash flow, in order to optimize and achieve business’
+      financial goals and objectives.
+  - name: Balance Sheet
+    description: A Balance Sheet shows the monthly balances by pre-defined account groups.
+  - name: Income Statement
+    description: >-
+      An Income Statement shows the aggregated operating income and operating
+      costs, by pre-defined account groups.
+  - name: Customer Invoice Payment
+    description: Payments made to the [Customer Invoice](https://monto.redoc.ly/).
+  - name: Customer Invoice
+    description: >-
+      A record of sold goods or provided services to a
+      [Customer](https://monto.redoc.ly/) with a payment in demand.
+  - name: Supplier
+    description: A supplier who has sent supplier invoice(s) to the company.
+  - name: Supplier Insight
+    description: Insights regarding a company's suppliers.
+  - name: Customer
+    description: A customer of the company.
+  - name: Supplier Invoice
+    description: >-
+      A record of bought goods or received services to a
+      [Supplier](https://monto.redoc.ly/) with a payment in demand.
+  - name: Supplier Invoice Payment
+    description: Payments made to the [Supplier Invoice](https://monto.redoc.ly/).
+  - name: Subscription
+    description: >-
+      In order to avoid polling for changes, we allow you to register
+      subscriptions that will notify you when certain event occurs.
+  - name: Message
+    description: A message notifies and highlights changes for a company.
+  - name: Fiscal Year
+    description: A fiscal year of the company.
+  - name: Customer Insight
+    description: Insights regarding a company's customers.
+paths:
+  /integrations:
+    get:
+      tags:
+        - Integration
+      summary: Get integrations
+      description: Returns all integrations supported by Monto.
+      operationId: getIntegrations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  integrations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Integration'
+  /integrations/{integration-key}:
+    get:
+      tags:
+        - Integration
+      summary: Get integration
+      description: Returns a single integration.
+      operationId: getIntegrationByKey
+      parameters:
+        - in: path
+          name: integration-key
+          example: FORTNOX
+          description: The key of a specific [Integration](https://monto.redoc.ly/).
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Integration'
+        '404':
+          description: Not Found
+  /subscriptions:
+    get:
+      summary: Get subscriptions
+      description: Returns a list of your registered subscriptions.
+      operationId: getSubscriptions
+      parameters:
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      tags:
+        - Subscription
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  subscriptions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+    post:
+      summary: Create subscription
+      operationId: createSubscription
+      description: Create a new subscription.
+      tags:
+        - Subscription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                protocol:
+                  $ref: '#/components/schemas/SubscriptionProtocolEnum'
+                endpoint:
+                  type: string
+                  description: >-
+                    The endpoint of the subscription. Make sure to
+                    [verify](https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html)
+                    the endpoint once created.
+                  example: https://api.my-service.com/webhook
+                topics:
+                  type: array
+                  description: The specified topics of the subscription.
+                  example:
+                    - '*'
+                  items:
+                    type: string
+                    enum:
+                      - '*'
+                      - CONNECTION_ESTABLISHED
+                      - CUSTOMER_INVOICE_CREATED
+                      - CUSTOMER_INVOICE_UPDATED
+                      - SUPPLIER_INVOICE_CREATED
+                      - SUPPLIER_INVOICE_UPDATED
+                      - SYNC_COMPLETED
+                      - SYNC_FAILED
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '422':
+          description: Unprocessable Entity
+  /subscriptions/{subscription-uuid}:
+    delete:
+      summary: Delete subscription
+      operationId: deleteSubscription
+      description: Delete an existing subscription.
+      tags:
+        - Subscription
+      parameters:
+        - in: path
+          name: subscription-uuid
+          example: e9bb5e02-b2e1-46a3-93fb-82dbe277087e
+          description: Unique identifier of a subscription
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+  https://api.your-service.com/webhook:
+    post:
+      summary: Example webhook
+      operationId: exampleWebhook
+      description: >
+
+        The body described here of the webhook will included as a json string
+        inside the field message. Full example of the actual webhook:
+          ```
+          {
+            "Type": "Notification",
+            "MessageId": "8e49fb24-d140-5026-80d5-a0d152c677b7",
+            "TopicArn": "arn:aws:sns:eu-north-1:580873861511:capcito-CONNECTION_ESTABLISHED",
+            "Message": "{\"topic\":\"CONNECTION_ESTABLISHED\",\"entityUuid\":\"3b097418-bdfe-4cb4-a7e4-a2274d8b9f3b\",\"companyUuid\":\"d5ab0237-815b-48a1-b6bb-2758a30b64ab\"}",
+            "Timestamp": "2022-11-21T13:46:46.691Z",
+            "SignatureVersion": "1",
+            "Signature": "ryZrfmXzSjqLmK1pUiAZAAy2jg+jTTxDwIqZgB+pMXp2GBh0+wXznVrLDX6Y+qzFqruaPEtDEnci8qpvbzq3dbpFfkspXqTEnDPC5L+I9xPeMDEoQTqKvU6rLV4uLQEO+KvtQAZgcZEYnqzkY6VMnmIAvU6FP+5DZS84+kuL6epQYzUCRNFOEzVLY3sW0ieQX3d4hpOeZlD+0UaKe2RaVZaQd8L3mf7tsER6Vxkl7FkEvRCTy/6OgeZYaIwJGNqSefqnIJFCgE70UCPJ4HStSDlKoZ/vju8c6rKZdsz/iCHqyBC22PoWKi0QLF4X7KME3ZCYJMElALZ50LFuFtJW0w==",
+            "SigningCertURL": "https://sns.eu-north-1.amazonaws.com/SimpleNotificationService-56e67fcb41f6fec09b0196692625d385.pem",
+            "UnsubscribeURL": "https://sns.eu-north-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-north-1:580873861511:capcito-CONNECTION_ESTABLISHED:323b0a2c-0a8e-4ccc-b606-7d96b29ff097"
+          }
+          ```
+      tags:
+        - Subscription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                entityUuid:
+                  type: string
+                  description: Unique identifier for the entity.
+                  example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+                companyUuid:
+                  type: string
+                  description: Unique identifier for the affected company
+                  example: d5ab0237-815b-48a1-b6bb-2758a30b64ab
+                topic:
+                  type: string
+                  enum:
+                    - CONNECTION_ESTABLISHED
+                    - CUSTOMER_INVOICE_CREATED
+                    - CUSTOMER_INVOICE_UPDATED
+                    - SUPPLIER_INVOICE_CREATED
+                    - SUPPLIER_INVOICE_UPDATED
+                    - SYNC_COMPLETED
+                  description: The topic of the received event.
+                  example: CUSTOMER_INVOICE_CREATED
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+  /companies:
+    get:
+      summary: Get companies
+      description: Returns a list of companies.
+      operationId: getCompanies
+      parameters:
+        - in: query
+          name: search
+          description: Search for companies by `name`, `legalName`, or `businessId`.
+          schema:
+            type: string
+            minimum: 2
+        - in: query
+          name: syncStatus
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/SyncStatusEnum'
+        - in: query
+          name: status
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/CompanyStatusEnum'
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      tags:
+        - Company
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  companies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Company'
+    post:
+      summary: Create company
+      operationId: createCompany
+      description: Create a new company.
+      tags:
+        - Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: Name of the company
+                  example: Monto AB
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}:
+    get:
+      summary: Get company
+      operationId: getCompanyByUuid
+      description: Returns a single company.
+      tags:
+        - Company
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        '404':
+          description: Not Found
+    delete:
+      summary: Delete company
+      operationId: deleteCompanyByUuid
+      description: Deletes a company
+      tags:
+        - Company
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: string
+                    description: message reflecting action.
+                    example: success
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/customer-invoices:
+    get:
+      summary: Get customer invoices
+      description: Returns a list of customer invoices.
+      operationId: getCustomerInvoices
+      tags:
+        - Customer Invoice
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: search
+          description: Search for invoices by `invoice_number` or by its customer's `name`.
+          schema:
+            type: string
+            minimum: 1
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+        - in: query
+          name: fromDate
+          description: Filter on issueDate
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: Filter on issueDate
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: sortedBy
+          description: >
+            Comma-separated list of columns to sort by. This parameter is
+            required if `order` has a value. Available options:
+              - uuid,
+              - invoiceNumber,
+              - amount.amount,
+              - amount.currency,
+              - balance.amount,
+              - balance.currency,
+              - issueDate,
+              - dueDate,
+              - paidInFullDate,
+              - customer.name
+          schema:
+            type: string
+          example: amount, invoiceNumber
+        - $ref: '#/components/parameters/OrderParam'
+        - $ref: '#/components/parameters/CreatedAtParam'
+        - $ref: '#/components/parameters/UpdatedAtParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  amountTotalInvoices:
+                    description: >-
+                      Total unpaid invoiced amount in the latest 24 months or
+                      selected timespan
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                        description: Amount in digits.
+                        example: 10.12
+                      currency:
+                        type: string
+                        description: Currency Symbol.
+                        example: SEK
+                  amountNotDueNotPaid:
+                    description: Total amount invoiced that is not due, and not paid yet
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                        description: Amount in digits.
+                        example: 10.12
+                      currency:
+                        type: string
+                        description: Currency Symbol.
+                        example: SEK
+                  amountNotDueNotPaidRatio:
+                    description: >-
+                      A ratio describing the invoiced amount that is not due,
+                      divided by the invoiced amount that has not been paid yet
+                    type: number
+                    example: 10.12
+                  amountOverdueNotPaid:
+                    description: Total amount invoiced that is overdue, and not paid yet
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                        description: Amount in digits.
+                        example: 10.12
+                      currency:
+                        type: string
+                        description: Currency Symbol.
+                        example: SEK
+                  amountOverdueNotPaidRatio:
+                    description: >-
+                      Ratio of the invoiced amount that is overdue, divided by
+                      the invoiced amount that has not been paid yet
+                    type: number
+                    example: 5.52
+                  creditedInvoices:
+                    type: boolean
+                    description: If there is any credited invoice in 30 days period.
+                    example: true
+                  prepaymentInvoices:
+                    type: boolean
+                    description: If there is any pre-payment invoice in 30 days period.
+                    example: true
+                  avgPaymentTerms:
+                    type: number
+                    description: Average payment terms in days from all customers.
+                    example: 30
+                  avgOverdueDays:
+                    type: number
+                    description: Average number of overdue days from all customers.
+                    example: 10
+                  invoices:
+                    type: array
+                    description: List of customer invoices.
+                    items:
+                      $ref: '#/components/schemas/CustomerInvoice'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/suppliers:
+    get:
+      summary: Get suppliers
+      description: Returns a list of suppliers.
+      operationId: getSuppliers
+      tags:
+        - Supplier
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  suppliers:
+                    type: array
+                    description: List of suppliers.
+                    items:
+                      $ref: '#/components/schemas/Supplier'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/customers:
+    get:
+      summary: Get customers
+      description: Returns a list of customers.
+      operationId: getCustomers
+      tags:
+        - Customer
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  customers:
+                    type: array
+                    description: List of customers.
+                    items:
+                      $ref: '#/components/schemas/Customer'
+                  totalCount:
+                    type: integer
+                    description: The company’s total number of invoiced customers.
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/customer-insights:
+    get:
+      summary: Get customer insights
+      description: Returns insights on a company's customers.
+      operationId: getCustomerInsights
+      tags:
+        - Customer Insight
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  customerSpread:
+                    type: array
+                    description: >-
+                      Contains information on the three largest customers and
+                      their current balances, and an aggregated value for the
+                      rest of the company customers.
+                    items:
+                      $ref: '#/components/schemas/CustomerSpreadObject'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/customer-invoices/{invoice-uuid}:
+    get:
+      summary: Get customer invoice
+      description: Returns a single customer invoice.
+      operationId: getCustomerInvoiceByUuid
+      tags:
+        - Customer Invoice
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: path
+          name: invoice-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of customer invoice
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerInvoiceWithRows'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/customer-invoices/{invoice-uuid}/payments:
+    get:
+      summary: Get payments
+      operationId: getCustomerInvoicePayments
+      description: Returns a list of payments for a customer invoice.
+      tags:
+        - Customer Invoice Payment
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: path
+          name: invoice-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of customer invoice
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomerInvoicePayments'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/supplier-invoices:
+    get:
+      summary: Get supplier invoices
+      description: Returns a list of supplier invoices.
+      operationId: getSupplierInvoices
+      tags:
+        - Supplier Invoice
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: search
+          description: >-
+            Search for supplier invoices by `invoice_number` or by its
+            supplier's `name`.
+          schema:
+            type: string
+            minimum: 1
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+        - in: query
+          name: fromDate
+          description: Filter on issueDate
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: Filter on issueDate
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: sortedBy
+          description: >
+            Comma-separated list of columns to sort by. This parameter is
+            required if `order` has a value. Available options:
+              - uuid,
+              - externalId,
+              - invoiceNumber,
+              - amount.amount,
+              - amount.currency,
+              - issueDate,
+              - dueDate,
+              - balance.amount,
+              - balance.currency,
+              - paidInFullDate,
+              - supplier.name
+          schema:
+            type: string
+          example: amount, invoiceNumber
+        - $ref: '#/components/parameters/OrderParam'
+        - $ref: '#/components/parameters/CreatedAtParam'
+        - $ref: '#/components/parameters/UpdatedAtParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  amountTotalInvoices:
+                    description: Total unpaid invoiced amount in the latest 24 months
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                        description: Amount in digits.
+                        example: 10.12
+                      currency:
+                        type: string
+                        description: Currency Symbol.
+                        example: SEK
+                  amountNotDueNotPaid:
+                    description: Total amount invoiced that is not due, and not paid yet
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                        description: Amount in digits.
+                        example: 10.12
+                      currency:
+                        type: string
+                        description: Currency Symbol.
+                        example: SEK
+                  amountNotDueNotPaidRatio:
+                    description: >-
+                      A ratio describing the invoiced amount that is not due,
+                      divided by the invoiced amount that has not been paid yet
+                    type: number
+                    example: 10.12
+                  amountOverdueNotPaid:
+                    description: Total amount invoiced that is overdue, and not paid yet
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                        description: Amount in digits.
+                        example: 10.12
+                      currency:
+                        type: string
+                        description: Currency Symbol.
+                        example: SEK
+                  amountOverdueNotPaidRatio:
+                    description: >-
+                      Ratio of the invoiced amount that is overdue, divided by
+                      the invoiced amount that has not been paid yet
+                    type: number
+                    example: 5.52
+                  creditedInvoices:
+                    type: boolean
+                    description: If there is any credited invoice in 30 days period.
+                    example: true
+                  prepaymentInvoices:
+                    type: boolean
+                    description: If there is any pre-payment invoice in 30 days period.
+                    example: true
+                  avgPaymentTerms:
+                    type: number
+                    description: Average payment terms in days from all suppliers.
+                    example: 30
+                  avgOverdueDays:
+                    type: number
+                    description: Average number of overdue days from all suppliers.
+                    example: 10
+                  invoices:
+                    type: array
+                    description: List of supplier invoices.
+                    items:
+                      $ref: '#/components/schemas/SupplierInvoice'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/supplier-insights:
+    get:
+      summary: Get supplier insights
+      description: Returns insights on a suppliers.
+      operationId: getSupplierInsights
+      tags:
+        - Supplier Insight
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  supplierSpread:
+                    type: array
+                    description: >-
+                      Contains information on the three largest suppliers and
+                      their current balances, and an aggregated value for the
+                      rest of the company suppliers.
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of the supplier.
+                        invoiceBalance:
+                          allOf:
+                            - $ref: '#/components/schemas/MoneyObj'
+                          description: Current balance for the supplier.
+                        share:
+                          type: number
+                          description: >-
+                            Current balance for the suppliers divided by the
+                            total balance for all company suppliers.
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/supplier-invoices/{supplier-invoice-uuid}/payments:
+    get:
+      summary: Get payments
+      operationId: getSupplierInvoicePayments
+      description: Returns a list of payments for a supplier invoice.
+      tags:
+        - Supplier Invoice Payment
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: path
+          name: supplier-invoice-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of supplier invoice
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SupplierInvoicePayments'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/connections:
+    get:
+      summary: Get connections
+      description: Get a list of all Connections.
+      operationId: getConnections
+      tags:
+        - Connection
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  connections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Connection'
+        '404':
+          description: Not Found
+    post:
+      summary: Create connection
+      description: Creates a new Connection.
+      operationId: createConnection
+      tags:
+        - Connection
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                integrationKey:
+                  $ref: '#/components/schemas/IntegrationEnum'
+                redirectUrl:
+                  type: string
+                  description: >-
+                    An redirect url to which the end user is redirected to after
+                    completing the auth steps. Only required on integrations
+                    with authType REDIRECT
+                  example: https://www.monto.ai
+                fields:
+                  type: array
+                  description: >-
+                    An array of fields, specified on each
+                    [Integration](https://monto.redoc.ly/).
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: The code friendly key of the field.
+                        example: apiKey
+                      value:
+                        type: string
+                        description: The value of the field.
+                        example: my-secret-api-key
+                  example: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}/connections/{connection-uuid}:
+    patch:
+      summary: Update connection
+      description: Updates a Connection by UUID.
+      operationId: updateConnectionByUuid
+      tags:
+        - Connection
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: path
+          name: connection-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of connection.
+          schema:
+            type: string
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - ENABLED
+                    - DISABLED_MANUALLY
+                  description: The status of an Connection.
+                  example: DISABLED_MANUALLY
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}/fiscal-years:
+    get:
+      summary: Get fiscal years
+      description: Returns a list of fiscal years.
+      operationId: getFiscalYears
+      tags:
+        - Fiscal Year
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  fiscalYears:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FiscalYear'
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/journals:
+    get:
+      summary: Get journal entries
+      operationId: getJournalEntries
+      description: >-
+        Returns a list of all Journal Entries for a Company sorted by Journal
+        date desc.
+      tags:
+        - Journal
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+        - in: query
+          name: fromDate
+          description: Filter from specified Journal date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  journalEntries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JournalEntryObj'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/journals/{journal-uuid}:
+    get:
+      summary: Get journal entry
+      operationId: getJournalEntryByUuid
+      description: Returns a single Journal Entry for a Company.
+      tags:
+        - Journal
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: path
+          name: journal-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of journal
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JournalEntryObj'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/consistencies:
+    get:
+      summary: Get consistency dates
+      operationId: getConsistencyByUuid
+      description: >-
+        Returns consistency dates for a company. Deprecated, see [Reliability
+        dates](https://monto.redoc.ly/) instead.
+      deprecated: true
+      tags:
+        - Consistency
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of a company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ranges:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConsistencyDateObj'
+                  updatedAt:
+                    type: string
+                    format: datetime
+                    description: When the company's consistency dates were last updated.
+                    example: '2022-01-01T17:00:00Z'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/reliabilities:
+    get:
+      summary: Get reliability dates
+      operationId: getReliabilityByUuid
+      description: Returns reliability dates for a company.
+      tags:
+        - Reliability
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of a company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ranges:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ReliabilityDateObj'
+                  updatedAt:
+                    type: string
+                    format: datetime
+                    description: When the company's reliability dates were last updated.
+                    example: '2022-01-01T17:00:00Z'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/liquidities:
+    get:
+      summary: Get liquidity forecasts (alpha version)
+      operationId: getLiquidityByCompanyUuid
+      description: >-
+        This is an alpha version of the endpoint. It's subject to change and not
+        recommended for production use. Returns liquidity forecasts for a
+        company.
+      tags:
+        - Liquidity
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of a company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  predictionDate:
+                    type: string
+                    format: datetime
+                    description: The starting date of the forecast period.
+                    example: '2022-01-01T17:00:00Z'
+                  forecast:
+                    allOf:
+                      - $ref: '#/components/schemas/LiquidityForecastObj'
+                  history:
+                    allOf:
+                      - $ref: '#/components/schemas/LiquidityForecastObj'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/accounts:
+    get:
+      summary: Get accounts
+      description: >-
+        Returns the account values, separated for each account of the selected
+        accounts
+      operationId: getAccounts
+      tags:
+        - Account
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: accounts
+          description: >-
+            A text explaining which account(s) to be included. This can either
+            be a range of accounts (1500-1599) or a single account (1667).
+          schema:
+            type: string
+          required: true
+          example: 1500-1599,1667,1200,1299
+        - in: query
+          name: fromDate
+          description: Starting date
+          schema:
+            type: string
+            default: Default fromDate is 36 months back
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: ending date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SeparatedAccount'
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}/account-charts:
+    get:
+      summary: Get account chart
+      description: Returns an account chart for a company.
+      operationId: getAccountCharts
+      tags:
+        - Account chart
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: search
+          description: Search for an account by either its name or number.
+          schema:
+            type: string
+          required: false
+          example: Patent
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/AccountChart'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/account-bundles:
+    get:
+      summary: Get account bundles
+      description: Returns an aggregated bundle of Account Transactions for a Company.
+      operationId: getAccountBundles
+      tags:
+        - Account
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: accounts
+          description: >-
+            A text explaining which account(s) to be included. This can either
+            be a range of accounts (1500-1599) or a single account (1667).
+          schema:
+            type: string
+          required: true
+          example: 1500-1599,1667,1200-1299
+        - in: query
+          name: fromDate
+          description: Starting date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: ending date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/AccountBundle'
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}/metrics:
+    get:
+      summary: Get metrics
+      description: Returns metrics for a Company.
+      operationId: getMetrics
+      tags:
+        - Metrics
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: fromDate
+          description: Starting date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: ending date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  profitMargin:
+                    allOf:
+                      - $ref: '#/components/schemas/ProfitMarginObj'
+                      - description: >-
+                          This metric refers to the company’s return after
+                          taxes, divided by the total sales revenue.
+                  interestCoverageRatio:
+                    allOf:
+                      - $ref: '#/components/schemas/InterestCoverageRatioObj'
+                      - description: >-
+                          This metric refers to the company’s EBITDA, divided by
+                          its interest payments..
+                  equityToAssetsRatio:
+                    allOf:
+                      - $ref: '#/components/schemas/EquityToAssetsRatioObj'
+                      - description: >-
+                          This metric refers to the company’s Equity, divided by
+                          the Total Assets.
+                  returnOnAssets:
+                    allOf:
+                      - $ref: '#/components/schemas/ReturnOnAssetsObj'
+                      - description: >-
+                          This metric refers to the company’s Net income,
+                          divided by the the total assets.
+                  returnOnEquity:
+                    allOf:
+                      - $ref: '#/components/schemas/ReturnOnEquityObj'
+                      - description: >-
+                          This metric refers to the company’s Net income (minus
+                          dividends to preferred stocks), divided by the
+                          shareholder’s Equity (excluding preferred shares).
+                  currentRatio:
+                    allOf:
+                      - $ref: '#/components/schemas/CurrentRatioObj'
+                      - description: >-
+                          This metric refers to the company’s current assets
+                          (such as cash, accounts receivable, inventory, and
+                          prepaid expenses), divided by its current liabilities.
+                  cashRatio:
+                    allOf:
+                      - $ref: '#/components/schemas/CashRatioObj'
+                      - description: >-
+                          This metric refers to the company’s total reserves of
+                          cash and near-cash securities, divided by the sum of
+                          its total current liabilities.
+                  grossMargin:
+                    allOf:
+                      - $ref: '#/components/schemas/GrossMarginObj'
+                      - description: >-
+                          This metric refers to the company’s total revenue
+                          minus the cost of goods sold (COGS) or service
+                          delivered, divided by the total sales revenue.
+                  quickRatio:
+                    allOf:
+                      - $ref: '#/components/schemas/QuickRatioObj'
+                      - description: >-
+                          This metric refers to the company’s Current Assets
+                          minus Inventories minus Prepaid Expenses), divided by
+                          its Current Liabilities.
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}/account-transactions:
+    get:
+      summary: Get account transactions
+      description: Returns a list of account transactions for a company.
+      operationId: getAccountTransactions
+      tags:
+        - Account Transaction
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: accounts
+          description: A text explaining which account(s) to be included
+          schema:
+            type: string
+          example: 1500-1599,1667,1200-1299
+        - in: query
+          name: page
+          description: The paginated page number.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: size
+          description: The pagination page size.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  accountTransactions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AccountTransaction'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/income-statements:
+    get:
+      summary: Get income statements
+      operationId: getIncomeStatements
+      description: Returns bundled account results for a Company.
+      tags:
+        - Income Statement
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: resultType
+          description: >
+            **Monthly results** for the latest 36 months or **aggregated
+            rolling** results per 12 months.
+          schema:
+            type: string
+            enum:
+              - MONTHLY36
+              - ROLLING12
+            default: MONTHLY36
+        - in: query
+          name: fromDate
+          description: Starting date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: ending date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: classic
+          description: >-
+            A classic income statement will not include the following account
+            groups: interestToCreditInstitutions, otherFinancialExpenses and
+            financialIncome
+          schema:
+            type: boolean
+          required: false
+          example: 'true'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/IncomeStatementClassic'
+                  - $ref: '#/components/schemas/IncomeStatementDefault'
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}/income-statements/pdf:
+    get:
+      summary: Get income statements PDF
+      operationId: getIncomeStatementsPdf
+      description: Returns bundled account results for a Company, in a PDF file.
+      tags:
+        - Income Statement
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: fromDate
+          description: Starting date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: Ending date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}/balance-sheets:
+    get:
+      summary: Get balance sheets
+      operationId: getBalanceSheets
+      description: Returns bundled account balances for a Company.
+      tags:
+        - Balance Sheet
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: fromDate
+          description: Starting date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: ending date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: classic
+          description: >-
+            A classic balance sheet will not include the following account
+            groups: longTermLiabilitiesToCreditInstitutions,
+            otherLongTermLiabilities, accountPayables, totalLiabilities
+          schema:
+            type: boolean
+          required: false
+          example: 'true'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/BalanceSheetDefault'
+                  - $ref: '#/components/schemas/BalanceSheetClassic'
+        '404':
+          description: Not Found
+  /companies/{company-uuid}/balance-sheets/pdf:
+    get:
+      summary: Get balance sheets PDF
+      operationId: getBalanceSheetsPdf
+      description: Returns bundled account balances for a Company, in a PDF file.
+      tags:
+        - Balance Sheet
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+        - in: query
+          name: fromDate
+          description: Starting date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+        - in: query
+          name: toDate
+          description: Ending date
+          schema:
+            type: string
+          required: false
+          example: '2021-12-31'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+  /companies/{company-uuid}/messages:
+    get:
+      summary: Get messages
+      operationId: getMessages
+      description: Returns a list of messages for a company
+      tags:
+        - Message
+      parameters:
+        - in: path
+          name: company-uuid
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+          description: Unique identifier of company
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginationResponse'
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MessageObj'
+        '404':
+          description: Not Found
+components:
+  securitySchemes:
+    APIKeyAuth:
+      type: apiKey
+      description: >-
+        The word "Basic" followed by a space and your API Key as base64encoded.
+        Contact support@monto.ai to obtain an API key.
+      name: Authorization
+      in: header
+  schemas:
+    Company:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the company.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        name:
+          type: string
+          description: Name of the company.
+          example: Monto AB
+          nullable: true
+        legalName:
+          type: string
+          description: Legal name of the company.
+          example: Monto AB
+          nullable: true
+          deprecated: true
+        businessId:
+          type: string
+          description: Registration number of the company
+          example: 559028-3601
+          nullable: true
+        contactFirstName:
+          type: string
+          description: First name of the company contact person
+          example: Erik
+          nullable: true
+        contactLastName:
+          type: string
+          description: Last name of the company contact person
+          example: Steve
+          nullable: true
+        email:
+          type: string
+          description: Contact email of company
+          example: contact@company.com
+          nullable: true
+        phone1:
+          type: string
+          description: Company phone number 1
+          example: 123456789
+          nullable: true
+        phone2:
+          type: string
+          description: Company phone number 2
+          example: 123456789
+          nullable: true
+        hasConnections:
+          type: boolean
+          description: Whether the company has at least one active connection or not.
+          example: true
+          deprecated: true
+        syncStatus:
+          allOf:
+            - $ref: '#/components/schemas/SyncStatusEnum'
+        status:
+          allOf:
+            - $ref: '#/components/schemas/CompanyStatusEnum'
+        addresses:
+          type: array
+          description: List of addresses.
+          items:
+            type: object
+            properties:
+              address:
+                type: string
+                description: Address.
+                example: Kungsgatan 12-14
+                nullable: true
+              zipCode:
+                type: string
+                description: Zip or Postal code.
+                example: 111 35
+                nullable: true
+              city:
+                type: string
+                description: City.
+                example: Stockholm
+                nullable: true
+              country:
+                type: string
+                description: Country.
+                example: Sweden
+                nullable: true
+              latitude:
+                type: number
+                format: float
+                nullable: true
+                example: 59.328588
+              longitude:
+                type: number
+                format: float
+                nullable: true
+                example: 18.006286
+              type:
+                type: string
+                description: The address type.
+                enum:
+                  - VISIT
+                  - DELIVERY
+                  - BILLING
+                example: VISIT
+    SyncStatusEnum:
+      type: string
+      description: >
+        #### The sync status for the company's connections:
+
+        * PENDING: All the company's connections have the status pending.
+
+        * COMPLETED: All the company's connections has successfully completed a
+        sync.
+
+        * FAILED: No connection has successfully completed a sync.
+
+        * IN_PROGRESS: At least one of the company's connection has an ongoing
+        sync.
+      nullable: true
+      enum:
+        - PENDING
+        - COMPLETED
+        - FAILED
+        - IN_PROGRESS
+    CompanyStatusEnum:
+      type: string
+      description: >
+        #### A company has one of the following statuses:
+
+        * NO_CONNECTION: If the company has no connections.
+
+        * PENDING_CONNECTION: If the company has a pending connection.
+
+        * SYNC_FAILED: If the initial or nightly sync has failed for this
+        company.
+
+        * UP_TO_DATE: If the initial and nightly sync was completed.
+
+        * SYNC_IN_PROGRESS: If a sync is currently in progress.
+      nullable: false
+      enum:
+        - NO_CONNECTION
+        - PENDING_CONNECTION
+        - SYNC_FAILED
+        - UP_TO_DATE
+        - SYNC_IN_PROGRESS
+    Supplier:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the supplier.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        name:
+          type: string
+          description: Name of the supplier.
+          example: Monto AB
+        businessId:
+          type: string
+          description: Registration number of the supplier company
+          example: 559028-3601
+        amountTotalInvoices:
+          description: >-
+            Total unpaid invoiced amount in the latest 24 months or selected
+            timespan
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount in digits.
+              example: 10.12
+            currency:
+              type: string
+              description: Currency Symbol.
+              example: SEK
+        amountNotDueNotPaid:
+          description: Total amount invoiced that is not due, and not paid yet
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount in digits.
+              example: 10.12
+            currency:
+              type: string
+              description: Currency Symbol.
+              example: SEK
+        amountOverdueNotPaid:
+          description: Total amount invoiced that is overdue, and not paid yet
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount in digits.
+              example: 10.12
+            currency:
+              type: string
+              description: Currency Symbol.
+              example: SEK
+        amountCreditedInvoices:
+          description: >-
+            Total amount invoiced to this supplier, that is credited. The amount
+            is summarised for the latest 12 months
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount in digits.
+              example: 10.12
+            currency:
+              type: string
+              description: Currency Symbol.
+              example: SEK
+    Customer:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the customer.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        name:
+          type: string
+          description: Name of the customer.
+          example: Monto AB
+        businessId:
+          type: string
+          description: Registration number of the supplier company
+          example: 559028-3601
+        amountTotalInvoices:
+          description: Total invoiced amount to this customer the latest 12 months
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount in digits.
+              example: 10.12
+            currency:
+              type: string
+              description: Currency Symbol.
+              example: SEK
+        amountNotDueNotPaid:
+          description: >-
+            Total amount invoiced to this customer, that is not due, and not
+            paid yet
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount in digits.
+              example: 10.12
+            currency:
+              type: string
+              description: Currency Symbol.
+              example: SEK
+        amountOverdueNotPaid:
+          description: >-
+            Total amount invoiced to this customer, that is overdue, and not
+            paid yet
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount in digits.
+              example: 10.12
+            currency:
+              type: string
+              description: Currency Symbol.
+              example: SEK
+        amountCreditedInvoices:
+          description: >-
+            Total amount invoiced to this customer, that is credited. The amount
+            is summarised for the latest 12 months
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount in digits.
+              example: 10.12
+            currency:
+              type: string
+              description: Currency Symbol.
+              example: SEK
+        annualRevenueShare:
+          type: number
+          description: >-
+            Total revenue from customer divided by the companys total revenue
+            for the latest 12 months. The response is an absolute value.
+          example: 10.12
+        firstTimeCustomer:
+          type: boolean
+          description: If this this customer only has one (1) invoice issued to them.
+          example: true
+    JournalEntryObj:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier for the Journal Entry.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        number:
+          type: number
+          description: The number of the Journal Entry.
+          example: 14
+        currency:
+          type: string
+          description: The currency of the Journal Entry.
+          example: SEK
+        series:
+          type: string
+          description: The series of the Journal Entry.
+          example: A
+        description:
+          type: string
+          description: The entered description of the Journal Entry.
+          example: Kassarapport 2022-01-01
+        date:
+          type: string
+          description: Date when the Journal Entry (business transaction) was created.
+          example: '2022-01-01T17:00:00Z'
+        registrationDate:
+          type: string
+          description: Date when the Journal Entry (business transaction) was registered.
+          example: '2022-01-01T17:00:00Z'
+          nullable: true
+        fiscalYear:
+          allOf:
+            - $ref: '#/components/schemas/FiscalYear'
+            - description: FiscalYear with starting and ending dates.
+        accountTransactions:
+          type: array
+          description: The Account Transactions included in the Journal Entry.
+          items:
+            $ref: '#/components/schemas/AccountTransaction'
+    ConsistencyDateObj:
+      type: object
+      properties:
+        from:
+          type: string
+          format: datetime
+          description: The start of the consistency date range.
+          example: '2022-01-01T17:00:00Z'
+        to:
+          type: string
+          format: datetime
+          description: The end of the consistency date range.
+          example: '2022-01-31T17:00:00Z'
+        case:
+          type: string
+          description: Status of the consistency date range.
+          enum:
+            - OK_DATA
+            - NOISE
+            - MISSING_DATA_IN_BEGINNING
+            - LAGGING_WITH_REPORTING
+        indicator:
+          type: string
+          description: Shorter description of the consistency date object.
+        message:
+          type: string
+          description: Description of the consistency date object.
+    ReliabilityDateObj:
+      type: object
+      properties:
+        from:
+          type: string
+          format: datetime
+          description: The start of the reliability date range.
+          example: '2022-01-01T17:00:00Z'
+        to:
+          type: string
+          format: datetime
+          description: The end of the reliability date range.
+          example: '2022-01-31T17:00:00Z'
+        case:
+          type: string
+          description: Status of the reliability date range.
+          enum:
+            - OK_DATA
+            - NOISE
+            - MISSING_DATA_IN_BEGINNING
+            - LAGGING_WITH_REPORTING
+        indicator:
+          type: string
+          description: Shorter description of the reliability date object.
+        message:
+          type: string
+          description: Description of the reliability date object.
+    LiquidityForecastObj:
+      type: object
+      properties:
+        cashAvailable:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyLiquidityObj'
+        cashInflow:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyLiquidityObj'
+        cashOutflow:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyLiquidityObj'
+        customerInvoicesInflow:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyLiquidityObj'
+        supplierInvoicesOutflow:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyLiquidityObj'
+    DailyLiquidityObj:
+      type: object
+      properties:
+        amount:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+        date:
+          type: string
+          format: date
+          description: Describes which date the daily liquidity belongs to.
+    MoneyObj:
+      type: object
+      title: Money
+      properties:
+        amount:
+          type: number
+          description: The amount as a number
+          format: number
+          example: 100
+        currency:
+          type: string
+          example: SEK
+          description: The currency code
+    ZeroMoneyObj:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: The amount as a number
+          format: number
+          example: 0
+        currency:
+          type: string
+          example: SEK
+          description: The currency code
+    CustomerInvoice:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier for the invoice.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        invoiceNumber:
+          type: string
+          description: The invoice number.
+          example: '302'
+        ocr:
+          type: string
+          description: OCR number for the invoice if any
+          example: '72349263847'
+        customer:
+          type: object
+          description: The customer (invoice receiver).
+          properties:
+            uuid:
+              type: string
+              description: Unique identifier for the customer.
+              example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+            name:
+              type: string
+              description: Name of the customer (invoice receiver).
+              example: Monto AB
+            businessId:
+              type: string
+              description: Registration number of the customer (invoice receiver).
+              example: 559028-3601
+        amount:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Full invoice amount.
+        amountBaseCurrency:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Full invoice amount in the company's base currency.
+        issueDate:
+          type: string
+          format: date
+          description: Date when the invoice was issued.
+        dueDate:
+          type: string
+          format: date
+          description: Date when the invoice is due.
+        paidInFullDate:
+          type: string
+          format: date
+          description: Date when the invoice is fully paid.
+        balance:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Amount left to be paid on the invoice.
+        balanceBaseCurrency:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: >-
+                Amount left to be paid on the invoice, in the company's base
+                currency.
+        connection:
+          type: object
+          description: The source of the invoice.
+          properties:
+            uuid:
+              type: string
+              example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+              description: Unique identifier of the Connection.
+            name:
+              type: string
+              description: Name of the Connection.
+              example: Fortnox
+        payments:
+          type: array
+          description: The invoice payments that belongs to the customer invoice
+          items:
+            $ref: '#/components/schemas/CustomerInvoicePayments'
+        createdAt:
+          type: string
+          format: date
+          description: Date when the invoice was created.
+        updatedAt:
+          type: string
+          format: date
+          description: Date when the invoice was updated.
+    AccountChart:
+      type: object
+      properties:
+        accountCharts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountChartObject'
+    CustomerInvoicePayments:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: guid
+          description: Unique identifier for the invoice payment
+          example: e672230d-cd2b-4de2-b45c-9d37127a4603
+        date:
+          type: string
+          format: datetime
+          description: Date of payment
+          example: '2022-01-01'
+        amount:
+          $ref: '#/components/schemas/MoneyObj'
+    CustomerSpreadObject:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the customer.
+        invoiceBalance:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Current balance for the customer.
+        share:
+          type: number
+          description: >-
+            Current balance for the customer divided by the total balance for
+            all company customers.
+    CustomerInvoiceWithRows:
+      allOf:
+        - $ref: '#/components/schemas/CustomerInvoice'
+        - type: object
+          title: CustomerInvoice
+          properties:
+            ourReference:
+              type: string
+              description: Reference at the client (invoice seller)
+              example: John Nilsson
+            yourReference:
+              type: string
+              description: Reference at the client customer (invoice buyer)
+            deliveryDate:
+              type: string
+              format: date
+            invoiceRows:
+              type: array
+              description: The invoice rows that are included in the invoice.
+              items:
+                type: object
+                title: InvoiceRow
+                properties:
+                  externalId:
+                    type: string
+                    description: The external invoice row id.
+                  currency:
+                    type: string
+                    description: The currency of the invoice row.
+                    nullable: true
+                  amount:
+                    allOf:
+                      - $ref: '#/components/schemas/MoneyObj'
+                      - description: Full invoice row amount.
+                  quantity:
+                    type: number
+                    description: The number of units the invoice row consists of.
+                  name:
+                    type: string
+                    description: A description of the invoice row.
+                  unit:
+                    type: string
+                    description: Describes what unit of measure the invoice row contains.
+                    nullable: true
+                  vatRate:
+                    type: number
+                    description: >-
+                      A percentage value that describes the invoice row's VAT,
+                      from 0 to 100.
+                    minimum: 0
+                    maximum: 100
+                    nullable: true
+    SupplierInvoice:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier for the invoice.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        externalId:
+          type: string
+          description: The external invoice id.
+          example: '6'
+        invoiceNumber:
+          type: string
+          description: The invoice number.
+          example: '8909'
+        supplier:
+          type: object
+          description: The supplier (invoice sender).
+          properties:
+            uuid:
+              type: string
+              description: Unique identifier for the supplier.
+              example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+            name:
+              type: string
+              description: Name of the supplier (invoice sender).
+              example: Monto AB
+            businessId:
+              type: string
+              description: Registration number of the supplier (invoice sender).
+              example: 559028-3601
+        amount:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Full invoice amount.
+        amountBaseCurrency:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Full invoice amount in the company's base currency.
+        issueDate:
+          type: string
+          format: date
+          description: Date when the invoice was issued.
+        dueDate:
+          type: string
+          format: date
+          description: Date when the invoice is due.
+        balance:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Amount left to be paid on the invoice.
+        balanceBaseCurrency:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: >-
+                Amount left to be paid on the invoice, in the company's base
+                currency.
+        connection:
+          type: object
+          description: The source of the invoice.
+          properties:
+            uuid:
+              type: string
+              example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+              description: Unique identifier of the Connection.
+            name:
+              type: string
+              description: Name of the Connection.
+              example: Fortnox
+        paidInFullDate:
+          type: string
+          format: date
+          description: Date when the invoice is fully paid.
+        payments:
+          type: array
+          description: The supplier invoice payments that belongs to the supplier invoice
+          items:
+            $ref: '#/components/schemas/SupplierInvoicePayments'
+        createdAt:
+          type: string
+          format: date
+          description: Date when the invoice was created.
+        updatedAt:
+          type: string
+          format: date
+          description: Date when the invoice was updated.
+    SupplierInvoicePayments:
+      type: object
+      properties:
+        date:
+          type: string
+          format: datetime
+          description: Date of payment
+          example: '2022-01-01'
+        amount:
+          $ref: '#/components/schemas/MoneyObj'
+    BalanceSheetClassic:
+      type: object
+      properties:
+        intangibleFixedAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1000-1099
+        tangibleFixedAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1100-1299
+        financialFixedAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1300-1399
+        capitalAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1000-1399
+        inventoriesEtc:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1400-1499
+        receivables:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1500-1799
+        shortTermInvestments:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1800-1899
+        cashAndBank:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1900-1999
+        currentAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1400-1999
+        totalAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1000-1999
+        equity:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2000-2099
+        untaxedReserves:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2100-2199
+        provisions:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2200-2299
+        longTermLiabilities:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2300-2399
+        shortTermLiabilities:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2400-2999
+        equityAndLiabilities:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2000-2999
+        calculatedResult:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: >-
+                The calculated result (sum of accounts 1000-1999, minus sum of
+                accounts 2000-2999).
+    BalanceSheetDefault:
+      type: object
+      properties:
+        intangibleFixedAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1000-1099
+        tangibleFixedAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1100-1299
+        financialFixedAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1300-1399
+        capitalAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1000-1399
+        inventoriesEtc:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1400-1499
+        receivables:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1500-1799
+        shortTermInvestments:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1800-1899
+        cashAndBank:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1900-1999
+        currentAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1400-1999
+        totalAssets:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 1000-1999
+        equity:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2000-2099
+        untaxedReserves:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2100-2199
+        provisions:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2200-2299
+        longTermLiabilities:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2300-2399
+        longTermLiabilitiesToCreditInstitutions:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2350-2359
+        otherLongTermLiabilities:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2300-2349 and 2360-2399
+        shortTermLiabilities:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2400-2999
+        accountPayables:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2440-2448
+        totalLiabilities:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2300-2999
+        equityAndLiabilities:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: Balance Object with account number 2000-2999
+        calculatedResult:
+          allOf:
+            - $ref: '#/components/schemas/BalanceSheetObj'
+            - description: >-
+                The calculated result (sum of accounts 1000-1999, minus sum of
+                accounts 2000-2999).
+    IncomeStatementClassic:
+      type: object
+      properties:
+        netSales:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 3000-3799.
+        ownWorkCapitalized:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 3800-3899.
+        otherOperatingIncome:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 3900-3999.
+        totalRevenue:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                Summary of all Operating income/revenue (all account
+                transactions in account class 3).
+        purchaseGoodsMaterials:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 4000-4799.
+        unspecifiedAccounts:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 4800-4899.
+        changeInInventories:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 4900-4999.
+        grossProfit:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                The calculated Gross profit (sum of accounts 3000-3999, minus
+                sum of accounts 4000-4999).
+        otherExternalOperatingExpenses:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 5000-6999.
+        personnelCosts:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 7000-7699.
+        ebitda:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                The calculated EBITDA (sum of accounts 3000-3999, minus sum of
+                accounts 4000-7699).
+        writeDowns:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 7700-7799.
+        depreciations:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 7800-7899.
+        otherOperatingExpenses:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 7900-7999.
+        ebit:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                The calculated EBIT (sum om accounts 3000-3999, minus sum of
+                accounts 4000-7999).
+        financialAndOtherIncomes:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8000-8699.
+        extraordinaryIncomeAndExpenses:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8700-8799.
+        appropriations:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8800-8899.
+        taxes:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8900-8989.
+        financialYearResult:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8990-8999.
+        earningsAfterTaxes:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                This is a calculation of the sum of account 3000 to 3999, minus
+                the sum of account 4000-8989.
+        operatingCosts:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 4000-8999.
+        calculatedResult:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                The calculated result (sum of accounts 3000-3999, minus sum of
+                accounts 4000-8989).
+    IncomeStatementDefault:
+      type: object
+      properties:
+        netSales:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 3000-3799.
+        ownWorkCapitalized:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 3800-3899.
+        otherOperatingIncome:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 3900-3999.
+        totalRevenue:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                Summary of all Operating income/revenue (all account
+                transactions in account class 3).
+        purchaseGoodsMaterials:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 4000-4799.
+        unspecifiedAccounts:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 4800-4899.
+        changeInInventories:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 4900-4999.
+        grossProfit:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                The calculated Gross profit (sum of accounts 3000-3999, minus
+                sum of accounts 4000-4999).
+        otherExternalOperatingExpenses:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 5000-6999.
+        personnelCosts:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 7000-7699.
+        ebitda:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                The calculated EBITDA (sum of accounts 3000-3999, minus sum of
+                accounts 4000-7699).
+        writeDowns:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 7700-7799.
+        depreciations:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 7800-7899.
+        otherOperatingExpenses:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 7900-7999.
+        ebit:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                The calculated EBIT (sum om accounts 3000-3999, minus sum of
+                accounts 4000-7999).
+        financialAndOtherIncomes:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8000-8699.
+        extraordinaryIncomeAndExpenses:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8700-8799.
+        appropriations:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8800-8899.
+        taxes:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8900-8989.
+        financialYearResult:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8990-8999.
+        earningsAfterTaxes:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: >-
+                This is a calculation of the sum of account 3000 to 3999, minus
+                the sum of account 4000-8989.
+        otherFinancialExpenses:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8430-8480.
+        financialIncome:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8310-8390.
+        interestToCreditInstitutions:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 8410-8429.
+        operatingCosts:
+          allOf:
+            - $ref: '#/components/schemas/IncomeStatementNode'
+            - description: Aggregated results of accounts within 4000-8999.
+    IncomeStatementResultRolling12:
+      type: object
+      description: 12 historic aggregated results, rolling 12 months.
+      properties:
+        periodStart:
+          type: string
+          description: Date for the start period.
+          example: '2021-01-01'
+        periodEnd:
+          type: string
+          description: Date for the end period.
+          example: '2021-12-31'
+        label:
+          type: string
+          description: Label for the period
+          example: 2021 December
+        result:
+          type: object
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+    IncomeStatementResultMonthly36:
+      type: object
+      description: Historic monthly results for the latest 24 months.
+      properties:
+        periodStart:
+          type: string
+          description: Date for the start period.
+          example: '2021-12-01'
+        periodEnd:
+          type: string
+          description: Date for the end period.
+          example: '2021-12-31'
+        label:
+          type: string
+          description: Label for the period
+          example: 2021 December
+        result:
+          type: object
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+    IncomeStatementNode:
+      type: object
+      properties:
+        accounts:
+          type: string
+          nullable: true
+          description: Description of which accounts are included.
+          example: E.g. 3000-3799
+        name:
+          type: string
+          nullable: true
+          description: Description of the accounts.
+          example: E.g. Nettoförsäljning
+        results:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/IncomeStatementResultMonthly36'
+              - $ref: '#/components/schemas/IncomeStatementResultRolling12'
+    AccountValueObj:
+      type: object
+      properties:
+        breakDate:
+          type: string
+          format: date
+          description: The latest date for the accounting data.
+          example: '2022-01-01'
+        label:
+          type: string
+          description: Name of the period for the balance.
+          example: 2022 January
+        balance:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Balance carried forward for the labelled period.
+            - nullable: false
+              type: object
+        change:
+          type: object
+          nullable: false
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: The amount that has changed within the labelled period.
+    AccountChartObject:
+      type: object
+      properties:
+        account:
+          type: integer
+          example: 1030
+          description: Account number.
+        name:
+          type: string
+          example: Patent
+          description: Account name.
+    AccountBundle:
+      type: object
+      properties:
+        accounts:
+          type: string
+          example: 1500-1599,1667,1200-1299
+          description: A text explaining which account(s) is included.
+        name:
+          type: string
+          example: Aggregated values for selected accounts.
+          description: Name of the account(s) group.
+        history:
+          type: array
+          description: >-
+            Array of historic balances and the monthly change the latest 24
+            months
+          items:
+            $ref: '#/components/schemas/AccountValueObj'
+    SeparatedAccount:
+      allOf:
+        - $ref: '#/components/schemas/PaginationResponse'
+      properties:
+        accounts:
+          type: array
+          items:
+            type: object
+            properties:
+              account:
+                type: string
+                example: 1530
+                description: A text explaining which account is included.
+              accountName:
+                type: string
+                example: Kontraktsfodringar.
+                description: Name of the account.
+              history:
+                type: array
+                description: >-
+                  Array of historic balances and the monthly change. Default is
+                  latest 36 months unless fromDate is set.
+                items:
+                  $ref: '#/components/schemas/AccountValueObj'
+    BalanceSheetObj:
+      type: object
+      properties:
+        accounts:
+          type: string
+          description: Description of which accounts are included.
+          example: E.g. 1000-1099
+        name:
+          type: string
+          description: Name of the bundled accounts.
+          example: E.g. Immateriella anläggningstillgångar
+        history:
+          type: array
+          description: Historic balances and the monthly change the latest 24 months.
+          items:
+            $ref: '#/components/schemas/AccountValueObj'
+    MetricObj1:
+      type: object
+      properties:
+        formatType:
+          type: string
+          description: |
+            In what format the formattedValue is presented.
+            * PERCENTAGE is multiplied by 100
+            * MONETARY is in the tenants system currency
+          enum:
+            - PERCENTAGE
+            - MONETARY
+          example: PERCENTAGE
+        monthly:
+          type: array
+          description: Historic monthly values in the latest 24 months.
+          items:
+            $ref: '#/components/schemas/HistoryPercentageObj'
+        latest12Mo:
+          type: object
+          description: Historic monthly values in the latest 24 months.
+          $ref: '#/components/schemas/HistoryPercentageObj2'
+    MetricObj2:
+      type: object
+      properties:
+        formatType:
+          type: string
+          description: |
+            In what format the formattedValue is presented.
+            * PERCENTAGE is multiplied by 100
+            * MONETARY is in the tenants system currency
+          enum:
+            - PERCENTAGE
+            - MONETARY
+        rolling12Mo:
+          type: array
+          description: >-
+            Metric based on rolling 12-months values. Aggregated an/or average
+            values are used based on the metric.
+          items:
+            $ref: '#/components/schemas/HistoryPercentageObj'
+    ProfitMarginObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj1'
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjType'
+          example: Profitability ratio
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Profit margin
+    InterestCoverageRatioObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj1'
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjType'
+          example: Coverage ratio
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Interest coverage ratio
+    EquityToAssetsRatioObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj1'
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjType'
+          example: Leverage ratio
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Equity to assets ratio
+    ReturnOnAssetsObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj2'
+      properties:
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Return on assets (R12)
+    ReturnOnEquityObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj2'
+      properties:
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Return on equity (R12)
+    CurrentRatioObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj1'
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjType'
+          example: Liquidity ratio
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Current ratio
+    CashRatioObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj1'
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjType'
+          example: Liquidity ratio
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Cash ratio
+    GrossMarginObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj1'
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjType'
+          example: Profitability ratio
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Gross margin
+    QuickRatioObj:
+      allOf:
+        - $ref: '#/components/schemas/MetricObj1'
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjType'
+          example: Liquidity ratio
+        name:
+          allOf:
+            - $ref: '#/components/schemas/MetricObjName'
+          example: Quick ratio
+    MetricObjType:
+      type: string
+      description: >-
+        Type of metric. E.g. Leverage ratio, Profitability ratio, Coverage
+        ratio, Liquidity ratio, Metric.
+    MetricObjName:
+      type: string
+      description: Name of the metric object.
+    HistoryPercentageObj:
+      type: object
+      properties:
+        periodStart:
+          type: string
+          format: date
+          description: Date for the start of the period.
+          example: '2022-04-01'
+        periodEnd:
+          type: string
+          format: date
+          description: Date for the end of the period.
+          example: '2022-04-30'
+        label:
+          type: string
+          description: The name of the period.
+          example: 2022-04
+        value:
+          type: number
+          nullable: true
+          description: The rate for the period. E.g. value 0.34221 equals 34.221%.
+          example: '0.34221'
+        formattedValue:
+          type: number
+          nullable: true
+          description: >-
+            Value limited to two decimals. E.g. “34.22” formatted as a
+            percentage value.
+          example: '34.22'
+    HistoryPercentageObj2:
+      allOf:
+        - $ref: '#/components/schemas/HistoryPercentageObj'
+        - type: object
+          properties:
+            value:
+              type: number
+              nullable: true
+              description: The rate for the period. E.g. value 0.43211 equals 43.211%.
+              example: '0.43211'
+            formattedValue:
+              type: number
+              nullable: true
+              description: >-
+                Value limited to two decimals. E.g. “43.21 formatted as a
+                percentage value.
+              example: '43.21'
+    AccountTransaction:
+      type: object
+      properties:
+        accountNumber:
+          type: number
+          description: The account number of the Account Transaction.
+          example: 1790
+        accountName:
+          type: string
+          description: Name of the Account (from account plan or BAS)
+          example: Övriga förutbetalda kostnader och upplupna intäkter
+        journalUuid:
+          type: number
+          description: >-
+            Pointer to the Journal Entry of which this Account Transaction is
+            included.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        debet:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Debit amount of the Account Transaction.
+            - deprecated: true
+        debit:
+          allOf:
+            - $ref: '#/components/schemas/MoneyObj'
+            - description: Debit amount of the Account Transaction.
+        credit:
+          allOf:
+            - $ref: '#/components/schemas/ZeroMoneyObj'
+            - description: Credit amount of the Account Transaction
+        date:
+          type: string
+          format: datetime
+          description: Transaction date
+          example: '2022-01-01T17:00:00Z'
+    IntegrationField:
+      type: object
+      properties:
+        label:
+          type: string
+          description: A human friendly label
+          example: API Key
+        format:
+          type: string
+          enum:
+            - PLAIN
+            - NUMERIC
+          description: Expected format of `value`.
+          example: PLAIN
+        key:
+          type: string
+          description: A Code friendly key of the field.
+          example: apiKey
+        value:
+          type: string
+          nullable: true
+          description: >-
+            If the field has a default value, provided by Monto, it'll show up
+            here.
+          example: null
+    Connection:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier for the Connection.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        status:
+          type: string
+          enum:
+            - PENDING
+            - ENABLED
+            - DISABLED_MANUALLY
+            - DISABLED_BY_SYSTEM
+          description: The status of an Connection.
+          example: PENDING
+        connectUrl:
+          type: string
+          format: url
+          description: Link to complete ERP onboarding.
+          nullable: true
+          example: https://apps.fortnox.se/oauth-v1/login/...
+        integration:
+          type: object
+          description: The third-party integration used in this Connection.
+          properties:
+            key:
+              $ref: '#/components/schemas/IntegrationEnum'
+            label:
+              type: string
+              description: A human friendly label of the Integration.
+              example: Fortnox
+        lastUsedAt:
+          type: string
+          format: datetime
+          description: When the Connection latest was used.
+          example: null
+          nullable: true
+        createdAt:
+          type: string
+          format: datetime
+          description: When the Connection was created.
+          example: '2022-01-01T17:00:00Z'
+    IntegrationEnum:
+      type: string
+      enum:
+        - FORTNOX
+        - SANDBOX
+        - VISMA_EEKONOMI
+        - PEACCOUNTING
+        - BJORNLUNDEN
+        - MS_DYNAMICS
+        - BILLOGRAM
+        - POWER_OFFICE
+        - VISMA_NET
+        - TRIPLETEX
+      description: The `key` of the [Integration](https://monto.redoc.ly/).
+      example: FORTNOX
+    SubscriptionProtocolEnum:
+      type: string
+      enum:
+        - HTTPS
+        - EMAIL
+        - EMAIL_JSON
+        - SQS
+        - APPLICATION
+        - LAMBDA
+      description: The `protocol` of the subscription.
+      example: HTTPS
+    Integration:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/IntegrationEnum'
+        label:
+          type: string
+          description: A human friendly label.
+          example: Fortnox
+        sourceType:
+          type: string
+          description: The type of the data source.
+          enum:
+            - ERP
+          example: ERP
+        authType:
+          type: string
+          enum:
+            - REDIRECT
+            - CREDENTIALS
+          description: The authentication method of the third-party integration.
+          example: REDIRECT
+        enabled:
+          type: boolean
+          description: Whether the Integration is enabled or not.
+          example: true
+        fields:
+          type: array
+          description: >-
+            Third-party Integrations might requires information such as the API
+            Key(s), in this case we'll ask for it as a Field.
+          items:
+            $ref: '#/components/schemas/IntegrationField'
+          example: []
+    Subscription:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier for the Subscription.
+          example: 9e0a58e5-60b5-4c15-ba2e-77b1bed4977d
+        protocol:
+          $ref: '#/components/schemas/SubscriptionProtocolEnum'
+        endpoint:
+          type: string
+          description: The endpoint of the subscription.
+          example: https://api.my-service.com/webhook
+        topics:
+          type: array
+          description: The specified topics of the subscription.
+          example:
+            - '*'
+          items:
+            type: string
+            enum:
+              - '*'
+              - CONNECTION_ESTABLISHED
+              - CUSTOMER_INVOICE_CREATED
+              - CUSTOMER_INVOICE_UPDATED
+              - SUPPLIER_INVOICE_CREATED
+              - SUPPLIER_INVOICE_UPDATED
+              - SYNC_COMPLETED
+              - ACCOUNTINGS_JOBS_DONE
+        verified:
+          type: boolean
+          deprecated: true
+          description: Whether if the subscription is verified or not.
+          example: true
+    PaginationResponse:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            currentPage:
+              type: number
+              description: Numeric value of the current page.
+              example: 1
+            totalPages:
+              type: number
+              description: Numeric value of the total pages.
+              example: 2
+            pageSize:
+              type: number
+              description: Numeric value of items per page.
+              example: 50
+        links:
+          type: object
+          properties:
+            first:
+              type: string
+              description: Link to the first page.
+              format: url
+              example: https://api.monto.ai/...?page=1&size=50...
+            prev:
+              type: string
+              description: Link to the previous page, if there is any.
+              format: url
+              nullable: true
+              example: null
+            next:
+              type: string
+              description: Link to the next page, if there is any.
+              format: url
+              nullable: true
+              example: https://api.monto.ai/...?page=2&size=50...
+            last:
+              type: string
+              description: Link to the last page.
+              format: url
+              example: https://api.monto.ai/...?page=1&size=50...
+    FiscalYear:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: unique identifier for the fiscalyear
+          example: 14d1c2cc-372e-4a37-8da1-32a0aacf712a
+        from:
+          type: string
+          format: date
+          description: Year starting date.
+          example: '2021-05-01'
+        to:
+          type: string
+          format: date
+          description: Year ending date.
+          example: '2022-04-30'
+    MessageObj:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier for the message
+          example: 14d1c2cc-372e-4a37-8da1-32a0aacf712a
+        ruleUuid:
+          type: string
+          description: Unique identifier for the rule that the message belongs to.
+          example: 14d1c2cc-372e-4a37-8da1-32a0aacf712a
+        level:
+          type: string
+          enum:
+            - WARNING
+            - SUCCESS
+        title:
+          type: string
+          description: Title of the rule for which the message belongs to.
+          example: Revenue drop
+        description:
+          type: string
+          description: Description of the rule for which the message belongs to.
+          example: >-
+            This company has a drop in revenue (at least a 28% drop during last
+            12 reliable months compared to the previous 12 months)
+        validTo:
+          type: string
+          format: datetime
+          description: Until what date the message is valid to.
+          example: '2022-01-01T17:00:00Z'
+        createdAt:
+          type: string
+          format: datetime
+          description: When the message was created.
+          example: '2022-01-01T17:00:00Z'
+  parameters:
+    OrderParam:
+      name: order
+      in: query
+      description: >
+        Comma-separated list of sorting orders corresponding to the columns in
+        `sortedBy`.
+
+        Use 'asc' for ascending and 'desc' for descending. This parameter is
+        required if `sortedBy` has a value.
+      schema:
+        type: string
+      example: desc, asc
+    CreatedAtParam:
+      in: query
+      name: createdAt
+      description: Filter on createdAt
+      schema:
+        type: string
+      required: false
+      example: '2022-12-31'
+    UpdatedAtParam:
+      in: query
+      name: updatedAt
+      description: Filter on updatedAt
+      schema:
+        type: string
+      required: false
+      example: '2022-12-31'
+x-tagGroups:
+  - name: Integration
+    tags:
+      - Integration
+      - Connection
+  - name: Company
+    tags:
+      - Company
+  - name: Accounting
+    tags:
+      - Account Transaction
+      - Journal
+      - Account
+      - Account chart
+      - Fiscal Year
+      - Consistency
+      - Reliability
+      - Liquidity
+  - name: Financial
+    tags:
+      - Balance Sheet
+      - Income Statement
+      - Metrics
+  - name: Supplier
+    tags:
+      - Supplier
+      - Supplier Insight
+  - name: Customer
+    tags:
+      - Customer
+      - Customer Insight
+  - name: Invoice
+    tags:
+      - Customer Invoice Payment
+      - Customer Invoice
+      - Supplier Invoice
+      - Supplier Invoice Payment
+  - name: Callback
+    tags:
+      - Subscription
+  - name: Message
+    tags:
+      - Message
