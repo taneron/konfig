@@ -2316,6 +2316,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://hathora.dev/swagger.json",
   },
+  "measureone.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.measureone.com",
+        browser,
+      });
+    },
+  },
   "nuapay.com": {
     type: "GET",
     url: "https://raw.githubusercontent.com/sentenial/open-banking-swagger/master/tpp-swagger.yaml",

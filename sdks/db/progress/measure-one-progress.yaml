@@ -1,0 +1,639 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v3/auth/generate_access_token:
+    post: ApiKeysAndAccess_generateAccessToken
+  /v3/auth/generate_public_token:
+    post: ApiKeysAndAccess_generatePublicToken
+  /v3/auth/invalidate:
+    post: ApiKeysAndAccess_invalidateAccessToken
+  /v3/checkcodes/get:
+    post: Checkcodes_getList
+  /v3/datarequests/expire_invitation_link:
+    post: DataRequests_expireInvitationLink
+  /v3/datarequests/generate_invitation_link:
+    post: DataRequests_generateInvitationLink
+  /v3/datarequests/get:
+    post: DataRequests_getList
+  /v3/datarequests/get_by_id:
+    post: DataRequests_getDetailsById
+  /v3/datarequests/get_invitation_link:
+    post: DataRequests_getInvitationLinks
+  /v3/datarequests/new:
+    post: DataRequests_createNewRequest
+  /v3/datarequests/notify_user:
+    post: DataRequests_notifyUser
+  /v3/datarequests/refresh_now:
+    post: DataRequests_refreshDataOnDemand
+  /v3/datarequests/update:
+    post: DataRequests_updateDetails
+  /v3/datasources/get:
+    post: Datasources_getList
+  /v3/individuals/get_by_id:
+    post: Individuals_getDetails
+  /v3/individuals/get_items:
+    post: Individuals_getItems
+  /v3/individuals/new:
+    post: Individuals_createNewIndividual
+  /v3/invitations/get_by_id:
+    post: Invitations_getDetails
+  /v3/items/get_by_id:
+    post: Items_getById
+  /v3/items/get_files:
+    post: Items_downloadZipFile
+  /v3/items/get_pdf:
+    post: Items_downloadPdfItem
+  /v3/items/new:
+    post: Items_submitNewItem
+  /v3/items/upload:
+    post: Items_uploadFile
+  /v3/services/get_academic_summary:
+    post: Education_getAcademicSummary
+  /v3/services/get_digest_by_id:
+    post: Education_getDigestById
+  /v3/services/get_employment_summary:
+    post: IncomeEmployment_getEmploymentSummary
+  /v3/services/get_enrollment_status:
+    post: Education_getEnrollmentStatus
+  /v3/services/get_income_employment_details:
+    post: IncomeEmployment_getDetails
+  /v3/services/get_income_summary:
+    post: IncomeEmployment_getSummary
+  /v3/services/get_insurance_details:
+    post: Insurance_getDetails
+  /v3/services/get_realized_gains:
+    post: TaxRecords_getRealizedGains
+  /v3/services/gradscore:
+    post: Education_calculateGradScore
+  /v3/services/meritscore:
+    post: Education_calculateMeritScore
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v3/auth/generate_public_token:
+    post:
+      application/json: ApiKeysAndAccessGeneratePublicTokenRequest
+  /v3/auth/invalidate:
+    post:
+      application/json: ApiKeysAndAccessInvalidateAccessTokenRequest
+  /v3/checkcodes/get:
+    post:
+      application/json: CheckcodesGetListRequest
+  /v3/datarequests/expire_invitation_link:
+    post:
+      application/json: DataRequestsExpireInvitationLinkRequest
+  /v3/datarequests/generate_invitation_link:
+    post:
+      application/json: DataRequestsGenerateInvitationLinkRequest
+  /v3/datarequests/get:
+    post:
+      application/json: DataRequestsGetListRequest
+  /v3/datarequests/get_by_id:
+    post:
+      application/json: DataRequestsGetDetailsByIdRequest
+  /v3/datarequests/get_invitation_link:
+    post:
+      application/json: DataRequestsGetInvitationLinksRequest
+  /v3/datarequests/notify_user:
+    post:
+      application/json: DataRequestsNotifyUserRequest
+  /v3/datarequests/refresh_now:
+    post:
+      application/json: DataRequestsRefreshDataOnDemandRequest
+  /v3/datasources/get:
+    post:
+      application/json: DatasourcesGetListRequest
+  /v3/individuals/get_by_id:
+    post:
+      application/json: IndividualsGetDetailsRequest
+  /v3/individuals/get_items:
+    post:
+      application/json: IndividualsGetItemsRequest
+  /v3/invitations/expire:
+    post:
+      application/json: InvitationsDeleteRequest
+  /v3/invitations/get:
+    post:
+      application/json: InvitationsGetRequest
+  /v3/invitations/get_by_id:
+    post:
+      application/json: InvitationsGetDetailsRequest
+  /v3/invitations/new:
+    post:
+      application/json: NewInvitationRequest
+  /v3/items/get_by_id:
+    post:
+      application/json: ItemsGetByIdRequest
+  /v3/items/get_files:
+    post:
+      application/json: ItemsDownloadZipFileRequest
+  /v3/items/get_pdf:
+    post:
+      application/json: ItemsDownloadPdfItemRequest
+  /v3/services/get_academic_summary:
+    post:
+      application/json: EducationGetAcademicSummaryRequest
+  /v3/services/get_digest_by_id:
+    post:
+      application/json: EducationGetDigestByIdRequest
+  /v3/services/get_employment_summary:
+    post:
+      application/json: IncomeEmploymentGetEmploymentSummaryRequest
+  /v3/services/get_enrollment_status:
+    post:
+      application/json: EducationGetEnrollmentStatusRequest
+  /v3/services/get_income_employment_details:
+    post:
+      application/json: IncomeEmploymentGetDetailsRequest
+  /v3/services/get_income_summary:
+    post:
+      application/json: IncomeEmploymentGetSummaryRequest
+  /v3/services/get_insurance_details:
+    post:
+      application/json: InsuranceGetDetailsRequest
+  /v3/services/get_realized_gains:
+    post:
+      application/json: TaxRecordsGetRealizedGainsRequest
+  /v3/services/gradscore:
+    post:
+      application/json: EducationCalculateGradScoreRequest
+  /v3/services/meritscore:
+    post:
+      application/json: EducationCalculateMeritScoreRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v3/auth/generate_access_token:
+    post:
+      '400':
+        application/json: ApiKeysAndAccessGenerateAccessTokenResponse
+      '405':
+        application/json: ApiKeysAndAccessGenerateAccessToken405Response
+      '500':
+        application/json: ApiKeysAndAccessGenerateAccessToken500Response
+  /v3/auth/generate_public_token:
+    post:
+      '400':
+        application/json: ApiKeysAndAccessGeneratePublicTokenResponse
+      '401':
+        application/json: ApiKeysAndAccessGeneratePublicToken401Response
+      '405':
+        application/json: ApiKeysAndAccessGeneratePublicToken405Response
+      '500':
+        application/json: ApiKeysAndAccessGeneratePublicToken500Response
+  /v3/auth/invalidate:
+    post:
+      '400':
+        application/json: ApiKeysAndAccessInvalidateAccessTokenResponse
+      '401':
+        application/json: ApiKeysAndAccessInvalidateAccessToken401Response
+      '405':
+        application/json: ApiKeysAndAccessInvalidateAccessToken405Response
+      '500':
+        application/json: ApiKeysAndAccessInvalidateAccessToken500Response
+  /v3/checkcodes/get:
+    post:
+      '200':
+        application/json: CheckcodesGetListResponse
+      '400':
+        application/json: CheckcodesGetList400Response
+      '401':
+        application/json: CheckcodesGetList401Response
+      '404':
+        application/json: CheckcodesGetList404Response
+      '405':
+        application/json: CheckcodesGetList405Response
+      '500':
+        application/json: CheckcodesGetList500Response
+  /v3/datarequests/expire_invitation_link:
+    post:
+      '400':
+        application/json: DataRequestsExpireInvitationLinkResponse
+      '401':
+        application/json: DataRequestsExpireInvitationLink401Response
+      '404':
+        application/json: DataRequestsExpireInvitationLink404Response
+      '405':
+        application/json: DataRequestsExpireInvitationLink405Response
+      '500':
+        application/json: DataRequestsExpireInvitationLink500Response
+  /v3/datarequests/generate_invitation_link:
+    post:
+      '200':
+        application/json: DataRequestsGenerateInvitationLinkResponse
+      '400':
+        application/json: DataRequestsGenerateInvitationLink400Response
+      '401':
+        application/json: DataRequestsGenerateInvitationLink401Response
+      '404':
+        application/json: DataRequestsGenerateInvitationLink404Response
+      '405':
+        application/json: DataRequestsGenerateInvitationLink405Response
+      '500':
+        application/json: DataRequestsGenerateInvitationLink500Response
+  /v3/datarequests/get:
+    post:
+      '200':
+        application/json: DataRequestsGetListResponse
+      '400':
+        application/json: DataRequestsGetList400Response
+      '401':
+        application/json: DataRequestsGetList401Response
+      '405':
+        application/json: DataRequestsGetList405Response
+      '500':
+        application/json: DataRequestsGetList500Response
+  /v3/datarequests/get_by_id:
+    post:
+      '400':
+        application/json: DataRequestsGetDetailsByIdResponse
+      '401':
+        application/json: DataRequestsGetDetailsById401Response
+      '404':
+        application/json: DataRequestsGetDetailsById404Response
+      '405':
+        application/json: DataRequestsGetDetailsById405Response
+      '500':
+        application/json: DataRequestsGetDetailsById500Response
+  /v3/datarequests/get_invitation_link:
+    post:
+      '200':
+        application/json: DataRequestsGetInvitationLinksResponse
+      '400':
+        application/json: DataRequestsGetInvitationLinks400Response
+      '401':
+        application/json: DataRequestsGetInvitationLinks401Response
+      '404':
+        application/json: DataRequestsGetInvitationLinks404Response
+      '405':
+        application/json: DataRequestsGetInvitationLinks405Response
+      '500':
+        application/json: DataRequestsGetInvitationLinks500Response
+  /v3/datarequests/new:
+    post:
+      '200':
+        application/json: DataRequestsCreateNewRequestResponse
+      '400':
+        application/json: DataRequestsCreateNewRequest400Response
+      '401':
+        application/json: DataRequestsCreateNewRequest401Response
+      '404':
+        application/json: DataRequestsCreateNewRequest404Response
+      '405':
+        application/json: DataRequestsCreateNewRequest405Response
+      '500':
+        application/json: DataRequestsCreateNewRequest500Response
+  /v3/datarequests/notify_user:
+    post:
+      '400':
+        application/json: DataRequestsNotifyUserResponse
+      '401':
+        application/json: DataRequestsNotifyUser401Response
+      '404':
+        application/json: DataRequestsNotifyUser404Response
+      '405':
+        application/json: DataRequestsNotifyUser405Response
+      '500':
+        application/json: DataRequestsNotifyUser500Response
+  /v3/datarequests/refresh_now:
+    post:
+      '400':
+        application/json: DataRequestsRefreshDataOnDemandResponse
+      '404':
+        application/json: DataRequestsRefreshDataOnDemand404Response
+      '405':
+        application/json: DataRequestsRefreshDataOnDemand405Response
+      '500':
+        application/json: DataRequestsRefreshDataOnDemand500Response
+  /v3/datarequests/update:
+    post:
+      '200':
+        application/json: DataRequestsUpdateDetailsResponse
+      '400':
+        application/json: DataRequestsUpdateDetails400Response
+      '401':
+        application/json: DataRequestsUpdateDetails401Response
+      '404':
+        application/json: DataRequestsUpdateDetails404Response
+      '405':
+        application/json: DataRequestsUpdateDetails405Response
+      '500':
+        application/json: DataRequestsUpdateDetails500Response
+  /v3/datasources/get:
+    post:
+      '200':
+        application/json: DatasourcesGetListResponse
+      '400':
+        application/json: DatasourcesGetList400Response
+      '401':
+        application/json: DatasourcesGetList401Response
+      '405':
+        application/json: DatasourcesGetList405Response
+  /v3/individuals/get_by_id:
+    post:
+      '400':
+        application/json: IndividualsGetDetailsResponse
+      '401':
+        application/json: IndividualsGetDetails401Response
+      '404':
+        application/json: IndividualsGetDetails404Response
+      '405':
+        application/json: IndividualsGetDetails405Response
+      '500':
+        application/json: IndividualsGetDetails500Response
+  /v3/individuals/get_items:
+    post:
+      '200':
+        application/json: IndividualsGetItemsResponse
+      '400':
+        application/json: IndividualsGetItems400Response
+      '401':
+        application/json: IndividualsGetItems401Response
+      '404':
+        application/json: IndividualsGetItems404Response
+      '405':
+        application/json: IndividualsGetItems405Response
+      '500':
+        application/json: IndividualsGetItems500Response
+  /v3/individuals/new:
+    post:
+      '200':
+        application/json: IndividualsCreateNewIndividualResponse
+      '400':
+        application/json: IndividualsCreateNewIndividual400Response
+      '401':
+        application/json: IndividualsCreateNewIndividual401Response
+      '405':
+        application/json: IndividualsCreateNewIndividual405Response
+      '500':
+        application/json: IndividualsCreateNewIndividual500Response
+  /v3/invitations/expire:
+    post:
+      '400':
+        application/json: InvitationsDeleteResponse
+      '401':
+        application/json: InvitationsDelete401Response
+      '404':
+        application/json: InvitationsDelete404Response
+      '405':
+        application/json: InvitationsDelete405Response
+      '500':
+        application/json: InvitationsDelete500Response
+  /v3/invitations/get:
+    post:
+      '200':
+        application/json: InvitationsGetResponse
+      '400':
+        application/json: InvitationsGet400Response
+      '401':
+        application/json: InvitationsGet401Response
+      '405':
+        application/json: InvitationsGet405Response
+      '500':
+        application/json: InvitationsGet500Response
+  /v3/invitations/get_by_id:
+    post:
+      '400':
+        application/json: InvitationsGetDetailsResponse
+      '401':
+        application/json: InvitationsGetDetails401Response
+      '404':
+        application/json: InvitationsGetDetails404Response
+      '405':
+        application/json: InvitationsGetDetails405Response
+      '500':
+        application/json: InvitationsGetDetails500Response
+  /v3/invitations/new:
+    post:
+      '200':
+        application/json: NewInvitationResponse
+      '400':
+        application/json: NewInvitation400Response
+      '401':
+        application/json: NewInvitation401Response
+      '404':
+        application/json: NewInvitation404Response
+      '405':
+        application/json: NewInvitation405Response
+      '500':
+        application/json: NewInvitation500Response
+  /v3/items/get_by_id:
+    post:
+      '400':
+        application/json: ItemsGetByIdResponse
+      '401':
+        application/json: ItemsGetById401Response
+      '405':
+        application/json: ItemsGetById405Response
+      '422':
+        application/json: ItemsGetById422Response
+      '500':
+        application/json: ItemsGetById500Response
+  /v3/items/get_files:
+    post:
+      '200':
+        application/octet-stream: ItemsDownloadZipFileResponse
+      '400':
+        application/json: ItemsDownloadZipFile400Response
+      '401':
+        application/json: ItemsDownloadZipFile401Response
+      '404':
+        application/json: ItemsDownloadZipFile404Response
+      '405':
+        application/json: ItemsDownloadZipFile405Response
+      '500':
+        application/json: ItemsDownloadZipFile500Response
+  /v3/items/get_pdf:
+    post:
+      '200':
+        application/pdf: ItemsDownloadPdfItemResponse
+      '400':
+        application/json: ItemsDownloadPdfItem400Response
+      '401':
+        application/json: ItemsDownloadPdfItem401Response
+      '404':
+        application/json: ItemsDownloadPdfItem404Response
+      '405':
+        application/json: ItemsDownloadPdfItem405Response
+      '500':
+        application/json: ItemsDownloadPdfItem500Response
+  /v3/items/new:
+    post:
+      '200':
+        application/json: ItemsSubmitNewItemResponse
+      '400':
+        application/json: ItemsSubmitNewItem400Response
+      '401':
+        application/json: ItemsSubmitNewItem401Response
+      '405':
+        application/json: ItemsSubmitNewItem405Response
+      '500':
+        application/json: ItemsSubmitNewItem500Response
+  /v3/items/upload:
+    post:
+      '200':
+        application/json: ItemsUploadFileResponse
+      '400':
+        application/json: ItemsUploadFile400Response
+      '401':
+        application/json: ItemsUploadFile401Response
+      '405':
+        application/json: ItemsUploadFile405Response
+      '500':
+        application/json: ItemsUploadFile500Response
+  /v3/services/get_academic_summary:
+    post:
+      '200':
+        application/json: EducationGetAcademicSummaryResponse
+      '400':
+        application/json: EducationGetAcademicSummary400Response
+      '401':
+        application/json: EducationGetAcademicSummary401Response
+      '404':
+        application/json: EducationGetAcademicSummary404Response
+      '422':
+        application/json: EducationGetAcademicSummary422Response
+      '500':
+        application/json: EducationGetAcademicSummary500Response
+  /v3/services/get_digest_by_id:
+    post:
+      '400':
+        application/json: EducationGetDigestByIdResponse
+      '401':
+        application/json: EducationGetDigestById401Response
+      '405':
+        application/json: EducationGetDigestById405Response
+      '422':
+        application/json: EducationGetDigestById422Response
+      '500':
+        application/json: EducationGetDigestById500Response
+  /v3/services/get_employment_summary:
+    post:
+      '200':
+        application/json: IncomeEmploymentGetEmploymentSummaryResponse
+      '400':
+        application/json: IncomeEmploymentGetEmploymentSummary400Response
+      '401':
+        application/json: IncomeEmploymentGetEmploymentSummary401Response
+      '404':
+        application/json: IncomeEmploymentGetEmploymentSummary404Response
+      '405':
+        application/json: IncomeEmploymentGetEmploymentSummary405Response
+      '422':
+        application/json: IncomeEmploymentGetEmploymentSummary422Response
+      '500':
+        application/json: IncomeEmploymentGetEmploymentSummary500Response
+  /v3/services/get_enrollment_status:
+    post:
+      '200':
+        application/json: EducationGetEnrollmentStatusResponse
+      '400':
+        application/json: EducationGetEnrollmentStatus400Response
+      '401':
+        application/json: EducationGetEnrollmentStatus401Response
+      '404':
+        application/json: EducationGetEnrollmentStatus404Response
+      '405':
+        application/json: EducationGetEnrollmentStatus405Response
+      '422':
+        application/json: EducationGetEnrollmentStatus422Response
+      '500':
+        application/json: EducationGetEnrollmentStatus500Response
+  /v3/services/get_income_employment_details:
+    post:
+      '200':
+        application/json: IncomeEmploymentGetDetailsResponse
+      '400':
+        application/json: IncomeEmploymentGetDetails400Response
+      '401':
+        application/json: IncomeEmploymentGetDetails401Response
+      '404':
+        application/json: IncomeEmploymentGetDetails404Response
+      '405':
+        application/json: IncomeEmploymentGetDetails405Response
+      '422':
+        application/json: IncomeEmploymentGetDetails422Response
+      '500':
+        application/json: IncomeEmploymentGetDetails500Response
+  /v3/services/get_income_summary:
+    post:
+      '200':
+        application/json: IncomeEmploymentGetSummaryResponse
+      '400':
+        application/json: IncomeEmploymentGetSummary400Response
+      '401':
+        application/json: IncomeEmploymentGetSummary401Response
+      '404':
+        application/json: IncomeEmploymentGetSummary404Response
+      '405':
+        application/json: IncomeEmploymentGetSummary405Response
+      '422':
+        application/json: IncomeEmploymentGetSummary422Response
+      '500':
+        application/json: IncomeEmploymentGetSummary500Response
+  /v3/services/get_insurance_details:
+    post:
+      '200':
+        application/json: InsuranceGetDetailsResponse
+      '401':
+        application/json: InsuranceGetDetails401Response
+      '404':
+        application/json: InsuranceGetDetails404Response
+      '405':
+        application/json: InsuranceGetDetails405Response
+      '422':
+        application/json: InsuranceGetDetails422Response
+      '500':
+        application/json: InsuranceGetDetails500Response
+  /v3/services/get_realized_gains:
+    post:
+      '200':
+        application/json: TaxRecordsGetRealizedGainsResponse
+      '400':
+        application/json: TaxRecordsGetRealizedGains400Response
+      '401':
+        application/json: TaxRecordsGetRealizedGains401Response
+      '404':
+        application/json: TaxRecordsGetRealizedGains404Response
+      '405':
+        application/json: TaxRecordsGetRealizedGains405Response
+      '422':
+        application/json: TaxRecordsGetRealizedGains422Response
+      '500':
+        application/json: TaxRecordsGetRealizedGains500Response
+  /v3/services/gradscore:
+    post:
+      '200':
+        application/json: EducationCalculateGradScoreResponse
+      '400':
+        application/json: EducationCalculateGradScore400Response
+      '401':
+        application/json: EducationCalculateGradScore401Response
+      '405':
+        application/json: EducationCalculateGradScore405Response
+      '422':
+        application/json: EducationCalculateGradScore422Response
+      '500':
+        application/json: EducationCalculateGradScore500Response
+  /v3/services/meritscore:
+    post:
+      '200':
+        application/json: EducationCalculateMeritScoreResponse
+      '400':
+        application/json: EducationCalculateMeritScore400Response
+      '401':
+        application/json: EducationCalculateMeritScore401Response
+      '405':
+        application/json: EducationCalculateMeritScore405Response
+      '422':
+        application/json: EducationCalculateMeritScore422Response
+      '500':
+        application/json: EducationCalculateMeritScore500Response
+securityParameters:
+  Content-type:
+    header: false
+  version:
+    header: false
+validServerUrls: {}
