@@ -1,0 +1,354 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /accounts:
+    post: Accounts_createNewBrokerageAccount
+  /accounts/{accountID}:
+    get: Accounts_getDetails
+    patch: Accounts_updateAccountDetails
+  /accounts/{accountID}/beneficiaries:
+    delete: Beneficiaries_removeAll
+    get: Beneficiaries_listByAccount
+    post: Beneficiaries_createNewSet
+  /accounts/{accountID}/commissions:
+    get: CommissionSchedules_listAll
+  /accounts/{accountID}/confirms:
+    get: Statements_listTradeConfirmations
+  /accounts/{accountID}/funding/deposit-instructions:
+    get: VirtualBankAccounts_getDetails
+  /accounts/{accountID}/funding/deposits:
+    get: Deposits_listByAccount
+  /accounts/{accountID}/funding/redemptions:
+    get: Withdrawals_listByAccount
+  /accounts/{accountID}/options/positions:
+    get: Positions_getAccountOption
+  /accounts/{accountID}/performance:
+    get: Accounts_getPerformanceMetrics
+  /accounts/{accountID}/portfolio:
+    get: AutoPilot_getPortfolioByAccount
+  /accounts/{accountID}/position-details:
+    get: Accounts_getPositionLots
+  /accounts/{accountID}/reports/daily-trade-summary:
+    get: Settlements_listDvpRvpReports
+    post: Settlements_createDvpRvpReportJob
+  /accounts/{accountID}/reports/daily-trade-summary/{reportID}:
+    get: Settlements_getDvpRvpByReportId
+  /accounts/{accountID}/reports/exchange-history:
+    get: Exchanges_getExchangeHistory
+  /accounts/{accountID}/reports/order-history:
+    get: Orders_listByAccount
+  /accounts/{accountID}/statements:
+    get: Statements_listByAccount
+  /accounts/{accountID}/summary:
+    get: Accounts_getSummary
+  /accounts/{accountID}/summary/exchanges:
+    get: Exchanges_listByAccount
+  /accounts/{accountID}/summary/margin:
+    get: Accounts_getMarginDetails
+  /accounts/{accountID}/summary/money:
+    get: Accounts_getMoneyByAccount
+  /accounts/{accountID}/summary/orders:
+    get: Orders_getByAccount
+  /accounts/{accountID}/summary/positions:
+    get: Positions_listEquityPositions
+  /accounts/{accountID}/summary/transactions:
+    get: Transactions_getSummaryByAccount
+  /accounts/{accountID}/summary/violations:
+    get: Violations_getByAccount
+  /accounts/{accountID}/taxforms:
+    get: Statements_listTaxStatementsByAccount
+  /accounts/{accountID}/transactions:
+    get: Transactions_listByAccount
+  /accounts/{accountID}/violations:
+    get: Violations_listByAccount
+  /asset-transfers:
+    get: AssetTransfer_listTransfers
+  /asset-transfers/acats:
+    post: AssetTransfer_createAcatsTransfer
+  /asset-transfers/cancel-rebills:
+    get: CancelRebill_listCancelRebills
+    post: CancelRebill_create
+  /asset-transfers/cancel-rebills/{id}:
+    get: CancelRebill_getDetailsById
+  /asset-transfers/minor-graduation:
+    post: AssetTransfer_createMinorGraduationTransfer
+  /asset-transfers/{assetTransferID}:
+    get: AssetTransfer_getDetails
+  /auth:
+    post: Auth_tokenCreate
+  /auth/tokens:
+    post: Auth_createSessionToken
+  /bars:
+    get: Charts_getBars
+  /countries:
+    get: SupportedCountries_getList
+  /disclosures:
+    get: Disclosures_listItems
+  /disclosures/{disclosureID}:
+    get: Disclosures_getDetails
+  /documents:
+    post: PhysicalDocuments_uploadDriverLicense
+  /exchanges:
+    patch: Exchanges_cancelPendingOrder
+    post: Exchanges_createExchange
+  /exchanges/{exchangeIdentifier}:
+    get: Exchanges_getDetails
+  /funding/deposits:
+    post: Deposits_createUserDeposit
+  /funding/deposits/{depositID}:
+    get: Deposits_getById
+  /funding/reconciliations:
+    get: Settlements_getDailyReconciliations
+  /funding/reconciliations/{reconciliationID}:
+    get: Settlements_getCashlessReconciliation
+    patch: Settlements_updateCashlessReconciliation
+  /funding/recurring-deposits/{recurringID}:
+    delete: Deposits_inactivateRecurring
+    get: Deposits_getScheduleByRecurringId
+    patch: Deposits_updateRecurringDeposit
+  /funding/redemptions:
+    get: Withdrawals_getAll
+    post: Withdrawals_createUserWithdrawal
+  /funding/redemptions/{redemptionID}:
+    get: Withdrawals_getByRedemptionId
+  /funding/settlements/instant-funding:
+    get: Settlements_listBulkSettlements
+  /funding/settlements/instant-funding/{settlementID}:
+    get: Settlements_getBulkSettlementBySettlementId
+    patch: Settlements_updateBulkSettlementBySettlementId
+  /instruments:
+    get: Instruments_listAll
+  /instruments/filter:
+    post: Instruments_searchByFilter
+  /instruments/{symbolOrInstrumentID}:
+    get: Instruments_getDetails
+  /instruments/{symbolOrInstrumentID}/options:
+    get: Instruments_getOptionsChain
+  /instruments/{symbolOrInstrumentID}/options/expiration-dates:
+    get: Instruments_getOptionExpiration
+  /managed/allocations:
+    post: TradeAllocations_createAllocation
+  /managed/allocations/{allocationID}:
+    get: TradeAllocations_getDetails
+  /managed/autopilot/{partnerID}:
+    post: AutoPilot_createRun
+  /managed/autopilot/{rebalanceRunID}:
+    get: AutoPilot_getRunDetails
+  /managed/funds:
+    post: Funds_createFundCollection
+  /managed/funds/{fundID}:
+    get: Funds_getDetails
+  /managed/portfolios:
+    post: Portfolios_createPortfolioAllocation
+  /managed/portfolios/{portfolioID}:
+    get: Portfolios_getDetails
+    patch: Portfolios_updateHoldings
+  /orders:
+    post: Orders_createSecurityOrder
+  /orders/byOrderNo/{orderNo}:
+    get: Orders_getByOrderNo
+  /orders/crypto/execute:
+    post: Orders_executeRfqCrypto
+  /orders/crypto/rfq:
+    post: Orders_createRfqCrypto
+  /orders/options:
+    get: Orders_getOptionOrders
+  /orders/{orderID}:
+    get: Orders_getStatus
+    patch: Orders_updateInProgress
+  /quotes:
+    get: Quotes_getReferentialDetails
+  /quotes/depth:
+    post: DepthOfBook_getDebtDepth
+  /quotes/vdr:
+    get: Quotes_getConsolidatedFeed
+  /statements/{accountID}/{fileKey}:
+    get: Statements_getDocumentUrlByAccountAndFileKey
+  /subscriptions:
+    post: Subscriptions_createCharge
+  /subscriptions/{subscriptionID}:
+    delete: Subscriptions_removeBySubscription
+  /users:
+    post: Users_createProfile
+  /users/{userID}:
+    get: Users_getProfile
+    patch: Users_updateProfile
+  /users/{userID}/accounts:
+    get: Accounts_listByUser
+  /users/{userID}/acknowledgments:
+    get: Disclosures_listUserAcknowledgments
+    post: Disclosures_acknowledgeUserDisclosure
+  /users/{userID}/bank-accounts:
+    get: LinkedBankAccounts_listByUser
+  /users/{userID}/documents:
+    get: PhysicalDocuments_listByUser
+  /users/{userID}/funding/deposits:
+    get: Deposits_listByUser
+  /users/{userID}/funding/redemptions:
+    get: Withdrawals_getUserRedemptions
+  /users/{userID}/kyc-status:
+    get: Users_getKycByUser
+  /users/{userID}/managed/allocations:
+    get: TradeAllocations_listByAdvisor
+  /users/{userID}/managed/autopilot:
+    get: AutoPilot_listByAdvisor
+  /users/{userID}/managed/bod:
+    get: AdvisorReports_getBeginningOfDayHoldingsByUserId
+  /users/{userID}/managed/funds:
+    get: Funds_listByAdvisor
+  /users/{userID}/managed/orders:
+    get: AdvisorReports_listAllocationsByUserID
+  /users/{userID}/managed/orders/summary:
+    get: AdvisorReports_getUserOrdersSummary
+  /users/{userID}/managed/portfolio:
+    get: Portfolios_listByAdvisor
+  /users/{userID}/recurring-deposits:
+    get: Deposits_getUserRecurring
+  /users/{userID}/subscriptions:
+    get: Subscriptions_listByUser
+  /{documentID}/url:
+    get: PhysicalDocuments_getUrlByDocumentId
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /exchanges:
+    patch:
+      application/json: ExchangesCancelPendingOrderRequest
+    post:
+      application/json: ExchangesCreateExchangeRequest
+  /quotes/depth:
+    post:
+      application/json: DepthOfBookGetDebtDepthRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /accounts/{accountID}:
+    patch:
+      '200':
+        application/json: AccountsUpdateAccountDetailsResponse
+  /accounts/{accountID}/reports/exchange-history:
+    get:
+      '200':
+        application/json: ExchangesGetExchangeHistoryResponse
+  /accounts/{accountID}/summary/exchanges:
+    get:
+      '200':
+        application/json: ExchangesListByAccountResponse
+  /asset-transfers:
+    get:
+      '200':
+        application/json: AssetTransferListTransfersResponse
+  /asset-transfers/acats:
+    post:
+      '400':
+        application/json: AssetTransferCreateAcatsTransferResponse
+  /bars:
+    get:
+      '400':
+        application/json: ChartsGetBarsResponse
+      '500':
+        application/json: ChartsGetBars500Response
+  /exchanges:
+    patch:
+      '200':
+        application/json: ExchangesCancelPendingOrderResponse
+    post:
+      '200':
+        application/json: ExchangesCreateExchangeResponse
+  /exchanges/{exchangeIdentifier}:
+    get:
+      '200':
+        application/json: ExchangesGetDetailsResponse
+  /funding/reconciliations/{reconciliationID}:
+    get:
+      '200':
+        application/json: SettlementsGetCashlessReconciliationResponse
+    patch:
+      '200':
+        application/json: SettlementsUpdateCashlessReconciliationResponse
+  /instruments/{symbolOrInstrumentID}:
+    get:
+      '200':
+        application/json: InstrumentsGetDetailsResponse
+  /orders/options:
+    get:
+      '200':
+        application/json: OrdersGetOptionOrdersResponse
+  /quotes/depth:
+    post:
+      '200':
+        application/json: DepthOfBookGetDebtDepthResponse
+securityParameters:
+  category:
+    query: false
+  compression:
+    query: false
+  date:
+    query: false
+  dateEnd:
+    query: false
+  dateStart:
+    query: false
+  direction:
+    query: false
+  dw-customer-user-id:
+    header: false
+  exchangeOverride:
+    query: false
+  expirationDate:
+    query: false
+  filterBy:
+    query: false
+  from:
+    query: false
+  fromDate:
+    query: false
+  id:
+    query: false
+  instrumentID:
+    query: false
+  isOptionsEnabled:
+    query: false
+  limit:
+    query: false
+  maxStrikePrice:
+    query: false
+  minStrikePrice:
+    query: false
+  noOfStrikes:
+    query: false
+  offset:
+    query: false
+  optionType:
+    query: false
+  options:
+    query: false
+  page:
+    query: false
+  pageNo:
+    query: false
+  pageSize:
+    query: false
+  partnerIBID:
+    query: false
+  partnerID:
+    query: false
+  period:
+    query: false
+  sortOrder:
+    query: false
+  status:
+    query: false
+  symbols:
+    query: false
+  to:
+    query: false
+  toDate:
+    query: false
+  tradingDays:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

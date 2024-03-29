@@ -2299,6 +2299,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/sentenial/open-banking-swagger/master/tpp-swagger.yaml",
   },
+  "drivewealth.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/DriveWealth/dw-openapi/main/dist/InvestingAPI.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
