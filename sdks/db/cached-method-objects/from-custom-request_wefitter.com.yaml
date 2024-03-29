@@ -1,0 +1,2201 @@
+hash: 6ef6f0b14ccbe503c1da8c52ec26afc68b5d56c4269e43774cfcc0e1e1d90f90
+methodObjects:
+  - url: /insights/bio_age
+    method: getBioAgeWeekly
+    httpMethod: get
+    tag: insights
+    typeScriptTag: insights
+    description: Get someones biological age on a weekly basis.
+    parameters:
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+        example: START_DATE
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+        example: END_DATE
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /loyalty/get_recommended_products
+    method: getRecommendedProducts
+    httpMethod: get
+    tag: loyalty
+    typeScriptTag: loyalty
+    description: ''
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: offset
+        schema: integer
+        required: false
+        description: The initial index from which to return the results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /loyalty/get_shoppingcart_link
+    method: getShoppingcartLink
+    httpMethod: get
+    tag: loyalty
+    typeScriptTag: loyalty
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /app/totals
+    method: getTotals
+    httpMethod: get
+    tag: app
+    typeScriptTag: app
+    description: Totals
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge
+    method: list
+    httpMethod: get
+    tag: challenge
+    typeScriptTag: challenge
+    description: List Challenges
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: offset
+        schema: integer
+        required: false
+        description: The initial index from which to return the results.
+      - name: recent
+        schema: integer
+        required: false
+        description: Show challenges that have not ended in the last N weeks
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge
+    method: create
+    httpMethod: post
+    tag: challenge
+    typeScriptTag: challenge
+    description: Create challenge
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+        example: TITLE
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: url
+        schema: string
+        required: false
+        description: ''
+      - name: public_id
+        schema: string
+        required: false
+        description: ''
+      - name: slogan
+        schema: string
+        required: false
+        description: ''
+      - name: start
+        schema: string
+        required: true
+        description: ''
+        example: START
+      - name: end
+        schema: string
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: goal
+        schema: string
+        required: true
+        description: ''
+        example: GOAL
+      - name: goal_value
+        schema: integer
+        required: false
+        description: ''
+      - name: goal_type
+        schema: string
+        required: true
+        description: ''
+        example: GOAL_TYPE
+      - name: visibility
+        schema: string
+        required: true
+        description: ''
+        example: VISIBILITY
+      - name: num_members
+        schema: string
+        required: false
+        description: ''
+      - name: calculation_method
+        schema: string
+        required: true
+        description: ''
+        example: CALCULATION_METHOD
+      - name: goal_progress
+        schema: number
+        required: false
+        description: ''
+      - name: enrollment_method
+        schema: string
+        required: true
+        description: ''
+        example: ENROLLMENT_METHOD
+      - name: default_enrollment_time
+        schema: string
+        required: false
+        description: ''
+      - name: repetition
+        schema: string
+        required: true
+        description: ''
+        example: REPETITION
+      - name: avatar
+        schema: string
+        required: false
+        description: ''
+      - name: data_source
+        schema: string
+        required: false
+        description: ''
+      - name: activity_types
+        schema: array
+        required: false
+        description: ''
+      - name: current_period_start
+        schema: string
+        required: false
+        description: ''
+      - name: current_period_end
+        schema: string
+        required: false
+        description: ''
+      - name: goal_cap
+        schema: boolean
+        required: false
+        description: ''
+      - name: total_calories
+        schema: number
+        required: false
+        description: ''
+      - name: total_distance
+        schema: number
+        required: false
+        description: ''
+      - name: total_steps
+        schema: number
+        required: false
+        description: ''
+      - name: total_points
+        schema: number
+        required: false
+        description: ''
+      - name: total_activity_duration
+        schema: string <iso8601 duration>
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /challenge/{challenge_public_id}/team
+    method: teamStandingsList
+    httpMethod: get
+    tag: challenge
+    typeScriptTag: challenge
+    description: Team leaderboard
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: offset
+        schema: integer
+        required: false
+        description: The initial index from which to return the results.
+      - name: dateRange
+        schema: integer
+        required: false
+        description: Index of the time period use
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{challenge_public_id}/team/{team_public_id}
+    method: teamContributionList
+    httpMethod: get
+    tag: challenge
+    typeScriptTag: challenge
+    description: Team contribution
+    parameters:
+      - name: dateRange
+        schema: integer
+        required: false
+        description: Index of the time period use
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}
+    method: delete
+    httpMethod: delete
+    tag: challenge
+    typeScriptTag: challenge
+    description: Delete challenge
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: ''
+  - url: /challenge/{public_id}
+    method: read
+    httpMethod: get
+    tag: challenge
+    typeScriptTag: challenge
+    description: Get Challenge
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}
+    method: partialEdit
+    httpMethod: patch
+    tag: challenge
+    typeScriptTag: challenge
+    description: Partial edit challenge
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+        example: TITLE
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: url
+        schema: string
+        required: false
+        description: ''
+      - name: public_id
+        schema: string
+        required: false
+        description: ''
+      - name: slogan
+        schema: string
+        required: false
+        description: ''
+      - name: start
+        schema: string
+        required: true
+        description: ''
+        example: START
+      - name: end
+        schema: string
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: goal
+        schema: string
+        required: true
+        description: ''
+        example: GOAL
+      - name: goal_value
+        schema: integer
+        required: false
+        description: ''
+      - name: goal_type
+        schema: string
+        required: true
+        description: ''
+        example: GOAL_TYPE
+      - name: visibility
+        schema: string
+        required: true
+        description: ''
+        example: VISIBILITY
+      - name: num_members
+        schema: string
+        required: false
+        description: ''
+      - name: calculation_method
+        schema: string
+        required: true
+        description: ''
+        example: CALCULATION_METHOD
+      - name: goal_progress
+        schema: number
+        required: false
+        description: ''
+      - name: enrollment_method
+        schema: string
+        required: true
+        description: ''
+        example: ENROLLMENT_METHOD
+      - name: default_enrollment_time
+        schema: string
+        required: false
+        description: ''
+      - name: repetition
+        schema: string
+        required: true
+        description: ''
+        example: REPETITION
+      - name: avatar
+        schema: string
+        required: false
+        description: ''
+      - name: data_source
+        schema: string
+        required: false
+        description: ''
+      - name: activity_types
+        schema: array
+        required: false
+        description: ''
+      - name: current_period_start
+        schema: string
+        required: false
+        description: ''
+      - name: current_period_end
+        schema: string
+        required: false
+        description: ''
+      - name: goal_cap
+        schema: boolean
+        required: false
+        description: ''
+      - name: total_calories
+        schema: number
+        required: false
+        description: ''
+      - name: total_distance
+        schema: number
+        required: false
+        description: ''
+      - name: total_steps
+        schema: number
+        required: false
+        description: ''
+      - name: total_points
+        schema: number
+        required: false
+        description: ''
+      - name: total_activity_duration
+        schema: string <iso8601 duration>
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}
+    method: update
+    httpMethod: put
+    tag: challenge
+    typeScriptTag: challenge
+    description: Edit challenge
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+        example: TITLE
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: url
+        schema: string
+        required: false
+        description: ''
+      - name: public_id
+        schema: string
+        required: false
+        description: ''
+      - name: slogan
+        schema: string
+        required: false
+        description: ''
+      - name: start
+        schema: string
+        required: true
+        description: ''
+        example: START
+      - name: end
+        schema: string
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: goal
+        schema: string
+        required: true
+        description: ''
+        example: GOAL
+      - name: goal_value
+        schema: integer
+        required: false
+        description: ''
+      - name: goal_type
+        schema: string
+        required: true
+        description: ''
+        example: GOAL_TYPE
+      - name: visibility
+        schema: string
+        required: true
+        description: ''
+        example: VISIBILITY
+      - name: num_members
+        schema: string
+        required: false
+        description: ''
+      - name: calculation_method
+        schema: string
+        required: true
+        description: ''
+        example: CALCULATION_METHOD
+      - name: goal_progress
+        schema: number
+        required: false
+        description: ''
+      - name: enrollment_method
+        schema: string
+        required: true
+        description: ''
+        example: ENROLLMENT_METHOD
+      - name: default_enrollment_time
+        schema: string
+        required: false
+        description: ''
+      - name: repetition
+        schema: string
+        required: true
+        description: ''
+        example: REPETITION
+      - name: avatar
+        schema: string
+        required: false
+        description: ''
+      - name: data_source
+        schema: string
+        required: false
+        description: ''
+      - name: activity_types
+        schema: array
+        required: false
+        description: ''
+      - name: current_period_start
+        schema: string
+        required: false
+        description: ''
+      - name: current_period_end
+        schema: string
+        required: false
+        description: ''
+      - name: goal_cap
+        schema: boolean
+        required: false
+        description: ''
+      - name: total_calories
+        schema: number
+        required: false
+        description: ''
+      - name: total_distance
+        schema: number
+        required: false
+        description: ''
+      - name: total_steps
+        schema: number
+        required: false
+        description: ''
+      - name: total_points
+        schema: number
+        required: false
+        description: ''
+      - name: total_activity_duration
+        schema: string <iso8601 duration>
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/deactivate_member
+    method: deactivateMember
+    httpMethod: post
+    tag: challenge
+    typeScriptTag: challenge
+    description: Deactivate member
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: A profile public_id is expected
+        example: PROFILE
+      - name: team
+        schema: string
+        required: false
+        description: A team public_id is expected
+      - name: isActive
+        schema: boolean
+        required: false
+        description: >-
+          Whether profile actively participates in challenge.
+
+
+          While inactive, scores/leaderboard will not be updated but still be
+          visible.
+      - name: profile
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /challenge/{public_id}/deactivate_member
+    method: deactivateMember
+    httpMethod: put
+    tag: challenge
+    typeScriptTag: challenge
+    description: This docstring is used by Django Rest Framework
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/deactivate_members
+    method: deactivateMembers
+    httpMethod: post
+    tag: challenge
+    typeScriptTag: challenge
+    description: Deactivate members
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: A profile public_id is expected
+        example: PROFILE
+      - name: team
+        schema: string
+        required: false
+        description: A team public_id is expected
+      - name: isActive
+        schema: boolean
+        required: false
+        description: >-
+          Whether profile actively participates in challenge.
+
+
+          While inactive, scores/leaderboard will not be updated but still be
+          visible.
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /challenge/{public_id}/deactivate_members
+    method: deactivateMembers
+    httpMethod: put
+    tag: challenge
+    typeScriptTag: challenge
+    description: This docstring is used by Django Rest Framework
+    parameters:
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/leaderboard
+    method: leaderboard
+    httpMethod: get
+    tag: challenge
+    typeScriptTag: challenge
+    description: Leaderboard
+    parameters:
+      - name: dateRange
+        schema: integer
+        required: false
+        description: Index of the time period use
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/leaderboard_history
+    method: getScoresHistory
+    httpMethod: get
+    tag: challenge
+    typeScriptTag: challenge
+    description: Leaderboard history
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/member
+    method: removeMember
+    httpMethod: delete
+    tag: challenge
+    typeScriptTag: challenge
+    description: Remove member
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: A profile public_id is expected
+        example: PROFILE
+    responses:
+      - statusCode: '204'
+        description: ''
+  - url: /challenge/{public_id}/member
+    method: memberCreate
+    httpMethod: post
+    tag: challenge
+    typeScriptTag: challenge
+    description: Add member
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /challenge/{public_id}/member
+    method: memberAdd
+    httpMethod: put
+    tag: challenge
+    typeScriptTag: challenge
+    description: Add member
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/members
+    method: getMembers
+    httpMethod: get
+    tag: challenge
+    typeScriptTag: challenge
+    description: Get members
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: offset
+        schema: integer
+        required: false
+        description: The initial index from which to return the results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/members
+    method: addMembers
+    httpMethod: post
+    tag: challenge
+    typeScriptTag: challenge
+    description: Add members
+    parameters:
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /challenge/{public_id}/members
+    method: addMembers
+    httpMethod: put
+    tag: challenge
+    typeScriptTag: challenge
+    description: Add members
+    parameters:
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/periods
+    method: periods
+    httpMethod: get
+    tag: challenge
+    typeScriptTag: challenge
+    description: Periods
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /challenge/{public_id}/remove_members
+    method: removeMembers
+    httpMethod: post
+    tag: challenge
+    typeScriptTag: challenge
+    description: Remove members
+    parameters:
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: team
+        schema: string
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /connection/{connection_slug}/connect
+    method: disconnectWearable
+    httpMethod: delete
+    tag: connection
+    typeScriptTag: connection
+    description: Disconnect Wearable
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: A profile public_id is expected
+        example: PROFILE
+    responses:
+      - statusCode: '200'
+        description: OK
+  - url: /connection/{connection_slug}/connect
+    method: getOAuthUrl
+    httpMethod: post
+    tag: connection
+    typeScriptTag: connection
+    description: Connect wearable
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /notification/send_to_all
+    method: sendToAllCreate
+    httpMethod: post
+    tag: notification
+    typeScriptTag: notification
+    description: Notification to all profiles in app
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+        example: TITLE
+      - name: body
+        schema: string
+        required: true
+        description: ''
+        example: BODY
+      - name: schedule
+        schema: string
+        required: false
+        description: ''
+      - name: link
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /notification/send_to_profiles
+    method: sendToProfilesCreate
+    httpMethod: post
+    tag: notification
+    typeScriptTag: notification
+    description: Notification to specific profiles
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+        example: TITLE
+      - name: body
+        schema: string
+        required: true
+        description: ''
+        example: BODY
+      - name: schedule
+        schema: string
+        required: false
+        description: ''
+      - name: link
+        schema: string
+        required: false
+        description: ''
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /profile
+    method: list
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: List Profiles
+    parameters:
+      - name: search
+        schema: string
+        required: false
+        description: A search term.
+      - name: ordering
+        schema: string
+        required: false
+        description: Which field to use when ordering the results.
+      - name: limit
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: offset
+        schema: integer
+        required: false
+        description: The initial index from which to return the results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile
+    method: create
+    httpMethod: post
+    tag: profile
+    typeScriptTag: profile
+    description: Create Profile
+    parameters:
+      - name: url
+        schema: string
+        required: false
+        description: ''
+      - name: public_id
+        schema: string
+        required: false
+        description: ''
+      - name: given_name
+        schema: string
+        required: false
+        description: ''
+      - name: family_name
+        schema: string
+        required: false
+        description: ''
+      - name: nickname
+        schema: string
+        required: false
+        description: ''
+      - name: gender
+        schema: string
+        required: false
+        description: ''
+      - name: birthdate
+        schema: string
+        required: false
+        description: ''
+      - name: zoneinfo
+        schema: string
+        required: false
+        description: ''
+      - name: locale
+        schema: string
+        required: false
+        description: ''
+      - name: reference
+        schema: string
+        required: true
+        description: ''
+        example: REFERENCE
+      - name: avatar
+        schema: string
+        required: false
+        description: ''
+      - name: bearer
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /profile/{profile_public_id}/activity_segment
+    method: listActivitySegments
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Activity segment
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/biometric
+    method: listBiometricChanges
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Bio Metric
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/biometric_measurement
+    method: listBiometricChanges
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Biometric Measurement
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+      - name: measurementType
+        schema: string
+        required: true
+        description: ''
+        example: MEASUREMENT_TYPE
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/bmi
+    method: getBmiOverTime
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: BMI
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/daily_detail
+    method: getDailyDetail
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Daily details
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/daily_summary
+    method: getDailySummary
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Daily Summary
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+      - name: deduplicate
+        schema: boolean
+        required: false
+        description: If set to true, duplicates will be aggregated.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/detail_sample
+    method: getDetailSamples
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Detail Sample
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/ecg_recordings
+    method: getEcgRecordings
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Electrocardiograms
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/ecg_recordings/data
+    method: getEcgRecordingsData
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Electrocardiogram data
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/ecg_recordings/pdf
+    method: getEcgPdf
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Electrocardiogram PDF
+    parameters:
+      - name: datetime
+        schema: string
+        required: true
+        description: >-
+          The timestamp when the ECG has been recorded in the format
+          `yyyymmddhhmmss`. e.g. `20210913132513`
+        example: DATETIME
+      - name: source
+        schema: string
+        required: true
+        description: ''
+        example: SOURCE
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/event
+    method: listEvents
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Event
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/event
+    method: eventCreate
+    httpMethod: post
+    tag: profile
+    typeScriptTag: profile
+    description: Create Event
+    parameters:
+      - name: description
+        schema: string
+        description: ''
+      - name: timestamp
+        schema: string
+        description: ''
+      - name: points
+        schema: number
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /profile/{profile_public_id}/heartrate_sample
+    method: getHeartrateSample
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Heart Rate Sample
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+      - name: heartRateDetail
+        schema: boolean
+        required: false
+        description: If set to true it will add heart_rate_samples field
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/heartrate_summary
+    method: getHeartRateSummary
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Heart Rate Summary
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/height
+    method: listHeightChanges
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Height
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/sleep_detail
+    method: getSleepDetail
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Sleep detail
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/sleep_summary
+    method: getSleepSummary
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Sleep Summary
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+      - name: detail
+        schema: boolean
+        required: false
+        description: >-
+          If set to true and only 1 result is returned, it will add a detail
+          field
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/stress_samples
+    method: getStressSamples
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Stress Sample
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/stress_summary
+    method: getStressSummary
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Stress Summary
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/track_sample
+    method: getGpxTrackSamples
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Track Sample
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/weight
+    method: listWeightChanges
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Weight
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{profile_public_id}/workout
+    method: listWorkouts
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Workout
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: The pagination cursor value.
+      - name: pageSize
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: dateStart
+        schema: string
+        required: false
+        description: Lower bound of date or timestamp.
+      - name: dateEnd
+        schema: string
+        required: false
+        description: Upper bound of date or timestamp.
+      - name: deduplicate
+        schema: boolean
+        required: false
+        description: If set to true, duplicates will be aggregated.
+      - name: heartRateDetail
+        schema: boolean
+        required: false
+        description: >-
+          If set to true and page_size is 1, it will add heart_rate_samples
+          field
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{public_id}
+    method: delete
+    httpMethod: delete
+    tag: profile
+    typeScriptTag: profile
+    description: Delete Profile
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: ''
+  - url: /profile/{public_id}
+    method: read
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Get Profile
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{public_id}
+    method: updatePartial
+    httpMethod: patch
+    tag: profile
+    typeScriptTag: profile
+    description: Partial Update
+    parameters:
+      - name: url
+        schema: string
+        description: ''
+      - name: public_id
+        schema: string
+        description: ''
+      - name: given_name
+        schema: string
+        description: ''
+      - name: family_name
+        schema: string
+        description: ''
+      - name: nickname
+        schema: string
+        description: ''
+      - name: gender
+        schema: string
+        description: ''
+      - name: birthdate
+        schema: string
+        description: ''
+      - name: zoneinfo
+        schema: string
+        description: ''
+      - name: locale
+        schema: string
+        description: ''
+      - name: total_calories
+        schema: number
+        description: ''
+      - name: total_distance
+        schema: number
+        description: ''
+      - name: total_steps
+        schema: number
+        description: ''
+      - name: total_points
+        schema: number
+        description: ''
+      - name: total_activity_duration
+        schema: string <iso8601 duration>
+        description: ''
+      - name: reference
+        schema: string
+        description: ''
+      - name: teams
+        schema: array
+        description: ''
+      - name: avatar
+        schema: string
+        description: ''
+      - name: created_at
+        schema: string
+        description: ''
+      - name: updated_at
+        schema: string
+        description: ''
+      - name: num_active_challenges
+        schema: string
+        description: ''
+      - name: num_done_challenges
+        schema: string
+        description: ''
+      - name: num_future_challenges
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{public_id}
+    method: update
+    httpMethod: put
+    tag: profile
+    typeScriptTag: profile
+    description: Update profile
+    parameters:
+      - name: url
+        schema: string
+        description: ''
+      - name: public_id
+        schema: string
+        description: ''
+      - name: given_name
+        schema: string
+        description: ''
+      - name: family_name
+        schema: string
+        description: ''
+      - name: nickname
+        schema: string
+        description: ''
+      - name: gender
+        schema: string
+        description: ''
+      - name: birthdate
+        schema: string
+        description: ''
+      - name: zoneinfo
+        schema: string
+        description: ''
+      - name: locale
+        schema: string
+        description: ''
+      - name: total_calories
+        schema: number
+        description: ''
+      - name: total_distance
+        schema: number
+        description: ''
+      - name: total_steps
+        schema: number
+        description: ''
+      - name: total_points
+        schema: number
+        description: ''
+      - name: total_activity_duration
+        schema: string <iso8601 duration>
+        description: ''
+      - name: reference
+        schema: string
+        description: ''
+      - name: teams
+        schema: array
+        description: ''
+      - name: avatar
+        schema: string
+        description: ''
+      - name: created_at
+        schema: string
+        description: ''
+      - name: updated_at
+        schema: string
+        description: ''
+      - name: num_active_challenges
+        schema: string
+        description: ''
+      - name: num_done_challenges
+        schema: string
+        description: ''
+      - name: num_future_challenges
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{public_id}/challenge
+    method: challenge
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Challenge
+    parameters:
+      - name: recent
+        schema: integer
+        required: false
+        description: Show challenges that have not ended in the last N weeks
+      - name: dateStart
+        schema: string
+        required: false
+        description: |-
+          Only return challenges that are active after this time
+
+          Note: this only affects challenges that are not joined.
+
+          Defaults to now
+      - name: dateEnd
+        schema: string
+        required: false
+        description: |-
+          Only return challenges that are active before this time
+
+          Note: this only affects challenges that are not joined.
+
+          Defaults to now
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{public_id}/challenges
+    method: challenges
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: This docstring is used by Django Rest Framework
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /profile/{public_id}/connections
+    method: connections
+    httpMethod: get
+    tag: profile
+    typeScriptTag: profile
+    description: Connections
+    parameters:
+      - name: redirect
+        schema: string
+        required: false
+        description: >-
+          After connecting redirect back to this url.
+
+
+          Note: has to be a valid http url. For deeplinks (to apps) first
+          redirect to your own backend and then deeplink from there.
+
+
+          Note: the user is only redirected on a successfull connection,
+          otherwise an error screen is shown. (see redirect_on_error to change
+          this)
+
+
+          Note: if this parameter is omitted, then user will see a generic
+          success screen.
+      - name: redirectOnError
+        schema: boolean
+        required: false
+        description: >-
+          If enabled, then user will also be redirected to the redirect url if
+          an error occurs
+
+
+          Note: a query parameter 'error' is added to the redirect url. Possible
+          values are access_denied, unknown. New values may be added at anytime
+
+
+          Note: for backwards compatibility the default is false, but this will
+          be changed in the next breaking release
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /team
+    method: list
+    httpMethod: get
+    tag: team
+    typeScriptTag: team
+    description: List Teams
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: offset
+        schema: integer
+        required: false
+        description: The initial index from which to return the results.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /team
+    method: create
+    httpMethod: post
+    tag: team
+    typeScriptTag: team
+    description: Create Team
+    parameters:
+      - name: description
+        schema: string
+        required: true
+        description: ''
+        example: DESCRIPTION
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: public_id
+        schema: string
+        required: false
+        description: ''
+      - name: url
+        schema: string
+        required: false
+        description: ''
+      - name: num_members
+        schema: string
+        required: false
+        description: ''
+      - name: members
+        schema: array
+        required: false
+        description: ''
+      - name: avatar
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /team/{public_id}
+    method: delete
+    httpMethod: delete
+    tag: team
+    typeScriptTag: team
+    description: Deletes a Team
+    parameters: []
+    responses:
+      - statusCode: '204'
+        description: ''
+  - url: /team/{public_id}
+    method: read
+    httpMethod: get
+    tag: team
+    typeScriptTag: team
+    description: Team
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /team/{public_id}
+    method: editTeamPartial
+    httpMethod: patch
+    tag: team
+    typeScriptTag: team
+    description: Partial Edit a Team
+    parameters:
+      - name: description
+        schema: string
+        required: true
+        description: ''
+        example: DESCRIPTION
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: public_id
+        schema: string
+        required: false
+        description: ''
+      - name: url
+        schema: string
+        required: false
+        description: ''
+      - name: num_members
+        schema: string
+        required: false
+        description: ''
+      - name: members
+        schema: array
+        required: false
+        description: ''
+      - name: avatar
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /team/{public_id}
+    method: update
+    httpMethod: put
+    tag: team
+    typeScriptTag: team
+    description: Edit Team
+    parameters:
+      - name: description
+        schema: string
+        required: true
+        description: ''
+        example: DESCRIPTION
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: public_id
+        schema: string
+        required: false
+        description: ''
+      - name: url
+        schema: string
+        required: false
+        description: ''
+      - name: num_members
+        schema: string
+        required: false
+        description: ''
+      - name: members
+        schema: array
+        required: false
+        description: ''
+      - name: avatar
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /team/{public_id}/member
+    method: removeMember
+    httpMethod: delete
+    tag: team
+    typeScriptTag: team
+    description: Remove member
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: A profile public_id is expected
+        example: PROFILE
+    responses:
+      - statusCode: '204'
+        description: ''
+  - url: /team/{public_id}/member
+    method: addMember
+    httpMethod: post
+    tag: team
+    typeScriptTag: team
+    description: Add member
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /team/{public_id}/member
+    method: addMember
+    httpMethod: put
+    tag: team
+    typeScriptTag: team
+    description: Add member
+    parameters:
+      - name: profile
+        schema: string
+        required: true
+        description: ''
+        example: PROFILE
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /team/{public_id}/members
+    method: addMembers
+    httpMethod: post
+    tag: team
+    typeScriptTag: team
+    description: Add members
+    parameters:
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /team/{public_id}/members
+    method: addMembers
+    httpMethod: put
+    tag: team
+    typeScriptTag: team
+    description: Add members
+    parameters:
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /team/{public_id}/remove_members
+    method: removeMembers
+    httpMethod: post
+    tag: team
+    typeScriptTag: team
+    description: Remove members
+    parameters:
+      - name: profiles
+        schema: array
+        required: true
+        description: ''
+      - name: is_active
+        schema: boolean
+        required: false
+        description: ''
+      - name: joined
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /token
+    method: create
+    httpMethod: post
+    tag: token
+    typeScriptTag: token
+    description: Create Token
+    parameters:
+      - name: bearer
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+numberOfSchemas: 81
+apiDescription: This is the WeFitter API

@@ -1,0 +1,264 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /app/totals/:
+    get: App_getTotals
+  /challenge/{challenge_public_id}/team/:
+    get: Challenge_teamStandingsList
+  /challenge/{challenge_public_id}/team/{team_public_id}/:
+    get: Challenge_teamContributionList
+  /challenge/{public_id}/:
+    patch: Challenge_partialEdit
+  /challenge/{public_id}/deactivate_member/:
+    post: Challenge_deactivateMember
+    put: Challenge_deactivateMember
+  /challenge/{public_id}/deactivate_members/:
+    post: Challenge_deactivateMembers
+    put: Challenge_deactivateMembers
+  /challenge/{public_id}/leaderboard_history/:
+    get: Challenge_getScoresHistory
+  /challenge/{public_id}/member/:
+    delete: Challenge_removeMember
+    post: Challenge_memberCreate
+    put: Challenge_memberAdd
+  /challenge/{public_id}/members/:
+    get: Challenge_getMembers
+    post: Challenge_addMembers
+    put: Challenge_addMembers
+  /challenge/{public_id}/remove_members/:
+    post: Challenge_removeMembers
+  /connection/{connection_slug}/connect/:
+    delete: Connection_disconnectWearable
+    post: Connection_getOAuthUrl
+  /insights/bio_age:
+    get: Insights_getBioAgeWeekly
+  /loyalty/get_recommended_products:
+    get: Loyalty_getRecommendedProducts
+  /loyalty/get_shoppingcart_link:
+    get: Loyalty_getShoppingcartLink
+  /notification/send_to_all/:
+    post: Notification_sendToAllCreate
+  /notification/send_to_profiles/:
+    post: Notification_sendToProfilesCreate
+  /profile/{profile_public_id}/activity_segment/:
+    get: Profile_listActivitySegments
+  /profile/{profile_public_id}/biometric/:
+    get: Profile_listBiometricChanges
+  /profile/{profile_public_id}/biometric_measurement/:
+    get: Profile_listBiometricChanges
+  /profile/{profile_public_id}/bmi/:
+    get: Profile_getBmiOverTime
+  /profile/{profile_public_id}/daily_detail/:
+    get: Profile_getDailyDetail
+  /profile/{profile_public_id}/daily_summary/:
+    get: Profile_getDailySummary
+  /profile/{profile_public_id}/detail_sample/:
+    get: Profile_getDetailSamples
+  /profile/{profile_public_id}/ecg_recordings/:
+    get: Profile_getEcgRecordings
+  /profile/{profile_public_id}/ecg_recordings/data/:
+    get: Profile_getEcgRecordingsData
+  /profile/{profile_public_id}/ecg_recordings/pdf/:
+    get: Profile_getEcgPdf
+  /profile/{profile_public_id}/event/:
+    get: Profile_listEvents
+    post: Profile_eventCreate
+  /profile/{profile_public_id}/heartrate_sample/:
+    get: Profile_getHeartrateSample
+  /profile/{profile_public_id}/heartrate_summary/:
+    get: Profile_getHeartRateSummary
+  /profile/{profile_public_id}/height/:
+    get: Profile_listHeightChanges
+  /profile/{profile_public_id}/sleep_detail/:
+    get: Profile_getSleepDetail
+  /profile/{profile_public_id}/sleep_summary/:
+    get: Profile_getSleepSummary
+  /profile/{profile_public_id}/stress_samples/:
+    get: Profile_getStressSamples
+  /profile/{profile_public_id}/stress_summary/:
+    get: Profile_getStressSummary
+  /profile/{profile_public_id}/track_sample/:
+    get: Profile_getGpxTrackSamples
+  /profile/{profile_public_id}/weight/:
+    get: Profile_listWeightChanges
+  /profile/{profile_public_id}/workout/:
+    get: Profile_listWorkouts
+  /profile/{public_id}/:
+    patch: Profile_updatePartial
+  /team/{public_id}/:
+    patch: Team_editTeamPartial
+  /team/{public_id}/member/:
+    delete: Team_removeMember
+    post: Team_addMember
+    put: Team_addMember
+  /team/{public_id}/members/:
+    post: Team_addMembers
+    put: Team_addMembers
+  /team/{public_id}/remove_members/:
+    post: Team_removeMembers
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /app/totals:
+    get:
+      '200':
+        application/json: AppGetTotalsResponse
+  /challenge:
+    get:
+      '200':
+        application/json: ChallengeListResponse
+  /challenge/{challenge_public_id}/team:
+    get:
+      '200':
+        application/json: ChallengeTeamStandingsListResponse
+  /challenge/{public_id}/members:
+    get:
+      '200':
+        application/json: ChallengeGetMembersResponse
+  /insights/bio_age:
+    get:
+      '200':
+        application/json: InsightsGetBioAgeWeeklyResponse
+  /loyalty/get_recommended_products:
+    get:
+      '200':
+        application/json: LoyaltyGetRecommendedProductsResponse
+  /profile:
+    get:
+      '200':
+        application/json: ProfileListResponse
+  /profile/{profile_public_id}/activity_segment:
+    get:
+      '200':
+        application/json: ProfileListActivitySegmentsResponse
+  /profile/{profile_public_id}/biometric:
+    get:
+      '200':
+        application/json: ProfileListBiometricChangesResponse
+  /profile/{profile_public_id}/biometric_measurement:
+    get:
+      '200':
+        application/json: ProfileListBiometricChanges200Response
+  /profile/{profile_public_id}/bmi:
+    get:
+      '200':
+        application/json: ProfileGetBmiOverTimeResponse
+  /profile/{profile_public_id}/daily_detail:
+    get:
+      '200':
+        application/json: ProfileGetDailyDetailResponse
+  /profile/{profile_public_id}/daily_summary:
+    get:
+      '200':
+        application/json: ProfileGetDailySummaryResponse
+  /profile/{profile_public_id}/detail_sample:
+    get:
+      '200':
+        application/json: ProfileGetDetailSamplesResponse
+  /profile/{profile_public_id}/ecg_recordings:
+    get:
+      '200':
+        application/json: ProfileGetEcgRecordingsResponse
+  /profile/{profile_public_id}/ecg_recordings/data:
+    get:
+      '200':
+        application/json: ProfileGetEcgRecordingsDataResponse
+  /profile/{profile_public_id}/event:
+    get:
+      '200':
+        application/json: ProfileListEventsResponse
+  /profile/{profile_public_id}/heartrate_sample:
+    get:
+      '200':
+        application/json: ProfileGetHeartrateSampleResponse
+  /profile/{profile_public_id}/heartrate_summary:
+    get:
+      '200':
+        application/json: ProfileGetHeartRateSummaryResponse
+  /profile/{profile_public_id}/height:
+    get:
+      '200':
+        application/json: ProfileListHeightChangesResponse
+  /profile/{profile_public_id}/sleep_detail:
+    get:
+      '200':
+        application/json: ProfileGetSleepDetailResponse
+  /profile/{profile_public_id}/sleep_summary:
+    get:
+      '200':
+        application/json: ProfileGetSleepSummaryResponse
+  /profile/{profile_public_id}/stress_samples:
+    get:
+      '200':
+        application/json: ProfileGetStressSamplesResponse
+  /profile/{profile_public_id}/stress_summary:
+    get:
+      '200':
+        application/json: ProfileGetStressSummaryResponse
+  /profile/{profile_public_id}/track_sample:
+    get:
+      '200':
+        application/json: ProfileGetGpxTrackSamplesResponse
+  /profile/{profile_public_id}/weight:
+    get:
+      '200':
+        application/json: ProfileListWeightChangesResponse
+  /profile/{profile_public_id}/workout:
+    get:
+      '200':
+        application/json: ProfileListWorkoutsResponse
+  /team:
+    get:
+      '200':
+        application/json: TeamListResponse
+securityParameters:
+  cursor:
+    query: false
+  date_end:
+    query: false
+  date_range:
+    query: false
+  date_start:
+    query: false
+  datetime:
+    query: false
+  deduplicate:
+    query: false
+  detail:
+    query: false
+  end_date:
+    query: false
+  heart_rate_detail:
+    query: false
+  is_active:
+    query: false
+  limit:
+    query: false
+  measurement_type:
+    query: false
+  offset:
+    query: false
+  ordering:
+    query: false
+  page_size:
+    query: false
+  profile:
+    query: false
+  recent:
+    query: false
+  redirect:
+    query: false
+  redirect_on_error:
+    query: false
+  search:
+    query: false
+  source:
+    query: false
+  start_date:
+    query: false
+  team:
+    query: false
+validServerUrls: {}

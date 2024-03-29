@@ -2599,6 +2599,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://app.nanonets.com/swagger",
   },
+  "wefitter.com": {
+    type: "GET",
+    url: "https://api.wefitter.com/api/v1.3/redoc/?format=openapi",
+  },
   "moffin.mx": {
     type: "GET",
     url: "https://app.moffin.mx/api/v1/docs",
