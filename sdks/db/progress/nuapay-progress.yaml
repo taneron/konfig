@@ -1,0 +1,89 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /bankfamilies:
+    get: BankService_viewBankFamilies
+  /bankfamilies/{bankfamilyId}:
+    get: BankService_getBankFamily
+  /banks:
+    get: BankService_getSupportedBanks
+  /payments:
+    get: PispService_listPayments
+    post: PispService_makePayment
+  /payments/callback:
+    post: PispService_forwardPaymentCallback
+  /payments/{paymentId}:
+    get: PispService_getPayment
+    patch: PispService_retryPaymentPatch
+  /payments/{paymentId}/history:
+    get: PispService_getPaymentHistory
+  /payments/{paymentId}/refunds:
+    get: PispService_getPaymentRefunds
+    post: PispService_refundPayment
+  /payments/{paymentId}/refunds/{refundId}:
+    get: PispService_getRefund
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /payments/callback:
+    post:
+      application/json: PispServiceForwardPaymentCallbackRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  Customer-IP-Address:
+    header: false
+  Idempotency-Key:
+    header: false
+  PSU-ID:
+    header: false
+  bankfamilyid:
+    query: false
+  country:
+    query: false
+  currency:
+    query: false
+  debtoraccountrequired:
+    query: false
+  excludebankfamily:
+    query: false
+  fromamount:
+    query: false
+  fromcreationdatetime:
+    query: false
+  fromdatetime:
+    query: false
+  fromrefundamount:
+    query: false
+  pagenumber:
+    query: false
+  pagesize:
+    query: false
+  payeremail:
+    query: false
+  payername:
+    query: false
+  paymentstatus:
+    query: false
+  reference:
+    query: false
+  refundstatus:
+    query: false
+  sepainstantreachability:
+    query: false
+  services:
+    query: false
+  supportedcurrencies:
+    query: false
+  toamount:
+    query: false
+  tocreationdatetime:
+    query: false
+  todatetime:
+    query: false
+  torefundamount:
+    query: false
+  userinterfacepaymentid:
+    query: false
+validServerUrls: {}

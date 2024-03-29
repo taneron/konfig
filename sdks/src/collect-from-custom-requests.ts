@@ -2278,6 +2278,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://hathora.dev/swagger.json",
   },
+  "nuapay.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/sentenial/open-banking-swagger/master/tpp-swagger.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

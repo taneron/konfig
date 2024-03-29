@@ -1,0 +1,46 @@
+processed:
+  securitySchemes:
+    MerchantApiKey:
+      type: http
+      scheme: basic
+    PartnerApiKey:
+      type: http
+      scheme: basic
+    MerchantOAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://api.nuapay.com/oauth/token_key
+          scopes:
+            openbanking_pisp: Payment Initiation Service Provider access
+            openbanking_pisp_read: Read Account and Payment Information  access
+            openbanking_refund: Open Banking Refund access
+            openbanking_refund_read: Read Open Banking Refunds access
+            openbanking_callback: Open Banking callback forwarding access
+    PartnerOAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://api.nuapay.com/oauth/token_key
+          scopes:
+            openbanking_aisp: Account Information Service Provider access
+            openbanking_pisp: Payment Initiation Service Provider access
+            openbanking_pisp_read: Read Account and Payment Information  access
+            openbanking_callback: Open Banking callback forwarding access
+  apiBaseUrl: https://api.nuapay.com/tpp
+  apiVersion: 1.16.1
+  apiDescription: >-
+    Swagger Spec for the Nuapay TPP OpenBanking/PSD2. Provides PISP and Banks
+    Endpoints
+  apiTitle: Nuapay TPP API Specification
+  endpoints: 9
+  sdkMethods: 12
+  schemas: 30
+  parameters: 75
+  contactEmail: api.support@nuapay.com
+  originalCustomRequest:
+    type: GET
+    url: >-
+      https://raw.githubusercontent.com/sentenial/open-banking-swagger/master/tpp-swagger.yaml
+  customRequestSpecFilename: nuapay.com.yaml
+  difficultyScore: 45.75
