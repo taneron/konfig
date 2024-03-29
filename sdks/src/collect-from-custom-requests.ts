@@ -2312,6 +2312,15 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/DriveWealth/dw-openapi/main/dist/InvestingAPI.yaml",
   },
+  "volt.io": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.volt.io/api-documentation/",
+        browser,
+        filename: "openapi2023.07.19.yaml",
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

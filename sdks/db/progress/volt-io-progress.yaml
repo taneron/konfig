@@ -1,0 +1,226 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /dropin:
+    post:
+      '201':
+        application/json: {}
+  /payments/{id}/request-refund:
+    post:
+      '201':
+        application/json: {}
+      '403':
+        application/json: {}
+      '422':
+        application/json: {}
+  /payouts:
+    post:
+      '201':
+        application/json: {}
+      '400':
+        application/json: {}
+      '403':
+        application/json: {}
+      '409':
+        application/json: {}
+      '422':
+        application/json: {}
+  /v2/payments:
+    post:
+      '201':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /banks/{id}:
+    get: BanksAndFinancialInstitutions_getDetails
+  /dropin:
+    post: Payments_initiateEmbeddedCheckout
+  /oauth:
+    post: AuthenticatingWithTheApi_usingOAuth2Password
+  /payments:
+    get: Payments_getList
+  /payments/{id}:
+    get: Payments_getDetails
+  /payments/{id}/refund-details:
+    get: RefundsConnect_checkEligibility
+  /payments/{id}/request-refund:
+    post: RefundsConnect_createRequest
+  /payments/{paymentId}/name-match-score:
+    get: Payments_checkMatchScore
+  /payouts:
+    get: PayoutsConnect_getList
+    post: PayoutsConnect_createRequest
+  /payouts/beneficiaries:
+    get: PayoutsConnect_eligibleBeneficiariesList
+  /payouts/{id}:
+    get: PayoutsConnect_getDetails
+  /reports:
+    get: Reporting_getAvailableReports
+  /reports/auditlog:
+    post: Reporting_createAuditLogReport
+  /reports/connect/{bankAccountId}:
+    post: Reporting_createConnectReport
+  /reports/payments:
+    post: Reporting_createPaymentReport
+  /reports/refund:
+    post: Reporting_createRefundReport
+  /reports/{id}:
+    get: Reporting_getReportDetails
+  /reports/{id}/download:
+    get: Reporting_downloadReportById
+  /v2/payments:
+    post: Payments_submitDetails
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /dropin:
+    post:
+      application/json: PaymentsInitiateEmbeddedCheckoutRequest
+  /oauth:
+    post:
+      application/x-www-form-urlencoded: AuthenticatingWithTheApiUsingOAuth2PasswordRequest
+  /reports/auditlog:
+    post:
+      application/json: ReportingCreateAuditLogReportRequest
+  /reports/connect/{bankAccountId}:
+    post:
+      application/json: ReportingCreateConnectReportRequest
+  /reports/payments:
+    post:
+      application/json: ReportingCreatePaymentReportRequest
+  /reports/refund:
+    post:
+      application/json: ReportingCreateRefundReportRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /dropin:
+    post:
+      '201':
+        application/json: PaymentsInitiateEmbeddedCheckoutResponse
+  /oauth:
+    post:
+      '200':
+        application/json: AuthenticatingWithTheApiUsingOAuth2PasswordResponse
+  /payments:
+    get:
+      '200':
+        application/json: PaymentsGetListResponse
+  /payments/{id}/refund-details:
+    get:
+      '200':
+        application/json: RefundsConnectCheckEligibilityResponse
+  /payments/{id}/request-refund:
+    post:
+      '201':
+        application/json: RefundsConnectCreateRequestResponse
+      '403':
+        application/json: RefundsConnectCreateRequest403Response
+      '422':
+        application/json: RefundsConnectCreateRequest422Response
+  /payments/{paymentId}/name-match-score:
+    get:
+      '200':
+        application/json: PaymentsCheckMatchScoreResponse
+      '403':
+        application/json: PaymentsCheckMatchScore403Response
+  /payouts:
+    post:
+      '201':
+        application/json: PayoutsConnectCreateRequestResponse
+      '400':
+        application/json: PayoutsConnectCreateRequest400Response
+      '403':
+        application/json: PayoutsConnectCreateRequest403Response
+      '409':
+        application/json: PayoutsConnectCreateRequest409Response
+      '422':
+        application/json: PayoutsConnectCreateRequest422Response
+  /payouts/beneficiaries:
+    get:
+      '200':
+        application/json: PayoutsConnectEligibleBeneficiariesListResponse
+  /payouts/{id}:
+    get:
+      '200':
+        application/json: PayoutsConnectGetDetailsResponse
+  /reports:
+    get:
+      '200':
+        application/json: ReportingGetAvailableReportsResponse
+      '400':
+        application/json: ReportingGetAvailableReports400Response
+  /reports/auditlog:
+    post:
+      '400':
+        application/json: ReportingCreateAuditLogReportResponse
+      '429':
+        application/json: ReportingCreateAuditLogReport429Response
+  /reports/connect/{bankAccountId}:
+    post:
+      '400':
+        application/json: ReportingCreateConnectReportResponse
+      '429':
+        application/json: ReportingCreateConnectReport429Response
+  /reports/payments:
+    post:
+      '400':
+        application/json: ReportingCreatePaymentReportResponse
+      '429':
+        application/json: ReportingCreatePaymentReport429Response
+  /reports/refund:
+    post:
+      '400':
+        application/json: ReportingCreateRefundReportResponse
+      '429':
+        application/json: ReportingCreateRefundReport429Response
+  /reports/{id}:
+    get:
+      '400':
+        application/json: ReportingGetReportDetailsResponse
+      '404':
+        application/json: ReportingGetReportDetails404Response
+  /reports/{id}/download:
+    get:
+      '200':
+        text/csv: ReportingDownloadReportByIdResponse
+      '400':
+        application/json: ReportingDownloadReportById400Response
+      '404':
+        application/json: ReportingDownloadReportById404Response
+  /v2/payments:
+    post:
+      '201':
+        application/json: PaymentsSubmitDetailsResponse
+securityParameters:
+  accountNumber:
+    query: false
+  allow_initials:
+    query: false
+  amount:
+    query: false
+  bank:
+    query: false
+  currency:
+    query: false
+  customerId:
+    query: false
+  iban:
+    query: false
+  id:
+    query: false
+  idempotency-key:
+    header: false
+  limit:
+    query: false
+  name:
+    query: false
+  page:
+    query: false
+  status:
+    query: false
+  type:
+    query: false
+  uniqueReference:
+    query: false
+validServerUrls: {}

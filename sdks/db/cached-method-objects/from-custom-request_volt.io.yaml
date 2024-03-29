@@ -1,0 +1,695 @@
+hash: fb2c559d4fe9ad2fc9899ae9a0c5893b1093b90556c232bf534d0b2a17cda652
+methodObjects:
+  - url: /oauth
+    method: usingOAuth2Password
+    httpMethod: post
+    tag: Authenticating with the API
+    typeScriptTag: authenticatingWithTheApi
+    description: oAuth2 password authentication
+    parameters:
+      - name: grant_type
+        schema: string
+        required: true
+        description: ''
+        example: password
+      - name: client_id
+        schema: string
+        required: true
+        description: ''
+        example: 847485d4-9208-44b4-b351-5b175da5a4fe
+      - name: client_secret
+        schema: string
+        required: true
+        description: ''
+        example: 58f0ea67-3fa0-4575-9a73-1ea6fb61c4df
+      - name: username
+        schema: string
+        required: true
+        description: ''
+        example: test2892548542@volt.io
+      - name: password
+        schema: string
+        required: true
+        description: ''
+        example: 1@D834uvtSzM*kW!EGX$#7&%188423
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+  - url: /banks/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Banks and financial institutions
+    typeScriptTag: banksAndFinancialInstitutions
+    description: Bank details
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: 662384a0-9734-4556-a8bd-3f1e774e2a3c
+    responses:
+      - statusCode: '200'
+        description: Bank or financial institution
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v2/payments
+    method: submitDetails
+    httpMethod: post
+    tag: Payments
+    typeScriptTag: payments
+    description: New payment request
+    parameters:
+      - name: currencyCode
+        schema: string
+        required: true
+        description: ''
+        example: GBP
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+        example: 12345
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: OTHER
+      - name: uniqueReference
+        schema: string
+        required: false
+        description: ''
+        example: sale123456
+      - name: merchantInternalReference
+        schema: string
+        required: false
+        description: ''
+        example: 1d73dd8a-4aef-4c83-80aa-f06c4f615a75
+      - name: shopper
+        schema: object
+        required: true
+        description: ''
+      - name: bank
+        schema: string
+        required: false
+        description: ''
+        example: 662384a0-9734-4556-a8bd-3f1e774e2a3c
+      - name: callback
+        schema: string
+        required: false
+        description: ''
+        example: order_id=662384a0&sample=parameter
+      - name: notificationUrl
+        schema: string
+        required: false
+        description: ''
+        example: https://client.app.example/notify
+      - name: paymentSuccessUrl
+        schema: string
+        required: false
+        description: ''
+        example: https://example.com/redirect/success
+      - name: paymentFailureUrl
+        schema: string
+        required: false
+        description: ''
+        example: https://example.com/redirect/failure
+      - name: paymentPendingUrl
+        schema: string
+        required: false
+        description: ''
+        example: https://example.com/redirect/pending
+      - name: paymentCancelUrl
+        schema: string
+        required: false
+        description: ''
+        example: https://example.com/redirect/cancel
+      - name: checkoutCountries
+        schema: array
+        required: false
+        description: ''
+        example:
+          - PL
+          - DE
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /dropin
+    method: initiateEmbeddedCheckout
+    httpMethod: post
+    tag: Payments
+    typeScriptTag: payments
+    description: New Embedded checkout
+    parameters: []
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /payments
+    method: getList
+    httpMethod: get
+    tag: Payments
+    typeScriptTag: payments
+    description: List payments
+    parameters:
+      - name: id
+        schema: string
+        required: false
+        description: UUID of the Payment
+        example: 662384a0-9734-4556-a8bd-3f1e774e2a3c
+      - name: bank
+        schema: string
+        required: false
+        description: UUID of the Bank
+        example: 662384a0-9734-4556-a8bd-3f1e774e2a3c
+      - name: currency
+        schema: string
+        required: false
+        description: >-
+          3-letter currency code - See [ISO 4217 - Currency
+          codes](https://www.iso.org/iso-4217-currency-codes.html)
+        example: EUR
+      - name: amount
+        schema: integer
+        description: The amount of the transaction in 1/100 units (pence, cents etc)
+        example: 12345
+      - name: type
+        schema: string
+        description: The transaction type (these are predefined)
+        example: OTHER
+      - name: uniqueReference
+        schema: string
+        description: Unique reference for the payment
+        example: sale123456
+      - name: status
+        schema: string
+        description: The current status of the payment
+        example: REQUESTED
+      - name: page
+        schema: integer
+        required: false
+        description: >
+          You can request additional pages of information by appending the page
+          parameter to your GET request. Pages start numbering at 1 and are in
+          blocks of 50 records, so to call records 51-100, append **page**=2 to
+          your request. If you omit the page parameter, we will return you the
+          information on page 1.
+        default: 1
+      - name: limit
+        schema: integer
+        required: false
+        description: >
+          If you want to return more than the default number of records per
+          page, append the parameter items to your GET request. To get the first
+          100 records, append **limit**=100 to your request. To get the next 100
+          records, append **page**=2&**limit**=100. If you omit the items
+          parameter, we will return 50 records per page.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /payments/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Payments
+    typeScriptTag: payments
+    description: Payment details
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ID of the payment
+        example: 93b85f3c-76eb-4316-b1ae-f3370ddc59bc
+    responses:
+      - statusCode: '200'
+        description: Payments - money flowing from a consumer to a merchant.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /payouts/beneficiaries
+    method: eligibleBeneficiariesList
+    httpMethod: get
+    tag: Payouts (https://docs.volt.io/api-documentation/
+    typeScriptTag: payoutsHttps:DocsVoltIoApiDocumentation
+    description: Eligible beneficiaries list
+    parameters:
+      - name: name
+        schema: string
+        description: Name of the beneficiary you'd like to send a payout to
+      - name: accountNumber
+        schema: string
+        description: >-
+          Domestic account number for the beneficiary you'd like to send a
+          payout to
+      - name: iban
+        schema: string
+        description: iban for the beneficiary you'd like to send a payout to
+      - name: page
+        schema: integer
+        required: false
+        description: >
+          You can request additional pages of information by appending the page
+          parameter to your GET request. Pages start numbering at 1 and are in
+          blocks of 50 records, so to call records 51-100, append **page**=2 to
+          your request. If you omit the page parameter, we will return you the
+          information on page 1.
+        default: 1
+      - name: limit
+        schema: integer
+        required: false
+        description: >
+          If you want to return more than the default number of records per
+          page, append the parameter items to your GET request. To get the first
+          100 records, append **limit**=100 to your request. To get the next 100
+          records, append **page**=2&**limit**=100. If you omit the items
+          parameter, we will return 50 records per page.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /payouts
+    method: getList
+    httpMethod: get
+    tag: Payouts (https://docs.volt.io/api-documentation/
+    typeScriptTag: payoutsHttps:DocsVoltIoApiDocumentation
+    description: Payout list
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: >
+          You can request additional pages of information by appending the page
+          parameter to your GET request. Pages start numbering at 1 and are in
+          blocks of 50 records, so to call records 51-100, append **page**=2 to
+          your request. If you omit the page parameter, we will return you the
+          information on page 1.
+        default: 1
+      - name: limit
+        schema: integer
+        required: false
+        description: >
+          If you want to return more than the default number of records per
+          page, append the parameter items to your GET request. To get the first
+          100 records, append **limit**=100 to your request. To get the next 100
+          records, append **page**=2&**limit**=100. If you omit the items
+          parameter, we will return 50 records per page.
+        default: 50
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /payouts
+    method: createRequest
+    httpMethod: post
+    tag: Payouts (https://docs.volt.io/api-documentation/
+    typeScriptTag: payoutsHttps:DocsVoltIoApiDocumentation
+    description: New payout request
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        description: Recommended to avoid duplicate payout requests
+      - name: amount
+        schema: integer
+        description: ''
+        example: 12345
+      - name: currency
+        schema: string
+        description: ''
+        example: EUR
+      - name: paymentTitle
+        schema: string
+        description: ''
+        example: Test Payout
+      - name: beneficiary
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /payouts/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Payouts (https://docs.volt.io/api-documentation/
+    typeScriptTag: payoutsHttps:DocsVoltIoApiDocumentation
+    description: Payout details
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ID of the payout
+        example: efffed42-40f7-4bd2-840d-908aae9a33ad
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /payments/{id}/refund-details
+    method: checkEligibility
+    httpMethod: get
+    tag: Refunds (https://docs.volt.io/api-documentation/
+    typeScriptTag: refundsHttps:DocsVoltIoApiDocumentation
+    description: Check refund eligibility
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ID of the refund
+        example: 93b85f3c-76eb-4316-b1ae-f3370ddc59bc
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /payments/{id}/request-refund
+    method: createRequest
+    httpMethod: post
+    tag: Refunds (https://docs.volt.io/api-documentation/
+    typeScriptTag: refundsHttps:DocsVoltIoApiDocumentation
+    description: New refund request
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        description: Optional - but recommended - to avoid duplicate refund requests
+      - name: id
+        schema: string
+        required: true
+        description: ID of the payment
+        example: 93b85f3c-76eb-4316-b1ae-f3370ddc59bc
+      - name: amount
+        schema: integer
+        description: ''
+        example: 12345
+      - name: externalReference
+        schema: string
+        description: ''
+        example: MyRefundReference
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /reports/payments
+    method: createPaymentReport
+    httpMethod: post
+    tag: Reporting
+    typeScriptTag: reporting
+    description: Create payment report
+    parameters:
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+        example: STARTDATE
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+        example: ENDDATE
+      - name: customerId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '422'
+        description: Standard Volt validation error
+      - statusCode: '429'
+        description: ''
+  - url: /reports/connect/{bankAccountId}
+    method: createConnectReport
+    httpMethod: post
+    tag: Reporting
+    typeScriptTag: reporting
+    description: Create Connect report
+    parameters:
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+        example: STARTDATE
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+        example: ENDDATE
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '422'
+        description: Standard Volt validation error
+      - statusCode: '429'
+        description: ''
+  - url: /reports/refund
+    method: createRefundReport
+    httpMethod: post
+    tag: Reporting
+    typeScriptTag: reporting
+    description: Create Refund report
+    parameters:
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+        example: STARTDATE
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+        example: ENDDATE
+      - name: customerId
+        schema: string
+        required: false
+        description: ''
+      - name: accountId
+        schema: string
+        required: false
+        description: ''
+      - name: includeEventFees
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '422'
+        description: Standard Volt validation error
+      - statusCode: '429'
+        description: ''
+  - url: /reports/auditlog
+    method: createAuditLogReport
+    httpMethod: post
+    tag: Reporting
+    typeScriptTag: reporting
+    description: Create Audit Log report
+    parameters:
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+        example: STARTDATE
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+        example: ENDDATE
+      - name: customerId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '422'
+        description: Standard Volt validation error
+      - statusCode: '429'
+        description: ''
+  - url: /reports
+    method: getAvailableReports
+    httpMethod: get
+    tag: Reporting
+    typeScriptTag: reporting
+    description: Get available reports
+    parameters:
+      - name: customerId
+        schema: string
+        description: The ID of a specific merchant within your customer hierarchy
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '422'
+        description: Standard Volt validation error
+  - url: /reports/{id}
+    method: getReportDetails
+    httpMethod: get
+    tag: Reporting
+    typeScriptTag: reporting
+    description: Get report by ID
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /reports/{id}/download
+    method: downloadReportById
+    httpMethod: get
+    tag: Reporting
+    typeScriptTag: reporting
+    description: Download a report
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /payments/{paymentId}/name-match-score
+    method: checkMatchScore
+    httpMethod: get
+    tag: Payments
+    typeScriptTag: payments
+    description: Payment Match Score
+    parameters:
+      - name: allowInitials
+        schema: boolean
+        description: >-
+          default: true - if set to false, receiving an account holder name that
+          contains an initial instead of a first name will significantly impact
+          the match score.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: >-
+          **Not found** - The resource that you are requesting cannot be found.
+          The response may contain further information.
+      - statusCode: '409'
+        description: >-
+          **Conflict** - Name match score is only available for payments in the
+          received status.
+numberOfSchemas: 68
+apiDescription: >
+  Join the real-time revolution! Give your customers a faster, easier and safer
+  way to pay. Volt has developed a REST API for merchants, allowing you to offer
+  the option to use Open Banking payments on your online checkout.
+
+
+
+  ## NEW : API idempotency 
+
+
+  We have introduced support for idempotency on the POST endpoints in the Volt
+  Connect endpoints of the API.  The idea of idempotency is to avoid unwanted
+  duplication should a request to our API fail and need to be retried. 
+
+
+  Using a unique idempotency key for each POST request, it is possible to safely
+  retry the same call multiple times with the guarantee that it will only be
+  actioned once.
+
+
+  ### Endpoints supporting idempotency
+
+  If an endpoint supports idempotent processing, we'll indicate this in the
+  header documentation for that endpoint.
+
+
+  ### Using an idempotency key
+
+
+  Using the idempotency key is optional.  If you would like to use it to help
+  prevent duplicates in your POST requests, simply include the header
+  ```idempotency-key: <key>``` - where  ```<key>``` is a unique identifier for
+  the message.  We recommend using a **UUID** for the key, however you may use
+  any other unique identifier you choose. 
+
+
+  ### Retries
+
+  If the request times out or you don't receive a response for any other reason,
+  you may safely retry it using the same payload and headers.  Use the same key
+  for the retried attempt. 
+
+
+  ### Preventing duplicates 
+
+  If we have already processed the request and you send a request using the same
+  idempotency key, it will fail with an error, returning an HTTP code of
+  ```409``` Conflict. 
+
+
+  ### Exponential backoff for retries
+
+  You should adopt an exponential backoff strategy when retrying requests using
+  the same idempotency key. For example, retry 1 second later then, if it fails
+  again, 2 seconds later, 4 seconds later etc.
