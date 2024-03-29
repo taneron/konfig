@@ -2338,6 +2338,19 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://api.marketdata.app/schema/",
     apiBaseUrl: "https://api.marketdata.app/",
   },
+  "rated.network": {
+    type: "GET",
+    url: "https://api.rated.network/openapi.json",
+    apiBaseUrl: "https://api.rated.network",
+  },
+  "realcube.com": {
+    type: "GET",
+    url: "https://api.realcube.com/api/v1/docs.json",
+  },
+  "packetfabric.com": {
+    type: "GET",
+    url: "https://api.packetfabric.com/openapi/specification/swagger.yaml",
+  },
   "melod.ie": {
     type: "GET",
     url: "https://api.melod.ie/openapi.yml",

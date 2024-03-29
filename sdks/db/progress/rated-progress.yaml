@@ -1,0 +1,560 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/eth/entities:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/entities/summaries:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/entities/{entity_id}:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/entities/{entity_id}/attestations:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/entities/{entity_id}/effectiveness:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/entities/{entity_id}/penalties:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/entities/{entity_id}/proposals:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/entities/{entity_id}/rewards:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/entities/{entity_id}/summaries:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/sets/{set_id}/attestations:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/sets/{set_id}/effectiveness:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/sets/{set_id}/penalties:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/sets/{set_id}/proposals:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/sets/{set_id}/rewards:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/attestations:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/effectiveness:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/proposals:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/{validator_index_or_pubkey}:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/{validator_index_or_pubkey}/attestations:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/{validator_index_or_pubkey}/effectiveness:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/{validator_index_or_pubkey}/penalties:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/{validator_index_or_pubkey}/proposals:
+    get:
+      '200':
+        application/json: {}
+  /v1/eth/validators/{validator_index_or_pubkey}/rewards:
+    get:
+      '200':
+        application/json: {}
+  /v1/tags:
+    get:
+      '200':
+        application/json: {}
+  /v1/tags/{id}/validators:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /v0/eth/blocks:
+    get: Blocks_listGet
+  /v0/eth/blocks/{consensus_slot}:
+    get: Blocks_bySlotGet
+  /v0/eth/network/capacity:
+    get: Network_getChurnCapacity
+  /v0/eth/network/capacity/pool:
+    get: Network_getChurnCapacityPool
+  /v0/eth/network/dailyRewards:
+    get: Network_getDailyRewards
+  /v0/eth/network/dailyRewards/{date}:
+    get: Network_dailyRewardsByDayGet
+  /v0/eth/network/overview:
+    get: Network_getOverview
+  /v0/eth/network/stats:
+    get: Network_getStats
+  /v0/eth/operators:
+    get: Operators_getSummaries
+  /v0/eth/operators/percentiles:
+    get: Operators_getPercentiles
+  /v0/eth/operators/{operator_id}:
+    get: Operators_getOperatorById
+  /v0/eth/operators/{operator_id}/apr:
+    get: Operators_getApr
+  /v0/eth/operators/{operator_id}/effectiveness:
+    get: Operators_getEffectiveness
+  /v0/eth/operators/{operator_id}/relayers:
+    get: Operators_getRelayerStats
+  /v0/eth/operators/{operator_id}/stakeMovement:
+    get: Operators_getStakeMovement
+  /v0/eth/operators/{operator_id}/summary:
+    get: Operators_getSummary
+  /v0/eth/p2p/geographical:
+    get: P2PBeta_getGeographicalDistribution
+  /v0/eth/p2p/hostingProvider:
+    get: P2PBeta_getP2pHostingProviderDistribution
+  /v0/eth/slashings:
+    get: Slashings_getAll
+  /v0/eth/slashings/cohortAnalysis:
+    get: Slashings_getCohortAnalysis
+  /v0/eth/slashings/leaderboard:
+    get: Slashings_getLeaderboard
+  /v0/eth/slashings/overview:
+    get: Slashings_overviewGet
+  /v0/eth/slashings/timeseries:
+    get: Slashings_getTimeSeries
+  /v0/eth/slashings/{validator_index_or_pubkey}:
+    get: Slashings_penaltyGet
+  /v0/eth/validators:
+    get: Validators_listGet
+  /v0/eth/validators/effectiveness:
+    get: Validators_getEffectivenessAggregation
+  /v0/eth/validators/{validator_index_or_pubkey}:
+    get: Validators_getMetadata
+  /v0/eth/validators/{validator_index_or_pubkey}/apr:
+    get: Validators_getApr
+  /v0/eth/validators/{validator_index_or_pubkey}/effectiveness:
+    get: Validators_getEffectivenessAggregation
+  /v0/eth/withdrawals/predicted/operators/{operator_id}:
+    get: Withdrawals_predictedOperatorsGet
+  /v0/eth/withdrawals/predicted/slot/{withdrawal_slot}:
+    get: Withdrawals_getPredictedBySlot
+  /v0/polygon/delegators:
+    get: PolygonDelegators_getSummaries
+  /v0/polygon/delegators/{delegator_address}/rewards:
+    get: PolygonDelegators_getRewards
+  /v0/polygon/delegators/{delegator_address}/summary:
+    get: PolygonDelegators_getSummary
+  /v0/polygon/network/overview:
+    get: PolygonNetwork_getOverview
+  /v0/polygon/validators:
+    get: PolygonValidators_listGet
+  /v0/polygon/validators/{validator_id}:
+    get: PolygonValidators_getMetadata
+  /v0/polygon/validators/{validator_id}/effectiveness:
+    get: PolygonValidators_getEffectiveness
+  /v0/polygon/validators/{validator_id}/summary:
+    get: PolygonValidators_getSummary
+  /v0/pricingPlans:
+    get: Pricing_getPlans
+  /v0/selfReports/validators:
+    post: SelfReports_createReportValidators
+  /v0/solana/network/overview:
+    get: SolanaNetwork_getOverview
+  /v0/solana/network/validatorDistributions:
+    get: SolanaNetwork_validatorDistributionsGet
+  /v0/solana/validators:
+    get: SolanaValidators_getSummaries
+  /v0/solana/validators/{validator_id}:
+    get: SolanaValidators_metadataGet
+  /v0/solana/validators/{validator_id}/performance:
+    get: SolanaValidators_getPerformance
+  /v0/solana/validators/{validator_id}/performance/latency:
+    get: SolanaValidators_getValidatorLatency
+  /v0/solana/validators/{validator_id}/rewards:
+    get: SolanaValidators_getValidatorRewards
+  /v0/solana/validators/{validator_id}/summary:
+    get: SolanaValidators_getSummaryById
+  /v1/eth/entities:
+    get: Entity_listGet
+  /v1/eth/entities/summaries:
+    get: Entity_getSummaries
+  /v1/eth/entities/{entity_id}:
+    get: Entity_getById
+  /v1/eth/entities/{entity_id}/attestations:
+    get: Entity_getAttestations
+  /v1/eth/entities/{entity_id}/effectiveness:
+    get: Entity_getEffectiveness
+  /v1/eth/entities/{entity_id}/penalties:
+    get: Entity_getPenalties
+  /v1/eth/entities/{entity_id}/proposals:
+    get: Entity_getProposals
+  /v1/eth/entities/{entity_id}/rewards:
+    get: Entity_getRewards
+  /v1/eth/entities/{entity_id}/summaries:
+    get: Entity_getSummaries
+  /v1/eth/sets/{set_id}/attestations:
+    get: Attestation_getAttestations
+  /v1/eth/sets/{set_id}/effectiveness:
+    get: Effectiveness_getSetEffectiveness
+  /v1/eth/sets/{set_id}/penalties:
+    get: Penalty_privateSetPenaltiesGet
+  /v1/eth/sets/{set_id}/proposals:
+    get: Proposal_listGet
+  /v1/eth/sets/{set_id}/rewards:
+    get: Reward_privateSetRewardsGet
+  /v1/eth/validators:
+    get: Validators_getAll
+  /v1/eth/validators/attestations:
+    get: Validators_getAttestations
+  /v1/eth/validators/effectiveness:
+    get: Validators_getEffectiveness
+  /v1/eth/validators/proposals:
+    get: Validators_getProposals
+  /v1/eth/validators/{validator_index_or_pubkey}:
+    get: Validators_getValidator
+  /v1/eth/validators/{validator_index_or_pubkey}/attestations:
+    get: Validators_getAttestations
+  /v1/eth/validators/{validator_index_or_pubkey}/effectiveness:
+    get: Validators_getEffectiveness
+  /v1/eth/validators/{validator_index_or_pubkey}/penalties:
+    get: Validators_getPenalties
+  /v1/eth/validators/{validator_index_or_pubkey}/proposals:
+    get: Validators_getProposalsByValidatorIndexOrPubkey
+  /v1/eth/validators/{validator_index_or_pubkey}/rewards:
+    get: Validators_getRewards
+  /v1/tags:
+    get: Tags_getAll
+    post: Tags_createTag
+  /v1/tags/{id}:
+    get: Tags_getById
+    patch: Tags_updateById
+  /v1/tags/{id}/validators:
+    get: Validators_getTag
+    post: Validators_add
+  /v1/tags/{id}/validators/{pubkey}:
+    delete: Validators_removeValidator
+operationTags:
+  /v1/eth/entities:
+    get: Entity
+  /v1/eth/entities/summaries:
+    get: Entity
+  /v1/eth/entities/{entity_id}:
+    get: Entity
+  /v1/eth/entities/{entity_id}/attestations:
+    get: Entity
+  /v1/eth/entities/{entity_id}/effectiveness:
+    get: Entity
+  /v1/eth/entities/{entity_id}/penalties:
+    get: Entity
+  /v1/eth/entities/{entity_id}/proposals:
+    get: Entity
+  /v1/eth/entities/{entity_id}/rewards:
+    get: Entity
+  /v1/eth/entities/{entity_id}/summaries:
+    get: Entity
+  /v1/eth/sets/{set_id}/attestations:
+    get: Attestation
+  /v1/eth/sets/{set_id}/effectiveness:
+    get: Effectiveness
+  /v1/eth/sets/{set_id}/penalties:
+    get: Penalty
+  /v1/eth/sets/{set_id}/proposals:
+    get: Proposal
+  /v1/eth/sets/{set_id}/rewards:
+    get: Reward
+  /v1/eth/validators:
+    get: Validators
+  /v1/eth/validators/attestations:
+    get: Validators
+  /v1/eth/validators/effectiveness:
+    get: Validators
+  /v1/eth/validators/proposals:
+    get: Validators
+  /v1/eth/validators/{validator_index_or_pubkey}:
+    get: Validators
+  /v1/eth/validators/{validator_index_or_pubkey}/attestations:
+    get: Validators
+  /v1/eth/validators/{validator_index_or_pubkey}/effectiveness:
+    get: Validators
+  /v1/eth/validators/{validator_index_or_pubkey}/penalties:
+    get: Validators
+  /v1/eth/validators/{validator_index_or_pubkey}/proposals:
+    get: Validators
+  /v1/eth/validators/{validator_index_or_pubkey}/rewards:
+    get: Validators
+  /v1/tags:
+    get: Tags
+  /v1/tags/{id}:
+    get: Tags
+    patch: Tags
+  /v1/tags/{id}/validators:
+    get: Validators
+    post: Validators
+  /v1/tags/{id}/validators/{pubkey}:
+    delete: Validators
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v0/eth/network/capacity:
+    get:
+      '200':
+        application/json: NetworkGetChurnCapacityResponse
+  /v0/eth/network/capacity/pool:
+    get:
+      '200':
+        application/json: NetworkGetChurnCapacityPoolResponse
+  /v0/eth/network/overview:
+    get:
+      '200':
+        application/json: NetworkGetOverviewResponse
+  /v0/eth/network/stats:
+    get:
+      '200':
+        application/json: NetworkGetStatsResponse
+  /v0/eth/operators/percentiles:
+    get:
+      '200':
+        application/json: OperatorsGetPercentilesResponse
+  /v0/eth/operators/{operator_id}/relayers:
+    get:
+      '200':
+        application/json: OperatorsGetRelayerStatsResponse
+  /v0/eth/operators/{operator_id}/stakeMovement:
+    get:
+      '200':
+        application/json: OperatorsGetStakeMovementResponse
+  /v0/eth/p2p/geographical:
+    get:
+      '200':
+        application/json: P2PBetaGetGeographicalDistributionResponse
+  /v0/eth/slashings/cohortAnalysis:
+    get:
+      '200':
+        application/json: SlashingsGetCohortAnalysisResponse
+  /v0/eth/slashings/overview:
+    get:
+      '200':
+        application/json: SlashingsOverviewGetResponse
+  /v0/eth/slashings/timeseries:
+    get:
+      '200':
+        application/json: SlashingsGetTimeSeriesResponse
+  /v0/eth/withdrawals/predicted/slot/{withdrawal_slot}:
+    get:
+      '200':
+        application/json: WithdrawalsGetPredictedBySlotResponse
+  /v0/polygon/network/overview:
+    get:
+      '200':
+        application/json: PolygonNetworkGetOverviewResponse
+  /v0/pricingPlans:
+    get:
+      '200':
+        application/json: PricingGetPlansResponse
+  /v0/solana/network/overview:
+    get:
+      '200':
+        application/json: SolanaNetworkGetOverviewResponse
+  /v1/eth/entities:
+    get:
+      '200':
+        application/json: EntityListGetResponse
+  /v1/eth/entities/summaries:
+    get:
+      '200':
+        application/json: EntityGetSummariesResponse
+  /v1/eth/entities/{entity_id}:
+    get:
+      '200':
+        application/json: EntityGetByIdResponse
+  /v1/eth/entities/{entity_id}/attestations:
+    get:
+      '200':
+        application/json: EntityGetAttestationsResponse
+  /v1/eth/entities/{entity_id}/effectiveness:
+    get:
+      '200':
+        application/json: EntityGetEffectivenessResponse
+  /v1/eth/entities/{entity_id}/penalties:
+    get:
+      '200':
+        application/json: EntityGetPenaltiesResponse
+  /v1/eth/entities/{entity_id}/proposals:
+    get:
+      '200':
+        application/json: EntityGetProposalsResponse
+  /v1/eth/entities/{entity_id}/rewards:
+    get:
+      '200':
+        application/json: EntityGetRewardsResponse
+  /v1/eth/entities/{entity_id}/summaries:
+    get:
+      '200':
+        application/json: EntityGetSummaries200Response
+  /v1/eth/sets/{set_id}/attestations:
+    get:
+      '200':
+        application/json: AttestationGetAttestationsResponse
+  /v1/eth/sets/{set_id}/effectiveness:
+    get:
+      '200':
+        application/json: EffectivenessGetSetEffectivenessResponse
+  /v1/eth/sets/{set_id}/penalties:
+    get:
+      '200':
+        application/json: PenaltyPrivateSetPenaltiesGetResponse
+  /v1/eth/sets/{set_id}/proposals:
+    get:
+      '200':
+        application/json: ProposalListGetResponse
+  /v1/eth/sets/{set_id}/rewards:
+    get:
+      '200':
+        application/json: RewardPrivateSetRewardsGetResponse
+  /v1/eth/validators:
+    get:
+      '200':
+        application/json: ValidatorsGetAllResponse
+  /v1/eth/validators/attestations:
+    get:
+      '200':
+        application/json: ValidatorsGetAttestationsResponse
+  /v1/eth/validators/effectiveness:
+    get:
+      '200':
+        application/json: ValidatorsGetEffectivenessResponse
+  /v1/eth/validators/proposals:
+    get:
+      '200':
+        application/json: ValidatorsGetProposalsResponse
+  /v1/eth/validators/{validator_index_or_pubkey}:
+    get:
+      '200':
+        application/json: ValidatorsGetValidatorResponse
+  /v1/eth/validators/{validator_index_or_pubkey}/attestations:
+    get:
+      '200':
+        application/json: ValidatorsGetAttestations200Response
+  /v1/eth/validators/{validator_index_or_pubkey}/effectiveness:
+    get:
+      '200':
+        application/json: ValidatorsGetEffectiveness200Response
+  /v1/eth/validators/{validator_index_or_pubkey}/penalties:
+    get:
+      '200':
+        application/json: ValidatorsGetPenaltiesResponse
+  /v1/eth/validators/{validator_index_or_pubkey}/proposals:
+    get:
+      '200':
+        application/json: ValidatorsGetProposalsByValidatorIndexOrPubkeyResponse
+  /v1/eth/validators/{validator_index_or_pubkey}/rewards:
+    get:
+      '200':
+        application/json: ValidatorsGetRewardsResponse
+  /v1/tags:
+    get:
+      '200':
+        application/json: TagsGetAllResponse
+  /v1/tags/{id}/validators:
+    get:
+      '200':
+        application/json: ValidatorsGetTagResponse
+    post:
+      '201':
+        application/json: ValidatorsAddResponse
+securityParameters:
+  X-Rated-Network:
+    header: false
+  apr_type:
+    query: false
+  delegatorAddress:
+    query: false
+  distType:
+    query: false
+  entityType:
+    query: false
+  filterType:
+    query: false
+  from:
+    query: false
+  fromDate:
+    query: false
+  fromDay:
+    query: false
+  granularity:
+    query: false
+  groupBy:
+    query: false
+  idType:
+    query: false
+  include:
+    query: false
+  indices:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  operatorsIds:
+    query: false
+  parentEntity:
+    query: false
+  parentId:
+    query: false
+  poolType:
+    query: false
+  pubkeys:
+    query: false
+  size:
+    query: false
+  slashingRole:
+    query: false
+  sortBy:
+    query: false
+  sortOrder:
+    query: false
+  stakeAction:
+    query: false
+  to:
+    query: false
+  toDate:
+    query: false
+  toDay:
+    query: false
+  window:
+    query: false
+  withdrawalAddress:
+    query: false
+validServerUrls: {}

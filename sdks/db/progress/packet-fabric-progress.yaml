@@ -1,0 +1,2337 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v2.1/locations:
+    get: Locations_filterParamsList
+  /v2.1/ports/{port_circuit_id}/status:
+    get: Ports_getServiceStatus
+  /v2.1/services/cloud-routers/{circuit_id}/connections/aws:
+    post: CloudRouterConnections_createAwsConnection
+  /v2.1/services/cloud-routers/{circuit_id}/connections/azure:
+    post: CloudRouterConnections_createAzureExpressRouteConnection
+  /v2.1/services/cloud-routers/{circuit_id}/connections/google:
+    post: CloudRouterConnections_createGoogleConnection
+  /v2.1/services/cloud-routers/{circuit_id}/connections/ibm:
+    post: CloudRouterConnections_createIbmConnection
+  /v2.1/services/cloud-routers/{circuit_id}/connections/oracle:
+    post: CloudRouterConnections_createOracleConnection
+  /v2.1/services/cloud-routers/{circuit_id}/connections/{connection_circuit_id}/status:
+    get: CloudRouterConnections_getStatus
+  /v2.1/services/cloud/connections/{ident}/status:
+    get: CloudServicesAws_getStatus
+  /v2.1/services/point-to-point/{ptp_circuit_id}/status:
+    get: PtpServices_getServiceStatus
+  /v2.1/services/{vc_circuit_id}/status:
+    get: Services_getStatus
+  /v2/activity-logs:
+    get: ActivityLogs_getActivityLogList
+  /v2/activity-logs/{log_uuid}:
+    get: ActivityLogs_getEntry
+  /v2/aggregated-capacity:
+    get: FlexBandwidth_getAllContainers
+    post: FlexBandwidth_createFlexContainer
+  /v2/aggregated-capacity/{aggregate_capacity_id}:
+    delete: FlexBandwidth_deleteContainer
+    get: FlexBandwidth_getById
+  /v2/announcements:
+    get: Announcements_getCurrentCustomerList
+  /v2/api-keys:
+    get: ApiKeys_getUserList
+    post: ApiKeys_createNewKey
+  /v2/api-keys/{uuid}:
+    delete: ApiKeys_deleteByKey
+  /v2/auth/login:
+    post: Authentication_startSession
+  /v2/auth/logout:
+    get: Authentication_invalidateSession
+  /v2/auth/sessions:
+    delete: Authentication_removeAllSessions
+    get: Authentication_getAllActiveUserSessions
+  /v2/bgp-settings:
+    get: CloudRouterBgpSessionSettings_getList
+  /v2/bgp-settings/{bgp_settings_uuid}/l3:
+    get: CloudRouterBgpSessionSettings_getL3IflData
+  /v2/bgp-settings/{bgp_settings_uuid}/prefixes:
+    get: CloudRouterBgpSessionSettings_listPrefixes
+  /v2/billing/services/early-termination-liability/{circuit_id}:
+    get: Billing_earlyTerminationCost
+  /v2/billing/services/{account_uuid}:
+    get: Billing_accountOrdersGet
+  /v2/billing/services/{circuit_id}/modify/preview:
+    post: Billing_modifyOrderPreview
+  /v2/billing/stripe/{account_uuid}/stripe_customer_session:
+    get: Billing_getStripeCustomerSessionUrl
+  /v2/contacts:
+    get: Contacts_getCurrentCustomerList
+  /v2/contacts/links:
+    get: Contacts_getContactCircuitLinks
+  /v2/contacts/{contact_uuid}/links/{circuit_id}:
+    delete: Contacts_deleteLink
+    post: Contacts_linkCircuit
+  /v2/customers/company-types:
+    get: Customers_getCompanyTypes
+  /v2/customers/current/account-managers:
+    get: Customers_getCurrentAccountManagers
+  /v2/customers/current/image:
+    post: Customers_uploadLogoImage
+  /v2/customers/current/ix-details:
+    patch: Customers_updateIxDetails
+  /v2/customers/current/locations:
+    get: Customers_getLocationList
+  /v2/customers/current/sales-team:
+    get: Customers_getCurrentSalesTeam
+  /v2/customers/images/{uuid}:
+    get: Customers_getLogoByUuid
+  /v2/customers/{customer_uuid}/industries:
+    get: Customers_getIndustriesByUuid
+  /v2/customers/{customer_uuid}/ix-details:
+    get: Customers_ixDetailsGet
+  /v2/customers/{customer_uuid}/locations:
+    get: Customers_getLocationsByUuid
+  /v2/customers/{customer_uuid}/service-provider-types:
+    get: Customers_getServiceProviderTypesByUuid
+  /v2/diagnostic-reports:
+    post: DiagnosticReports_createReport
+  /v2/documents:
+    get: Documents_listFilteredByParams
+  /v2/documents/{uuid}:
+    get: Documents_download
+  /v2/events:
+    post: StreamingEventsBeta_createSubscription
+  /v2/flex-bandwidth:
+    get: FlexBandwidth_getAllContainers
+    post: FlexBandwidth_createContainer
+  /v2/flex-bandwidth/{flex_bandwidth_id}:
+    delete: FlexBandwidth_deleteContainer
+    get: FlexBandwidth_getById
+  /v2/groups/{group_name}/permissions:
+    get: Groups_listPermissions
+  /v2/groups/{group_name}/users:
+    get: Groups_getUserList
+  /v2/labels/{value}:
+    get: Labels_associatedObjectsGet
+  /v2/lags/{lag_port_circuit_id}/members:
+    get: LaGs_listMembers
+    post: LaGs_addMemberInterface
+  /v2/lags/{lag_port_circuit_id}/members/{member_port_circuit_id}:
+    delete: LaGs_removeMemberInterface
+  /v2/lags/{port_circuit_id}/disable:
+    post: LaGs_disableTargetInterface
+  /v2/lags/{port_circuit_id}/enable:
+    post: LaGs_enableTargetInterface
+  /v2/locations:
+    get: Locations_filterParamsList
+  /v2/locations/cloud:
+    get: Locations_listCloudLocations
+  /v2/locations/extrametro:
+    get: Locations_listExtrametro
+  /v2/locations/markets:
+    get: Locations_getMarketList
+  /v2/locations/regions:
+    get: Locations_list
+  /v2/locations/{pop}/image:
+    get: Locations_getImage
+  /v2/locations/{pop}/port-availability:
+    get: Locations_getPortAvailabilityDataForPop
+  /v2/locations/{pop}/zones:
+    get: Locations_getZonesForPOP
+  /v2/maintenances/by-location:
+    get: MaintenanceNotifications_getCurrentFutureByPopNameAndMarketCode
+  /v2/maintenances/by-service/{circuit_id}:
+    get: MaintenanceNotifications_getAffectedServiceMaintenances
+  /v2/maintenances/history:
+    get: MaintenanceNotifications_getListIndividualHistories
+  /v2/maintenances/notifications:
+    get: MaintenanceNotifications_filterByUuidActionOrType
+  /v2/marketplace/service-categories:
+    get: Marketplace_getServiceCategories
+  /v2/marketplace/service-provider-types:
+    get: Marketplace_getServiceProviderTypes
+  /v2/marketplace/services:
+    get: Marketplace_customerServicesGet
+    post: Marketplace_createService
+  /v2/marketplace/services/quick-connect:
+    get: Marketplace_quickConnectList
+  /v2/marketplace/services/{service_uuid}:
+    delete: Marketplace_deleteService
+    get: Marketplace_getServiceObject
+    patch: Marketplace_updateService
+  /v2/marketplace/services/{service_uuid}/image:
+    delete: Marketplace_deleteServiceImage
+    get: Marketplace_serviceImageGet
+    post: Marketplace_updateServiceImage
+  /v2/marketplace/services/{service_uuid}/route-set:
+    get: Marketplace_serviceRouteSetGet
+  /v2/marketplace/services/{service_uuid}/thumbnail:
+    get: Marketplace_serviceThumbnailGet
+    post: Marketplace_updateServiceThumbnail
+  /v2/metrics/cloud-router-connections/{cloud_connection_circuit_id}/ipsec:
+    get: Metrics_getIpsecStatisticsByCloudRouterConnectionCircuitId
+  /v2/metrics/cloud-router-connections/{cloud_connection_circuit_id}/nat:
+    get: Metrics_getNatStatisticsByCloudRouterConnectionCircuitId
+  /v2/metrics/cloud-router-connections/{cloud_connection_circuit_id}/rate/{type}:
+    get: Metrics_cloudRouterConnectionRateGet
+  /v2/metrics/customer/ifd/rate/{type}:
+    get: Metrics_customerIfdRateData
+  /v2/metrics/customer/ifd/summary/{type}:
+    get: Metrics_customerIFDSummaryGet
+  /v2/metrics/customer/ifl/rate/{type}:
+    get: Metrics_customerRateByIfTypeGet
+  /v2/metrics/customer/ifl/summary/{type}:
+    get: Metrics_customerIflSummaryGet
+  /v2/metrics/customer/longhaul-usage:
+    get: Metrics_customerLonghaulUsageGet
+  /v2/metrics/ifd/optic-data/{port_circuit_id}:
+    get: Metrics_getOpticDataByPortCircuitId
+  /v2/objects/{circuit_id}/labels:
+    get: Objects_getLabels
+  /v2/outbound-cross-connects:
+    get: OutboundCrossConnects_list
+    post: OutboundCrossConnects_createNew
+  /v2/outbound-cross-connects/{outbound_cross_connect_id}:
+    delete: OutboundCrossConnects_deleteCrossConnect
+    get: OutboundCrossConnects_getOne
+    patch: OutboundCrossConnects_updateSingle
+  /v2/ports:
+    get: Ports_getList
+  /v2/ports/export.csv:
+    get: Ports_exportCsv
+  /v2/ports/{port_circuit_id}/device-info:
+    get: Ports_getDeviceInfo
+  /v2/ports/{port_circuit_id}/letter-of-authorization:
+    post: Ports_generateLOA
+  /v2/ports/{port_circuit_id}/router-logs:
+    get: Ports_getRouterLogs
+  /v2/ports/{port_circuit_id}/upgrade:
+    post: Ports_upgradeSubscriptionTerm
+  /v2/ports/{port_circuit_id}/vlan-summary:
+    get: Ports_getVlanSummary
+  /v2/quotes:
+    get: PortalQuotes_getCustomerQuotes
+    post: PortalQuotes_createNewQuote
+  /v2/quotes/published:
+    get: PortalQuotes_getPublishedQuotes
+  /v2/quotes/published/assigned:
+    get: PortalQuotes_getAssignedQuotes
+  /v2/quotes/published/{published_quote_uuid}:
+    get: PortalQuotes_getPublishedQuoteDetails
+  /v2/quotes/{quote_uuid}:
+    get: PortalQuotes_getDetails
+    patch: PortalQuotes_updateQuote
+    post: PortalQuotes_addQuoteLine
+  /v2/quotes/{quote_uuid}/csv:
+    get: PortalQuotes_getCsv
+  /v2/quotes/{quote_uuid}/duplicate:
+    post: PortalQuotes_duplicateQuote
+  /v2/quotes/{quote_uuid}/pdf:
+    get: PortalQuotes_getPdf
+  /v2/quotes/{quote_uuid}/publish:
+    post: PortalQuotes_publishQuote
+  /v2/quotes/{quote_uuid}/{quote_line_uuid}:
+    delete: PortalQuotes_deleteQuoteLine
+  /v2/request-aliases:
+    get: RequestAliases_getAll
+    post: RequestAliases_addNewAlias
+  /v2/request-aliases/{request_alias_uuid}:
+    delete: RequestAliases_deleteAlias
+    get: RequestAliases_byUuid
+    patch: RequestAliases_updateAlias
+  /v2/request-aliases/{request_alias_uuid}/contacts:
+    delete: RequestAliases_disassociateContacts
+    get: RequestAliases_getAllContacts
+    post: RequestAliases_associateContacts
+  /v2/request-aliases/{request_alias_uuid}/contacts/{contact_uuid}:
+    delete: RequestAliases_disassociateContact
+  /v2/services:
+    get: Services_getCurrentCustomerServicesList
+  /v2/services/backbone:
+    post: Services_createBackboneVc
+  /v2/services/cloud-routers:
+    get: CloudRouters_listAssociated
+    post: CloudRouters_createNew
+  /v2/services/cloud-routers/connections:
+    get: CloudRouterConnections_listAll
+  /v2/services/cloud-routers/connections/export.csv:
+    get: CloudRouterConnections_downloadCsv
+  /v2/services/cloud-routers/connections/{circuit_id}:
+    get: CloudRouterConnections_getByCircuitId
+  /v2/services/cloud-routers/export.csv:
+    get: CloudRouters_downloadAsCsv
+  /v2/services/cloud-routers/requests:
+    get: CloudRouterThirdParty_listImportRequests
+  /v2/services/cloud-routers/requests/{import_circuit_id}:
+    delete: CloudRouterThirdParty_deleteRequest
+    get: CloudRouterThirdParty_importsRequestGet
+  /v2/services/cloud-routers/requests/{import_circuit_id}/accept:
+    post: CloudRouterThirdParty_acceptImportCircuit
+  /v2/services/cloud-routers/requests/{import_circuit_id}/reject:
+    post: CloudRouterThirdParty_rejectImportCircuit
+  /v2/services/cloud-routers/{circuit_id}:
+    delete: CloudRouters_deleteRouter
+    get: CloudRouters_getByCircuitId
+    patch: CloudRouters_updateExisting
+  /v2/services/cloud-routers/{circuit_id}/address_is_unique:
+    post: CloudRouterConnections_checkBgpAddressUnique
+  /v2/services/cloud-routers/{circuit_id}/all-routes:
+    get: CloudRouters_getAllRoutes
+  /v2/services/cloud-routers/{circuit_id}/bgp-logs:
+    get: CloudRouters_getBgpLogs
+  /v2/services/cloud-routers/{circuit_id}/bgp-routes:
+    get: CloudRouters_getBgpRoutes
+  /v2/services/cloud-routers/{circuit_id}/connections:
+    get: CloudRouterConnections_listForCircuit
+  /v2/services/cloud-routers/{circuit_id}/connections/aws:
+    post: CloudRouterConnections_createAwsConnection
+  /v2/services/cloud-routers/{circuit_id}/connections/azure:
+    post: CloudRouterConnections_createAzureConnection
+  /v2/services/cloud-routers/{circuit_id}/connections/google:
+    post: CloudRouterConnections_createGoogleConnection
+  /v2/services/cloud-routers/{circuit_id}/connections/ibm:
+    post: CloudRouterConnections_createIBMConnection
+  /v2/services/cloud-routers/{circuit_id}/connections/ipsec:
+    post: CloudRouterConnections_createIpsecConnection
+  /v2/services/cloud-routers/{circuit_id}/connections/oracle:
+    post: CloudRouterConnections_createOracleConnection
+  /v2/services/cloud-routers/{circuit_id}/connections/packetfabric:
+    post: CloudRouterConnections_attachPort
+  /v2/services/cloud-routers/{circuit_id}/connections/third-party:
+    post: CloudRouterThirdParty_createRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_circuit_id}:
+    delete: CloudRouterConnections_deleteByCircuitConnectionId
+    get: CloudRouterConnections_getSingleByCircuitId
+    patch: CloudRouterConnections_updateConnection
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_circuit_id}/bgp:
+    get: CloudRouterBgpSessionSettings_listBgpSessions
+    post: CloudRouterBgpSessionSettings_createL3Info
+    put: CloudRouterBgpSessionSettings_updateSessionInfo
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_circuit_id}/bgp/{bgp_settings_uuid}:
+    delete: CloudRouterBgpSessionSettings_deleteSingleSession
+    get: CloudRouterBgpSessionSettings_getSingleSession
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_uuid}:
+    delete: CloudRouterConnections_deleteConnection
+  /v2/services/cloud-routers/{circuit_id}/connections/{connection_circuit_id}/bgp-routes:
+    get: CloudRouterBgpSessionSettings_getConnectionBgpRoutes
+  /v2/services/cloud-routers/{circuit_id}/connections/{connection_circuit_id}/status:
+    get: CloudRouterConnections_getInstanceStatus
+  /v2/services/cloud-routers/{circuit_id}/connections/{connection_circuit_id}/upgrade/options:
+    get: CloudRouterConnections_getUpgradeOptions
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party:
+    get: CloudRouterThirdParty_listImports
+    post: CloudRouterThirdParty_importToConnection
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party/delete-multiple:
+    post: CloudRouterThirdParty_removeMultiple
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party/{import_circuit_id}:
+    delete: CloudRouterThirdParty_removeConnectionImport
+    get: CloudRouterThirdParty_getSingleImport
+    patch: CloudRouterThirdParty_updateImportById
+  /v2/services/cloud-routers/{cr_circuit_id}/route-sets:
+    get: CloudRouterRouteSets_getList
+  /v2/services/cloud-routers/{cr_circuit_id}/route-sets/{route_set_circuit_id}:
+    get: CloudRouterRouteSets_getSingleRouteSet
+    patch: CloudRouterRouteSets_updateRouteSet
+  /v2/services/cloud-routers/{cr_circuit_id}/route-sets/{route_set_circuit_id}/connections:
+    get: CloudRouterRouteSets_getConnections
+    put: CloudRouterRouteSets_updateConnections
+  /v2/services/cloud/aws/resources/{credentials_uuid}/regions:
+    get: CloudServicesAws_getAvailableRegions
+  /v2/services/cloud/aws/resources/{credentials_uuid}/{region_name}:
+    get: CloudServicesAws_getResourcesInRegion
+  /v2/services/cloud/connections/dedicated:
+    get: CloudServicesAws_getCurrentDedicatedConnections
+  /v2/services/cloud/connections/dedicated/export.csv:
+    get: CloudServicesAws_getCurrentCustomerDedicatedConnectionsCsv
+  /v2/services/cloud/connections/hosted:
+    get: CloudServicesAws_listHostedConnections
+  /v2/services/cloud/connections/hosted/export.csv:
+    get: CloudServicesAws_listHostedConnectionsCsv
+  /v2/services/cloud/connections/{cloud_circuit_id}/router-config:
+    get: CloudServicesAws_getRouterConfig
+  /v2/services/cloud/connections/{cloud_circuit_id}/status:
+    get: CloudServicesAws_getConnectionStatus
+  /v2/services/cloud/connections/{cloud_circuit_id}/upgrade/options:
+    get: CloudServicesAws_getConnectionUpgradeOptions
+  /v2/services/cloud/credentials:
+    get: CloudProviderCredentials_getAll
+    post: CloudProviderCredentials_createNewCredential
+  /v2/services/cloud/credentials/{credential_uuid}:
+    delete: CloudProviderCredentials_deleteCredential
+    patch: CloudProviderCredentials_updateCredential
+  /v2/services/cloud/credentials/{credential_uuid}/connections:
+    get: CloudProviderCredentials_getAllConnections
+  /v2/services/cloud/dedicated/aws:
+    post: CloudServicesAws_requestConnection
+  /v2/services/cloud/dedicated/azure:
+    post: CloudServicesAzure_requestNewDedicatedConnection
+  /v2/services/cloud/dedicated/google:
+    post: CloudServicesGoogleCloud_requestDedicatedConnection
+  /v2/services/cloud/dedicated/{cloud_circuit_id}:
+    patch: CloudServicesAws_updateDedicatedCloudConnection
+  /v2/services/cloud/dedicated/{cloud_circuit_id}/upgrade:
+    post: CloudServicesAws_upgradeDedicatedCloudConnection
+  /v2/services/cloud/google/resources/{credentials_uuid}/regions:
+    get: CloudServicesGoogleCloud_availableRegionsGet
+  /v2/services/cloud/google/resources/{credentials_uuid}/{region_name}:
+    get: CloudServicesGoogleCloud_getResourcesByRegion
+  /v2/services/cloud/hosted/aws:
+    post: CloudServicesAws_requestHostedConnection
+  /v2/services/cloud/hosted/azure:
+    post: CloudServicesAzure_requestNewExpressRoute
+  /v2/services/cloud/hosted/azure/service-key-validation/{azure_service_key}:
+    get: CloudServicesAzure_validateServiceKey
+  /v2/services/cloud/hosted/google:
+    post: CloudServicesGoogleCloud_requestNewConnection
+  /v2/services/cloud/hosted/ibm:
+    post: CloudServicesIbm_requestNewConnection
+  /v2/services/cloud/hosted/oracle:
+    post: CloudServicesOracle_requestConnection
+  /v2/services/cloud/hosted/oracle/vc-ocid-status/{vc_ocid}:
+    get: CloudServicesOracle_getStatus
+  /v2/services/cloud/hosted/oracle/{cloud_circuit_id}/sync:
+    post: CloudServicesOracle_syncChanges
+  /v2/services/cloud/hosted/{cloud_circuit_id}:
+    patch: CloudServicesAws_updateHostedConnection
+  /v2/services/cloud/hosted/{cloud_circuit_id}/upgrade:
+    post: CloudServicesAws_upgradeHostedConnection
+  /v2/services/cloud/ibm/{cloud_circuit_id}:
+    patch: CloudServicesIbm_updateIbmCloudConnection
+  /v2/services/cloud/{cloud_circuit_id}:
+    delete: CloudServicesAws_deleteConnection
+  /v2/services/export.csv:
+    get: Services_exportCsvList
+  /v2/services/high-performance-internet:
+    get: HighPerformanceInternet_getCurrentCustomerHPIs
+  /v2/services/high-performance-internet/{hpi_circuit_id}/bgp:
+    get: HighPerformanceInternet_getBgpConfig
+  /v2/services/high-performance-internet/{hpi_circuit_id}/static:
+    get: HighPerformanceInternet_getStaticConfigurations
+  /v2/services/high-performance-internet/{hpi_circuit_id}/status:
+    get: HighPerformanceInternet_getStatus
+  /v2/services/ipam/asns:
+    get: Ipam_getAsns
+    post: Ipam_allocateNewAsn
+  /v2/services/ipam/asns/{asn}:
+    delete: Ipam_deleteAsnByAsn
+    get: Ipam_getAsnById
+  /v2/services/ipam/contacts:
+    get: Ipam_getCurrentCustomerContacts
+    post: Ipam_addContact
+  /v2/services/ipam/contacts/{ipam_contact_uuid}:
+    delete: Ipam_deleteByUuid
+    get: Ipam_getByUuid
+  /v2/services/ipam/prefixes:
+    get: Ipam_getPrefixes
+    post: Ipam_allocatePrefix
+  /v2/services/ipam/prefixes/{prefix_circuit_id}:
+    delete: Ipam_deleteByCircuitId
+    get: Ipam_getByCircuitId
+  /v2/services/ipsec/gateway_address/uniqueness:
+    get: CloudRouterIPsec_checkGatewayAddressUniqueness
+  /v2/services/ix:
+    post: Services_createIxVc
+  /v2/services/point-to-point:
+    get: PtpServices_getAll
+    post: PtpServices_createService
+  /v2/services/point-to-point/{ptp_uuid}:
+    delete: PtpServices_deletePointToPoint
+    get: PtpServices_getServiceInfo
+    patch: PtpServices_updateDescription
+  /v2/services/point-to-point/{ptp_uuid}/status:
+    get: PtpServices_getServiceStatus
+  /v2/services/point-to-point/{ptp_uuid}/upgrade:
+    post: PtpServices_upgradePtpUuid
+  /v2/services/point-to-point/{ptp_uuid}/upgrade/options:
+    get: PtpServices_getUpgradeOptions
+  /v2/services/requests:
+    get: Services_listVcRequests
+  /v2/services/requests/{vc_request_uuid}:
+    delete: Services_deleteRequest
+    get: Services_getByUuid
+  /v2/services/requests/{vc_request_uuid}/provision/cloud-router-connection:
+    post: CloudRouterThirdParty_provisionMarketplaceCloudRouterConnection
+  /v2/services/requests/{vc_request_uuid}/provision/hosted:
+    post: CloudServicesAws_provisionHosted
+  /v2/services/requests/{vc_request_uuid}/reject:
+    post: Services_rejectRequest
+  /v2/services/third-party:
+    post: Services_create3rdPartyVc
+  /v2/services/third-party/hosted/aws:
+    post: CloudServicesAws_requestCloudConnection
+  /v2/services/third-party/hosted/azure:
+    post: CloudServicesAzure_requestHostedConnection
+  /v2/services/third-party/hosted/google:
+    post: CloudServicesGoogleCloud_requestHostedConnection
+  /v2/services/third-party/hosted/oracle:
+    post: CloudServicesOracle_requestHostedConnection
+  /v2/services/{vc_circuit_id}/burst:
+    delete: Services_deleteBurst
+    post: Services_addSpeedBurst
+  /v2/services/{vc_circuit_id}/status:
+    get: Services_vcCircuitStatusGet
+  /v2/services/{vc_circuit_id}/upgrade:
+    post: Services_upgradeBillingTerms
+  /v2/services/{vc_circuit_id}/upgrade/options:
+    get: Services_getUpgradeOptions
+  /v2/signup/email-validation:
+    get: Signup_emailValidationCheck
+  /v2/svlan-labels:
+    post: SVlanLabels_createLabel
+  /v2/svlan-labels/mappings:
+    get: SVlanLabels_getLabels
+  /v2/svlan-labels/{port_circuit_id}:
+    get: SVlanLabels_getLabelsForPort
+  /v2/svlan-labels/{svlan_label_uuid}:
+    delete: SVlanLabels_deleteLabel
+    patch: SVlanLabels_updateLabelByUuid
+  /v2/team-invites:
+    get: TeamSignup_listInvitedUsers
+    post: TeamSignup_sendInvitationEmails
+  /v2/team-invites/{signup_uuid}:
+    get: TeamSignup_getDetails
+  /v2/team-invites/{signup_uuid}/resend:
+    post: TeamSignup_resendInvitation
+  /v2/team-invites/{signup_uuid}/user:
+    post: TeamSignup_createUserBasedOnInvitation
+  /v2/users:
+    get: Users_getList
+  /v2/users/mfa/disable:
+    post: MultiFactorAuthentication_disableUserMfa
+  /v2/users/mfa/enable:
+    post: MultiFactorAuthentication_enableUserAuth
+  /v2/users/mfa/qrcode:
+    get: MultiFactorAuthentication_generateQrCodeImage
+  /v2/users/mfa/setup:
+    post: MultiFactorAuthentication_generateSecretScratchCodes
+  /v2/users/request-password-reset:
+    post: Users_requestPasswordReset
+  /v2/users/reset-password:
+    post: Users_setNewPassword
+  /v2/users/{user_login}:
+    delete: Users_deleteUser
+    get: Users_getUserDetailsByLogin
+  /v2/users/{user_login}/groups:
+    get: Users_listUserGroups
+  /v2/users/{user_login}/groups/{group_name}:
+    delete: Users_deleteFromGroup
+    post: Users_addToGroup
+  /v2/users/{user_login}/password:
+    patch: Users_updatePassword
+  /v2/users/{uuid}:
+    get: Users_getDetailsByUuid
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v2.1/services/cloud-routers/{circuit_id}/connections/aws:
+    post:
+      application/json: CloudRouterConnectionsCreateAwsConnectionRequest1
+  /v2.1/services/cloud-routers/{circuit_id}/connections/azure:
+    post:
+      application/json: CloudRouterConnectionsCreateAzureExpressRouteConnectionRequest
+  /v2.1/services/cloud-routers/{circuit_id}/connections/google:
+    post:
+      application/json: CloudRouterConnectionsCreateGoogleConnectionRequest1
+  /v2.1/services/cloud-routers/{circuit_id}/connections/ibm:
+    post:
+      application/json: CloudRouterConnectionsCreateIbmConnectionRequest1
+  /v2.1/services/cloud-routers/{circuit_id}/connections/oracle:
+    post:
+      application/json: CloudRouterConnectionsCreateOracleConnectionRequest1
+  /v2/aggregated-capacity:
+    post:
+      application/json: FlexBandwidthCreateFlexContainerRequest
+  /v2/api-keys:
+    post:
+      application/json: ApiKeysCreateNewKeyRequest
+  /v2/auth/login:
+    post:
+      application/json: AuthenticationStartSessionRequest
+  /v2/auth/login/mfa:
+    post:
+      application/json: LoginMfaRequest
+  /v2/billing/services/{circuit_id}/modify:
+    post:
+      application/json: ModifyOrderRequest
+  /v2/billing/services/{circuit_id}/modify/preview:
+    post:
+      application/json: BillingModifyOrderPreviewRequest
+  /v2/contacts:
+    post:
+      application/json: ContactPostRequest
+  /v2/contacts/{contact_uuid}:
+    patch:
+      application/json: ContactUpdateRequest
+  /v2/customers/current:
+    patch:
+      application/json: CustomerUpdateRequest
+  /v2/customers/current/image:
+    post:
+      multipart/form-data: CustomersUploadLogoImageRequest
+  /v2/customers/current/ix-details:
+    patch:
+      application/json: CustomersUpdateIxDetailsRequest
+  /v2/diagnostic-reports:
+    post:
+      application/json: DiagnosticReportsCreateReportRequest
+  /v2/documents:
+    post:
+      multipart/form-data: DocumentUploadRequest
+  /v2/events:
+    post:
+      application/json: StreamingEventsBetaCreateSubscriptionRequest
+  /v2/flex-bandwidth:
+    post:
+      application/json: FlexBandwidthCreateContainerRequest
+  /v2/labels/{value}:
+    patch:
+      application/json: AddLabelRequest
+    put:
+      application/json: UpdateLabelRequest
+  /v2/lags:
+    post:
+      application/json: LagPostRequest
+  /v2/lags/{lag_port_circuit_id}/members:
+    post:
+      application/json: LaGsAddMemberInterfaceRequest
+  /v2/lags/{port_circuit_id}:
+    patch:
+      application/json: LagPatchRequest
+  /v2/marketplace/services:
+    post:
+      application/json: MarketplaceCreateServiceRequest
+  /v2/marketplace/services/{service_uuid}:
+    patch:
+      application/json: MarketplaceUpdateServiceRequest
+  /v2/marketplace/services/{service_uuid}/image:
+    post:
+      multipart/form-data: MarketplaceUpdateServiceImageRequest
+  /v2/marketplace/services/{service_uuid}/thumbnail:
+    post:
+      multipart/form-data: MarketplaceUpdateServiceThumbnailRequest
+  /v2/objects/{circuit_id}/labels:
+    patch:
+      application/json: AddObjectRequest
+    put:
+      application/json: UpdateObjectRequest
+  /v2/outbound-cross-connects:
+    post:
+      application/json: OutboundCrossConnectsCreateNewRequest
+  /v2/outbound-cross-connects/{outbound_cross_connect_id}:
+    patch:
+      application/json: OutboundCrossConnectsUpdateSingleRequest
+  /v2/ports:
+    post:
+      application/json: PortPostRequest
+  /v2/ports/{port_circuit_id}:
+    patch:
+      application/json: UpdatePortRequest
+  /v2/ports/{port_circuit_id}/letter-of-authorization:
+    post:
+      application/json: PortsGenerateLoaRequest
+  /v2/ports/{port_circuit_id}/upgrade:
+    post:
+      application/json: PortsUpgradeSubscriptionTermRequest
+  /v2/quotes:
+    post:
+      application/json: PortalQuotesCreateNewQuoteRequest
+  /v2/quotes/{quote_uuid}:
+    patch:
+      application/json: PortalQuotesUpdateQuoteRequest
+    post:
+      application/json: PortalQuotesAddQuoteLineRequest
+  /v2/quotes/{quote_uuid}/publish:
+    post:
+      application/json: PortalQuotesPublishQuoteRequest
+  /v2/request-aliases:
+    post:
+      application/json: RequestAliasesAddNewAliasRequest
+  /v2/request-aliases/{request_alias_uuid}:
+    patch:
+      application/json: RequestAliasesUpdateAliasRequest
+  /v2/request-aliases/{request_alias_uuid}/contacts:
+    delete:
+      application/json: RequestAliasesDisassociateContactsRequest
+    post:
+      application/json: RequestAliasesAssociateContactsRequest
+  /v2/services/backbone:
+    post:
+      application/json: ServicesCreateBackboneVcRequest
+  /v2/services/cloud-routers:
+    post:
+      application/json: CloudRoutersCreateNewRequest
+  /v2/services/cloud-routers/requests/{import_circuit_id}/reject:
+    post:
+      application/json: CloudRouterThirdPartyRejectImportCircuitRequest
+  /v2/services/cloud-routers/{circuit_id}:
+    patch:
+      application/json: CloudRoutersUpdateExistingRequest
+  /v2/services/cloud-routers/{circuit_id}/address_is_unique:
+    post:
+      application/json: CloudRouterConnectionsCheckBgpAddressUniqueRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/aws:
+    post:
+      application/json: CloudRouterConnectionsCreateAwsConnectionRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/azure:
+    post:
+      application/json: CloudRouterConnectionsCreateAzureConnectionRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/google:
+    post:
+      application/json: CloudRouterConnectionsCreateGoogleConnectionRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/ibm:
+    post:
+      application/json: CloudRouterConnectionsCreateIbmConnectionRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/ipsec:
+    post:
+      application/json: CloudRouterConnectionsCreateIpsecConnectionRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/oracle:
+    post:
+      application/json: CloudRouterConnectionsCreateOracleConnectionRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/packetfabric:
+    post:
+      application/json: CloudRouterConnectionsAttachPortRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/third-party:
+    post:
+      application/json: CloudRouterThirdPartyCreateRequestRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_circuit_id}:
+    patch:
+      application/json: CloudRouterConnectionsUpdateConnectionRequest
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_circuit_id}/bgp:
+    post:
+      application/json: CloudRouterBgpSessionSettingsCreateL3InfoRequest
+    put:
+      application/json: CloudRouterBgpSessionSettingsUpdateSessionInfoRequest
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party:
+    post:
+      application/json: CloudRouterThirdPartyImportToConnectionRequest
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party/delete-multiple:
+    post:
+      application/json: CloudRouterThirdPartyRemoveMultipleRequest
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party/{import_circuit_id}:
+    patch:
+      application/json: CloudRouterThirdPartyUpdateImportByIdRequest
+  /v2/services/cloud-routers/{cr_circuit_id}/route-sets/{route_set_circuit_id}:
+    patch:
+      application/json: CloudRouterRouteSetsUpdateRouteSetRequest
+  /v2/services/cloud-routers/{cr_circuit_id}/route-sets/{route_set_circuit_id}/connections:
+    put:
+      application/json: CloudRouterRouteSetsUpdateConnectionsRequest
+  /v2/services/cloud/credentials:
+    post:
+      application/json: CloudProviderCredentialsCreateNewCredentialRequest
+  /v2/services/cloud/credentials/{credential_uuid}:
+    patch:
+      application/json: CloudProviderCredentialsUpdateCredentialRequest
+  /v2/services/cloud/dedicated/aws:
+    post:
+      application/json: CloudServicesAwsRequestConnectionRequest
+  /v2/services/cloud/dedicated/azure:
+    post:
+      application/json: CloudServicesAzureRequestNewDedicatedConnectionRequest
+  /v2/services/cloud/dedicated/google:
+    post:
+      application/json: CloudServicesGoogleCloudRequestDedicatedConnectionRequest
+  /v2/services/cloud/dedicated/{cloud_circuit_id}:
+    patch:
+      application/json: CloudServicesAwsUpdateDedicatedCloudConnectionRequest
+  /v2/services/cloud/dedicated/{cloud_circuit_id}/upgrade:
+    post:
+      application/json: CloudServicesAwsUpgradeDedicatedCloudConnectionRequest
+  /v2/services/cloud/hosted/aws:
+    post:
+      application/json: CloudServicesAwsRequestHostedConnectionRequest
+  /v2/services/cloud/hosted/azure:
+    post:
+      application/json: CloudServicesAzureRequestNewExpressRouteRequest
+  /v2/services/cloud/hosted/google:
+    post:
+      application/json: CloudServicesGoogleCloudRequestNewConnectionRequest
+  /v2/services/cloud/hosted/ibm:
+    post:
+      application/json: CloudServicesIbmRequestNewConnectionRequest
+  /v2/services/cloud/hosted/oracle:
+    post:
+      application/json: CloudServicesOracleRequestConnectionRequest
+  /v2/services/cloud/hosted/{cloud_circuit_id}:
+    patch:
+      application/json: CloudServicesAwsUpdateHostedConnectionRequest
+  /v2/services/cloud/hosted/{cloud_circuit_id}/upgrade:
+    post:
+      application/json: CloudServicesAwsUpgradeHostedConnectionRequest
+  /v2/services/cloud/ibm/{cloud_circuit_id}:
+    patch:
+      application/json: CloudServicesIbmUpdateIbmCloudConnectionRequest
+  /v2/services/high-performance-internet:
+    post:
+      application/json: HpiPostRequest
+  /v2/services/high-performance-internet/{hpi_circuit_id}:
+    put:
+      application/json: HpiPutRequest
+  /v2/services/ipam/asns:
+    post:
+      application/json: IpamAllocateNewAsnRequest
+  /v2/services/ipam/contacts:
+    post:
+      application/json: IpamAddContactRequest
+  /v2/services/ipam/prefixes:
+    post:
+      application/json: IpamAllocatePrefixRequest
+  /v2/services/ipsec/{circuit_id}:
+    patch:
+      application/json: IpsecPatchRequest
+  /v2/services/ix:
+    post:
+      application/json: ServicesCreateIxVcRequest
+  /v2/services/point-to-point:
+    post:
+      application/json: PtpServicesCreateServiceRequest
+  /v2/services/point-to-point/{ptp_uuid}:
+    patch:
+      application/json: PtpServicesUpdateDescriptionRequest
+  /v2/services/point-to-point/{ptp_uuid}/upgrade:
+    post:
+      application/json: PtpServicesUpgradePtpUuidRequest
+  /v2/services/requests/{vc_request_uuid}:
+    delete:
+      application/json: ServicesDeleteRequestRequest
+  /v2/services/requests/{vc_request_uuid}/provision:
+    post:
+      application/json: ProvisionServiceRequest
+  /v2/services/requests/{vc_request_uuid}/provision/cloud-router-connection:
+    post:
+      application/json: CloudRouterThirdPartyProvisionMarketplaceCloudRouterConnectionRequest
+  /v2/services/requests/{vc_request_uuid}/provision/hosted:
+    post:
+      application/json: CloudServicesAwsProvisionHostedRequest
+  /v2/services/third-party:
+    post:
+      application/json: ServicesCreate3RdPartyVcRequest
+  /v2/services/third-party/hosted/aws:
+    post:
+      application/json: CloudServicesAwsRequestCloudConnectionRequest
+  /v2/services/third-party/hosted/azure:
+    post:
+      application/json: CloudServicesAzureRequestHostedConnectionRequest
+  /v2/services/third-party/hosted/google:
+    post:
+      application/json: CloudServicesGoogleCloudRequestHostedConnectionRequest
+  /v2/services/third-party/hosted/oracle:
+    post:
+      application/json: CloudServicesOracleRequestHostedConnectionRequest
+  /v2/services/{vc_circuit_id}:
+    patch:
+      application/json: PatchServiceRequest
+  /v2/services/{vc_circuit_id}/burst:
+    post:
+      application/json: ServicesAddSpeedBurstRequest
+  /v2/services/{vc_circuit_id}/upgrade:
+    post:
+      application/json: ServicesUpgradeBillingTermsRequest
+  /v2/svlan-labels:
+    post:
+      application/json: SVlanLabelsCreateLabelRequest
+  /v2/svlan-labels/{svlan_label_uuid}:
+    patch:
+      application/json: SVlanLabelsUpdateLabelByUuidRequest
+  /v2/team-invites:
+    post:
+      application/json: TeamSignupSendInvitationEmailsRequest
+  /v2/team-invites/{signup_uuid}/user:
+    post:
+      application/json: TeamSignupCreateUserBasedOnInvitationRequest
+  /v2/users:
+    post:
+      application/json: UserPostRequest
+  /v2/users/mfa/disable:
+    post:
+      application/json: MultiFactorAuthenticationDisableUserMfaRequest
+  /v2/users/mfa/enable:
+    post:
+      application/json: MultiFactorAuthenticationEnableUserAuthRequest
+  /v2/users/request-password-reset:
+    post:
+      application/json: UsersRequestPasswordResetRequest
+  /v2/users/reset-password:
+    post:
+      application/json: UsersSetNewPasswordRequest
+  /v2/users/{user_login}:
+    patch:
+      application/json: UserPatchRequest
+  /v2/users/{user_login}/password:
+    patch:
+      application/json: UsersUpdatePasswordRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v2.1/locations:
+    get:
+      '200':
+        application/json: LocationsFilterParamsList200Response
+  /v2.1/ports/{port_circuit_id}/status:
+    get:
+      '200':
+        application/json: PortsGetServiceStatusResponse
+  /v2.1/services/cloud-routers/{circuit_id}/connections/aws:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateAwsConnection201Response
+  /v2.1/services/cloud-routers/{circuit_id}/connections/azure:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateAzureExpressRouteConnectionResponse
+  /v2.1/services/cloud-routers/{circuit_id}/connections/google:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateGoogleConnection201Response
+  /v2.1/services/cloud-routers/{circuit_id}/connections/ibm:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateIbmConnection201Response
+  /v2.1/services/cloud-routers/{circuit_id}/connections/oracle:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateOracleConnection201Response
+  /v2.1/services/cloud-routers/{circuit_id}/connections/{connection_circuit_id}/status:
+    get:
+      '200':
+        application/json: CloudRouterConnectionsGetStatusResponse
+  /v2.1/services/cloud/connections/{ident}/status:
+    get:
+      '200':
+        application/json: CloudServicesAwsGetStatusResponse
+  /v2.1/services/point-to-point/{ptp_circuit_id}/status:
+    get:
+      '200':
+        application/json: PtpServicesGetServiceStatus200Response
+  /v2.1/services/{vc_circuit_id}/status:
+    get:
+      '200':
+        application/json: ServicesGetStatusResponse
+  /v2/activity-logs:
+    get:
+      '200':
+        application/json: ActivityLogsGetActivityLogListResponse
+  /v2/activity-logs/{log_uuid}:
+    get:
+      '200':
+        application/json: ActivityLogsGetEntryResponse
+  /v2/aggregated-capacity:
+    get:
+      '200':
+        application/json: FlexBandwidthGetAllContainers200Response
+    post:
+      '201':
+        application/json: FlexBandwidthCreateFlexContainerResponse
+  /v2/aggregated-capacity/{aggregate_capacity_id}:
+    get:
+      '200':
+        application/json: FlexBandwidthGetById200Response
+  /v2/announcements:
+    get:
+      '200':
+        application/json: AnnouncementsGetCurrentCustomerListResponse
+  /v2/api-keys:
+    get:
+      '200':
+        application/json: ApiKeysGetUserListResponse
+    post:
+      '201':
+        application/json: ApiKeysCreateNewKeyResponse
+  /v2/api-keys/{uuid}:
+    delete:
+      '200':
+        application/json: ApiKeysDeleteByKeyResponse
+  /v2/auth/login:
+    post:
+      '200':
+        application/json: AuthenticationStartSessionResponse
+  /v2/auth/login/mfa:
+    post:
+      '200':
+        application/json: LoginMfaResponse
+  /v2/auth/logout:
+    get:
+      '200':
+        application/json: AuthenticationInvalidateSessionResponse
+  /v2/auth/sessions:
+    delete:
+      '200':
+        application/json: AuthenticationRemoveAllSessionsResponse
+    get:
+      '200':
+        application/json: AuthenticationGetAllActiveUserSessionsResponse
+  /v2/bgp-settings:
+    get:
+      '200':
+        application/json: CloudRouterBgpSessionSettingsGetListResponse
+  /v2/bgp-settings/{bgp_settings_uuid}/l3:
+    get:
+      '200':
+        application/json: CloudRouterBgpSessionSettingsGetL3IflDataResponse
+  /v2/bgp-settings/{bgp_settings_uuid}/prefixes:
+    get:
+      '200':
+        application/json: CloudRouterBgpSessionSettingsListPrefixesResponse
+  /v2/billing/accounts/{account_uuid}/invoices:
+    get:
+      '200':
+        application/json: GetInvoicesResponse
+  /v2/billing/accounts/{account_uuid}/invoices/{invoice_id}.csv:
+    get:
+      '200':
+        text/csv: GetCsvResponse
+  /v2/billing/accounts/{account_uuid}/invoices/{invoice_id}.pdf:
+    get:
+      '200':
+        application/pdf: GetPdfResponse
+  /v2/billing/pricing:
+    get:
+      '200':
+        application/json: GetPricingResponse
+  /v2/billing/services/early-termination-liability/{circuit_id}:
+    get:
+      '200':
+        text/plain: BillingEarlyTerminationCostResponse
+  /v2/billing/services/{account_uuid}:
+    get:
+      '200':
+        application/json: BillingAccountOrdersGetResponse
+  /v2/billing/services/{circuit_id}:
+    get:
+      '200':
+        application/json: GetOrderResponse
+  /v2/billing/services/{circuit_id}/modify:
+    post:
+      '200':
+        application/json: ModifyOrderResponse
+      '202':
+        application/json: ModifyOrder202Response
+  /v2/billing/services/{circuit_id}/modify/preview:
+    post:
+      '200':
+        application/json: BillingModifyOrderPreviewResponse
+  /v2/billing/stripe/{account_uuid}/stripe_customer_session:
+    get:
+      '200':
+        application/json: BillingGetStripeCustomerSessionUrlResponse
+  /v2/contacts:
+    get:
+      '200':
+        application/json: ContactsGetCurrentCustomerListResponse
+    post:
+      '201':
+        application/json: ContactPostResponse
+  /v2/contacts/links:
+    get:
+      '200':
+        application/json: ContactsGetContactCircuitLinksResponse
+  /v2/contacts/{contact_uuid}:
+    delete:
+      '200':
+        application/json: ContactDeleteResponse
+    get:
+      '200':
+        application/json: ContactGetResponse
+    patch:
+      '200':
+        application/json: ContactUpdateResponse
+  /v2/contacts/{contact_uuid}/links/{circuit_id}:
+    delete:
+      '200':
+        application/json: ContactsDeleteLinkResponse
+    post:
+      '200':
+        application/json: ContactsLinkCircuitResponse
+  /v2/customers:
+    get:
+      '200':
+        application/json: GetCustomersResponse
+  /v2/customers/company-types:
+    get:
+      '200':
+        application/json: CustomersGetCompanyTypesResponse
+  /v2/customers/current:
+    get:
+      '200':
+        application/json: CustomerGetResponse
+    patch:
+      '200':
+        application/json: CustomerUpdateResponse
+  /v2/customers/current/account-managers:
+    get:
+      '200':
+        application/json: CustomersGetCurrentAccountManagersResponse
+  /v2/customers/current/image:
+    post:
+      '200':
+        application/json: CustomersUploadLogoImageResponse
+  /v2/customers/current/ix-details:
+    patch:
+      '200':
+        application/json: CustomersUpdateIxDetailsResponse
+  /v2/customers/current/locations:
+    get:
+      '200':
+        application/json: CustomersGetLocationListResponse
+  /v2/customers/current/sales-team:
+    get:
+      '200':
+        application/json: CustomersGetCurrentSalesTeamResponse
+  /v2/customers/images/{uuid}:
+    get:
+      '200':
+        image/bmp: CustomersGetLogoByUuid200Response1
+        image/jpeg: CustomersGetLogoByUuidResponse
+        image/png: CustomersGetLogoByUuid200Response
+  /v2/customers/{customer_uuid}/industries:
+    get:
+      '200':
+        application/json: CustomersGetIndustriesByUuidResponse
+  /v2/customers/{customer_uuid}/ix-details:
+    get:
+      '200':
+        application/json: CustomersIxDetailsGetResponse
+  /v2/customers/{customer_uuid}/locations:
+    get:
+      '200':
+        application/json: CustomersGetLocationsByUuidResponse
+  /v2/customers/{customer_uuid}/service-provider-types:
+    get:
+      '200':
+        application/json: CustomersGetServiceProviderTypesByUuidResponse
+  /v2/diagnostic-reports:
+    get:
+      '200':
+        application/json: GetReportsResponse
+    post:
+      '200':
+        application/json: DiagnosticReportsCreateReportResponse
+  /v2/diagnostic-reports/{report_uuid}:
+    delete:
+      '200':
+        application/json: DeleteReportResponse
+    get:
+      '200':
+        application/json: GetReportResponse
+  /v2/documents:
+    get:
+      '200':
+        application/json: DocumentsListFilteredByParamsResponse
+    post:
+      '201':
+        application/json: DocumentUploadResponse
+  /v2/documents/{uuid}:
+    get:
+      '200':
+        application/octet-stream: DocumentsDownloadResponse
+  /v2/events:
+    post:
+      '201':
+        application/json: StreamingEventsBetaCreateSubscriptionResponse
+  /v2/events/{uuid}:
+    get:
+      default:
+        text/event-stream: StreamEventsResponse
+  /v2/flex-bandwidth:
+    get:
+      '200':
+        application/json: FlexBandwidthGetAllContainersResponse
+    post:
+      '201':
+        application/json: FlexBandwidthCreateContainerResponse
+  /v2/flex-bandwidth/{flex_bandwidth_id}:
+    get:
+      '200':
+        application/json: FlexBandwidthGetByIdResponse
+  /v2/groups:
+    get:
+      '200':
+        application/json: GroupGetResponse
+  /v2/groups/{group_name}/permissions:
+    get:
+      '200':
+        application/json: GroupsListPermissionsResponse
+  /v2/groups/{group_name}/users:
+    get:
+      '200':
+        application/json: GroupsGetUserListResponse
+  /v2/labels:
+    get:
+      '200':
+        application/json: GetLabelsResponse
+  /v2/labels/{value}:
+    get:
+      '200':
+        application/json: LabelsAssociatedObjectsGetResponse
+    patch:
+      '200':
+        application/json: AddLabelResponse
+    put:
+      '200':
+        application/json: UpdateLabelResponse
+  /v2/lags:
+    post:
+      '201':
+        application/json: LagPostResponse
+  /v2/lags/{lag_port_circuit_id}/members:
+    get:
+      '200':
+        application/json: LaGsListMembersResponse
+    post:
+      '200':
+        application/json: LaGsAddMemberInterfaceResponse
+  /v2/lags/{lag_port_circuit_id}/members/{member_port_circuit_id}:
+    delete:
+      '200':
+        application/json: LaGsRemoveMemberInterfaceResponse
+  /v2/lags/{port_circuit_id}:
+    delete:
+      '200':
+        application/json: LagDeleteResponse
+    patch:
+      '200':
+        application/json: LagPatchResponse
+  /v2/lags/{port_circuit_id}/disable:
+    post:
+      '200':
+        application/json: LaGsDisableTargetInterfaceResponse
+  /v2/lags/{port_circuit_id}/enable:
+    post:
+      '200':
+        application/json: LaGsEnableTargetInterfaceResponse
+  /v2/locations:
+    get:
+      '200':
+        application/json: LocationsFilterParamsListResponse
+  /v2/locations/cloud:
+    get:
+      '200':
+        application/json: LocationsListCloudLocationsResponse
+  /v2/locations/extrametro:
+    get:
+      '200':
+        application/json: LocationsListExtrametroResponse
+  /v2/locations/markets:
+    get:
+      '200':
+        application/json: LocationsGetMarketListResponse
+  /v2/locations/regions:
+    get:
+      '200':
+        application/json: LocationsListResponse
+  /v2/locations/{pop}/image:
+    get:
+      '200':
+        image/bmp: LocationsGetImage200Response1
+        image/jpeg: LocationsGetImageResponse
+        image/png: LocationsGetImage200Response
+  /v2/locations/{pop}/port-availability:
+    get:
+      '200':
+        application/json: LocationsGetPortAvailabilityDataForPopResponse
+  /v2/locations/{pop}/zones:
+    get:
+      '200':
+        application/json: LocationsGetZonesForPopResponse
+  /v2/locations/{site_code}:
+    get:
+      '200':
+        application/json: GetLocationResponse
+  /v2/maintenances/by-location:
+    get:
+      '200':
+        application/json: MaintenanceNotificationsGetCurrentFutureByPopNameAndMarketCodeResponse
+  /v2/maintenances/by-service/{circuit_id}:
+    get:
+      '200':
+        application/json: MaintenanceNotificationsGetAffectedServiceMaintenancesResponse
+  /v2/maintenances/history:
+    get:
+      '200':
+        application/json: MaintenanceNotificationsGetListIndividualHistoriesResponse
+  /v2/maintenances/notifications:
+    get:
+      '200':
+        application/json: MaintenanceNotificationsFilterByUuidActionOrTypeResponse
+  /v2/marketplace/industries:
+    get:
+      '200':
+        application/json: IndustriesGetResponse
+  /v2/marketplace/service-categories:
+    get:
+      '200':
+        application/json: MarketplaceGetServiceCategoriesResponse
+  /v2/marketplace/service-provider-types:
+    get:
+      '200':
+        application/json: MarketplaceGetServiceProviderTypesResponse
+  /v2/marketplace/services:
+    get:
+      '200':
+        application/json: MarketplaceCustomerServicesGetResponse
+    post:
+      '201':
+        application/json: MarketplaceCreateServiceResponse
+  /v2/marketplace/services/quick-connect:
+    get:
+      '200':
+        application/json: MarketplaceQuickConnectListResponse
+  /v2/marketplace/services/{service_uuid}:
+    delete:
+      '200':
+        application/json: MarketplaceDeleteServiceResponse
+    get:
+      '200':
+        application/json: MarketplaceGetServiceObjectResponse
+    patch:
+      '200':
+        application/json: MarketplaceUpdateServiceResponse
+  /v2/marketplace/services/{service_uuid}/image:
+    delete:
+      '200':
+        application/json: MarketplaceDeleteServiceImageResponse
+    get:
+      '200':
+        image/bmp: MarketplaceServiceImageGet200Response
+        image/jpeg: MarketplaceServiceImageGet200Response
+        image/png: MarketplaceServiceImageGetResponse
+    post:
+      '200':
+        application/json: MarketplaceUpdateServiceImageResponse
+  /v2/marketplace/services/{service_uuid}/route-set:
+    get:
+      '200':
+        application/json: MarketplaceServiceRouteSetGetResponse
+  /v2/marketplace/services/{service_uuid}/thumbnail:
+    get:
+      '200':
+        image/bmp: MarketplaceServiceThumbnailGet200Response
+        image/jpeg: MarketplaceServiceThumbnailGet200Response
+        image/png: MarketplaceServiceThumbnailGetResponse
+    post:
+      '200':
+        application/json: MarketplaceUpdateServiceThumbnailResponse
+  /v2/metrics/cloud-router-connections/{cloud_connection_circuit_id}/ipsec:
+    get:
+      '200':
+        application/json: MetricsGetIpsecStatisticsByCloudRouterConnectionCircuitIdResponse
+  /v2/metrics/cloud-router-connections/{cloud_connection_circuit_id}/nat:
+    get:
+      '200':
+        application/json: MetricsGetNatStatisticsByCloudRouterConnectionCircuitIdResponse
+  /v2/metrics/cloud-router-connections/{cloud_connection_circuit_id}/rate/{type}:
+    get:
+      '200':
+        application/json: MetricsCloudRouterConnectionRateGetResponse
+  /v2/metrics/customer/ifd/rate/{type}:
+    get:
+      '200':
+        application/json: MetricsCustomerIfdRateDataResponse
+  /v2/metrics/customer/ifd/summary/{type}:
+    get:
+      '200':
+        application/json: MetricsCustomerIfdSummaryGetResponse
+  /v2/metrics/customer/ifl/rate/{type}:
+    get:
+      '200':
+        application/json: MetricsCustomerRateByIfTypeGetResponse
+  /v2/metrics/customer/ifl/summary/{type}:
+    get:
+      '200':
+        application/json: MetricsCustomerIflSummaryGetResponse
+  /v2/metrics/customer/longhaul-usage:
+    get:
+      '200':
+        application/json: MetricsCustomerLonghaulUsageGetResponse
+  /v2/metrics/ifd/errors/{port_circuit_id}:
+    get:
+      '200':
+        application/json: IfdErrorsResponse
+  /v2/metrics/ifd/optic-data/{port_circuit_id}:
+    get:
+      '200':
+        application/json: MetricsGetOpticDataByPortCircuitIdResponse
+  /v2/metrics/ifd/rate/{type}/{port_circuit_id}:
+    get:
+      '200':
+        application/json: IfdRateResponse
+  /v2/metrics/ifd/temperature/{port_circuit_id}:
+    get:
+      '200':
+        application/json: IfdTemperatureResponse
+  /v2/metrics/ifd/whatcast/{port_circuit_id}:
+    get:
+      '200':
+        application/json: IfdWhatcastResponse
+  /v2/metrics/virtual-circuits/{vc_circuit_id}/interfaces/{port_circuit_id}/rate/{type}:
+    get:
+      '200':
+        application/json: IflRateResponse
+  /v2/objects/{circuit_id}/labels:
+    get:
+      '200':
+        application/json: ObjectsGetLabelsResponse
+    patch:
+      '200':
+        application/json: AddObjectResponse
+    put:
+      '200':
+        application/json: UpdateObjectResponse
+  /v2/outbound-cross-connects:
+    get:
+      '200':
+        application/json: OutboundCrossConnectsListResponse
+    post:
+      '202':
+        application/json: OutboundCrossConnectsCreateNewResponse
+  /v2/outbound-cross-connects/{outbound_cross_connect_id}:
+    get:
+      '200':
+        application/json: OutboundCrossConnectsGetOneResponse
+  /v2/ports:
+    get:
+      '200':
+        application/json: PortsGetListResponse
+    post:
+      '201':
+        application/json: PortPostResponse
+  /v2/ports/export.csv:
+    get:
+      '200':
+        text/csv: PortsExportCsvResponse
+  /v2/ports/{port_circuit_id}:
+    delete:
+      '200':
+        application/json: DeletePortResponse
+    get:
+      '200':
+        application/json: GetPortResponse
+    patch:
+      '200':
+        application/json: UpdatePortResponse
+  /v2/ports/{port_circuit_id}/device-info:
+    get:
+      '200':
+        application/json: PortsGetDeviceInfoResponse
+  /v2/ports/{port_circuit_id}/disable:
+    post:
+      '200':
+        application/json: DisablePortResponse
+  /v2/ports/{port_circuit_id}/enable:
+    post:
+      '200':
+        application/json: EnablePortResponse
+  /v2/ports/{port_circuit_id}/letter-of-authorization:
+    post:
+      '201':
+        application/json: PortsGenerateLoaResponse
+  /v2/ports/{port_circuit_id}/router-logs:
+    get:
+      '200':
+        application/json: PortsGetRouterLogsResponse
+  /v2/ports/{port_circuit_id}/upgrade:
+    post:
+      '202':
+        application/json: PortsUpgradeSubscriptionTermResponse
+  /v2/ports/{port_circuit_id}/vlan-summary:
+    get:
+      '200':
+        application/json: PortsGetVlanSummaryResponse
+  /v2/quotes:
+    get:
+      '200':
+        application/json: PortalQuotesGetCustomerQuotesResponse
+    post:
+      '201':
+        application/json: PortalQuotesCreateNewQuoteResponse
+  /v2/quotes/published:
+    get:
+      '200':
+        application/json: PortalQuotesGetPublishedQuotesResponse
+  /v2/quotes/published/assigned:
+    get:
+      '200':
+        application/json: PortalQuotesGetAssignedQuotesResponse
+  /v2/quotes/published/{published_quote_uuid}:
+    get:
+      '200':
+        application/json: PortalQuotesGetPublishedQuoteDetailsResponse
+  /v2/quotes/{quote_uuid}:
+    get:
+      '200':
+        application/json: PortalQuotesGetDetailsResponse
+    patch:
+      '200':
+        application/json: PortalQuotesUpdateQuoteResponse
+    post:
+      '201':
+        application/json: PortalQuotesAddQuoteLineResponse
+  /v2/quotes/{quote_uuid}/csv:
+    get:
+      '200':
+        text/csv: PortalQuotesGetCsvResponse
+  /v2/quotes/{quote_uuid}/duplicate:
+    post:
+      '201':
+        application/json: PortalQuotesDuplicateQuoteResponse
+  /v2/quotes/{quote_uuid}/pdf:
+    get:
+      '200':
+        application/pdf: PortalQuotesGetPdfResponse
+  /v2/quotes/{quote_uuid}/publish:
+    post:
+      '201':
+        application/json: PortalQuotesPublishQuoteResponse
+  /v2/quotes/{quote_uuid}/{quote_line_uuid}:
+    delete:
+      '200':
+        application/json: PortalQuotesDeleteQuoteLineResponse
+  /v2/request-aliases:
+    get:
+      '200':
+        application/json: RequestAliasesGetAllResponse
+    post:
+      '201':
+        application/json: RequestAliasesAddNewAliasResponse
+  /v2/request-aliases/{request_alias_uuid}:
+    get:
+      '200':
+        application/json: RequestAliasesByUuidResponse
+    patch:
+      '200':
+        application/json: RequestAliasesUpdateAliasResponse
+  /v2/request-aliases/{request_alias_uuid}/contacts:
+    get:
+      '200':
+        application/json: RequestAliasesGetAllContactsResponse
+    post:
+      '201':
+        application/json: RequestAliasesAssociateContactsResponse
+  /v2/services:
+    get:
+      '200':
+        application/json: ServicesGetCurrentCustomerServicesListResponse
+  /v2/services/backbone:
+    post:
+      '201':
+        application/json: ServicesCreateBackboneVcResponse
+  /v2/services/cloud-routers:
+    get:
+      '200':
+        application/json: CloudRoutersListAssociatedResponse
+    post:
+      '201':
+        application/json: CloudRoutersCreateNewResponse
+  /v2/services/cloud-routers/connections:
+    get:
+      '200':
+        application/json: CloudRouterConnectionsListAllResponse
+  /v2/services/cloud-routers/connections/export.csv:
+    get:
+      '200':
+        text/csv: CloudRouterConnectionsDownloadCsvResponse
+  /v2/services/cloud-routers/connections/{circuit_id}:
+    get:
+      '200':
+        application/json: CloudRouterConnectionsGetByCircuitIdResponse
+  /v2/services/cloud-routers/export.csv:
+    get:
+      '200':
+        text/csv: CloudRoutersDownloadAsCsvResponse
+  /v2/services/cloud-routers/requests:
+    get:
+      '200':
+        application/json: CloudRouterThirdPartyListImportRequestsResponse
+  /v2/services/cloud-routers/requests/{import_circuit_id}:
+    delete:
+      '200':
+        application/json: CloudRouterThirdPartyDeleteRequestResponse
+    get:
+      '200':
+        application/json: CloudRouterThirdPartyImportsRequestGetResponse
+  /v2/services/cloud-routers/requests/{import_circuit_id}/accept:
+    post:
+      '200':
+        application/json: CloudRouterThirdPartyAcceptImportCircuitResponse
+  /v2/services/cloud-routers/requests/{import_circuit_id}/reject:
+    post:
+      '200':
+        application/json: CloudRouterThirdPartyRejectImportCircuitResponse
+  /v2/services/cloud-routers/{circuit_id}:
+    delete:
+      '200':
+        application/json: CloudRoutersDeleteRouterResponse
+    get:
+      '200':
+        application/json: CloudRoutersGetByCircuitIdResponse
+    patch:
+      '200':
+        application/json: CloudRoutersUpdateExistingResponse
+  /v2/services/cloud-routers/{circuit_id}/address_is_unique:
+    post:
+      '200':
+        application/json: CloudRouterConnectionsCheckBgpAddressUniqueResponse
+  /v2/services/cloud-routers/{circuit_id}/all-routes:
+    get:
+      '200':
+        application/json: CloudRoutersGetAllRoutesResponse
+  /v2/services/cloud-routers/{circuit_id}/bgp-logs:
+    get:
+      '200':
+        application/json: CloudRoutersGetBgpLogsResponse
+  /v2/services/cloud-routers/{circuit_id}/bgp-routes:
+    get:
+      '200':
+        application/json: CloudRoutersGetBgpRoutesResponse
+  /v2/services/cloud-routers/{circuit_id}/connections:
+    get:
+      '200':
+        application/json: CloudRouterConnectionsListForCircuitResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/aws:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateAwsConnectionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/azure:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateAzureConnectionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/google:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateGoogleConnectionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/ibm:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateIbmConnectionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/ipsec:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateIpsecConnectionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/oracle:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsCreateOracleConnectionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/packetfabric:
+    post:
+      '201':
+        application/json: CloudRouterConnectionsAttachPortResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/third-party:
+    post:
+      '201':
+        application/json: CloudRouterThirdPartyCreateRequestResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_circuit_id}:
+    delete:
+      '200':
+        application/json: CloudRouterConnectionsDeleteByCircuitConnectionIdResponse
+    get:
+      '200':
+        application/json: CloudRouterConnectionsGetSingleByCircuitIdResponse
+    patch:
+      '200':
+        application/json: CloudRouterConnectionsUpdateConnectionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_circuit_id}/bgp:
+    get:
+      '200':
+        application/json: CloudRouterBgpSessionSettingsListBgpSessionsResponse
+    post:
+      '201':
+        application/json: CloudRouterBgpSessionSettingsCreateL3InfoResponse
+    put:
+      '200':
+        application/json: CloudRouterBgpSessionSettingsUpdateSessionInfoResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_circuit_id}/bgp/{bgp_settings_uuid}:
+    delete:
+      '200':
+        application/json: CloudRouterBgpSessionSettingsDeleteSingleSessionResponse
+    get:
+      '200':
+        application/json: CloudRouterBgpSessionSettingsGetSingleSessionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/{cloud_connection_uuid}:
+    delete:
+      '200':
+        application/json: CloudRouterConnectionsDeleteConnectionResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/{connection_circuit_id}/bgp-routes:
+    get:
+      '200':
+        application/json: CloudRouterBgpSessionSettingsGetConnectionBgpRoutesResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/{connection_circuit_id}/status:
+    get:
+      '200':
+        application/json: CloudRouterConnectionsGetInstanceStatusResponse
+  /v2/services/cloud-routers/{circuit_id}/connections/{connection_circuit_id}/upgrade/options:
+    get:
+      '200':
+        application/json: CloudRouterConnectionsGetUpgradeOptionsResponse
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party:
+    get:
+      '200':
+        application/json: CloudRouterThirdPartyListImportsResponse
+    post:
+      '201':
+        application/json: CloudRouterThirdPartyImportToConnectionResponse
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party/delete-multiple:
+    post:
+      '202':
+        application/json: CloudRouterThirdPartyRemoveMultipleResponse
+  /v2/services/cloud-routers/{cr_circuit_id}/connections/{connection_circuit_id}/third-party/{import_circuit_id}:
+    delete:
+      '202':
+        application/json: CloudRouterThirdPartyRemoveConnectionImportResponse
+    get:
+      '200':
+        application/json: CloudRouterThirdPartyGetSingleImportResponse
+    patch:
+      '200':
+        application/json: CloudRouterThirdPartyUpdateImportByIdResponse
+  /v2/services/cloud-routers/{cr_circuit_id}/route-sets:
+    get:
+      '200':
+        application/json: CloudRouterRouteSetsGetListResponse
+  /v2/services/cloud-routers/{cr_circuit_id}/route-sets/{route_set_circuit_id}:
+    get:
+      '200':
+        application/json: CloudRouterRouteSetsGetSingleRouteSetResponse
+    patch:
+      '200':
+        application/json: CloudRouterRouteSetsUpdateRouteSetResponse
+  /v2/services/cloud-routers/{cr_circuit_id}/route-sets/{route_set_circuit_id}/connections:
+    get:
+      '200':
+        application/json: CloudRouterRouteSetsGetConnectionsResponse
+    put:
+      '202':
+        application/json: CloudRouterRouteSetsUpdateConnectionsResponse
+  /v2/services/cloud/aws/resources/{credentials_uuid}/regions:
+    get:
+      '200':
+        application/json: CloudServicesAwsGetAvailableRegionsResponse
+  /v2/services/cloud/aws/resources/{credentials_uuid}/{region_name}:
+    get:
+      '200':
+        application/json: CloudServicesAwsGetResourcesInRegionResponse
+  /v2/services/cloud/connections/dedicated:
+    get:
+      '200':
+        application/json: CloudServicesAwsGetCurrentDedicatedConnectionsResponse
+  /v2/services/cloud/connections/dedicated/export.csv:
+    get:
+      '200':
+        text/csv: CloudServicesAwsGetCurrentCustomerDedicatedConnectionsCsvResponse
+  /v2/services/cloud/connections/hosted:
+    get:
+      '200':
+        application/json: CloudServicesAwsListHostedConnectionsResponse
+  /v2/services/cloud/connections/hosted/export.csv:
+    get:
+      '200':
+        text/csv: CloudServicesAwsListHostedConnectionsCsvResponse
+  /v2/services/cloud/connections/{cloud_circuit_id}:
+    get:
+      '200':
+        application/json: GetConnectionResponse
+  /v2/services/cloud/connections/{cloud_circuit_id}/router-config:
+    get:
+      '200':
+        application/json: CloudServicesAwsGetRouterConfigResponse
+  /v2/services/cloud/connections/{cloud_circuit_id}/status:
+    get:
+      '200':
+        application/json: CloudServicesAwsGetConnectionStatusResponse
+  /v2/services/cloud/connections/{cloud_circuit_id}/upgrade/options:
+    get:
+      '200':
+        application/json: CloudServicesAwsGetConnectionUpgradeOptionsResponse
+  /v2/services/cloud/credentials:
+    get:
+      '200':
+        application/json: CloudProviderCredentialsGetAllResponse
+    post:
+      '201':
+        application/json: CloudProviderCredentialsCreateNewCredentialResponse
+  /v2/services/cloud/credentials/{credential_uuid}:
+    delete:
+      '200':
+        application/json: CloudProviderCredentialsDeleteCredentialResponse
+    patch:
+      '200':
+        application/json: CloudProviderCredentialsUpdateCredentialResponse
+  /v2/services/cloud/credentials/{credential_uuid}/connections:
+    get:
+      '200':
+        application/json: CloudProviderCredentialsGetAllConnectionsResponse
+  /v2/services/cloud/dedicated/aws:
+    post:
+      '201':
+        application/json: CloudServicesAwsRequestConnectionResponse
+  /v2/services/cloud/dedicated/azure:
+    post:
+      '201':
+        application/json: CloudServicesAzureRequestNewDedicatedConnectionResponse
+  /v2/services/cloud/dedicated/google:
+    post:
+      '201':
+        application/json: CloudServicesGoogleCloudRequestDedicatedConnectionResponse
+  /v2/services/cloud/dedicated/{cloud_circuit_id}:
+    patch:
+      '200':
+        application/json: CloudServicesAwsUpdateDedicatedCloudConnectionResponse
+  /v2/services/cloud/dedicated/{cloud_circuit_id}/upgrade:
+    post:
+      '202':
+        application/json: CloudServicesAwsUpgradeDedicatedCloudConnectionResponse
+  /v2/services/cloud/google/resources/{credentials_uuid}/regions:
+    get:
+      '200':
+        application/json: CloudServicesGoogleCloudAvailableRegionsGetResponse
+  /v2/services/cloud/google/resources/{credentials_uuid}/{region_name}:
+    get:
+      '200':
+        application/json: CloudServicesGoogleCloudGetResourcesByRegionResponse
+  /v2/services/cloud/hosted/aws:
+    post:
+      '201':
+        application/json: CloudServicesAwsRequestHostedConnectionResponse
+  /v2/services/cloud/hosted/azure:
+    post:
+      '201':
+        application/json: CloudServicesAzureRequestNewExpressRouteResponse
+  /v2/services/cloud/hosted/azure/service-key-validation/{azure_service_key}:
+    get:
+      '200':
+        application/json: CloudServicesAzureValidateServiceKeyResponse
+  /v2/services/cloud/hosted/google:
+    post:
+      '201':
+        application/json: CloudServicesGoogleCloudRequestNewConnectionResponse
+  /v2/services/cloud/hosted/ibm:
+    post:
+      '201':
+        application/json: CloudServicesIbmRequestNewConnectionResponse
+  /v2/services/cloud/hosted/oracle:
+    post:
+      '201':
+        application/json: CloudServicesOracleRequestConnectionResponse
+  /v2/services/cloud/hosted/oracle/vc-ocid-status/{vc_ocid}:
+    get:
+      '200':
+        application/json: CloudServicesOracleGetStatusResponse
+  /v2/services/cloud/hosted/oracle/{cloud_circuit_id}/sync:
+    post:
+      '202':
+        application/json: CloudServicesOracleSyncChangesResponse
+  /v2/services/cloud/hosted/{cloud_circuit_id}:
+    patch:
+      '200':
+        application/json: CloudServicesAwsUpdateHostedConnectionResponse
+  /v2/services/cloud/hosted/{cloud_circuit_id}/upgrade:
+    post:
+      '202':
+        application/json: CloudServicesAwsUpgradeHostedConnectionResponse
+  /v2/services/cloud/ibm/{cloud_circuit_id}:
+    patch:
+      '201':
+        application/json: CloudServicesIbmUpdateIbmCloudConnectionResponse
+  /v2/services/export.csv:
+    get:
+      '200':
+        text/csv: ServicesExportCsvListResponse
+  /v2/services/high-performance-internet:
+    get:
+      '200':
+        application/json: HighPerformanceInternetGetCurrentCustomerHpIsResponse
+    post:
+      '202':
+        application/json: HpiPostResponse
+  /v2/services/high-performance-internet/{hpi_circuit_id}:
+    delete:
+      '200':
+        application/json: HpiDeleteResponse
+    get:
+      '200':
+        application/json: HpiGetResponse
+    put:
+      '202':
+        application/json: HpiPutResponse
+  /v2/services/high-performance-internet/{hpi_circuit_id}/bgp:
+    get:
+      '200':
+        application/json: HighPerformanceInternetGetBgpConfigResponse
+  /v2/services/high-performance-internet/{hpi_circuit_id}/static:
+    get:
+      '200':
+        application/json: HighPerformanceInternetGetStaticConfigurationsResponse
+  /v2/services/high-performance-internet/{hpi_circuit_id}/status:
+    get:
+      '200':
+        application/json: HighPerformanceInternetGetStatusResponse
+  /v2/services/ipam/asns:
+    get:
+      '200':
+        application/json: IpamGetAsnsResponse
+    post:
+      '201':
+        application/json: IpamAllocateNewAsnResponse
+  /v2/services/ipam/asns/{asn}:
+    delete:
+      '200':
+        application/json: IpamDeleteAsnByAsnResponse
+    get:
+      '200':
+        application/json: IpamGetAsnByIdResponse
+  /v2/services/ipam/contacts:
+    get:
+      '200':
+        application/json: IpamGetCurrentCustomerContactsResponse
+    post:
+      '201':
+        application/json: IpamAddContactResponse
+  /v2/services/ipam/contacts/{ipam_contact_uuid}:
+    delete:
+      '200':
+        application/json: IpamDeleteByUuidResponse
+    get:
+      '200':
+        application/json: IpamGetByUuidResponse
+  /v2/services/ipam/prefixes:
+    get:
+      '200':
+        application/json: IpamGetPrefixesResponse
+    post:
+      '201':
+        application/json: IpamAllocatePrefixResponse
+  /v2/services/ipam/prefixes/{prefix_circuit_id}:
+    delete:
+      '200':
+        application/json: IpamDeleteByCircuitIdResponse
+    get:
+      '200':
+        application/json: IpamGetByCircuitIdResponse
+  /v2/services/ipsec/gateway_address/uniqueness:
+    get:
+      '200':
+        application/json: CloudRouterIPsecCheckGatewayAddressUniquenessResponse
+  /v2/services/ipsec/{circuit_id}:
+    get:
+      '200':
+        application/json: IpsecGetResponse
+    patch:
+      '200':
+        application/json: IpsecPatchResponse
+  /v2/services/ix:
+    post:
+      '201':
+        application/json: ServicesCreateIxVcResponse
+  /v2/services/point-to-point:
+    get:
+      '200':
+        application/json: PtpServicesGetAllResponse
+    post:
+      '201':
+        application/json: PtpServicesCreateServiceResponse
+  /v2/services/point-to-point/{ptp_uuid}:
+    delete:
+      '200':
+        application/json: PtpServicesDeletePointToPointResponse
+    get:
+      '200':
+        application/json: PtpServicesGetServiceInfoResponse
+    patch:
+      '200':
+        application/json: PtpServicesUpdateDescriptionResponse
+  /v2/services/point-to-point/{ptp_uuid}/status:
+    get:
+      '200':
+        application/json: PtpServicesGetServiceStatusResponse
+  /v2/services/point-to-point/{ptp_uuid}/upgrade:
+    post:
+      '200':
+        application/json: PtpServicesUpgradePtpUuidResponse
+  /v2/services/point-to-point/{ptp_uuid}/upgrade/options:
+    get:
+      '200':
+        application/json: PtpServicesGetUpgradeOptionsResponse
+  /v2/services/requests:
+    get:
+      '200':
+        application/json: ServicesListVcRequestsResponse
+  /v2/services/requests/{vc_request_uuid}:
+    delete:
+      '200':
+        application/json: ServicesDeleteRequestResponse
+    get:
+      '200':
+        application/json: ServicesGetByUuidResponse
+  /v2/services/requests/{vc_request_uuid}/provision:
+    post:
+      '201':
+        application/json: ProvisionServiceResponse
+  /v2/services/requests/{vc_request_uuid}/provision/cloud-router-connection:
+    post:
+      '201':
+        application/json: CloudRouterThirdPartyProvisionMarketplaceCloudRouterConnectionResponse
+  /v2/services/requests/{vc_request_uuid}/provision/hosted:
+    post:
+      '201':
+        application/json: CloudServicesAwsProvisionHostedResponse
+  /v2/services/requests/{vc_request_uuid}/reject:
+    post:
+      '200':
+        application/json: ServicesRejectRequestResponse
+  /v2/services/third-party:
+    post:
+      '201':
+        application/json: ServicesCreate3RdPartyVcResponse
+  /v2/services/third-party/hosted/aws:
+    post:
+      '201':
+        application/json: CloudServicesAwsRequestCloudConnectionResponse
+  /v2/services/third-party/hosted/azure:
+    post:
+      '201':
+        application/json: CloudServicesAzureRequestHostedConnectionResponse
+  /v2/services/third-party/hosted/google:
+    post:
+      '201':
+        application/json: CloudServicesGoogleCloudRequestHostedConnectionResponse
+  /v2/services/third-party/hosted/oracle:
+    post:
+      '201':
+        application/json: CloudServicesOracleRequestHostedConnectionResponse
+  /v2/services/{vc_circuit_id}:
+    delete:
+      '200':
+        application/json: DeleteServiceResponse
+    get:
+      '200':
+        application/json: GetServiceResponse
+    patch:
+      '200':
+        application/json: PatchServiceResponse
+  /v2/services/{vc_circuit_id}/burst:
+    delete:
+      '200':
+        application/json: ServicesDeleteBurstResponse
+    post:
+      '202':
+        application/json: ServicesAddSpeedBurstResponse
+  /v2/services/{vc_circuit_id}/status:
+    get:
+      '200':
+        application/json: ServicesVcCircuitStatusGetResponse
+  /v2/services/{vc_circuit_id}/upgrade:
+    post:
+      '202':
+        application/json: ServicesUpgradeBillingTermsResponse
+  /v2/services/{vc_circuit_id}/upgrade/options:
+    get:
+      '200':
+        application/json: ServicesGetUpgradeOptionsResponse
+  /v2/svlan-labels:
+    post:
+      '201':
+        application/json: SVlanLabelsCreateLabelResponse
+  /v2/svlan-labels/mappings:
+    get:
+      '200':
+        application/json: SVlanLabelsGetLabelsResponse
+  /v2/svlan-labels/{port_circuit_id}:
+    get:
+      '200':
+        application/json: SVlanLabelsGetLabelsForPortResponse
+  /v2/svlan-labels/{svlan_label_uuid}:
+    delete:
+      '200':
+        application/json: SVlanLabelsDeleteLabelResponse
+    patch:
+      '200':
+        application/json: SVlanLabelsUpdateLabelByUuidResponse
+  /v2/team-invites:
+    get:
+      '201':
+        application/json: TeamSignupListInvitedUsersResponse
+    post:
+      '201':
+        application/json: TeamSignupSendInvitationEmailsResponse
+  /v2/team-invites/{signup_uuid}:
+    get:
+      '201':
+        application/json: TeamSignupGetDetailsResponse
+  /v2/team-invites/{signup_uuid}/resend:
+    post:
+      '200':
+        application/json: TeamSignupResendInvitationResponse
+  /v2/team-invites/{signup_uuid}/user:
+    post:
+      '201':
+        application/json: TeamSignupCreateUserBasedOnInvitationResponse
+  /v2/users:
+    get:
+      '201':
+        application/json: UsersGetListResponse
+    post:
+      '201':
+        application/json: UserPostResponse
+  /v2/users/mfa/disable:
+    post:
+      '200':
+        application/json: MultiFactorAuthenticationDisableUserMfaResponse
+  /v2/users/mfa/enable:
+    post:
+      '200':
+        application/json: MultiFactorAuthenticationEnableUserAuthResponse
+  /v2/users/mfa/qrcode:
+    get:
+      '200':
+        image/png: MultiFactorAuthenticationGenerateQrCodeImageResponse
+  /v2/users/mfa/setup:
+    post:
+      '200':
+        application/json: MultiFactorAuthenticationGenerateSecretScratchCodesResponse
+  /v2/users/request-password-reset:
+    post:
+      '200':
+        application/json: UsersRequestPasswordResetResponse
+  /v2/users/reset-password:
+    post:
+      '200':
+        application/json: UsersSetNewPasswordResponse
+  /v2/users/{user_login}:
+    delete:
+      '200':
+        application/json: UsersDeleteUserResponse
+    get:
+      '200':
+        application/json: UsersGetUserDetailsByLoginResponse
+    patch:
+      '200':
+        application/json: UserPatchResponse
+  /v2/users/{user_login}/groups:
+    get:
+      '200':
+        application/json: UsersListUserGroupsResponse
+  /v2/users/{user_login}/groups/{group_name}:
+    delete:
+      '200':
+        application/json: UsersDeleteFromGroupResponse
+    post:
+      '200':
+        application/json: UsersAddToGroupResponse
+  /v2/users/{user_login}/password:
+    patch:
+      '200':
+        application/json: UsersUpdatePasswordResponse
+  /v2/users/{uuid}:
+    get:
+      '200':
+        application/json: UsersGetDetailsByUuidResponse
+securityParameters:
+  account_uuid:
+    query: false
+  action:
+    query: false
+  active:
+    query: false
+  add_on_fee_key:
+    query: false
+  aggregate_capacity_id:
+    query: false
+  any_type:
+    query: false
+  assigned_customer_uuid:
+    query: false
+  bandwidth_type:
+    query: false
+  billing:
+    query: false
+  category:
+    query: false
+  circuit_id:
+    query: false
+  city:
+    query: false
+  cloud_circuit_id:
+    query: false
+  cloud_connection_type:
+    query: false
+  cloud_provider:
+    query: false
+  cloud_router_circuit_id:
+    query: false
+  cloud_router_connection_circuit_id:
+    query: false
+  condensed:
+    query: false
+  contact_uuid:
+    query: false
+  description:
+    query: false
+  device_port_type:
+    query: false
+  email:
+    query: false
+  end:
+    query: false
+  end_date:
+    query: false
+  enni:
+    query: false
+  event:
+    query: false
+  export:
+    query: false
+  flex_bandwidth_id:
+    query: false
+  gateway_address:
+    query: false
+  has_cloud_router:
+    query: false
+  hpi_circuit_id:
+    query: false
+  include_ifl_data:
+    query: false
+  include_logical_interfaces:
+    query: false
+  include_vc_data:
+    query: false
+  industry:
+    query: false
+  interval:
+    query: false
+  ipsec_capable:
+    query: false
+  is_cloud:
+    query: false
+  is_cloud_router:
+    query: false
+  is_lag:
+    query: false
+  is_lag_member:
+    query: false
+  is_nni:
+    query: false
+  is_ptp:
+    query: false
+  l3nf_id:
+    query: false
+  label_type:
+    query: false
+  level:
+    query: false
+  location_type:
+    query: false
+  market:
+    query: false
+  market_codes_list:
+    query: false
+  media:
+    query: false
+  min_vlan:
+    query: false
+  name:
+    query: false
+  nat_capable:
+    query: false
+  near_cloud_router:
+    query: false
+  network_provider:
+    query: false
+  network_provider_a:
+    query: false
+  network_provider_z:
+    query: false
+  offset:
+    query: false
+  page_size:
+    query: false
+  pop:
+    query: false
+  pop_names_list:
+    query: false
+  port:
+    query: false
+  port_circuit_id:
+    query: false
+  product_type:
+    query: false
+  project_id:
+    query: false
+  provider:
+    query: false
+  published:
+    query: false
+  q:
+    query: false
+  quote_uuid:
+    query: false
+  reason:
+    query: false
+  region:
+    query: false
+  request_type:
+    query: false
+  route_type:
+    query: false
+  router_type:
+    query: false
+  routing_id:
+    query: false
+  service_class:
+    query: false
+  service_provider_type:
+    query: false
+  service_type:
+    query: false
+  session_token:
+    query: false
+  show_deleted:
+    query: false
+  show_empty:
+    query: false
+  show_unpublished:
+    query: false
+  side_a:
+    query: false
+  side_z:
+    query: false
+  since:
+    query: false
+  single_armed:
+    query: false
+  sort_column:
+    query: false
+  sort_order:
+    query: false
+  speed:
+    query: false
+  start:
+    query: false
+  start_date:
+    query: false
+  state:
+    query: false
+  statuses:
+    query: false
+  subscription_term:
+    query: false
+  termination_date:
+    query: false
+  time_from:
+    query: false
+  time_to:
+    query: false
+  timeout:
+    query: false
+  type:
+    query: false
+  until:
+    query: false
+  user_login:
+    query: false
+  user_uuid:
+    query: false
+  uuid:
+    query: false
+  vc_circuit_id:
+    query: false
+  vc_circuit_id_list:
+    query: false
+validServerUrls: {}

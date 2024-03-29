@@ -25,6 +25,7 @@ export const categoriesToMapTo = {
     "Reviews",
     "Compliance & Security",
     "Insurance",
+    "Real Estate",
   ],
   Commerce: [
     "Accounting",

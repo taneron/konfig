@@ -1,0 +1,107 @@
+processed:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  apiBaseUrl: https://api.packetfabric.com
+  apiVersion: 2.0.0
+  apiDescription: >
+    Use [/v2/auth/login](https://api.packetfabric.com) endpoint to get the
+    token.
+
+
+
+    Use that token and "Authorize" button to authenticate your requests.
+
+
+
+    You can also use that token to authorize your `curl` request:
+
+
+    ```
+
+    curl -X GET "https://api.packetfabric.com/v2/activity-logs" -H "accept: */*"
+    -H "Authorization: Bearer 12a30d30-20c0-4f62-a982-eb1424631094"
+
+    ```
+
+
+    Python code to authenticate and utilize the
+
+    [Bearer
+    token](https://swagger.io/docs/specification/authentication/bearer-authentication/):
+
+
+    ```
+
+    import requests
+
+    login_url = 'https://api.packetfabric.com/v2/auth/login'
+
+    login_payload = {
+        'login': 'admin',
+        'password': 'p4ssw0rd'
+    }
+
+    r = requests.post(login_url, json=login_payload)
+
+    auth_token = r.json()['token']
+
+    request_header = {
+        'Authorization': f'Bearer {auth_token}'
+    }
+
+    contacts_url = 'https://api.packetfabric.com/v2/contacts'
+
+    r = requests.get(contacts_url, headers=request_header)
+
+    ```
+
+
+    *For resellers only*:
+
+
+    To make the request on behalf of reseller's customer - add `On-Behalf:
+    customer UUID` header to the request:
+
+
+    ```
+
+    curl -X GET "https://api.packetfabric.com/v2/activity-logs" -H "accept: */*"
+    -H "Authorization: Bearer 12a30d30-20c0-4f62-a982-eb1424631094" -H
+    "On-Behalf: 11111111-2222-3333-4444-eb1424631094"
+
+    ```
+
+
+    *For API Key Authentication*
+
+    To utilize an API Key instead of login/password, you will need to generate a
+    key and save the token.
+
+    Using that token, as the Bearer token, you can then login.
+
+
+    ```
+
+    api_key = <TOKEN>
+
+    request_header = {
+        'Authorization': f'Bearer {api_key}'
+    }
+
+    contacts_url = 'https://api.packetfabric.com/v2/contacts'
+
+    r = requests.get(contacts_url, headers=request_header)
+
+    ```
+  apiTitle: PacketFabric API
+  endpoints: 261
+  sdkMethods: 341
+  schemas: 0
+  parameters: 1267
+  originalCustomRequest:
+    type: GET
+    url: https://api.packetfabric.com/openapi/specification/swagger.yaml
+  customRequestSpecFilename: packetfabric.com.yaml
+  difficultyScore: 657.75
