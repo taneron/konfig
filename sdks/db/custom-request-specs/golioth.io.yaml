@@ -1,0 +1,5267 @@
+openapi: 3.0.0
+info:
+  title: golioth API
+  version: '1.0'
+paths:
+  /v1/artifacts:
+    post:
+      operationId: Artifacts_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateArtifactResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothCreateArtifactRequest'
+        description: ' (streaming inputs)'
+        required: true
+      tags:
+        - Artifacts
+  /v1/billing/webhook:
+    post:
+      operationId: Billing_PaymentWebhook
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothPaymentWebhookResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              format: byte
+        required: true
+      tags:
+        - Billing
+  /v1/boards:
+    get:
+      operationId: Boards_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListBoardsResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Boards
+  /v1/boards/{id}:
+    get:
+      operationId: Boards_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetBoardsResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Boards
+  /v1/integration-types:
+    get:
+      operationId: Integrations_ListIntegrationTypes
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListIntegrationTypesResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - Integrations
+  /v1/organizations:
+    get:
+      operationId: Organizations_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListOrganizationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      tags:
+        - Organizations
+    post:
+      operationId: Organizations_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateOrganizationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothCreateOrganizationRequest'
+        required: true
+      tags:
+        - Organizations
+  /v1/organizations/{organizationId}:
+    get:
+      operationId: Organizations_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetOrganizationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Organizations
+    put:
+      operationId: Organizations_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateOrganizationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothOrganizationUpdate'
+      tags:
+        - Organizations
+    patch:
+      operationId: Organizations_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateOrganizationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothOrganizationUpdate'
+      tags:
+        - Organizations
+  /v1/organizations/{organizationId}/checkout_sessions:
+    post:
+      operationId: Billing_CreateCheckoutSession
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateCheckoutSessionResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/goliothSubscriptionItem'
+                callbackPath:
+                  type: string
+        required: true
+      tags:
+        - Billing
+  /v1/organizations/{organizationId}/customer_portal_sessions:
+    post:
+      operationId: Billing_CreateCustomerPortalSession
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateCustomerPortalResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                callbackPath:
+                  type: string
+        required: true
+      tags:
+        - Billing
+  /v1/organizations/{organizationId}/quotas:
+    get:
+      operationId: Organizations_GetQuota
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetOrganizationQuotaResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Organizations
+  /v1/organizations/{organizationId}/usage:
+    get:
+      operationId: Usage_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListUsageResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      tags:
+        - Usage
+  /v1/projects:
+    get:
+      operationId: Projects_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListProjectResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: organizationId
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Projects
+    post:
+      operationId: Projects_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateProjectResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothCreateProjectRequest'
+        required: true
+      tags:
+        - Projects
+  /v1/projects/{projectId}:
+    get:
+      operationId: Projects_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetProjectResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Projects
+    delete:
+      operationId: Projects_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteProjectResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Projects
+    put:
+      operationId: Projects_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateProjectResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothProjectUpdate'
+      tags:
+        - Projects
+    patch:
+      operationId: Projects_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateProjectResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothProjectUpdate'
+      tags:
+        - Projects
+  /v1/projects/{projectId}/apikeys:
+    get:
+      operationId: APIKeys_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListAPIKeyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - API Keys
+    post:
+      operationId: APIKeys_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateAPIKeyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  $ref: '#/components/schemas/goliothAPIKeyType'
+                keyTags:
+                  type: array
+                  items:
+                    type: string
+        required: true
+      tags:
+        - API Keys
+  /v1/projects/{projectId}/apikeys/{apikeyId}:
+    delete:
+      operationId: APIKeys_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteAPIKeyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: apikeyId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - API Keys
+    patch:
+      operationId: APIKeys_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateAPIKeyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: apikeyId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothAPIKeyUpdate'
+        required: true
+      tags:
+        - API Keys
+  /v1/projects/{projectId}/artifacts:
+    get:
+      operationId: Artifacts_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListArtifactResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: blueprintId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: package
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: ids
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      tags:
+        - Artifacts
+  /v1/projects/{projectId}/artifacts/{artifactId}:
+    get:
+      operationId: Artifacts_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetArtifactResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Artifacts
+    delete:
+      operationId: Artifacts_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteArtifactResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Artifacts
+    put:
+      operationId: Artifacts_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateArtifactResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothArtifactUpdate'
+      tags:
+        - Artifacts
+    patch:
+      operationId: Artifacts_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateArtifactResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothArtifactUpdate'
+      tags:
+        - Artifacts
+  /v1/projects/{projectId}/blueprints:
+    get:
+      operationId: Blueprints_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListBlueprintResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: blueprintName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: ids
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: boardId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Blueprints
+    post:
+      operationId: Blueprints_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateBlueprintResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                boardId:
+                  type: string
+                platform:
+                  type: string
+        required: true
+      tags:
+        - Blueprints
+  /v1/projects/{projectId}/blueprints/{blueprintId}:
+    get:
+      operationId: Blueprints_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetBlueprintResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blueprintId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Blueprints
+    delete:
+      operationId: Blueprints_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteBlueprintResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blueprintId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Blueprints
+    put:
+      operationId: Blueprints_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateBlueprintResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blueprintId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothBlueprintUpdate'
+      tags:
+        - Blueprints
+    patch:
+      operationId: Blueprints_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateBlueprintResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blueprintId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothBlueprintUpdate'
+      tags:
+        - Blueprints
+  /v1/projects/{projectId}/certificates:
+    get:
+      operationId: Certificates_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListCertificateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          description: >-
+            TODO: filter by: device_id, enabled/disabled, start/end expiration
+            date, cert type, may increase filters in the future
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - Certificates
+    post:
+      operationId: Certificates_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateCertificateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                certFile:
+                  type: string
+                  format: byte
+                certType:
+                  type: string
+        required: true
+      tags:
+        - Certificates
+  /v1/projects/{projectId}/certificates/{certificateId}:
+    get:
+      operationId: Certificates_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetCertificateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: certificateId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Certificates
+    delete:
+      operationId: Certificates_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteCertificateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: certificateId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Certificates
+  /v1/projects/{projectId}/credentials:
+    post:
+      operationId: Credentials_Create2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateCredentialResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceId:
+                  type: string
+                type:
+                  $ref: '#/components/schemas/goliothCredentialType'
+                identity:
+                  type: string
+                preSharedKey:
+                  type: string
+        required: true
+      tags:
+        - Credentials
+  /v1/projects/{projectId}/credentials/{credentialId}:
+    delete:
+      operationId: Credentials_Delete2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteCredentialResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: credentialId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Credentials
+  /v1/projects/{projectId}/device-activity-logs:
+    get:
+      operationId: Logs_GetLatestDeviceActivityLogs
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/goliothGetLatestDeviceActivityLogsResponse
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - Logs
+  /v1/projects/{projectId}/devices:
+    get:
+      operationId: Devices_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListDeviceResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: deviceName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: hardwareId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tags
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: blueprintId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: statePath
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: streamPath
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: updatePath
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: term
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: enabled
+          in: query
+          required: false
+          schema:
+            type: boolean
+      tags:
+        - Devices
+    post:
+      operationId: Devices_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateDeviceResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                hardwareIds:
+                  type: array
+                  items:
+                    type: string
+                tagIds:
+                  type: array
+                  items:
+                    type: string
+                blueprintId:
+                  type: string
+        required: true
+      tags:
+        - Devices
+  /v1/projects/{projectId}/devices/{deviceId}:
+    get:
+      operationId: Devices_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeviceResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Devices
+    delete:
+      operationId: Devices_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteDeviceResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Devices
+    put:
+      operationId: Devices_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothDeviceUpdate'
+      tags:
+        - Devices
+    patch:
+      operationId: Devices_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothDeviceUpdate'
+      tags:
+        - Devices
+  /v1/projects/{projectId}/devices/{deviceId}/credentials:
+    get:
+      operationId: Credentials_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListCredentialResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Credentials
+    post:
+      operationId: Credentials_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateCredentialResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  $ref: '#/components/schemas/goliothCredentialType'
+                identity:
+                  type: string
+                preSharedKey:
+                  type: string
+        required: true
+      tags:
+        - Credentials
+  /v1/projects/{projectId}/devices/{deviceId}/credentials/{credentialId}:
+    delete:
+      operationId: Credentials_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteCredentialResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: credentialId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Credentials
+  /v1/projects/{projectId}/devices/{deviceId}/data/{path}:
+    get:
+      operationId: DeviceState_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      tags:
+        - LightDB
+    delete:
+      operationId: DeviceState_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      tags:
+        - LightDB
+    post:
+      operationId: DeviceState_Update3
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceState_Update3Value'
+      tags:
+        - LightDB
+    put:
+      operationId: DeviceState_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceState_Update3Value'
+      tags:
+        - LightDB
+    patch:
+      operationId: DeviceState_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceState_Update3Value'
+      tags:
+        - LightDB
+  /v1/projects/{projectId}/devices/{deviceId}/provisioning:
+    post:
+      operationId: Provisioning_ProvisionDevice2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothProvisionDeviceResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hardwareIds:
+                  type: array
+                  items:
+                    type: string
+                name:
+                  type: string
+                type:
+                  $ref: '#/components/schemas/goliothCredentialType'
+                identity:
+                  type: string
+                preSharedKey:
+                  type: string
+                tagIds:
+                  type: array
+                  items:
+                    type: string
+                blueprintId:
+                  type: string
+                  title: |-
+                    string publicKey
+                    string encryption
+        required: true
+      tags:
+        - Provisioning
+  /v1/projects/{projectId}/devices/{deviceId}/rpc:
+    post:
+      operationId: DeviceRemoteProcedureCall_RemoteProcedureCall
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothRemoteProcedureCallResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                method:
+                  type: string
+                params:
+                  type: array
+                  items: {}
+                timeout:
+                  type: integer
+                  format: int64
+        required: true
+      tags:
+        - Remote Procedure Call
+  /v1/projects/{projectId}/devices/{deviceId}/settings:
+    get:
+      operationId: Settings_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetSettingResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Settings
+  /v1/projects/{projectId}/devices/{deviceId}/stream:
+    get:
+      operationId: DeviceStream_GetDeviceStream
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeviceStreamResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: interval
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: encodedQuery
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: query.timeBucket
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - LightDB Stream
+    post:
+      operationId: DeviceStream_GetDeviceStream2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeviceStreamResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start:
+                  type: string
+                  format: date-time
+                end:
+                  type: string
+                  format: date-time
+                interval:
+                  type: string
+                encodedQuery:
+                  type: string
+                query:
+                  $ref: '#/components/schemas/goliothDeviceStreamQuery'
+                page:
+                  type: integer
+                  format: int64
+                perPage:
+                  type: integer
+                  format: int64
+        required: true
+      tags:
+        - LightDB Stream
+  /v1/projects/{projectId}/devices/{deviceId}/stream/latest/{path}:
+    get:
+      operationId: DeviceStream_GetLatestStream
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      tags:
+        - LightDB Stream
+  /v1/projects/{projectId}/devicesByTag/{tag}/data/{path}:
+    delete:
+      operationId: DeviceState_DeleteByTag
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      tags:
+        - LightDB
+    post:
+      operationId: DeviceState_UpdateByTag3
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceState_Update3Value'
+      tags:
+        - LightDB
+    put:
+      operationId: DeviceState_UpdateByTag
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceState_Update3Value'
+      tags:
+        - LightDB
+    patch:
+      operationId: DeviceState_UpdateByTag2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceStateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: .+
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceState_Update3Value'
+      tags:
+        - LightDB
+  /v1/projects/{projectId}/firmware/logs:
+    get:
+      operationId: Firmwares_Logs
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListFirmwareLogsResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: target
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: reason
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: deviceId
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      tags:
+        - Firmware
+  /v1/projects/{projectId}/integrations:
+    get:
+      operationId: Integrations_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListIntegrationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: ids
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Integrations
+    post:
+      operationId: Integrations_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateIntegrationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/Integrations_CreateBody'
+      tags:
+        - Integrations
+  /v1/projects/{projectId}/integrations/validate:
+    post:
+      operationId: Integrations_Validate
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothIntegrationValidationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/Integrations_CreateBody'
+      tags:
+        - Integrations
+  /v1/projects/{projectId}/integrations/{integrationId}:
+    get:
+      operationId: Integrations_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetIntegrationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Integrations
+    delete:
+      operationId: Integrations_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteIntegrationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Integrations
+    put:
+      operationId: Integrations_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateIntegrationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothIntegrationUpdate'
+      tags:
+        - Integrations
+    patch:
+      operationId: Integrations_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateIntegrationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothIntegrationUpdate'
+      tags:
+        - Integrations
+  /v1/projects/{projectId}/integrations/{integrationId}/test:
+    post:
+      operationId: Integrations_Test
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothTestIntegrationResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+        required: true
+      tags:
+        - Integrations
+  /v1/projects/{projectId}/logs:
+    get:
+      operationId: Logs_GetLogs
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetLogsResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deviceId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: module
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: level
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - NONE
+              - DEBUG
+              - INFO
+              - WARN
+              - ERROR
+            default: NONE
+        - name: term
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tags
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      tags:
+        - Logs
+  /v1/projects/{projectId}/permissions:
+    get:
+      operationId: Access_ListPermissions
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListPermissionResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Access
+  /v1/projects/{projectId}/policies:
+    get:
+      operationId: Access_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListPolicyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Access
+  /v1/projects/{projectId}/policies/{policyId}:
+    get:
+      operationId: Access_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetPolicyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: policyId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Access
+    delete:
+      operationId: Access_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeletePolicyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: policyId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Access
+    put:
+      operationId: Access_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdatePolicyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: policyId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothPolicyUpdate'
+      tags:
+        - Access
+    patch:
+      operationId: Access_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdatePolicyResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: policyId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothPolicyUpdate'
+      tags:
+        - Access
+  /v1/projects/{projectId}/provisioning:
+    post:
+      operationId: Provisioning_ProvisionDevice
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothProvisionDeviceResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceId:
+                  type: string
+                hardwareIds:
+                  type: array
+                  items:
+                    type: string
+                name:
+                  type: string
+                type:
+                  $ref: '#/components/schemas/goliothCredentialType'
+                identity:
+                  type: string
+                preSharedKey:
+                  type: string
+                tagIds:
+                  type: array
+                  items:
+                    type: string
+                blueprintId:
+                  type: string
+                  title: |-
+                    string publicKey
+                    string encryption
+        required: true
+      tags:
+        - Provisioning
+  /v1/projects/{projectId}/releases:
+    get:
+      operationId: Releases_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListReleaseResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: releaseTags
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: deviceTags
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: ids
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: rollout
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: blueprintId
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Releases
+    post:
+      operationId: Releases_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateReleaseResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                releaseTags:
+                  type: array
+                  items:
+                    type: string
+                deviceTagIds:
+                  type: array
+                  items:
+                    type: string
+                artifactIds:
+                  type: array
+                  items:
+                    type: string
+                rollout:
+                  type: boolean
+        required: true
+      tags:
+        - Releases
+  /v1/projects/{projectId}/releases/{releaseId}:
+    get:
+      operationId: Releases_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetReleaseResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: releaseId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Releases
+    delete:
+      operationId: Releases_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteReleaseResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: releaseId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Releases
+    put:
+      operationId: Releases_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateReleaseResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: releaseId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothReleaseUpdate'
+      tags:
+        - Releases
+    patch:
+      operationId: Releases_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateReleaseResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: releaseId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothReleaseUpdate'
+      tags:
+        - Releases
+  /v1/projects/{projectId}/settings:
+    get:
+      operationId: Settings_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListSettingResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blueprintId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: deviceId
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Settings
+    post:
+      operationId: Settings_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateSettingResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                dataType:
+                  type: string
+                value: {}
+                blueprintId:
+                  type: string
+                deviceId:
+                  type: string
+        required: true
+      tags:
+        - Settings
+  /v1/projects/{projectId}/settings/{settingId}:
+    delete:
+      operationId: Settings_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteSettingResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: settingId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Settings
+    put:
+      operationId: Settings_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateSettingResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: settingId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothSettingUpdate'
+      tags:
+        - Settings
+    patch:
+      operationId: Settings_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateSettingResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: settingId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothSettingUpdate'
+      tags:
+        - Settings
+  /v1/projects/{projectId}/stream:
+    get:
+      operationId: DeviceStream_GetProjectStream
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetProjectStreamResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: interval
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: encodedQuery
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: query.timeBucket
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: deviceId
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: tags
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      tags:
+        - LightDB Stream
+    post:
+      operationId: DeviceStream_GetProjectStream2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetProjectStreamResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start:
+                  type: string
+                  format: date-time
+                end:
+                  type: string
+                  format: date-time
+                interval:
+                  type: string
+                encodedQuery:
+                  type: string
+                query:
+                  $ref: '#/components/schemas/goliothDeviceStreamQuery'
+                deviceId:
+                  type: array
+                  items:
+                    type: string
+                page:
+                  type: integer
+                  format: int64
+                perPage:
+                  type: integer
+                  format: int64
+                tags:
+                  type: array
+                  items:
+                    type: string
+        required: true
+      tags:
+        - LightDB Stream
+  /v1/projects/{projectId}/tags:
+    get:
+      operationId: Tags_List
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListTagResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: tagName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: ids
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      tags:
+        - Tags
+    post:
+      operationId: Tags_Create
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateTagResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+        required: true
+      tags:
+        - Tags
+  /v1/projects/{projectId}/tags/{tagId}:
+    get:
+      operationId: Tags_Get
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetTagResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Tags
+    delete:
+      operationId: Tags_Delete
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteTagResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Tags
+    put:
+      operationId: Tags_Update
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateTagResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: updateMask
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothTagUpdate'
+      tags:
+        - Tags
+    patch:
+      operationId: Tags_Update2
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateTagResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/goliothTagUpdate'
+      tags:
+        - Tags
+  /v1/projects/{projectId}/users:
+    get:
+      operationId: Access_ListUsers
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListUsersResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - Access
+  /v1/projects/{projectId}/users/invitation:
+    post:
+      operationId: Access_InviteUser
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothInviteUserResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+        required: true
+      tags:
+        - Access
+  /v1/roles:
+    get:
+      operationId: Access_ListRoles
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListRoleResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      tags:
+        - Access
+  /v1/settings-data-types:
+    get:
+      operationId: Settings_ListAllowedSettingsDataTypes
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/goliothListAllowedSettingsDataTypesResponse
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+      tags:
+        - Settings
+security:
+  - Bearer: []
+    API_Key: []
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io
+servers:
+  - url: https://api.golioth.io
+components:
+  requestBodies:
+    goliothDeviceUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothDeviceUpdate'
+      required: true
+    goliothReleaseUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothReleaseUpdate'
+      required: true
+    goliothArtifactUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothArtifactUpdate'
+      required: true
+    Integrations_CreateBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              configuration:
+                type: object
+              enabled:
+                type: boolean
+      required: true
+    goliothIntegrationUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothIntegrationUpdate'
+      required: true
+    goliothPolicyUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothPolicyUpdate'
+      required: true
+    goliothBlueprintUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothBlueprintUpdate'
+      required: true
+    goliothOrganizationUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothOrganizationUpdate'
+      required: true
+    goliothProjectUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothProjectUpdate'
+      required: true
+    DeviceState_Update3Value:
+      content:
+        application/json:
+          schema: {}
+      required: true
+    goliothSettingUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothSettingUpdate'
+      required: true
+    goliothTagUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/goliothTagUpdate'
+      required: true
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
+    API_Key:
+      type: apiKey
+      name: x-api-key
+      in: header
+  schemas:
+    comgoliothTag:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    goliothAPIKey:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/goliothAPIKeyType'
+        secret:
+          type: string
+        policyId:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        keyTags:
+          type: array
+          items:
+            type: string
+    goliothAPIKeyType:
+      type: string
+      enum:
+        - API_KEY
+        - JWT_KEY
+      default: API_KEY
+    goliothAPIKeyUpdate:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/goliothAPIKeyType'
+        keyTags:
+          type: array
+          items:
+            type: string
+    goliothArtifact:
+      type: object
+      properties:
+        id:
+          type: string
+        version:
+          type: string
+        package:
+          type: string
+        blueprintId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        binaryInfo:
+          type: object
+        size:
+          type: string
+          format: uint64
+    goliothArtifactUpdate:
+      type: object
+    goliothBlueprint:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        boardId:
+          type: string
+        platform:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    goliothBlueprintUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        boardId:
+          type: string
+        platform:
+          type: string
+    goliothBoard:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        arch:
+          type: string
+        platforms:
+          type: array
+          items:
+            type: string
+    goliothCertificate:
+      type: object
+      properties:
+        id:
+          type: string
+        projectId:
+          type: string
+        enabled:
+          type: boolean
+        certType:
+          type: string
+        certificateContent:
+          $ref: '#/components/schemas/goliothCertificateContent'
+        createdAt:
+          type: string
+          format: date-time
+    goliothCertificateContent:
+      type: object
+      properties:
+        signature:
+          type: string
+          format: byte
+        signatureAlgorithm:
+          type: string
+        publicKeyAlgorithm:
+          type: string
+        publicKey:
+          type: string
+          format: byte
+        version:
+          type: integer
+          format: int64
+        serialNumber:
+          type: string
+        issuer:
+          type: string
+        subject:
+          type: string
+        notBefore:
+          type: string
+          format: date-time
+        notAfter:
+          type: string
+          format: date-time
+        keyUsages:
+          type: array
+          items:
+            type: string
+    goliothConditionalMap:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+    goliothCreateAPIKeyResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothAPIKey'
+    goliothCreateArtifactRequest:
+      type: object
+      properties:
+        projectId:
+          type: string
+        content:
+          type: string
+          format: byte
+        version:
+          type: string
+        blueprintId:
+          type: string
+        package:
+          type: string
+    goliothCreateArtifactResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothArtifact'
+    goliothCreateBlueprintResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+    goliothCreateCertificateResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothCertificate'
+    goliothCreateCheckoutSessionResponse:
+      type: object
+      properties:
+        url:
+          type: string
+    goliothCreateCredentialResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothCredential'
+    goliothCreateCustomerPortalResponse:
+      type: object
+      properties:
+        url:
+          type: string
+    goliothCreateDeviceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+    goliothCreateIntegrationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothIntegration'
+    goliothCreateOrganizationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        website:
+          type: string
+    goliothCreateOrganizationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+    goliothCreateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        organizationId:
+          type: string
+    goliothCreateProjectResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+    goliothCreateReleaseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+    goliothCreateSettingResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothSetting'
+    goliothCreateTagResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+    goliothCredential:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/goliothCredentialType'
+        identity:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        preSharedKey:
+          type: string
+    goliothCredentialType:
+      type: string
+      enum:
+        - PRE_SHARED_KEY
+        - ASYMMETRIC_KEY_PAIR
+      default: PRE_SHARED_KEY
+    goliothDeleteAPIKeyResponse:
+      type: object
+    goliothDeleteArtifactResponse:
+      type: object
+    goliothDeleteBlueprintResponse:
+      type: object
+    goliothDeleteCertificateResponse:
+      type: object
+    goliothDeleteCredentialResponse:
+      type: object
+    goliothDeleteDeviceResponse:
+      type: object
+    goliothDeleteDeviceStateResponse:
+      type: object
+    goliothDeleteIntegrationResponse:
+      type: object
+    goliothDeletePolicyResponse:
+      type: object
+    goliothDeleteProjectResponse:
+      type: object
+    goliothDeleteReleaseResponse:
+      type: object
+    goliothDeleteSettingResponse:
+      type: object
+    goliothDeleteTagResponse:
+      type: object
+    goliothDevice:
+      type: object
+      properties:
+        id:
+          type: string
+        hardwareIds:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        tagIds:
+          type: array
+          items:
+            type: string
+        blueprintId:
+          type: string
+        data:
+          type: object
+        lastReport:
+          type: string
+          format: date-time
+        status:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/goliothDeviceMetadata'
+        enabled:
+          type: boolean
+        certificateId:
+          type: string
+    goliothDeviceActivityLog:
+      type: object
+      properties:
+        deviceId:
+          type: string
+        lastReport:
+          type: string
+          format: date-time
+        id:
+          type: string
+        deviceName:
+          type: string
+        status:
+          type: string
+        lastSeenOnline:
+          type: string
+          format: date-time
+        lastSeenOffline:
+          type: string
+          format: date-time
+    goliothDeviceLogEntry:
+      type: object
+      example:
+        device_id: 612d3cecf3ee17d321adbec6
+        level: 2
+        message: Hello
+        metadata: {}
+        module: default
+        project_id: esp32-test
+        timestamp:
+          nanos: 250818000
+          seconds: 1642796612
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/goliothDeviceLogType'
+        level:
+          $ref: '#/components/schemas/goliothDeviceLogLevel'
+        module:
+          type: string
+        moduleId:
+          type: string
+        message:
+          type: string
+        metadata:
+          type: object
+        deviceId:
+          type: string
+      description: Event generated when a device sends logs.
+    goliothDeviceLogLevel:
+      type: string
+      enum:
+        - NONE
+        - DEBUG
+        - INFO
+        - WARN
+        - ERROR
+      default: NONE
+    goliothDeviceLogType:
+      type: string
+      enum:
+        - LOGGING
+        - DIAGNOSTICS
+        - METRICS
+      default: LOGGING
+    goliothDeviceMetadata:
+      type: object
+      properties:
+        update:
+          type: object
+        status:
+          type: string
+        lastReport:
+          type: string
+          format: date-time
+        lastSeenOnline:
+          type: string
+          format: date-time
+        lastSeenOffline:
+          type: string
+          format: date-time
+        lastSettingsStatus:
+          $ref: '#/components/schemas/goliothSettingsStatus'
+    goliothDeviceStreamQuery:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothQueryField'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothQueryFilter'
+        timeBucket:
+          type: string
+    goliothDeviceUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        addHardwareId:
+          type: array
+          items:
+            type: string
+        removeHardwareId:
+          type: array
+          items:
+            type: string
+        hardwareIds:
+          type: array
+          items:
+            type: string
+        addTagId:
+          type: array
+          items:
+            type: string
+        removeTagId:
+          type: array
+          items:
+            type: string
+        blueprintId:
+          type: string
+        tagIds:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+    goliothFirmwareLogEntry:
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+        version:
+          type: string
+        target:
+          type: string
+        stateCode:
+          type: string
+        state:
+          type: string
+        reasonCode:
+          type: string
+        reason:
+          type: string
+        deviceId:
+          type: string
+        package:
+          type: string
+    goliothGetArtifactResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothArtifact'
+    goliothGetBlueprintResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+    goliothGetBoardsResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBoard'
+    goliothGetCertificateResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothCertificate'
+    goliothGetDeviceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+    goliothGetDeviceStateResponse:
+      type: object
+      properties:
+        data: {}
+    goliothGetDeviceStreamResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items: {}
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothGetIntegrationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothIntegration'
+    goliothGetLatestDeviceActivityLogsResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothDeviceActivityLog'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothGetLogsResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothDeviceLogEntry'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothGetOrganizationQuotaResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganizationQuota'
+    goliothGetOrganizationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+    goliothGetPolicyResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPolicy'
+    goliothGetProjectResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+    goliothGetProjectStreamResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items: {}
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothGetReleaseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+    goliothGetSettingResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothSetting'
+        total:
+          type: integer
+          format: int64
+    goliothGetTagResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+    goliothIntegration:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        configuration:
+          type: object
+        enabled:
+          type: boolean
+    goliothIntegrationType:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothIntegrationTypeAttribute'
+    goliothIntegrationTypeAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        required:
+          type: boolean
+        displayName:
+          type: string
+    goliothIntegrationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        enabled:
+          type: boolean
+        configuration:
+          type: object
+    goliothIntegrationValidationResponse:
+      type: object
+    goliothInviteUserResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPolicy'
+    goliothListAPIKeyResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothAPIKey'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListAllowedSettingsDataTypesResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothSettingDataType'
+        total:
+          type: integer
+          format: int64
+    goliothListArtifactResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothArtifact'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListBlueprintResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothBlueprint'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListBoardsResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothBoard'
+        total:
+          type: integer
+          format: int64
+    goliothListCertificateResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothCertificate'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListCredentialResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothCredential'
+    goliothListDeviceResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothDevice'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListFirmwareLogsResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothFirmwareLogEntry'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListIntegrationResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothIntegration'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListIntegrationTypesResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothIntegrationType'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListOrganizationResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothOrganization'
+    goliothListPermissionResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothPermission'
+    goliothListPolicyResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothPolicy'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListProjectResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothProject'
+    goliothListReleaseResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothRelease'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListRoleResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothRole'
+    goliothListSettingResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothSetting'
+        total:
+          type: integer
+          format: int64
+    goliothListTagResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/comgoliothTag'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    goliothListUsageResponse:
+      type: object
+      properties:
+        unit:
+          $ref: '#/components/schemas/goliothUsageUnit'
+        dates:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/goliothUsageSummaries'
+    goliothListUsersResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothUser'
+    goliothOrganization:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        roles:
+          type: array
+          items:
+            type: string
+        tier:
+          type: string
+        paymentStatus:
+          type: string
+        website:
+          type: string
+    goliothOrganizationQuota:
+      type: object
+      properties:
+        quotas:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/goliothQuota'
+    goliothOrganizationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        website:
+          type: string
+    goliothPaymentWebhookResponse:
+      type: object
+    goliothPermission:
+      type: object
+      properties:
+        resource:
+          type: string
+        action:
+          type: string
+    goliothPolicy:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        resourceType:
+          type: string
+        resourceId:
+          type: string
+        conditionals:
+          $ref: '#/components/schemas/goliothConditionalMap'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    goliothPolicyUpdate:
+      type: object
+      properties:
+        addRoles:
+          type: array
+          items:
+            type: string
+        removeRoles:
+          type: array
+          items:
+            type: string
+        addTags:
+          type: array
+          items:
+            type: string
+        removeTags:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            type: string
+        tagIds:
+          type: array
+          items:
+            type: string
+    goliothProject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        roles:
+          type: array
+          items:
+            type: string
+        organizationId:
+          type: string
+    goliothProjectUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+    goliothProvisionData:
+      type: object
+      properties:
+        deviceId:
+          type: string
+    goliothProvisionDeviceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvisionData'
+    goliothQueryField:
+      type: object
+      properties:
+        path:
+          type: string
+        type:
+          type: string
+        alias:
+          type: string
+        agg:
+          type: string
+    goliothQueryFilter:
+      type: object
+      properties:
+        path:
+          type: string
+        op:
+          type: string
+        value: {}
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothQueryFilter'
+    goliothQuota:
+      type: object
+      properties:
+        current:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+    goliothRelease:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        releaseTags:
+          type: array
+          items:
+            type: string
+        deviceTagIds:
+          type: array
+          items:
+            type: string
+        suitManifest:
+          type: object
+        artifactIds:
+          type: array
+          items:
+            type: string
+        rollout:
+          type: boolean
+        sequenceNumber:
+          type: string
+          format: int64
+        blueprintId:
+          type: string
+    goliothReleaseUpdate:
+      type: object
+      properties:
+        addDeviceTagId:
+          type: array
+          items:
+            type: string
+        removeDeviceTagId:
+          type: array
+          items:
+            type: string
+        deviceTagIds:
+          type: array
+          items:
+            type: string
+        rollout:
+          type: boolean
+        addReleaseTag:
+          type: array
+          items:
+            type: string
+        removeReleaseTag:
+          type: array
+          items:
+            type: string
+        releaseTags:
+          type: array
+          items:
+            type: string
+    goliothRemoteProcedureCallResponse:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+        detail: {}
+    goliothRole:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        children:
+          type: array
+          items:
+            type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothPermission'
+    goliothSetting:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        value: {}
+        dataType:
+          type: string
+        projectId:
+          type: string
+        blueprintId:
+          type: string
+        deviceId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    goliothSettingDataType:
+      type: object
+      properties:
+        type:
+          type: string
+    goliothSettingError:
+      type: object
+      properties:
+        key:
+          type: string
+        code:
+          type: integer
+          format: int64
+        codeDescription:
+          type: string
+        deviceDetails:
+          type: string
+    goliothSettingUpdate:
+      type: object
+      properties:
+        value: {}
+    goliothSettingsStatus:
+      type: object
+      properties:
+        syncTime:
+          type: string
+          format: date-time
+        reportedVersion:
+          type: string
+        status:
+          type: string
+        statusDetail:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothSettingError'
+    goliothSubscriptionItem:
+      type: object
+      properties:
+        lookupKey:
+          type: string
+        quantity:
+          type: string
+          format: int64
+    goliothTagUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+    goliothTestIntegrationResponse:
+      type: object
+      properties:
+        result:
+          type: string
+    goliothUpdateAPIKeyResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothAPIKey'
+    goliothUpdateArtifactResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothArtifact'
+    goliothUpdateBlueprintResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+    goliothUpdateDeviceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+    goliothUpdateDeviceStateResponse:
+      type: object
+      properties:
+        data: {}
+    goliothUpdateIntegrationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothIntegration'
+    goliothUpdateOrganizationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+    goliothUpdatePolicyResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPolicy'
+    goliothUpdateProjectResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+    goliothUpdateReleaseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+    goliothUpdateSettingResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothSetting'
+    goliothUpdateTagResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+    goliothUsageSummaries:
+      type: object
+      properties:
+        summaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/goliothUsageSummary'
+    goliothUsageSummary:
+      type: object
+      properties:
+        projectId:
+          type: string
+        service:
+          type: string
+        quantity:
+          type: string
+          format: uint64
+    goliothUsageUnit:
+      type: string
+      enum:
+        - KILOBYTES
+      default: KILOBYTES
+    goliothUser:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        profileUrl:
+          type: string
+        emailVerified:
+          type: boolean
+        policyId:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+    protobufAny:
+      type: object
+      properties:
+        '@type':
+          type: string
+      additionalProperties: {}
+    protobufNullValue:
+      type: string
+      enum:
+        - NULL_VALUE
+      default: NULL_VALUE
+      description: >-
+        `NullValue` is a singleton enumeration to represent the null value for
+        the
+
+        `Value` type union.
+
+
+        The JSON representation for `NullValue` is JSON `null`.
+
+         - NULL_VALUE: Null value.
+    rpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/protobufAny'

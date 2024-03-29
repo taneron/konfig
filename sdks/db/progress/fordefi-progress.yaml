@@ -1,0 +1,201 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v1/addressbook/contacts:
+    get: AddressBook_listContacts
+  /api/v1/assets:
+    put: Assets_updateConfiguration
+  /api/v1/assets/owned-assets:
+    get: Assets_listOwnedAssets
+  /api/v1/assets/owned-assets/{id}:
+    get: Assets_getOwnedAsset
+  /api/v1/assets/prices:
+    post: Assets_getPrices
+  /api/v1/authorization-tokens:
+    get: AuthorizationTokens_list
+    post: AuthorizationTokens_issueToken
+  /api/v1/authorization-tokens/{id}:
+    delete: AuthorizationTokens_deleteToken
+  /api/v1/blockchains:
+    get: Blockchains_getList
+  /api/v1/blockchains/suggested-fees:
+    get: Blockchains_getSuggestedFees
+  /api/v1/end-users:
+    get: EndUsers_getList
+    post: EndUsers_createNewUser
+  /api/v1/end-users/{id}:
+    get: EndUsers_getUserById
+  /api/v1/keysets:
+    get: Keysets_getAll
+    post: Keysets_createKeyset
+  /api/v1/keysets/{id}:
+    get: Keysets_getDetails
+  /api/v1/transactions:
+    get: Transactions_listAllInOrganization
+    post: Transactions_createNewTransaction
+  /api/v1/transactions/describe:
+    post: Transactions_getBlockchainFeePriceAndEstimateTransactionFee
+  /api/v1/transactions/export:
+    get: Transactions_exportCsvList
+  /api/v1/transactions/predict:
+    post: Transactions_simulateTransactionAndShowBalanceChange
+  /api/v1/transactions/{id}:
+    get: Transactions_getDetails
+  /api/v1/transactions/{id}/abort:
+    post: Transactions_abortTransactionAndShowBalanceChange
+  /api/v1/transactions/{id}/approve:
+    post: Transactions_approveTransaction
+  /api/v1/transactions/{id}/release:
+    post: Transactions_releaseTransaction
+  /api/v1/transactions/{id}/update-spam-state:
+    put: Transactions_updateSpamState
+  /api/v1/user-groups:
+    get: UserGroups_getList
+  /api/v1/user-groups/{id}:
+    get: UserGroups_getDetails
+  /api/v1/users:
+    get: Users_list
+  /api/v1/users/{id}:
+    get: Users_getUserById
+  /api/v1/vault-groups:
+    get: VaultGroups_list
+  /api/v1/vaults:
+    get: Vaults_list
+    post: Vaults_createNewVault
+  /api/v1/vaults/addresses/{id}/name:
+    put: Vaults_renameAddress
+  /api/v1/vaults/export:
+    get: Vaults_exportWithAssets
+  /api/v1/vaults/{id}:
+    get: Vaults_getDetails
+  /api/v1/vaults/{id}/addresses:
+    get: Vaults_listAddresses
+    post: Vaults_createAddress
+  /api/v1/vaults/{id}/assets:
+    get: Vaults_getAssets
+  /api/v1/vaults/{id}/assets/{asset_id}:
+    get: Vaults_getAsset
+  /api/v1/vaults/{id}/name:
+    put: Vaults_renameVault
+  /api/v1/web-devices:
+    get: WebDevices_getList
+  /api/v1/webhooks/test:
+    post: Webhooks_testWebhook
+  /api/v1/webhooks/trigger/transaction/{id}:
+    post: Webhooks_triggerTransaction
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/transactions/export:
+    get:
+      '200':
+        text/csv: TransactionsExportCsvListResponse
+  /api/v1/vaults/export:
+    get:
+      '200':
+        text/csv: VaultsExportWithAssetsResponse
+securityParameters:
+  access_level:
+    query: false
+  addresses:
+    query: false
+  asset_ids:
+    query: false
+  chain_types:
+    query: false
+  chains:
+    query: false
+  contact_ids:
+    query: false
+  created_after:
+    query: false
+  created_before:
+    query: false
+  direction:
+    query: false
+  email:
+    query: false
+  end_user_ids:
+    query: false
+  exclude_vault_group_ids:
+    query: false
+  external_id:
+    query: false
+  group_ids:
+    query: false
+  group_ids__not:
+    query: false
+  include_deleted:
+    query: false
+  include_full_response:
+    query: false
+  initiator_ids:
+    query: false
+  is_hidden:
+    query: false
+  key_holder_ids:
+    query: false
+  keyset_ids:
+    query: false
+  limit:
+    query: false
+  modified_after:
+    query: false
+  modified_by:
+    query: false
+  name:
+    query: false
+  only_interacted_with:
+    query: false
+  page:
+    query: false
+  roles:
+    query: false
+  scopes:
+    query: false
+  search:
+    query: false
+  signer_types:
+    query: false
+  size:
+    query: false
+  sort_by:
+    query: false
+  states:
+    query: false
+  states_on_groups:
+    query: false
+  sub_types:
+    query: false
+  transaction_ids:
+    query: false
+  types:
+    query: false
+  user_group_ids:
+    query: false
+  user_ids:
+    query: false
+  user_types:
+    query: false
+  vault_group_ids:
+    query: false
+  vault_ids:
+    query: false
+  vault_states:
+    query: false
+  vault_types:
+    query: false
+  vaults_ids:
+    query: false
+  x-idempotence-id:
+    header: false
+  x-signature:
+    header: false
+  x-timestamp:
+    header: false
+validServerUrls: {}

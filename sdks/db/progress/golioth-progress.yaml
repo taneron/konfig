@@ -1,0 +1,287 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/billing/webhook:
+    post:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/apikeys/{apikeyId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/artifacts/{artifactId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/blueprints/{blueprintId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/certificates/{certificateId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/credentials/{credentialId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/devices/{deviceId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/devices/{deviceId}/credentials/{credentialId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/devices/{deviceId}/data/{path}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/devicesByTag/{tag}/data/{path}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/integrations/validate:
+    post:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/integrations/{integrationId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/policies/{policyId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/releases/{releaseId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/settings/{settingId}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/projects/{projectId}/tags/{tagId}:
+    delete:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds: {}
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/billing/webhook:
+    post:
+      application/json: BillingPaymentWebhookRequest
+  /v1/organizations/{organizationId}/checkout_sessions:
+    post:
+      application/json: BillingCreateCheckoutSessionRequest
+  /v1/organizations/{organizationId}/customer_portal_sessions:
+    post:
+      application/json: BillingCreateCustomerPortalSessionRequest
+  /v1/projects/{projectId}/apikeys:
+    post:
+      application/json: ApiKeysCreateRequest
+  /v1/projects/{projectId}/blueprints:
+    post:
+      application/json: BlueprintsCreateRequest
+  /v1/projects/{projectId}/certificates:
+    post:
+      application/json: CertificatesCreateRequest
+  /v1/projects/{projectId}/credentials:
+    post:
+      application/json: CredentialsCreate2Request
+  /v1/projects/{projectId}/devices:
+    post:
+      application/json: DevicesCreateRequest
+  /v1/projects/{projectId}/devices/{deviceId}/credentials:
+    post:
+      application/json: CredentialsCreateRequest
+  /v1/projects/{projectId}/devices/{deviceId}/data/{path}:
+    patch:
+      application/json: DeviceStateUpdate2Request
+  /v1/projects/{projectId}/devices/{deviceId}/provisioning:
+    post:
+      application/json: ProvisioningProvisionDevice2Request
+  /v1/projects/{projectId}/devices/{deviceId}/rpc:
+    post:
+      application/json: DeviceRemoteProcedureCallRemoteProcedureCallRequest
+  /v1/projects/{projectId}/devices/{deviceId}/stream:
+    post:
+      application/json: DeviceStreamGetDeviceStream2Request
+  /v1/projects/{projectId}/integrations:
+    post:
+      application/json: IntegrationsCreateRequest
+  /v1/projects/{projectId}/integrations/{integrationId}/test:
+    post:
+      application/json: IntegrationsTestRequest
+  /v1/projects/{projectId}/provisioning:
+    post:
+      application/json: ProvisioningProvisionDeviceRequest
+  /v1/projects/{projectId}/releases:
+    post:
+      application/json: ReleasesCreateRequest
+  /v1/projects/{projectId}/settings:
+    post:
+      application/json: SettingsCreateRequest
+  /v1/projects/{projectId}/stream:
+    post:
+      application/json: DeviceStreamGetProjectStream2Request
+  /v1/projects/{projectId}/tags:
+    post:
+      application/json: TagsCreateRequest
+  /v1/projects/{projectId}/users/invitation:
+    post:
+      application/json: AccessInviteUserRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/billing/webhook:
+    post:
+      '200':
+        application/json: BillingPaymentWebhookResponse
+  /v1/projects/{projectId}:
+    delete:
+      '200':
+        application/json: ProjectsDeleteResponse
+  /v1/projects/{projectId}/apikeys/{apikeyId}:
+    delete:
+      '200':
+        application/json: ApiKeysDeleteResponse
+  /v1/projects/{projectId}/artifacts/{artifactId}:
+    delete:
+      '200':
+        application/json: ArtifactsDeleteResponse
+  /v1/projects/{projectId}/blueprints/{blueprintId}:
+    delete:
+      '200':
+        application/json: BlueprintsDeleteResponse
+  /v1/projects/{projectId}/certificates/{certificateId}:
+    delete:
+      '200':
+        application/json: CertificatesDeleteResponse
+  /v1/projects/{projectId}/credentials/{credentialId}:
+    delete:
+      '200':
+        application/json: CredentialsDelete2Response
+  /v1/projects/{projectId}/devices/{deviceId}:
+    delete:
+      '200':
+        application/json: DevicesDeleteResponse
+  /v1/projects/{projectId}/devices/{deviceId}/credentials/{credentialId}:
+    delete:
+      '200':
+        application/json: CredentialsDeleteResponse
+  /v1/projects/{projectId}/devices/{deviceId}/data/{path}:
+    delete:
+      '200':
+        application/json: DeviceStateDeleteResponse
+  /v1/projects/{projectId}/devicesByTag/{tag}/data/{path}:
+    delete:
+      '200':
+        application/json: DeviceStateDeleteByTagResponse
+  /v1/projects/{projectId}/integrations/validate:
+    post:
+      '200':
+        application/json: IntegrationsValidateResponse
+  /v1/projects/{projectId}/integrations/{integrationId}:
+    delete:
+      '200':
+        application/json: IntegrationsDeleteResponse
+  /v1/projects/{projectId}/policies/{policyId}:
+    delete:
+      '200':
+        application/json: AccessDeleteResponse
+  /v1/projects/{projectId}/releases/{releaseId}:
+    delete:
+      '200':
+        application/json: ReleasesDeleteResponse
+  /v1/projects/{projectId}/settings/{settingId}:
+    delete:
+      '200':
+        application/json: SettingsDeleteResponse
+  /v1/projects/{projectId}/tags/{tagId}:
+    delete:
+      '200':
+        application/json: TagsDeleteResponse
+securityParameters:
+  blueprintId:
+    query: false
+  blueprintName:
+    query: false
+  boardId:
+    query: false
+  deviceId:
+    query: false
+  deviceName:
+    query: false
+  deviceTags:
+    query: false
+  enabled:
+    query: false
+  encodedQuery:
+    query: false
+  end:
+    query: false
+  hardwareId:
+    query: false
+  id:
+    query: false
+  ids:
+    query: false
+  interval:
+    query: false
+  level:
+    query: false
+  module:
+    query: false
+  name:
+    query: false
+  organizationId:
+    query: false
+  package:
+    query: false
+  page:
+    query: false
+  perPage:
+    query: false
+  platform:
+    query: false
+  query.timeBucket:
+    query: false
+  reason:
+    query: false
+  releaseTags:
+    query: false
+  rollout:
+    query: false
+  start:
+    query: false
+  state:
+    query: false
+  statePath:
+    query: false
+  streamPath:
+    query: false
+  tagName:
+    query: false
+  tags:
+    query: false
+  target:
+    query: false
+  term:
+    query: false
+  type:
+    query: false
+  updateMask:
+    query: false
+  updatePath:
+    query: false
+  userId:
+    query: false
+  version:
+    query: false
+validServerUrls: {}

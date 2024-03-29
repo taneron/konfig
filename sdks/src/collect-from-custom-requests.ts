@@ -2324,6 +2324,19 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "finleycms.com": {
+    type: "GET",
+    url: "https://api.finleycms.com/api-docs/spec",
+    apiBaseUrl: "api.finleycms.com",
+  },
+  "fordefi.com": {
+    type: "GET",
+    url: "https://api.fordefi.com/openapi.json",
+  },
+  "golioth.io": {
+    type: "GET",
+    url: "https://api.golioth.io/swagger.json",
+  },
   "apaleo.com": {
     type: "GET",
     url: "https://api.apaleo.com/swagger/inventory-v1/swagger.json",

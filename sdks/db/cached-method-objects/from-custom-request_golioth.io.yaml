@@ -1,0 +1,2950 @@
+hash: 2ade0addfa125f4d165bac4f5389a0844b4c685c160175324ecac9de6f8fafd8
+methodObjects:
+  - url: /v1/artifacts
+    method: create
+    httpMethod: post
+    tag: Artifacts
+    typeScriptTag: artifacts
+    description: ''
+    parameters:
+      - name: version
+        schema: string
+        description: ''
+      - name: projectId
+        schema: string
+        description: ''
+      - name: content
+        schema: string
+        description: ''
+      - name: blueprintId
+        schema: string
+        description: ''
+      - name: package
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/billing/webhook
+    method: paymentWebhook
+    httpMethod: post
+    tag: Billing
+    typeScriptTag: billing
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/boards
+    method: list
+    httpMethod: get
+    tag: Boards
+    typeScriptTag: boards
+    description: ''
+    parameters:
+      - name: id
+        schema: string
+        required: false
+        description: ''
+      - name: platform
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/boards/{id}
+    method: get
+    httpMethod: get
+    tag: Boards
+    typeScriptTag: boards
+    description: ''
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+        example: ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/integration-types
+    method: listIntegrationTypes
+    httpMethod: get
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations
+    method: list
+    httpMethod: get
+    tag: Organizations
+    typeScriptTag: organizations
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations
+    method: create
+    httpMethod: post
+    tag: Organizations
+    typeScriptTag: organizations
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+      - name: website
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations/{organizationId}
+    method: get
+    httpMethod: get
+    tag: Organizations
+    typeScriptTag: organizations
+    description: ''
+    parameters:
+      - name: organizationId
+        schema: string
+        required: true
+        description: ''
+        example: ORGANIZATIONID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations/{organizationId}
+    method: update2
+    httpMethod: patch
+    tag: Organizations
+    typeScriptTag: organizations
+    description: ''
+    parameters:
+      - name: organizationId
+        schema: string
+        required: true
+        description: ''
+        example: ORGANIZATIONID
+      - name: name
+        schema: string
+        description: ''
+      - name: website
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations/{organizationId}
+    method: update
+    httpMethod: put
+    tag: Organizations
+    typeScriptTag: organizations
+    description: ''
+    parameters:
+      - name: organizationId
+        schema: string
+        required: true
+        description: ''
+        example: ORGANIZATIONID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: website
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations/{organizationId}/checkout_sessions
+    method: createCheckoutSession
+    httpMethod: post
+    tag: Billing
+    typeScriptTag: billing
+    description: ''
+    parameters:
+      - name: organizationId
+        schema: string
+        required: true
+        description: ''
+        example: ORGANIZATIONID
+      - name: items
+        schema: array
+        description: ''
+      - name: callbackPath
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations/{organizationId}/customer_portal_sessions
+    method: createCustomerPortalSession
+    httpMethod: post
+    tag: Billing
+    typeScriptTag: billing
+    description: ''
+    parameters:
+      - name: organizationId
+        schema: string
+        required: true
+        description: ''
+        example: ORGANIZATIONID
+      - name: callbackPath
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations/{organizationId}/quotas
+    method: getQuota
+    httpMethod: get
+    tag: Organizations
+    typeScriptTag: organizations
+    description: ''
+    parameters:
+      - name: organizationId
+        schema: string
+        required: true
+        description: ''
+        example: ORGANIZATIONID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/organizations/{organizationId}/usage
+    method: list
+    httpMethod: get
+    tag: Usage
+    typeScriptTag: usage
+    description: ''
+    parameters:
+      - name: organizationId
+        schema: string
+        required: true
+        description: ''
+        example: ORGANIZATIONID
+      - name: start
+        schema: string
+        required: false
+        description: ''
+      - name: end
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects
+    method: list
+    httpMethod: get
+    tag: Projects
+    typeScriptTag: projects
+    description: ''
+    parameters:
+      - name: organizationId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects
+    method: create
+    httpMethod: post
+    tag: Projects
+    typeScriptTag: projects
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+      - name: organizationId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}
+    method: delete
+    httpMethod: delete
+    tag: Projects
+    typeScriptTag: projects
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}
+    method: get
+    httpMethod: get
+    tag: Projects
+    typeScriptTag: projects
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}
+    method: update2
+    httpMethod: patch
+    tag: Projects
+    typeScriptTag: projects
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}
+    method: update
+    httpMethod: put
+    tag: Projects
+    typeScriptTag: projects
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/apikeys
+    method: list
+    httpMethod: get
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/apikeys
+    method: create
+    httpMethod: post
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: type
+        schema: string
+        description: ''
+        default: API_KEY
+      - name: keyTags
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/apikeys/{apikeyId}
+    method: delete
+    httpMethod: delete
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: apikeyId
+        schema: string
+        required: true
+        description: ''
+        example: APIKEYID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/apikeys/{apikeyId}
+    method: update
+    httpMethod: patch
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: apikeyId
+        schema: string
+        required: true
+        description: ''
+        example: APIKEYID
+      - name: type
+        schema: string
+        description: ''
+        default: API_KEY
+      - name: keyTags
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/artifacts
+    method: list
+    httpMethod: get
+    tag: Artifacts
+    typeScriptTag: artifacts
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: version
+        schema: string
+        required: false
+        description: ''
+      - name: blueprintId
+        schema: string
+        required: false
+        description: ''
+      - name: package
+        schema: string
+        required: false
+        description: ''
+      - name: ids
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/artifacts/{artifactId}
+    method: delete
+    httpMethod: delete
+    tag: Artifacts
+    typeScriptTag: artifacts
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: artifactId
+        schema: string
+        required: true
+        description: ''
+        example: ARTIFACTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/artifacts/{artifactId}
+    method: get
+    httpMethod: get
+    tag: Artifacts
+    typeScriptTag: artifacts
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: artifactId
+        schema: string
+        required: true
+        description: ''
+        example: ARTIFACTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/artifacts/{artifactId}
+    method: update2
+    httpMethod: patch
+    tag: Artifacts
+    typeScriptTag: artifacts
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: artifactId
+        schema: string
+        required: true
+        description: ''
+        example: ARTIFACTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/artifacts/{artifactId}
+    method: update
+    httpMethod: put
+    tag: Artifacts
+    typeScriptTag: artifacts
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: artifactId
+        schema: string
+        required: true
+        description: ''
+        example: ARTIFACTID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/blueprints
+    method: list
+    httpMethod: get
+    tag: Blueprints
+    typeScriptTag: blueprints
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: blueprintName
+        schema: string
+        required: false
+        description: ''
+      - name: ids
+        schema: array
+        required: false
+        description: ''
+      - name: boardId
+        schema: string
+        required: false
+        description: ''
+      - name: platform
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/blueprints
+    method: create
+    httpMethod: post
+    tag: Blueprints
+    typeScriptTag: blueprints
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: name
+        schema: string
+        description: ''
+      - name: boardId
+        schema: string
+        description: ''
+      - name: platform
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/blueprints/{blueprintId}
+    method: delete
+    httpMethod: delete
+    tag: Blueprints
+    typeScriptTag: blueprints
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: blueprintId
+        schema: string
+        required: true
+        description: ''
+        example: BLUEPRINTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/blueprints/{blueprintId}
+    method: get
+    httpMethod: get
+    tag: Blueprints
+    typeScriptTag: blueprints
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: blueprintId
+        schema: string
+        required: true
+        description: ''
+        example: BLUEPRINTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/blueprints/{blueprintId}
+    method: update2
+    httpMethod: patch
+    tag: Blueprints
+    typeScriptTag: blueprints
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: blueprintId
+        schema: string
+        required: true
+        description: ''
+        example: BLUEPRINTID
+      - name: name
+        schema: string
+        description: ''
+      - name: boardId
+        schema: string
+        description: ''
+      - name: platform
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/blueprints/{blueprintId}
+    method: update
+    httpMethod: put
+    tag: Blueprints
+    typeScriptTag: blueprints
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: blueprintId
+        schema: string
+        required: true
+        description: ''
+        example: BLUEPRINTID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: boardId
+        schema: string
+        description: ''
+      - name: platform
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/certificates
+    method: list
+    httpMethod: get
+    tag: Certificates
+    typeScriptTag: certificates
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: >-
+          TODO: filter by: device_id, enabled/disabled, start/end expiration
+          date, cert type, may increase filters in the future
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/certificates
+    method: create
+    httpMethod: post
+    tag: Certificates
+    typeScriptTag: certificates
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: certFile
+        schema: string
+        description: ''
+      - name: certType
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/certificates/{certificateId}
+    method: delete
+    httpMethod: delete
+    tag: Certificates
+    typeScriptTag: certificates
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: certificateId
+        schema: string
+        required: true
+        description: ''
+        example: CERTIFICATEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/certificates/{certificateId}
+    method: get
+    httpMethod: get
+    tag: Certificates
+    typeScriptTag: certificates
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: certificateId
+        schema: string
+        required: true
+        description: ''
+        example: CERTIFICATEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/credentials
+    method: create2
+    httpMethod: post
+    tag: Credentials
+    typeScriptTag: credentials
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        description: ''
+      - name: type
+        schema: string
+        description: ''
+        default: PRE_SHARED_KEY
+      - name: identity
+        schema: string
+        description: ''
+      - name: preSharedKey
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/credentials/{credentialId}
+    method: delete2
+    httpMethod: delete
+    tag: Credentials
+    typeScriptTag: credentials
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: credentialId
+        schema: string
+        required: true
+        description: ''
+        example: CREDENTIALID
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/device-activity-logs
+    method: getLatestDeviceActivityLogs
+    httpMethod: get
+    tag: Logs
+    typeScriptTag: logs
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices
+    method: list
+    httpMethod: get
+    tag: Devices
+    typeScriptTag: devices
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: deviceName
+        schema: string
+        required: false
+        description: ''
+      - name: hardwareId
+        schema: string
+        required: false
+        description: ''
+      - name: tags
+        schema: array
+        required: false
+        description: ''
+      - name: blueprintId
+        schema: string
+        required: false
+        description: ''
+      - name: statePath
+        schema: string
+        required: false
+        description: ''
+      - name: streamPath
+        schema: string
+        required: false
+        description: ''
+      - name: updatePath
+        schema: string
+        required: false
+        description: ''
+      - name: term
+        schema: string
+        required: false
+        description: ''
+      - name: enabled
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices
+    method: create
+    httpMethod: post
+    tag: Devices
+    typeScriptTag: devices
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: name
+        schema: string
+        description: ''
+      - name: hardwareIds
+        schema: array
+        description: ''
+      - name: tagIds
+        schema: array
+        description: ''
+      - name: blueprintId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}
+    method: delete
+    httpMethod: delete
+    tag: Devices
+    typeScriptTag: devices
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}
+    method: get
+    httpMethod: get
+    tag: Devices
+    typeScriptTag: devices
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}
+    method: update2
+    httpMethod: patch
+    tag: Devices
+    typeScriptTag: devices
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: name
+        schema: string
+        description: ''
+      - name: addHardwareId
+        schema: array
+        description: ''
+      - name: removeHardwareId
+        schema: array
+        description: ''
+      - name: hardwareIds
+        schema: array
+        description: ''
+      - name: addTagId
+        schema: array
+        description: ''
+      - name: removeTagId
+        schema: array
+        description: ''
+      - name: blueprintId
+        schema: string
+        description: ''
+      - name: tagIds
+        schema: array
+        description: ''
+      - name: enabled
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}
+    method: update
+    httpMethod: put
+    tag: Devices
+    typeScriptTag: devices
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: addHardwareId
+        schema: array
+        description: ''
+      - name: removeHardwareId
+        schema: array
+        description: ''
+      - name: hardwareIds
+        schema: array
+        description: ''
+      - name: addTagId
+        schema: array
+        description: ''
+      - name: removeTagId
+        schema: array
+        description: ''
+      - name: blueprintId
+        schema: string
+        description: ''
+      - name: tagIds
+        schema: array
+        description: ''
+      - name: enabled
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/credentials
+    method: list
+    httpMethod: get
+    tag: Credentials
+    typeScriptTag: credentials
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/credentials
+    method: create
+    httpMethod: post
+    tag: Credentials
+    typeScriptTag: credentials
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: type
+        schema: string
+        description: ''
+        default: PRE_SHARED_KEY
+      - name: identity
+        schema: string
+        description: ''
+      - name: preSharedKey
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/credentials/{credentialId}
+    method: delete
+    httpMethod: delete
+    tag: Credentials
+    typeScriptTag: credentials
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: credentialId
+        schema: string
+        required: true
+        description: ''
+        example: CREDENTIALID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/data/{path}
+    method: delete
+    httpMethod: delete
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/data/{path}
+    method: get
+    httpMethod: get
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/data/{path}
+    method: update2
+    httpMethod: patch
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/data/{path}
+    method: update3
+    httpMethod: post
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/data/{path}
+    method: update
+    httpMethod: put
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/provisioning
+    method: provisionDevice2
+    httpMethod: post
+    tag: Provisioning
+    typeScriptTag: provisioning
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: hardwareIds
+        schema: array
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: type
+        schema: string
+        description: ''
+        default: PRE_SHARED_KEY
+      - name: identity
+        schema: string
+        description: ''
+      - name: preSharedKey
+        schema: string
+        description: ''
+      - name: tagIds
+        schema: array
+        description: ''
+      - name: blueprintId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/rpc
+    method: remoteProcedureCall
+    httpMethod: post
+    tag: Remote Procedure Call
+    typeScriptTag: remoteProcedureCall
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: method
+        schema: string
+        description: ''
+      - name: params
+        schema: array
+        description: ''
+      - name: timeout
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/settings
+    method: get
+    httpMethod: get
+    tag: Settings
+    typeScriptTag: settings
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/stream
+    method: getDeviceStream
+    httpMethod: get
+    tag: LightDB Stream
+    typeScriptTag: lightDbStream
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: start
+        schema: string
+        required: false
+        description: ''
+      - name: end
+        schema: string
+        required: false
+        description: ''
+      - name: interval
+        schema: string
+        required: false
+        description: ''
+      - name: encodedQuery
+        schema: string
+        required: false
+        description: ''
+      - name: queryTimeBucket
+        schema: string
+        required: false
+        description: ''
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/stream
+    method: getDeviceStream2
+    httpMethod: post
+    tag: LightDB Stream
+    typeScriptTag: lightDbStream
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: start
+        schema: string
+        description: ''
+      - name: end
+        schema: string
+        description: ''
+      - name: interval
+        schema: string
+        description: ''
+      - name: encodedQuery
+        schema: string
+        description: ''
+      - name: query
+        schema: object
+        description: ''
+      - name: page
+        schema: integer
+        description: ''
+      - name: perPage
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devices/{deviceId}/stream/latest/{path}
+    method: getLatestStream
+    httpMethod: get
+    tag: LightDB Stream
+    typeScriptTag: lightDbStream
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devicesByTag/{tag}/data/{path}
+    method: deleteByTag
+    httpMethod: delete
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tag
+        schema: string
+        required: true
+        description: ''
+        example: TAG
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devicesByTag/{tag}/data/{path}
+    method: updateByTag2
+    httpMethod: patch
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tag
+        schema: string
+        required: true
+        description: ''
+        example: TAG
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devicesByTag/{tag}/data/{path}
+    method: updateByTag3
+    httpMethod: post
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tag
+        schema: string
+        required: true
+        description: ''
+        example: TAG
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/devicesByTag/{tag}/data/{path}
+    method: updateByTag
+    httpMethod: put
+    tag: LightDB
+    typeScriptTag: lightDb
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tag
+        schema: string
+        required: true
+        description: ''
+        example: TAG
+      - name: path
+        schema: string
+        required: true
+        description: ''
+        example: PATH
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/firmware/logs
+    method: logs
+    httpMethod: get
+    tag: Firmware
+    typeScriptTag: firmware
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: version
+        schema: string
+        required: false
+        description: ''
+      - name: target
+        schema: string
+        required: false
+        description: ''
+      - name: state
+        schema: string
+        required: false
+        description: ''
+      - name: reason
+        schema: string
+        required: false
+        description: ''
+      - name: deviceId
+        schema: array
+        required: false
+        description: ''
+      - name: start
+        schema: string
+        required: false
+        description: ''
+      - name: end
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/integrations
+    method: list
+    httpMethod: get
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: ids
+        schema: array
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/integrations
+    method: create
+    httpMethod: post
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: name
+        schema: string
+        description: ''
+      - name: type
+        schema: string
+        description: ''
+      - name: configuration
+        schema: object
+        description: ''
+      - name: enabled
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/integrations/validate
+    method: validate
+    httpMethod: post
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: name
+        schema: string
+        description: ''
+      - name: type
+        schema: string
+        description: ''
+      - name: configuration
+        schema: object
+        description: ''
+      - name: enabled
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/integrations/{integrationId}
+    method: delete
+    httpMethod: delete
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: integrationId
+        schema: string
+        required: true
+        description: ''
+        example: INTEGRATIONID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/integrations/{integrationId}
+    method: get
+    httpMethod: get
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: integrationId
+        schema: string
+        required: true
+        description: ''
+        example: INTEGRATIONID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/integrations/{integrationId}
+    method: update2
+    httpMethod: patch
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: integrationId
+        schema: string
+        required: true
+        description: ''
+        example: INTEGRATIONID
+      - name: name
+        schema: string
+        description: ''
+      - name: enabled
+        schema: boolean
+        description: ''
+      - name: configuration
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/integrations/{integrationId}
+    method: update
+    httpMethod: put
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: integrationId
+        schema: string
+        required: true
+        description: ''
+        example: INTEGRATIONID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: enabled
+        schema: boolean
+        description: ''
+      - name: configuration
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/integrations/{integrationId}/test
+    method: test
+    httpMethod: post
+    tag: Integrations
+    typeScriptTag: integrations
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: integrationId
+        schema: string
+        required: true
+        description: ''
+        example: INTEGRATIONID
+      - name: data
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/logs
+    method: getLogs
+    httpMethod: get
+    tag: Logs
+    typeScriptTag: logs
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+      - name: start
+        schema: string
+        required: false
+        description: ''
+      - name: end
+        schema: string
+        required: false
+        description: ''
+      - name: module
+        schema: string
+        required: false
+        description: ''
+      - name: level
+        schema: string
+        required: false
+        description: ''
+        default: NONE
+      - name: term
+        schema: string
+        required: false
+        description: ''
+      - name: tags
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/permissions
+    method: listPermissions
+    httpMethod: get
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/policies
+    method: list
+    httpMethod: get
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: userId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/policies/{policyId}
+    method: delete
+    httpMethod: delete
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: policyId
+        schema: string
+        required: true
+        description: ''
+        example: POLICYID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/policies/{policyId}
+    method: get
+    httpMethod: get
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: policyId
+        schema: string
+        required: true
+        description: ''
+        example: POLICYID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/policies/{policyId}
+    method: update2
+    httpMethod: patch
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: policyId
+        schema: string
+        required: true
+        description: ''
+        example: POLICYID
+      - name: addRoles
+        schema: array
+        description: ''
+      - name: removeRoles
+        schema: array
+        description: ''
+      - name: addTags
+        schema: array
+        description: ''
+      - name: removeTags
+        schema: array
+        description: ''
+      - name: roles
+        schema: array
+        description: ''
+      - name: tagIds
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/policies/{policyId}
+    method: update
+    httpMethod: put
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: policyId
+        schema: string
+        required: true
+        description: ''
+        example: POLICYID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+      - name: addRoles
+        schema: array
+        description: ''
+      - name: removeRoles
+        schema: array
+        description: ''
+      - name: addTags
+        schema: array
+        description: ''
+      - name: removeTags
+        schema: array
+        description: ''
+      - name: roles
+        schema: array
+        description: ''
+      - name: tagIds
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/provisioning
+    method: provisionDevice
+    httpMethod: post
+    tag: Provisioning
+    typeScriptTag: provisioning
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: deviceId
+        schema: string
+        description: ''
+      - name: hardwareIds
+        schema: array
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: type
+        schema: string
+        description: ''
+        default: PRE_SHARED_KEY
+      - name: identity
+        schema: string
+        description: ''
+      - name: preSharedKey
+        schema: string
+        description: ''
+      - name: tagIds
+        schema: array
+        description: ''
+      - name: blueprintId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/releases
+    method: list
+    httpMethod: get
+    tag: Releases
+    typeScriptTag: releases
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: releaseTags
+        schema: array
+        required: false
+        description: ''
+      - name: deviceTags
+        schema: array
+        required: false
+        description: ''
+      - name: ids
+        schema: array
+        required: false
+        description: ''
+      - name: rollout
+        schema: boolean
+        required: false
+        description: ''
+      - name: blueprintId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/releases
+    method: create
+    httpMethod: post
+    tag: Releases
+    typeScriptTag: releases
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: releaseTags
+        schema: array
+        description: ''
+      - name: deviceTagIds
+        schema: array
+        description: ''
+      - name: artifactIds
+        schema: array
+        description: ''
+      - name: rollout
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/releases/{releaseId}
+    method: delete
+    httpMethod: delete
+    tag: Releases
+    typeScriptTag: releases
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: releaseId
+        schema: string
+        required: true
+        description: ''
+        example: RELEASEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/releases/{releaseId}
+    method: get
+    httpMethod: get
+    tag: Releases
+    typeScriptTag: releases
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: releaseId
+        schema: string
+        required: true
+        description: ''
+        example: RELEASEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/releases/{releaseId}
+    method: update2
+    httpMethod: patch
+    tag: Releases
+    typeScriptTag: releases
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: releaseId
+        schema: string
+        required: true
+        description: ''
+        example: RELEASEID
+      - name: addDeviceTagId
+        schema: array
+        description: ''
+      - name: removeDeviceTagId
+        schema: array
+        description: ''
+      - name: deviceTagIds
+        schema: array
+        description: ''
+      - name: rollout
+        schema: boolean
+        description: ''
+      - name: addReleaseTag
+        schema: array
+        description: ''
+      - name: removeReleaseTag
+        schema: array
+        description: ''
+      - name: releaseTags
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/releases/{releaseId}
+    method: update
+    httpMethod: put
+    tag: Releases
+    typeScriptTag: releases
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: releaseId
+        schema: string
+        required: true
+        description: ''
+        example: RELEASEID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+      - name: addDeviceTagId
+        schema: array
+        description: ''
+      - name: removeDeviceTagId
+        schema: array
+        description: ''
+      - name: deviceTagIds
+        schema: array
+        description: ''
+      - name: rollout
+        schema: boolean
+        description: ''
+      - name: addReleaseTag
+        schema: array
+        description: ''
+      - name: removeReleaseTag
+        schema: array
+        description: ''
+      - name: releaseTags
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/settings
+    method: list
+    httpMethod: get
+    tag: Settings
+    typeScriptTag: settings
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: blueprintId
+        schema: string
+        required: false
+        description: ''
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/settings
+    method: create
+    httpMethod: post
+    tag: Settings
+    typeScriptTag: settings
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: key
+        schema: string
+        description: ''
+      - name: dataType
+        schema: string
+        description: ''
+      - name: value
+        schema: undefined
+        description: ''
+      - name: blueprintId
+        schema: string
+        description: ''
+      - name: deviceId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/settings/{settingId}
+    method: delete
+    httpMethod: delete
+    tag: Settings
+    typeScriptTag: settings
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: settingId
+        schema: string
+        required: true
+        description: ''
+        example: SETTINGID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/settings/{settingId}
+    method: update2
+    httpMethod: patch
+    tag: Settings
+    typeScriptTag: settings
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: settingId
+        schema: string
+        required: true
+        description: ''
+        example: SETTINGID
+      - name: value
+        schema: undefined
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/settings/{settingId}
+    method: update
+    httpMethod: put
+    tag: Settings
+    typeScriptTag: settings
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: settingId
+        schema: string
+        required: true
+        description: ''
+        example: SETTINGID
+      - name: value
+        schema: undefined
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/stream
+    method: getProjectStream
+    httpMethod: get
+    tag: LightDB Stream
+    typeScriptTag: lightDbStream
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: start
+        schema: string
+        required: false
+        description: ''
+      - name: end
+        schema: string
+        required: false
+        description: ''
+      - name: interval
+        schema: string
+        required: false
+        description: ''
+      - name: encodedQuery
+        schema: string
+        required: false
+        description: ''
+      - name: queryTimeBucket
+        schema: string
+        required: false
+        description: ''
+      - name: deviceId
+        schema: array
+        required: false
+        description: ''
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: tags
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/stream
+    method: getProjectStream2
+    httpMethod: post
+    tag: LightDB Stream
+    typeScriptTag: lightDbStream
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tags
+        schema: array
+        description: ''
+      - name: start
+        schema: string
+        description: ''
+      - name: end
+        schema: string
+        description: ''
+      - name: interval
+        schema: string
+        description: ''
+      - name: encodedQuery
+        schema: string
+        description: ''
+      - name: query
+        schema: object
+        description: ''
+      - name: deviceId
+        schema: array
+        description: ''
+      - name: page
+        schema: integer
+        description: ''
+      - name: perPage
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/tags
+    method: list
+    httpMethod: get
+    tag: Tags
+    typeScriptTag: tags
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: page
+        schema: integer
+        required: false
+        description: ''
+      - name: perPage
+        schema: integer
+        required: false
+        description: ''
+      - name: tagName
+        schema: string
+        required: false
+        description: ''
+      - name: ids
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/tags
+    method: create
+    httpMethod: post
+    tag: Tags
+    typeScriptTag: tags
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/tags/{tagId}
+    method: delete
+    httpMethod: delete
+    tag: Tags
+    typeScriptTag: tags
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tagId
+        schema: string
+        required: true
+        description: ''
+        example: TAGID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/tags/{tagId}
+    method: get
+    httpMethod: get
+    tag: Tags
+    typeScriptTag: tags
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tagId
+        schema: string
+        required: true
+        description: ''
+        example: TAGID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/tags/{tagId}
+    method: update2
+    httpMethod: patch
+    tag: Tags
+    typeScriptTag: tags
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tagId
+        schema: string
+        required: true
+        description: ''
+        example: TAGID
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/tags/{tagId}
+    method: update
+    httpMethod: put
+    tag: Tags
+    typeScriptTag: tags
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: tagId
+        schema: string
+        required: true
+        description: ''
+        example: TAGID
+      - name: updateMask
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/users
+    method: listUsers
+    httpMethod: get
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/projects/{projectId}/users/invitation
+    method: inviteUser
+    httpMethod: post
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: email
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/roles
+    method: listRoles
+    httpMethod: get
+    tag: Access
+    typeScriptTag: access
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /v1/settings-data-types
+    method: listAllowedSettingsDataTypes
+    httpMethod: get
+    tag: Settings
+    typeScriptTag: settings
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+numberOfSchemas: 181
+apiDescription: >-
+  Built IoT your way without the stress. Securely connect your MCU then capture
+  and route sensor data anywhere with the Golioth SDK. Build secure, scalable,
+  and innovative IoT in a fraction of the time.

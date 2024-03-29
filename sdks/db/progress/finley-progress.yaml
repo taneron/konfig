@@ -1,0 +1,85 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /credit-facilities:
+    get: CreditFacilities_getList
+  /credit-facilities/{creditFacilityId}:
+    get: CreditFacilities_getById
+  /credit-facilities/{creditFacilityId}/borrowing-base-reports:
+    get: BorrowingBaseReports_getList
+  /credit-facilities/{creditFacilityId}/borrowing-base-reports/{borrowingBaseReportId}:
+    get: BorrowingBaseReports_getById
+  /credit-facilities/{creditFacilityId}/expenses-fees:
+    get: ExpensesFeesReports_getSummary
+  /credit-facilities/{creditFacilityId}/funding-requests:
+    get: FundingRequests_list
+    post: FundingRequests_createPendingRequestUsingLatestBorrowingBase
+  /credit-facilities/{creditFacilityId}/funding-requests/{fundingRequestId}:
+    get: FundingRequests_getByRequestId
+  /credit-facilities/{creditFacilityId}/funding-requests/{fundingRequestId}/components:
+    get: FundingRequests_listComponentsByRequestId
+  /credit-facilities/{creditFacilityId}/funding-requests/{fundingRequestId}/components/{fundingRequestComponentId}:
+    get: FundingRequests_getComponentById
+  /credit-facilities/{creditFacilityId}/funding-requests/{fundingRequestId}/components/{fundingRequestComponentId}/settle:
+    put: FundingRequests_settleComponentSettlement
+  /credit-facilities/{creditFacilityId}/funding-requests/{fundingRequestId}/submit:
+    put: FundingRequests_submitFundingRequest
+  /funding-requests:
+    get: FundingRequestsDeprecated_getList
+  /funding-requests/{fundingRequestId}:
+    get: FundingRequestsDeprecated_getById
+  /funding-requests/{fundingRequestId}/components:
+    get: FundingRequestsDeprecated_getComponentsByRequestId
+  /funding-requests/{fundingRequestId}/components/{fundingRequestComponentId}:
+    get: FundingRequestsDeprecated_getComponentById
+  /funding-requests/{fundingRequestId}/components/{fundingRequestComponentId}/settle:
+    put: FundingRequestsDeprecated_settleComponent
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /credit-facilities:
+    get:
+      '200':
+        application/json: CreditFacilitiesGetListResponse
+  /credit-facilities/{creditFacilityId}/borrowing-base-reports:
+    get:
+      '200':
+        application/json: BorrowingBaseReportsGetListResponse
+  /credit-facilities/{creditFacilityId}/funding-requests:
+    get:
+      '200':
+        application/json: FundingRequestsListResponse
+    post:
+      '409':
+        application/json: FundingRequestsCreatePendingRequestUsingLatestBorrowingBaseResponse
+  /credit-facilities/{creditFacilityId}/funding-requests/{fundingRequestId}/components:
+    get:
+      '200':
+        application/json: FundingRequestsListComponentsByRequestIdResponse
+  /credit-facilities/{creditFacilityId}/funding-requests/{fundingRequestId}/submit:
+    put:
+      '409':
+        application/json: FundingRequestsSubmitFundingRequestResponse
+  /funding-requests:
+    get:
+      '200':
+        application/json: FundingRequestsDeprecatedGetListResponse
+  /funding-requests/{fundingRequestId}/components:
+    get:
+      '200':
+        application/json: FundingRequestsDeprecatedGetComponentsByRequestIdResponse
+securityParameters:
+  borrowingBaseReportId:
+    query: false
+  endDate:
+    query: false
+  startDate:
+    query: false
+  status:
+    query: false
+validServerUrls:
+  api.finleycms.com:
+    url: api.finleycms.com
