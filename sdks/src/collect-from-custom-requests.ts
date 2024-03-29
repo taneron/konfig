@@ -2440,6 +2440,10 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://docs.beamlend.com/redocusaurus/plugin-redoc-0.yaml",
     apiBaseUrl: "https://api.beamlend.com"
   },
+  "banksapi.de": {
+    type: "GET",
+    url: "https://docs.banksapi.de/api-documentation/banksapi-v2-openapi-3_0.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

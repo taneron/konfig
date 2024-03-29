@@ -1,0 +1,210 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /auth/mgmt/v1/tenants:
+    get: Auth_getTenants
+  /auth/mgmt/v1/tenants/{tenant-name}/users:
+    get: Auth_getActivatedUsers
+    post: Auth_createTenantUser
+  /auth/mgmt/v1/tenants/{tenant-name}/users/{user-id}:
+    delete: Auth_deleteUser
+    get: Auth_getActivatedUser
+    put: Auth_changeUserDetails
+  /auth/mgmt/v1/tenants/{tenant-name}/users/{user-id}/deactivate:
+    put: Auth_deactivateUser
+  /auth/mgmt/v1/tenants/{tenant-name}/users/{user-id}/reactivate:
+    post: Auth_reactivateUser
+  /auth/oauth2/introspect:
+    get: Auth_tokenInfo
+  /auth/oauth2/revoke:
+    post: Auth_revokeToken
+  /auth/oauth2/token:
+    post: Auth_createToken
+  /customer/v2:
+    get: Customer_getObject
+  /customer/v2/bankzugaenge:
+    delete: CustomerBankAccess_removeAllBankAccesses
+    get: CustomerBankAccess_getAll
+    post: CustomerBankAccess_addBankAccess
+  /customer/v2/bankzugaenge/builder:
+    put: CustomerBankAccessBuilder_createInstance
+  /customer/v2/bankzugaenge/{access-id}:
+    delete: CustomerBankAccess_deleteBankAccess
+    get: CustomerBankAccess_getSpecificBankAccess
+  /customer/v2/bankzugaenge/{access-id}/challenge/pdf:
+    get: CustomerBankAccess_getBankAccessChallengePdf
+  /customer/v2/bankzugaenge/{access-id}/consent:
+    post: CustomerBankAccessConsent_startScaRenewal
+  /customer/v2/bankzugaenge/{access-id}/consent/{consent-id}:
+    get: CustomerBankAccessConsent_pollStatus
+    post: CustomerBankAccessConsent_updateScaMethod
+  /customer/v2/bankzugaenge/{access-id}/consent/{consent-id}/cancel:
+    post: CustomerBankAccessConsent_cancelScaRedirect
+  /customer/v2/bankzugaenge/{access-id}/issues:
+    get: CustomerBankAccess_getIssues
+  /customer/v2/bankzugaenge/{access-id}/selectedbankproducts:
+    put: CustomerRegProtect_changeBankProductSelection
+  /customer/v2/bankzugaenge/{access-id}/{product-id}:
+    get: CustomerBankAccess_getBankProduct
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/depotpositionen:
+    get: CustomerBankAccess_getDepotPositions
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/kontoumsaetze:
+    get: CustomerBankAccess_getTransactions
+    post: CustomerBankAccessBuilder_pushTransactions
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/kontoumsaetze/{transaction-id}:
+    put: CustomerBankAccess_modifyTransactionCategorization
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/payment/bulk-debit:
+    post: CustomerBankAccessPayment_initiateBulkDebit
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/payment/bulk-transfer:
+    post: CustomerBankAccessPayment_initiateBulkTransfer
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/payment/single-debit:
+    post: CustomerBankAccessPayment_initiateSingleDebit
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/payment/single-transfer:
+    post: CustomerBankAccessPayment_initiateSingleTransfer
+  /customer/v2/consent/{consent-id}:
+    get: CustomerConsent_getCurrentStatus
+    post: CustomerConsent_submitScaData
+  /customer/v2/consent/{consent-id}/cancel:
+    post: CustomerConsent_cancelScaRedirect
+  /customer/v2/consent/{consent-id}/poll:
+    get: CustomerConsent_pollStatus
+  /customer/v2/payment/bulk-debit:
+    post: CustomerPayment_initiateBulkDebit
+  /customer/v2/payment/bulk-debit/{payment-id}:
+    get: CustomerPayment_getStatus
+  /customer/v2/payment/bulk-transfer:
+    post: CustomerPayment_initiateBulkTransfer
+  /customer/v2/payment/bulk-transfer/{payment-id}:
+    get: CustomerPayment_getStatusBulkTransfer
+  /customer/v2/payment/single-debit:
+    post: CustomerPayment_initiateSingleDebit
+  /customer/v2/payment/single-debit/{payment-id}:
+    get: CustomerPayment_getDebitStatus
+  /customer/v2/payment/single-transfer:
+    post: CustomerPayment_initiateSingleTransfer
+  /customer/v2/payment/single-transfer/{payment-id}:
+    get: CustomerPayment_getStatus
+  /customer/v2/regprotect/sessions:
+    delete: CustomerRegProtect_invalidateSessions
+  /customer/v2/ueberweisung/bulk/{provider-id}/{product-id}:
+    post: CustomerUeberweisung_createBulkTransfer
+  /customer/v2/ueberweisung/bulk/{provider-id}/{product-id}/{payment-id}:
+    put: CustomerUeberweisung_submitTanBulk
+  /customer/v2/ueberweisung/{provider-id}/{product-id}:
+    post: CustomerUeberweisung_createPayment
+  /customer/v2/ueberweisung/{provider-id}/{product-id}/{payment-id}:
+    put: CustomerUeberweisung_submitTan
+  /encrypt:
+    put: Encrypt_plaintext
+  /providers/v2:
+    get: Providers_getAll
+  /providers/v2/coredata:
+    get: Providers_listCoreData
+  /providers/v2/statistics/jobs:
+    get: Providers_getJobStatistics
+  /providers/v2/{provider-id}:
+    get: Providers_getInformation
+  /providers/v2/{provider-id}/ebics:
+    get: Providers_getEbicsInfo
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /auth/oauth2/revoke:
+    post:
+      application/x-www-form-urlencoded: AuthRevokeTokenRequest
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/kontoumsaetze:
+    post:
+      application/json: CustomerBankAccessBuilderPushTransactionsRequest
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/payment/bulk-transfer:
+    post:
+      application/json: CustomerBankAccessPaymentInitiateBulkTransferRequest
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/payment/single-transfer:
+    post:
+      application/json: CustomerBankAccessPaymentInitiateSingleTransferRequest
+  /encrypt:
+    put:
+      application/octet-stream+base64: EncryptPlaintextRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /auth/mgmt/v1/tenants:
+    get:
+      '200':
+        application/json: AuthGetTenantsResponse
+  /auth/mgmt/v1/tenants/{tenant-name}/users:
+    get:
+      '200':
+        application/json: AuthGetActivatedUsersResponse
+  /customer/v2/bankzugaenge/{access-id}/challenge/pdf:
+    get:
+      '200':
+        application/pdf: CustomerBankAccessGetBankAccessChallengePdfResponse
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/depotpositionen:
+    get:
+      '200':
+        application/json: CustomerBankAccessGetDepotPositionsResponse
+  /customer/v2/bankzugaenge/{access-id}/{product-id}/kontoumsaetze:
+    get:
+      '200':
+        application/json: CustomerBankAccessGetTransactionsResponse
+  /encrypt:
+    put:
+      '200':
+        application/octet-stream+base64: EncryptPlaintextResponse
+  /providers/v2:
+    get:
+      '200':
+        application/json: ProvidersGetAllResponse
+  /providers/v2/coredata:
+    get:
+      '200':
+        application/json: ProvidersListCoreDataResponse
+  /providers/v2/statistics/jobs:
+    get:
+      '200':
+        application/json: ProvidersGetJobStatisticsResponse
+securityParameters:
+  Customer-IP-Address:
+    header: false
+  callbackUrl:
+    query: false
+  capability:
+    query: false
+  changeExisting:
+    query: false
+  createRule:
+    query: false
+  days:
+    query: false
+  ebics:
+    query: false
+  filter:
+    query: false
+  from:
+    query: false
+  headOnly:
+    query: false
+  hours:
+    query: false
+  includeInactive:
+    query: false
+  maxTransactions:
+    query: false
+  paymentAccountsOnly:
+    query: false
+  queryTanSettings:
+    query: false
+  refresh:
+    query: false
+  reftype:
+    query: false
+  sca:
+    query: false
+  tag:
+    query: false
+  to:
+    query: false
+  token:
+    query: false
+validServerUrls: {}
