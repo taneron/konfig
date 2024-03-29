@@ -23,7 +23,7 @@ We have a strong presence in France since 2015 and have been quickly growing in 
       companyKebabCase="pay-fit"
       clientNameCamelCase="payFit"
       homepage="payfit.com"
-      lastUpdated={new Date("2024-03-27T04:52:35.159Z")}
+      lastUpdated={new Date("2024-03-29T21:57:13.775Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/payfit/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -293,7 +293,7 @@ We have a strong presence in France since 2015 and have been quickly growing in 
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Company",
     "typeScriptTag": "company",
-    "description": "Get Company (FR)",
+    "description": "Get Company (https://developers.payfit.io/reference",
     "parameters": [
       {
         "name": "companyId",
@@ -489,7 +489,7 @@ We have a strong presence in France since 2015 and have been quickly growing in 
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Contract",
     "typeScriptTag": "contract",
-    "description": "List all Contracts (FR)",
+    "description": "List all Contracts (https://developers.payfit.io/reference",
     "parameters": [
       {
         "name": "companyId",
@@ -547,7 +547,7 @@ We have a strong presence in France since 2015 and have been quickly growing in 
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Contract",
     "typeScriptTag": "contract",
-    "description": "Get a contract (FR)",
+    "description": "Get a contract (https://developers.payfit.io/reference",
     "parameters": [
       {
         "name": "companyId",
@@ -964,7 +964,7 @@ We have a strong presence in France since 2015 and have been quickly growing in 
       sdkMethods={19}
       schemas={111}
       parameters={46}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/payfit/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/payfit/openapi.yaml"
       developerDocumentation="developers.payfit.io/reference"

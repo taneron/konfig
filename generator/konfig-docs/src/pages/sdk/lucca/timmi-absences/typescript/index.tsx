@@ -19,7 +19,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
       companyKebabCase="lucca"
       clientNameCamelCase="luccaTimmiAbsences"
       homepage="lucca-hr.com"
-      lastUpdated={new Date("2024-03-26T19:55:14.920Z")}
+      lastUpdated={new Date("2024-03-29T22:11:39.095Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/timmi-absences/favicon.png"
       contactUrl="https://www.lucca.fr"
       contactEmail="developers@lucca.fr"
@@ -240,7 +240,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Imports",
     "typeScriptTag": "imports",
-    "description": "Import entitlements (deprecated)",
+    "description": "Import entitlements (https://developers.lucca.fr/",
     "parameters": [
       {
         "name": "strict",
@@ -326,7 +326,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Imports",
     "typeScriptTag": "imports",
-    "description": "Replace entitlements (deprecated)",
+    "description": "Replace entitlements (https://developers.lucca.fr/",
     "parameters": [
       {
         "name": "strict",
@@ -424,7 +424,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Imports",
     "typeScriptTag": "imports",
-    "description": "Import leaves (deprecated)",
+    "description": "Import leaves (https://developers.lucca.fr/",
     "parameters": [
       {
         "name": "type",
@@ -542,7 +542,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
       sdkMethods={24}
       schemas={22}
       parameters={41}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/timmi-absences/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/lucca/timmi-absences/openapi.yaml"
       developerDocumentation="developers.lucca.fr/"

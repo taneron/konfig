@@ -17,7 +17,7 @@ export default function MeasureOneTypeScriptSdk() {
       companyKebabCase="measure-one"
       clientNameCamelCase="measureOne"
       homepage="measureone.com"
-      lastUpdated={new Date("2024-03-29T19:11:15.684Z")}
+      lastUpdated={new Date("2024-03-29T22:11:39.095Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/measureone/favicon.png"
       // Missing contactUrl
       contactEmail="support@measureone.com"
@@ -2530,7 +2530,7 @@ export default function MeasureOneTypeScriptSdk() {
       sdkMethods={36}
       schemas={298}
       parameters={189}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/measureone/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/measureone/openapi.yaml"
       developerDocumentation="docs.measureone.com"

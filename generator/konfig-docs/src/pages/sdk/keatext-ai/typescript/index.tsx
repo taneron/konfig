@@ -1,0 +1,1128 @@
+import React from "react";
+import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
+// @ts-ignore
+import GettingStarted from "./_getting-started.mdx";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
+
+export default function KeatextAiTypeScriptSdk() {
+  return (
+    <SdkNew
+      sdkName="keatext-ai-typescript-sdk"
+      metaDescription={`Keatext brings the voice of customer and employee into your day-to-day activities. Easily understand what drives engagement and get tailored AI-based recommendations to improve people experiences.`}
+      company="Keatext AI"
+      // Missing serviceName
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/keatext-ai/logo.png"
+      companyKebabCase="keatext-ai"
+      clientNameCamelCase="keatextAi"
+      homepage="www.keatext.ai/"
+      lastUpdated={new Date("2024-03-29T21:57:21.888Z")}
+      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/keatext-ai/favicon.png"
+      // Missing contactUrl
+      // Missing contactEmail
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/keatext-ai/imagePreview.png"
+      GettingStarted={GettingStarted}
+      FirstRequest={FirstRequest}
+      categories={["ai","nlp","text","text_analytics","ai_text"]}
+      methods={[
+  {
+    "url": "/analytics/statements",
+    "method": "getStatementGroups",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "analytics",
+    "typeScriptTag": "analytics",
+    "description": "Get Statement Groups",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "The number of items to include in the result set.",
+        "default": 15
+      },
+      {
+        "name": "offset",
+        "schema": "integer",
+        "required": false,
+        "description": "The starting position of the result set.",
+        "default": 0
+      },
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "The id of the organization to get analytics from.",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      },
+      {
+        "name": "filters",
+        "schema": "array",
+        "description": "",
+        "example": [
+          {
+            "type": "isKnown",
+            "field": "5a6658f1abb99b1a00f39451:myField"
+          }
+        ],
+        "default": []
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/analytics/documents",
+    "method": "getFlexibly",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "analytics",
+    "typeScriptTag": "analytics",
+    "description": "Get Documents",
+    "parameters": [
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "The number of items to include in the result set.",
+        "default": 15
+      },
+      {
+        "name": "offset",
+        "schema": "integer",
+        "required": false,
+        "description": "The starting position of the result set.",
+        "default": 0
+      },
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "The id of the organization to get analytics from.",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      },
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "topicGroupId",
+        "schema": "string",
+        "required": false,
+        "description": "An optional topic group id.",
+        "example": "245efb1d-971c-4d4b-919e-4e0296782982"
+      },
+      {
+        "name": "indicatorGroupId",
+        "schema": "string",
+        "required": false,
+        "description": "An optional indicator group id.",
+        "example": "a2571140-28d9-4b15-a1c1-768eefbfb64c"
+      },
+      {
+        "name": "category",
+        "schema": "string",
+        "required": false,
+        "description": "An optional category."
+      },
+      {
+        "name": "filters",
+        "schema": "array",
+        "description": "",
+        "example": [
+          {
+            "type": "isKnown",
+            "field": "5a6658f1abb99b1a00f39451:myField"
+          }
+        ],
+        "default": []
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/analytics/documents/{documentId}",
+    "method": "getDocumentById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "analytics",
+    "typeScriptTag": "analytics",
+    "description": "Get a Document",
+    "parameters": [
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "The id of the organization to get analytics from.",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      },
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/analytics/topics",
+    "method": "getTopicGroups",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "analytics",
+    "typeScriptTag": "analytics",
+    "description": "Get Topic Groups",
+    "parameters": [
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "The number of items to include in the result set.",
+        "default": 15
+      },
+      {
+        "name": "offset",
+        "schema": "integer",
+        "required": false,
+        "description": "The starting position of the result set.",
+        "default": 0
+      },
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "The id of the organization to get analytics from.",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      },
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "filters",
+        "schema": "array",
+        "description": "",
+        "example": [
+          {
+            "type": "isKnown",
+            "field": "5a6658f1abb99b1a00f39451:myField"
+          }
+        ],
+        "default": []
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/analytics/indicators",
+    "method": "getIndicatorGroups",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "analytics",
+    "typeScriptTag": "analytics",
+    "description": "Get Indicator Groups",
+    "parameters": [
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "The number of items to include in the result set.",
+        "default": 15
+      },
+      {
+        "name": "offset",
+        "schema": "integer",
+        "required": false,
+        "description": "The starting position of the result set.",
+        "default": 0
+      },
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "The id of the organization to get analytics from.",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      },
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "filters",
+        "schema": "array",
+        "description": "",
+        "example": [
+          {
+            "type": "isKnown",
+            "field": "5a6658f1abb99b1a00f39451:myField"
+          }
+        ],
+        "default": []
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/auth/login",
+    "method": "generateToken",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "authentication",
+    "typeScriptTag": "authentication",
+    "description": "Generate a Token",
+    "parameters": [
+      {
+        "name": "username",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "tom@example.com"
+      },
+      {
+        "name": "password",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "mypassword"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "User doesn't exist, or password is missing or empty"
+      }
+    ]
+  },
+  {
+    "url": "/datasets/{datasetId}",
+    "method": "deleteDataset",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Delete a Dataset",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "Dataset successfully deleted"
+      }
+    ]
+  },
+  {
+    "url": "/datasets/{datasetId}",
+    "method": "getData",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Get a Dataset",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": "Dataset doesn't exist"
+      }
+    ]
+  },
+  {
+    "url": "/datasets/{datasetId}",
+    "method": "updateProperties",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Update a Dataset's Properties",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "description",
+        "schema": "string",
+        "description": "",
+        "example": "Reviews for New York stores for Summer 2018"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "description": "",
+        "example": "Summer 2018 <> NY"
+      },
+      {
+        "name": "primaryDate",
+        "schema": "string",
+        "description": "",
+        "example": "entry_date"
+      },
+      {
+        "name": "customerId",
+        "schema": "string",
+        "description": "",
+        "example": "client_id"
+      },
+      {
+        "name": "primaryKey",
+        "schema": "string",
+        "description": "",
+        "example": "response_id"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "Dataset successfully updated"
+      }
+    ]
+  },
+  {
+    "url": "/datasets",
+    "method": "getOrganizationData",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Get an Organization's Datasets",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "The organization's id.",
+        "example": "592dc9a6afbf6d1b0095f097"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": "The number of items to include in the result set.",
+        "default": 15
+      },
+      {
+        "name": "offset",
+        "schema": "integer",
+        "required": false,
+        "description": "The starting position of the result set.",
+        "default": 0
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/datasets",
+    "method": "addRecords",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Create a Dataset",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "description",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "Reviews for New York stores for Summer 2018"
+      },
+      {
+        "name": "id",
+        "schema": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "orgId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "592dc9a6afbf6d1b0095f097"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "Summer 2018 <> NY"
+      },
+      {
+        "name": "fields",
+        "schema": "array",
+        "required": true,
+        "description": "",
+        "example": [
+          {
+            "key": "review_id",
+            "name": "Review ID",
+            "type": "number"
+          },
+          {
+            "key": "review_date",
+            "name": "Review Date",
+            "type": "datetime",
+            "dateFormat": "YYYY-MM-DD"
+          },
+          {
+            "key": "author_id",
+            "name": "Author ID",
+            "type": "number"
+          },
+          {
+            "key": "review_content",
+            "name": "Review Content",
+            "type": "string",
+            "analyze": true
+          },
+          {
+            "key": "borough",
+            "name": "Borough",
+            "type": "string",
+            "analyze": false
+          }
+        ]
+      },
+      {
+        "name": "primaryDate",
+        "schema": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "customerId",
+        "schema": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "primaryKey",
+        "schema": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "recordCount",
+        "schema": "number",
+        "required": false,
+        "description": "",
+        "example": 12635
+      },
+      {
+        "name": "createdBy",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "auth0|592dc9a5c272ed7010e51d35"
+      },
+      {
+        "name": "createdAt",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "2018-09-07T22:57:19.026Z"
+      },
+      {
+        "name": "updatedAt",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "2018-10-19T08:23:11.098Z"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/datasets/{datasetId}/fields",
+    "method": "addFieldToDataset",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Create a Dataset Field",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "key",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "KEY"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "TYPE"
+      },
+      {
+        "name": "analyze",
+        "schema": "boolean",
+        "required": false,
+        "description": "",
+        "default": false
+      },
+      {
+        "name": "dateFormat",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "isVisible",
+        "schema": "boolean",
+        "required": false,
+        "description": "",
+        "default": true
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": "Field successfully created"
+      }
+    ]
+  },
+  {
+    "url": "/datasets/{datasetId}/fields/{fieldKey}",
+    "method": "removeField",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Delete a Dataset Field",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "fieldKey",
+        "schema": "string",
+        "required": true,
+        "description": "The field's unique identifier.",
+        "example": "customer_response_1"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "Field successfully deleted"
+      }
+    ]
+  },
+  {
+    "url": "/datasets/{datasetId}/fields/{fieldKey}",
+    "method": "updateFieldVisibility",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Update a Dataset Field",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "fieldKey",
+        "schema": "string",
+        "required": true,
+        "description": "The field's unique identifier.",
+        "example": "customer_response_1"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "isVisible",
+        "schema": "boolean",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "Field successfully updated"
+      }
+    ]
+  },
+  {
+    "url": "/datasets/{datasetId}/records",
+    "method": "ingestRecords",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "datasets",
+    "typeScriptTag": "datasets",
+    "description": "Populate a Dataset",
+    "parameters": [
+      {
+        "name": "undefined",
+        "schema": "undefined",
+        "description": "The dataset's id.",
+        "example": "XdzFGgUhXsf7"
+      },
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "records",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/organizations",
+    "method": "listYour",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "organizations",
+    "typeScriptTag": "organizations",
+    "description": "Get Your Organizations",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/organizations",
+    "method": "createOrganization",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "organizations",
+    "typeScriptTag": "organizations",
+    "description": "Create an Organization",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "id",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      },
+      {
+        "name": "ownerId",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "auth0|592dc9a5c272ed7010e51d35"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "Mulberry and Sons"
+      },
+      {
+        "name": "createdAt",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "2017-09-07 22:57:19.026+00"
+      },
+      {
+        "name": "updatedAt",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "2018-10-19 08:23:11.098+00"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/organizations/{organizationId}",
+    "method": "deleteOrganizationPermanently",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "organizations",
+    "typeScriptTag": "organizations",
+    "description": "Delete an Organization",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "organizationId",
+        "schema": "string",
+        "required": true,
+        "description": "The organization's id.",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "Organization successfully deleted"
+      }
+    ]
+  },
+  {
+    "url": "/organizations/{organizationId}/access-url",
+    "method": "createAndAuthenticateUser",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "organizations",
+    "typeScriptTag": "organizations",
+    "description": "Create and Authenticate a User",
+    "parameters": [
+      {
+        "name": "organizationId",
+        "schema": "string",
+        "required": true,
+        "description": "The organization's id.",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      },
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "email",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "tom@example.com"
+      },
+      {
+        "name": "filters",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "permissions",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/organizations/{organizationId}/users",
+    "method": "revokeAccess",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "organizations",
+    "typeScriptTag": "organizations",
+    "description": "Remove a User",
+    "parameters": [
+      {
+        "name": "authorization",
+        "schema": "string",
+        "required": true,
+        "description": "The [authorization token](https://developer.keatext.ai/.",
+        "example": "Bearer ZW1haWxAZXhhbXBsZS5jb206cGFzc3dvcmQ="
+      },
+      {
+        "name": "organizationId",
+        "schema": "string",
+        "required": true,
+        "description": "The organization's id.",
+        "example": "qU7zwuA6JQNw7fy8zut4VW5C"
+      },
+      {
+        "name": "email",
+        "schema": "string",
+        "description": "The user's encoded email address.",
+        "example": "tom%40example.com"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "User successfully removed"
+      }
+    ]
+  },
+  {
+    "url": "/",
+    "method": "listAvailableFilters",
+    "httpMethod": HttpMethodsEnum.OPTIONS,
+    "tag": "filters",
+    "typeScriptTag": "filters",
+    "description": "Available filters",
+    "parameters": [
+      {
+        "name": "isKnown",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "isUnknown",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "greaterThan",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "smallerThan",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "equal",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "dateFriendly",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "primaryDate",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "before",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "after",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "beforeOrEqual",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "afterOrEqual",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "inDateRange",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "contains",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "doesNotContain",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "matches",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "notMatches",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "source",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "matchesOpinion",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "matchesTopic",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "matchesIndicator",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "matchesKeyword",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "matchesLabel",
+        "schema": "undefined",
+        "description": ""
+      },
+      {
+        "name": "labelIsKnown",
+        "schema": "undefined",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "default",
+        "description": "Default response"
+      }
+    ]
+  }
+]
+    }
+      language="TypeScript"
+      apiTitle="Keatext Partner API"
+      apiBaseUrl="https://icarusapi.keatext.ai/api"
+      apiVersion="2.0.0"
+      endpoints={17}
+      sdkMethods={39}
+      schemas={76}
+      parameters={135}
+      difficulty="Easy"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/keatext-ai/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/keatext-ai/openapi.yaml"
+      developerDocumentation="developer.keatext.ai/"
+    />
+  );
+}
+  
