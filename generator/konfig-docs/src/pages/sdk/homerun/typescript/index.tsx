@@ -17,7 +17,7 @@ export default function HomerunTypeScriptSdk() {
       companyKebabCase="homerun"
       clientNameCamelCase="homerun"
       homepage="homerun.co"
-      lastUpdated={new Date("2024-03-27T23:49:28.302Z")}
+      lastUpdated={new Date("2024-03-29T20:34:56.573Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/homerun/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -794,7 +794,7 @@ export default function HomerunTypeScriptSdk() {
       sdkMethods={16}
       schemas={30}
       parameters={60}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/homerun/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/homerun/openapi.yaml"
       developerDocumentation="developers.homerun.co"
