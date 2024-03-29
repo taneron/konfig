@@ -2585,7 +2585,12 @@ const customRequests: Record<string, CustomRequest> = {
   "moffin.mx": {
     type: "GET",
     url: "https://app.moffin.mx/api/v1/docs",
-  }
+  },
+  "mega-api.app.br": {
+    type: "GET",
+    url: "https://apistart01.megaapi.com.br/docs/swagger.json",
+    apiBaseUrl: "https://apistart01.megaapi.com.br"
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

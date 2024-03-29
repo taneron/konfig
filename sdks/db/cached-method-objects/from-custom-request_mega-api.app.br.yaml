@@ -1,0 +1,497 @@
+hash: 543dde9a6247b5343b9379b9afc5c2fb893b8784d11f8b7c3372f08fe35240db
+methodObjects:
+  - url: /rest/instance/{instance_key}
+    method: getInstanceStatus
+    httpMethod: get
+    tag: InstanceController
+    typeScriptTag: instanceController
+    description: Get an status of instance
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/instance/downloadMediaMessage/{instance_key}
+    method: downloadMediaMessage
+    httpMethod: post
+    tag: InstanceController
+    typeScriptTag: instanceController
+    description: ''
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageKeys
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/instance/isOnWhatsApp/{instance_key}
+    method: checkIfNumberExistsInWhatsApp
+    httpMethod: get
+    tag: InstanceController
+    typeScriptTag: instanceController
+    description: Check if the number exists in whatsapp
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: jid
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/instance/qrcode/{instance_key}
+    method: getQrCode
+    httpMethod: get
+    tag: InstanceController
+    typeScriptTag: instanceController
+    description: Get the qrcode
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/instance/qrcode_base64/{instance_key}
+    method: getQrCodeBase64
+    httpMethod: get
+    tag: InstanceController
+    typeScriptTag: instanceController
+    description: Get the qrcode in base64 format
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/instance/pairingCode/{instance_key}
+    method: getPairingCode
+    httpMethod: get
+    tag: InstanceController
+    typeScriptTag: instanceController
+    description: Get the pairing code to login
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: phoneNumber
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/instance/{instance_key}/logout
+    method: logoutInstanceKey
+    httpMethod: delete
+    tag: InstanceController
+    typeScriptTag: instanceController
+    description: Logout from an instance
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/instance/{instance_key}/restart
+    method: restartInstance
+    httpMethod: delete
+    tag: InstanceController
+    typeScriptTag: instanceController
+    description: Restart an instance
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/webhook/{instance_key}
+    method: getInstanceData
+    httpMethod: get
+    tag: WebhookController
+    typeScriptTag: webhookController
+    description: Get an instance webhook data
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/webhook/{instance_key}/configWebhook
+    method: configureWebhook
+    httpMethod: post
+    tag: WebhookController
+    typeScriptTag: webhookController
+    description: ''
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/text
+    method: sendTextMessage
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Send a text message to an WhatsApp User
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/mediaUrl
+    method: sendMediaViaUrl
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Send a media message via a URL
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/mediaBase64
+    method: sendMediaBase64
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Send a media message via Base64
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/location
+    method: sendLocation
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Send an location to an WhatsApp User
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/sendLinkPreview
+    method: sendMessageLinkPreview
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Send a message with link preview
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/listMessage
+    method: listMessageToUser
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Send an List Message to an User
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/contactMessage
+    method: sendVcardMessageToUser
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Send an Vcard message to an User
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/forwardMessage
+    method: forwardToUserMessage
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Forward message to User
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/sendMessage/{instance_key}/quoteMessage
+    method: quoteUserMessage
+    httpMethod: post
+    tag: SendMessageController
+    typeScriptTag: sendMessageController
+    description: Quote message for User
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/chat/{instance_key}/presenceUpdateChat
+    method: changePresenceForChat
+    httpMethod: post
+    tag: ChatController
+    typeScriptTag: chatController
+    description: Change presence for chat
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: to
+        schema: string
+        description: ''
+      - name: option
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/chat/{instance_key}/deleteMessage
+    method: deleteMessageInstanceKey
+    httpMethod: post
+    tag: ChatController
+    typeScriptTag: chatController
+    description: Delete message in chat
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/chat/{instance_key}/deleteMessageFromMe
+    method: deleteMessageFromMe
+    httpMethod: post
+    tag: ChatController
+    typeScriptTag: chatController
+    description: Delete message fromMe in chat
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: to
+        schema: string
+        description: ''
+      - name: messageData
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/group/list/{instance_key}
+    method: listGroups
+    httpMethod: get
+    tag: GroupController
+    typeScriptTag: groupController
+    description: List all groups and communitys
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/group/{instance_key}/group
+    method: getGroupInfo
+    httpMethod: get
+    tag: GroupController
+    typeScriptTag: groupController
+    description: Get a group info
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: jid
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/group/{instance_key}/create
+    method: createGroup
+    httpMethod: post
+    tag: GroupController
+    typeScriptTag: groupController
+    description: Create a group
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: group_data
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/group/{instance_key}/addParticipants
+    method: addParticipantsToGroup
+    httpMethod: post
+    tag: GroupController
+    typeScriptTag: groupController
+    description: Add participants to a group
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: group_data
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/group/{instance_key}/removeParticipants
+    method: removeParticipants
+    httpMethod: post
+    tag: GroupController
+    typeScriptTag: groupController
+    description: Remove participants from group
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: group_data
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /rest/group/{instance_key}/leaveGroup
+    method: leaveGroup
+    httpMethod: delete
+    tag: GroupController
+    typeScriptTag: groupController
+    description: Leave group
+    parameters:
+      - name: instanceKey
+        schema: string
+        required: true
+        description: ''
+        example: INSTANCE_KEY
+      - name: jid
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+numberOfSchemas: 35
+apiDescription: This is a sample documentation for a new API.

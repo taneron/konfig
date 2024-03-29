@@ -1,0 +1,122 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /rest/chat/{instance_key}/deleteMessage:
+    post: ChatController_deleteMessageInstanceKey
+  /rest/chat/{instance_key}/deleteMessageFromMe:
+    post: ChatController_deleteMessageFromMe
+  /rest/chat/{instance_key}/presenceUpdateChat:
+    post: ChatController_changePresenceForChat
+  /rest/group/list/{instance_key}:
+    get: GroupController_listGroups
+  /rest/group/{instance_key}/addParticipants:
+    post: GroupController_addParticipantsToGroup
+  /rest/group/{instance_key}/create:
+    post: GroupController_createGroup
+  /rest/group/{instance_key}/group:
+    get: GroupController_getGroupInfo
+  /rest/group/{instance_key}/leaveGroup:
+    delete: GroupController_leaveGroup
+  /rest/group/{instance_key}/removeParticipants:
+    post: GroupController_removeParticipants
+  /rest/instance/downloadMediaMessage/{instance_key}:
+    post: InstanceController_downloadMediaMessage
+  /rest/instance/isOnWhatsApp/{instance_key}:
+    get: InstanceController_checkIfNumberExistsInWhatsApp
+  /rest/instance/pairingCode/{instance_key}:
+    get: InstanceController_getPairingCode
+  /rest/instance/qrcode/{instance_key}:
+    get: InstanceController_getQrCode
+  /rest/instance/qrcode_base64/{instance_key}:
+    get: InstanceController_getQrCodeBase64
+  /rest/instance/{instance_key}:
+    get: InstanceController_getInstanceStatus
+  /rest/instance/{instance_key}/logout:
+    delete: InstanceController_logoutInstanceKey
+  /rest/instance/{instance_key}/restart:
+    delete: InstanceController_restartInstance
+  /rest/sendMessage/{instance_key}/contactMessage:
+    post: SendMessageController_sendVcardMessageToUser
+  /rest/sendMessage/{instance_key}/forwardMessage:
+    post: SendMessageController_forwardToUserMessage
+  /rest/sendMessage/{instance_key}/listMessage:
+    post: SendMessageController_listMessageToUser
+  /rest/sendMessage/{instance_key}/location:
+    post: SendMessageController_sendLocation
+  /rest/sendMessage/{instance_key}/mediaBase64:
+    post: SendMessageController_sendMediaBase64
+  /rest/sendMessage/{instance_key}/mediaUrl:
+    post: SendMessageController_sendMediaViaUrl
+  /rest/sendMessage/{instance_key}/quoteMessage:
+    post: SendMessageController_quoteUserMessage
+  /rest/sendMessage/{instance_key}/sendLinkPreview:
+    post: SendMessageController_sendMessageLinkPreview
+  /rest/sendMessage/{instance_key}/text:
+    post: SendMessageController_sendTextMessage
+  /rest/webhook/{instance_key}:
+    get: WebhookController_getInstanceData
+  /rest/webhook/{instance_key}/configWebhook:
+    post: WebhookController_configureWebhook
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /rest/chat/{instance_key}/deleteMessage:
+    post:
+      application/json: ChatControllerDeleteMessageInstanceKeyRequest
+  /rest/chat/{instance_key}/deleteMessageFromMe:
+    post:
+      application/json: ChatControllerDeleteMessageFromMeRequest
+  /rest/chat/{instance_key}/presenceUpdateChat:
+    post:
+      application/json: ChatControllerChangePresenceForChatRequest
+  /rest/group/{instance_key}/addParticipants:
+    post:
+      application/json: GroupControllerAddParticipantsToGroupRequest
+  /rest/group/{instance_key}/create:
+    post:
+      application/json: GroupControllerCreateGroupRequest
+  /rest/group/{instance_key}/removeParticipants:
+    post:
+      application/json: GroupControllerRemoveParticipantsRequest
+  /rest/instance/downloadMediaMessage/{instance_key}:
+    post:
+      application/json: InstanceControllerDownloadMediaMessageRequest
+  /rest/sendMessage/{instance_key}/contactMessage:
+    post:
+      application/json: SendMessageControllerSendVcardMessageToUserRequest
+  /rest/sendMessage/{instance_key}/forwardMessage:
+    post:
+      application/json: SendMessageControllerForwardToUserMessageRequest
+  /rest/sendMessage/{instance_key}/listMessage:
+    post:
+      application/json: SendMessageControllerListMessageToUserRequest
+  /rest/sendMessage/{instance_key}/location:
+    post:
+      application/json: SendMessageControllerSendLocationRequest
+  /rest/sendMessage/{instance_key}/mediaBase64:
+    post:
+      application/json: SendMessageControllerSendMediaBase64Request
+  /rest/sendMessage/{instance_key}/mediaUrl:
+    post:
+      application/json: SendMessageControllerSendMediaViaUrlRequest
+  /rest/sendMessage/{instance_key}/quoteMessage:
+    post:
+      application/json: SendMessageControllerQuoteUserMessageRequest
+  /rest/sendMessage/{instance_key}/sendLinkPreview:
+    post:
+      application/json: SendMessageControllerSendMessageLinkPreviewRequest
+  /rest/sendMessage/{instance_key}/text:
+    post:
+      application/json: SendMessageControllerSendTextMessageRequest
+  /rest/webhook/{instance_key}/configWebhook:
+    post:
+      application/json: WebhookControllerConfigureWebhookRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  jid:
+    query: false
+  phoneNumber:
+    query: false
+validServerUrls: {}
