@@ -1,0 +1,159 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/applications/get_template:
+    get:
+      '200':
+        application/json: {}
+  /v1/bank_connections/{application_id}/rethread:
+    get:
+      '201':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /liquidity/{application_id}:
+    get: Bankconnections_getLiquidityScore
+  /transactions/{application_id}:
+    get: Bankconnections_getLabelledTransactions
+  /v1/application_configs/:
+    get: Applicationconfigs_getByOrganisation
+  /v1/application_configs/application_configs/:
+    post: Applicationconfigs_createConfig
+  /v1/application_configs/connections_available:
+    get: Applicationconfigs_listConnectionsAvailable
+  /v1/application_configs/data_point_args/:
+    get: Applicationconfigs_getDataPointArgs
+  /v1/application_configs/{app_config_id}:
+    get: Applicationconfigs_getApplicationConfigById
+  /v1/applications/:
+    post: Applications_createNewApplication
+  /v1/applications/applicants/:
+    get: Applications_getApplicantsList
+    post: Applications_submitApplicant
+  /v1/applications/applicants/{applicant_id}:
+    get: Applications_getApplicantDetails
+  /v1/applications/applications/:
+    get: Applications_getOrganisationApplications
+  /v1/applications/applications/revet:
+    post: Applications_submitRevetApplication
+  /v1/applications/applications/revet_upload:
+    post: Applications_submitCsv
+  /v1/applications/applications/{application_id}:
+    get: Applications_getById
+  /v1/applications/get_template:
+    get: Applications_getCsvTemplate
+  /v1/bank_connections/{application_id}/affordability:
+    get: Bankconnections_getAffordability
+  /v1/bank_connections/{application_id}/expenses_analysis:
+    get: Bankconnections_getExpenseInsights
+  /v1/bank_connections/{application_id}/income_analysis:
+    get: Bankconnections_getIncomeAnalysis
+  /v1/bank_connections/{application_id}/liquidity_score:
+    get: Bankconnections_getLiquidityScore
+  /v1/bank_connections/{application_id}/recrunch:
+    get: Bankconnections_rerunCrunchAnalysis
+  /v1/bank_connections/{application_id}/rethread:
+    get: Bankconnections_rerunThreadAnalysis
+  /v1/bank_connections/{application_id}/risk_insights:
+    get: Bankconnections_getRiskInsights
+  /v1/bank_connections/{application_id}/transactions/labelled:
+    get: Bankconnections_getLabelledTransactions
+  /v1/billing/billable_events:
+    get: Billing_listEvents
+  /v1/billing/outstanding_bill_amount:
+    get: Billing_getOutstandingBillAmount
+  /v1/billing/pricing:
+    get: Billing_getPricing
+  /v1/organisations/:
+    get: Organisations_list
+  /v1/personal_info_connections/:
+    get: Personalinfoconnections_getOrganisationsPersonalConnections
+  /v1/personal_info_connections/{connection_id}:
+    get: Personalinfoconnections_getOrganisationsPersonalConnectionsById
+  /v1/webhooks/payments/peach:
+    get: Payments_getPeachWebhook
+    post: Payments_createPeachWebhook
+  /v1/white_label/config/:
+    patch: Whitelabel_updateOrgConfig
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /transactions/{application_id}:
+    get:
+      '200':
+        application/json: BankconnectionsGetLabelledTransactions200Response
+  /v1/application_configs:
+    get:
+      '200':
+        application/json: ApplicationconfigsGetByOrganisationResponse
+  /v1/application_configs/data_point_args:
+    get:
+      '200':
+        application/json: ApplicationconfigsGetDataPointArgsResponse
+  /v1/applications:
+    post:
+      '404':
+        application/json: ApplicationsCreateNewApplicationResponse
+  /v1/applications/applicants:
+    get:
+      '200':
+        application/json: ApplicationsGetApplicantsListResponse
+  /v1/applications/applications:
+    get:
+      '200':
+        application/json: ApplicationsGetOrganisationApplicationsResponse
+  /v1/applications/applications/revet:
+    post:
+      '201':
+        application/json: ApplicationsSubmitRevetApplicationResponse
+  /v1/applications/applications/revet_upload:
+    post:
+      '201':
+        application/json: ApplicationsSubmitCsvResponse
+  /v1/applications/get_template:
+    get:
+      '200':
+        application/json: ApplicationsGetCsvTemplateResponse
+  /v1/bank_connections/{application_id}/recrunch:
+    get:
+      '200':
+        application/json: BankconnectionsRerunCrunchAnalysisResponse
+  /v1/bank_connections/{application_id}/rethread:
+    get:
+      '201':
+        application/json: BankconnectionsRerunThreadAnalysisResponse
+  /v1/bank_connections/{application_id}/transactions/labelled:
+    get:
+      '200':
+        application/json: BankconnectionsGetLabelledTransactionsResponse
+      '400':
+        application/json: BankconnectionsGetLabelledTransactions400Response
+      '404':
+        application/json: BankconnectionsGetLabelledTransactions404Response
+  /v1/billing/billable_events:
+    get:
+      '200':
+        application/json: BillingListEventsResponse
+  /v1/billing/pricing:
+    get:
+      '200':
+        application/json: BillingGetPricingResponse
+  /v1/personal_info_connections:
+    get:
+      '200':
+        application/json: PersonalinfoconnectionsGetOrganisationsPersonalConnectionsResponse
+  /v1/webhooks/payments/peach:
+    get:
+      '200':
+        application/json: PaymentsGetPeachWebhookResponse
+    post:
+      '200':
+        application/json: PaymentsCreatePeachWebhookResponse
+securityParameters:
+  limit:
+    query: false
+  skip:
+    query: false
+validServerUrls: {}

@@ -1,0 +1,3320 @@
+openapi: 3.1.0
+info:
+  title: FastAPI
+  version: 0.1.0
+paths:
+  /v1/applications/applications/:
+    get:
+      tags:
+        - applications
+      summary: Get Organisation Applications
+      operationId: get_organisation_applications_v1_applications_applications__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: skip
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+            title: Skip
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationOutSchema'
+                title: >-
+                  Response Get Organisation Applications V1 Applications
+                  Applications  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/applications/applications/{application_id}:
+    get:
+      tags:
+        - applications
+      summary: Get Application By Id
+      operationId: get_application_by_id_v1_applications_applications__application_id__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/applications/applicants/{applicant_id}:
+    get:
+      tags:
+        - applications
+      summary: Get Applicant
+      operationId: get_applicant_v1_applications_applicants__applicant_id__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: applicant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Applicant Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicantOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/applications/applicants/:
+    get:
+      tags:
+        - applications
+      summary: Get Organisations Applicants
+      operationId: get_organisations_applicants_v1_applications_applicants__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: skip
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+            title: Skip
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicantOutSchema'
+                title: >-
+                  Response Get Organisations Applicants V1 Applications
+                  Applicants  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+        - applications
+      summary: Create Applicant
+      operationId: create_applicant_v1_applications_applicants__post
+      security:
+        - OAuth2PasswordBearer: []
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicantOutSchema'
+  /v1/applications/:
+    post:
+      tags:
+        - applications
+      summary: Create Application
+      operationId: create_application_v1_applications__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationInSchema'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationOutSchema'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              examples:
+                application_config_not_found:
+                  value:
+                    error_type: code
+                    code: application_config_not_found
+                    message: Application config not found.
+                applicant_not_found:
+                  value:
+                    error_type: code
+                    code: applicant_not_found
+                    message: Applicant not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - OAuth2PasswordBearer: []
+  /v1/applications/applications/revet:
+    post:
+      tags:
+        - applications
+      summary: Revet Submission
+      operationId: revet_submission_v1_applications_applications_revet_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevetApplicationSchema'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                title: >-
+                  Response Revet Submission V1 Applications Applications Revet
+                  Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - OAuth2PasswordBearer: []
+  /v1/applications/applications/revet_upload:
+    post:
+      tags:
+        - applications
+      summary: Revet Csv Submission
+      operationId: revet_csv_submission_v1_applications_applications_revet_upload_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: >-
+                #/components/schemas/Body_revet_csv_submission_v1_applications_applications_revet_upload_post
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                title: >-
+                  Response Revet Csv Submission V1 Applications Applications
+                  Revet Upload Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - OAuth2PasswordBearer: []
+  /v1/applications/get_template:
+    get:
+      tags:
+        - applications
+      summary: Revet Csv Template
+      operationId: revet_csv_template_v1_applications_get_template_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /v1/organisations/:
+    get:
+      tags:
+        - organisations
+      summary: Get Organisation
+      operationId: get_organisation_v1_organisations__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganisationGetSchema'
+      security:
+        - OAuth2PasswordBearer: []
+  /v1/application_configs/connections_available:
+    get:
+      tags:
+        - application_configs
+        - application_configs
+      summary: Get Connections Available
+      operationId: >-
+        get_connections_available_v1_application_configs_connections_available_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableConnectionSchema'
+  /v1/application_configs/data_point_args/:
+    get:
+      tags:
+        - application_configs
+        - application_configs
+      summary: Get Data Point Args
+      operationId: get_data_point_args_v1_application_configs_data_point_args__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DataPointArgSchema'
+                type: array
+                title: >-
+                  Response Get Data Point Args V1 Application Configs Data Point
+                  Args  Get
+  /v1/application_configs/{app_config_id}:
+    get:
+      tags:
+        - application_configs
+        - application_configs
+      summary: Get Application Configs By Id
+      operationId: get_application_configs_by_id_v1_application_configs__app_config_id__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: app_config_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: App Config Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationConfigOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/application_configs/:
+    get:
+      tags:
+        - application_configs
+        - application_configs
+      summary: Get Application Configs By Organisation
+      operationId: get_application_configs_by_organisation_v1_application_configs__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: skip
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+            title: Skip
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationConfigOutSchema'
+                title: >-
+                  Response Get Application Configs By Organisation V1
+                  Application Configs  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/application_configs/application_configs/:
+    post:
+      tags:
+        - application_configs
+        - application_configs
+      summary: Create Application Config
+      operationId: >-
+        create_application_config_v1_application_configs_application_configs__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationConfigInSchema'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationConfigOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - OAuth2PasswordBearer: []
+  /v1/personal_info_connections/{connection_id}:
+    get:
+      tags:
+        - personal_info_connections
+      summary: Get Organisation Personal Connections By Id
+      operationId: >-
+        get_organisation_personal_connections_by_id_v1_personal_info_connections__connection_id__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: connection_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Connection Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalInfoOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/personal_info_connections/:
+    get:
+      tags:
+        - personal_info_connections
+      summary: Get Organisations Personal Connections
+      operationId: get_organisations_personal_connections_v1_personal_info_connections__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: skip
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+            title: Skip
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PersonalInfoOutSchema'
+                title: >-
+                  Response Get Organisations Personal Connections V1 Personal
+                  Info Connections  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/bank_connections/{application_id}/transactions/labelled:
+    get:
+      tags:
+        - bank_connections
+      summary: Get Labelled Transactions
+      operationId: >-
+        get_labelled_transactions_v1_bank_connections__application_id__transactions_labelled_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransactionsLabelledOutSchema'
+                title: >-
+                  Response Get Labelled Transactions V1 Bank Connections 
+                  Application Id  Transactions Labelled Get
+        '400':
+          content:
+            application/json:
+              examples:
+                connection_not_ready:
+                  value:
+                    error_type: code
+                    code: connection_not_ready
+                    message: Connection not ready
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              examples:
+                bank_connection_not_found:
+                  value:
+                    error_type: code
+                    code: bank_connection_not_found
+                    message: Bank connection not found
+                resource_not_found:
+                  value:
+                    error_type: code
+                    code: resource_not_found
+                    message: Resource Not Found
+                error_still_analysing_connection:
+                  value:
+                    error_type: code
+                    code: error_still_analysing_connection
+                    message: Still Crunching
+                error_analysing_connection:
+                  value:
+                    error_type: code
+                    code: error_analysing_connection
+                    message: Connection could not be analysed
+          description: Not Found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/bank_connections/{application_id}/affordability:
+    get:
+      tags:
+        - bank_connections
+      summary: Get Affordability
+      operationId: get_affordability_v1_bank_connections__application_id__affordability_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AffordabilityAnalysisOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/bank_connections/{application_id}/income_analysis:
+    get:
+      tags:
+        - bank_connections
+      summary: Get Income Analysis
+      operationId: >-
+        get_income_analysis_v1_bank_connections__application_id__income_analysis_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncomeAnalysisOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/bank_connections/{application_id}/risk_insights:
+    get:
+      tags:
+        - bank_connections
+      summary: Get Risk Insights
+      operationId: get_risk_insights_v1_bank_connections__application_id__risk_insights_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskInsightOutModelSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/bank_connections/{application_id}/liquidity_score:
+    get:
+      tags:
+        - bank_connections
+      summary: Get Liquidity Score
+      operationId: >-
+        get_liquidity_score_v1_bank_connections__application_id__liquidity_score_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiquidityScoreOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/bank_connections/{application_id}/expenses_analysis:
+    get:
+      tags:
+        - bank_connections
+      summary: Get Expense Insights
+      operationId: >-
+        get_expense_insights_v1_bank_connections__application_id__expenses_analysis_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpensesInsightsOutModelSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/bank_connections/{application_id}/recrunch:
+    get:
+      tags:
+        - bank_connections
+      summary: Rerun Crunch Analysis
+      operationId: rerun_crunch_analysis_v1_bank_connections__application_id__recrunch_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                title: >-
+                  Response Rerun Crunch Analysis V1 Bank Connections 
+                  Application Id  Recrunch Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/bank_connections/{application_id}/rethread:
+    get:
+      tags:
+        - bank_connections
+      summary: Rerun Thread Analysis
+      operationId: rerun_thread_analysis_v1_bank_connections__application_id__rethread_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /transactions/{application_id}:
+    get:
+      tags:
+        - bank_connections
+      summary: Get Labelled Transactions
+      operationId: get_labelled_transactions_transactions__application_id__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransactionsLabelledOutSchema'
+                title: >-
+                  Response Get Labelled Transactions Transactions  Application
+                  Id  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /liquidity/{application_id}:
+    get:
+      tags:
+        - bank_connections
+      summary: Get Liquidity Score
+      operationId: get_liquidity_score_liquidity__application_id__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5eb7cf5a86d9755df3a6c593
+            title: Application Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiquidityScoreOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/billing/outstanding_bill_amount:
+    get:
+      tags:
+        - billing
+      summary: Get Outstanding Bill Amount
+      operationId: get_outstanding_bill_amount_v1_billing_outstanding_bill_amount_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutstandingBillOutSchema'
+      security:
+        - OAuth2PasswordBearer: []
+  /v1/billing/billable_events:
+    get:
+      tags:
+        - billing
+      summary: List Events
+      operationId: list_events_v1_billing_billable_events_get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: skip
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+            title: Skip
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ListBillingEventOutSchema'
+                title: Response List Events V1 Billing Billable Events Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/billing/pricing:
+    get:
+      tags:
+        - billing
+      summary: Get Pricing
+      operationId: get_pricing_v1_billing_pricing_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/GetPricingOutSchema'
+                type: array
+                title: Response Get Pricing V1 Billing Pricing Get
+      security:
+        - OAuth2PasswordBearer: []
+  /v1/webhooks/payments/peach:
+    get:
+      tags:
+        - payments
+      summary: Peach Webhook
+      operationId: peach_webhook_v1_webhooks_payments_peach_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Response Peach Webhook V1 Webhooks Payments Peach Get
+    post:
+      tags:
+        - payments
+      summary: Peach Webhook
+      operationId: peach_webhook_v1_webhooks_payments_peach_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Response Peach Webhook V1 Webhooks Payments Peach Post
+  /v1/white_label/config/:
+    patch:
+      tags:
+        - white_label
+      summary: Update Org Whitelabel
+      operationId: update_org_whitelabel_v1_white_label_config__patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWhiteLabelInSchema'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhiteLabelOutSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - OAuth2PasswordBearer: []
+components:
+  schemas:
+    APITokenCreateInSchema:
+      properties:
+        name:
+          type: string
+          title: Name
+        scopes:
+          items:
+            type: string
+          type: array
+          title: Scopes
+      type: object
+      required:
+        - name
+        - scopes
+      title: APITokenCreateInSchema
+    APITokenCreateOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        bearer_token:
+          type: string
+          title: Bearer Token
+        scopes:
+          items:
+            type: string
+          type: array
+          title: Scopes
+      type: object
+      required:
+        - id
+        - name
+        - bearer_token
+        - scopes
+      title: APITokenCreateOutSchema
+    APITokenOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        scopes:
+          items:
+            type: string
+          type: array
+          title: Scopes
+      type: object
+      required:
+        - id
+        - name
+        - scopes
+      title: APITokenOutSchema
+    AccountSummaryAccount:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        bank_name:
+          type: string
+          title: Bank Name
+        account_name:
+          type: string
+          title: Account Name
+        account_number:
+          type: string
+          title: Account Number
+        account_holder_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Account Holder Name
+        balance:
+          type: number
+          title: Balance
+      type: object
+      required:
+        - id
+        - bank_name
+        - account_name
+        - account_number
+        - account_holder_name
+        - balance
+      title: AccountSummaryAccount
+    AccountSummaryWidgetSchema:
+      properties:
+        accounts:
+          items:
+            $ref: '#/components/schemas/AccountSummaryAccount'
+          type: array
+          title: Accounts
+      type: object
+      required:
+        - accounts
+      title: AccountSummaryWidgetSchema
+    AffordabilityAnalysis:
+      properties:
+        monthly_affordability:
+          items:
+            $ref: '#/components/schemas/AffordabilityMonth'
+          type: array
+          title: Monthly Affordability
+        average_full_month_primary_income:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Average Full Month Primary Income
+        average_full_month_secondary_income:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Average Full Month Secondary Income
+        average_full_month_discretionary_expenses:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Average Full Month Discretionary Expenses
+        average_full_month_non_discretionary_expenses:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Average Full Month Non Discretionary Expenses
+        average_full_month_affordability:
+          type: number
+          title: Average Full Month Affordability
+      type: object
+      required:
+        - monthly_affordability
+        - average_full_month_affordability
+      title: AffordabilityAnalysis
+    AffordabilityAnalysisOutSchema:
+      properties:
+        bank_connection:
+          type: string
+          title: Bank Connection
+        affordability:
+          $ref: '#/components/schemas/AffordabilityAnalysis'
+      type: object
+      required:
+        - bank_connection
+        - affordability
+      title: AffordabilityAnalysisOutSchema
+    AffordabilityMonth:
+      properties:
+        year:
+          type: integer
+          title: Year
+        month:
+          type: integer
+          title: Month
+        primary_income:
+          type: number
+          title: Primary Income
+        secondary_income:
+          type: number
+          title: Secondary Income
+        non_discretionary_expenses:
+          type: number
+          title: Non Discretionary Expenses
+        discretionary_expenses:
+          type: number
+          title: Discretionary Expenses
+        affordability_amount:
+          type: number
+          title: Affordability Amount
+        full_month:
+          type: boolean
+          title: Full Month
+      type: object
+      required:
+        - year
+        - month
+        - primary_income
+        - secondary_income
+        - non_discretionary_expenses
+        - discretionary_expenses
+        - affordability_amount
+        - full_month
+      title: AffordabilityMonth
+    ApplicantOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        organisation:
+          type: string
+          title: Organisation
+          example: 5eb7cf5a86d9755df3a6c593
+      type: object
+      required:
+        - id
+        - organisation
+      title: ApplicantOutSchema
+    ApplicationConfigInSchema:
+      properties:
+        name:
+          type: string
+          title: Name
+        connections:
+          items:
+            $ref: '#/components/schemas/ConnectionSchema'
+          type: array
+          minItems: 1
+          title: Connections
+        is_default:
+          type: boolean
+          title: Is Default
+          default: false
+        default_redirect_url:
+          anyOf:
+            - type: string
+              minLength: 1
+              format: uri
+            - type: 'null'
+          title: Default Redirect Url
+      type: object
+      required:
+        - name
+        - connections
+      title: ApplicationConfigInSchema
+    ApplicationConfigOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        organisation:
+          type: string
+          title: Organisation
+          example: 5eb7cf5a86d9755df3a6c593
+        connections:
+          items:
+            $ref: '#/components/schemas/ConnectionSchema'
+          type: array
+          title: Connections
+        is_default:
+          type: boolean
+          title: Is Default
+        default_redirect_url:
+          anyOf:
+            - type: string
+              minLength: 1
+              format: uri
+            - type: 'null'
+          title: Default Redirect Url
+      type: object
+      required:
+        - id
+        - name
+        - organisation
+        - connections
+        - is_default
+      title: ApplicationConfigOutSchema
+    ApplicationEmailInviteSchema:
+      properties:
+        recepient:
+          type: string
+          format: email
+          title: Recepient
+        name:
+          type: string
+          title: Name
+        application_config_id:
+          anyOf:
+            - type: string
+              example: 5eb7cf5a86d9755df3a6c593
+            - type: 'null'
+          title: Application Config Id
+        applicant_id:
+          anyOf:
+            - type: string
+              example: 5eb7cf5a86d9755df3a6c593
+            - type: 'null'
+          title: Applicant Id
+      type: object
+      required:
+        - recepient
+        - name
+      title: ApplicationEmailInviteSchema
+    ApplicationInSchema:
+      properties:
+        application_config_id:
+          type: string
+          title: Application Config Id
+          example: 5eb7cf5a86d9755df3a6c593
+        applicant_id:
+          type: string
+          title: Applicant Id
+          example: 5eb7cf5a86d9755df3a6c593
+        redirect_url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Redirect Url
+      type: object
+      required:
+        - application_config_id
+        - applicant_id
+        - redirect_url
+      title: ApplicationInSchema
+    ApplicationLink:
+      properties:
+        application_id:
+          type: string
+          title: Application Id
+        link:
+          type: string
+          title: Link
+      type: object
+      required:
+        - application_id
+        - link
+      title: ApplicationLink
+    ApplicationOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        applicant:
+          type: string
+          title: Applicant
+          example: 5eb7cf5a86d9755df3a6c593
+        redirect_url:
+          anyOf:
+            - type: string
+              maxLength: 2083
+              minLength: 1
+              format: uri
+            - type: 'null'
+          title: Redirect Url
+        proxy_id:
+          type: string
+          title: Proxy Id
+      type: object
+      required:
+        - id
+        - applicant
+        - redirect_url
+        - proxy_id
+      title: ApplicationOutSchema
+    AtmAndCashInsights:
+      properties:
+        monthly_atm_and_cash_spend_analysis:
+          items:
+            $ref: '#/components/schemas/MonthlyAtmAndCashSpendAnalysi'
+          type: array
+          title: Monthly Atm And Cash Spend Analysis
+        atm_and_cash_average_amount:
+          type: number
+          title: Atm And Cash Average Amount
+        average_withdrawal_proportion:
+          type: number
+          title: Average Withdrawal Proportion
+      type: object
+      required:
+        - monthly_atm_and_cash_spend_analysis
+        - atm_and_cash_average_amount
+        - average_withdrawal_proportion
+      title: AtmAndCashInsights
+    AvailableAccountsSchema:
+      properties:
+        account_id:
+          type: string
+          title: Account Id
+        bank_slug:
+          type: string
+          title: Bank Slug
+        account_number:
+          type: string
+          title: Account Number
+        account_name:
+          type: string
+          title: Account Name
+      type: object
+      required:
+        - account_id
+        - bank_slug
+        - account_number
+        - account_name
+      title: AvailableAccountsSchema
+    AvailableConnectionSchema:
+      properties:
+        connections:
+          items:
+            $ref: '#/components/schemas/ConnectionSchema'
+          type: array
+          title: Connections
+      type: object
+      required:
+        - connections
+      title: AvailableConnectionSchema
+    BalanceForecast:
+      properties:
+        date:
+          type: string
+          title: Date
+        balance:
+          type: number
+          title: Balance
+      type: object
+      required:
+        - date
+        - balance
+      title: BalanceForecast
+    BalanceSchema:
+      properties:
+        balance:
+          type: number
+          title: Balance
+        date:
+          type: string
+          title: Date
+        label:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Label
+        month:
+          type: integer
+          title: Month
+        year:
+          type: integer
+          title: Year
+        day:
+          type: integer
+          title: Day
+        forecast:
+          type: boolean
+          title: Forecast
+      type: object
+      required:
+        - balance
+        - date
+        - month
+        - year
+        - day
+        - forecast
+      title: BalanceSchema
+    Body_login_token_v1_in_auth_login_token_post:
+      properties:
+        grant_type:
+          anyOf:
+            - type: string
+              pattern: password
+            - type: 'null'
+          title: Grant Type
+        username:
+          type: string
+          title: Username
+        password:
+          type: string
+          title: Password
+        scope:
+          type: string
+          title: Scope
+          default: ''
+        client_id:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Client Id
+        client_secret:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Client Secret
+      type: object
+      required:
+        - username
+        - password
+      title: Body_login_token_v1_in_auth_login_token_post
+    Body_revet_csv_submission_v1_applications_applications_revet_upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+        application_config_id:
+          type: string
+          title: Application Config Id
+          example: 5eb7cf5a86d9755df3a6c593
+      type: object
+      required:
+        - file
+      title: Body_revet_csv_submission_v1_applications_applications_revet_upload_post
+    Body_upload_statements_v1_in_bank_connections__proxy_id__upload_file_post:
+      properties:
+        files:
+          items:
+            type: string
+            format: binary
+          type: array
+          title: Files
+      type: object
+      required:
+        - files
+      title: >-
+        Body_upload_statements_v1_in_bank_connections__proxy_id__upload_file_post
+    ConnectionSchema:
+      properties:
+        name:
+          type: string
+          title: Name
+        data_points:
+          items:
+            $ref: '#/components/schemas/DataPointSchema'
+          type: array
+          minItems: 1
+          title: Data Points
+      type: object
+      required:
+        - name
+        - data_points
+      title: ConnectionSchema
+    CreateCardInSchema:
+      properties:
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+        - name
+      title: CreateCardInSchema
+    CreateCardOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        redirect_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Redirect Url
+      type: object
+      required:
+        - id
+        - name
+        - redirect_url
+      title: CreateCardOutSchema
+    CreatePasswordInSchema:
+      properties:
+        token:
+          type: string
+          title: Token
+        new_password:
+          type: string
+          title: New Password
+      type: object
+      required:
+        - token
+        - new_password
+      title: CreatePasswordInSchema
+    DataPointArgPropertySchema:
+      properties:
+        property_name:
+          type: string
+          title: Property Name
+        type:
+          type: string
+          title: Type
+      type: object
+      required:
+        - property_name
+        - type
+      title: DataPointArgPropertySchema
+    DataPointArgSchema:
+      properties:
+        type:
+          type: string
+          title: Type
+        properties:
+          items:
+            $ref: '#/components/schemas/DataPointArgPropertySchema'
+          type: array
+          title: Properties
+        not_null:
+          items:
+            type: string
+          type: array
+          title: Not Null
+      type: object
+      required:
+        - type
+        - properties
+        - not_null
+      title: DataPointArgSchema
+    DataPointSchema:
+      properties:
+        name:
+          type: string
+          title: Name
+        input_args:
+          items:
+            type: string
+          type: array
+          title: Input Args
+        output_args:
+          items:
+            type: string
+          type: array
+          title: Output Args
+      type: object
+      required:
+        - name
+        - input_args
+        - output_args
+      title: DataPointSchema
+    DeleteCardOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        deleted:
+          type: boolean
+          title: Deleted
+      type: object
+      required:
+        - id
+        - name
+        - deleted
+      title: DeleteCardOutSchema
+    EmailSentResponseSchema:
+      properties:
+        message:
+          type: string
+          title: Message
+          default: Connect email sent
+      type: object
+      title: EmailSentResponseSchema
+    ExpenseInsights:
+      properties:
+        top_expense_amounts:
+          items:
+            $ref: '#/components/schemas/TopExpenseAmount'
+          type: array
+          title: Top Expense Amounts
+        unique_months:
+          type: integer
+          title: Unique Months
+        spend_split:
+          $ref: '#/components/schemas/SpendSplit'
+      type: object
+      required:
+        - top_expense_amounts
+        - unique_months
+        - spend_split
+      title: ExpenseInsights
+    ExpensesInsightsOutModelSchema:
+      properties:
+        bank_connection:
+          type: string
+          title: Bank Connection
+        expenses_insights:
+          $ref: '#/components/schemas/ExpenseInsights'
+      type: object
+      required:
+        - bank_connection
+        - expenses_insights
+      title: ExpensesInsightsOutModelSchema
+    ExpensesWidgetOutSchema:
+      properties:
+        average_income:
+          type: number
+          title: Average Income
+        average_income_with_transfers:
+          type: number
+          title: Average Income With Transfers
+        average_discretionary_expenses:
+          type: number
+          title: Average Discretionary Expenses
+        average_non_discretionary_expenses:
+          type: number
+          title: Average Non Discretionary Expenses
+        average_net_disposable_income:
+          type: number
+          title: Average Net Disposable Income
+        spend_categories:
+          items:
+            $ref: '#/components/schemas/SpendCategoryWidgetSchema'
+          type: array
+          title: Spend Categories
+        top_spend_categories:
+          items:
+            $ref: '#/components/schemas/SpendCategoryWidgetSchema'
+          type: array
+          title: Top Spend Categories
+        expense_breakdown:
+          $ref: '#/components/schemas/SpendSplit'
+      type: object
+      required:
+        - average_income
+        - average_income_with_transfers
+        - average_discretionary_expenses
+        - average_non_discretionary_expenses
+        - average_net_disposable_income
+        - spend_categories
+        - top_spend_categories
+        - expense_breakdown
+      title: ExpensesWidgetOutSchema
+    GamblingInsights:
+      properties:
+        monthly_gambling_analysis:
+          items:
+            $ref: '#/components/schemas/MonthlyGamblingAnalysis'
+          type: array
+          title: Monthly Gambling Analysis
+        monthly_average_gambling_spend:
+          type: number
+          title: Monthly Average Gambling Spend
+        monthly_average_gambling_proportion:
+          type: number
+          title: Monthly Average Gambling Proportion
+      type: object
+      required:
+        - monthly_gambling_analysis
+        - monthly_average_gambling_spend
+        - monthly_average_gambling_proportion
+      title: GamblingInsights
+    GetCardOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        is_linked:
+          type: boolean
+          title: Is Linked
+        deleted:
+          type: boolean
+          title: Deleted
+        last_four:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Last Four
+        brand:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Brand
+      type: object
+      required:
+        - id
+        - name
+        - is_linked
+        - deleted
+        - last_four
+        - brand
+      title: GetCardOutSchema
+    GetPricingOutSchema:
+      properties:
+        display_title:
+          type: string
+          title: Display Title
+        type:
+          type: string
+          title: Type
+        price:
+          type: number
+          title: Price
+      type: object
+      required:
+        - display_title
+        - type
+        - price
+      title: GetPricingOutSchema
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    IncomeAnalysis:
+      properties:
+        consistency_score:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Consistency Score
+        longevity_score:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Longevity Score
+        regularity_score:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Regularity Score
+        income_month_breaks:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Income Month Breaks
+        income_indicator:
+          anyOf:
+            - type: number
+            - type: string
+            - type: 'null'
+          title: Income Indicator
+        months_back:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Months Back
+      type: object
+      title: IncomeAnalysis
+    IncomeAnalysisOutSchema:
+      properties:
+        bank_connection:
+          type: string
+          title: Bank Connection
+        income_analysis:
+          $ref: '#/components/schemas/IncomeAnalysis'
+      type: object
+      required:
+        - bank_connection
+        - income_analysis
+      title: IncomeAnalysisOutSchema
+    IncomeWidgetOutSchema:
+      properties:
+        liquidity:
+          $ref: '#/components/schemas/LiqiudityWidgetSchema'
+        income:
+          $ref: '#/components/schemas/IncomeWidgetSchema'
+        salary:
+          items:
+            $ref: '#/components/schemas/SalaryWidgetSchema'
+          type: array
+          title: Salary
+        balance:
+          items:
+            $ref: '#/components/schemas/BalanceSchema'
+          type: array
+          title: Balance
+      type: object
+      required:
+        - liquidity
+        - income
+        - salary
+        - balance
+      title: IncomeWidgetOutSchema
+    IncomeWidgetSchema:
+      properties:
+        longevity:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Longevity
+        consistency:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Consistency
+        regularity:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Regularity
+      type: object
+      title: IncomeWidgetSchema
+    IsAutomatedLinkOut:
+      properties:
+        is_automated_link:
+          type: boolean
+          title: Is Automated Link
+      type: object
+      required:
+        - is_automated_link
+      title: IsAutomatedLinkOut
+    LabelledTransactionSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+        datetime:
+          type: string
+          format: date-time
+          title: Datetime
+        amount:
+          type: number
+          title: Amount
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Description
+        reference:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Reference
+        currency:
+          type: string
+          title: Currency
+        label:
+          type: string
+          title: Label
+        balance:
+          type: number
+          title: Balance
+        bank_slug:
+          type: string
+          title: Bank Slug
+      type: object
+      required:
+        - id
+        - datetime
+        - amount
+        - currency
+        - balance
+        - bank_slug
+      title: LabelledTransactionSchema
+    LiqiudityWidgetSchema:
+      properties:
+        liquidity_30_days:
+          type: number
+          title: Liquidity 30 Days
+        liquidity_60_days:
+          type: number
+          title: Liquidity 60 Days
+        liquidity_90_days:
+          type: number
+          title: Liquidity 90 Days
+      type: object
+      required:
+        - liquidity_30_days
+        - liquidity_60_days
+        - liquidity_90_days
+      title: LiqiudityWidgetSchema
+    LiquidityScore:
+      properties:
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+        30_day_liquidity_score:
+          type: number
+          title: 30 Day Liquidity Score
+        60_day_liquidity_score:
+          type: number
+          title: 60 Day Liquidity Score
+        90_day_liquidity_score:
+          type: number
+          title: 90 Day Liquidity Score
+        balance_forecast:
+          anyOf:
+            - items:
+                $ref: '#/components/schemas/BalanceForecast'
+              type: array
+            - type: 'null'
+          title: Balance Forecast
+      type: object
+      required:
+        - start_date
+        - end_date
+        - 30_day_liquidity_score
+        - 60_day_liquidity_score
+        - 90_day_liquidity_score
+      title: LiquidityScore
+    LiquidityScoreOutSchema:
+      properties:
+        bank_connection:
+          type: string
+          title: Bank Connection
+        liquidity_score:
+          $ref: '#/components/schemas/LiquidityScore'
+      type: object
+      required:
+        - bank_connection
+        - liquidity_score
+      title: LiquidityScoreOutSchema
+    ListApplicantConnectOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        config:
+          type: string
+          title: Config
+          example: 5eb7cf5a86d9755df3a6c593
+        applicant:
+          type: string
+          title: Applicant
+          example: 5eb7cf5a86d9755df3a6c593
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        status:
+          type: string
+          title: Status
+        latest_connect:
+          type: boolean
+          title: Latest Connect
+          default: false
+      type: object
+      required:
+        - id
+        - config
+        - applicant
+        - created_at
+        - status
+      title: ListApplicantConnectOutSchema
+    ListBillingEventOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        title:
+          type: string
+          title: Title
+        type:
+          type: string
+          title: Type
+        billed_price:
+          type: number
+          title: Billed Price
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        billable_item:
+          type: string
+          title: Billable Item
+          example: 5eb7cf5a86d9755df3a6c593
+      type: object
+      required:
+        - id
+        - title
+        - type
+        - billed_price
+        - created_at
+        - billable_item
+      title: ListBillingEventOutSchema
+    ListConnectOutSchema:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/SingleConnectOutSchema'
+          type: array
+          title: Data
+        count:
+          type: integer
+          title: Count
+        has_next:
+          type: boolean
+          title: Has Next
+        has_prev:
+          type: boolean
+          title: Has Prev
+      type: object
+      required:
+        - data
+        - count
+        - has_next
+        - has_prev
+      title: ListConnectOutSchema
+    ListFilesSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        title:
+          type: string
+          title: Title
+        size_bytes:
+          type: integer
+          title: Size Bytes
+        size:
+          type: number
+          title: Size
+        size_unit:
+          type: string
+          title: Size Unit
+        size_unit_concat:
+          type: string
+          title: Size Unit Concat
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        modified_at:
+          type: string
+          format: date-time
+          title: Modified At
+        file_url:
+          type: string
+          title: File Url
+      type: object
+      required:
+        - id
+        - title
+        - size_bytes
+        - size
+        - size_unit
+        - size_unit_concat
+        - created_at
+        - modified_at
+        - file_url
+      title: ListFilesSchema
+    MonthlyAtmAndCashSpendAnalysi:
+      properties:
+        year:
+          type: integer
+          title: Year
+        month:
+          type: integer
+          title: Month
+        total_withdrawal_amount:
+          type: number
+          title: Total Withdrawal Amount
+        total_salary_amount:
+          type: number
+          title: Total Salary Amount
+        cash_proportion:
+          type: number
+          title: Cash Proportion
+      type: object
+      required:
+        - year
+        - month
+        - total_withdrawal_amount
+        - total_salary_amount
+        - cash_proportion
+      title: MonthlyAtmAndCashSpendAnalysi
+    MonthlyGamblingAnalysis:
+      properties:
+        year:
+          type: integer
+          title: Year
+        month:
+          type: integer
+          title: Month
+        total_gambling_amount:
+          type: number
+          title: Total Gambling Amount
+        total_salary_amount:
+          type: number
+          title: Total Salary Amount
+        gambling_proportion:
+          type: number
+          title: Gambling Proportion
+      type: object
+      required:
+        - year
+        - month
+        - total_gambling_amount
+        - total_salary_amount
+        - gambling_proportion
+      title: MonthlyGamblingAnalysis
+    MonthlyOverdraftAnalysis:
+      properties:
+        year:
+          type: integer
+          title: Year
+        month:
+          type: integer
+          title: Month
+        days_in_overdraft:
+          type: integer
+          title: Days In Overdraft
+      type: object
+      required:
+        - year
+        - month
+        - days_in_overdraft
+      title: MonthlyOverdraftAnalysis
+    MonthlySSIAnalysis:
+      properties:
+        year:
+          type: integer
+          title: Year
+        month:
+          type: integer
+          title: Month
+        total_social_security_amount:
+          type: number
+          title: Total Social Security Amount
+      type: object
+      required:
+        - year
+        - month
+        - total_social_security_amount
+      title: MonthlySSIAnalysis
+    NetSaverSpender:
+      properties:
+        net_saver_spender:
+          type: string
+          title: Net Saver Spender
+      type: object
+      required:
+        - net_saver_spender
+      title: NetSaverSpender
+    OrganisationCreateInSchema:
+      properties:
+        name_slug:
+          type: string
+          title: Name Slug
+        email:
+          type: string
+          format: email
+          title: Email
+        password:
+          type: string
+          title: Password
+      type: object
+      required:
+        - name_slug
+        - email
+        - password
+      title: OrganisationCreateInSchema
+    OrganisationCreateOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name_slug:
+          type: string
+          title: Name Slug
+        bearer_token:
+          type: string
+          title: Bearer Token
+      type: object
+      required:
+        - id
+        - name_slug
+        - bearer_token
+      title: OrganisationCreateOutSchema
+    OrganisationGetSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name_slug:
+          type: string
+          title: Name Slug
+      type: object
+      required:
+        - id
+        - name_slug
+      title: OrganisationGetSchema
+    OrganisationUserOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        email:
+          type: string
+          title: Email
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        last_login:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: 'null'
+          title: Last Login
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - created_at
+      title: OrganisationUserOutSchema
+    OrganisationUserPermission:
+      properties:
+        permissions:
+          items:
+            type: string
+          type: array
+          title: Permissions
+      type: object
+      required:
+        - permissions
+      title: OrganisationUserPermission
+    OrganisationUsers:
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/OrganisationUserOutSchema'
+          type: array
+          title: Users
+      type: object
+      required:
+        - users
+      title: OrganisationUsers
+    OutstandingBillOutSchema:
+      properties:
+        amount:
+          type: number
+          title: Amount
+      type: object
+      required:
+        - amount
+      title: OutstandingBillOutSchema
+    OverdraftInsights:
+      properties:
+        total_days_in_overdraft:
+          type: integer
+          title: Total Days In Overdraft
+        total_proportion_of_days_in_overdraft:
+          type: number
+          title: Total Proportion Of Days In Overdraft
+        unique_months:
+          type: integer
+          title: Unique Months
+        monthly_average_days_in_overdraft:
+          type: number
+          title: Monthly Average Days In Overdraft
+        monthly_overdraft_analysis:
+          items:
+            $ref: '#/components/schemas/MonthlyOverdraftAnalysis'
+          type: array
+          title: Monthly Overdraft Analysis
+      type: object
+      required:
+        - total_days_in_overdraft
+        - total_proportion_of_days_in_overdraft
+        - unique_months
+        - monthly_average_days_in_overdraft
+        - monthly_overdraft_analysis
+      title: OverdraftInsights
+    PasswordResetInSchema:
+      properties:
+        token:
+          type: string
+          title: Token
+        new_password:
+          type: string
+          title: New Password
+      type: object
+      required:
+        - token
+        - new_password
+      title: PasswordResetInSchema
+    PasswordResetRequestInSchema:
+      properties:
+        username:
+          type: string
+          title: Username
+      type: object
+      required:
+        - username
+      title: PasswordResetRequestInSchema
+    PermissionDetail:
+      properties:
+        permission:
+          type: string
+          title: Permission
+        ui_display_name:
+          type: string
+          title: Ui Display Name
+        description:
+          type: string
+          title: Description
+      type: object
+      required:
+        - permission
+        - ui_display_name
+        - description
+      title: PermissionDetail
+    PermissionList:
+      properties:
+        permissions:
+          items:
+            $ref: '#/components/schemas/PermissionDetail'
+          type: array
+          title: Permissions
+      type: object
+      required:
+        - permissions
+      title: PermissionList
+    PersonalInfoConsoleDetailOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        application:
+          type: string
+          title: Application
+          example: 5eb7cf5a86d9755df3a6c593
+        first_names:
+          type: string
+          title: First Names
+        last_names:
+          type: string
+          title: Last Names
+        date_of_birth:
+          type: string
+          title: Date Of Birth
+        gov_id:
+          type: string
+          title: Gov Id
+        id_country:
+          type: string
+          title: Id Country
+        id_type:
+          type: string
+          title: Id Type
+        nationality:
+          type: string
+          title: Nationality
+        email:
+          anyOf:
+            - type: string
+              format: email
+            - type: 'null'
+          title: Email
+        phone:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Phone
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+      type: object
+      required:
+        - id
+        - application
+        - first_names
+        - last_names
+        - date_of_birth
+        - gov_id
+        - id_country
+        - id_type
+        - nationality
+        - email
+        - phone
+        - created_at
+      title: PersonalInfoConsoleDetailOutSchema
+    PersonalInfoDataSchema:
+      properties:
+        first_names:
+          type: string
+          title: First Names
+        last_names:
+          type: string
+          title: Last Names
+        date_of_birth:
+          type: string
+          title: Date Of Birth
+        gov_id:
+          type: string
+          title: Gov Id
+        id_country:
+          type: string
+          title: Id Country
+        id_type:
+          type: string
+          title: Id Type
+        nationality:
+          type: string
+          title: Nationality
+        email:
+          anyOf:
+            - type: string
+              format: email
+            - type: 'null'
+          title: Email
+        phone:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Phone
+      type: object
+      required:
+        - first_names
+        - last_names
+        - date_of_birth
+        - gov_id
+        - id_country
+        - id_type
+        - nationality
+        - email
+        - phone
+      title: PersonalInfoDataSchema
+    PersonalInfoInputDataSchema:
+      properties:
+        first_names:
+          type: string
+          maxLength: 24
+          minLength: 2
+          title: First Names
+        last_names:
+          type: string
+          maxLength: 24
+          minLength: 2
+          title: Last Names
+        date_of_birth:
+          type: string
+          format: date
+          title: Date Of Birth
+        nationality:
+          type: string
+          title: Nationality
+        id_type:
+          type: string
+          title: Id Type
+        id_country:
+          type: string
+          title: Id Country
+        email:
+          type: string
+          format: email
+          title: Email
+        phone:
+          anyOf:
+            - type: string
+              maxLength: 12
+              minLength: 10
+            - type: 'null'
+          title: Phone
+        gov_id:
+          type: string
+          maxLength: 13
+          minLength: 7
+          title: Gov Id
+      type: object
+      required:
+        - first_names
+        - last_names
+        - date_of_birth
+        - nationality
+        - id_type
+        - id_country
+        - email
+        - gov_id
+      title: PersonalInfoInputDataSchema
+    PersonalInfoOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        application:
+          type: string
+          title: Application
+          example: 5eb7cf5a86d9755df3a6c593
+        data:
+          anyOf:
+            - $ref: '#/components/schemas/PersonalInfoDataSchema'
+            - type: 'null'
+      type: object
+      required:
+        - id
+        - application
+        - data
+      title: PersonalInfoOutSchema
+    ReconnectBankOnlySchema:
+      properties:
+        new_application_id:
+          type: string
+          title: New Application Id
+          example: 5eb7cf5a86d9755df3a6c593
+      type: object
+      required:
+        - new_application_id
+      title: ReconnectBankOnlySchema
+    RelinkCardOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        redirect_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Redirect Url
+      type: object
+      required:
+        - id
+        - name
+        - redirect_url
+      title: RelinkCardOutSchema
+    ReturnedDebitOrderInsights:
+      properties:
+        last_month_count:
+          type: number
+          title: Last Month Count
+        last_3_months_count:
+          type: number
+          title: Last 3 Months Count
+        last_6_months_count:
+          type: number
+          title: Last 6 Months Count
+        last_12_months_count:
+          type: number
+          title: Last 12 Months Count
+        monthly_average_debit_order_value:
+          type: number
+          title: Monthly Average Debit Order Value
+      type: object
+      required:
+        - last_month_count
+        - last_3_months_count
+        - last_6_months_count
+        - last_12_months_count
+        - monthly_average_debit_order_value
+      title: ReturnedDebitOrderInsights
+    RevetApplicationSchema:
+      properties:
+        applications:
+          items:
+            $ref: '#/components/schemas/RevetLoanApplicationSchema'
+          type: array
+          title: Applications
+        application_config_id:
+          anyOf:
+            - type: string
+              example: 5eb7cf5a86d9755df3a6c593
+            - type: 'null'
+          title: Application Config Id
+      type: object
+      required:
+        - applications
+      title: RevetApplicationSchema
+    RevetLoanApplicationSchema:
+      properties:
+        name:
+          type: string
+          title: Name
+        email:
+          type: string
+          format: email
+          title: Email
+        phone:
+          type: string
+          title: Phone
+        contact_method:
+          type: string
+          title: Contact Method
+          default: email
+        installment_value:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Installment Value
+        loan_duration:
+          anyOf:
+            - type: integer
+            - type: 'null'
+          title: Loan Duration
+        loan_amount:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Loan Amount
+      type: object
+      required:
+        - name
+        - email
+        - phone
+      title: RevetLoanApplicationSchema
+    RiskInsightOutModelSchema:
+      properties:
+        bank_connection:
+          type: string
+          title: Bank Connection
+        risk_insights:
+          $ref: '#/components/schemas/RiskInsights'
+      type: object
+      required:
+        - bank_connection
+        - risk_insights
+      title: RiskInsightOutModelSchema
+    RiskInsights:
+      properties:
+        begin_date:
+          type: string
+          title: Begin Date
+        end_date:
+          type: string
+          title: End Date
+        risk_insights:
+          $ref: '#/components/schemas/Risks'
+      type: object
+      required:
+        - begin_date
+        - end_date
+        - risk_insights
+      title: RiskInsights
+    RiskInsightsOutWidgetSchema:
+      properties:
+        risk_insights:
+          items:
+            $ref: '#/components/schemas/RiskInsightsWidgetSchema'
+          type: array
+          title: Risk Insights
+      type: object
+      required:
+        - risk_insights
+      title: RiskInsightsOutWidgetSchema
+    RiskInsightsWidgetSchema:
+      properties:
+        title:
+          type: string
+          title: Title
+        description:
+          type: string
+          title: Description
+        risk:
+          type: string
+          title: Risk
+      type: object
+      required:
+        - title
+        - description
+        - risk
+      title: RiskInsightsWidgetSchema
+    Risks:
+      properties:
+        gambling_insights:
+          $ref: '#/components/schemas/GamblingInsights'
+        overdraft_insights:
+          $ref: '#/components/schemas/OverdraftInsights'
+        returned_debit_orders_insights:
+          $ref: '#/components/schemas/ReturnedDebitOrderInsights'
+        atm_and_cash_insights:
+          $ref: '#/components/schemas/AtmAndCashInsights'
+        net_saver_spender_insights:
+          anyOf:
+            - $ref: '#/components/schemas/NetSaverSpender'
+            - type: 'null'
+        ssi_insights:
+          anyOf:
+            - $ref: '#/components/schemas/SSIInsights'
+            - type: 'null'
+      type: object
+      required:
+        - gambling_insights
+        - overdraft_insights
+        - returned_debit_orders_insights
+        - atm_and_cash_insights
+      title: Risks
+    SSIInsights:
+      properties:
+        monthly_ssi_analysis:
+          items:
+            $ref: '#/components/schemas/MonthlySSIAnalysis'
+          type: array
+          title: Monthly Ssi Analysis
+        monthly_average_ssi:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Monthly Average Ssi
+      type: object
+      required:
+        - monthly_ssi_analysis
+      title: SSIInsights
+    SalaryWidgetSchema:
+      properties:
+        account_number:
+          type: string
+          title: Account Number
+        description:
+          type: string
+          title: Description
+        salary:
+          type: number
+          title: Salary
+        month:
+          type: string
+          title: Month
+        year:
+          type: integer
+          title: Year
+        date:
+          type: string
+          format: date-time
+          title: Date
+      type: object
+      required:
+        - account_number
+        - description
+        - salary
+        - month
+        - year
+        - date
+      title: SalaryWidgetSchema
+    SingleConnectOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        config:
+          type: string
+          title: Config
+          example: 5eb7cf5a86d9755df3a6c593
+        applicant:
+          type: string
+          title: Applicant
+          example: 5eb7cf5a86d9755df3a6c593
+        organisation:
+          type: string
+          title: Organisation
+          example: 5eb7cf5a86d9755df3a6c593
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        applicant_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Applicant Name
+        id_number:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Id Number
+        phone_number:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Phone Number
+        status:
+          type: string
+          title: Status
+        email:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Email
+        nationality:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Nationality
+      type: object
+      required:
+        - id
+        - config
+        - applicant
+        - organisation
+        - created_at
+        - applicant_name
+        - id_number
+        - phone_number
+        - status
+      title: SingleConnectOutSchema
+    SingleTransactionDetailSchema:
+      properties:
+        account:
+          type: string
+          title: Account
+        account_number:
+          type: string
+          title: Account Number
+        datetime:
+          type: string
+          format: date-time
+          title: Datetime
+        amount:
+          type: number
+          title: Amount
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Description
+        reference:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Reference
+        currency:
+          type: string
+          title: Currency
+        label:
+          type: string
+          title: Label
+        balance:
+          type: number
+          title: Balance
+        bank_slug:
+          type: string
+          title: Bank Slug
+      type: object
+      required:
+        - account
+        - account_number
+        - datetime
+        - amount
+        - currency
+        - balance
+        - bank_slug
+      title: SingleTransactionDetailSchema
+    SpendCategoryWidgetSchema:
+      properties:
+        category:
+          type: string
+          title: Category
+        amount:
+          type: number
+          title: Amount
+      type: object
+      required:
+        - category
+        - amount
+      title: SpendCategoryWidgetSchema
+    SpendSplit:
+      properties:
+        discretionary_spend_percentage:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Discretionary Spend Percentage
+          default: 0
+        non_discretionary_spend_percentage:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Non Discretionary Spend Percentage
+          default: 0
+      type: object
+      title: SpendSplit
+    ThreadBankAccountSummary:
+      properties:
+        account_name:
+          type: string
+          title: Account Name
+        account_number:
+          type: string
+          title: Account Number
+        account_type:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Account Type
+        balance:
+          type: number
+          title: Balance
+        currency:
+          type: string
+          title: Currency
+      type: object
+      required:
+        - account_name
+        - account_number
+        - account_type
+        - balance
+        - currency
+      title: ThreadBankAccountSummary
+    ThreadBankSummaryOutSchema:
+      properties:
+        bank_id:
+          type: string
+          title: Bank Id
+        accounts:
+          anyOf:
+            - items:
+                $ref: '#/components/schemas/ThreadBankAccountSummary'
+              type: array
+            - type: 'null'
+          title: Accounts
+      type: object
+      required:
+        - bank_id
+      title: ThreadBankSummaryOutSchema
+    ThreadOAuthCodeInSchema:
+      properties:
+        code:
+          type: string
+          title: Code
+        code_verifier:
+          type: string
+          title: Code Verifier
+        redirect_uri:
+          type: string
+          minLength: 1
+          format: uri
+          title: Redirect Uri
+      type: object
+      required:
+        - code
+        - code_verifier
+        - redirect_uri
+      title: ThreadOAuthCodeInSchema
+    ThreadOAuthCodeOutSchema:
+      properties:
+        success:
+          type: boolean
+          title: Success
+          default: true
+      type: object
+      title: ThreadOAuthCodeOutSchema
+    TopExpenseAmount:
+      properties:
+        label:
+          type: string
+          title: Label
+        amount:
+          type: number
+          title: Amount
+        average_monthly_spend:
+          type: number
+          title: Average Monthly Spend
+        percentage_of_total_spend:
+          anyOf:
+            - type: number
+            - type: 'null'
+          title: Percentage Of Total Spend
+          default: 0
+      type: object
+      required:
+        - label
+        - amount
+        - average_monthly_spend
+      title: TopExpenseAmount
+    TopupInSchema:
+      properties:
+        card_id:
+          type: string
+          title: Card Id
+        topup_amount:
+          type: number
+          title: Topup Amount
+      type: object
+      required:
+        - card_id
+        - topup_amount
+      title: TopupInSchema
+    TopupOutSchema:
+      properties:
+        message:
+          type: string
+          title: Message
+        status:
+          type: string
+          title: Status
+        new_balance:
+          type: number
+          title: New Balance
+      type: object
+      required:
+        - message
+        - status
+        - new_balance
+      title: TopupOutSchema
+    TransactionsLabelledDetailOutSchema:
+      properties:
+        count:
+          type: integer
+          title: Count
+        has_next:
+          type: boolean
+          title: Has Next
+        has_prev:
+          type: boolean
+          title: Has Prev
+        data:
+          items:
+            $ref: '#/components/schemas/SingleTransactionDetailSchema'
+          type: array
+          title: Data
+        available_accounts:
+          items:
+            $ref: '#/components/schemas/AvailableAccountsSchema'
+          type: array
+          title: Available Accounts
+        crunch_categories:
+          items:
+            type: string
+          type: array
+          title: Crunch Categories
+          default:
+            - Alcohol
+            - ATM and Cash Withdrawal
+            - Auto Insurance
+            - Auto Loan Repayment
+            - Bank Charges and Fees
+            - Bank Transfer
+            - BNPL
+            - Cash Deposit
+            - Cash Deposit Fee
+            - Cash Withdrawal Fee
+            - Cellular Data Purchase
+            - Children and Dependents
+            - Clothing
+            - Coffee
+            - Credit Card Repayments
+            - Debt Review Payment
+            - Debit Order
+            - Donation
+            - Education
+            - Electronics and Appliances
+            - Entertainment
+            - Eating Out
+            - Fuel
+            - Funeral Cover
+            - Gambling
+            - General Insurance
+            - General Loan Repayment
+            - General Purchases
+            - Groceries
+            - Health and Medical
+            - Health Insurance
+            - Holidays and Travel
+            - Home and Garden
+            - Home Insurance
+            - Home Loan Repayment
+            - Insufficient Funds Fee
+            - Interest Received
+            - Interest Repayment
+            - Investments
+            - Life Insurance
+            - Nightlife & Entertainment
+            - Online Purchase
+            - Overdraft Fee
+            - Parking
+            - Personal Care
+            - Refund
+            - Rent
+            - Returned Debit Order
+            - Salaries and Wages
+            - SARS
+            - Savings Transfer
+            - Social Security Income
+            - Spend Limit Exceeded Fee
+            - Sport
+            - Subscriptions
+            - Tax Payment
+            - Tobacco & Smoking
+            - Transaction Declined Fee
+            - Transport
+            - UIF
+            - Uncategorised
+            - Utilities - Electricity
+            - Utilities - Telephone
+            - Utilities - Water
+            - Loan Disbursement
+      type: object
+      required:
+        - count
+        - has_next
+        - has_prev
+        - data
+        - available_accounts
+      title: TransactionsLabelledDetailOutSchema
+    TransactionsLabelledOutSchema:
+      properties:
+        account:
+          type: string
+          title: Account
+        transactions:
+          items:
+            $ref: '#/components/schemas/LabelledTransactionSchema'
+          type: array
+          title: Transactions
+      type: object
+      required:
+        - account
+        - transactions
+      title: TransactionsLabelledOutSchema
+    UpdateWhiteLabelInSchema:
+      properties:
+        display_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Display Name
+        primary_colour_hex:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Primary Colour Hex
+        secondary_colour_hex:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Secondary Colour Hex
+        image_base64:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Image Base64
+        welcome_title:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Welcome Title
+        welcome_description:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Welcome Description
+      type: object
+      title: UpdateWhiteLabelInSchema
+    UserCreateInSchema:
+      properties:
+        name:
+          type: string
+          title: Name
+        email:
+          type: string
+          format: email
+          title: Email
+        permissions:
+          items:
+            type: string
+          type: array
+          title: Permissions
+      type: object
+      required:
+        - name
+        - email
+        - permissions
+      title: UserCreateInSchema
+    UserCreateOutSchema:
+      properties:
+        id:
+          type: string
+          title: Id
+          example: 5eb7cf5a86d9755df3a6c593
+        name:
+          type: string
+          title: Name
+        email:
+          type: string
+          format: email
+          title: Email
+      type: object
+      required:
+        - id
+        - name
+        - email
+      title: UserCreateOutSchema
+    ValidTabs:
+      properties:
+        tabs:
+          items:
+            type: string
+          type: array
+          title: Tabs
+      type: object
+      required:
+        - tabs
+      title: ValidTabs
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+              - type: string
+              - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+        - loc
+        - msg
+        - type
+      title: ValidationError
+    WhiteLabelOutSchema:
+      properties:
+        display_name:
+          type: string
+          title: Display Name
+        primary_colour_hex:
+          type: string
+          title: Primary Colour Hex
+        secondary_colour_hex:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Secondary Colour Hex
+        image_url:
+          anyOf:
+            - type: string
+              minLength: 1
+              format: uri
+            - type: 'null'
+          title: Image Url
+        welcome_title:
+          type: string
+          title: Welcome Title
+        welcome_description:
+          type: string
+          title: Welcome Description
+      type: object
+      required:
+        - display_name
+        - primary_colour_hex
+        - secondary_colour_hex
+        - image_url
+        - welcome_title
+        - welcome_description
+      title: WhiteLabelOutSchema
+  securitySchemes:
+    OAuth2PasswordBearer:
+      type: oauth2
+      flows:
+        password:
+          scopes:
+            internal: Allow internal endpoints.
+            organisation:api: Allow API.
+          tokenUrl: v1/in/auth/login/token
+servers:
+  - url: https://api.beamlend.com

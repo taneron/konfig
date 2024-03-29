@@ -1,0 +1,604 @@
+hash: e81329638eef979f00d4238f77759c8b03bbd959a51322c9efb8d86140096efe
+methodObjects:
+  - url: /v1/applications/applications/{application_id}
+    method: getById
+    httpMethod: get
+    tag: applications
+    typeScriptTag: applications
+    description: Get Application By Id
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/applications/applicants/{applicant_id}
+    method: getApplicantDetails
+    httpMethod: get
+    tag: applications
+    typeScriptTag: applications
+    description: Get Applicant
+    parameters:
+      - name: applicantId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/applications/applications/revet
+    method: submitRevetApplication
+    httpMethod: post
+    tag: applications
+    typeScriptTag: applications
+    description: Revet Submission
+    parameters:
+      - name: applications
+        schema: array
+        required: true
+        description: ''
+      - name: application_config_id
+        schema: string
+        required: false
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/applications/applications/revet_upload
+    method: submitCsv
+    httpMethod: post
+    tag: applications
+    typeScriptTag: applications
+    description: Revet Csv Submission
+    parameters:
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+      - name: application_config_id
+        schema: string
+        required: false
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/applications/get_template
+    method: getCsvTemplate
+    httpMethod: get
+    tag: applications
+    typeScriptTag: applications
+    description: Revet Csv Template
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/application_configs/connections_available
+    method: listConnectionsAvailable
+    httpMethod: get
+    tag: application_configs
+    typeScriptTag: applicationConfigs
+    description: Get Connections Available
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/application_configs/{app_config_id}
+    method: getApplicationConfigById
+    httpMethod: get
+    tag: application_configs
+    typeScriptTag: applicationConfigs
+    description: Get Application Configs By Id
+    parameters:
+      - name: appConfigId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/personal_info_connections/{connection_id}
+    method: getOrganisationsPersonalConnectionsById
+    httpMethod: get
+    tag: personal_info_connections
+    typeScriptTag: personalInfoConnections
+    description: Get Organisation Personal Connections By Id
+    parameters:
+      - name: connectionId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/bank_connections/{application_id}/transactions/labelled
+    method: getLabelledTransactions
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Get Labelled Transactions
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/bank_connections/{application_id}/affordability
+    method: getAffordability
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Get Affordability
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/bank_connections/{application_id}/income_analysis
+    method: getIncomeAnalysis
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Get Income Analysis
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/bank_connections/{application_id}/risk_insights
+    method: getRiskInsights
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Get Risk Insights
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/bank_connections/{application_id}/liquidity_score
+    method: getLiquidityScore
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Get Liquidity Score
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/bank_connections/{application_id}/expenses_analysis
+    method: getExpenseInsights
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Get Expense Insights
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/bank_connections/{application_id}/recrunch
+    method: rerunCrunchAnalysis
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Rerun Crunch Analysis
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/bank_connections/{application_id}/rethread
+    method: rerunThreadAnalysis
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Rerun Thread Analysis
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /transactions/{application_id}
+    method: getLabelledTransactions
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Get Labelled Transactions
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /liquidity/{application_id}
+    method: getLiquidityScore
+    httpMethod: get
+    tag: bank_connections
+    typeScriptTag: bankConnections
+    description: Get Liquidity Score
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/billing/outstanding_bill_amount
+    method: getOutstandingBillAmount
+    httpMethod: get
+    tag: billing
+    typeScriptTag: billing
+    description: Get Outstanding Bill Amount
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/billing/billable_events
+    method: listEvents
+    httpMethod: get
+    tag: billing
+    typeScriptTag: billing
+    description: List Events
+    parameters:
+      - name: skip
+        schema: integer
+        required: false
+        description: ''
+        default: 0
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/billing/pricing
+    method: getPricing
+    httpMethod: get
+    tag: billing
+    typeScriptTag: billing
+    description: Get Pricing
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/webhooks/payments/peach
+    method: getPeachWebhook
+    httpMethod: get
+    tag: payments
+    typeScriptTag: payments
+    description: Peach Webhook
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/webhooks/payments/peach
+    method: createPeachWebhook
+    httpMethod: post
+    tag: payments
+    typeScriptTag: payments
+    description: Peach Webhook
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/applications/applications
+    method: getOrganisationApplications
+    httpMethod: get
+    tag: applications
+    typeScriptTag: applications
+    description: Get Organisation Applications
+    parameters:
+      - name: skip
+        schema: integer
+        required: false
+        description: ''
+        default: 0
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/applications/applicants
+    method: getApplicantsList
+    httpMethod: get
+    tag: applications
+    typeScriptTag: applications
+    description: Get Organisations Applicants
+    parameters:
+      - name: skip
+        schema: integer
+        required: false
+        description: ''
+        default: 0
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/applications/applicants
+    method: submitApplicant
+    httpMethod: post
+    tag: applications
+    typeScriptTag: applications
+    description: Create Applicant
+    parameters: []
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /v1/applications
+    method: createNewApplication
+    httpMethod: post
+    tag: applications
+    typeScriptTag: applications
+    description: Create Application
+    parameters:
+      - name: application_config_id
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+      - name: applicant_id
+        schema: string
+        required: true
+        description: ''
+        example: 5eb7cf5a86d9755df3a6c593
+      - name: redirect_url
+        schema: string
+        required: true
+        description: ''
+        example: REDIRECT_URL
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/organisations
+    method: list
+    httpMethod: get
+    tag: organisations
+    typeScriptTag: organisations
+    description: Get Organisation
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/application_configs/data_point_args
+    method: getDataPointArgs
+    httpMethod: get
+    tag: application_configs
+    typeScriptTag: applicationConfigs
+    description: Get Data Point Args
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/application_configs
+    method: getByOrganisation
+    httpMethod: get
+    tag: application_configs
+    typeScriptTag: applicationConfigs
+    description: Get Application Configs By Organisation
+    parameters:
+      - name: skip
+        schema: integer
+        required: false
+        description: ''
+        default: 0
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/application_configs/application_configs
+    method: createConfig
+    httpMethod: post
+    tag: application_configs
+    typeScriptTag: applicationConfigs
+    description: Create Application Config
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: connections
+        schema: array
+        required: true
+        description: ''
+      - name: is_default
+        schema: boolean
+        required: false
+        description: ''
+        default: false
+      - name: default_redirect_url
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/personal_info_connections
+    method: getOrganisationsPersonalConnections
+    httpMethod: get
+    tag: personal_info_connections
+    typeScriptTag: personalInfoConnections
+    description: Get Organisations Personal Connections
+    parameters:
+      - name: skip
+        schema: integer
+        required: false
+        description: ''
+        default: 0
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v1/white_label/config
+    method: updateOrgConfig
+    httpMethod: patch
+    tag: white_label
+    typeScriptTag: whiteLabel
+    description: Update Org Whitelabel
+    parameters:
+      - name: display_name
+        schema: string
+        description: ''
+      - name: primary_colour_hex
+        schema: string
+        description: ''
+      - name: secondary_colour_hex
+        schema: string
+        description: ''
+      - name: image_base64
+        schema: string
+        description: ''
+      - name: welcome_title
+        schema: string
+        description: ''
+      - name: welcome_description
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+numberOfSchemas: 126
+apiDescription: >-
+  Beam is the intelligent way to manage risk with laser precision in real time.
+
+
+  Beam's state-of-the-art software solution sources traditional and alternative
+  data to give you a real-time affordability analysis of your customer and makes
+  manual analysis, fragmented data sources, high costs and slow processes a
+  thing of the past so that you and your team get better data with sharper
+  insight.
+
+
+  Beam makes it easy and seamless to access multiple data sources like bank
+  statements from multiple accounts, bureau data and alternative data for
+  thin-file customers, giving you the most up-to-date and precise view of your
+  customer's financial position so that your organisation can make accelerated
+  credit decisions. 
+
+
+  Our completely digital customer onboarding process allows for near-instant
+  credit approval.
+
+
+  Beam's API-first solution reduces credit decision-making time from days to
+  seconds while helping you forecast your customer's income and expenses
+  instantly. Beam Console's audit-ready reporting dashboard lets your admin,
+  risk and underwriting teams easily and efficiently manage your customer data
+  from one place.

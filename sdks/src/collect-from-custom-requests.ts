@@ -2418,6 +2418,11 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://docs.btcpayserver.org/API/Greenfield/v1/swagger.json",
   },
+  "beamlend.com": {
+    type: "GET",
+    url: "https://docs.beamlend.com/redocusaurus/plugin-redoc-0.yaml",
+    apiBaseUrl: "https://api.beamlend.com"
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
