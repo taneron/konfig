@@ -2152,6 +2152,15 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "foodkit.io": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.foodkit.dev/",
+        filename: "openapi.json",
+        browser,
+      });
+    },
+  },
   "bossinsights.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

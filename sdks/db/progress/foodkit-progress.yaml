@@ -1,0 +1,247 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/storefront/customers:
+    post: Customers_registerCustomer
+  /v1/storefront/customers/me:
+    get: Customers_getDetails
+    patch: Customers_updateDetails
+  /v2/storefront/customers/me/addresses:
+    get: Customers_getAddresses
+  /v3/storefront/brands:
+    get: Brands_getBrandContext
+  /v3/storefront/customers/me/orders:
+    get: Customers_getCustomerOrders
+  /v3/storefront/vendors/{vendor}/promotions:
+    get: Marketing_getPromotions
+  /v4/storefront/customers/brands/{brand}/customers/{customer}/orders/{id}/track:
+    get: Orders_trackStatus
+  /v4/storefront/customers/brands/{brand}/customers/{customer}/tax-ids:
+    get: Customers_getTaxIds
+    post: Customers_storeTaxId
+  /v5/storefront/content/tenants/{tenant}/branch-list:
+    get: BranchList_content
+  /v5/storefront/content/tenants/{tenant}/branch-list/timestamp:
+    get: BranchList_getTimestampedLink
+  /v5/storefront/content/tenants/{tenant}/menu:
+    get: Menu_getTenantMenu
+  /v5/storefront/content/tenants/{tenant}/menu/timestamp:
+    get: Menu_getTimestampedLink
+  /v5/storefront/content/tenants/{tenant}/publications-cached:
+    get: Publications_getCachedPublications
+  /v5/storefront/content/tenants/{tenant}/publications/timestamp:
+    get: Publications_getTenantPublicationsTimestamp
+  /v5/storefront/customers/tenants/{tenant}/customers/{customer}/contact-form:
+    post: Branches_submitContactForm
+  /v5/storefront/inventory/brands/{brand}/branches/{branch}/upsells:
+    post: Marketing_createUpsellRecommendations
+  /v5/storefront/tenants/{tenant}/branch-capabilities:
+    get: Branches_listBranchCapabilities
+  /v5/storefront/tenants/{tenant}/branch-closures:
+    get: Branches_getClosures
+  /v5/storefront/tenants/{tenant}/brands/{brand}/branch-capabilities:
+    get: Branches_getBranchCapabilities
+  /v5/storefront/tenants/{tenant}/brands/{brand}/branch-closures:
+    get: Branches_getClosedBranches
+  /v5/storefront/tenants/{tenant}/brands/{brand}/branches/{branch}/inventory-closures:
+    get: Menu_getBranchInventoryClosures
+  /v5/storefront/tenants/{tenant}/brands/{brand}/deliverable-branches:
+    get: Branches_findDeliverableBranches
+  /v5/storefront/tenants/{tenant}/deliverable-branches:
+    get: Branches_listDeliverableBranches
+  /v5/storefront/tenants/{tenant}/orders:
+    post: Orders_createOrder
+  /v5/storefront/tenants/{tenant}/quotes:
+    post: Orders_getQuotation
+  /v5/storefront/tenants/{tenant}/service-area-email:
+    post: Customers_optInServiceAreaEmail
+  /v6/storefront/customers/tenants/{tenant}/customers/gdpr-preferences:
+    post: Customers_storeGdprPreferences
+  /v6/storefront/customers/tenants/{tenant}/customers/{customer}/intercom-hmacs:
+    post: Customers_generateIntercomHmac
+  /v6/storefront/loyalty/tenants/{tenant}/customers/{customer}/punch-card:
+    get: LoyaltyPunchCard_getPunchcard
+  /v6/storefront/loyalty/tenants/{tenant}/punch-card:
+    get: LoyaltyPunchCard_getDetails
+  /v6/storefront/referrals/tenants/{tenant}/customers/{customer}:
+    get: Referrals_getReferralCodesForCustomer
+  /v6/storefront/tenants/{tenant}/delivery-zones:
+    get: Branches_listDeliveryZones
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/storefront/customers:
+    post:
+      application/json: CustomersRegisterCustomerRequest
+  /v1/storefront/customers/me:
+    patch:
+      application/json: CustomersUpdateDetailsRequest
+  /v4/storefront/customers/brands/{brand}/customers/{customer}/tax-ids:
+    post:
+      application/json: CustomersStoreTaxIdRequest
+  /v5/storefront/customers/tenants/{tenant}/customers/{customer}/contact-form:
+    post:
+      application/json: BranchesSubmitContactFormRequest
+  /v5/storefront/inventory/brands/{brand}/branches/{branch}/upsells:
+    post:
+      application/json: MarketingCreateUpsellRecommendationsRequest
+  /v5/storefront/tenants/{tenant}/orders:
+    post:
+      application/json: OrdersCreateOrderRequest
+  /v5/storefront/tenants/{tenant}/quotes:
+    post:
+      application/json: OrdersGetQuotationRequest
+  /v5/storefront/tenants/{tenant}/service-area-email:
+    post:
+      application/json: CustomersOptInServiceAreaEmailRequest
+  /v6/storefront/customers/tenants/{tenant}/customers/gdpr-preferences:
+    post:
+      application/json: CustomersStoreGdprPreferencesRequest
+  /v6/storefront/customers/tenants/{tenant}/customers/{customer}/intercom-hmacs:
+    post:
+      application/json: CustomersGenerateIntercomHmacRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/storefront/customers:
+    post:
+      '200':
+        application/json: CustomersRegisterCustomerResponse
+  /v1/storefront/customers/me:
+    get:
+      '200':
+        application/json: CustomersGetDetailsResponse
+    patch:
+      '200':
+        application/json: CustomersUpdateDetailsResponse
+  /v2/storefront/customers/me/addresses:
+    get:
+      '200':
+        application/json: CustomersGetAddressesResponse
+  /v3/storefront/brands:
+    get:
+      '200':
+        application/json: BrandsGetBrandContextResponse
+  /v3/storefront/customers/me/orders:
+    get:
+      '200':
+        application/json: CustomersGetCustomerOrdersResponse
+  /v3/storefront/vendors/{vendor}/promotions:
+    get:
+      '200':
+        application/json: MarketingGetPromotionsResponse
+  /v4/storefront/customers/brands/{brand}/customers/{customer}/orders/{id}/track:
+    get:
+      '200':
+        application/json: OrdersTrackStatusResponse
+  /v4/storefront/customers/brands/{brand}/customers/{customer}/tax-ids:
+    get:
+      '200':
+        application/json: CustomersGetTaxIdsResponse
+    post:
+      '200':
+        application/json: CustomersStoreTaxIdResponse
+  /v5/storefront/content/tenants/{tenant}/branch-list:
+    get:
+      '200':
+        application/json: BranchListContentResponse
+  /v5/storefront/content/tenants/{tenant}/branch-list/timestamp:
+    get:
+      '200':
+        application/json: BranchListGetTimestampedLinkResponse
+  /v5/storefront/content/tenants/{tenant}/menu:
+    get:
+      '200':
+        application/json: MenuGetTenantMenuResponse
+  /v5/storefront/content/tenants/{tenant}/menu/timestamp:
+    get:
+      '200':
+        application/json: MenuGetTimestampedLinkResponse
+  /v5/storefront/content/tenants/{tenant}/publications-cached:
+    get:
+      '200':
+        application/json: PublicationsGetCachedPublicationsResponse
+  /v5/storefront/content/tenants/{tenant}/publications/timestamp:
+    get:
+      '200':
+        application/json: PublicationsGetTenantPublicationsTimestampResponse
+  /v5/storefront/customers/tenants/{tenant}/customers/{customer}/contact-form:
+    post:
+      '202':
+        application/json: BranchesSubmitContactFormResponse
+  /v5/storefront/inventory/brands/{brand}/branches/{branch}/upsells:
+    post:
+      '200':
+        application/json: MarketingCreateUpsellRecommendationsResponse
+  /v5/storefront/tenants/{tenant}/branch-capabilities:
+    get:
+      '200':
+        application/json: BranchesListBranchCapabilitiesResponse
+  /v5/storefront/tenants/{tenant}/branch-closures:
+    get:
+      '200':
+        application/json: BranchesGetClosuresResponse
+  /v5/storefront/tenants/{tenant}/brands/{brand}/branch-capabilities:
+    get:
+      '200':
+        application/json: BranchesGetBranchCapabilitiesResponse
+  /v5/storefront/tenants/{tenant}/brands/{brand}/branch-closures:
+    get:
+      '200':
+        application/json: BranchesGetClosedBranchesResponse
+  /v5/storefront/tenants/{tenant}/brands/{brand}/branches/{branch}/inventory-closures:
+    get:
+      '200':
+        application/json: MenuGetBranchInventoryClosuresResponse
+  /v5/storefront/tenants/{tenant}/brands/{brand}/deliverable-branches:
+    get:
+      '200':
+        application/json: BranchesFindDeliverableBranchesResponse
+  /v5/storefront/tenants/{tenant}/deliverable-branches:
+    get:
+      '200':
+        application/json: BranchesListDeliverableBranchesResponse
+  /v5/storefront/tenants/{tenant}/orders:
+    post:
+      '200':
+        application/json: OrdersCreateOrderResponse
+  /v5/storefront/tenants/{tenant}/quotes:
+    post:
+      '200':
+        application/json: OrdersGetQuotationResponse
+  /v5/storefront/tenants/{tenant}/service-area-email:
+    post:
+      '202':
+        application/json: CustomersOptInServiceAreaEmailResponse
+  /v6/storefront/customers/tenants/{tenant}/customers/gdpr-preferences:
+    post:
+      '200':
+        application/json: CustomersStoreGdprPreferencesResponse
+  /v6/storefront/customers/tenants/{tenant}/customers/{customer}/intercom-hmacs:
+    post:
+      '200':
+        application/json: CustomersGenerateIntercomHmacResponse
+  /v6/storefront/loyalty/tenants/{tenant}/customers/{customer}/punch-card:
+    get:
+      '200':
+        application/json: LoyaltyPunchCardGetPunchcardResponse
+  /v6/storefront/loyalty/tenants/{tenant}/punch-card:
+    get:
+      '200':
+        application/json: LoyaltyPunchCardGetDetailsResponse
+  /v6/storefront/referrals/tenants/{tenant}/customers/{customer}:
+    get:
+      '200':
+        application/json: ReferralsGetReferralCodesForCustomerResponse
+  /v6/storefront/tenants/{tenant}/delivery-zones:
+    get:
+      '200':
+        application/json: BranchesListDeliveryZonesResponse
+securityParameters:
+  latitude:
+    query: false
+  longitude:
+    query: false
+validServerUrls: {}
