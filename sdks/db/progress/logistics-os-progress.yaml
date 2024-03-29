@@ -1,0 +1,43 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /match/v1:
+    post: RoutingApIs_calculateRoute
+  /matrix/v1:
+    post: RoutingApIs_calculateMatrix
+  /ondemand/v3:
+    post: OptimizationApIs_assignOrders
+  /replan/v3:
+    post: OptimizationApIs_replanRoutePlan
+  /route/v1:
+    post: RoutingApIs_calculateRoute
+  /tsp/v3:
+    post: OptimizationApIs_solveTsp
+  /vrp/v3:
+    post: OptimizationApIs_solveVrpProblem
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /matrix/v1:
+    get:
+      '303':
+        application/json: MatrixResultResponse
+  /vrp/v3:
+    get:
+      '401':
+        application/json: VrpResultResponse
+      '403':
+        application/json: VrpResult403Response
+      '404':
+        application/json: VrpResult404Response
+      '422':
+        application/json: VrpResult422Response
+securityParameters:
+  accept:
+    header: false
+  job_id:
+    query: false
+validServerUrls: {}

@@ -2256,6 +2256,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://mainnet.aeternity.io/api?oas3",
   },
+  "logisticsos.com": {
+    type: "GET",
+    url: "https://los-ops-pub.s3.us-west-2.amazonaws.com/api_reference/swagger-v3.json",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

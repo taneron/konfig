@@ -1,0 +1,510 @@
+hash: 9de832fabc821a6b0a9f54e94b2127f6a0b0d348783a202ab91b231f94e504a6
+methodObjects:
+  - url: /vrp/v3
+    method: result
+    httpMethod: get
+    tag: Optimization APIs
+    typeScriptTag: optimizationApIs
+    description: Vehicle Routing Problem Result
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: Job ID returned by `/vrp` POST.
+        example: JOB_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /vrp/v3
+    method: solveVrpProblem
+    httpMethod: post
+    tag: Optimization APIs
+    typeScriptTag: optimizationApIs
+    description: Vehicle Routing Problem
+    parameters:
+      - name: orders
+        schema: array
+        required: true
+        description: ''
+      - name: start_depots
+        schema: array
+        required: false
+        description: ''
+      - name: end_depots
+        schema: array
+        required: false
+        description: ''
+      - name: breaks
+        schema: array
+        required: false
+        description: ''
+      - name: vehicle_types
+        schema: array
+        required: true
+        description: ''
+      - name: routing_profiles
+        schema: array
+        required: false
+        description: ''
+      - name: polygons
+        schema: array
+        required: false
+        description: ''
+      - name: solver_parameters
+        schema: object
+        required: false
+        description: ''
+      - name: units
+        schema: object
+        required: true
+        description: ''
+      - name: od_location
+        schema: string
+        required: false
+        description: ''
+      - name: od_data_type
+        schema: string
+        required: false
+        description: ''
+        default: binary
+      - name: user_tags
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /tsp/v3
+    method: result
+    httpMethod: get
+    tag: Optimization APIs
+    typeScriptTag: optimizationApIs
+    description: Traveling Salesman Problem Result
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: Job ID returned by `/tsp` POST.
+        example: JOB_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /tsp/v3
+    method: solveTsp
+    httpMethod: post
+    tag: Optimization APIs
+    typeScriptTag: optimizationApIs
+    description: Traveling Salesman Problem
+    parameters:
+      - name: orders
+        schema: array
+        required: true
+        description: ''
+      - name: vehicle
+        schema: object
+        required: true
+        description: ''
+      - name: start_depot
+        schema: object
+        required: false
+        description: ''
+      - name: end_depot
+        schema: object
+        required: false
+        description: ''
+      - name: breaks
+        schema: array
+        required: false
+        description: ''
+      - name: routing_profile
+        schema: object
+        required: false
+        description: ''
+      - name: solver_parameters
+        schema: object
+        required: false
+        description: ''
+      - name: units
+        schema: object
+        required: true
+        description: ''
+      - name: user_tags
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /ondemand/v3
+    method: result
+    httpMethod: get
+    tag: Optimization APIs
+    typeScriptTag: optimizationApIs
+    description: On-demand Result
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: Job ID returned by `/ondemand` POST.
+        example: JOB_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /ondemand/v3
+    method: assignOrders
+    httpMethod: post
+    tag: Optimization APIs
+    typeScriptTag: optimizationApIs
+    description: On-demand
+    parameters:
+      - name: current_routes
+        schema: array
+        required: true
+        description: ''
+      - name: orders
+        schema: array
+        required: true
+        description: ''
+      - name: routing_profiles
+        schema: array
+        required: false
+        description: ''
+      - name: polygons
+        schema: array
+        required: false
+        description: ''
+      - name: solver_parameters
+        schema: object
+        required: false
+        description: ''
+      - name: units
+        schema: object
+        required: true
+        description: ''
+      - name: user_tags
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /replan/v3
+    method: result
+    httpMethod: get
+    tag: Optimization APIs
+    typeScriptTag: optimizationApIs
+    description: Replanning Result
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: Job ID returned by `/replan` POST.
+        example: JOB_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /replan/v3
+    method: replanRoutePlan
+    httpMethod: post
+    tag: Optimization APIs
+    typeScriptTag: optimizationApIs
+    description: Replanning
+    parameters:
+      - name: current_routes
+        schema: array
+        required: true
+        description: ''
+      - name: routing_profiles
+        schema: array
+        required: false
+        description: ''
+      - name: solver_parameters
+        schema: object
+        required: false
+        description: ''
+      - name: units
+        schema: object
+        required: true
+        description: ''
+      - name: user_tags
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /route/v1
+    method: calculateRoute
+    httpMethod: post
+    tag: Routing APIs
+    typeScriptTag: routingApIs
+    description: Routing
+    parameters:
+      - name: parameters
+        schema: object
+        required: false
+        description: ''
+      - name: locations
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /matrix/v1
+    method: result
+    httpMethod: get
+    tag: Routing APIs
+    typeScriptTag: routingApIs
+    description: Matrix Routing Result
+    parameters:
+      - name: jobId
+        schema: string
+        required: true
+        description: Job ID returned by `/matrix` POST.
+        example: JOB_ID
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '303'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /matrix/v1
+    method: calculateMatrix
+    httpMethod: post
+    tag: Routing APIs
+    typeScriptTag: routingApIs
+    description: Matrix Routing
+    parameters:
+      - name: accept
+        schema: string
+        description: >
+          By default, Matrix Routing API returns result in JSON format.
+          Alternatively, you can specify `application/octet-stream` in the
+          `accept` HTTP header to request binary format, which might be
+          preferred when you need faster parsing and smaller memory usage.
+        default: application/json
+      - name: parameters
+        schema: object
+        required: false
+        description: ''
+      - name: origins
+        schema: array
+        required: true
+        description: ''
+      - name: destinations
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+  - url: /match/v1
+    method: calculateRoute
+    httpMethod: post
+    tag: Routing APIs
+    typeScriptTag: routingApIs
+    description: Map Matching
+    parameters:
+      - name: parameters
+        schema: object
+        required: false
+        description: ''
+      - name: waypoints
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '500'
+        description: ''
+      - statusCode: '502'
+        description: ''
+      - statusCode: '504'
+        description: ''
+numberOfSchemas: 65
+apiDescription: >
+  Powered by world's most powerful route optimization engine. Find out more at
+  [https://logisticsos.com/](https://logisticsos.com/).
