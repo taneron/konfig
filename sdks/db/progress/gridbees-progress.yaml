@@ -1,0 +1,280 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /webaccount/set:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /booking/availabilities:
+    post: BookingService_refreshTheoreticalStocks
+  /booking/availability:
+    post: BookingService_checkAvailability
+  /booking/cancel:
+    post: BookingService_cancelOrder
+  /booking/confirm:
+    post: BookingService_confirmOrder
+  /booking/paymentcancellation:
+    post: BookingService_cancelPayment
+  /booking/paymentconfirmation:
+    post: BookingService_confirmPayment
+  /booking/request:
+    post: BookingService_reserveOffers
+  /booking/update:
+    post: BookingService_updateOrder
+  /contact/addattributes:
+    post: CustomerService_addContactAttribute
+  /contact/delete/{contactid}:
+    delete: CustomerService_deleteContact
+  /contact/deleteattributes:
+    post: CustomerService_deleteAttribute
+  /contact/get/{contactid}:
+    get: CustomerService_getContact
+  /contact/search:
+    post: CustomerService_getContacts
+  /contact/set:
+    post: CustomerService_createNewContact
+  /contact/stream:
+    post: CustomerService_getContactsStream
+  /contact/upsert:
+    post: CustomerService_upsertContact
+  /display/search:
+    post: MasterDataService_searchMasterData
+  /display/upsert:
+    post: MasterDataService_upsertDataModel
+  /mail/delete:
+    delete: CustomerService_mailDelete
+  /mail/get/{mailid}:
+    get: CustomerService_getMailDetails
+  /mail/receive:
+    post: CustomerService_receiveMail
+  /mail/reprocess:
+    post: CustomerService_reprocessMail
+  /mail/search:
+    post: CustomerService_mailSearch
+  /mail/send:
+    post: CustomerService_createMail
+  /mail/set:
+    post: CustomerService_createNewMail
+  /mail/stream:
+    post: CustomerService_getMailStream
+  /mail/upsert:
+    post: CustomerService_modifyMail
+  /masterdata/search:
+    post: MasterDataService_searchMasterData
+  /masterdata/upsert:
+    post: MasterDataService_upsertMasterData
+  /notification/delete:
+    delete: CustomerService_deleteNotification
+  /notification/get/{notificationid}:
+    get: CustomerService_getNotificationDetails
+  /notification/search:
+    post: CustomerService_searchNotificationByCriteria
+  /notification/set:
+    post: CustomerService_createNotification
+  /notification/stream:
+    post: CustomerService_getNotificationsStream
+  /notification/upsert:
+    post: CustomerService_modifyNotification
+  /offer/delete/{offerid}:
+    post: OfferService_deleteOffer
+  /offer/publish:
+    post: OfferService_pullPublishOffer
+  /offer/set:
+    post: OfferService_createNewOffer
+  /offer/upsert:
+    post: OfferService_createOrUpdateOffer
+  /order/purchase:
+    post: BookingService_directConfirmPurchase
+  /order/search:
+    post: BookingService_searchBookings
+  /order/updatestatus:
+    post: BookingService_updateOrderStatus
+  /product/publish:
+    post: ProductService_pullPublishProduct
+  /promotion/delete/{promotionid}:
+    get: PromotionService_deletePromotionById
+  /promotion/publish:
+    post: PromotionService_informMerchantAboutPromotion
+  /promotion/search:
+    post: PromotionService_searchPromotions
+  /promotion/set:
+    post: PromotionService_createNewPromotion
+  /promotion/upsert:
+    post: PromotionService_upsertPromotion
+  /supplier/delete:
+    delete: CustomerService_deleteSupplier
+  /supplier/get/{supplierid}:
+    get: CustomerService_getSupplierDetails
+  /supplier/search:
+    post: CustomerService_searchSuppliers
+  /supplier/set:
+    post: CustomerService_createSupplier
+  /supplier/stream:
+    post: CustomerService_getSuppliersStream
+  /supplier/upsert:
+    post: CustomerService_modifySupplier
+  /template/delete:
+    delete: CustomerService_deleteMailTemplate
+  /template/get/{mailtemplateid}:
+    get: CustomerService_getMailTemplateDetails
+  /template/search:
+    post: CustomerService_searchMailTemplate
+  /template/set:
+    post: CustomerService_createMailTemplate
+  /template/stream:
+    post: CustomerService_getMailTemplateStream
+  /template/upsert:
+    post: CustomerService_modifyMailTemplate
+  /valorization/valorize:
+    post: PricingService_valorizeBasket
+  /wallet/delete:
+    delete: CustomerService_deleteWallet
+  /wallet/get/{walletid}:
+    get: CustomerService_getWalletDetails
+  /wallet/search:
+    post: CustomerService_searchWalletByCriteria
+  /wallet/set:
+    post: CustomerService_createNewWallet
+  /wallet/stream:
+    post: CustomerService_getWalletStream
+  /wallet/upsert:
+    post: CustomerService_modifyWallet
+  /webaccount/activate:
+    post: CustomerService_activateUser
+  /webaccount/check:
+    post: CustomerService_checkUserExist
+  /webaccount/delete:
+    delete: CustomerService_deleteWebAccount
+  /webaccount/get/{webaccountid}:
+    get: CustomerService_getWebAccountDetails
+  /webaccount/login:
+    post: CustomerService_logWebAccount
+  /webaccount/resetpassword:
+    post: CustomerService_resetWebAccountPassword
+  /webaccount/search:
+    post: CustomerService_searchWebAccount
+  /webaccount/set:
+    post: CustomerService_createWebAccount
+  /webaccount/stream:
+    post: CustomerService_getWebAccountsStream
+  /webaccount/update:
+    post: CustomerService_updateWebAccount
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /contact/stream:
+    post:
+      '200':
+        application/json: CustomerServiceGetContactsStreamResponse
+  /display/search:
+    post:
+      '200':
+        application/json: MasterDataServiceSearchMasterData200Response
+  /mail/receive:
+    post:
+      '200':
+        application/json: CustomerServiceReceiveMailResponse
+  /mail/reprocess:
+    post:
+      '200':
+        application/json: CustomerServiceReprocessMailResponse
+  /mail/search:
+    post:
+      '200':
+        application/json: CustomerServiceMailSearchResponse
+  /mail/stream:
+    post:
+      '200':
+        application/json: CustomerServiceGetMailStreamResponse
+  /masterdata/search:
+    post:
+      '200':
+        application/json: MasterDataServiceSearchMasterDataResponse
+  /notification/search:
+    post:
+      '200':
+        application/json: CustomerServiceSearchNotificationByCriteriaResponse
+  /notification/stream:
+    post:
+      '200':
+        application/json: CustomerServiceGetNotificationsStreamResponse
+  /offer/publish:
+    post:
+      '200':
+        application/json: OfferServicePullPublishOfferResponse
+  /offer/set:
+    post:
+      '200':
+        application/json: OfferServiceCreateNewOfferResponse
+  /offer/upsert:
+    post:
+      '200':
+        application/json: OfferServiceCreateOrUpdateOfferResponse
+  /order/search:
+    post:
+      '200':
+        application/json: BookingServiceSearchBookingsResponse
+  /order/updatestatus:
+    post:
+      '200':
+        application/json: BookingServiceUpdateOrderStatusResponse
+  /product/publish:
+    post:
+      '200':
+        application/json: ProductServicePullPublishProductResponse
+  /promotion/publish:
+    post:
+      '200':
+        application/json: PromotionServiceInformMerchantAboutPromotionResponse
+  /promotion/search:
+    post:
+      '200':
+        application/json: PromotionServiceSearchPromotionsResponse
+  /supplier/search:
+    post:
+      '200':
+        application/json: CustomerServiceSearchSuppliersResponse
+  /supplier/stream:
+    post:
+      '200':
+        application/json: CustomerServiceGetSuppliersStreamResponse
+  /template/search:
+    post:
+      '200':
+        application/json: CustomerServiceSearchMailTemplateResponse
+  /template/stream:
+    post:
+      '200':
+        application/json: CustomerServiceGetMailTemplateStreamResponse
+  /wallet/search:
+    post:
+      '200':
+        application/json: CustomerServiceSearchWalletByCriteriaResponse
+  /wallet/stream:
+    post:
+      '200':
+        application/json: CustomerServiceGetWalletStreamResponse
+  /webaccount/search:
+    post:
+      '200':
+        application/json: CustomerServiceSearchWebAccountResponse
+  /webaccount/set:
+    post:
+      '200':
+        application/json: CustomerServiceCreateWebAccountResponse
+  /webaccount/stream:
+    post:
+      '200':
+        application/json: CustomerServiceGetWebAccountsStreamResponse
+  /webaccount/update:
+    post:
+      '200':
+        application/json: CustomerServiceUpdateWebAccountResponse
+securityParameters:
+  X-Access-ID:
+    header: false
+validServerUrls: {}

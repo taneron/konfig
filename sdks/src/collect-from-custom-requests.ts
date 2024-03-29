@@ -2558,6 +2558,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://assets.ongoody.com/static/web/goody-api-openapi.json",
   },
+  "gridbees.com": {
+    type: "GET",
+    url: "https://assets-global.website-files.com/6274d1a571beb184d5ff254f/6488434bf530aef27387176a_OpenAPI_v3.txt",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

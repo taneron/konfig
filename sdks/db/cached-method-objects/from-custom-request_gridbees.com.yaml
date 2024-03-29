@@ -1,0 +1,4438 @@
+hash: 6a7e929facc97763c4e5ad8d7b4993c9a754b0ff6859a80985b76e0892ddaf78
+methodObjects:
+  - url: /contact/search
+    method: getContacts
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: >
+      This service is used to retrieve contacts. The total number of contacts in
+      the response is a parameter of the service.
+
+      Contact your administrator to know or modify this value.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: contactids
+        schema: array
+        description: ''
+      - name: unicitykeys
+        schema: array
+        description: ''
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: addresses
+        schema: array
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: countrycode
+        schema: string
+        description: ''
+      - name: postalcode
+        schema: string
+        description: ''
+      - name: walletnumid
+        schema: string
+        description: ''
+      - name: externalnumid
+        schema: string
+        description: ''
+      - name: marketcode
+        schema: string
+        description: ''
+      - name: shopcode
+        schema: string
+        description: ''
+      - name: companyname
+        schema: string
+        description: ''
+      - name: attribute
+        schema: string
+        description: ''
+      - name: attributevalue
+        schema: string
+        description: ''
+      - name: startbirthdate
+        schema: string
+        description: ''
+      - name: endbirthdate
+        schema: string
+        description: ''
+      - name: startlastpurchasedate
+        schema: string
+        description: ''
+      - name: endlastpurchasedate
+        schema: string
+        description: ''
+      - name: lastupdatedate
+        schema: string
+        description: ''
+      - name: showstatusdetails
+        schema: boolean
+        description: ''
+      - name: showdeletedaddresses
+        schema: boolean
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contact/stream
+    method: getContactsStream
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to retrieve contacts. The response is a stream.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: contactids
+        schema: array
+        description: ''
+      - name: unicitykeys
+        schema: array
+        description: ''
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: addresses
+        schema: array
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: countrycode
+        schema: string
+        description: ''
+      - name: postalcode
+        schema: string
+        description: ''
+      - name: walletnumid
+        schema: string
+        description: ''
+      - name: externalnumid
+        schema: string
+        description: ''
+      - name: marketcode
+        schema: string
+        description: ''
+      - name: shopcode
+        schema: string
+        description: ''
+      - name: companyname
+        schema: string
+        description: ''
+      - name: attribute
+        schema: string
+        description: ''
+      - name: attributevalue
+        schema: string
+        description: ''
+      - name: startbirthdate
+        schema: string
+        description: ''
+      - name: endbirthdate
+        schema: string
+        description: ''
+      - name: startlastpurchasedate
+        schema: string
+        description: ''
+      - name: endlastpurchasedate
+        schema: string
+        description: ''
+      - name: lastupdatedate
+        schema: string
+        description: ''
+      - name: showstatusdetails
+        schema: boolean
+        description: ''
+      - name: showdeletedaddresses
+        schema: boolean
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contact/set
+    method: createNewContact
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create a new contact.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: contactid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: person
+        schema: object
+        description: ''
+      - name: legalentity
+        schema: object
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: identitydocuments
+        schema: array
+        description: ''
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: addresses
+        schema: array
+        description: ''
+      - name: paymentdata
+        schema: object
+        description: ''
+      - name: loyaltycards
+        schema: array
+        description: ''
+      - name: trackingdata
+        schema: object
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: statusdetail
+        schema: object
+        description: ''
+      - name: businesscreationdate
+        schema: string
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contact/upsert
+    method: upsertContact
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create or modify a contact.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: contactid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: person
+        schema: object
+        description: ''
+      - name: legalentity
+        schema: object
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: identitydocuments
+        schema: array
+        description: ''
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: addresses
+        schema: array
+        description: ''
+      - name: paymentdata
+        schema: object
+        description: ''
+      - name: loyaltycards
+        schema: array
+        description: ''
+      - name: trackingdata
+        schema: object
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: statusdetail
+        schema: object
+        description: ''
+      - name: businesscreationdate
+        schema: string
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contact/get/{contactid}
+    method: getContact
+    httpMethod: get
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to retrieve a given contact.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contact/delete/{contactid}
+    method: deleteContact
+    httpMethod: delete
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to delete a contact.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contact/addattributes
+    method: addContactAttribute
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: >
+      This service is used to add a custom attribute with its value to a
+      contact.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /contact/deleteattributes
+    method: deleteAttribute
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: >
+      This service is used to delete a custom attribute with its value from a
+      contact.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/activate
+    method: activateUser
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to activate an user.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: login
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/check
+    method: checkUserExist
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to check if an user exist.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: login
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/delete
+    method: deleteWebAccount
+    httpMethod: delete
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to delete an web account.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: webaccountid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/get/{webaccountid}
+    method: getWebAccountDetails
+    httpMethod: get
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to get details of an web account.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/login
+    method: logWebAccount
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to log a web account.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: login
+        schema: string
+        description: ''
+      - name: password
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/resetpassword
+    method: resetWebAccountPassword
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to reset the password of a web account.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: login
+        schema: string
+        description: ''
+      - name: password
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/search
+    method: searchWebAccount
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to search web accounts.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: webaccountid
+        schema: string
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: login
+        schema: string
+        description: ''
+      - name: password
+        schema: string
+        description: ''
+      - name: blocked
+        schema: boolean
+        description: ''
+      - name: isactivated
+        schema: boolean
+        description: ''
+      - name: nickname
+        schema: string
+        description: ''
+      - name: firstname
+        schema: string
+        description: ''
+      - name: lastname
+        schema: string
+        description: ''
+      - name: optinphone
+        schema: boolean
+        description: ''
+      - name: optinmail
+        schema: boolean
+        description: ''
+      - name: optinemail
+        schema: boolean
+        description: ''
+      - name: partneroptinphone
+        schema: boolean
+        description: ''
+      - name: partneroptinmail
+        schema: boolean
+        description: ''
+      - name: partneroptinemail
+        schema: boolean
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/set
+    method: createWebAccount
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create a web account.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: webaccountid
+        schema: string
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: login
+        schema: string
+        description: ''
+      - name: password
+        schema: string
+        description: ''
+      - name: blocked
+        schema: boolean
+        description: ''
+      - name: isactivated
+        schema: boolean
+        description: ''
+      - name: nickname
+        schema: string
+        description: ''
+      - name: firstname
+        schema: string
+        description: ''
+      - name: lastname
+        schema: string
+        description: ''
+      - name: optinphone
+        schema: boolean
+        description: ''
+      - name: optinmail
+        schema: boolean
+        description: ''
+      - name: optinemail
+        schema: boolean
+        description: ''
+      - name: partneroptinphone
+        schema: boolean
+        description: ''
+      - name: partneroptinmail
+        schema: boolean
+        description: ''
+      - name: partneroptinemail
+        schema: boolean
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/stream
+    method: getWebAccountsStream
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to retrieve web accounts. The response is a stream.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: webaccountid
+        schema: string
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: login
+        schema: string
+        description: ''
+      - name: password
+        schema: string
+        description: ''
+      - name: blocked
+        schema: boolean
+        description: ''
+      - name: isactivated
+        schema: boolean
+        description: ''
+      - name: nickname
+        schema: string
+        description: ''
+      - name: firstname
+        schema: string
+        description: ''
+      - name: lastname
+        schema: string
+        description: ''
+      - name: optinphone
+        schema: boolean
+        description: ''
+      - name: optinmail
+        schema: boolean
+        description: ''
+      - name: optinemail
+        schema: boolean
+        description: ''
+      - name: partneroptinphone
+        schema: boolean
+        description: ''
+      - name: partneroptinmail
+        schema: boolean
+        description: ''
+      - name: partneroptinemail
+        schema: boolean
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /webaccount/update
+    method: updateWebAccount
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service replaces a web account by the provided web account object.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: webaccountid
+        schema: string
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: login
+        schema: string
+        description: ''
+      - name: password
+        schema: string
+        description: ''
+      - name: blocked
+        schema: boolean
+        description: ''
+      - name: isactivated
+        schema: boolean
+        description: ''
+      - name: nickname
+        schema: string
+        description: ''
+      - name: firstname
+        schema: string
+        description: ''
+      - name: lastname
+        schema: string
+        description: ''
+      - name: optinphone
+        schema: boolean
+        description: ''
+      - name: optinmail
+        schema: boolean
+        description: ''
+      - name: optinemail
+        schema: boolean
+        description: ''
+      - name: partneroptinphone
+        schema: boolean
+        description: ''
+      - name: partneroptinmail
+        schema: boolean
+        description: ''
+      - name: partneroptinemail
+        schema: boolean
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /supplier/delete
+    method: deleteSupplier
+    httpMethod: delete
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to delete a supplier.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: supplierid
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /supplier/get/{supplierid}
+    method: getSupplierDetails
+    httpMethod: get
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to get details of a supplier.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /supplier/search
+    method: searchSuppliers
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to search suppliers.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: supplierid
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: name
+        schema: object
+        description: ''
+      - name: displayname
+        schema: string
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: legalentity
+        schema: object
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: blocked
+        schema: boolean
+        description: ''
+      - name: isconnected
+        schema: boolean
+        description: ''
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: addresses
+        schema: array
+        description: ''
+      - name: products
+        schema: array
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /supplier/set
+    method: createSupplier
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create a new supplier.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: supplierid
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: name
+        schema: object
+        description: ''
+      - name: displayname
+        schema: string
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: legalentity
+        schema: object
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: blocked
+        schema: boolean
+        description: ''
+      - name: isconnected
+        schema: boolean
+        description: ''
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: addresses
+        schema: array
+        description: ''
+      - name: products
+        schema: array
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /supplier/stream
+    method: getSuppliersStream
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to retrieve suppliers. The response is a stream.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: supplierid
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: name
+        schema: object
+        description: ''
+      - name: displayname
+        schema: string
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: legalentity
+        schema: object
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: blocked
+        schema: boolean
+        description: ''
+      - name: isconnected
+        schema: boolean
+        description: ''
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: addresses
+        schema: array
+        description: ''
+      - name: products
+        schema: array
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /supplier/upsert
+    method: modifySupplier
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to modify a supplier.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: supplierid
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: name
+        schema: object
+        description: ''
+      - name: displayname
+        schema: string
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: legalentity
+        schema: object
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: blocked
+        schema: boolean
+        description: ''
+      - name: isconnected
+        schema: boolean
+        description: ''
+      - name: emails
+        schema: array
+        description: ''
+      - name: phones
+        schema: array
+        description: ''
+      - name: addresses
+        schema: array
+        description: ''
+      - name: products
+        schema: array
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/delete
+    method: mailDelete
+    httpMethod: delete
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to delete a mail.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: mailid
+        schema: string
+        description: ''
+      - name: contactids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/get/{mailid}
+    method: getMailDetails
+    httpMethod: get
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to get details of a mail.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/receive
+    method: receiveMail
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to receive mails.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: mailid
+        schema: string
+        description: ''
+      - name: mailids
+        schema: array
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: contactids
+        schema: array
+        description: ''
+      - name: ordernums
+        schema: array
+        description: ''
+      - name: from
+        schema: string
+        description: ''
+      - name: to
+        schema: string
+        description: ''
+      - name: cc
+        schema: string
+        description: ''
+      - name: bcc
+        schema: string
+        description: ''
+      - name: subject
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: statuses
+        schema: array
+        description: ''
+      - name: withwords
+        schema: string
+        description: ''
+      - name: withoutwords
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: isreserved
+        schema: boolean
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/reprocess
+    method: reprocessMail
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to reprocess mails. The response is a stream.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: mailid
+        schema: string
+        description: ''
+      - name: mailids
+        schema: array
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: contactids
+        schema: array
+        description: ''
+      - name: ordernums
+        schema: array
+        description: ''
+      - name: from
+        schema: string
+        description: ''
+      - name: to
+        schema: string
+        description: ''
+      - name: cc
+        schema: string
+        description: ''
+      - name: bcc
+        schema: string
+        description: ''
+      - name: subject
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: statuses
+        schema: array
+        description: ''
+      - name: withwords
+        schema: string
+        description: ''
+      - name: withoutwords
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: isreserved
+        schema: boolean
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/search
+    method: mailSearch
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to search mails by various criterias.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: mailid
+        schema: string
+        description: ''
+      - name: mailids
+        schema: array
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: contactids
+        schema: array
+        description: ''
+      - name: ordernums
+        schema: array
+        description: ''
+      - name: from
+        schema: string
+        description: ''
+      - name: to
+        schema: string
+        description: ''
+      - name: cc
+        schema: string
+        description: ''
+      - name: bcc
+        schema: string
+        description: ''
+      - name: subject
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: statuses
+        schema: array
+        description: ''
+      - name: withwords
+        schema: string
+        description: ''
+      - name: withoutwords
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: isreserved
+        schema: boolean
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/send
+    method: createMail
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create and send a new mail.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: mailid
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: trackingdata
+        schema: object
+        description: ''
+      - name: trackings
+        schema: array
+        description: ''
+      - name: person
+        schema: object
+        description: ''
+      - name: properties
+        schema: object
+        description: ''
+      - name: comments
+        schema: array
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+      - name: sentdate
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: isreserved
+        schema: boolean
+        description: ''
+      - name: reservationdate
+        schema: string
+        description: ''
+      - name: sendandarchive
+        schema: boolean
+        description: ''
+      - name: lang
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/set
+    method: createNewMail
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create a new mail.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: mailid
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: trackingdata
+        schema: object
+        description: ''
+      - name: trackings
+        schema: array
+        description: ''
+      - name: person
+        schema: object
+        description: ''
+      - name: properties
+        schema: object
+        description: ''
+      - name: comments
+        schema: array
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+      - name: sentdate
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: isreserved
+        schema: boolean
+        description: ''
+      - name: reservationdate
+        schema: string
+        description: ''
+      - name: sendandarchive
+        schema: boolean
+        description: ''
+      - name: lang
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/stream
+    method: getMailStream
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to retrieve mails. The response is a stream.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: mailid
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: trackingdata
+        schema: object
+        description: ''
+      - name: trackings
+        schema: array
+        description: ''
+      - name: person
+        schema: object
+        description: ''
+      - name: properties
+        schema: object
+        description: ''
+      - name: comments
+        schema: array
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+      - name: sentdate
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: isreserved
+        schema: boolean
+        description: ''
+      - name: reservationdate
+        schema: string
+        description: ''
+      - name: sendandarchive
+        schema: boolean
+        description: ''
+      - name: lang
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /mail/upsert
+    method: modifyMail
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to modify a mail.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: mailid
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: trackingdata
+        schema: object
+        description: ''
+      - name: trackings
+        schema: array
+        description: ''
+      - name: person
+        schema: object
+        description: ''
+      - name: properties
+        schema: object
+        description: ''
+      - name: comments
+        schema: array
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+      - name: sentdate
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: isreserved
+        schema: boolean
+        description: ''
+      - name: reservationdate
+        schema: string
+        description: ''
+      - name: sendandarchive
+        schema: boolean
+        description: ''
+      - name: lang
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /template/delete
+    method: deleteMailTemplate
+    httpMethod: delete
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to delete a mail template.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: description
+        schema: string
+        description: ''
+      - name: mailtemplateid
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: lang
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: subject
+        schema: string
+        description: ''
+      - name: body
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: endate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /template/get/{mailtemplateid}
+    method: getMailTemplateDetails
+    httpMethod: get
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to get details of a mail template.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /template/search
+    method: searchMailTemplate
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to search templates of mail by various criterias.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: description
+        schema: string
+        description: ''
+      - name: mailtemplateid
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: lang
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: subject
+        schema: string
+        description: ''
+      - name: body
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: endate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /template/set
+    method: createMailTemplate
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create a new mail template.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: description
+        schema: string
+        description: ''
+      - name: mailtemplateid
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: maildata
+        schema: array
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: endate
+        schema: string
+        description: ''
+      - name: campaigncode
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /template/stream
+    method: getMailTemplateStream
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to retrieve mail templates. The response is a stream.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: description
+        schema: string
+        description: ''
+      - name: mailtemplateid
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: lang
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: subject
+        schema: string
+        description: ''
+      - name: body
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: endate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /template/upsert
+    method: modifyMailTemplate
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to modify a mail template.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: description
+        schema: string
+        description: ''
+      - name: mailtemplateid
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: tenantid
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: maildata
+        schema: array
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: endate
+        schema: string
+        description: ''
+      - name: campaigncode
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /notification/delete
+    method: deleteNotification
+    httpMethod: delete
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to delete a notification.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: notificationid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: eventtype
+        schema: string
+        description: ''
+      - name: eventcode
+        schema: string
+        description: ''
+      - name: justificationcode
+        schema: string
+        description: ''
+      - name: ordernum
+        schema: string
+        description: ''
+      - name: invoicenumber
+        schema: string
+        description: ''
+      - name: paymentbookingid
+        schema: string
+        description: ''
+      - name: emitterid
+        schema: string
+        description: ''
+      - name: channel
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: claimtype
+        schema: string
+        description: ''
+      - name: claimcode
+        schema: string
+        description: ''
+      - name: claimjuscode
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: endate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /notification/get/{notificationid}
+    method: getNotificationDetails
+    httpMethod: get
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to get details of a notification.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /notification/search
+    method: searchNotificationByCriteria
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to search notifications by various criterias.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: notificationid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: eventtype
+        schema: string
+        description: ''
+      - name: eventcode
+        schema: string
+        description: ''
+      - name: justificationcode
+        schema: string
+        description: ''
+      - name: ordernum
+        schema: string
+        description: ''
+      - name: invoicenumber
+        schema: string
+        description: ''
+      - name: paymentbookingid
+        schema: string
+        description: ''
+      - name: emitterid
+        schema: string
+        description: ''
+      - name: channel
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: claimtype
+        schema: string
+        description: ''
+      - name: claimcode
+        schema: string
+        description: ''
+      - name: claimjuscode
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: endate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /notification/set
+    method: createNotification
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create a new notification.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: notificationid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: eventtype
+        schema: string
+        description: ''
+      - name: eventcode
+        schema: string
+        description: ''
+      - name: topic
+        schema: string
+        description: ''
+      - name: justificationcode
+        schema: string
+        description: ''
+      - name: retentiondelay
+        schema: integer
+        description: ''
+      - name: retentionunit
+        schema: integer
+        description: ''
+      - name: trackingdata
+        schema: object
+        description: ''
+      - name: emitterid
+        schema: string
+        description: ''
+      - name: channel
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: claims
+        schema: array
+        description: ''
+      - name: cancellations
+        schema: array
+        description: ''
+      - name: exclusions
+        schema: array
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /notification/stream
+    method: getNotificationsStream
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to retrieve notifications. The response is a stream.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: notificationid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: eventtype
+        schema: string
+        description: ''
+      - name: eventcode
+        schema: string
+        description: ''
+      - name: justificationcode
+        schema: string
+        description: ''
+      - name: ordernum
+        schema: string
+        description: ''
+      - name: invoicenumber
+        schema: string
+        description: ''
+      - name: paymentbookingid
+        schema: string
+        description: ''
+      - name: emitterid
+        schema: string
+        description: ''
+      - name: channel
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: claimtype
+        schema: string
+        description: ''
+      - name: claimcode
+        schema: string
+        description: ''
+      - name: claimjuscode
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: endate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /notification/upsert
+    method: modifyNotification
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to modify a notification.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: notificationid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: identifier
+        schema: object
+        description: ''
+      - name: eventtype
+        schema: string
+        description: ''
+      - name: eventcode
+        schema: string
+        description: ''
+      - name: topic
+        schema: string
+        description: ''
+      - name: justificationcode
+        schema: string
+        description: ''
+      - name: retentiondelay
+        schema: integer
+        description: ''
+      - name: retentionunit
+        schema: integer
+        description: ''
+      - name: trackingdata
+        schema: object
+        description: ''
+      - name: emitterid
+        schema: string
+        description: ''
+      - name: channel
+        schema: string
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: claims
+        schema: array
+        description: ''
+      - name: cancellations
+        schema: array
+        description: ''
+      - name: exclusions
+        schema: array
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /wallet/delete
+    method: deleteWallet
+    httpMethod: delete
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to delete a wallet.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: walletid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: walletids
+        schema: array
+        description: ''
+      - name: contactids
+        schema: array
+        description: ''
+      - name: wallettype
+        schema: string
+        description: ''
+      - name: loyaltycode
+        schema: string
+        description: ''
+      - name: operationtype
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: ordernum
+        schema: string
+        description: ''
+      - name: ordernums
+        schema: array
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /wallet/get/{walletid}
+    method: getWalletDetails
+    httpMethod: get
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to get details of a wallet.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /wallet/search
+    method: searchWalletByCriteria
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to search wallets by various criterias.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: walletid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: walletids
+        schema: array
+        description: ''
+      - name: contactids
+        schema: array
+        description: ''
+      - name: wallettype
+        schema: string
+        description: ''
+      - name: loyaltycode
+        schema: string
+        description: ''
+      - name: operationtype
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: ordernum
+        schema: string
+        description: ''
+      - name: ordernums
+        schema: array
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /wallet/set
+    method: createNewWallet
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to create a new wallet.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: walletid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: wallettype
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: operationtype
+        schema: string
+        description: ''
+      - name: groupname
+        schema: string
+        description: ''
+      - name: vouchernumid
+        schema: string
+        description: ''
+      - name: promotionid
+        schema: string
+        description: ''
+      - name: isused
+        schema: boolean
+        description: ''
+      - name: ordernums
+        schema: array
+        description: ''
+      - name: amount
+        schema: number
+        description: ''
+      - name: amountdetail
+        schema: object
+        description: ''
+      - name: properties
+        schema: object
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /wallet/stream
+    method: getWalletStream
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to retrieve wallets. The response is a stream.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: walletid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: walletids
+        schema: array
+        description: ''
+      - name: contactids
+        schema: array
+        description: ''
+      - name: wallettype
+        schema: string
+        description: ''
+      - name: loyaltycode
+        schema: string
+        description: ''
+      - name: operationtype
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: ordernum
+        schema: string
+        description: ''
+      - name: ordernums
+        schema: array
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /wallet/upsert
+    method: modifyWallet
+    httpMethod: post
+    tag: Customer Service
+    typeScriptTag: customerService
+    description: |
+      This service is used to modify a wallet.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: walletid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: wallettype
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: operationtype
+        schema: string
+        description: ''
+      - name: groupname
+        schema: string
+        description: ''
+      - name: vouchernumid
+        schema: string
+        description: ''
+      - name: promotionid
+        schema: string
+        description: ''
+      - name: isused
+        schema: boolean
+        description: ''
+      - name: ordernums
+        schema: array
+        description: ''
+      - name: amount
+        schema: number
+        description: ''
+      - name: amountdetail
+        schema: object
+        description: ''
+      - name: properties
+        schema: object
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /offer/set
+    method: createNewOffer
+    httpMethod: post
+    tag: Offer Service
+    typeScriptTag: offerService
+    description: |
+      This service is used to create a new offer.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: title
+        schema: string
+        description: ''
+      - name: offerid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: unicitycode
+        schema: string
+        description: ''
+      - name: offertype
+        schema: string
+        description: ''
+      - name: offerdescription
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: codification
+        schema: undefined
+        description: ''
+      - name: products
+        schema: array
+        description: ''
+      - name: subscription
+        schema: object
+        description: ''
+      - name: properties
+        schema: object
+        description: ''
+      - name: pricing
+        schema: object
+        description: ''
+      - name: medias
+        schema: array
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: createdby
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+      - name: updatedby
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /offer/upsert
+    method: createOrUpdateOffer
+    httpMethod: post
+    tag: Offer Service
+    typeScriptTag: offerService
+    description: >
+      This service is used to create or update a new offer. Based on unicitykey,
+      the service checks if the offer already exists or not.
+
+      If exists, the offer is updated otherwise is created.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: title
+        schema: string
+        description: ''
+      - name: offerid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: unicitycode
+        schema: string
+        description: ''
+      - name: offertype
+        schema: string
+        description: ''
+      - name: offerdescription
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: codification
+        schema: undefined
+        description: ''
+      - name: products
+        schema: array
+        description: ''
+      - name: subscription
+        schema: object
+        description: ''
+      - name: properties
+        schema: object
+        description: ''
+      - name: pricing
+        schema: object
+        description: ''
+      - name: medias
+        schema: array
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+      - name: createdate
+        schema: string
+        description: ''
+      - name: createdby
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+      - name: updatedby
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /offer/publish
+    method: pullPublishOffer
+    httpMethod: post
+    tag: Offer Service
+    typeScriptTag: offerService
+    description: |
+      This service is used to pull offers to publish or unpublish.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: offerid
+        schema: string
+        description: ''
+      - name: offerids
+        schema: array
+        description: ''
+      - name: unicitykeys
+        schema: array
+        description: ''
+      - name: unicitycodes
+        schema: array
+        description: ''
+      - name: offertype
+        schema: string
+        description: ''
+      - name: productcode
+        schema: string
+        description: ''
+      - name: productgroupcode
+        schema: string
+        description: ''
+      - name: blcode
+        schema: string
+        description: ''
+      - name: companycode
+        schema: string
+        description: ''
+      - name: countrycode
+        schema: string
+        description: ''
+      - name: platformcode
+        schema: string
+        description: ''
+      - name: vendorcode
+        schema: string
+        description: ''
+      - name: marketcode
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: lastupdatedate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /offer/delete/{offerid}
+    method: deleteOffer
+    httpMethod: post
+    tag: Offer Service
+    typeScriptTag: offerService
+    description: |
+      This service is used to delete an offer.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: offerid
+        schema: string
+        required: true
+        description: Offer identifier
+        example: OFFERID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /product/publish
+    method: pullPublishProduct
+    httpMethod: post
+    tag: Product Service
+    typeScriptTag: productService
+    description: |
+      This service is used to pull products to publish.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: productid
+        schema: string
+        description: ''
+      - name: productids
+        schema: array
+        description: ''
+      - name: unicitykeys
+        schema: array
+        description: ''
+      - name: typology
+        schema: string
+        description: ''
+      - name: countrycode
+        schema: string
+        description: ''
+      - name: groupcode
+        schema: string
+        description: ''
+      - name: groupcodes
+        schema: array
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+      - name: platformcodes
+        schema: array
+        description: ''
+      - name: contentids
+        schema: array
+        description: ''
+      - name: contenttypes
+        schema: array
+        description: ''
+      - name: servicetypes
+        schema: array
+        description: ''
+      - name: categories
+        schema: array
+        description: ''
+      - name: studios
+        schema: array
+        description: ''
+      - name: tvodtiers
+        schema: array
+        description: ''
+      - name: subscriptiontiers
+        schema: array
+        description: ''
+      - name: startupdatedate
+        schema: string
+        description: ''
+      - name: endupdatedate
+        schema: string
+        description: ''
+      - name: customdata
+        schema: array
+        description: ''
+      - name: attributes
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /promotion/upsert
+    method: upsertPromotion
+    httpMethod: post
+    tag: Promotion Service
+    typeScriptTag: promotionService
+    description: >
+      This service is used to create or update a promotion. If the promotionid
+      field is filled, the service will search the concerned promotion and
+      update it.
+
+
+      In case of update, the promotion stored is the database is replaced by the
+      input promotion is the request. No merge is done.
+
+
+      If pomotionid is not filled or filled but not found, a new promotion is
+      created.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: title
+        schema: string
+        description: ''
+      - name: description
+        schema: string
+        description: ''
+      - name: promotionid
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: usagelimit
+        schema: string
+        description: ''
+      - name: usagelimitDetails
+        schema: integer
+        description: ''
+      - name: promotioncodes
+        schema: array
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: rules
+        schema: array
+        description: ''
+      - name: medias
+        schema: array
+        description: ''
+      - name: combinablepromo
+        schema: boolean
+        description: ''
+        default: true
+      - name: commissiondiscountprice
+        schema: boolean
+        description: ''
+        default: false
+      - name: createdate
+        schema: string
+        description: ''
+      - name: updatedate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /promotion/set
+    method: createNewPromotion
+    httpMethod: post
+    tag: Promotion Service
+    typeScriptTag: promotionService
+    description: |
+      This service is used to create a new promotion.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: title
+        schema: string
+        description: ''
+      - name: description
+        schema: string
+        description: ''
+      - name: unicitykey
+        schema: string
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: usagelimit
+        schema: string
+        description: ''
+      - name: usagelimitDetails
+        schema: integer
+        description: ''
+      - name: promotioncodes
+        schema: array
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: medias
+        schema: array
+        description: ''
+      - name: rules
+        schema: array
+        description: ''
+      - name: combinablepromo
+        schema: boolean
+        description: ''
+        default: true
+      - name: commissiondiscountprice
+        schema: boolean
+        description: ''
+        default: false
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /promotion/search
+    method: searchPromotions
+    httpMethod: post
+    tag: Promotion Service
+    typeScriptTag: promotionService
+    description: |
+      This service is used to search promotions.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: promotionid
+        schema: string
+        description: ''
+      - name: promotionids
+        schema: array
+        description: ''
+      - name: businesslinecode
+        schema: string
+        description: ''
+      - name: countrycode
+        schema: string
+        description: ''
+      - name: languagecode
+        schema: string
+        description: ''
+      - name: haspromocode
+        schema: boolean
+        description: ''
+      - name: marketcode
+        schema: string
+        description: ''
+      - name: usagelimit
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /promotion/publish
+    method: informMerchantAboutPromotion
+    httpMethod: post
+    tag: Promotion Service
+    typeScriptTag: promotionService
+    description: >
+      This service informs the merchant about promontions (conditions and
+      actions).
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: businesslinecode
+        schema: string
+        description: ''
+      - name: countrycode
+        schema: string
+        description: ''
+      - name: promotionid
+        schema: string
+        description: ''
+      - name: haspromocode
+        schema: boolean
+        description: ''
+      - name: marketcode
+        schema: string
+        description: ''
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: conditionnames
+        schema: array
+        description: ''
+      - name: discountnames
+        schema: array
+        description: ''
+      - name: businesskeys
+        schema: array
+        description: ''
+      - name: offertypes
+        schema: array
+        description: ''
+      - name: offercodes
+        schema: array
+        description: ''
+      - name: productcodes
+        schema: array
+        description: ''
+      - name: channelcodes
+        schema: array
+        description: ''
+      - name: vendorcodes
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /promotion/delete/{promotionid}
+    method: deletePromotionById
+    httpMethod: get
+    tag: Promotion Service
+    typeScriptTag: promotionService
+    description: >
+      This service is used to delete a promotion. If the promotion was already
+      loaded, the pricing service will unload the deleted promotion.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /valorization/valorize
+    method: valorizeBasket
+    httpMethod: post
+    tag: Pricing Service
+    typeScriptTag: pricingService
+    description: >
+      This service is used to calculate all prices of a basket.
+
+      The service discards all input prices coming within the request and set
+      all known prices inside the basket. If a price hasn’t been found, the
+      service returns an error.
+
+      The input basket is controlled before to be valorized. The checklist is:
+
+      -  existence of at least one basket line
+
+      -  each basket line must have a unique offer identifier, and the offer is
+      published
+
+      -  the requested quantity is a positive value
+
+      -   if a vendor exists and not blocked
+
+      -  Check the validity of the promocode if given
+
+
+      The service set the price:
+
+      -  for each offer of the basket
+
+      -  for each additionnal services attached to the offers
+
+
+      If for a basket line, many prices exist due to for example a typology of
+      price (National price, local, advertising price, …), the service applies
+      the business logic to find the good price.
+
+
+      Once all prices and all checks are OK, the service applies all active
+      promotions on the basket.
+
+      An active promotion, is published promotion such as the period include the
+      submission date of the basket.
+
+
+      Promotions are divided into:
+
+      -  a list of conditions (minimum of basket amount, a specific product, ..)
+
+      -  a list of benefits (discount in percentage, added offer, discount on
+      delivery fees, …)
+
+
+      If for a given active promotion, the basket satisfies all the conditions,
+      then all the benefits are applied to the basket.
+
+      At the end, the service calculates some hash control to guaranty the
+      prices won’t be altered.
+
+      The hash is stored in the amount node of the basket and each lines.
+
+      If you use Gridbees Booking service, those hash will be recalculated by
+      the booking service.
+
+      The value of the hash in the request will be compared with the value
+      obtained by the booking service.
+
+
+      The service uses these fields to create the hash:
+
+      - amount.grossamount
+
+      - amount.netamount
+
+      - amount.commissionamount
+
+      - amount.totaltopay
+
+      - amount.totaltorefund
+
+      - amount.discountamount
+
+      - amount.additionalserviceamount
+
+      - amount.additionalassemblyamount
+
+      - amount.additionalrecoveryamount
+
+      - amount.feesdiscountamount
+
+      - amount.discountamount
+
+      - amount.adjustedamount
+
+      - amount.fees
+
+      - ordertracking .vendorcode
+
+      - line.offerid
+
+      - line.quantity
+
+      - line.offerbookingdate
+
+      - line.offerbookinghour
+
+
+      The service uses the algorithm SHA-256 to generate the hash by adding a
+      secret key.
+
+
+      <table id="t01">
+
+      <caption>Pricing Error Codes</caption>
+
+      <tr>
+
+      <th>Error Code</th>
+
+      <th>Description</th>
+
+      </tr>
+
+      <tr>
+
+      <td>PROMONOTMARKET</td>
+
+      <td>The promotion code doesn’t exist in the market</td>
+
+      </tr>
+
+      <tr>
+
+      <td>PROMOEXPIRED</td>
+
+      <td>Promotion code expired</td>
+
+      </tr>
+
+      <tr>
+
+      <td>PROMONOTEXISTS</td>
+
+      <td>Promotion code not exists</td>
+
+      </tr>
+
+      <tr>
+
+      <td>PROMONOTPUPLISHED</td>
+
+      <td>Promotion not published</td>
+
+      </tr>
+
+      <tr>
+
+      <td>VOUCHEREXPIRED</td>
+
+      <td>Coupon code is expired</td>
+
+      </tr>
+
+      <tr>
+
+      <td>VOUCHERUSED</td>
+
+      <td>Coupon code is already burned</td>
+
+      </tr>
+
+      <tr>
+
+      <td>OFFERNOTEXIST</td>
+
+      <td>Offer not exists</td>
+
+      </tr>
+
+      <tr>
+
+      <td>PRICENOTFOUND</td>
+
+      <td>Offer exists but the price isn’t found</td>
+
+      </tr>
+
+      <tr>
+
+      <td>PROMOCODENOTSATISFIED</td>
+
+      <td>Promotion code is valid, but not all the conditions are satisfied</td>
+
+      </tr>
+
+      <tr>
+
+      <td>PAYMENTMODECHANGED</td>
+
+      <td>The merchant payment mode has changed </td>
+
+      </tr>
+
+      <tr>
+
+      <td>VENDORNOTEXIST</td>
+
+      <td>Vendor not exists</td>
+
+      </tr>
+
+      <tr>
+
+      <td>VENDORBLOCKED</td>
+
+      <td>Vendor is blocked</td>
+
+      </tr>
+
+
+      <tr>
+
+      <td>PAYMENTISPENDING</td>
+
+      <td>Payment is pending</td>
+
+      </tr>
+
+      <tr>
+
+      <td>ORDERNOTFOUND</td>
+
+      <td>Order not found for the cancellation</td>
+
+      </tr>
+
+      </table>
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: profile
+        schema: object
+        required: false
+        description: ''
+      - name: identifier
+        schema: object
+        required: true
+        description: ''
+      - name: ordertracking
+        schema: object
+        required: true
+        description: ''
+      - name: comtracking
+        schema: object
+        required: false
+        description: ''
+      - name: businesscreationdate
+        schema: string
+        required: false
+        description: ''
+      - name: lines
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /booking/availabilities
+    method: refreshTheoreticalStocks
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This service is used to refresh the theoretical stocks of the suppier for
+      a given period
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: availabilitylines
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /booking/availability
+    method: checkAvailability
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This method is used to know the actual quantity of a given offer with
+      refined detail in the call such as the travel date.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: availability
+        schema: object
+        description: ''
+      - name: availabilitycontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /booking/request
+    method: reserveOffers
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This method is used to reserve some offers. This action will block the
+      stock of the requested quantity for each offer.
+
+      Most of the time, this request is done to guaranty to the client the
+      reservation is blocked for a duration (configuration parameter).
+
+
+      During this duration, the merchant application will have time to process
+      the payment of the reservation.
+
+
+      All amount information comes from a [pricing
+      service](https://assets-global.website-files.com).
+
+      If you use the Gridbees price valorization service, the list of data
+      coming for this valorization service are:
+
+      -  All Amount nodes
+
+      -  Marketing information such as promotion code,
+
+      -  List of all rules applied to the orders
+
+      - Hash control data to guaranty the quality of the data
+
+
+      Once the payment has been made, the reservation must be confirmed,
+      otherwise the system will un the reservation after the duration and
+      unblock the stoks.
+
+
+      The service applies some operations such as:
+
+      -  If a vendor is filled, some controls on the vendor conditions
+
+      -  All mandatory fields are present including passenger’s information
+
+      -  Calculation on hash amounts to guaranty the non-alteration
+
+
+      The service returns:
+
+      - in case of success (ordercontext.status = OK), the order reference
+      (ordertracking.transactionnumber) of the reservation
+
+      - otherwise (ordercontext.status = KO), the business error code
+      (ordercontext.code)
+
+
+      <table id="t01">
+
+      <caption>Booking Error Codes</caption>
+
+      <tr>
+
+      <th>Error Code</th>
+
+      <th>Description</th>
+
+      </tr>
+
+      <tr>
+
+      <td>HASHCONTROLERROR</td>
+
+      <td>Hash control failed. Check the fields coming from Pricing service to
+      fill in your request</td>
+
+      </tr>
+
+      <tr>
+
+      <td>VENDORNOTEXISTORBLOCKED</td>
+
+      <td>Merchant code not found or blocked</td>
+
+      </tr>
+
+      <tr>
+
+      <td>ORDERNOTFOUND</td>
+
+      <td>Order not found</td>
+
+      </tr>
+
+      <tr>
+
+      <td>MAXPAIDNOTALLOWED</td>
+
+      <td>Total paid is not allowed for this payment mode</td>
+
+      </tr>
+
+      <tr>
+
+      <td>NOTIFICATIONNOTFOUND</td>
+
+      <td>The terms of sales in the request have not been found</td>
+
+      </tr>
+
+      <tr>
+
+      <td>OFFERNOTEXIST</td>
+
+      <td>Offer not exists</td>
+
+      </tr>
+
+      <tr>
+
+      <td>BOOKINGALREADYCONFIRMED</td>
+
+      <td>this booking is already confirmed</td>
+
+      </tr>
+
+      <tr>
+
+      <td>BOOKINGNOTFOUND</td>
+
+      <td>Booking not found</td>
+
+      </tr>
+
+      <tr>
+
+      <td>BOOKINGCANCELFAILED</td>
+
+      <td>Failed to release the stock for this booking</td>
+
+      </tr>
+
+      <tr>
+
+      <td>ERRORCANCELLED</td>
+
+      <td>Order not paid or already cancelled</td>
+
+      </tr>
+
+      <tr>
+
+      <td>NOTIFICATIONRETENTIONDELAYEXPIRED</td>
+
+      <td>For cancellation request, if the delay to cancel is expired, this
+      error code is sent</td>
+
+      </tr>
+
+      </table>
+
+
+      <table id="t01">
+
+      <caption>Order status</caption>
+
+      <tr>
+
+      <th>Status Type</th>
+
+      <th>Status Code</th>
+
+      <th>Description</th>
+
+      </tr>
+
+      <tr>
+
+      <td>Operational</td>
+
+      <td>PENDING</td>
+
+      <td>The order is not confirmed and is waiting for the confirmation. The
+      stock isn’t blocked for a pending order.</td>
+
+      </tr>
+
+      <tr>
+
+      <td>Operational</td>
+       <td>PROCESSED</td>
+       <td>The order is confirmed. The stocks are reserved.</td>
+      </tr>
+
+      <tr>
+
+      <td>Operational</td>
+       <td>CANCELLED</td>
+       <td>The order is cancelledand the stocks are released</td>
+      </tr>
+
+      <tr>
+
+      <td>Payment</td>
+       <td>PENDING</td>
+       <td>The payment of this order isn’t completed</td>
+      </tr>
+
+      <tr>
+
+      <td>Payment</td>
+       <td>PAID</td>
+       <td>The payment of the order is completed</td>
+      </tr>
+
+      <tr>
+
+      <tr>
+
+      <td>Payment</td>
+       <td>CANCELLED</td>
+       <td>The payment is cancelled</td>
+      </tr>
+
+      <tr>
+
+      <td>Refund</td>
+       <td>PENDING</td>
+       <td>Refund is pending</td>
+      </tr>
+
+      <tr>
+
+      <td>Refund</td>
+       <td>REFUSED</td>
+       <td>Reund is efused</td>
+      </tr>
+
+      <tr>
+
+      <td>Refund</td>
+       <td>CANCELLED</td>
+       <td>The payment is cancelled</td>
+      </tr>
+
+      <tr>
+
+      <td>Refund</td>
+       <td>PAID</td>
+       <td>Refuns is paid</td>
+      </tr>
+
+      <tr>
+
+      <td>FILTERING</td>
+       <td>TOREPROCESS</td>
+       <td>Technical error. The order must be reprocessed</td>
+      </tr>
+
+      </table>
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: order
+        schema: object
+        description: ''
+      - name: ordercontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /booking/confirm
+    method: confirmOrder
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This method is used to confirm an order done by a call to booking/request
+      service. The request is the same than the booking request call, but
+      complete by payment information.
+
+      The service applies some operations such as:
+
+      -  The existence of the bookig in Gridbees database (search based on the
+      orderid field) and make some coherence controls.
+
+      -  Overdue payment or not balanced payment
+
+      -  Burns “one shot used” promotional vouchers
+
+      -  Sends email to the customer in some conditions (deferred promotion
+      detected, email template detected, ...)
+
+      -  Stores and controls different payment modes used to pay the order
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: orderid
+        schema: string
+        required: true
+        description: ''
+        example: ORDERID
+      - name: ordertracking
+        schema: object
+        required: true
+        description: ''
+      - name: payment
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /booking/cancel
+    method: cancelOrder
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This service is used to cancel an order and release if needed the stock.
+
+      An order can be cancelled if it has been already paid or not already
+      cancelled.
+
+      The service searches for the order and calculates the cancellation fees
+      according to the terms of sales.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: orderid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: vendorcode
+        schema: string
+        required: false
+        description: ''
+      - name: cancellationdate
+        schema: string
+        required: false
+        description: ''
+      - name: ordernumid
+        schema: string
+        required: false
+        description: ''
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /booking/update
+    method: updateOrder
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This method is used to updat an existing pending or confirmed order.
+      Depending of the configuration, some changes are considered major and
+      others minor. The list of major fields must be set during the
+      configuration of a new client.
+
+      For an input request, if there are major changes:
+
+      - The order is reavaluated by the pricing service to check the new balance
+
+      - The stock availability of the original order is released if the
+      availability of the new order is confirmed.
+
+      - The original order is replaced by the new order
+
+
+      This service doesn't merge data from the original order with the new
+      order. So you need to fill all necessary fields in the new order.
+
+
+      If the original oder was already confirmed and paid, the requested changes
+      may generate some cancellation fees depending of the cancellation terms.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: order
+        schema: object
+        description: ''
+      - name: ordercontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /booking/paymentconfirmation
+    method: confirmPayment
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This method is to confirm a payment based on a payment reference. The
+      payment could be for one or many orders.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: payment
+        schema: object
+        description: ''
+      - name: paymentcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /booking/paymentcancellation
+    method: cancelPayment
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This method is to cancel a payment based on payment references. The
+      payment could be for one or many orders.
+
+      The system tries to find related orders by querying on these filters :
+
+      - movementtype = CASHING
+
+      - payment status = PENDING
+
+      - paymentmode if filled
+
+      - paymentcode if filled
+
+      - externalpaymentreference if filled
+
+      - paymentdetailid if filled
+
+      - vendorcode if filled
+
+      - accountid if filled
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: accountid
+        schema: string
+        description: ''
+      - name: vendorcode
+        schema: string
+        description: ''
+      - name: isrefused
+        schema: boolean
+        description: ''
+      - name: syncorderstatus
+        schema: boolean
+        description: ''
+      - name: cause
+        schema: string
+        description: ''
+      - name: details
+        schema: object
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /order/search
+    method: searchBookings
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This method is used to search bookings. The total results of bookings in
+      the response is limited by a parameter (default 100 results).
+
+
+      You must refine your search criteria if you didn't find your order.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: orderid
+        schema: string
+        description: ''
+      - name: contactid
+        schema: string
+        description: ''
+      - name: orderids
+        schema: array
+        description: ''
+      - name: paymentmode
+        schema: string
+        description: ''
+      - name: invoicenumber
+        schema: string
+        description: ''
+      - name: ordertype
+        schema: string
+        description: ''
+        example: BOOKING, ORDER, QUOTATION
+      - name: codification
+        schema: object
+        description: ''
+      - name: structure
+        schema: object
+        description: ''
+      - name: user
+        schema: string
+        description: ''
+      - name: booking
+        schema: object
+        description: ''
+      - name: transactionnumber
+        schema: string
+        description: ''
+      - name: lastname
+        schema: string
+        description: ''
+      - name: firstname
+        schema: undefined
+        description: ''
+      - name: paymentstatus
+        schema: string
+        description: ''
+        example: PAID, PENDING
+      - name: orderstatus
+        schema: string
+        description: ''
+        example: PROCESSED, PENDING
+      - name: startdate
+        schema: string
+        description: ''
+      - name: enddate
+        schema: string
+        description: ''
+      - name: startexpirationdate
+        schema: string
+        description: ''
+      - name: endexpirationdate
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /order/purchase
+    method: directConfirmPurchase
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: >
+      This method is used to directly confirm a purchase without having to call
+      booking/request.
+
+      This means that inventory management is unnecessary with this method since
+      no stock will be blocked.
+
+      The input request is supposed to be reliable, and the order will be stored
+      as-is.
+
+      If the order reference isn't filled (ordertracking.transactionnumber), the
+      service will set this field with a unique internal reference.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: order
+        schema: object
+        description: ''
+      - name: ordercontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /order/updatestatus
+    method: updateOrderStatus
+    httpMethod: post
+    tag: Booking Service
+    typeScriptTag: bookingService
+    description: |
+      This method is used to update the order statuses.
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: orderid
+        schema: string
+        required: true
+        description: ''
+        example: ORDERID
+      - name: latest
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /masterdata/upsert
+    method: upsertMasterData
+    httpMethod: post
+    tag: MasterData Service
+    typeScriptTag: masterDataService
+    description: |
+      This method is used to create or updata a master data
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: masterdataid
+        schema: string
+        required: false
+        description: ''
+      - name: mdobject
+        schema: string
+        required: true
+        description: ''
+        example: MDOBJECT
+      - name: mddatatype
+        schema: string
+        required: false
+        description: ''
+      - name: mdaxis
+        schema: string
+        required: true
+        description: ''
+        example: MDAXIS
+      - name: mdtype
+        schema: string
+        required: false
+        description: ''
+      - name: parentcode
+        schema: string
+        required: false
+        description: ''
+      - name: code
+        schema: string
+        required: false
+        description: ''
+      - name: value
+        schema: string
+        required: false
+        description: ''
+      - name: genericcode
+        schema: string
+        required: false
+        description: ''
+      - name: externalref
+        schema: string
+        required: false
+        description: ''
+      - name: price
+        schema: number
+        required: false
+        description: ''
+      - name: backend
+        schema: object
+        required: false
+        description: ''
+      - name: translations
+        schema: array
+        required: false
+        description: ''
+      - name: updatedate
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /masterdata/search
+    method: searchMasterData
+    httpMethod: post
+    tag: MasterData Service
+    typeScriptTag: masterDataService
+    description: |
+      This method is used to search master data
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: masterdataid
+        schema: string
+        description: ''
+      - name: mdobject
+        schema: string
+        description: ''
+      - name: mddatatype
+        schema: string
+        description: ''
+      - name: mdaxis
+        schema: string
+        description: ''
+      - name: mdtype
+        schema: string
+        description: ''
+      - name: parentcode
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: value
+        schema: string
+        description: ''
+      - name: genericcode
+        schema: string
+        description: ''
+      - name: externalref
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /display/upsert
+    method: upsertDataModel
+    httpMethod: post
+    tag: MasterData Service
+    typeScriptTag: masterDataService
+    description: |
+      This method is used to create or updata a data model
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: displayid
+        schema: string
+        required: false
+        description: ''
+      - name: tenantid
+        schema: string
+        required: false
+        description: ''
+      - name: mdobject
+        schema: string
+        required: true
+        description: ''
+        example: MDOBJECT
+      - name: tabcode
+        schema: string
+        required: false
+        description: ''
+      - name: status
+        schema: string
+        required: false
+        description: ''
+      - name: mdtype
+        schema: string
+        required: false
+        description: ''
+      - name: parentcode
+        schema: string
+        required: false
+        description: ''
+      - name: code
+        schema: string
+        required: false
+        description: ''
+      - name: genericcode
+        schema: string
+        required: false
+        description: ''
+      - name: label
+        schema: string
+        required: false
+        description: ''
+      - name: priority
+        schema: integer
+        required: false
+        description: ''
+      - name: script
+        schema: string
+        required: false
+        description: ''
+      - name: backend
+        schema: object
+        required: false
+        description: ''
+      - name: displaytabs
+        schema: array
+        required: false
+        description: ''
+      - name: translations
+        schema: array
+        required: false
+        description: ''
+      - name: updatedate
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /display/search
+    method: searchMasterData
+    httpMethod: post
+    tag: MasterData Service
+    typeScriptTag: masterDataService
+    description: |
+      This method is used to search master data
+    parameters:
+      - name: xAccessId
+        schema: string
+        required: true
+        description: Access ID
+        example: X-ACCESS-ID
+      - name: displayid
+        schema: string
+        description: ''
+      - name: mdobject
+        schema: string
+        description: ''
+      - name: tabcode
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: mdtype
+        schema: string
+        description: ''
+      - name: parentcode
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: codes
+        schema: array
+        description: ''
+      - name: genericcode
+        schema: string
+        description: ''
+      - name: requestcontext
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 199
+apiDescription: >
+
+  This API is built on HTTP and is a RESTful API. This API is developed for
+  merchants to be able to manage orders.
+
+  The API services are published on HTTPS and use OAUTH2 protocol. All calls
+  need to have an API key.
+
+
+  # Definitions
+
+
+  ### Product
+    A product is the stock keeping unit (SKU), the item to sale. The attributes of a product could include manufacturer, material, service, warranty terms.
+    The PIM is the repository of all products used by the different services of the solution
+
+  ### Offer
+    An offer is a set of products and represents the commercial agreements sent by the merchant.
+    An offer can have:
+    -  one or many products
+    -  Prices
+    -  Additional services
+    -  A publication period, during this period the offer is active and can be ordered
+
+  ### Order
+    An order contains information allowing to purchase some offers.
+    An order has one or several order lines, and each order line is for an offer.
+    The order has mandatory information such as amounts, payments, and addresses.
+
+  ### Dates
+    All Gridbees services use UTC datetime and the default format is: <b>yyyy-MM-dd'T'HH:mm:ss.SSSZ</b>.
