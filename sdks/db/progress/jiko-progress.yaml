@@ -1,0 +1,199 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/v1/agreements/:
+    get: Individuals_getAgreements
+  /api/v1/applications/:
+    post: Individuals_createApplication
+  /api/v1/applications/{application_id}/:
+    get: Individuals_getApplication
+  /api/v1/applications/{application_id}/apply/:
+    post: Individuals_initiateKycSubmission
+  /api/v1/applications/{application_id}/documents/{document_type}/file/:
+    post: Individuals_uploadDocumentToApplication
+  /api/v1/business-applications/:
+    post: Businesses_createApplication
+  /api/v1/business-applications/{application_id}/:
+    get: Businesses_getApplication
+    patch: Businesses_updateApplication
+  /api/v1/business-applications/{application_id}/apply/:
+    post: Businesses_submitApplication
+  /api/v1/business-applications/{application_id}/documents/:
+    get: Businesses_listDocumentRequests
+  /api/v1/business-applications/{application_id}/related-party-applications/:
+    get: Businesses_listRelatedPartyApplications
+    post: Businesses_createRelatedPartyApplication
+  /api/v1/business-applications/{application_id}/related-party-applications/{related_party_application_id}/:
+    delete: Businesses_deleteRelatedPartyApplication
+    patch: Businesses_updateRelatedPartyApplication
+  /api/v1/customers/{customer_id}/:
+    get: Customers_getDetails
+  /api/v1/customers/{customer_id}/counterparties/:
+    get: Counterparties_listForCustomer
+  /api/v1/customers/{customer_id}/counterparties/plaid/:
+    post: CounterpartiesPlaid_createPlaidCounterparties
+  /api/v1/customers/{customer_id}/counterparties/plaid/link-token/:
+    post: CounterpartiesPlaid_createLinkToken
+  /api/v1/customers/{customer_id}/counterparties/{counterparty_id}/:
+    get: Counterparties_getVerificationStatus
+  /api/v1/customers/{customer_id}/counterparties/{counterparty_id}/plaid/verify/:
+    post: CounterpartiesPlaid_completeVerification
+  /api/v1/customers/{customer_id}/documents/{document_type}/file/:
+    post: Customers_uploadDocumentToCustomer
+  /api/v1/customers/{customer_id}/jiko-accounts/:
+    get: Accounts_listCustomerAccounts
+  /api/v1/customers/{customer_id}/statements/:
+    get: Statements_listForCustomer
+  /api/v1/customers/{customer_id}/trades/:
+    get: Trades_listCustomerTrades
+  /api/v1/customers/{customer_id}/transactions/:
+    get: Transactions_listCustomerTransactions
+  /api/v1/documents/{document_id}/:
+    post: Businesses_uploadDocument
+  /api/v1/events/:
+    get: Events_getPastEvents
+  /api/v1/events/types/:
+    get: Events_listEventTypes
+  /api/v1/jiko-accounts/{account_id}/:
+    get: Accounts_getSpecificAccount
+  /api/v1/jiko-accounts/{account_id}/ach-originating/:
+    get: Ach_listAchOriginations
+    post: Ach_originateTransaction
+  /api/v1/jiko-accounts/{account_id}/ach-originating/{transfer_id}/:
+    get: Ach_getTransferOrigination
+  /api/v1/jiko-accounts/{account_id}/card-orders/:
+    get: PhysicalCards_listCardOrders
+    post: PhysicalCards_createOrder
+  /api/v1/jiko-accounts/{account_id}/card-orders/{card_order_id}/:
+    get: PhysicalCards_getOrderInfo
+  /api/v1/jiko-accounts/{account_id}/cards/:
+    get: ManageCards_getAccountCards
+  /api/v1/jiko-accounts/{account_id}/cards/{card_id}/close/:
+    post: ManageCards_closeCard
+  /api/v1/jiko-accounts/{account_id}/cards/{card_id}/pin/:
+    post: ManageCards_setCardPin
+  /api/v1/jiko-accounts/{account_id}/cards/{card_id}/status/:
+    get: ManageCards_getStatus
+    patch: ManageCards_setCardStatus
+  /api/v1/jiko-accounts/{account_id}/portals/:
+    get: Portals_list
+    post: Portals_createPortal
+  /api/v1/jiko-accounts/{account_id}/portals/{portal_id}/:
+    get: Portals_getPortal
+    patch: Portals_updateName
+  /api/v1/jiko-accounts/{account_id}/portals/{portal_id}/close/:
+    post: Portals_closePortal
+  /api/v1/jiko-accounts/{account_id}/statements/:
+    get: Statements_getAccountStatements
+  /api/v1/jiko-accounts/{account_id}/trades/:
+    get: Trades_getAccountTransactions
+  /api/v1/jiko-accounts/{account_id}/trades/{trade_id}/confirmation/:
+    get: Trades_getConfirmation
+  /api/v1/jiko-accounts/{account_id}/transactions/:
+    get: Transactions_listForAccount
+  /api/v1/jiko-accounts/{account_id}/transactions/{transaction_id}/:
+    get: Transactions_getSpecificTransaction
+  /api/v1/jiko-accounts/{account_id}/virtual-cards/:
+    post: VirtualCards_createCard
+  /api/v1/jiko-accounts/{account_id}/virtual-cards/{card_id}/:
+    delete: VirtualCards_closeCard
+    post: VirtualCards_getDetail
+  /api/v1/jiko-accounts/{account_id}/wires/:
+    post: Wires_initiateWireTransfer
+  /api/v1/login/:
+    post: Security_authenticateUser
+  /api/v1/public-keys/:
+    get: Security_getEncryptionKeys
+  /api/v1/sandbox/card-swipe/:
+    post: Sandbox_simulateCardSwipe
+  /api/v1/sandbox/fund/:
+    post: Sandbox_simulateAchCredit
+  /api/v1/sandbox/generate-card/:
+    post: Sandbox_generatePhysicalCardFromOrder
+  /api/v1/sandbox/webhook/:
+    post: Sandbox_simulateWebhookEvent
+  /api/v1/subscriptions/:
+    get: Subscriptions_listPartnerSubscriptions
+    post: Subscriptions_createWebhookSubscription
+  /api/v1/subscriptions/{subscription_id}/:
+    delete: Subscriptions_deleteWebhookSubscription
+    get: Subscriptions_getWebhookSubscription
+    patch: Subscriptions_updateWebhookSubscription
+  /api/v1/transfers/on-us/:
+    post: OnUsTransfers_createTransfer
+  /api/v1/transfers/on-us/{transfer_id}/:
+    get: OnUsTransfers_getById
+  /health:
+    get: Health_statusCheck
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/business-applications/{application_id}/documents:
+    get:
+      '200':
+        application/json: BusinessesListDocumentRequestsResponse
+  /api/v1/business-applications/{application_id}/related-party-applications:
+    get:
+      '200':
+        application/json: BusinessesListRelatedPartyApplicationsResponse
+  /health:
+    get:
+      '200':
+        application/json: HealthStatusCheckResponse
+securityParameters:
+  account[]:
+    query: false
+  after:
+    query: false
+  content-disposition:
+    header: false
+  content-length:
+    header: false
+  content-type:
+    header: false
+  cursor:
+    query: false
+  direction:
+    query: false
+  filter[card]:
+    query: false
+  filter[portal]:
+    query: false
+  filter[status]:
+    query: false
+  filter[types]:
+    query: false
+  key:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  order:
+    query: false
+  subscription_id:
+    query: false
+  timestamp_from:
+    query: false
+  timestamp_to:
+    query: false
+  trade_datetime_from:
+    query: false
+  trade_datetime_to:
+    query: false
+  type[]:
+    query: false
+  x-branch-name:
+    header: false
+  x-jiko-idempotency:
+    header: false
+  x-jiko-signature:
+    header: false
+validServerUrls:
+  https://{partner}.partner-api.jikoservices.com:
+    url: https://{partner}.partner-api.jikoservices.com
+  https://{partner}.sandbox-api.jikoservices.com:
+    url: https://{partner}.sandbox-api.jikoservices.com

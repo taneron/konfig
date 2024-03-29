@@ -1,0 +1,2978 @@
+hash: f504925bf509b8fc53ac6ad0c17a906ae164257ecb3425761d3f213b4faaee3b
+methodObjects:
+  - url: /health
+    method: statusCheck
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: Get Health Check
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/jiko-accounts
+    method: listCustomerAccounts
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: List Customer Accounts
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+        default: 0
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 100
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: >-
+          Generic models are only supported in pydantic for python 3.7+, so
+          until then
+
+          items will be of type Any. As such, this class needs to be subclassed
+
+          and its item field overridden in it using the proper type.
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}
+    method: getSpecificAccount
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: Get Customer Account
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/transactions
+    method: listCustomerTransactions
+    httpMethod: get
+    tag: Transactions
+    typeScriptTag: transactions
+    description: List Customer Transactions
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: order
+        schema: string
+        required: false
+        description: Ordered by the transaction timestamp, descending by default.
+      - name: account[]
+        schema: array
+        required: false
+        description: ''
+      - name: filter[card]
+        schema: array
+        required: false
+        description: ''
+      - name: filter[portal]
+        schema: array
+        required: false
+        description: ''
+      - name: filter[types]
+        schema: array
+        required: false
+        description: ''
+      - name: timestampFrom
+        schema: string
+        required: false
+        description: ''
+      - name: timestampTo
+        schema: string
+        required: false
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/transactions
+    method: listForAccount
+    httpMethod: get
+    tag: Transactions
+    typeScriptTag: transactions
+    description: List Account Transactions
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: order
+        schema: string
+        required: false
+        description: Ordered by the transaction timestamp, descending by default.
+      - name: filter[card]
+        schema: array
+        required: false
+        description: ''
+      - name: filter[portal]
+        schema: array
+        required: false
+        description: ''
+      - name: filter[types]
+        schema: array
+        required: false
+        description: ''
+      - name: timestampFrom
+        schema: string
+        required: false
+        description: ''
+      - name: timestampTo
+        schema: string
+        required: false
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/transactions/{transaction_id}
+    method: getSpecificTransaction
+    httpMethod: get
+    tag: Transactions
+    typeScriptTag: transactions
+    description: Get Account Transaction
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: transactionId
+        schema: string
+        required: true
+        description: ''
+        example: TRANSACTION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/trades
+    method: listCustomerTrades
+    httpMethod: get
+    tag: Trades
+    typeScriptTag: trades
+    description: List Customer Trades
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: account[]
+        schema: array
+        required: false
+        description: ''
+      - name: tradeDatetimeFrom
+        schema: string
+        required: false
+        description: ''
+      - name: tradeDatetimeTo
+        schema: string
+        required: false
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/trades
+    method: getAccountTransactions
+    httpMethod: get
+    tag: Trades
+    typeScriptTag: trades
+    description: List Account Trades
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: tradeDatetimeFrom
+        schema: string
+        required: false
+        description: ''
+      - name: tradeDatetimeTo
+        schema: string
+        required: false
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/trades/{trade_id}/confirmation
+    method: getConfirmation
+    httpMethod: get
+    tag: Trades
+    typeScriptTag: trades
+    description: Get Trade Confirmation
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: tradeId
+        schema: string
+        required: true
+        description: ''
+        example: TRADE_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/applications
+    method: createApplication
+    httpMethod: post
+    tag: Individuals
+    typeScriptTag: individuals
+    description: Create Application
+    parameters:
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: identification_number
+        schema: string
+        required: true
+        description: ''
+        example: IDENTIFICATION_NUMBER
+      - name: name
+        schema: object
+        required: true
+        description: ''
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: date_of_birth
+        schema: string
+        required: true
+        description: ''
+        example: DATE_OF_BIRTH
+      - name: investment_profile
+        schema: undefined
+        required: true
+        description: ''
+      - name: agreement_consent
+        schema: object
+        required: true
+        description: ''
+      - name: originally_onboarded_at
+        schema: string
+        required: false
+        description: ''
+      - name: identification_type
+        schema: string
+        required: false
+        description: ''
+      - name: address
+        schema: object
+        required: true
+        description: ''
+      - name: phone_number
+        schema: string
+        required: true
+        description: ''
+        example: PHONE_NUMBER
+      - name: citizenship_country
+        schema: string
+        required: false
+        description: ''
+        default: US
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/applications/{application_id}
+    method: getApplication
+    httpMethod: get
+    tag: Individuals
+    typeScriptTag: individuals
+    description: Get Application
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/applications/{application_id}/apply
+    method: initiateKycSubmission
+    httpMethod: post
+    tag: Individuals
+    typeScriptTag: individuals
+    description: Apply
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/agreements
+    method: getAgreements
+    httpMethod: get
+    tag: Individuals
+    typeScriptTag: individuals
+    description: List Agreements
+    parameters:
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/business-applications
+    method: createApplication
+    httpMethod: post
+    tag: Businesses
+    typeScriptTag: businesses
+    description: Create Application
+    parameters:
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: name
+        schema: string
+        description: ''
+      - name: entity_type
+        schema: string
+        description: ''
+      - name: doing_business_as
+        schema: string
+        description: ''
+      - name: identification_number
+        schema: object
+        description: ''
+      - name: address
+        schema: object
+        description: ''
+      - name: website
+        schema: string
+        description: ''
+      - name: contact
+        schema: object
+        description: ''
+      - name: formation_date
+        schema: string
+        description: ''
+      - name: risk_info
+        schema: object
+        description: ''
+      - name: industry
+        schema: object
+        description: ''
+      - name: agreement_consent
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/business-applications/{application_id}
+    method: getApplication
+    httpMethod: get
+    tag: Businesses
+    typeScriptTag: businesses
+    description: Get Application
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/business-applications/{application_id}
+    method: updateApplication
+    httpMethod: patch
+    tag: Businesses
+    typeScriptTag: businesses
+    description: Update Application
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: name
+        schema: string
+        description: ''
+      - name: entity_type
+        schema: string
+        description: ''
+      - name: doing_business_as
+        schema: string
+        description: ''
+      - name: identification_number
+        schema: object
+        description: ''
+      - name: address
+        schema: object
+        description: ''
+      - name: website
+        schema: string
+        description: ''
+      - name: contact
+        schema: object
+        description: ''
+      - name: formation_date
+        schema: string
+        description: ''
+      - name: risk_info
+        schema: object
+        description: ''
+      - name: industry
+        schema: object
+        description: ''
+      - name: agreement_consent
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/business-applications/{application_id}/apply
+    method: submitApplication
+    httpMethod: post
+    tag: Businesses
+    typeScriptTag: businesses
+    description: Apply
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/business-applications/{application_id}/related-party-applications
+    method: listRelatedPartyApplications
+    httpMethod: get
+    tag: Businesses
+    typeScriptTag: businesses
+    description: List Related Party Application
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/business-applications/{application_id}/related-party-applications
+    method: createRelatedPartyApplication
+    httpMethod: post
+    tag: Businesses
+    typeScriptTag: businesses
+    description: Create Related Party Application
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: title
+        schema: string
+        description: ''
+      - name: name
+        schema: object
+        description: ''
+      - name: address
+        schema: object
+        description: ''
+      - name: date_of_birth
+        schema: string
+        description: ''
+      - name: identification_number
+        schema: object
+        description: ''
+      - name: phone_number
+        schema: string
+        description: ''
+      - name: roles
+        schema: array
+        description: ''
+      - name: ownership_percentage
+        schema: string
+        description: ''
+      - name: citizenship
+        schema: string
+        description: ''
+      - name: email
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: >-
+      /api/v1/business-applications/{application_id}/related-party-applications/{related_party_application_id}
+    method: deleteRelatedPartyApplication
+    httpMethod: delete
+    tag: Businesses
+    typeScriptTag: businesses
+    description: Delete Related Party Application
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: relatedPartyApplicationId
+        schema: string
+        required: true
+        description: ''
+        example: RELATED_PARTY_APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '204'
+        description: Successful Response
+      - statusCode: '422'
+        description: ''
+  - url: >-
+      /api/v1/business-applications/{application_id}/related-party-applications/{related_party_application_id}
+    method: updateRelatedPartyApplication
+    httpMethod: patch
+    tag: Businesses
+    typeScriptTag: businesses
+    description: Update Related Party Application
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: relatedPartyApplicationId
+        schema: string
+        required: true
+        description: ''
+        example: RELATED_PARTY_APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: title
+        schema: string
+        description: ''
+      - name: name
+        schema: object
+        description: ''
+      - name: address
+        schema: object
+        description: ''
+      - name: date_of_birth
+        schema: string
+        description: ''
+      - name: identification_number
+        schema: object
+        description: ''
+      - name: phone_number
+        schema: string
+        description: ''
+      - name: roles
+        schema: array
+        description: ''
+      - name: ownership_percentage
+        schema: string
+        description: ''
+      - name: citizenship
+        schema: string
+        description: ''
+      - name: email
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/counterparties
+    method: listForCustomer
+    httpMethod: get
+    tag: Counterparties
+    typeScriptTag: counterparties
+    description: List Counterparties
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/counterparties/{counterparty_id}
+    method: getVerificationStatus
+    httpMethod: get
+    tag: Counterparties
+    typeScriptTag: counterparties
+    description: Get Counterparty
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: counterpartyId
+        schema: string
+        required: true
+        description: ''
+        example: COUNTERPARTY_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/cards
+    method: getAccountCards
+    httpMethod: get
+    tag: Manage Cards
+    typeScriptTag: manageCards
+    description: List Account Cards
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 100
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: filter[status]
+        schema: array
+        required: false
+        description: ''
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/cards/{card_id}/status
+    method: getStatus
+    httpMethod: get
+    tag: Manage Cards
+    typeScriptTag: manageCards
+    description: Get Card Status
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: cardId
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/cards/{card_id}/status
+    method: setCardStatus
+    httpMethod: patch
+    tag: Manage Cards
+    typeScriptTag: manageCards
+    description: Set Card Status
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: cardId
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: status
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/cards/{card_id}/pin
+    method: setCardPin
+    httpMethod: post
+    tag: Manage Cards
+    typeScriptTag: manageCards
+    description: Set Card PIN
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: cardId
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: encrypted_pin
+        schema: string
+        required: true
+        description: ''
+        example: ENCRYPTED_PIN
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/cards/{card_id}/close
+    method: closeCard
+    httpMethod: post
+    tag: Manage Cards
+    typeScriptTag: manageCards
+    description: Close Card
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: cardId
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: closure_reason
+        schema: string
+        required: true
+        description: ''
+        example: CLOSURE_REASON
+      - name: lost_stolen_date
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Successful Response
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/card-orders
+    method: listCardOrders
+    httpMethod: get
+    tag: Physical Cards
+    typeScriptTag: physicalCards
+    description: List Card Orders
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/card-orders
+    method: createOrder
+    httpMethod: post
+    tag: Physical Cards
+    typeScriptTag: physicalCards
+    description: Create Physical Card Order
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: name_on_card
+        schema: string
+        required: true
+        description: ''
+        example: NAME_ON_CARD
+      - name: shipping_address
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/card-orders/{card_order_id}
+    method: getOrderInfo
+    httpMethod: get
+    tag: Physical Cards
+    typeScriptTag: physicalCards
+    description: Get Card Order
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: cardOrderId
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ORDER_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/virtual-cards/{card_id}
+    method: closeCard
+    httpMethod: delete
+    tag: Virtual Cards
+    typeScriptTag: virtualCards
+    description: Close Virtual Card
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: cardId
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '204'
+        description: Successful Response
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/virtual-cards/{card_id}
+    method: getDetail
+    httpMethod: post
+    tag: Virtual Cards
+    typeScriptTag: virtualCards
+    description: Get Virtual Card
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: cardId
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: public_key
+        schema: string
+        required: true
+        description: ''
+        example: PUBLIC_KEY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/virtual-cards
+    method: createCard
+    httpMethod: post
+    tag: Virtual Cards
+    typeScriptTag: virtualCards
+    description: Create Virtual Card
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: public_key
+        schema: string
+        required: true
+        description: ''
+        example: PUBLIC_KEY
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/events/types
+    method: listEventTypes
+    httpMethod: get
+    tag: Events
+    typeScriptTag: events
+    description: List Event Types
+    parameters:
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: >-
+          Generic models are only supported in pydantic for python 3.7+, so
+          until then
+
+          items will be of type Any. As such, this class needs to be subclassed
+
+          and its item field overridden in it using the proper type.
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/events
+    method: getPastEvents
+    httpMethod: get
+    tag: Events
+    typeScriptTag: events
+    description: List Events
+    parameters:
+      - name: subscriptionId
+        schema: string
+        required: false
+        description: ''
+      - name: after
+        schema: string
+        required: false
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/counterparties/plaid/link-token
+    method: createLinkToken
+    httpMethod: post
+    tag: 'Counterparties: Plaid'
+    typeScriptTag: counterparties:Plaid
+    description: Create Plaid Link Token
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: client_name
+        schema: string
+        required: true
+        description: ''
+        example: CLIENT_NAME
+      - name: redirect_uri
+        schema: string
+        required: false
+        description: ''
+      - name: android_package_name
+        schema: string
+        required: false
+        description: ''
+      - name: counterparty_id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/counterparties/plaid
+    method: createPlaidCounterparties
+    httpMethod: post
+    tag: 'Counterparties: Plaid'
+    typeScriptTag: counterparties:Plaid
+    description: Create Plaid Counterparties
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: public_token
+        schema: string
+        required: true
+        description: ''
+        example: PUBLIC_TOKEN
+      - name: accounts
+        schema: array
+        required: true
+        description: ''
+      - name: institution_id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: >-
+      /api/v1/customers/{customer_id}/counterparties/{counterparty_id}/plaid/verify
+    method: completeVerification
+    httpMethod: post
+    tag: 'Counterparties: Plaid'
+    typeScriptTag: counterparties:Plaid
+    description: Verify Plaid Counterparty
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: counterpartyId
+        schema: string
+        required: true
+        description: ''
+        example: COUNTERPARTY_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '204'
+        description: Successful Response
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/subscriptions
+    method: listPartnerSubscriptions
+    httpMethod: get
+    tag: Subscriptions
+    typeScriptTag: subscriptions
+    description: List Subscriptions
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/subscriptions
+    method: createWebhookSubscription
+    httpMethod: post
+    tag: Subscriptions
+    typeScriptTag: subscriptions
+    description: Create Subscription
+    parameters:
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: description
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: events
+        schema: array
+        required: true
+        description: ''
+      - name: url
+        schema: string
+        required: true
+        description: ''
+        example: URL
+      - name: shared_secret
+        schema: string
+        required: true
+        description: ''
+        example: SHARED_SECRET
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/subscriptions/{subscription_id}
+    method: deleteWebhookSubscription
+    httpMethod: delete
+    tag: Subscriptions
+    typeScriptTag: subscriptions
+    description: Delete Subscription
+    parameters:
+      - name: subscriptionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBSCRIPTION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '204'
+        description: Successful Response
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/subscriptions/{subscription_id}
+    method: getWebhookSubscription
+    httpMethod: get
+    tag: Subscriptions
+    typeScriptTag: subscriptions
+    description: Get Subscription
+    parameters:
+      - name: subscriptionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBSCRIPTION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/subscriptions/{subscription_id}
+    method: updateWebhookSubscription
+    httpMethod: patch
+    tag: Subscriptions
+    typeScriptTag: subscriptions
+    description: Update Subscription
+    parameters:
+      - name: subscriptionId
+        schema: string
+        required: true
+        description: ''
+        example: SUBSCRIPTION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: description
+        schema: string
+        description: ''
+        default: ''
+      - name: events
+        schema: array
+        description: ''
+      - name: url
+        schema: string
+        description: ''
+      - name: shared_secret
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/ach-originating
+    method: listAchOriginations
+    httpMethod: get
+    tag: ACH
+    typeScriptTag: ach
+    description: List ACH Originations
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: filter[status]
+        schema: array
+        required: false
+        description: ''
+      - name: direction
+        schema: string
+        required: false
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/ach-originating
+    method: originateTransaction
+    httpMethod: post
+    tag: ACH
+    typeScriptTag: ach
+    description: Create ACH Origination
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: counterparty_id
+        schema: string
+        required: true
+        description: ''
+        example: COUNTERPARTY_ID
+      - name: direction
+        schema: string
+        required: true
+        description: ''
+        example: DIRECTION
+      - name: sec_code
+        schema: string
+        required: false
+        description: ''
+      - name: payment_related_information
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: amount_usdc
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: company_entry_description
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/ach-originating/{transfer_id}
+    method: getTransferOrigination
+    httpMethod: get
+    tag: ACH
+    typeScriptTag: ach
+    description: Get ACH Origination
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: transferId
+        schema: string
+        required: true
+        description: ''
+        example: TRANSFER_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/wires
+    method: initiateWireTransfer
+    httpMethod: post
+    tag: Wires
+    typeScriptTag: wires
+    description: Create Wire
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: counterparty_id
+        schema: string
+        required: true
+        description: ''
+        example: COUNTERPARTY_ID
+      - name: amount_usdc
+        schema: integer
+        required: false
+        description: ''
+      - name: created_by
+        schema: string
+        required: false
+        description: ''
+      - name: wire_id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: Successful Response
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/transfers/on-us
+    method: createTransfer
+    httpMethod: post
+    tag: On-Us Transfers
+    typeScriptTag: onUsTransfers
+    description: Create On-Us Transfer
+    parameters:
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/transfers/on-us/{transfer_id}
+    method: getById
+    httpMethod: get
+    tag: On-Us Transfers
+    typeScriptTag: onUsTransfers
+    description: Get On-Us Transfer
+    parameters:
+      - name: transferId
+        schema: string
+        required: true
+        description: ''
+        example: TRANSFER_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}
+    method: getDetails
+    httpMethod: get
+    tag: Customers
+    typeScriptTag: customers
+    description: Get Customer Data
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/statements
+    method: listForCustomer
+    httpMethod: get
+    tag: Statements
+    typeScriptTag: statements
+    description: List Customer Statements
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: account[]
+        schema: array
+        required: false
+        description: ''
+      - name: order
+        schema: string
+        required: false
+        description: ''
+      - name: type[]
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: key
+        schema: string
+        required: false
+        description: Date formatted either `YYYY` or `YYYY-MM`
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/statements
+    method: getAccountStatements
+    httpMethod: get
+    tag: Statements
+    typeScriptTag: statements
+    description: List Account Statements
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: order
+        schema: string
+        required: false
+        description: ''
+      - name: type[]
+        schema: array
+        required: false
+        description: ''
+        default: []
+      - name: key
+        schema: string
+        required: false
+        description: Date formatted either `YYYY` or `YYYY-MM`
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 30
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: Base class for cursor_list responses from the Partner API
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/portals
+    method: list
+    httpMethod: get
+    tag: Portals
+    typeScriptTag: portals
+    description: List Portals
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/portals
+    method: createPortal
+    httpMethod: post
+    tag: Portals
+    typeScriptTag: portals
+    description: Create Portal
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/portals/{portal_id}
+    method: getPortal
+    httpMethod: get
+    tag: Portals
+    typeScriptTag: portals
+    description: Get Account Portal
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: portalId
+        schema: string
+        required: true
+        description: ''
+        example: PORTAL_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/portals/{portal_id}
+    method: updateName
+    httpMethod: patch
+    tag: Portals
+    typeScriptTag: portals
+    description: Update Portal
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: portalId
+        schema: string
+        required: true
+        description: ''
+        example: PORTAL_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/jiko-accounts/{account_id}/portals/{portal_id}/close
+    method: closePortal
+    httpMethod: post
+    tag: Portals
+    typeScriptTag: portals
+    description: Close Portal
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: portalId
+        schema: string
+        required: true
+        description: ''
+        example: PORTAL_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+      - name: xJikoSignature
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-SIGNATURE
+    responses:
+      - statusCode: '204'
+        description: Successful Response
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '412'
+        description: Portal is already closed.
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/applications/{application_id}/documents/{document_type}/file
+    method: uploadDocumentToApplication
+    httpMethod: post
+    tag: Individuals
+    typeScriptTag: individuals
+    description: Upload Document To Application
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: documentType
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT_TYPE
+      - name: contentType
+        schema: string
+        required: true
+        description: ''
+        example: CONTENT-TYPE
+      - name: contentLength
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/customers/{customer_id}/documents/{document_type}/file
+    method: uploadDocumentToCustomer
+    httpMethod: post
+    tag: Customers
+    typeScriptTag: customers
+    description: Upload Document To Customer
+    parameters:
+      - name: customerId
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_ID
+      - name: documentType
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT_TYPE
+      - name: contentType
+        schema: string
+        required: true
+        description: ''
+        example: CONTENT-TYPE
+      - name: contentLength
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/business-applications/{application_id}/documents
+    method: listDocumentRequests
+    httpMethod: get
+    tag: Businesses
+    typeScriptTag: businesses
+    description: List Document Requests
+    parameters:
+      - name: applicationId
+        schema: string
+        required: true
+        description: ''
+        example: APPLICATION_ID
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/documents/{document_id}
+    method: uploadDocument
+    httpMethod: post
+    tag: Businesses
+    typeScriptTag: businesses
+    description: Upload Document
+    parameters:
+      - name: documentId
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT_ID
+      - name: contentType
+        schema: string
+        required: true
+        description: ''
+        example: CONTENT-TYPE
+      - name: contentLength
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contentDisposition
+        schema: string
+        required: true
+        description: ''
+        example: CONTENT-DISPOSITION
+      - name: xJikoIdempotency
+        schema: string
+        required: true
+        description: ''
+        example: X-JIKO-IDEMPOTENCY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: Not found
+      - statusCode: '412'
+        description: Document has already been reviewed and approved.
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/login
+    method: authenticateUser
+    httpMethod: post
+    tag: Security
+    typeScriptTag: security
+    description: Login
+    parameters:
+      - name: username
+        schema: string
+        required: true
+        description: ''
+        example: USERNAME
+      - name: password
+        schema: string
+        required: true
+        description: ''
+        example: PASSWORD
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/public-keys
+    method: getEncryptionKeys
+    httpMethod: get
+    tag: Security
+    typeScriptTag: security
+    description: List Public Keys
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: |-
+          Encryption keys are currently stored as environment variables.
+
+          Variables are declared in
+          `services/partner-api/secret-(dev|staging|sandbox|partners).yaml`
+  - url: /api/v1/sandbox/card-swipe
+    method: simulateCardSwipe
+    httpMethod: post
+    tag: Sandbox
+    typeScriptTag: sandbox
+    description: Submit Card Swipe
+    parameters:
+      - name: xBranchName
+        schema: string
+        required: false
+        description: ''
+      - name: card_id
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ID
+      - name: amount_usdc
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '202'
+        description: Successful Response
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/sandbox/generate-card
+    method: generatePhysicalCardFromOrder
+    httpMethod: post
+    tag: Sandbox
+    typeScriptTag: sandbox
+    description: Generate Physical Card From Order
+    parameters:
+      - name: xBranchName
+        schema: string
+        required: false
+        description: ''
+      - name: card_order_id
+        schema: string
+        required: true
+        description: ''
+        example: CARD_ORDER_ID
+    responses:
+      - statusCode: '202'
+        description: Successful Response
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/sandbox/webhook
+    method: simulateWebhookEvent
+    httpMethod: post
+    tag: Sandbox
+    typeScriptTag: sandbox
+    description: Trigger Webhook
+    parameters:
+      - name: xBranchName
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: Successful Response
+      - statusCode: '422'
+        description: ''
+  - url: /api/v1/sandbox/fund
+    method: simulateAchCredit
+    httpMethod: post
+    tag: Sandbox
+    typeScriptTag: sandbox
+    description: Fund Account
+    parameters:
+      - name: xBranchName
+        schema: string
+        required: false
+        description: ''
+      - name: account_id
+        schema: string
+        required: true
+        description: ''
+        example: ACCOUNT_ID
+      - name: amount_usdc
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: company_name
+        schema: string
+        required: false
+        description: ''
+        default: FakeCompany
+      - name: count
+        schema: integer
+        required: false
+        description: ''
+        default: 1
+    responses:
+      - statusCode: '202'
+        description: Successful Response
+      - statusCode: '422'
+        description: ''
+numberOfSchemas: 182
+apiDescription: >
+  # Introduction
+
+
+  Welcome to the Jiko API Reference! Jiko enables you to integrate money storage
+  and movement, backed by the safety and security of US Treasury Bills.
+
+
+  </br>
+
+
+  At the core of our platform is the Jiko account: a pair consisting of a bank
+  account and a brokerage account. When money is deposited into an account, the
+  funds are automatically invested in T-bills. When a payment or withdrawal is
+  made, T-bills are immediately liquidated and used as cash. Customers can have
+  multiple accounts, and each account is associated with a single T-bill
+  maturity: 4-week, 13-week, 26-week or 52-week.
+
+
+  </br>
+
+
+  The API Reference covers everything you need to build a full application
+  leveraging the Jiko platform:
+
+
+  </br>
+
+
+  - Onboarding customers
+
+  - Funding customer accounts via ACH or Wire
+
+  - Viewing and managing accounts (including monthly statements and trade
+  confirmations)
+
+  - Making payments and transfers via ACH, Wire, On-Us (Book) Transfer or Debit
+  Card
+
+
+  </br>
+
+
+  When you’re ready to start building, please contact us at
+  [partner.support@jiko.io](mailto:partner.support@jiko.io) to request sandbox
+  access.
+
+  # Partner obligations
+
+
+  </br>
+
+
+  - Before onboarding, the end-user’s control over any email addresses or phone
+  numbers must be confirmed (for example, via confirmation codes) before
+  submitting an application to the API.
+
+  - While onboarding, partners must comply with the disclosure requirements
+  listed [below](https://docs.jiko.io/reference).
+
+  - Monthly statements are created for bank and brokerage accounts and must be
+  made available to the user.
+    - Partners are required to send an email to end users every month a new statement is available to comply with regulatory requirements.
+    - Partners can expect monthly statements to be available by the 15th of every month.
+    - It is required to make the past 6 years of brokerage statements available to the end user.
+    - It is advised to make at least the past 12 months of bank statements available to the end user.
+  - Trade confirmations must be made available to the user.
+
+
+  ## Disclosures and Agreements
+
+
+  - The bundle of customer disclosures and agreements served at the
+  [Agreements](https://docs.jiko.io/reference) endpoint must be presented to
+  users before signing up for an account.
+    This includes Risk and Limitation disclosures, Regulation E disclosures, Account agreements and more.
+    - The customer consent for these disclosures have to be versioned and time-stamped and sent with the application.
+  - Jiko reserves the right to update agreements from time to time.
+    If a change is _adverse_ to the customer, Jiko will notify partners, and they are then required to notify their end users 30 days in advance of the change.
+    - A change is deemed to be _adverse_ to the customer if it will result in increased fees, increased liability for the customer, fewer types of available transactions or stricter limitations on the frequency or dollar amount of transactions.
+  - When Jiko updates the bundle of agreements, the version number of the
+  agreement bundle will increment.
+    Jiko reserves the right to reject or manually review applications where customer consent does not match the latest agreement version.
+    Partners must re-fetch and display the agreements and disclosures links from the Agreements endpoint for every new application. This ensures each applicant is served the latest version of the agreements.
+
+  # Authentication
+
+
+  **Jiko** provides partners with a `username` and a `password`, as well as a
+  `shared secret`. Partners are provided with a `bearer token` in the
+  [Login](https://docs.jiko.io/reference) response, which must be sent with each
+  request.
+
+
+  </br>
+
+
+  Each request made to the partner API needs 3 parts in order for it to be
+  processed:
+
+
+  1. An **Authorization** HTTP header containing the value
+
+
+  ```javascript
+
+  Bearer <access_token>
+
+  ```
+
+
+  </br>
+
+
+  Where the `access_token` is the bearer token given in the
+  [Login](https://docs.jiko.io/reference) response.
+
+
+  1. An **x-jiko-idempotency** HTTP header set to a random uuid for this action,
+  in order to signify a unique request to the API from the partner’s
+  perspective.
+
+  2. An **x-jiko-signature** HTTP header set to a base64 encoded HMAC-SHA256
+  hash of `x-jiko-idempotency+request pathname+body` using the shared secret as
+  a key.
+
+
+  Below is a Node.js example showing how a potential request could be signed:
+
+
+  </br>
+
+
+  ```javascript
+
+  const crypto = require("crypto");
+
+  const uuid = require("uuid");
+
+
+  const idempotency = uuid.v4();
+
+  const pathname = "/api/v1/agreements/";
+
+  const body = "";
+
+
+  request.headers["x-jiko-signature"] = crypto
+    .createHmac("sha256", "shared-secret-here")
+    .update(idempotency + pathname + body, "utf-8")
+    .digest("base64");
+  ```
+
+
+  </br>
+
+
+  **Partner** requests will need to be sent from an IP address whitelisted by
+  **Jiko**.
+
+  **Jiko** will verify the request signature by repeating the steps above,
+  additionally checking for possible repeated requests. A request is considered
+  to be repeated if the idempotency key value provided in the
+  `x-jiko-idempotency` header has been used previously in the past 1 hour.
+
+
+  </br>
+
+
+  Bearer tokens have a lifetime of 60 minutes.
+
+  The partner will need to repeat the login process once a token has expired.
+
+
+  # Changelog
+
+
+  ## March 2024
+
+  - Added `tradable_id` field to  [List Customer
+  Trades](https://docs.jiko.io/reference)  and [List Customer
+  Transactions](https://docs.jiko.io/reference) API endpoint.
+
+  - Added support for filtering by trade date to and from to  [List Customer
+  Trades](https://docs.jiko.io/reference)  and [List Customer
+  Transactions](https://docs.jiko.io/reference) API endpoints.
+
+
+  - Added support for filtering by types, timestamp_from and timestamp_to to
+  the  [List Customer Transactions](https://docs.jiko.io/reference), [List
+  Account Transactions](https://docs.jiko.io/reference) API endpoints.
+
+
+
+  ## February 2024
+
+   - Added support for filtering by status and direction to the [List ACH Originations](https://docs.jiko.io/reference) API endpoint
+   - Added support for filtering by portal id and card id to the  [List Customer Transactions](https://docs.jiko.io/reference), [List Account Transactions](https://docs.jiko.io/reference) API endpoints.
+
+   - Added support for filtering by status and direction to the [List ACH Originations](https://docs.jiko.io/reference) API endpoint
+   - Added support for filtering by card status to the [List Account Cards](https://docs.jiko.io/reference) endpoint.
+   - Added support for full withdrawals when performing on-us transfers by using the new `amount` field.
+   - Added support for listing fees deducted when performing on-us transfers.
+
+  ## January 2024
+
+   - Added [Get Health Check](https://docs.jiko.io/reference) API endpoint.
+
+  ## December 2023
+
+
+  - Business Application additions:
+
+    - Added [Create Application](https://docs.jiko.io/reference) API endpoint.
+    - Added [Get Application](https://docs.jiko.io/reference) API endpoint.
+    - Added [Update Application](https://docs.jiko.io/reference) API endpoint.
+    - Added [Apply](https://docs.jiko.io/reference) API endpoint.
+
+  - Related Party Application additions:
+
+    - Added [List Related Party](https://docs.jiko.io/reference) API endpoint.
+    - Added [Create Related Party](https://docs.jiko.io/reference) API endpoint.
+    - Added [Delete Related Party](https://docs.jiko.io/reference) API endpoint.
+    - Added [Update Related Party](https://docs.jiko.io/reference) API endpoint.
+
+  - Document Upload additions:
+
+    - Added [List Document Requests](https://docs.jiko.io/reference) API endpoint.
+    - Added [Upload Document](https://docs.jiko.io/reference) API endpoint.
+
+  - Wire additions:
+
+    - Added [Create Wire](https://docs.jiko.io/reference) API endpoint.
+
+  ## November 2023
+
+
+  - Added a new optional field `micro_deposit` to V1 `ACHCounterparty` model
+  that includes an indication of number of verification attempts for ACH
+  Counterparties verified via Micro Deposits
+
+  - Added [Close Portal](https://docs.jiko.io/reference) API endpoint.
+
+  - Added [Update Portal](https://docs.jiko.io/reference) API endpoint.
+
+
+  ## October 2023
+
+
+  - Added enum value `PENDING` to the [Get Customer
+  Data](https://docs.jiko.io/reference) `account_status` field, signalling that
+  a customer has no open pocket.
+
+
+  ## July 2023
+
+
+  - Added [Get Account Portal](https://docs.jiko.io/reference) API endpoint.
+
+
+  ## May 2023
+
+
+  ### 2023-05-26
+
+
+  - The response from uploading documents now includes a `document_id` field for
+  future reference.
+
+
+  ### 2023-05-15
+
+
+  - Added [Create Portal](https://docs.jiko.io/reference) API endpoint.
+
+  - Added a new `category` type E-SIGN for the Electronic Communications
+  Disclosure Statement and Consent which was previously in the GENERAL category.
+
+
+  ### 2023-05-05
+
+
+  - Added a new `WIRE_COUNTERPARTY_VERIFICATION` document type.
+
+  - File size limits raised to 50 MB for files other than `ID_FRONT`, `ID_BACK`,
+  `SELFIE` and `PASSPORT` when uploading documents to a customer or application.
+
+  - Updated documentation for both file upload endpoints.
+
+
+  ## April 2023
+
+
+  ### 2023-04-28
+
+
+  - Adds a new `category` field for agreements returned by the [List
+  Agreements](https://docs.jiko.io/reference) endpoint. This `category` field
+  groups all agreements into 3 categories, BANK, BROKERAGE, or GENERAL.
+
+
+  ### 2023-04-19
+
+
+  - Added a new sandbox endpoint for simulating webhook calls, [Trigger
+  Webhook](https://docs.jiko.io/reference).
+
+
+  ## March 2023
+
+
+  ### 2023-03-30
+
+
+  - Added a new `yield_to_maturity` field to the `Trade` model.
+
+
+  ### 2023-03-15
+
+
+  - Added a new `name` field to the `Portal` model.
+
+
+  ## February 2023
+
+
+  ### 2023-02-24
+
+
+  - Added a sandbox endpoint to fund accounts via ACH portals.
+
+
+  ### 2023-02-16
+
+
+  - Added a new disclosure type, `FORM_CRS`, for Customer Relationship Summary
+  Forms.
+
+
+  ### 2023-02-10
+
+
+  - Added `wire_fee_transaction` and `WIRE_FEE` transaction type to the [List
+  Customer Transactions](https://docs.jiko.io/reference), [List Account
+  Transactions](https://docs.jiko.io/reference) and [Get Account
+  Transaction](https://docs.jiko.io/reference) endpoints.
+
+
+  ## January 2023
+
+
+  ### 2023-01-25
+
+
+  - Added [Create On-Us Transfer](https://docs.jiko.io/reference) API endpoint.
+
+  - Added [Get On-Us Transfer](https://docs.jiko.io/reference) API endpoint.
+
+
+  ### 2023-01-18
+
+
+  - Added two optional filtering query parameters to the [List Customer
+  Statements](https://docs.jiko.io/reference) endpoint:
+    - The `type[]` query parameter makes it possible to filter by different types of statements, e.g. `?type[]=BANK&type[]=BROKERAGE`
+    - The `key` query parameter makes it possible to filter by either a specific month or a year, e.g. `?key=2023-01` or `?key=2022`
+  - Marked the [List Account Statements](https://docs.jiko.io/reference)
+  endpoint as deprecated. Please use the [List Customer
+  Statements](https://docs.jiko.io/reference) in future integrations.
+
+
+  ### 2023-01-09
+
+
+  - Added a new transaction type and corresponding details object,
+  `on_us_transaction` to the response model in [List Customer
+  Transactions](https://docs.jiko.io/reference).
+
+
+  ### 2023-01-06
+
+
+  - Added optional field `originally_onboarded_at` to request body in [Create
+  Application](https://docs.jiko.io/reference)
+
+
+  ## November 2022
+
+
+  ### 2022-11-09
+
+
+  - New counterparty type `WIRE` with a `wire` field, returned in [Get
+  Counterparty](https://docs.jiko.io/reference) and [List
+  Counterparties](https://docs.jiko.io/reference)
+
+
+  ## September 2022
+
+
+  ### 2022-09-28
+
+
+  - Added [List Customer Statements](https://docs.jiko.io/reference) API
+  endpoint.
+
+
+  ### 2022-09-27
+
+
+  - Added [Get Customer Data](https://docs.jiko.io/reference) API endpoint.
+
+
+  ### 2022-09-07
+
+
+  - Added [List Customer Trades](https://docs.jiko.io/reference) API endpoint.
+
+  - Added [List Customer Transactions](https://docs.jiko.io/reference) API
+  endpoint.
+
+
+  ## August 2022
+
+
+  ### 2022-08-29
+
+
+  - Added `name` field to the [List Customer
+  Accounts](https://docs.jiko.io/reference) and [Get Customer
+  Account](https://docs.jiko.io/reference) API endpoints
+
+
+  ### 2022-08-16
+
+
+  - Added [Get Account Transaction](https://docs.jiko.io/reference) API endpoint
+
+
+  ### 2022-08-05
+
+
+  - Added [List ACH Originations](https://docs.jiko.io/reference) API endpoint

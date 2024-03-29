@@ -1,0 +1,464 @@
+processed:
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer
+  apiBaseUrl: https://{partner}.partner-api.jikoservices.com
+  apiVersion: 1.29.0
+  apiDescription: >
+    # Introduction
+
+
+    Welcome to the Jiko API Reference! Jiko enables you to integrate money
+    storage and movement, backed by the safety and security of US Treasury
+    Bills.
+
+
+    </br>
+
+
+    At the core of our platform is the Jiko account: a pair consisting of a bank
+    account and a brokerage account. When money is deposited into an account,
+    the funds are automatically invested in T-bills. When a payment or
+    withdrawal is made, T-bills are immediately liquidated and used as cash.
+    Customers can have multiple accounts, and each account is associated with a
+    single T-bill maturity: 4-week, 13-week, 26-week or 52-week.
+
+
+    </br>
+
+
+    The API Reference covers everything you need to build a full application
+    leveraging the Jiko platform:
+
+
+    </br>
+
+
+    - Onboarding customers
+
+    - Funding customer accounts via ACH or Wire
+
+    - Viewing and managing accounts (including monthly statements and trade
+    confirmations)
+
+    - Making payments and transfers via ACH, Wire, On-Us (Book) Transfer or
+    Debit Card
+
+
+    </br>
+
+
+    When you’re ready to start building, please contact us at
+    [partner.support@jiko.io](mailto:partner.support@jiko.io) to request sandbox
+    access.
+
+    # Partner obligations
+
+
+    </br>
+
+
+    - Before onboarding, the end-user’s control over any email addresses or
+    phone numbers must be confirmed (for example, via confirmation codes) before
+    submitting an application to the API.
+
+    - While onboarding, partners must comply with the disclosure requirements
+    listed [below](https://docs.jiko.io/reference).
+
+    - Monthly statements are created for bank and brokerage accounts and must be
+    made available to the user.
+      - Partners are required to send an email to end users every month a new statement is available to comply with regulatory requirements.
+      - Partners can expect monthly statements to be available by the 15th of every month.
+      - It is required to make the past 6 years of brokerage statements available to the end user.
+      - It is advised to make at least the past 12 months of bank statements available to the end user.
+    - Trade confirmations must be made available to the user.
+
+
+    ## Disclosures and Agreements
+
+
+    - The bundle of customer disclosures and agreements served at the
+    [Agreements](https://docs.jiko.io/reference) endpoint must be presented to
+    users before signing up for an account.
+      This includes Risk and Limitation disclosures, Regulation E disclosures, Account agreements and more.
+      - The customer consent for these disclosures have to be versioned and time-stamped and sent with the application.
+    - Jiko reserves the right to update agreements from time to time.
+      If a change is _adverse_ to the customer, Jiko will notify partners, and they are then required to notify their end users 30 days in advance of the change.
+      - A change is deemed to be _adverse_ to the customer if it will result in increased fees, increased liability for the customer, fewer types of available transactions or stricter limitations on the frequency or dollar amount of transactions.
+    - When Jiko updates the bundle of agreements, the version number of the
+    agreement bundle will increment.
+      Jiko reserves the right to reject or manually review applications where customer consent does not match the latest agreement version.
+      Partners must re-fetch and display the agreements and disclosures links from the Agreements endpoint for every new application. This ensures each applicant is served the latest version of the agreements.
+
+    # Authentication
+
+
+    **Jiko** provides partners with a `username` and a `password`, as well as a
+    `shared secret`. Partners are provided with a `bearer token` in the
+    [Login](https://docs.jiko.io/reference) response, which must be sent with
+    each request.
+
+
+    </br>
+
+
+    Each request made to the partner API needs 3 parts in order for it to be
+    processed:
+
+
+    1. An **Authorization** HTTP header containing the value
+
+
+    ```javascript
+
+    Bearer <access_token>
+
+    ```
+
+
+    </br>
+
+
+    Where the `access_token` is the bearer token given in the
+    [Login](https://docs.jiko.io/reference) response.
+
+
+    1. An **x-jiko-idempotency** HTTP header set to a random uuid for this
+    action, in order to signify a unique request to the API from the partner’s
+    perspective.
+
+    2. An **x-jiko-signature** HTTP header set to a base64 encoded HMAC-SHA256
+    hash of `x-jiko-idempotency+request pathname+body` using the shared secret
+    as a key.
+
+
+    Below is a Node.js example showing how a potential request could be signed:
+
+
+    </br>
+
+
+    ```javascript
+
+    const crypto = require("crypto");
+
+    const uuid = require("uuid");
+
+
+    const idempotency = uuid.v4();
+
+    const pathname = "/api/v1/agreements/";
+
+    const body = "";
+
+
+    request.headers["x-jiko-signature"] = crypto
+      .createHmac("sha256", "shared-secret-here")
+      .update(idempotency + pathname + body, "utf-8")
+      .digest("base64");
+    ```
+
+
+    </br>
+
+
+    **Partner** requests will need to be sent from an IP address whitelisted by
+    **Jiko**.
+
+    **Jiko** will verify the request signature by repeating the steps above,
+    additionally checking for possible repeated requests. A request is
+    considered to be repeated if the idempotency key value provided in the
+    `x-jiko-idempotency` header has been used previously in the past 1 hour.
+
+
+    </br>
+
+
+    Bearer tokens have a lifetime of 60 minutes.
+
+    The partner will need to repeat the login process once a token has expired.
+
+
+    # Changelog
+
+
+    ## March 2024
+
+    - Added `tradable_id` field to  [List Customer
+    Trades](https://docs.jiko.io/reference)  and [List Customer
+    Transactions](https://docs.jiko.io/reference) API endpoint.
+
+    - Added support for filtering by trade date to and from to  [List Customer
+    Trades](https://docs.jiko.io/reference)  and [List Customer
+    Transactions](https://docs.jiko.io/reference) API endpoints.
+
+
+    - Added support for filtering by types, timestamp_from and timestamp_to to
+    the  [List Customer Transactions](https://docs.jiko.io/reference), [List
+    Account Transactions](https://docs.jiko.io/reference) API endpoints.
+
+
+
+    ## February 2024
+
+     - Added support for filtering by status and direction to the [List ACH Originations](https://docs.jiko.io/reference) API endpoint
+     - Added support for filtering by portal id and card id to the  [List Customer Transactions](https://docs.jiko.io/reference), [List Account Transactions](https://docs.jiko.io/reference) API endpoints.
+
+     - Added support for filtering by status and direction to the [List ACH Originations](https://docs.jiko.io/reference) API endpoint
+     - Added support for filtering by card status to the [List Account Cards](https://docs.jiko.io/reference) endpoint.
+     - Added support for full withdrawals when performing on-us transfers by using the new `amount` field.
+     - Added support for listing fees deducted when performing on-us transfers.
+
+    ## January 2024
+
+     - Added [Get Health Check](https://docs.jiko.io/reference) API endpoint.
+
+    ## December 2023
+
+
+    - Business Application additions:
+
+      - Added [Create Application](https://docs.jiko.io/reference) API endpoint.
+      - Added [Get Application](https://docs.jiko.io/reference) API endpoint.
+      - Added [Update Application](https://docs.jiko.io/reference) API endpoint.
+      - Added [Apply](https://docs.jiko.io/reference) API endpoint.
+
+    - Related Party Application additions:
+
+      - Added [List Related Party](https://docs.jiko.io/reference) API endpoint.
+      - Added [Create Related Party](https://docs.jiko.io/reference) API endpoint.
+      - Added [Delete Related Party](https://docs.jiko.io/reference) API endpoint.
+      - Added [Update Related Party](https://docs.jiko.io/reference) API endpoint.
+
+    - Document Upload additions:
+
+      - Added [List Document Requests](https://docs.jiko.io/reference) API endpoint.
+      - Added [Upload Document](https://docs.jiko.io/reference) API endpoint.
+
+    - Wire additions:
+
+      - Added [Create Wire](https://docs.jiko.io/reference) API endpoint.
+
+    ## November 2023
+
+
+    - Added a new optional field `micro_deposit` to V1 `ACHCounterparty` model
+    that includes an indication of number of verification attempts for ACH
+    Counterparties verified via Micro Deposits
+
+    - Added [Close Portal](https://docs.jiko.io/reference) API endpoint.
+
+    - Added [Update Portal](https://docs.jiko.io/reference) API endpoint.
+
+
+    ## October 2023
+
+
+    - Added enum value `PENDING` to the [Get Customer
+    Data](https://docs.jiko.io/reference) `account_status` field, signalling
+    that a customer has no open pocket.
+
+
+    ## July 2023
+
+
+    - Added [Get Account Portal](https://docs.jiko.io/reference) API endpoint.
+
+
+    ## May 2023
+
+
+    ### 2023-05-26
+
+
+    - The response from uploading documents now includes a `document_id` field
+    for future reference.
+
+
+    ### 2023-05-15
+
+
+    - Added [Create Portal](https://docs.jiko.io/reference) API endpoint.
+
+    - Added a new `category` type E-SIGN for the Electronic Communications
+    Disclosure Statement and Consent which was previously in the GENERAL
+    category.
+
+
+    ### 2023-05-05
+
+
+    - Added a new `WIRE_COUNTERPARTY_VERIFICATION` document type.
+
+    - File size limits raised to 50 MB for files other than `ID_FRONT`,
+    `ID_BACK`, `SELFIE` and `PASSPORT` when uploading documents to a customer or
+    application.
+
+    - Updated documentation for both file upload endpoints.
+
+
+    ## April 2023
+
+
+    ### 2023-04-28
+
+
+    - Adds a new `category` field for agreements returned by the [List
+    Agreements](https://docs.jiko.io/reference) endpoint. This `category` field
+    groups all agreements into 3 categories, BANK, BROKERAGE, or GENERAL.
+
+
+    ### 2023-04-19
+
+
+    - Added a new sandbox endpoint for simulating webhook calls, [Trigger
+    Webhook](https://docs.jiko.io/reference).
+
+
+    ## March 2023
+
+
+    ### 2023-03-30
+
+
+    - Added a new `yield_to_maturity` field to the `Trade` model.
+
+
+    ### 2023-03-15
+
+
+    - Added a new `name` field to the `Portal` model.
+
+
+    ## February 2023
+
+
+    ### 2023-02-24
+
+
+    - Added a sandbox endpoint to fund accounts via ACH portals.
+
+
+    ### 2023-02-16
+
+
+    - Added a new disclosure type, `FORM_CRS`, for Customer Relationship Summary
+    Forms.
+
+
+    ### 2023-02-10
+
+
+    - Added `wire_fee_transaction` and `WIRE_FEE` transaction type to the [List
+    Customer Transactions](https://docs.jiko.io/reference), [List Account
+    Transactions](https://docs.jiko.io/reference) and [Get Account
+    Transaction](https://docs.jiko.io/reference) endpoints.
+
+
+    ## January 2023
+
+
+    ### 2023-01-25
+
+
+    - Added [Create On-Us Transfer](https://docs.jiko.io/reference) API
+    endpoint.
+
+    - Added [Get On-Us Transfer](https://docs.jiko.io/reference) API endpoint.
+
+
+    ### 2023-01-18
+
+
+    - Added two optional filtering query parameters to the [List Customer
+    Statements](https://docs.jiko.io/reference) endpoint:
+      - The `type[]` query parameter makes it possible to filter by different types of statements, e.g. `?type[]=BANK&type[]=BROKERAGE`
+      - The `key` query parameter makes it possible to filter by either a specific month or a year, e.g. `?key=2023-01` or `?key=2022`
+    - Marked the [List Account Statements](https://docs.jiko.io/reference)
+    endpoint as deprecated. Please use the [List Customer
+    Statements](https://docs.jiko.io/reference) in future integrations.
+
+
+    ### 2023-01-09
+
+
+    - Added a new transaction type and corresponding details object,
+    `on_us_transaction` to the response model in [List Customer
+    Transactions](https://docs.jiko.io/reference).
+
+
+    ### 2023-01-06
+
+
+    - Added optional field `originally_onboarded_at` to request body in [Create
+    Application](https://docs.jiko.io/reference)
+
+
+    ## November 2022
+
+
+    ### 2022-11-09
+
+
+    - New counterparty type `WIRE` with a `wire` field, returned in [Get
+    Counterparty](https://docs.jiko.io/reference) and [List
+    Counterparties](https://docs.jiko.io/reference)
+
+
+    ## September 2022
+
+
+    ### 2022-09-28
+
+
+    - Added [List Customer Statements](https://docs.jiko.io/reference) API
+    endpoint.
+
+
+    ### 2022-09-27
+
+
+    - Added [Get Customer Data](https://docs.jiko.io/reference) API endpoint.
+
+
+    ### 2022-09-07
+
+
+    - Added [List Customer Trades](https://docs.jiko.io/reference) API endpoint.
+
+    - Added [List Customer Transactions](https://docs.jiko.io/reference) API
+    endpoint.
+
+
+    ## August 2022
+
+
+    ### 2022-08-29
+
+
+    - Added `name` field to the [List Customer
+    Accounts](https://docs.jiko.io/reference) and [Get Customer
+    Account](https://docs.jiko.io/reference) API endpoints
+
+
+    ### 2022-08-16
+
+
+    - Added [Get Account Transaction](https://docs.jiko.io/reference) API
+    endpoint
+
+
+    ### 2022-08-05
+
+
+    - Added [List ACH Originations](https://docs.jiko.io/reference) API endpoint
+  apiTitle: Jiko Partner API
+  endpoints: 56
+  sdkMethods: 68
+  schemas: 179
+  parameters: 353
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: jiko.io.yaml
+  difficultyScore: 245.75

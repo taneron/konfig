@@ -2169,6 +2169,15 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "jiko.io": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.jiko.io/reference",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  },
   "bossinsights.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
