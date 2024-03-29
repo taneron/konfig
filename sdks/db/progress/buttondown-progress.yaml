@@ -1,0 +1,120 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /bulk_actions:
+    post: Action_createBulkAction
+  /bulk_actions/{pk}:
+    get: Action_getBulkAction
+  /emails:
+    get: Email_listEmails
+    post: Email_createNewEmail
+  /emails/{pk}:
+    get: Email_getEmail
+  /emails/{pk}/analytics:
+    get: Email_getAnalytics
+  /exports:
+    get: Export_listExports
+    post: Export_createNewExport
+  /exports/{pk}:
+    get: Export_getExport
+  /images:
+    post: Image_createNewImage
+  /images/{image_id}:
+    delete: Image_deleteImage
+  /newsletters:
+    get: Newsletter_listNewsletters
+    post: Newsletter_createNewNewsletter
+  /newsletters/{pk}:
+    delete: Newsletter_deleteById
+    patch: Newsletter_updateContent
+  /ping:
+    get: HealthCheck_pingHealthCheck
+  /subscribers:
+    get: Subscriber_listSubscribers
+    post: Subscriber_createNewSubscriber
+  /subscribers/{pk}:
+    delete: Subscriber_removeSubscriber
+    get: Subscriber_getSubscriber
+    patch: Subscriber_updateDetails
+  /subscribers/{pk}/emails/{email_pk}:
+    post: Email_sendTo
+  /subscribers/{pk}/send-reminder:
+    post: Subscriber_sendReminder
+  /tags:
+    get: Tag_listTags
+    post: Tag_createNewTag
+  /tags/{tag_id}:
+    delete: Tag_removeTag
+    get: Tag_getTag
+    patch: Tag_updateTag
+operationTags:
+  /bulk_actions:
+    post: Action
+  /bulk_actions/{pk}:
+    get: Action
+  /emails:
+    get: Email
+    post: Email
+  /emails/{pk}:
+    get: Email
+  /emails/{pk}/analytics:
+    get: Email
+  /exports:
+    get: Export
+    post: Export
+  /exports/{pk}:
+    get: Export
+  /images:
+    post: Image
+  /images/{image_id}:
+    delete: Image
+  /newsletters:
+    get: Newsletter
+    post: Newsletter
+  /newsletters/{pk}:
+    delete: Newsletter
+    patch: Newsletter
+  /ping:
+    get: HealthCheck
+  /subscribers:
+    get: Subscriber
+    post: Subscriber
+  /subscribers/{pk}:
+    delete: Subscriber
+    get: Subscriber
+    patch: Subscriber
+  /subscribers/{pk}/emails/{email_pk}:
+    post: Email
+  /subscribers/{pk}/send-reminder:
+    post: Subscriber
+  /tags:
+    get: Tag
+    post: Tag
+  /tags/{tag_id}:
+    delete: Tag
+    get: Tag
+    patch: Tag
+renameTags: {}
+requestSchemaNames:
+  /images:
+    post:
+      multipart/form-data: ImageCreateNewImageRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  '-tag':
+    query: false
+  email:
+    query: false
+  excluded_tags:
+    query: false
+  included_tags:
+    query: false
+  status:
+    query: false
+  tag:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

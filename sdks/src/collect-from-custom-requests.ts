@@ -2369,6 +2369,11 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://docs.modrinth.com/redocusaurus/plugin-redoc-0.yaml",
   },
+  "buttondown.email": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/buttondown/openapi/main/openapi.json",
+    apiBaseUrl: "https://api.buttondown.email/v1/"
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
