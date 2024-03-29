@@ -10,7 +10,7 @@ export default function BrowseAiTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="browse-ai-typescript-sdk"
-      metaDescription={`We're creating the easiest way to scrape and monitor any website with no code. 
+      metaDescription={`We're creating the easiest way to scrape and monitor any website with no code.
 
 Our mission is to give every individual and business equal opportunity to benefit from information on the internet.`}
       company="Browse AI"
@@ -19,7 +19,7 @@ Our mission is to give every individual and business equal opportunity to benefi
       companyKebabCase="browse-ai"
       clientNameCamelCase="browseAi"
       homepage="browse.ai"
-      lastUpdated={new Date("2024-03-29T20:52:35.791Z")}
+      lastUpdated={new Date("2024-03-29T21:02:06.014Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/browse-ai/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

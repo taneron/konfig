@@ -17,7 +17,7 @@ export default function ZapierEmbedTypeScriptSdk() {
       companyKebabCase="zapier"
       clientNameCamelCase="zapierEmbed"
       homepage="zapier.com"
-      lastUpdated={new Date("2024-03-24T21:42:09.454Z")}
+      lastUpdated={new Date("2024-03-29T21:10:21.087Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/embed/favicon.png"
       contactUrl="https://help.zapier.com/hc/en-us"
       contactEmail="contact@zapier.com"
@@ -501,7 +501,7 @@ export default function ZapierEmbedTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Actions",
     "typeScriptTag": "actions",
-    "description": "Test an action (step)",
+    "description": "Test an action (https://docs.api.zapier.com/api#/v4f9fwzq9hclo-zapier-embed-api",
     "parameters": [
       {
         "name": "data",
@@ -541,7 +541,7 @@ export default function ZapierEmbedTypeScriptSdk() {
       sdkMethods={20}
       schemas={46}
       parameters={30}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/embed/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/zapier/embed/openapi.yaml"
       developerDocumentation="docs.api.zapier.com/api#/v4f9fwzq9hclo-zapier-embed-api"

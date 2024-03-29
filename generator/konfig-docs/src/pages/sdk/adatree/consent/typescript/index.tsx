@@ -33,7 +33,7 @@ Reach out to our team today: https://www.adatree.com.au/contact`}
       companyKebabCase="adatree"
       clientNameCamelCase="adatreeConsent"
       homepage="adatree.com.au/"
-      lastUpdated={new Date("2024-03-27T23:56:18.514Z")}
+      lastUpdated={new Date("2024-03-29T21:02:06.014Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adatree/consent/favicon.jpg"
       // Missing contactUrl
       contactEmail="engineering@adatree.com.au"
@@ -643,7 +643,7 @@ Reach out to our team today: https://www.adatree.com.au/contact`}
       sdkMethods={10}
       schemas={35}
       parameters={45}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adatree/consent/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/adatree/consent/openapi.yaml"
       developerDocumentation="developer.adatree.com.au/docs/api/consent/"

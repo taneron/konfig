@@ -57,7 +57,7 @@ export default function BrowseAi() {
       homepage="browse.ai"
       companyKebabCase="browse-ai"
       categories={allCategories}
-      metaDescription={`We're creating the easiest way to scrape and monitor any website with no code. 
+      metaDescription={`We're creating the easiest way to scrape and monitor any website with no code.
 
 Our mission is to give every individual and business equal opportunity to benefit from information on the internet.`}
     />

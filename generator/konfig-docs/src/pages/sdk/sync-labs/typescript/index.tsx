@@ -27,7 +27,7 @@ we're building a suite of audio / video models to change how we live, work, and 
       companyKebabCase="sync-labs"
       clientNameCamelCase="syncLabs"
       homepage="synclabs.so"
-      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
+      lastUpdated={new Date("2024-03-29T21:02:06.014Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -612,7 +612,7 @@ we're building a suite of audio / video models to change how we live, work, and 
       sdkMethods={18}
       schemas={17}
       parameters={41}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/sync-labs/openapi.yaml"
       developerDocumentation="docs.synclabs.so/api-reference/introduction"
