@@ -1,0 +1,922 @@
+{
+  "securitySchemes": {
+    "ApiKey": {
+      "description": "When you sign up for an account, you are given your first API key. To do so please [follow this link.](https://app.nanonets.com/#keys)\n\nAlso you can generate additional API keys, and delete API keys (as you may need to rotate your keys in the future). NanoNets expects for the API key to be included in all API requests to the server in a header that looks like the following:\n\n<span style=\"color:red\">Authorization: REPLACE_API_KEY</span>\n\nAll API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.",
+      "type": "http",
+      "x-skip-client-authentication": false,
+      "x-testValue": [],
+      "scheme": "basic"
+    }
+  },
+  "apiBaseUrl": "https://app.nanonets.com/api/v2",
+  "apiVersion": "2.0.0",
+  "apiDescription": "Welcome to the NanoNets API! You can use our API to build custom deep learning models.<br/>\nWe have language bindings in Shell, Ruby, Golang, Java, C# and Python. You can view code examples in the dark area to the right, and you can switch the programming language for the examples with the tabs in the top right. <br/> In the documentation, you will find ready to fire code samples in these languages as well as detailed API specs for different endpoints.<br/><br/><br/>\n\n### <span style=\"vertical-align: middle;\">Want to quickly test our APIs? &nbsp;</span> <a style=\"vertical-align: middle; display: inline-flex;\" href=\"https://elements.getpostman.com/redirect?entityId=4900737-80d490dc-a342-43be-8160-c9b5bab3c629&entityType=collection\" target=\"_blank\"><img src=\"https://run.pstmn.io/button.svg\" alt=\"Run in Postman\" /></a><br/><br/>\nHelpful links to get you started:<br/><br/>\n**Postman collection variables** - <a href=\"https://learning.postman.com/docs/postman/variables-and-environments/variables/#defining-collection-variables\" target=\"_blank\">https://learning.postman.com/docs/postman/variables-and-environments/variables/#defining-collection-variables</a><br/><br/>\n**To get your API key** <a href=\"https://app.nanonets.com/#keys\" target=\"_blank\">follow this link.</a><br/><br/>\n\n# Model Object\nA model Object has 3 main attributes<br/>\n### model_id\n<b>Definition:</b> Unique ID for the model <br/><br/>\n### model_type\n<b>Definition:</b> Type of model. Possible values are: <br/>\n<table>\n    <tr>\n        <td>classification</td>\n        <td>Image classification model</td>\n    </tr>\n    <tr>\n        <td>ocr</td>\n        <td>OCR model</td>\n    </tr>\n</table> <br/>\n\n### state\n<b>Definition:</b> Current state of model. Possible values are:<br/>\n<table>\n    <tr>\n        <td>-1</td>\n        <td>Error in model training</td>\n    </tr>\n    <tr>\n        <td>0</td>\n        <td>Model created. No training data uploaded yet</td>\n    </tr>\n    <tr>\n        <td>1</td>\n        <td>Training data uploaded. Need to annotate data</td>\n    </tr>\n    <tr>\n        <td>2</td>\n        <td>Training data annotated. Need to start training</td>\n    </tr>\n    <tr>\n        <td>3</td>\n        <td>Model in training queue</td>\n    </tr>\n    <tr>\n        <td>4</td>\n        <td>Model currently training</td>\n    </tr>\n    <tr>\n        <td>5</td>\n        <td>Model hosted. Can be used for prediction</td>\n    </tr>\n    <tr>\n        <td>6</td>\n        <td>Model is retraining with new data. Can be used for prediction</td>\n    </tr>\n</table>\n",
+  "apiTitle": "NanoNets",
+  "endpoints": 21,
+  "sdkMethods": 21,
+  "schemas": 37,
+  "parameters": 56,
+  "contactUrl": "https://nanonets.com",
+  "contactEmail": "support@nanonets.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://app.nanonets.com/swagger"
+  },
+  "customRequestSpecFilename": "nanonets.com.yaml",
+  "difficultyScore": 37.5,
+  "difficulty": "Very Easy",
+  "company": "Nanonets",
+  "sdkName": "nanonets-{language}-sdk",
+  "clientName": "Nanonets",
+  "metaDescription": "Nanonets enables self-service artificial intelligence by simplifying adoption. Easily build machine learning models with minimal training data or knowledge of machine learning. \n\nAt Nanonets, we serve up the most accurate models. Always.",
+  "apiStatusUrls": "inherit",
+  "homepage": "nanonets.com/",
+  "developerDocumentation": "nanonets.com/documentation/",
+  "categories": [
+    "artificial_intelligence",
+    "machine_learning",
+    "software_development",
+    "enterprise_software"
+  ],
+  "category": "AI Tools",
+  "methods": [
+    {
+      "url": "/ImageCategorization/Model",
+      "method": "createNewModel",
+      "httpMethod": "post",
+      "tag": "Image Classification Model",
+      "typeScriptTag": "imageClassificationModel",
+      "description": "Create New Model",
+      "parameters": [
+        {
+          "name": "categories",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CATEGORIES"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Zero or One category in request. Add two or more categories in parameters"
+        }
+      ]
+    },
+    {
+      "url": "/Inferences/Model/{model_id}/ImageLevelInferences/{id}",
+      "method": "predictionFileByPageId",
+      "httpMethod": "get",
+      "tag": "OCR Predict",
+      "typeScriptTag": "ocrPredict",
+      "description": "Get Prediction File By Page ID",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the page that was received from the async prediction endpoint",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if you have entered correct model id with valid API key"
+        }
+      ]
+    },
+    {
+      "url": "/Inferences/Model/{model_id}/ImageLevelInferences?start_day_interval={start_day}&current_batch_day={end_day}",
+      "method": "allPredictionFiles",
+      "httpMethod": "get",
+      "tag": "OCR Predict",
+      "typeScriptTag": "ocrPredict",
+      "description": "Get All Prediction Files",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "startDayInterval",
+          "schema": "integer",
+          "required": true,
+          "description": "The number of days since 1st Jan 1970 GMT which represents the start of the period",
+          "example": 0
+        },
+        {
+          "name": "currentBatchDay",
+          "schema": "integer",
+          "required": true,
+          "description": "The number of days since 1st Jan 1970 GMT which represents the end of the period",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if you have entered correct model id with valid API key"
+        }
+      ]
+    },
+    {
+      "url": "/Inferences/Model/{model_id}/InferenceRequestFiles/GetPredictions/{request_file_id}",
+      "method": "getFilePredictionByFileId",
+      "httpMethod": "get",
+      "tag": "OCR Predict",
+      "typeScriptTag": "ocrPredict",
+      "description": "Get Prediction File By File ID",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "requestFileId",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the file that was received from the async prediction endpoint",
+          "example": "REQUEST_FILE_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if you have entered correct model id with valid API key"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/FullText",
+      "method": "fileContent",
+      "httpMethod": "post",
+      "tag": "Get Full Text",
+      "typeScriptTag": "getFullText",
+      "description": "Get Full Text",
+      "parameters": [
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        },
+        {
+          "name": "urls",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "File missing. Check if you have included a file in the request\n\nOR\n\nIncorrect image. Check if file you included is a valid PNG or JPEG or PDF"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model/{model_id}",
+      "method": "getModelById",
+      "httpMethod": "get",
+      "tag": "OCR Model",
+      "typeScriptTag": "ocrModel",
+      "description": "Get Model by Id",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if you have entered correct model id with valid API key"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model/{model_id}/LabelFile/?async=true",
+      "method": "imageFileAsyncPrediction",
+      "httpMethod": "post",
+      "tag": "OCR Predict",
+      "typeScriptTag": "ocrPredict",
+      "description": "Async Prediction for image file",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "async",
+          "schema": "string",
+          "required": true,
+          "description": "This parameter specifies whether you'd like to upload the file for processing and then query the results with a unique id at a later point in time",
+          "example": "ASYNC"
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        },
+        {
+          "name": "base64_data",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "request_metadata",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "File missing. Check if you have included a file in the request\n\nOR\n\nIncorrect image. Check if file you included is a valid PNG or JPEG"
+        },
+        {
+          "statusCode": "402",
+          "description": "Exhausted Free API Calls. You have exhausted your free API calls please change your plan <a href=\"https://app.nanonets.com/user/apps\">here</a>"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model/{model_id}/LabelUrls/?async=true",
+      "method": "imageUrlAsync",
+      "httpMethod": "post",
+      "tag": "OCR Predict",
+      "typeScriptTag": "ocrPredict",
+      "description": "Async Prediction for image url",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "async",
+          "schema": "boolean",
+          "required": true,
+          "description": "This parameter specifies whether you'd like to upload the file for processing and then query the results with a unique id at a later point in time",
+          "example": true
+        },
+        {
+          "name": "urls",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URLS"
+        },
+        {
+          "name": "base64_data",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "request_metadata",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "202",
+          "description": "Request partially successful. One or more urls might not be correct or got no response"
+        },
+        {
+          "statusCode": "400",
+          "description": "Urls missing. Check if you have an included array of image urls"
+        },
+        {
+          "statusCode": "402",
+          "description": "Exhausted Free API Calls  You have exhausted your free API calls please change your plan <a href=\"https://app.nanonets.com/user/apps\">here</a>"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/ImageCategorization/LabelFile",
+      "method": "filePrediction",
+      "httpMethod": "post",
+      "tag": "Image Classification Model Predict",
+      "typeScriptTag": "imageClassificationModelPredict",
+      "description": "Prediction for image File",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODELID"
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "File missing. Check if you have included a file in the request\n\nOR\n\nIncorrect image. Check if file you included is a valid PNG or JPEG"
+        },
+        {
+          "statusCode": "402",
+          "description": "Exhausted Free API Calls. You have exhausted your free API calls please change your plan <a href=\"https://app.nanonets.com/user/apps\">here</a>"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/ImageCategorization/LabelUrls",
+      "method": "imageUrlPrediction",
+      "httpMethod": "post",
+      "tag": "Image Classification Model Predict",
+      "typeScriptTag": "imageClassificationModelPredict",
+      "description": "Prediction for image URLs",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODELID"
+        },
+        {
+          "name": "urls",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URLS"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "202",
+          "description": "Request partially successful. One or more urls might not be correct or got no response"
+        },
+        {
+          "statusCode": "400",
+          "description": "Urls missing. Check if you have an included array of image urls"
+        },
+        {
+          "statusCode": "402",
+          "description": "Exhausted Free API Calls  You have exhausted your free API calls please change your plan <a href=\"https://app.nanonets.com/user/apps\">here</a>"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/ImageCategorization/Models",
+      "method": "getAllModels",
+      "httpMethod": "get",
+      "tag": "Image Classification Model",
+      "typeScriptTag": "imageClassificationModel",
+      "description": "Get All Models",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/ImageCategorization/Train",
+      "method": "newModelTraining",
+      "httpMethod": "post",
+      "tag": "Image Classification Model Train",
+      "typeScriptTag": "imageClassificationModelTrain",
+      "description": "Train Model",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODELID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Model not ready for training. Check if the images for the model are uploaded"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/ImageCategorization/UploadFile",
+      "method": "trainingImagesFile",
+      "httpMethod": "post",
+      "tag": "Image Classification Model Upload",
+      "typeScriptTag": "imageClassificationModelUpload",
+      "description": "Upload training images by File",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODELID"
+        },
+        {
+          "name": "category",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CATEGORY"
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Category not valid for model. Check if this model has the category used in the request\n\nOR\n\nFile missing. Check if you have included the file in the request\n\nOR\n\nIncorrect image. Check if file you included is valid PNG or JPEG file"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/ImageCategorization/UploadUrls",
+      "method": "byUrls",
+      "httpMethod": "post",
+      "tag": "Image Classification Model Upload",
+      "typeScriptTag": "imageClassificationModelUpload",
+      "description": "Upload training images by Url",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODELID"
+        },
+        {
+          "name": "category",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CATEGORY"
+        },
+        {
+          "name": "urls",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URLS"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "202",
+          "description": "Request partially successful. One or more urls might not be correct or got no response"
+        },
+        {
+          "statusCode": "400",
+          "description": "Category not valid for model. Check if this model has the category used in the request\n\nOR\n\nUrls missing  Check if you have included an array of image urls"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model",
+      "method": "createNewModel",
+      "httpMethod": "post",
+      "tag": "OCR Model",
+      "typeScriptTag": "ocrModel",
+      "description": "Create New Model",
+      "parameters": [
+        {
+          "name": "categories",
+          "schema": "array",
+          "required": true,
+          "description": "",
+          "example": [
+            "{{category1}}",
+            "{{category2}}"
+          ]
+        },
+        {
+          "name": "model_type",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "ocr"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Zero or One category in request. Add two or more categories in parameters"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model/{model_id}/LabelFile",
+      "method": "imageFile",
+      "httpMethod": "post",
+      "tag": "OCR Predict",
+      "typeScriptTag": "ocrPredict",
+      "description": "Prediction for image file",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "l",
+          "schema": "string",
+          "required": true,
+          "description": "language hints eg: en, vi (not specifying generally gives best results)",
+          "example": "L"
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        },
+        {
+          "name": "base64_data",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "request_metadata",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "pages_to_process",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "File missing. Check if you have included a file in the request\n\nOR\n\nIncorrect image. Check if file you included is a valid PNG or JPEG"
+        },
+        {
+          "statusCode": "402",
+          "description": "Exhausted Free API Calls. You have exhausted your free API calls please change your plan <a href=\"https://app.nanonets.com/user/apps\">here</a>"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model/{model_id}/LabelUrls",
+      "method": "imageUrlsPost",
+      "httpMethod": "post",
+      "tag": "OCR Predict",
+      "typeScriptTag": "ocrPredict",
+      "description": "Prediction for image url",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "l",
+          "schema": "string",
+          "required": true,
+          "description": "language hints eg: en, vi (not specifying generally gives best results)",
+          "example": "L"
+        },
+        {
+          "name": "urls",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URLS"
+        },
+        {
+          "name": "base64_data",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "request_metadata",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "pages_to_process",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "202",
+          "description": "Request partially successful. One or more urls might not be correct or got no response"
+        },
+        {
+          "statusCode": "400",
+          "description": "Urls missing. Check if you have an included array of image urls"
+        },
+        {
+          "statusCode": "402",
+          "description": "Exhausted Free API Calls  You have exhausted your free API calls please change your plan <a href=\"https://app.nanonets.com/user/apps\">here</a>"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model/{model_id}/Train",
+      "method": "model",
+      "httpMethod": "post",
+      "tag": "OCR Train",
+      "typeScriptTag": "ocrTrain",
+      "description": "Train Model",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Model not ready for training. Check if the images for the model are uploaded"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model/{model_id}/UploadFile",
+      "method": "trainingImagesFile",
+      "httpMethod": "post",
+      "tag": "OCR Upload",
+      "typeScriptTag": "ocrUpload",
+      "description": "Upload training images by File",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "data",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "DATA"
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Category not valid for model. Check if this model has the category used in the request\n\nOR\n\nFile missing. Check if you have included the file in the request\n\nOR\n\nIncorrect image. Check if file you included is valid PNG or JPEG file"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    },
+    {
+      "url": "/OCR/Model/{model_id}/UploadUrls",
+      "method": "trainingImagesByUrl",
+      "httpMethod": "post",
+      "tag": "OCR Upload",
+      "typeScriptTag": "ocrUpload",
+      "description": "Upload training images by Url",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "data",
+          "schema": "array",
+          "required": true,
+          "description": "",
+          "example": [
+            {
+              "filename": "https://nanonets.s3-us-west-2.amazonaws.com/test-images/test1.jpg",
+              "object": [
+                {
+                  "bndbox": {
+                    "xmax": 100,
+                    "xmin": 1,
+                    "ymax": 100,
+                    "ymin": 1
+                  },
+                  "name": "{{category1}}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "urls",
+          "schema": "array",
+          "required": true,
+          "description": "",
+          "example": [
+            "https://nanonets.s3-us-west-2.amazonaws.com/test-images/test1.jpg"
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "202",
+          "description": "Request partially successful. One or more urls might not be correct or got no response"
+        },
+        {
+          "statusCode": "400",
+          "description": "Category not valid for model. Check if this model has the category used in the request\n\nOR\n\nUrls missing. Check if you have included an array of image urls"
+        },
+        {
+          "statusCode": "404",
+          "description": "Model does not exists. Check if the model id exists"
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Nanonets enables self-service artificial intelligence by simplifying adoption. Easily build machine learning models with minimal training data or knowledge of machine learning.   At Nanonets, we serve up the most accurate models. Always. Nanonets's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nanonets/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nanonets/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nanonets/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nanonets/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nanonets/favicon.png",
+  "clientNameCamelCase": "nanonets",
+  "lastUpdated": "2024-03-29T23:12:25.198Z",
+  "typescriptSdkUsageCode": "import { Nanonets } from 'nanonets-typescript-sdk';\n\nconst nanonets = new Nanonets({\n    /*\n     * When you sign up for an account, you are given your first API key. To do so please [follow this link.](https://app.nanonets.com/#keys)\n     * \n     * Also you can generate additional API keys, and delete API keys (as you may need to rotate your keys in the future). NanoNets expects for the API key to be included in all API requests to the server in a header that looks like the following:\n     * \n     * <span style=\"color:red\">Authorization: REPLACE_API_KEY</span>\n     * \n     * All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.\n     */\n    username: \"USERNAME\",\n    password: \"PASSWORD\"\n})",
+  "typescriptSdkFirstRequestCode": "// Create New Model\nconst createNewModelResponse = nanonets.imageClassificationModel.createNewModel({\n    categories: \"CATEGORIES\"\n})",
+  "fixedSpecFileName": "nanonets-fixed-spec.yaml"
+}

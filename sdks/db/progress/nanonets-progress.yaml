@@ -1,0 +1,176 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /ImageCategorization/LabelFile/:
+    post: ImageClassificationModelPredict_filePrediction
+  /ImageCategorization/LabelUrls/:
+    post: ImageClassificationModelPredict_imageUrlPrediction
+  /ImageCategorization/Model:
+    get: ImageClassificationModel_getDetailsById
+  /ImageCategorization/Model/:
+    post: ImageClassificationModel_createNewModel
+  /ImageCategorization/Models/:
+    get: ImageClassificationModel_getAllModels
+  /ImageCategorization/Train/:
+    post: ImageClassificationModelTrain_newModelTraining
+  /ImageCategorization/UploadFile/:
+    post: ImageClassificationModelUpload_trainingImagesFile
+  /ImageCategorization/UploadUrls/:
+    post: ImageClassificationModelUpload_byUrls
+  /Inferences/Model/{model_id}/ImageLevelInferences/{id}:
+    get: OcrPredict_predictionFileByPageId
+  /Inferences/Model/{model_id}/ImageLevelInferences?start_day_interval={start_day}&current_batch_day={end_day}:
+    get: OcrPredict_allPredictionFiles
+  /Inferences/Model/{model_id}/InferenceRequestFiles/GetPredictions/{request_file_id}:
+    get: OcrPredict_getFilePredictionByFileId
+  /OCR/FullText:
+    post: GetFullText_fileContent
+  /OCR/Model/:
+    post: OcrModel_createNewModel
+  /OCR/Model/{model_id}:
+    get: OcrModel_getModelById
+  /OCR/Model/{model_id}/LabelFile/:
+    post: OcrPredict_imageFile
+  /OCR/Model/{model_id}/LabelFile/?async=true:
+    post: OcrPredict_imageFileAsyncPrediction
+  /OCR/Model/{model_id}/LabelUrls/:
+    post: OcrPredict_imageUrlsPost
+  /OCR/Model/{model_id}/LabelUrls/?async=true:
+    post: OcrPredict_imageUrlAsync
+  /OCR/Model/{model_id}/Train/:
+    post: OcrTrain_model
+  /OCR/Model/{model_id}/UploadFile/:
+    post: OcrUpload_trainingImagesFile
+  /OCR/Model/{model_id}/UploadUrls/:
+    post: OcrUpload_trainingImagesByUrl
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /ImageCategorization/LabelFile:
+    post:
+      multipart/form-data: ImageClassificationModelPredictFilePredictionRequest
+  /ImageCategorization/LabelUrls:
+    post:
+      multipart/form-data: ImageClassificationModelPredictImageUrlPredictionRequest
+  /ImageCategorization/Model:
+    post:
+      application/x-www-form-urlencoded: ImageClassificationModelCreateNewModelRequest
+  /ImageCategorization/Train:
+    post:
+      application/x-www-form-urlencoded: ImageClassificationModelTrainNewModelTrainingRequest
+  /ImageCategorization/UploadFile:
+    post:
+      multipart/form-data: ImageClassificationModelUploadTrainingImagesFileRequest
+  /ImageCategorization/UploadUrls:
+    post:
+      application/x-www-form-urlencoded: ImageClassificationModelUploadByUrlsRequest
+  /OCR/FullText:
+    post:
+      multipart/form-data: GetFullTextFileContentRequest
+  /OCR/Model/{model_id}/LabelFile:
+    post:
+      multipart/form-data: OcrPredictImageFileRequest
+  /OCR/Model/{model_id}/LabelFile/?async=true:
+    post:
+      multipart/form-data: OcrPredictImageFileAsyncPredictionRequest
+  /OCR/Model/{model_id}/LabelUrls:
+    post:
+      application/x-www-form-urlencoded: OcrPredictImageUrlsPostRequest
+  /OCR/Model/{model_id}/LabelUrls/?async=true:
+    post:
+      application/x-www-form-urlencoded: OcrPredictImageUrlAsyncRequest
+  /OCR/Model/{model_id}/UploadFile:
+    post:
+      multipart/form-data: OcrUploadTrainingImagesFileRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /ImageCategorization/LabelFile:
+    post:
+      '200':
+        application/json: ImageClassificationModelPredictFilePredictionResponse
+  /ImageCategorization/LabelUrls:
+    post:
+      '200':
+        application/json: ImageClassificationModelPredictImageUrlPredictionResponse
+  /ImageCategorization/Model:
+    post:
+      '200':
+        application/json: ImageClassificationModelCreateNewModelResponse
+  /ImageCategorization/Models:
+    get:
+      '200':
+        application/json: ImageClassificationModelGetAllModelsResponse
+  /ImageCategorization/Train:
+    post:
+      '200':
+        application/json: ImageClassificationModelTrainNewModelTrainingResponse
+  /ImageCategorization/UploadFile:
+    post:
+      '200':
+        application/json: ImageClassificationModelUploadTrainingImagesFileResponse
+  /ImageCategorization/UploadUrls:
+    post:
+      '200':
+        application/json: ImageClassificationModelUploadByUrlsResponse
+  /Inferences/Model/{model_id}/ImageLevelInferences/{id}:
+    get:
+      '200':
+        application/json: OcrPredictPredictionFileByPageIdResponse
+  /Inferences/Model/{model_id}/ImageLevelInferences?start_day_interval={start_day}&current_batch_day={end_day}:
+    get:
+      '200':
+        application/json: OcrPredictAllPredictionFilesResponse
+  /Inferences/Model/{model_id}/InferenceRequestFiles/GetPredictions/{request_file_id}:
+    get:
+      '200':
+        application/json: OcrPredictGetFilePredictionByFileIdResponse
+  /OCR/FullText:
+    post:
+      '200':
+        application/json: GetFullTextFileContentResponse
+  /OCR/Model:
+    post:
+      '200':
+        application/json: OcrModelCreateNewModelResponse
+  /OCR/Model/{model_id}:
+    get:
+      '200':
+        application/json: OcrModelGetModelByIdResponse
+  /OCR/Model/{model_id}/LabelFile:
+    post:
+      '200':
+        application/json: OcrPredictImageFileResponse
+  /OCR/Model/{model_id}/LabelFile/?async=true:
+    post:
+      '200':
+        application/json: OcrPredictImageFileAsyncPredictionResponse
+  /OCR/Model/{model_id}/LabelUrls:
+    post:
+      '200':
+        application/json: OcrPredictImageUrlsPostResponse
+  /OCR/Model/{model_id}/LabelUrls/?async=true:
+    post:
+      '200':
+        application/json: OcrPredictImageUrlAsyncResponse
+  /OCR/Model/{model_id}/Train:
+    post:
+      '200':
+        application/json: OcrTrainModelResponse
+  /OCR/Model/{model_id}/UploadFile:
+    post:
+      '200':
+        application/json: OcrUploadTrainingImagesFileResponse
+  /OCR/Model/{model_id}/UploadUrls:
+    post:
+      '200':
+        application/json: OcrUploadTrainingImagesByUrlResponse
+securityParameters:
+  async:
+    query: false
+  current_batch_day:
+    query: false
+  start_day_interval:
+    query: false
+validServerUrls: {}

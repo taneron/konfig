@@ -2562,6 +2562,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://assets-global.website-files.com/6274d1a571beb184d5ff254f/6488434bf530aef27387176a_OpenAPI_v3.txt",
   },
+  "nanonets.com": {
+    type: "GET",
+    url: "https://app.nanonets.com/swagger",
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({

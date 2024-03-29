@@ -1,0 +1,127 @@
+processed:
+  securitySchemes:
+    ApiKey:
+      description: >-
+        When you sign up for an account, you are given your first API key. To do
+        so please [follow this link.](https://app.nanonets.com/#keys)
+
+
+        Also you can generate additional API keys, and delete API keys (as you
+        may need to rotate your keys in the future). NanoNets expects for the
+        API key to be included in all API requests to the server in a header
+        that looks like the following:
+
+
+        <span style="color:red">Authorization: REPLACE_API_KEY</span>
+
+
+        All API requests must be made over HTTPS. Calls made over plain HTTP
+        will fail. API requests without authentication will also fail.
+      type: http
+      x-skip-client-authentication: false
+      x-testValue: []
+      scheme: basic
+  apiBaseUrl: https://app.nanonets.com/api/v2
+  apiVersion: 2.0.0
+  apiDescription: >
+    Welcome to the NanoNets API! You can use our API to build custom deep
+    learning models.<br/>
+
+    We have language bindings in Shell, Ruby, Golang, Java, C# and Python. You
+    can view code examples in the dark area to the right, and you can switch the
+    programming language for the examples with the tabs in the top right. <br/>
+    In the documentation, you will find ready to fire code samples in these
+    languages as well as detailed API specs for different
+    endpoints.<br/><br/><br/>
+
+
+    ### <span style="vertical-align: middle;">Want to quickly test our APIs?
+    &nbsp;</span> <a style="vertical-align: middle; display: inline-flex;"
+    href="https://elements.getpostman.com/redirect?entityId=4900737-80d490dc-a342-43be-8160-c9b5bab3c629&entityType=collection"
+    target="_blank"><img src="https://run.pstmn.io/button.svg" alt="Run in
+    Postman" /></a><br/><br/>
+
+    Helpful links to get you started:<br/><br/>
+
+    **Postman collection variables** - <a
+    href="https://learning.postman.com/docs/postman/variables-and-environments/variables/#defining-collection-variables"
+    target="_blank">https://learning.postman.com/docs/postman/variables-and-environments/variables/#defining-collection-variables</a><br/><br/>
+
+    **To get your API key** <a href="https://app.nanonets.com/#keys"
+    target="_blank">follow this link.</a><br/><br/>
+
+
+    # Model Object
+
+    A model Object has 3 main attributes<br/>
+
+    ### model_id
+
+    <b>Definition:</b> Unique ID for the model <br/><br/>
+
+    ### model_type
+
+    <b>Definition:</b> Type of model. Possible values are: <br/>
+
+    <table>
+        <tr>
+            <td>classification</td>
+            <td>Image classification model</td>
+        </tr>
+        <tr>
+            <td>ocr</td>
+            <td>OCR model</td>
+        </tr>
+    </table> <br/>
+
+
+    ### state
+
+    <b>Definition:</b> Current state of model. Possible values are:<br/>
+
+    <table>
+        <tr>
+            <td>-1</td>
+            <td>Error in model training</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>Model created. No training data uploaded yet</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Training data uploaded. Need to annotate data</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Training data annotated. Need to start training</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Model in training queue</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Model currently training</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Model hosted. Can be used for prediction</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Model is retraining with new data. Can be used for prediction</td>
+        </tr>
+    </table>
+  apiTitle: NanoNets
+  endpoints: 21
+  sdkMethods: 21
+  schemas: 5
+  parameters: 56
+  contactUrl: https://nanonets.com
+  contactEmail: support@nanonets.com
+  originalCustomRequest:
+    type: GET
+    url: https://app.nanonets.com/swagger
+  customRequestSpecFilename: nanonets.com.yaml
+  difficultyScore: 37.5
