@@ -1,0 +1,106 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /api/v1/client_uuid/{client_uuid}/user_id/{user_id}/data_sources/authorizers:
+    get: User_getDataSourcesAuthorizers
+  /api/v1/user_id/{user_id}/data_sources/authorized:
+    get: User_getAuthorizedDataSources
+  /api/v1/user_id/{user_id}/data_sources/revoke_auth:
+    post: User_revokeAuthData
+  /v2/processed_data/body_health/events/blood_glucose:
+    get: Health_getBloodGlucoseEventData
+  /v2/processed_data/body_health/events/blood_pressure:
+    get: Health_getBloodPressureEventData
+  /v2/processed_data/body_health/events/body_metrics:
+    get: Health_getBodyMetricsEventData
+  /v2/processed_data/body_health/events/heart_rate:
+    get: Health_getHeartRateEvent
+  /v2/processed_data/body_health/events/hydration:
+    get: Hydration_getEventData
+  /v2/processed_data/body_health/events/mood:
+    get: Mood_eventDataRetrieve
+  /v2/processed_data/body_health/events/nutrition:
+    get: Nutrition_getData
+  /v2/processed_data/body_health/events/oxygenation:
+    get: Health_getOxygenationEventData
+  /v2/processed_data/body_health/events/temperature:
+    get: Health_getTemperatureEventData
+  /v2/processed_data/body_health/summary:
+    get: Health_getSummary
+  /v2/processed_data/physical_health/events/activity:
+    get: Health_getActivityEventData
+  /v2/processed_data/physical_health/events/heart_rate:
+    get: Health_getHeartRateEventData
+  /v2/processed_data/physical_health/events/oxygenation:
+    get: Health_getOxygenationEventData
+  /v2/processed_data/physical_health/events/stress:
+    get: Health_getStressEventData
+  /v2/processed_data/physical_health/summary:
+    get: PhysicalHealthSummary_getSummary
+  /v2/processed_data/sleep_health/summary:
+    get: SleepHealthSummary_getSummaryData
+  /v2/processed_data/user/info:
+    get: User_getInfo
+operationTags:
+  /api/v1/client_uuid/{client_uuid}/user_id/{user_id}/data_sources/authorizers:
+    get: User
+  /api/v1/user_id/{user_id}/data_sources/authorized:
+    get: User
+  /api/v1/user_id/{user_id}/data_sources/revoke_auth:
+    post: User
+  /v2/processed_data/body_health/events/blood_glucose:
+    get: Health
+  /v2/processed_data/body_health/events/blood_pressure:
+    get: Health
+  /v2/processed_data/body_health/events/body_metrics:
+    get: Health
+  /v2/processed_data/body_health/events/heart_rate:
+    get: Health
+  /v2/processed_data/body_health/events/hydration:
+    get: Hydration
+  /v2/processed_data/body_health/events/mood:
+    get: Mood
+  /v2/processed_data/body_health/events/nutrition:
+    get: Nutrition
+  /v2/processed_data/body_health/events/oxygenation:
+    get: Health
+  /v2/processed_data/body_health/events/temperature:
+    get: Health
+  /v2/processed_data/body_health/summary:
+    get: Health
+  /v2/processed_data/physical_health/events/activity:
+    get: Health
+  /v2/processed_data/physical_health/events/heart_rate:
+    get: Health
+  /v2/processed_data/physical_health/events/oxygenation:
+    get: Health
+  /v2/processed_data/physical_health/events/stress:
+    get: Health
+  /v2/processed_data/physical_health/summary:
+    get: PhysicalHealthSummary
+  /v2/processed_data/sleep_health/summary:
+    get: SleepHealthSummary
+  /v2/processed_data/user/info:
+    get: User
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/user_id/{user_id}/data_sources/authorized:
+    get:
+      '200':
+        application/json: UserGetAuthorizedDataSourcesResponse
+  /v2/processed_data/user/info:
+    get:
+      '204':
+        application/json: UserGetInfoResponse
+securityParameters:
+  date:
+    query: false
+  redirect_url:
+    query: false
+  user_id:
+    query: false
+validServerUrls: {}

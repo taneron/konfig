@@ -1,0 +1,509 @@
+hash: aff573a157fdcb6778f5bd78f84089021172d4d02ec2be5531560d0b475c11c2
+methodObjects:
+  - url: >-
+      /api/v1/client_uuid/{client_uuid}/user_id/{user_id}/data_sources/authorizers
+    method: getDataSourcesAuthorizers
+    httpMethod: get
+    tag: User
+    typeScriptTag: user
+    description: '[User][Data Sources][Authorizers]'
+    parameters:
+      - name: clientUuid
+        schema: string
+        required: true
+        description: >-
+          A unique identifier for each client, in UUID4 format. Provided by ROOK
+          upon signing service agreements.
+        example: demoClientUUID
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: redirectUrl
+        schema: string
+        required: false
+        description: >
+          (https://docs.tryrook.io/: Designates a custom URL to which the user
+          is redirected after a successful authentication or linking process. In
+          its absence, the redirection will be to ROOK's connections page (or
+          the default configured) to continue the post-authentication flow.
+        example: https://example.com
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/user_id/{user_id}/data_sources/authorized
+    method: getAuthorizedDataSources
+    httpMethod: get
+    tag: User
+    typeScriptTag: user
+    description: '[User][Data Sources][Authorized]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/processed_data/user/info
+    method: getInfo
+    httpMethod: get
+    tag: User
+    typeScriptTag: user
+    description: '[User][Info]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /api/v1/user_id/{user_id}/data_sources/revoke_auth
+    method: revokeAuthData
+    httpMethod: post
+    tag: User
+    typeScriptTag: user
+    description: '[User][Data Sources][Revoke]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /v2/processed_data/physical_health/summary
+    method: getSummary
+    httpMethod: get
+    tag: PhysicalHealthSummary
+    typeScriptTag: physicalHealthSummary
+    description: '[Physical][Summary]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/physical_health/events/activity
+    method: getActivityEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Physical][Events][Activity]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/physical_health/events/heart_rate
+    method: getHeartRateEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Physical][Events][Heart Rate]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/physical_health/events/oxygenation
+    method: getOxygenationEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Physical][Events][Oxygenation]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/physical_health/events/stress
+    method: getStressEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Physical][Events][Stress]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/sleep_health/summary
+    method: getSummaryData
+    httpMethod: get
+    tag: SleepHealthSummary
+    typeScriptTag: sleepHealthSummary
+    description: '[Sleep][Summary]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/summary
+    method: getSummary
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Body][Summary]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/body_metrics
+    method: getBodyMetricsEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Body][Events][Body Metrics]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/heart_rate
+    method: getHeartRateEvent
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Body][Events][Heart Rate]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/oxygenation
+    method: getOxygenationEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Body][Events][Oxygenation]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/nutrition
+    method: getData
+    httpMethod: get
+    tag: Nutrition
+    typeScriptTag: nutrition
+    description: '[Body][Events][Nutrition]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/mood
+    method: eventDataRetrieve
+    httpMethod: get
+    tag: Mood
+    typeScriptTag: mood
+    description: '[Body][Events][Mood]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/hydration
+    method: getEventData
+    httpMethod: get
+    tag: Hydration
+    typeScriptTag: hydration
+    description: '[Body][Events][Hydration]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/blood_glucose
+    method: getBloodGlucoseEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Body][Events][Blood Glucose]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/blood_pressure
+    method: getBloodPressureEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Body][Events][Blood Pressure]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+  - url: /v2/processed_data/body_health/events/temperature
+    method: getTemperatureEventData
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: '[Body][Events][Temperature]'
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          Unique identifier for the user. Can include numerals, UUID4, strings,
+          or other identifiers. Length must be between 1 to 50 characters.
+        example: demoUserId
+      - name: date
+        schema: string
+        required: true
+        description: Date in YYYY-MM-DD format.
+        example: '2023-01-01'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: ''
+numberOfSchemas: 37
+apiDescription: >-
+
+  ### Intro
+
+  [ROOK](https://docs.tryrook.io/docs/Definitions#rook) is a set of services
+  that simplifies the collection, processing, and delivering of
+  [Users'](https://docs.tryrook.io/docs/Definitions#User)
+  [HealthData](https://docs.tryrook.io/docs/Definitions#health-data) from
+  various data sources.  
+
+
+
+  ### Testing
+
+  You can use the following constants to test the API and receive default
+  responses:      
+    - client_uuid = Your "client_uuid" for testing you can use: 'demoClientUUID'
+    - client secret = Your "client secret" for testing you can use: 'demoClientSecret'
+    - user_id = Your "user_id" for testing you can use: 'demoUserId'
+    - date = Your "date" for testing you can use: '2022-10-28'         

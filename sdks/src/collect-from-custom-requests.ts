@@ -2321,6 +2321,10 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "tryrook.io": {
+    type: "GET",
+    url: "https://docs.tryrook.io/redocusaurus/plugin-redoc-0.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
