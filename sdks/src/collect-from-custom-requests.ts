@@ -2495,6 +2495,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://doc.bity.com/exchange/exchange_api_v2.openapi.yaml",
   },
+  "keatext.ai": {
+    type: "GET",
+    url: "https://developer.keatext.ai/specs.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

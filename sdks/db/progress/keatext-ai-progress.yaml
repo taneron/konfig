@@ -1,0 +1,98 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /:
+    options: Filters_listAvailableFilters
+  /analytics/documents:
+    get: Analytics_getFlexibly
+  /analytics/documents/{documentId}:
+    get: Analytics_getDocumentById
+  /analytics/indicators:
+    get: Analytics_getIndicatorGroups
+  /analytics/statements:
+    post: Analytics_getStatementGroups
+  /analytics/topics:
+    get: Analytics_getTopicGroups
+  /auth/login:
+    post: Authentication_generateToken
+  /datasets:
+    get: Datasets_getOrganizationData
+    post: Datasets_addRecords
+  /datasets/{datasetId}:
+    delete: Datasets_deleteDataset
+    get: Datasets_getData
+    patch: Datasets_updateProperties
+  /datasets/{datasetId}/fields:
+    post: Datasets_addFieldToDataset
+  /datasets/{datasetId}/fields/{fieldKey}:
+    delete: Datasets_removeField
+    patch: Datasets_updateFieldVisibility
+  /datasets/{datasetId}/records:
+    post: Datasets_ingestRecords
+  /organizations:
+    get: Organizations_listYour
+    post: Organizations_createOrganization
+  /organizations/{organizationId}:
+    delete: Organizations_deleteOrganizationPermanently
+  /organizations/{organizationId}/access-url:
+    post: Organizations_createAndAuthenticateUser
+  /organizations/{organizationId}/users:
+    delete: Organizations_revokeAccess
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /:
+    options:
+      application/json: FiltersListAvailableFiltersRequest
+  /auth/login:
+    post:
+      application/json: AuthenticationGenerateTokenRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /analytics/documents:
+    get:
+      '200':
+        application/json: AnalyticsGetFlexiblyResponse
+  /analytics/indicators:
+    get:
+      '200':
+        application/json: AnalyticsGetIndicatorGroupsResponse
+  /analytics/statements:
+    post:
+      '200':
+        application/json: AnalyticsGetStatementGroupsResponse
+  /analytics/topics:
+    get:
+      '200':
+        application/json: AnalyticsGetTopicGroupsResponse
+  /datasets:
+    get:
+      '200':
+        application/json: DatasetsGetOrganizationDataResponse
+  /organizations:
+    get:
+      '200':
+        application/json: OrganizationsListYourResponse
+  /organizations/{organizationId}/access-url:
+    post:
+      '200':
+        application/json: OrganizationsCreateAndAuthenticateUserResponse
+securityParameters:
+  Authorization:
+    header: false
+  category:
+    query: false
+  email:
+    query: false
+  indicatorGroupId:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  orgId:
+    query: false
+  topicGroupId:
+    query: false
+validServerUrls: {}
