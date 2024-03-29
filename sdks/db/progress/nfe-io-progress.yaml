@@ -1,0 +1,66 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+fixOnlyOneTagName: false
+operationIds:
+  /v2/productinvoices/events/{accessKey}:
+    get: ProductInvoicesV2_consultarEventos
+  /v2/productinvoices/{accessKey}:
+    get: ProductInvoicesV2_consultaByAccessKeyGet
+  /v2/productinvoices/{accessKey}.pdf:
+    get: ProductInvoicesV2_consultaPdfByAccessKey
+  /v2/productinvoices/{accessKey}.xml:
+    get: ProductInvoicesV2_consultarNotaFiscalEletronicaPorChave
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/productinvoices/events/{accessKey}:
+    get:
+      '200':
+        application/json: ProductInvoicesV2ConsultarEventosResponse
+      '400':
+        application/json: ProductInvoicesV2ConsultarEventos400Response
+      '404':
+        application/json: ProductInvoicesV2ConsultarEventos404Response
+      '500':
+        application/json: ProductInvoicesV2ConsultarEventos500Response
+  /v2/productinvoices/{accessKey}:
+    get:
+      '200':
+        application/json: ProductInvoicesV2ConsultaByAccessKeyGetResponse
+      '400':
+        application/json: ProductInvoicesV2ConsultaByAccessKeyGet400Response
+      '404':
+        application/json: ProductInvoicesV2ConsultaByAccessKeyGet404Response
+      '500':
+        application/json: ProductInvoicesV2ConsultaByAccessKeyGet500Response
+  /v2/productinvoices/{accessKey}.pdf:
+    get:
+      '200':
+        application/json: ProductInvoicesV2ConsultaPdfByAccessKeyResponse
+      '400':
+        application/json: ProductInvoicesV2ConsultaPdfByAccessKey400Response
+      '404':
+        application/json: ProductInvoicesV2ConsultaPdfByAccessKey404Response
+      '500':
+        application/json: ProductInvoicesV2ConsultaPdfByAccessKey500Response
+  /v2/productinvoices/{accessKey}.xml:
+    get:
+      '200':
+        application/json: ProductInvoicesV2ConsultarNotaFiscalEletronicaPorChave200Response
+        application/xml: ProductInvoicesV2ConsultarNotaFiscalEletronicaPorChaveResponse
+      '400':
+        application/json: ProductInvoicesV2ConsultarNotaFiscalEletronicaPorChave400Response
+        application/xml: ProductInvoicesV2ConsultarNotaFiscalEletronicaPorChave400Response
+      '404':
+        application/json: ProductInvoicesV2ConsultarNotaFiscalEletronicaPorChave404Response
+        application/xml: ProductInvoicesV2ConsultarNotaFiscalEletronicaPorChave404Response
+      '500':
+        application/json: ProductInvoicesV2ConsultarNotaFiscalEletronicaPorChave500Response
+        application/xml: ProductInvoicesV2ConsultarNotaFiscalEletronicaPorChave500Response
+securityParameters: {}
+validServerUrls:
+  nfe.api.nfe.io:
+    url: nfe.api.nfe.io

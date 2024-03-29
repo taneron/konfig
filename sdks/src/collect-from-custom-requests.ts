@@ -2240,6 +2240,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://partner-content-api.epidemicsound.com/docs/spec.json",
   },
+  "nfe.io": {
+    type: "GET",
+    url: "https://nfe.io/docs/app/uploads/2020/10/nfe-api.txt",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
