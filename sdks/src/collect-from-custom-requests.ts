@@ -2244,6 +2244,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://nfe.io/docs/app/uploads/2020/10/nfe-api.txt",
   },
+  "aeternity.com": {
+    type: "GET",
+    url: "https://mainnet.aeternity.io/api?oas3",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

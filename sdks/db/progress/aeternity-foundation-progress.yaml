@@ -1,0 +1,175 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /accounts/{pubkey}:
+    get: External_getAccountByPubkey
+  /accounts/{pubkey}/hash/{hash}:
+    get: External_getAccountAfterBlockHash
+  /accounts/{pubkey}/height/{height}:
+    get: External_getAccountByPubkeyAfterHeight
+  /accounts/{pubkey}/next-nonce:
+    get: External_getNextNonce
+  /accounts/{pubkey}/transactions/pending:
+    get: External_getPendingAccountTransactionsByPubkey
+  /channels/{pubkey}:
+    get: External_getChannelByPubkey
+  /contracts/{pubkey}:
+    get: External_getContractByPubkey
+  /contracts/{pubkey}/code:
+    get: External_getContractCodeByPubkey
+  /contracts/{pubkey}/poi:
+    get: External_getContractProofOfInclusion
+  /debug/accounts/beneficiary:
+    get: Internal_getNodeBeneficiaryPublicKey
+  /debug/accounts/node:
+    get: Internal_getNodePublicKey
+  /debug/channels/close/mutual:
+    post: Internal_closeChannelMutual
+  /debug/channels/close/solo:
+    post: Internal_channelCloseSoloTransaction
+  /debug/channels/create:
+    post: Internal_createChannelObject
+  /debug/channels/deposit:
+    post: Internal_getChannelDepositTransaction
+  /debug/channels/fsm-count:
+    get: Internal_getActiveFsmCount
+  /debug/channels/set-delegates:
+    post: Internal_setChannelDelegatesTx
+  /debug/channels/settle:
+    post: Internal_channelSettleTransaction
+  /debug/channels/slash:
+    post: Internal_createChannelSlashTransaction
+  /debug/channels/snapshot/solo:
+    post: Internal_getChannelSnapshotSolo
+  /debug/channels/withdraw:
+    post: Internal_getChannelWithdrawal
+  /debug/check-tx/pool/{hash}:
+    get: Internal_checkTxPool
+  /debug/contracts/call:
+    post: Internal_getContractCallObject
+  /debug/contracts/create:
+    post: Internal_createContractTransaction
+  /debug/crash:
+    get: Internal_simulateRequestCrash
+  /debug/names/claim:
+    post: Internal_getNameClaimTransaction
+  /debug/names/commitment-id:
+    get: Internal_computeCommitmentId
+  /debug/names/preclaim:
+    post: Internal_getNamePreclaimTransaction
+  /debug/names/revoke:
+    post: Internal_getNameRevokeTransaction
+  /debug/names/transfer:
+    post: Internal_getNameTransferObject
+  /debug/names/update:
+    post: Internal_getNameUpdateTransaction
+  /debug/network:
+    get: Internal_getPeerAnalytics
+  /debug/oracles/extend:
+    post: Internal_getOracleExtendTransaction
+  /debug/oracles/query:
+    post: Internal_getOracleQueryObject
+  /debug/oracles/register:
+    post: Internal_registerOracleTransaction
+  /debug/oracles/respond:
+    post: Internal_getOracleResponse
+  /debug/peers:
+    get: Internal_getNodePeers
+  /debug/token-supply/height/{height}:
+    get: Internal_getTokenSupplyHeight
+  /debug/transactions/dry-run:
+    post: Internal_dryRunTransactionsOnBlock
+  /debug/transactions/paying-for:
+    post: Internal_getPayingForTransaction
+  /debug/transactions/pending:
+    get: Internal_getPendingTransactions
+  /debug/transactions/spend:
+    post: Internal_getSpendTransaction
+  /dry-run:
+    post: External_dryRunTransactions
+  /generations/current:
+    get: External_getCurrentGeneration
+  /generations/hash/{hash}:
+    get: External_getGenerationByHash
+  /generations/height/{height}:
+    get: External_getGenerationByHeight
+  /headers/top:
+    get: External_getTopHeader
+  /key-blocks:
+    post: Internal_submitMinedKeyBlock
+  /key-blocks/current:
+    get: External_getCurrentKeyBlock
+  /key-blocks/current/hash:
+    get: External_getCurrentKeyblockHash
+  /key-blocks/current/height:
+    get: External_getCurrentKeyBlockHeight
+  /key-blocks/hash/{hash}:
+    get: External_getKeyBlockByHash
+  /key-blocks/height/{height}:
+    get: External_getKeyBlockByHeight
+  /key-blocks/pending:
+    get: External_getPendingKeyblock
+  /micro-blocks/hash/{hash}/header:
+    get: External_getMicroBlockHeaderByHash
+  /micro-blocks/hash/{hash}/transactions:
+    get: External_getMicroBlockTransactionsByHash
+  /micro-blocks/hash/{hash}/transactions/count:
+    get: External_getMicroBlockTransactionCount
+  /micro-blocks/hash/{hash}/transactions/index/{index}:
+    get: External_getMicroBlockTransactionByHashAndIndex
+  /names/{name}:
+    get: External_getNameEntry
+  /node/operator/mempool/hash/{hash}:
+    delete: Internal_removePendingTransaction
+  /node/operator/peers/count:
+    get: Internal_getNodePeersCount
+  /oracles/{pubkey}:
+    get: External_getOracleByPubkey
+  /oracles/{pubkey}/queries:
+    get: External_getOracleQueriesByPubkey
+  /oracles/{pubkey}/queries/{query-id}:
+    get: External_getOracleQueryByPubkeyAndQueryId
+  /peers/pubkey:
+    get: External_getPeerPublicKey
+  /status:
+    get: External_getNodeStatus
+  /status/chain-ends:
+    get: External_getKeyblockHashes
+  /transactions:
+    post: External_createTransaction
+  /transactions/{hash}:
+    get: External_getTransactionByHash
+  /transactions/{hash}/info:
+    get: External_getTransactionInfo
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /node/operator/mempool/hash/{hash}:
+    delete:
+      '200':
+        application/json: InternalRemovePendingTransactionResponse
+  /status/chain-ends:
+    get:
+      '200':
+        application/json: ExternalGetKeyblockHashesResponse
+securityParameters:
+  from:
+    query: false
+  int-as-string:
+    query: false
+  limit:
+    query: false
+  name:
+    query: false
+  salt:
+    query: false
+  strategy:
+    query: false
+  type:
+    query: false
+validServerUrls:
+  /v3:
+    url: /v3
