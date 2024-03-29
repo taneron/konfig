@@ -2265,6 +2265,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://los-ops-pub.s3.us-west-2.amazonaws.com/api_reference/swagger-v3.json",
   },
+  "hathora.dev": {
+    type: "GET",
+    url: "https://hathora.dev/swagger.json",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

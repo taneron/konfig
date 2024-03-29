@@ -1,0 +1,269 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /apps/v1/create:
+    post: AppV1_createNewApplication
+  /apps/v1/delete/{appId}:
+    delete: AppV1_deleteApplicationById
+  /apps/v1/info/{appId}:
+    get: AppV1_getAppInfo
+  /apps/v1/list:
+    get: AppV1_getAppList
+  /apps/v1/update/{appId}:
+    post: AppV1_updateApplicationData
+  /auth/v1/{appId}/login/anonymous:
+    post: AuthV1_generatePlayerToken
+  /auth/v1/{appId}/login/google:
+    post: AuthV1_getUniquePlayerToken
+  /auth/v1/{appId}/login/nickname:
+    post: AuthV1_generateUniquePlayerToken
+  /billing/v1/balance:
+    get: BillingV1_getBalance
+  /billing/v1/customerportalurl:
+    post: BillingV1_createCustomerPortalUrl
+  /billing/v1/invoices:
+    get: BillingV1_listInvoices
+  /billing/v1/paymentmethod:
+    get: BillingV1_getPaymentMethod
+  /builds/v1/{appId}/create:
+    post: BuildV1_createBuild
+  /builds/v1/{appId}/delete/{buildId}:
+    delete: BuildV1_deleteBuildById
+  /builds/v1/{appId}/info/{buildId}:
+    get: BuildV1_getApplicationInfo
+  /builds/v1/{appId}/list:
+    get: BuildV1_getApplicationBuilds
+  /builds/v1/{appId}/run/{buildId}:
+    post: BuildV1_buildServerArtifact
+  /deployments/v1/{appId}/create/{buildId}:
+    post: DeploymentV1_createNewDeployment
+  /deployments/v1/{appId}/info/{deploymentId}:
+    get: DeploymentV1_getInfo
+  /deployments/v1/{appId}/latest:
+    get: DeploymentV1_getLatestDeploymentByAppId
+  /deployments/v1/{appId}/list:
+    get: DeploymentV1_listDeploymentsByAppId
+  /discovery/v1/ping:
+    get: DiscoveryV1_getEndpoints
+  /lobby/v1/{appId}/create/private:
+    post: LobbyV1_createPrivateLobby
+  /lobby/v1/{appId}/create/public:
+    post: LobbyV1_createPublicLobby
+  /lobby/v1/{appId}/list:
+    get: LobbyV1_listLobbiesByAppId
+  /lobby/v2/{appId}/create:
+    post: LobbyV2_createLobby
+  /lobby/v2/{appId}/create/local:
+    post: LobbyV2_createLocalLobby
+  /lobby/v2/{appId}/create/private:
+    post: LobbyV2_createPrivateLobby
+  /lobby/v2/{appId}/create/public:
+    post: LobbyV2_createPublicLobby
+  /lobby/v2/{appId}/info/{roomId}:
+    get: LobbyV2_getLobbyDetails
+  /lobby/v2/{appId}/list/public:
+    get: LobbyV2_listPublicLobbies
+  /lobby/v2/{appId}/setState/{roomId}:
+    post: LobbyV2_setLobbyState
+  /lobby/v3/{appId}/create:
+    post: LobbyV3_createNewLobby
+  /lobby/v3/{appId}/info/roomid/{roomId}:
+    get: LobbyV3_getLobbyDetails
+  /lobby/v3/{appId}/info/shortcode/{shortCode}:
+    get: LobbyV3_getInfoByShortCode
+  /lobby/v3/{appId}/list/public:
+    get: LobbyV3_listPublicLobbies
+  /logs/v1/{appId}/all:
+    get: LogV1_getAllLogs
+  /logs/v1/{appId}/deployment/{deploymentId}:
+    get: LogV1_getLogStream
+  /logs/v1/{appId}/process/{processId}:
+    get: LogV1_streamLogsForProcess
+  /logs/v1/{appId}/process/{processId}/download:
+    get: LogV1_downloadLogForProcess
+  /management/v1/sendverificationemail:
+    post: ManagementV1_sendVerificationEmail
+  /metrics/v1/{appId}/process/{processId}:
+    get: MetricsV1_getProcessMetrics
+  /processes/v1/{appId}/info/{processId}:
+    get: ProcessesV1_getProcessInfo
+  /processes/v1/{appId}/list/running:
+    get: ProcessesV1_listRunningProcesses
+  /processes/v1/{appId}/list/stopped:
+    get: ProcessesV1_getRecentlyStoppedProcesses
+  /processes/v2/{appId}/create/{region}:
+    post: ProcessesV2_createProcessWithoutRoom
+  /processes/v2/{appId}/info/{processId}:
+    get: ProcessesV2_getProcessInfo
+  /processes/v2/{appId}/list/latest:
+    get: ProcessesV2_getLatestProcessesList
+  /processes/v2/{appId}/stop/{processId}:
+    post: ProcessesV2_stopProcessById
+  /rooms/v1/{appId}/connectioninfo/{roomId}:
+    get: RoomV1_getConnectionInfo
+  /rooms/v1/{appId}/create:
+    post: RoomV1_createRoom
+  /rooms/v1/{appId}/destroy/{roomId}:
+    post: RoomV1_destroyRoom
+  /rooms/v1/{appId}/info/{roomId}:
+    get: RoomV1_getRoomInfo
+  /rooms/v1/{appId}/list/{processId}/active:
+    get: RoomV1_getActiveRooms
+  /rooms/v1/{appId}/list/{processId}/inactive:
+    get: RoomV1_getInactiveRooms
+  /rooms/v1/{appId}/suspend/{roomId}:
+    post: RoomV1_suspendRoom
+  /rooms/v2/{appId}/connectioninfo/{roomId}:
+    get: RoomV2_getConnectionInfo
+  /rooms/v2/{appId}/create:
+    post: RoomV2_createRoom
+  /rooms/v2/{appId}/destroy/{roomId}:
+    post: RoomV2_destroyRoomAllocation
+  /rooms/v2/{appId}/info/{roomId}:
+    get: RoomV2_getAllocationData
+  /rooms/v2/{appId}/list/{processId}/active:
+    get: RoomV2_listActiveRooms
+  /rooms/v2/{appId}/list/{processId}/inactive:
+    get: RoomV2_listInactiveRooms
+  /rooms/v2/{appId}/suspend/{roomId}:
+    post: RoomV2_suspendRoomAllocation
+  /rooms/v2/{appId}/update/{roomId}:
+    post: RoomV2_updateRoomAllocation
+  /tokens/v1/orgs/{orgId}:
+    get: OrgTokensV1_listOrgTokens
+  /tokens/v1/orgs/{orgId}/create:
+    post: OrgTokensV1_createNewOrgToken
+  /tokens/v1/orgs/{orgId}/tokens/{orgTokenId}/revoke:
+    post: OrgTokensV1_revokeOrgToken
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /builds/v1/{appId}/run/{buildId}:
+    post:
+      multipart/form-data: BuildV1BuildServerArtifactRequest
+  /lobby/v2/{appId}/create/local:
+    post:
+      application/json: LobbyV2CreateLocalLobbyRequest
+  /lobby/v2/{appId}/create/private:
+    post:
+      application/json: LobbyV2CreatePrivateLobbyRequest
+  /lobby/v2/{appId}/create/public:
+    post:
+      application/json: LobbyV2CreatePublicLobbyRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /apps/v1/list:
+    get:
+      '200':
+        application/json: AppV1GetAppListResponse
+  /billing/v1/balance:
+    get:
+      '200':
+        application/json: BillingV1GetBalanceResponse
+  /billing/v1/customerportalurl:
+    post:
+      '200':
+        application/json: BillingV1CreateCustomerPortalUrlResponse
+  /billing/v1/invoices:
+    get:
+      '200':
+        application/json: BillingV1ListInvoicesResponse
+  /builds/v1/{appId}/list:
+    get:
+      '200':
+        application/json: BuildV1GetApplicationBuildsResponse
+  /builds/v1/{appId}/run/{buildId}:
+    post:
+      '200':
+        text/plain: BuildV1BuildServerArtifactResponse
+  /deployments/v1/{appId}/list:
+    get:
+      '200':
+        application/json: DeploymentV1ListDeploymentsByAppIdResponse
+  /lobby/v1/{appId}/list:
+    get:
+      '200':
+        application/json: LobbyV1ListLobbiesByAppIdResponse
+  /lobby/v2/{appId}/list/public:
+    get:
+      '200':
+        application/json: LobbyV2ListPublicLobbiesResponse
+  /lobby/v3/{appId}/list/public:
+    get:
+      '200':
+        application/json: LobbyV3ListPublicLobbiesResponse
+  /logs/v1/{appId}/all:
+    get:
+      '200':
+        text/plain: LogV1GetAllLogsResponse
+  /logs/v1/{appId}/deployment/{deploymentId}:
+    get:
+      '200':
+        text/plain: LogV1GetLogStreamResponse
+  /logs/v1/{appId}/process/{processId}:
+    get:
+      '200':
+        application/octet-stream: LogV1StreamLogsForProcessResponse
+  /logs/v1/{appId}/process/{processId}/download:
+    get:
+      '200':
+        text/plain: LogV1DownloadLogForProcessResponse
+  /processes/v1/{appId}/list/running:
+    get:
+      '200':
+        application/json: ProcessesV1ListRunningProcessesResponse
+  /processes/v1/{appId}/list/stopped:
+    get:
+      '200':
+        application/json: ProcessesV1GetRecentlyStoppedProcessesResponse
+  /processes/v2/{appId}/list/latest:
+    get:
+      '200':
+        application/json: ProcessesV2GetLatestProcessesListResponse
+  /rooms/v1/{appId}/list/{processId}/active:
+    get:
+      '200':
+        application/json: RoomV1GetActiveRoomsResponse
+  /rooms/v1/{appId}/list/{processId}/inactive:
+    get:
+      '200':
+        application/json: RoomV1GetInactiveRoomsResponse
+  /rooms/v2/{appId}/list/{processId}/active:
+    get:
+      '200':
+        application/json: RoomV2ListActiveRoomsResponse
+  /rooms/v2/{appId}/list/{processId}/inactive:
+    get:
+      '200':
+        application/json: RoomV2ListInactiveRoomsResponse
+  /tokens/v1/orgs/{orgId}/tokens/{orgTokenId}/revoke:
+    post:
+      '200':
+        application/json: OrgTokensV1RevokeOrgTokenResponse
+securityParameters:
+  end:
+    query: false
+  follow:
+    query: false
+  local:
+    query: false
+  metrics:
+    query: false
+  region:
+    query: false
+  roomId:
+    query: false
+  shortCode:
+    query: false
+  start:
+    query: false
+  status:
+    query: false
+  step:
+    query: false
+  tailLines:
+    query: false
+validServerUrls:
+  '':
+    url: ''
