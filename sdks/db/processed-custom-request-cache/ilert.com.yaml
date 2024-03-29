@@ -1,0 +1,67 @@
+processed:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        The Bearer API key of your user <a
+        href='/api-docs/#section/Authentication'>more info</a>.
+  apiBaseUrl: /api
+  apiVersion: ''
+  apiDescription: >-
+
+    The ilert API is a
+    [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API
+    and provides programmatic access to entities in ilert and lets you easily
+    integrate ilert with 3rd party tools. If you are looking to develop an
+    inbound integration (e.g. for a monitoring tool), please use our [Events
+    API](https://api.ilert.com). 
+
+
+    The API supports the JSON content type for requests and responses. The
+    response content type is requested via the HTTP Accept header
+    (`application/json`). All resources are accessible via https and are located
+    at `api.ilert.com/api`. 
+
+    ## Authentication
+
+    The REST API accepts bearer API tokens. Each user may create API keys using
+    the ilert web application. Note: Make sure to send the `Bearer ` prefix e.g.
+    `Bearer APIKEY` when sending api key requests. By default, access to all
+    resources (using any method) requires the client to be authenticated.
+
+
+    ## Team Context
+     When using API tokens, the currently selected team context of the user will not be taken into account, i.e. list results will always return all entities to which the user has a view permission. When using basic auth credentials the currently selected team context of the user will be used to filter resource results. The context may be overwritten for API key calls using the `team-context` HTTP header. Specifying `0` for ALL teams, `-1` for MY teams or a specific team id e.g. `team-context=901` to fetch results for a certain team.  
+
+    ## Errors
+
+    ilert uses HTTP response codes to indicate success or failure of an API
+    request. Codes in the 2xx range indicate success, codes in the 4xx range
+    indicate a client error (e.g. a missing required parameter) and codes in the
+    5xx range indicate an error with ilert's servers. In case of an error, the
+    response body contains the following information:
+
+     Attribute     | Description 
+     ------------- | ------------- 
+     status  | the corresponsing HTTP status code  
+     message  | a human readable description of the error 
+     code  | error code, used to identify error type  
+
+    ## API Versioning
+
+    Changes to our API are always backwards-compatible. To get more information
+    about our API versioning and historical changes, please <a
+    href='https://docs.ilert.com/rest-api/api-version-history'
+    target='_blank'>take a look here</a>.
+  apiTitle: ilert REST API
+  endpoints: 80
+  sdkMethods: 162
+  schemas: 164
+  parameters: 713
+  originalCustomRequest:
+    type: GET
+    url: https://api.ilert.com/api-docs/swagger.json
+  customRequestSpecFilename: ilert.com.yaml
+  difficultyScore: 422.25

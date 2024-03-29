@@ -1,0 +1,244 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/ClientLocation:
+    get: ClientLocation_getDetail
+    post: ClientLocation_createNew
+  /api/ClientLocation/Summary:
+    post: ClientLocation_createSummaryReport
+  /api/ClientLocation/Validate:
+    post: ClientLocation_validateLocationDetails
+  /api/ClientLocation/{id}:
+    delete: ClientLocation_removeById
+    get: ClientLocation_getById
+    put: ClientLocation_updateById
+  /api/ClientLocation/{locationId}/Courier:
+    post: ClientLocation_createCourier
+  /api/ClientLocation/{locationId}/Courier/{courierId}:
+    delete: ClientLocation_removeCourierById
+  /api/ClientLocation/{locationId}/CourierServices:
+    patch: ClientLocation_updateCourierServices
+    put: ClientLocation_updateCourierServices
+  /api/Courier/All:
+    get: Courier_getAll
+  /api/Courier/RequestPickup:
+    post: Courier_requestPickup
+  /api/Feedback/{from}/{to}:
+    get: Feedback_getBetweenDates
+  /api/Label/bulk:
+    post: Label_createBulk
+  /api/Label/bulk/{operationId}:
+    get: Label_getBulkByOperationId
+  /api/Label/by-courier/{courierId}/awb/{awb}:
+    get: Label_getByCourierAwb
+  /api/Label/by-courier/{courierId}/awb/{awb}/parcel/{barcodes}:
+    get: Label_getByAwbAndParcel
+  /api/Label/by-courier/{courierId}/voucher/{awb}:
+    get: Label_getVoucherByCourierAwb
+  /api/Location/ClientLocations:
+    get: Location_getClientLocations
+  /api/Location/Counties/{countryCode}:
+    get: Location_getCountiesByCountryCode
+  /api/Location/Countries:
+    get: Location_getCountryList
+  /api/Location/FixedLocation/{id}:
+    get: Location_getFixedLocationById
+  /api/Location/FixedLocations:
+    get: Location_getFixedLocations
+  /api/Location/Localities/{countyId}:
+    get: Location_getLocalitiesByCountyId
+  /api/Location/Postalcodes/Country/{CountryCode}:
+    get: Location_getPostalCodesByCountry
+  /api/Location/Postalcodes/{CountryCode}/{PostalCode}:
+    get: Location_getPostalCodeDetails
+  /api/Location/Postalcodes/{LocalityId}:
+    get: Location_getPostalcodesByLocalityId
+  /api/Manifest:
+    get: Manifest_reportById
+    post: Manifest_requestPickupAndManifestId
+  /api/Notifications/sendsms:
+    post: Notifications_sendSmsNotification
+  /api/OfflineOrder/Activate:
+    put: OfflineOrder_activateOrder
+  /api/OfflineOrder/Add:
+    post: OfflineOrder_addOrder
+  /api/OfflineOrder/Edit:
+    put: OfflineOrder_updateOrderDetails
+  /api/Order:
+    post: Order_createNewOrder
+  /api/Order/ReturnAwbInfo/{courierId}/{returnAwb}:
+    get: Order_getReturnAwbInfo
+  /api/Order/UpdateCustomAttributes/{courierId}/awb/{awb}:
+    post: Order_updateCustomAttributes
+  /api/Order/UpdateParcels:
+    post: Order_updateParcels
+  /api/Order/UpdateStatus:
+    post: Order_updateStatus
+  /api/Order/UploadDocuments:
+    post: Order_uploadDocuments
+  /api/Order/by-location/{externalLocationId}/{from}/{to}:
+    get: Order_getByLocationDates
+  /api/Order/file:
+    post: Order_uploadFile
+  /api/Order/multiple/simulate:
+    post: Order_simulateMultiple
+  /api/Order/simulate:
+    post: Order_simulateOrder
+  /api/Order/validate:
+    post: Order_validateNewOrder
+  /api/Order/{courierId}/awb/{awbNo}:
+    delete: Order_deleteExistingOrder
+  /api/Price:
+    post: Price_getPrices
+  /api/Track/by-awb/with-return:
+    post: Track_orderCourierAwbWithReturn
+  /api/Track/return/by-awb:
+    post: Track_byAwb
+  /api/Voucher/Activate:
+    post: Voucher_activateVoucher
+  /api/Voucher/Create:
+    post: Voucher_generateNewVoucher
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/ClientLocation/{locationId}/CourierServices:
+    patch:
+      application/*+json: ClientLocationUpdateCourierServicesRequest3
+      application/json: ClientLocationUpdateCourierServicesRequest1
+      application/json-patch+json: ClientLocationUpdateCourierServicesRequest
+      text/json: ClientLocationUpdateCourierServicesRequest2
+    put:
+      application/*+json: ClientLocationUpdateCourierServicesRequest7
+      application/json: ClientLocationUpdateCourierServicesRequest5
+      application/json-patch+json: ClientLocationUpdateCourierServicesRequest4
+      text/json: ClientLocationUpdateCourierServicesRequest6
+  /api/OfflineOrder/Activate:
+    put:
+      application/*+json: OfflineOrderActivateOrderRequest3
+      application/json: OfflineOrderActivateOrderRequest1
+      application/json-patch+json: OfflineOrderActivateOrderRequest
+      text/json: OfflineOrderActivateOrderRequest2
+  /api/OfflineOrder/Add:
+    post:
+      application/*+json: OfflineOrderAddOrderRequest3
+      application/json: OfflineOrderAddOrderRequest1
+      application/json-patch+json: OfflineOrderAddOrderRequest
+      text/json: OfflineOrderAddOrderRequest2
+  /api/OfflineOrder/Edit:
+    put:
+      application/*+json: OfflineOrderUpdateOrderDetailsRequest3
+      application/json: OfflineOrderUpdateOrderDetailsRequest1
+      application/json-patch+json: OfflineOrderUpdateOrderDetailsRequest
+      text/json: OfflineOrderUpdateOrderDetailsRequest2
+  /api/Order/UpdateCustomAttributes/{courierId}/awb/{awb}:
+    post:
+      application/*+json: OrderUpdateCustomAttributesRequest3
+      application/json: OrderUpdateCustomAttributesRequest1
+      application/json-patch+json: OrderUpdateCustomAttributesRequest
+      text/json: OrderUpdateCustomAttributesRequest2
+  /api/Order/UpdateStatus:
+    post:
+      application/*+json: OrderUpdateStatusRequest3
+      application/json: OrderUpdateStatusRequest1
+      application/json-patch+json: OrderUpdateStatusRequest
+      text/json: OrderUpdateStatusRequest2
+  /api/Order/multiple/simulate:
+    post:
+      application/*+json: OrderSimulateMultipleRequest3
+      application/json: OrderSimulateMultipleRequest1
+      application/json-patch+json: OrderSimulateMultipleRequest
+      text/json: OrderSimulateMultipleRequest2
+responseDescriptions: {}
+responseSchemaNames:
+  /api/Courier/All:
+    get:
+      '200':
+        application/json: CourierGetAllResponse
+  /api/Location/Postalcodes/{LocalityId}:
+    get:
+      '200':
+        application/json: LocationGetPostalcodesByLocalityId200Response
+        text/json: LocationGetPostalcodesByLocalityId200Response
+        text/plain: LocationGetPostalcodesByLocalityIdResponse
+  /api/Order/file:
+    post:
+      '201':
+        application/json: OrderUploadFileResponse
+  /api/Order/multiple/simulate:
+    post:
+      '201':
+        application/json: OrderSimulateMultipleResponse
+      '400':
+        application/json: OrderSimulateMultiple400Response
+      '401':
+        application/json: OrderSimulateMultiple401Response
+  /api/Track/by-awb/with-return:
+    post:
+      '200':
+        application/json: TrackOrderCourierAwbWithReturn200Response
+        text/json: TrackOrderCourierAwbWithReturn200Response
+        text/plain: TrackOrderCourierAwbWithReturnResponse
+  /api/Track/return/by-awb:
+    post:
+      '200':
+        application/json: TrackByAwb200Response
+        text/json: TrackByAwb200Response
+        text/plain: TrackByAwbResponse
+securityParameters:
+  CountryCode:
+    query: false
+  CountyName:
+    query: false
+  Courier:
+    query: false
+  CourierId:
+    query: false
+  ExternalLocationId:
+    query: false
+  FixedLocationType:
+    query: false
+  Latitude:
+    query: false
+  LocalityName:
+    query: false
+  Longitude:
+    query: false
+  Radius:
+    query: false
+  RestrictionParcelsCount:
+    query: false
+  RestrictionSizeHeight:
+    query: false
+  RestrictionSizeLength:
+    query: false
+  RestrictionSizeWidth:
+    query: false
+  ShowInactive:
+    query: false
+  api-version:
+    header: false
+    query: false
+  applyToAllLocations:
+    query: false
+  countryCode:
+    query: false
+  filter:
+    query: false
+  force:
+    query: false
+  format:
+    query: false
+  includeVoucher:
+    query: false
+  isEmagMarketPlace:
+    query: false
+  manifestId:
+    query: false
+  skipCache:
+    query: false
+  type:
+    query: false
+  useFile:
+    query: false
+validServerUrls: {}

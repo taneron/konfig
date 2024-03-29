@@ -2324,6 +2324,19 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "innoship.io": {
+    type: "GET",
+    url: "https://api.innoship.io/swagger/v1/swagger.json",
+    apiBaseUrl: "https://api.innoship.com",
+  },
+  "ilert.com": {
+    type: "GET",
+    url: "https://api.ilert.com/api-docs/swagger.json",
+  },
+  "inmobile.com": {
+    type: "GET",
+    url: "https://api.inmobile.com/swagger/v1/swagger.json",
+  },
   "finleycms.com": {
     type: "GET",
     url: "https://api.finleycms.com/api-docs/spec",

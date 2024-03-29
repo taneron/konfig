@@ -1,0 +1,494 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /alert-actions:
+    get: AlertActions_getList
+    post: AlertActions_createNewAction
+  /alert-actions/{id}:
+    delete: AlertActions_removeSpecificAction
+    get: AlertActions_getSpecificAction
+    put: AlertActions_updateSpecificAlertAction
+  /alert-sources:
+    get: AlertSources_listSources
+    post: AlertSources_createNewSource
+  /alert-sources/{id}:
+    delete: AlertSources_deleteSpecifiedSource
+    get: AlertSources_getByIdOrApiKey
+    put: AlertSources_updateExistingSource
+  /alerts:
+    get: Alerts_listMatchingCriteria
+    post: Alerts_createCustomizedAlert
+  /alerts/count:
+    get: Alerts_getAlertCountMatchingCriteria
+  /alerts/{id}:
+    get: Alerts_getById
+  /alerts/{id}/accept:
+    put: Alerts_acceptAlert
+  /alerts/{id}/actions:
+    get: AlertActions_getAvailableActions
+    post: AlertActions_invokeSpecificAction
+  /alerts/{id}/assign:
+    put: Alerts_assignAlertTo
+  /alerts/{id}/log-entries:
+    get: Alerts_getLogEntries
+  /alerts/{id}/notifications:
+    get: Alerts_getNotifications
+  /alerts/{id}/resolve:
+    put: Alerts_resolveAlert
+  /alerts/{id}/responders:
+    post: Alerts_addResponder
+  /alerts/{id}/responders/{user-id}:
+    delete: Alerts_removeResponder
+  /alerts/{id}/suggested-responders:
+    get: Alerts_getAssignableResponders
+  /automation-rules:
+    get: AutomationRules_getDeprecatedRules
+    post: AutomationRules_createNewRule
+  /automation-rules/{id}:
+    delete: AutomationRules_removeSpecificRule
+    get: AutomationRules_getSpecificRule
+    put: AutomationRules_updateSpecificRule
+  /connectors:
+    get: Connectors_getAvailableConnectors
+    post: Connectors_createNewConnector
+  /connectors/{id}:
+    delete: Connectors_removeSpecificConnector
+    get: Connectors_getSpecificConnector
+    put: Connectors_updateSpecificConnector
+  /escalation-policies:
+    get: EscalationPolicies_listPolicies
+    post: EscalationPolicies_createNewPolicy
+  /escalation-policies/{id}:
+    delete: EscalationPolicies_deleteSpecificPolicy
+    get: EscalationPolicies_getById
+    put: EscalationPolicies_updateExistingPolicy
+  /events:
+    post: Events_postEventToIlert
+  /heartbeats/{key}:
+    get: Heartbeats_pingAlertSource
+    head: Heartbeats_pingAlertSource
+    post: Heartbeats_pingAlertSource
+  /incident-templates:
+    get: IncidentTemplates_getList
+    post: IncidentTemplates_createNewTemplate
+  /incident-templates/{id}:
+    delete: IncidentTemplates_removeSpecificTemplate
+    get: IncidentTemplates_getSpecificTemplate
+    put: IncidentTemplates_updateSpecificTemplate
+  /incidents:
+    get: Incidents_getIncidentList
+    post: Incidents_createNewIncident
+  /incidents/publish-info:
+    post: Incidents_forecastAffectedSubscribersAndStatusPages
+  /incidents/{id}:
+    get: Incidents_getSpecificIncident
+    put: Incidents_updateSpecificIncident
+  /incidents/{id}/private-subscribers:
+    get: Incidents_getPrivateSubscribers
+    post: Incidents_addSubscribers
+  /integrations:
+    get: Integrations_listAvailable
+  /maintenance-windows:
+    get: MaintenanceWindows_list
+    post: MaintenanceWindows_createNewWindow
+  /maintenance-windows/{id}:
+    delete: MaintenanceWindows_removeById
+    get: MaintenanceWindows_getById
+    put: MaintenanceWindows_updateExistingWindow
+  /metric-data-sources:
+    get: MetricDataSources_list
+    post: MetricDataSources_createNewMetricDataSource
+  /metric-data-sources/{id}:
+    delete: MetricDataSources_deleteSpecificDataSource
+    get: MetricDataSources_getSpecificDataSource
+    put: MetricDataSources_updateSpecificDataSource
+  /metric/{id}:
+    delete: Metrics_deleteSpecificMetric
+    get: Metrics_getSpecificMetric
+    put: Metrics_updateSpecificMetric
+  /metrics:
+    get: Metrics_getMetrics
+    post: Metrics_createNewMetric
+  /numbers:
+    get: Numbers_listAvailableNumbers
+  /on-calls:
+    get: OnCalls_listWithFilters
+  /reports/alerts:
+    get: Reports_listAlertMetrics
+  /reports/alerts/summary:
+    get: Reports_summarizeAlertMetrics
+  /reports/api-keys/usage:
+    get: Reports_listApiKeyUsageMetrics
+  /schedules:
+    get: Schedules_listOnCallSchedules
+    post: Schedules_createNewOnCallSchedule
+  /schedules/{id}:
+    delete: Schedules_deleteScheduleById
+    get: Schedules_getById
+    put: Schedules_updateOnCallSchedule
+  /schedules/{id}/overrides:
+    get: Schedules_getOverridesById
+    put: Schedules_addOverrideShift
+  /schedules/{id}/shifts:
+    get: Schedules_getShiftsByIdAndDateRange
+  /schedules/{id}/user-on-call:
+    get: Schedules_getUserOnCall
+  /series/{key}:
+    post: Series_ingestMetricSeries
+  /service-outages:
+    get: ServiceOutages_getServiceOutages
+  /service-outages/overrides:
+    get: ServiceOutages_getOverrides
+    post: ServiceOutages_overridePartHistory
+  /service-outages/overrides/{id}:
+    delete: ServiceOutages_removeOverride
+    get: ServiceOutages_getSpecificOverride
+    put: ServiceOutages_updateOverride
+  /services:
+    get: Services_listAvailableServices
+    post: Services_createService
+  /services/{id}:
+    delete: Services_removeSpecificService
+    get: Services_getSpecificService
+    put: Services_updateSpecificService
+  /services/{id}/private-subscribers:
+    get: Services_getSubscribers
+    put: Services_setPrivateSubscribers
+  /status-pages:
+    get: StatusPages_getStatusPages
+    post: StatusPages_createNewStatusPage
+  /status-pages/{id}:
+    delete: StatusPages_removeSpecificPage
+    get: StatusPages_getPageDetails
+    put: StatusPages_updateSpecificPage
+  /status-pages/{id}/groups:
+    get: StatusPages_getGroups
+    post: StatusPages_addGroupToPage
+  /status-pages/{id}/groups/{group-id}:
+    delete: StatusPages_removeGroup
+    get: StatusPages_getSpecificGroup
+    put: StatusPages_updateGroup
+  /status-pages/{id}/private-subscribers:
+    delete: StatusPages_removeSubscriber
+    get: StatusPages_getPrivateSubscribers
+    post: StatusPages_addSubscriber
+    put: StatusPages_setPrivateSubscribers
+  /support-hours:
+    get: SupportHours_list
+    post: SupportHours_createNewSupportHour
+  /support-hours/{id}:
+    delete: SupportHours_deleteSpecifiedSupportHour
+    get: SupportHours_getById
+    put: SupportHours_updateExistingHour
+  /teams:
+    get: Teams_getAll
+    post: Teams_createNewTeam
+  /teams/{id}:
+    delete: Teams_removeSpecificTeam
+    get: Teams_getDetails
+    put: Teams_updateSpecificTeam
+  /teams/{id}/members:
+    post: Teams_addNewMember
+  /teams/{id}/members/{id}:
+    delete: Teams_removeSpecificMember
+  /users:
+    get: Users_listExistingUsers
+    post: Users_createNewUser
+  /users/current:
+    get: Users_getCurrentUser
+    put: Users_updateCurrentUser
+  /users/{user-id}:
+    delete: Users_deleteUser
+    get: Users_getUserById
+    put: Users_updateExistingUser
+  /users/{user-id}/contacts/emails:
+    get: Contacts_getUserEmails
+    post: Contacts_addNewEmail
+  /users/{user-id}/contacts/emails/{id}:
+    delete: Contacts_deleteUserEmail
+    get: Contacts_getEmail
+    put: Contacts_updateUserEmail
+  /users/{user-id}/contacts/phone-numbers:
+    get: Contacts_getUserPhoneNumbers
+    post: Contacts_createPhoneNumber
+  /users/{user-id}/contacts/phone-numbers/{id}:
+    delete: Contacts_deletePhoneNumber
+    get: Contacts_getPhoneNumber
+    put: Contacts_updateUserPhoneNumber
+  /users/{user-id}/notification-preferences/alerts:
+    get: NotificationPreferences_getUserAlerts
+    post: NotificationPreferences_createAlertPreference
+  /users/{user-id}/notification-preferences/alerts/{id}:
+    delete: NotificationPreferences_deleteUserNotificationPreferencesAlert
+    get: NotificationPreferences_getSpecificAlert
+    put: NotificationPreferences_updateAlertPreference
+  /users/{user-id}/notification-preferences/duties:
+    get: NotificationPreferences_getUserDutyPreferences
+    post: NotificationPreferences_createDuty
+  /users/{user-id}/notification-preferences/duties/{id}:
+    delete: NotificationPreferences_deleteUserNotificationDuty
+    get: NotificationPreferences_getSpecificDuty
+    put: NotificationPreferences_updateDutyNotificationPreference
+  /users/{user-id}/notification-preferences/subscriptions:
+    get: NotificationPreferences_getUserSubscriptions
+    post: NotificationPreferences_createSubscriptionNotificationPreference
+  /users/{user-id}/notification-preferences/subscriptions/{id}:
+    delete: NotificationPreferences_deleteSubscription
+    get: NotificationPreferences_getSpecificSubscription
+    put: NotificationPreferences_updateSubscriptionPreference
+  /users/{user-id}/notification-preferences/updates:
+    get: NotificationPreferences_getUserUpdatePreferences
+    post: NotificationPreferences_createUpdatePreference
+  /users/{user-id}/notification-preferences/updates/{id}:
+    delete: NotificationPreferences_deleteUpdate
+    get: NotificationPreferences_getSpecificUpdate
+    put: NotificationPreferences_updateUserUpdateNotificationPreference
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /incidents/{id}/private-subscribers:
+    post:
+      application/json: IncidentsAddSubscribersRequest
+  /services/{id}/private-subscribers:
+    put:
+      application/json: ServicesSetPrivateSubscribersRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /alert-actions:
+    get:
+      '200':
+        application/json: AlertActionsGetListResponse
+  /alert-sources:
+    get:
+      '200':
+        application/json: AlertSourcesListSourcesResponse
+  /alerts:
+    get:
+      '200':
+        application/json: AlertsListMatchingCriteriaResponse
+  /alerts/{id}/log-entries:
+    get:
+      '200':
+        application/json: AlertsGetLogEntriesResponse
+  /alerts/{id}/notifications:
+    get:
+      '200':
+        application/json: AlertsGetNotificationsResponse
+  /alerts/{id}/suggested-responders:
+    get:
+      '200':
+        application/json: AlertsGetAssignableRespondersResponse
+  /automation-rules:
+    get:
+      '200':
+        application/json: AutomationRulesGetDeprecatedRulesResponse
+  /connectors:
+    get:
+      '200':
+        application/json: ConnectorsGetAvailableConnectorsResponse
+  /escalation-policies:
+    get:
+      '200':
+        application/json: EscalationPoliciesListPoliciesResponse
+  /incident-templates:
+    get:
+      '200':
+        application/json: IncidentTemplatesGetListResponse
+  /incidents:
+    get:
+      '200':
+        application/json: IncidentsGetIncidentListResponse
+  /incidents/publish-info:
+    post:
+      '200':
+        application/json: IncidentsForecastAffectedSubscribersAndStatusPagesResponse
+  /incidents/{id}/private-subscribers:
+    get:
+      '200':
+        application/json: IncidentsGetPrivateSubscribersResponse
+  /integrations:
+    get:
+      '200':
+        application/json: IntegrationsListAvailableResponse
+  /maintenance-windows:
+    get:
+      '200':
+        application/json: MaintenanceWindowsListResponse
+  /metric-data-sources:
+    get:
+      '200':
+        application/json: MetricDataSourcesListResponse
+  /metrics:
+    get:
+      '200':
+        application/json: MetricsGetMetricsResponse
+  /numbers:
+    get:
+      '200':
+        application/json: NumbersListAvailableNumbersResponse
+  /on-calls:
+    get:
+      '200':
+        application/json: OnCallsListWithFiltersResponse
+  /reports/alerts:
+    get:
+      '200':
+        application/json: ReportsListAlertMetricsResponse
+  /reports/alerts/summary:
+    get:
+      '200':
+        application/json: ReportsSummarizeAlertMetricsResponse
+  /reports/api-keys/usage:
+    get:
+      '200':
+        application/json: ReportsListApiKeyUsageMetricsResponse
+  /schedules:
+    get:
+      '200':
+        application/json: SchedulesListOnCallSchedulesResponse
+  /schedules/{id}/overrides:
+    get:
+      '200':
+        application/json: SchedulesGetOverridesByIdResponse
+  /schedules/{id}/shifts:
+    get:
+      '200':
+        application/json: SchedulesGetShiftsByIdAndDateRangeResponse
+  /service-outages:
+    get:
+      '200':
+        application/json: ServiceOutagesGetServiceOutagesResponse
+  /service-outages/overrides:
+    get:
+      '200':
+        application/json: ServiceOutagesGetOverridesResponse
+  /services:
+    get:
+      '200':
+        application/json: ServicesListAvailableServicesResponse
+  /services/{id}/private-subscribers:
+    get:
+      '200':
+        application/json: ServicesGetSubscribersResponse
+  /status-pages:
+    get:
+      '200':
+        application/json: StatusPagesGetStatusPagesResponse
+  /status-pages/{id}/groups:
+    get:
+      '200':
+        application/json: StatusPagesGetGroupsResponse
+  /status-pages/{id}/private-subscribers:
+    get:
+      '200':
+        application/json: StatusPagesGetPrivateSubscribersResponse
+  /support-hours:
+    get:
+      '200':
+        application/json: SupportHoursListResponse
+  /teams:
+    get:
+      '200':
+        application/json: TeamsGetAllResponse
+  /users:
+    get:
+      '200':
+        application/json: UsersListExistingUsersResponse
+  /users/{user-id}/contacts/emails:
+    get:
+      '200':
+        application/json: ContactsGetUserEmailsResponse
+  /users/{user-id}/contacts/phone-numbers:
+    get:
+      '200':
+        application/json: ContactsGetUserPhoneNumbersResponse
+  /users/{user-id}/notification-preferences/alerts:
+    get:
+      '200':
+        application/json: NotificationPreferencesGetUserAlertsResponse
+  /users/{user-id}/notification-preferences/duties:
+    get:
+      '200':
+        application/json: NotificationPreferencesGetUserDutyPreferencesResponse
+  /users/{user-id}/notification-preferences/subscriptions:
+    get:
+      '200':
+        application/json: NotificationPreferencesGetUserSubscriptionsResponse
+  /users/{user-id}/notification-preferences/updates:
+    get:
+      '200':
+        application/json: NotificationPreferencesGetUserUpdatePreferencesResponse
+securityParameters:
+  If-Match:
+    header: false
+  abort-on-gaps:
+    query: false
+  connector:
+    query: false
+  exclude-overrides:
+    query: false
+  expand:
+    query: false
+  filter-types:
+    query: false
+  from:
+    query: false
+  group-by:
+    query: false
+  ignore-overrides:
+    query: false
+  include:
+    query: false
+  lang:
+    query: false
+  max-results:
+    query: false
+  members:
+    query: false
+  metric:
+    query: false
+  numbers:
+    query: false
+  policies:
+    query: false
+  policy:
+    query: false
+  policy-levels:
+    query: false
+  priority:
+    query: false
+  responders:
+    query: false
+  schedule:
+    query: false
+  schedules:
+    query: false
+  scopes:
+    query: false
+  service:
+    query: false
+  services:
+    query: false
+  source:
+    query: false
+  sources:
+    query: false
+  start-index:
+    query: false
+  states:
+    query: false
+  status-page:
+    query: false
+  timezone:
+    query: false
+  until:
+    query: false
+  user:
+    query: false
+  users:
+    query: false
+validServerUrls:
+  /api:
+    url: /api

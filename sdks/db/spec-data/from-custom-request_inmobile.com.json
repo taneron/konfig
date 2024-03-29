@@ -1,0 +1,30 @@
+{
+  "securitySchemes": {
+    "BasicAuth": {
+      "type": "http",
+      "description": "Provide Basic Authentiation with an arbitrary username and your api key as password, e.g. some_value_to_be_ignored:your_api_key_here",
+      "scheme": "basic"
+    },
+    "QueryParameter": {
+      "type": "apiKey",
+      "description": "Specify your apikey in the url as https://api.inmobile.com/some/path?apikey=your_api_key_here. This method is only recommended if basic authorization is not possible.",
+      "name": "apikey",
+      "in": "query"
+    }
+  },
+  "apiBaseUrl": "https://api.inmobile.com",
+  "apiVersion": "version 4",
+  "apiDescription": "\r\n# Introduction\r\n\r\nThis document is a technical description of our REST API used for external systems to send sms messages and to retrieve a status for each sms message sent and to maintain lists and blacklists.\r\n\r\nIn order to call our API, you need an api key. Log in to your account at https://mm.inmobile.dk, go to the \"API\" menu section and your api key will be available here.\r\n\r\nNOTE: It is required for clients to support tls 1.2 or higher.\r\n\r\n\r\n# Firewall openings\r\n\r\nThis is relevant for status callbacks and incoming SMS messages.\r\n\r\nYou can expect callbacks from one of the following IP ranges:\r\n\r\n* 46.36.205.80/28\r\n* 185.221.37.96/28\r\n\r\nThese are also the ip addresses which will be used for api.inmobile.com and mm.inmobile.dk - ensure access to these 2 ranges are opened in your firewall.",
+  "apiTitle": "inMobile REST API",
+  "endpoints": 24,
+  "sdkMethods": 36,
+  "schemas": 66,
+  "parameters": 71,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://api.inmobile.com/swagger/v1/swagger.json"
+  },
+  "customRequestSpecFilename": "inmobile.com.yaml",
+  "difficultyScore": 86.75,
+  "difficulty": "Easy"
+}
