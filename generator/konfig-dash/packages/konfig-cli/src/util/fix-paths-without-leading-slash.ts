@@ -5,7 +5,7 @@ export async function fixPathsWithoutLeadingSlash({
 }: {
   spec: Spec
 }): Promise<number> {
-  let numberOfPathsWithoutLeadingSlashFixed = 0
+  let numberOfPathsWithoutLeadingSlashRemoved = 0
 
   if (spec.spec.paths === undefined) return 0
 
@@ -14,5 +14,5 @@ export async function fixPathsWithoutLeadingSlash({
     Object.entries(spec.spec.paths).filter(([path]) => path.startsWith('/'))
   )
 
-  return numberOfPathsWithoutLeadingSlashFixed
+  return numberOfPathsWithoutLeadingSlashRemoved
 }

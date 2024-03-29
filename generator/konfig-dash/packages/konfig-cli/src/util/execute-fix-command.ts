@@ -153,7 +153,7 @@ export async function executeFixCommand(options: FixOptions): Promise<void> {
     numberOfFixedEnumTypes,
     numberOfMissingResponsesObjectsFixed,
     numberOfReferencesToNonExistentSecuritySchemesRemoved,
-    numberOfPathsWithoutLeadingSlashFixed,
+    numberOfPathsWithoutLeadingSlashRemoved,
   } = await fixOas({
     spec,
     progress,
@@ -204,7 +204,7 @@ Removed ${numberOfRedundantSecuritySchemesRemoved} redundant security schemes
 Removed ${numberOfParametersRemovedForNewSecurityScheme} parameters replace with security requirement
 Removed ${numberOfEmptyRequestBodiesRemoved} empty request bodies
 Removed ${numberOfReferencesToNonExistentSecuritySchemesRemoved} references to non-existent security schemes
-Fixed ${numberOfPathsWithoutLeadingSlashFixed} paths without leading slash
+Removed ${numberOfPathsWithoutLeadingSlashRemoved} paths without leading slash
 Fixed ${numberOfAnyOfTypeNullUsagesReverted} anyOf type null usages
 Fixed ${numberOfOas31UsagesFixed} OAS 3.1.x usages
 Fixed ${numberOfExamplesUsageRemoved} "examples" usage

@@ -136,7 +136,7 @@ export async function fixOas({
   })
 
   // Fix paths that don't start with "/"
-  const numberOfPathsWithoutLeadingSlashFixed =
+  const numberOfPathsWithoutLeadingSlashRemoved =
     await fixPathsWithoutLeadingSlash({
       spec,
     })
@@ -371,7 +371,7 @@ export async function fixOas({
     numberOfSecurityInFieldsLowercased,
     numberOfFixedRequestMediaTypeObjectsMissingSchema,
     numberOfFixedArraySchemasMissingItems,
-    numberOfPathsWithoutLeadingSlashFixed,
+    numberOfPathsWithoutLeadingSlashRemoved,
     numberOfFixedEnumTypes,
     numberOfMissingResponsesObjectsFixed,
   }
