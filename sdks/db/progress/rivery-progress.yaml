@@ -1,0 +1,186 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/accounts/{account_id}/environments/{environment_id}/connections/{connection_cross_id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/accounts/{account_id}/environments/{environment_id}/dataframes/{dataframe_name}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/cdc_config:
+    delete:
+      '200':
+        application/json: {}
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/accounts/{account_id}/environments/{environment_id}/activities_statistics:
+    get: Activities_getStatistics
+  /v1/accounts/{account_id}/environments/{environment_id}/audit_events:
+    get: AuditEvents_list
+  /v1/accounts/{account_id}/environments/{environment_id}/audit_events/{event_id}:
+    get: AuditEvents_getById
+  /v1/accounts/{account_id}/environments/{environment_id}/dataframes/{dataframe_name}/clear:
+    post: Dataframes_clearValues
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/activities_run_groups:
+    get: Activities_listRunGroups
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/activities_run_groups/{run_group_id}:
+    get: Activities_getRunGroup
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/activities_statistics:
+    get: Activities_getRiverActivitiesStatistic
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/activities_sub_rivers:
+    get: Activities_getSubRiverActivities
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/activities_targets:
+    get: Activities_getRiverActivityTargets
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/cancel_run:
+    post: Rivers_cancelRun
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/cdc_config:
+    delete: Rivers_deleteCdcConfig
+    get: Rivers_getCdcConfig
+    post: Rivers_setCdcConfig
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/runs:
+    get: Activities_getRiverRuns
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/runs/{run_id}:
+    get: Activities_getRiverActivitiesRun
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/runs/{run_id}/logic_steps:
+    get: Activities_getLogicStepsStatus
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/runs/{run_id}/logic_steps/{step_id}/logs:
+    get: Activities_getLogicStepLogs
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/runs/{run_id}/logs:
+    get: Activities_getRunLogs
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/runs/{run_id}/variables:
+    get: Activities_getRunVariables
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/sub_rivers/{sub_river_id}/run:
+    post: Rivers_triggerSubRiverRun
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/variables:
+    get: Rivers_getVariables
+    put: Rivers_updateRiverVariable
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/versions:
+    get: Rivers_listVersions
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/versions/{version_id}:
+    get: Rivers_getVersion
+  /v1/accounts/{account_id}/scim_provisioning:
+    delete: Accounts_deleteScimProvisioning
+    get: Accounts_getScimProvisioningStatus
+    put: Accounts_addOrUpdateScimProvisioning
+  /v1/predefined_metadata/columns:
+    get: BetaEndpoints_getPredefinedColumns
+  /v1/predefined_metadata/metadata:
+    get: BetaEndpoints_getPredefinedMetadata
+  /v1/predefined_metadata/tables:
+    get: BetaEndpoints_listPredefinedTables
+  /v1/river_source/metadata:
+    get: BetaEndpoints_getSourceMetadata
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/accounts/{account_id}/environments/{environment_id}/connections/{connection_cross_id}:
+    delete:
+      '200':
+        application/json: DeleteConnectionResponse
+  /v1/accounts/{account_id}/environments/{environment_id}/dataframes/{dataframe_name}:
+    delete:
+      '200':
+        application/json: DeleteDataframeResponse
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}:
+    delete:
+      '200':
+        application/json: DeleteRiverResponse
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/cdc_config:
+    delete:
+      '200':
+        application/json: RiversDeleteCdcConfigResponse
+    post:
+      '200':
+        application/json: RiversSetCdcConfigResponse
+  /v1/accounts/{account_id}/environments/{environment_id}/rivers/{river_cross_id}/runs/{run_id}/logs:
+    get:
+      '200':
+        text/html: ActivitiesGetRunLogsResponse
+securityParameters:
+  cache_context_id:
+    query: false
+  column_name:
+    query: false
+  datasource_id:
+    query: false
+  display_name:
+    query: false
+  end_time:
+    query: false
+  entity_logical_key:
+    query: false
+  entity_type:
+    query: false
+  event_type:
+    query: false
+  group_id:
+    query: false
+  group_name:
+    query: false
+  include_deleted:
+    query: false
+  is_deployable_environments:
+    query: false
+  is_scheduled:
+    query: false
+  items_per_page:
+    query: false
+  iteration_number:
+    query: false
+  name:
+    query: false
+  page:
+    query: false
+  remote_display_name:
+    query: false
+  report:
+    query: false
+  report_id:
+    query: false
+  report_name:
+    query: false
+  river_status:
+    query: false
+  river_type:
+    query: false
+  run_group_id:
+    query: false
+  run_sub_rivers:
+    query: false
+  schedule:
+    query: false
+  search:
+    query: false
+  sort_by:
+    query: false
+  sort_order:
+    query: false
+  source:
+    query: false
+  source_name:
+    query: false
+  start_time:
+    query: false
+  status:
+    query: false
+  sub_river_id:
+    query: false
+  target_name:
+    query: false
+  team_id:
+    query: false
+  user_id:
+    query: false
+validServerUrls: {}

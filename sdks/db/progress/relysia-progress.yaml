@@ -1,0 +1,834 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /:
+    get: Utility_getData
+  /.well-known/bsvalias:
+    get: Paymail_getBsvAlias
+  /admin/v1/metrics:
+    post: Admin_createMetricsRecord
+  /admin/v1/plan/list:
+    get: Admin_listPlans
+  /admin/v1/plans:
+    post: Admin_createPlan
+  /admin/v1/plans/{serviceType}:
+    delete: Admin_deletePlanByServiceType
+    get: Admin_getServiceTypePlans
+    put: Admin_updatePlanServiceType
+  /admin/v1/setup:
+    post: Admin_setupPost
+  /admin/v1/setup/serviceIds:
+    get: Admin_getServiceIds
+  /admin/v1/setup/{serviceId}:
+    delete: Admin_deleteServiceSetup
+    get: Admin_getServiceSetup
+    put: Admin_updateServiceSetup
+  /admin/v1/tokenMetrics:
+    post: Admin_calculateTokenMetrics
+  /post:
+    post: Utility_broadcastNoteToBlockchain
+  /upload:
+    post: Utility_broadcastFileToBlockchain
+  /v1/URI:
+    get: Utility_resolveAddressInfo
+  /v1/address:
+    get: Wallets_getAddressAndPaymail
+  /v1/allAddresses:
+    get: Wallets_getAllAddresses
+  /v1/asm:
+    post: Transactions_uploadCustomAsmScripts
+  /v1/auth:
+    post: Authentication_userLogin
+  /v1/balance:
+    get: Wallets_getBalance
+  /v1/bsvalias/address/{paymail}:
+    post: Paymail_resolveAddressInfo
+  /v1/bsvalias/id/{paymail}:
+    get: Paymail_getProfileDetails
+  /v1/bsvalias/p2p-payment-destination/{paymail}:
+    post: Paymail_createP2pPaymentDestination
+  /v1/bsvalias/receive-transaction/{paymail}:
+    post: Paymail_receiveTransaction
+  /v1/bsvalias/verifypubkey/{paymail}/{pubkey}:
+    post: Paymail_verifyPubkey
+  /v1/compile:
+    post: Utility_compileScryptToBitcoinScript
+  /v1/createWallet:
+    get: Wallets_createHDWalletOfChoice
+  /v1/currencyConversion:
+    get: Utility_convertSatoshiToFiat
+  /v1/domain/generateToken:
+    post: Admin_verifyDomainOwnership
+  /v1/domain/{userId}/verifyToken:
+    post: Admin_verifyDomainOwnership
+  /v1/drop:
+    post: Transactions_withdrawFromPrivateKey
+  /v1/exchangeOffer:
+    post: Transactions_createSwapOffer
+  /v1/exchangeSwap:
+    post: Transactions_acceptSwapOffer
+  /v1/feeAddressBeta:
+    get: Admin_getFeeManagerAddresses
+  /v1/feeMetricsBeta:
+    get: Admin_getUtxoSet
+  /v1/feeUtxoState:
+    get: Admin_getFeeUtxoState
+  /v1/history:
+    get: Wallets_getTransactionHistory
+  /v1/initBeta:
+    get: Admin_setupFeeManager
+  /v1/inspect:
+    post: Transactions_inspectAtomicSwapOffer
+  /v1/invoice:
+    post: Transactions_createInvoiceRequest
+  /v1/issue:
+    post: SmartContracts_mintToken
+  /v1/leaderboard:
+    get: Wallets_getTokenOwnershipDetails
+  /v1/lookup:
+    post: Utility_getAssetBalance
+  /v1/metrics:
+    get: Utility_getLatestUtxoState
+  /v1/migrateToken:
+    post: Admin_migrateTokenRequest
+  /v1/mnemonic:
+    get: Wallets_getMnemonicPhrase
+  /v1/notificationToken/{userId}:
+    delete: Delete_notificationToken
+    put: Notifications_updateToken
+  /v1/offer:
+    post: Transactions_createAtomicSwap
+  /v1/password/change:
+    post: Authentication_changeUserPassword
+  /v1/pay:
+    post: Transactions_resolveInvoiceRequest
+  /v1/paymail:
+    put: Paymail_updateAddressInfo
+  /v1/paymail/activate:
+    post: Paymail_activateDeactivate
+  /v1/paymail/{paymailId}:
+    get: Paymail_getAddressInfo
+  /v1/paymentRequest/pay/{invoiceId}:
+    post: Transactions_settleInvoiceRequest
+  /v1/paymentRequest/{invoiceId}:
+    get: Transactions_createInvoiceRequest
+  /v1/plan/deactivate:
+    put: Quota_deactivatePlan
+  /v1/plan/quota:
+    put: Quota_updatePlanQuota
+  /v1/plan/{serviceType}/activate:
+    post: Quota_activateServiceType
+  /v1/post:
+    post: Utility_postMessagesToBlockchain
+  /v1/rawtx:
+    post: Transactions_createRawTx
+  /v1/redeem:
+    post: SmartContracts_redeemTokens
+  /v1/reset/password:
+    post: Authentication_resetUserPasswordConfirmation
+  /v1/send:
+    post: Transactions_createTransactionToAddress
+  /v1/sendNotification:
+    post: Notifications_sendNotification
+  /v1/sign:
+    post: Utility_signMessageToAddress
+  /v1/signUp:
+    post: Authentication_createUserToken
+  /v1/swap:
+    post: Transactions_acceptSwapOffer
+  /v1/sweep:
+    post: Transactions_transferAssetsFromPrivateKey
+  /v1/token/{id}:
+    get: SmartContracts_getTokenDetails
+  /v1/tokenMetrics:
+    get: Utility_syncTokenFromBlockchain
+  /v1/transpile:
+    post: Utility_transpileSolidityCodeToScrypt
+  /v1/user:
+    delete: Delete_userAccount
+    get: Identity_getProfileDetails
+  /v1/wallet:
+    delete: Delete_walletData
+  /v1/wallets:
+    delete: Delete_allWallets
+    get: Wallets_listAvailableUserWallets
+  /v2/balance:
+    get: Wallets_getBalances
+  /v2/history:
+    get: Wallets_getTransactionHistory
+  /v2/inspect:
+    post: Transactions_inspectAtomicSwapOffer
+  /v2/issue:
+    post: SmartContracts_mintToken
+  /v2/send:
+    post: Transactions_transferToAddress
+  /v2/token/{id}:
+    get: SmartContracts_getTokenDetails
+operationTags:
+  /:
+    get: Utility
+renameTags: {}
+requestSchemaNames:
+  /admin/v1/metrics:
+    post:
+      application/json: AdminCreateMetricsRecordRequest
+  /admin/v1/plans:
+    post:
+      application/json: AdminCreatePlanRequest
+  /admin/v1/plans/{serviceType}:
+    put:
+      application/json: AdminUpdatePlanServiceTypeRequest
+  /admin/v1/setup:
+    post:
+      application/json: AdminSetupPostRequest
+  /admin/v1/setup/{serviceId}:
+    put:
+      application/json: AdminUpdateServiceSetupRequest
+  /admin/v1/tokenMetrics:
+    post:
+      application/json: AdminCalculateTokenMetricsRequest
+  /post:
+    post:
+      application/json: UtilityBroadcastNoteToBlockchainRequest
+  /upload:
+    post:
+      application/json: UtilityBroadcastFileToBlockchainRequest
+  /v1/asm:
+    post:
+      application/json: TransactionsUploadCustomAsmScriptsRequest
+  /v1/auth:
+    post:
+      application/json: AuthenticationUserLoginRequest
+  /v1/bsvalias/address/{paymail}:
+    post:
+      application/json: PaymailResolveAddressInfoRequest
+  /v1/bsvalias/p2p-payment-destination/{paymail}:
+    post:
+      application/json: PaymailCreateP2PPaymentDestinationRequest
+  /v1/bsvalias/receive-transaction/{paymail}:
+    post:
+      application/json: PaymailReceiveTransactionRequest
+  /v1/compile:
+    post:
+      application/json: UtilityCompileScryptToBitcoinScriptRequest
+  /v1/domain/generateToken:
+    post:
+      application/json: AdminVerifyDomainOwnershipRequest
+  /v1/domain/{userId}/verifyToken:
+    post:
+      application/json: AdminVerifyDomainOwnershipRequest1
+  /v1/drop:
+    post:
+      application/json: TransactionsWithdrawFromPrivateKeyRequest
+  /v1/exchangeOffer:
+    post:
+      application/json: TransactionsCreateSwapOfferRequest
+  /v1/exchangeSwap:
+    post:
+      application/json: TransactionsAcceptSwapOfferRequest1
+  /v1/inspect:
+    post:
+      application/json: TransactionsInspectAtomicSwapOfferRequest
+  /v1/invoice:
+    post:
+      application/json: TransactionsCreateInvoiceRequestRequest
+  /v1/issue:
+    post:
+      application/json: SmartContractsMintTokenRequest
+  /v1/lookup:
+    post:
+      application/json: UtilityGetAssetBalanceRequest
+  /v1/notificationToken/{userId}:
+    put:
+      application/json: NotificationsUpdateTokenRequest
+  /v1/offer:
+    post:
+      application/json: TransactionsCreateAtomicSwapRequest
+  /v1/password/change:
+    post:
+      application/json: AuthenticationChangeUserPasswordRequest
+  /v1/pay:
+    post:
+      application/json: TransactionsResolveInvoiceRequestRequest
+  /v1/paymail:
+    put:
+      application/json: PaymailUpdateAddressInfoRequest
+  /v1/paymail/activate:
+    post:
+      application/json: PaymailActivateDeactivateRequest
+  /v1/paymentRequest/pay/{invoiceId}:
+    post:
+      application/bitcoinsv-payment: TransactionsSettleInvoiceRequestRequest1
+      application/json: TransactionsSettleInvoiceRequestRequest
+  /v1/plan/deactivate:
+    put:
+      application/json: QuotaDeactivatePlanRequest
+  /v1/plan/quota:
+    put:
+      application/json: QuotaUpdatePlanQuotaRequest
+  /v1/plan/{serviceType}/activate:
+    post:
+      application/json: QuotaActivateServiceTypeRequest
+  /v1/post:
+    post:
+      application/json: UtilityPostMessagesToBlockchainRequest
+  /v1/rawtx:
+    post:
+      application/json: TransactionsCreateRawTxRequest
+  /v1/redeem:
+    post:
+      application/json: SmartContractsRedeemTokensRequest
+  /v1/reset/password:
+    post:
+      application/json: AuthenticationResetUserPasswordConfirmationRequest
+  /v1/send:
+    post:
+      application/json: TransactionsCreateTransactionToAddressRequest
+  /v1/sendNotification:
+    post:
+      application/json: NotificationsSendNotificationRequest
+  /v1/sign:
+    post:
+      application/json: UtilitySignMessageToAddressRequest
+  /v1/signUp:
+    post:
+      application/json: AuthenticationCreateUserTokenRequest
+  /v1/swap:
+    post:
+      application/json: TransactionsAcceptSwapOfferRequest
+  /v1/sweep:
+    post:
+      application/json: TransactionsTransferAssetsFromPrivateKeyRequest
+  /v1/transpile:
+    post:
+      application/json: UtilityTranspileSolidityCodeToScryptRequest
+  /v2/inspect:
+    post:
+      application/json: TransactionsInspectAtomicSwapOfferRequest1
+  /v2/issue:
+    post:
+      application/json: SmartContractsMintTokenRequest1
+  /v2/send:
+    post:
+      application/json: TransactionsTransferToAddressRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /admin/v1/metrics:
+    post:
+      '200':
+        application/json: AdminCreateMetricsRecordResponse
+      '400':
+        application/json: AdminCreateMetricsRecord400Response
+  /admin/v1/plan/list:
+    get:
+      '200':
+        application/json: AdminListPlansResponse
+      '400':
+        application/json: AdminListPlans400Response
+  /admin/v1/plans:
+    post:
+      '200':
+        application/json: AdminCreatePlanResponse
+      '400':
+        application/json: AdminCreatePlan400Response
+  /admin/v1/plans/{serviceType}:
+    delete:
+      '200':
+        application/json: AdminDeletePlanByServiceTypeResponse
+      '400':
+        application/json: AdminDeletePlanByServiceType400Response
+    get:
+      '200':
+        application/json: AdminGetServiceTypePlansResponse
+      '400':
+        application/json: AdminGetServiceTypePlans400Response
+    put:
+      '200':
+        application/json: AdminUpdatePlanServiceTypeResponse
+      '400':
+        application/json: AdminUpdatePlanServiceType400Response
+  /admin/v1/setup:
+    post:
+      '200':
+        application/json: AdminSetupPostResponse
+      '400':
+        application/json: AdminSetupPost400Response
+  /admin/v1/setup/serviceIds:
+    get:
+      '200':
+        application/json: AdminGetServiceIdsResponse
+      '400':
+        application/json: AdminGetServiceIds400Response
+  /admin/v1/setup/{serviceId}:
+    delete:
+      '200':
+        application/json: AdminDeleteServiceSetupResponse
+      '400':
+        application/json: AdminDeleteServiceSetup400Response
+    get:
+      '200':
+        application/json: AdminGetServiceSetupResponse
+      '400':
+        application/json: AdminGetServiceSetup400Response
+    put:
+      '200':
+        application/json: AdminUpdateServiceSetupResponse
+      '400':
+        application/json: AdminUpdateServiceSetup400Response
+  /admin/v1/tokenMetrics:
+    post:
+      '200':
+        application/json: AdminCalculateTokenMetricsResponse
+      '400':
+        application/json: AdminCalculateTokenMetrics400Response
+  /post:
+    post:
+      '200':
+        application/json: UtilityBroadcastNoteToBlockchainResponse
+      '400':
+        application/json: UtilityBroadcastNoteToBlockchain400Response
+  /upload:
+    post:
+      '200':
+        application/json: UtilityBroadcastFileToBlockchainResponse
+      '400':
+        application/json: UtilityBroadcastFileToBlockchain400Response
+  /v1/URI:
+    get:
+      '200':
+        application/json: UtilityResolveAddressInfoResponse
+      '400':
+        application/json: UtilityResolveAddressInfo400Response
+  /v1/address:
+    get:
+      '200':
+        application/json: WalletsGetAddressAndPaymailResponse
+      '400':
+        application/json: WalletsGetAddressAndPaymail400Response
+  /v1/allAddresses:
+    get:
+      '200':
+        application/json: WalletsGetAllAddressesResponse
+      '400':
+        application/json: WalletsGetAllAddresses400Response
+  /v1/asm:
+    post:
+      '200':
+        application/json: TransactionsUploadCustomAsmScriptsResponse
+      '400':
+        application/json: TransactionsUploadCustomAsmScripts400Response
+  /v1/auth:
+    post:
+      '200':
+        application/json: AuthenticationUserLoginResponse
+      '400':
+        application/json: AuthenticationUserLogin400Response
+  /v1/balance:
+    get:
+      '200':
+        application/json: WalletsGetBalanceResponse
+      '400':
+        application/json: WalletsGetBalance400Response
+  /v1/compile:
+    post:
+      '200':
+        application/json: UtilityCompileScryptToBitcoinScriptResponse
+      '400':
+        application/json: UtilityCompileScryptToBitcoinScript400Response
+  /v1/createWallet:
+    get:
+      '200':
+        application/json: WalletsCreateHdWalletOfChoiceResponse
+      '400':
+        application/json: WalletsCreateHdWalletOfChoice400Response
+  /v1/currencyConversion:
+    get:
+      '200':
+        application/json: UtilityConvertSatoshiToFiatResponse
+      '400':
+        application/json: UtilityConvertSatoshiToFiat400Response
+  /v1/domain/generateToken:
+    post:
+      '200':
+        application/json: AdminVerifyDomainOwnershipResponse
+      '400':
+        application/json: AdminVerifyDomainOwnership400Response
+  /v1/domain/{userId}/verifyToken:
+    post:
+      '200':
+        application/json: AdminVerifyDomainOwnership200Response
+      '400':
+        application/json: AdminVerifyDomainOwnership400Response
+  /v1/drop:
+    post:
+      '200':
+        application/json: TransactionsWithdrawFromPrivateKeyResponse
+      '400':
+        application/json: TransactionsWithdrawFromPrivateKey400Response
+  /v1/exchangeOffer:
+    post:
+      '200':
+        application/json: TransactionsCreateSwapOfferResponse
+      '400':
+        application/json: TransactionsCreateSwapOffer400Response
+  /v1/exchangeSwap:
+    post:
+      '200':
+        application/json: TransactionsAcceptSwapOffer200Response
+      '400':
+        application/json: TransactionsAcceptSwapOffer400Response
+  /v1/feeAddressBeta:
+    get:
+      '200':
+        application/json: AdminGetFeeManagerAddressesResponse
+      '400':
+        application/json: AdminGetFeeManagerAddresses400Response
+  /v1/feeMetricsBeta:
+    get:
+      '200':
+        application/json: AdminGetUtxoSetResponse
+      '400':
+        application/json: AdminGetUtxoSet400Response
+  /v1/feeUtxoState:
+    get:
+      '200':
+        application/json: AdminGetFeeUtxoStateResponse
+      '400':
+        application/json: AdminGetFeeUtxoState400Response
+  /v1/history:
+    get:
+      '200':
+        application/json: WalletsGetTransactionHistoryResponse
+      '400':
+        application/json: WalletsGetTransactionHistory400Response
+  /v1/initBeta:
+    get:
+      '200':
+        application/json: AdminSetupFeeManagerResponse
+      '400':
+        application/json: AdminSetupFeeManager400Response
+  /v1/inspect:
+    post:
+      '200':
+        application/json: TransactionsInspectAtomicSwapOfferResponse
+      '400':
+        application/json: TransactionsInspectAtomicSwapOffer400Response
+  /v1/invoice:
+    post:
+      '200':
+        application/json: TransactionsCreateInvoiceRequestResponse
+      '400':
+        application/json: TransactionsCreateInvoiceRequest400Response
+  /v1/issue:
+    post:
+      '200':
+        application/json: SmartContractsMintTokenResponse
+      '400':
+        application/json: SmartContractsMintToken400Response
+  /v1/leaderboard:
+    get:
+      '200':
+        application/json: WalletsGetTokenOwnershipDetailsResponse
+      '400':
+        application/json: WalletsGetTokenOwnershipDetails400Response
+  /v1/lookup:
+    post:
+      '200':
+        application/json: UtilityGetAssetBalanceResponse
+  /v1/metrics:
+    get:
+      '200':
+        application/json: UtilityGetLatestUtxoStateResponse
+      '400':
+        application/json: UtilityGetLatestUtxoState400Response
+  /v1/migrateToken:
+    post:
+      '200':
+        application/json: AdminMigrateTokenRequestResponse
+      '400':
+        application/json: AdminMigrateTokenRequest400Response
+  /v1/mnemonic:
+    get:
+      '200':
+        application/json: WalletsGetMnemonicPhraseResponse
+      '400':
+        application/json: WalletsGetMnemonicPhrase400Response
+  /v1/notificationToken/{userId}:
+    delete:
+      '200':
+        application/json: DeleteNotificationTokenResponse
+      '400':
+        application/json: DeleteNotificationToken400Response
+    put:
+      '200':
+        application/json: NotificationsUpdateTokenResponse
+      '400':
+        application/json: NotificationsUpdateToken400Response
+  /v1/offer:
+    post:
+      '200':
+        application/json: TransactionsCreateAtomicSwapResponse
+      '400':
+        application/json: TransactionsCreateAtomicSwap400Response
+  /v1/password/change:
+    post:
+      '200':
+        application/json: AuthenticationChangeUserPasswordResponse
+      '400':
+        application/json: AuthenticationChangeUserPassword400Response
+  /v1/pay:
+    post:
+      '200':
+        application/json: TransactionsResolveInvoiceRequestResponse
+      '400':
+        application/json: TransactionsResolveInvoiceRequest400Response
+  /v1/paymail:
+    put:
+      '200':
+        application/json: PaymailUpdateAddressInfoResponse
+      '400':
+        application/json: PaymailUpdateAddressInfo400Response
+  /v1/paymail/activate:
+    post:
+      '200':
+        application/json: PaymailActivateDeactivateResponse
+      '400':
+        application/json: PaymailActivateDeactivate400Response
+  /v1/paymail/{paymailId}:
+    get:
+      '200':
+        application/json: PaymailGetAddressInfoResponse
+      '400':
+        application/json: PaymailGetAddressInfo400Response
+  /v1/paymentRequest/pay/{invoiceId}:
+    post:
+      '200':
+        application/json: TransactionsSettleInvoiceRequestResponse
+      '400':
+        application/json: TransactionsSettleInvoiceRequest400Response
+  /v1/paymentRequest/{invoiceId}:
+    get:
+      '200':
+        application/json: TransactionsCreateInvoiceRequest200Response
+      '400':
+        application/json: TransactionsCreateInvoiceRequest400Response
+  /v1/plan/deactivate:
+    put:
+      '200':
+        application/json: QuotaDeactivatePlanResponse
+      '400':
+        application/json: QuotaDeactivatePlan400Response
+  /v1/plan/quota:
+    put:
+      '200':
+        application/json: QuotaUpdatePlanQuotaResponse
+      '400':
+        application/json: QuotaUpdatePlanQuota400Response
+  /v1/plan/{serviceType}/activate:
+    post:
+      '200':
+        application/json: QuotaActivateServiceTypeResponse
+      '400':
+        application/json: QuotaActivateServiceType400Response
+  /v1/post:
+    post:
+      '200':
+        application/json: UtilityPostMessagesToBlockchainResponse
+      '400':
+        application/json: UtilityPostMessagesToBlockchain400Response
+  /v1/rawtx:
+    post:
+      '200':
+        application/json: TransactionsCreateRawTxResponse
+      '400':
+        application/json: TransactionsCreateRawTx400Response
+  /v1/redeem:
+    post:
+      '200':
+        application/json: SmartContractsRedeemTokensResponse
+      '400':
+        application/json: SmartContractsRedeemTokens400Response
+  /v1/reset/password:
+    post:
+      '200':
+        application/json: AuthenticationResetUserPasswordConfirmationResponse
+      '400':
+        application/json: AuthenticationResetUserPasswordConfirmation400Response
+  /v1/send:
+    post:
+      '200':
+        application/json: TransactionsCreateTransactionToAddressResponse
+      '400':
+        application/json: TransactionsCreateTransactionToAddress400Response
+  /v1/sendNotification:
+    post:
+      '200':
+        application/json: NotificationsSendNotificationResponse
+      '400':
+        application/json: NotificationsSendNotification400Response
+  /v1/sign:
+    post:
+      '200':
+        application/json: UtilitySignMessageToAddressResponse
+      '400':
+        application/json: UtilitySignMessageToAddress400Response
+  /v1/signUp:
+    post:
+      '200':
+        application/json: AuthenticationCreateUserTokenResponse
+      '400':
+        application/json: AuthenticationCreateUserToken400Response
+  /v1/swap:
+    post:
+      '200':
+        application/json: TransactionsAcceptSwapOfferResponse
+      '400':
+        application/json: TransactionsAcceptSwapOffer400Response
+  /v1/sweep:
+    post:
+      '200':
+        application/json: TransactionsTransferAssetsFromPrivateKeyResponse
+      '400':
+        application/json: TransactionsTransferAssetsFromPrivateKey400Response
+  /v1/token/{id}:
+    get:
+      '200':
+        application/json: SmartContractsGetTokenDetailsResponse
+      '400':
+        application/json: SmartContractsGetTokenDetails400Response
+  /v1/tokenMetrics:
+    get:
+      '200':
+        application/json: UtilitySyncTokenFromBlockchainResponse
+      '400':
+        application/json: UtilitySyncTokenFromBlockchain400Response
+  /v1/transpile:
+    post:
+      '200':
+        application/json: UtilityTranspileSolidityCodeToScryptResponse
+      '400':
+        application/json: UtilityTranspileSolidityCodeToScrypt400Response
+  /v1/user:
+    delete:
+      '200':
+        application/json: DeleteUserAccountResponse
+      '400':
+        application/json: DeleteUserAccount400Response
+    get:
+      '200':
+        application/json: IdentityGetProfileDetailsResponse
+      '400':
+        application/json: IdentityGetProfileDetails400Response
+  /v1/wallet:
+    delete:
+      '200':
+        application/json: DeleteWalletDataResponse
+      '400':
+        application/json: DeleteWalletData400Response
+  /v1/wallets:
+    delete:
+      '200':
+        application/json: DeleteAllWalletsResponse
+      '400':
+        application/json: DeleteAllWallets400Response
+    get:
+      '200':
+        application/json: WalletsListAvailableUserWalletsResponse
+      '400':
+        application/json: WalletsListAvailableUserWallets400Response
+  /v2/balance:
+    get:
+      '200':
+        application/json: WalletsGetBalancesResponse
+      '400':
+        application/json: WalletsGetBalances400Response
+  /v2/history:
+    get:
+      '200':
+        application/json: WalletsGetTransactionHistory200Response
+      '400':
+        application/json: WalletsGetTransactionHistory400Response
+  /v2/inspect:
+    post:
+      '200':
+        application/json: TransactionsInspectAtomicSwapOffer200Response
+      '400':
+        application/json: TransactionsInspectAtomicSwapOffer400Response
+  /v2/issue:
+    post:
+      '200':
+        application/json: SmartContractsMintToken200Response
+      '400':
+        application/json: SmartContractsMintToken400Response
+  /v2/send:
+    post:
+      '200':
+        application/json: TransactionsTransferToAddressResponse
+      '207':
+        application/json: TransactionsTransferToAddress207Response
+      '500':
+        application/json: TransactionsTransferToAddress500Response
+  /v2/token/{id}:
+    get:
+      '200':
+        application/json: SmartContractsGetTokenDetails200Response
+      '400':
+        application/json: SmartContractsGetTokenDetails400Response
+securityParameters:
+  compact:
+    header: false
+  currency:
+    header: false
+  custom-token:
+    header: false
+  force:
+    header: false
+  limit:
+    query: false
+  maxResults:
+    header: false
+  mnemonic:
+    header: false
+  mnemonicPhrase:
+    header: false
+  nextPageToken:
+    header: false
+    query: false
+  oauth:
+    header: false
+  paymail:
+    header: false
+  paymailActivate:
+    header: false
+  privateKey:
+    header: false
+  protocol:
+    header: false
+    query: false
+  reminting:
+    header: false
+  satoshis:
+    header: false
+  secretKey:
+    header: false
+  symbol:
+    query: false
+  tokenId:
+    header: false
+    query: false
+  type:
+    header: false
+  uri:
+    header: false
+  userID:
+    header: false
+  version:
+    header: false
+  walletID:
+    header: false
+  walletLogo:
+    header: false
+  walletTitle:
+    header: false
+validServerUrls: {}

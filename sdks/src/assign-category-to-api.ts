@@ -61,6 +61,7 @@ export const categoriesToMapTo = {
     "Online Courses",
     "Security & Identity Tools",
     "Server Monitoring",
+    "ELT (Extract, Load, and Transform)",
   ],
   "Lifestyle & Entertainment": [
     "Fitness",

@@ -1,0 +1,5190 @@
+publishJson:
+  company: Secoda
+  serviceName: false
+  sdkName: secoda-{language}-sdk
+  clientName: Secoda
+  metaDescription: >-
+    The all-in-one data management platform. Secoda is the first AI powered data
+    search, catalog, lineage, and monitoring platform to double your data team's
+    efficiency.
+
+
+    Data teams at companies like Panasonic, Mode, and Vanta use Secoda to
+    automate data discovery, documentation, and take the grunt-work out of their
+    day. 
+
+
+    By automatically ingesting the metadata across all of your data sources,
+    Secoda makes it easy to make decisions from a single source of truth. 
+
+
+    Built for users of the modern data stack, Secoda helps data teams take
+    control of their data sprawl and reliably scale their tech stacks.
+
+
+    With Secoda, data teams save time and enable revenue teams with better data,
+    faster.
+  apiStatusUrls: inherit
+  homepage: secoda.co
+  developerDocumentation: docs.secoda.co/
+  categories:
+    - data_management
+rawSpecString: |
+  openapi: 3.0.0
+  info:
+    title: Secoda API
+    version: 1.0.0
+    description: >
+      Use this API to programmatically use Secoda's data enablement features. With
+      these APIs, you can bring in resource metadata, build documentation
+      pipelines, and manage workspace settings programmatically.
+
+
+      To learn more about Secoda, visit the [Secoda
+      documentation](https://docs.secoda.co/).
+
+
+      To get in touch with Secoda, contact customer support at support@secoda.co.
+
+
+      ## Getting Started
+
+
+      ### Authentication
+
+
+      Secoda API's require an Authorization header with a Bearer token. You can
+      generate an API key in your workspace, as outlined
+      [here](https://docs.secoda.co/secoda-api/authentication).
+
+
+      ### Base URL
+
+
+      To determine the base URL of your API requests, please refer to the chart
+      below.
+
+
+      | Workspace URL          | Base URL               |
+
+      | ---------------------- | ---------------------- |
+
+      | app.secoda.co          | api.secoda.co          |
+
+      | eu.secoda.co           | eapi.secoda.co         |
+
+      | apac.secoda.co         | aapi.secoda.co        |
+
+
+      For teams with an On Premise or Managed instance with a custom domain, the
+      Base URL is the custom domain followed by `/api/v1`.
+
+
+      ## Helpful Information
+
+
+      Secoda’s APIs generally follow the CRUD pattern (Create, Read, Update,
+      Delete). The data elements that are managed with these APIs are called
+      Resources. Generally, each resource maps to an integration, with many set
+      and customizable properties called Metadata.
+
+
+      ### Important Terminology
+
+
+      **Workspace:**
+
+      In Secoda, a workspace is the environment within the application where teams
+      can integrate resources and metadata and add documentation, either through
+      the UI or programatically through the API.
+
+
+      **Resource:**
+
+      In Secoda, a resource is any entity that metadata can be added to. This
+      includes, but is not limited to, tables, dashboards, charts, columns,
+      queries, documents, dictionary terms, and more.
+
+
+      **Metadata:**
+
+      In Secoda, metadata is the additional information you can provide to add
+      context to your resources. This includes descriptions, definitions, owners,
+      custom properties, and more. Metadata is the lifeblood of Secoda; the more
+      you put in, the more you'll get out of the tool!
+
+
+      ### Resource Heirarchy
+
+
+      Nearly all resources in Secoda can be nested under a parent. A resource has
+      a one to many relationship with its child. This means thats a parent
+      resource can have several children, but a child resource can only have one
+      parent.
+
+
+      For Collections, Dictionary Terms, and Documents, the parent must be the
+      same resource type. However, there are two unique heirarchy structures that
+      the application expects when adding net new resources.
+
+
+      **Table Heirarchy:** Integration > Databases > Schemas > Tables > Columns >
+      Columns (if nested)
+
+
+      **Dashboard Heirarchy:** Integration > Groups > Dashboards > Charts
+  servers:
+    - url: https://api.secoda.co
+      description: Base URL for all US cloud based workspaces.
+    - url: https://eapi.secoda.co
+      description: Base URL for all EU cloud based workspaces.
+    - url: https://aapi.secoda.co
+      description: Base URL for all APAC cloud based workspaces.
+    - url: https://{customer_domain}.secoda.co/api/v1
+      description: Base URL for On Premise Secoda workspaces.
+      variables:
+        customer_domain:
+          default: customer_domain
+          description: The specific domain set up for your On Premise Secoda workspace.
+  security:
+    - ApiKeyAuth: []
+  tags:
+    - name: Integrations
+      description: External sources from which resources and metadata are extracted.
+    - name: Databases
+      description: Databases or similar data elements from an integration.
+    - name: Schemas
+      description: Schemas or similar data elements from an integration.
+    - name: Tables
+      description: Tables or similar data elements from an integration.
+    - name: Columns
+      description: Columns or similar data elements from an integration.
+    - name: Dashboard Groups
+      description: A grouping of related dashboards or charts from an integration.
+    - name: Dashboards
+      description: Dashboards or similar visualization elements from an integration.
+    - name: Charts
+      description: Charts or similar visualization elements from an integration.
+    - name: Event Categories
+      description: A grouping of related events from an integration.
+    - name: Events
+      description: Data elements representing an event from an integration.
+    - name: Event Properties
+      description: The properties associated with an event from an integration.
+    - name: Lineage
+      description: >
+        The dependencies between resources. Learn more about lineage
+        [here](https://docs.secoda.co/features/data-lineage).
+    - name: Tags
+      description: >-
+        Labels used to categorize, filter, and classify resources. Learn more
+        about tags
+        [here](https://docs.secoda.co/resource-and-metadata-management/tags/custom-tags).
+    - name: Terms
+      description: >
+        Definitions and explanations of specific data-related concepts. Learn more
+        about terms [here](https://docs.secoda.co/features/metrics).
+    - name: Collections
+      description: >
+        Groups of related resources within the workspace. Learn more about
+        collections [here](https://docs.secoda.co/features/collections-1).
+    - name: Questions
+      description: >
+        Questions asked by data consumers and their associated answers in the
+        workspace. Learn more about questions
+        [here](https://docs.secoda.co/features/ask-questions-in-secoda).
+    - name: Documents
+      description: >
+        Mark down content used to add documentation to the workspace. Learn more
+        about documents [here](https://docs.secoda.co/features/documents).
+    - name: Queries
+      description: >
+        Queries from an extraction. Learn more about queries
+        [here](https://docs.secoda.co/features/queries).
+    - name: Users
+      description: >
+        Members within the workspace. Learn more about user management
+        [here](https://docs.secoda.co/user-management).
+    - name: Teams
+      description: >
+        Teams within the workspace. Learn more about team management
+        [here](https://docs.secoda.co/user-management/teams).
+    - name: User Groups
+      description: >
+        Groups within the workspace. Learn more about team management
+        [here](https://docs.secoda.co/user-management/groups).
+    - name: Monitors
+      description: >
+        Monitors allow Secoda admins to have insight into the health of the data
+        stack. Learn more about monitors
+        [here](https://docs.secoda.co/features/monitoring).
+  paths:
+    /integration/integrations:
+      post:
+        tags:
+          - Integrations
+        summary: Create a New Integration
+        description: >-
+          Use this endpoint to create a [custom
+          integration](https://docs.secoda.co/integrations/custom-integration), or
+          add credentials for a native integration programatically.
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Represents the name of the integration data source or tool.
+                    example: Sample Integration
+                  type:
+                    type: string
+                    description: This indicates the type of integration (e.g., "custom").
+                    example: custom
+                  teams:
+                    type: array
+                    items:
+                      type: string
+                    description: >-
+                      Indicates the teams associated with this integration. The
+                      access can be edited in the UI.
+                    example:
+                      - 4c0e07c0-306a-4f4e-8b2b-6a8d7a33d251
+                      - a5423e2e-93b8-4b2c-af3c-7b7f0eefea14
+                  credentials:
+                    type: object
+                    description: >-
+                      If you are adding a custom integration, the value of this
+                      parameter should always be empty {}.
+                    example: {}
+        responses:
+          '201':
+            description: Integration created successfully.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/IntegrationResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+      get:
+        tags:
+          - Integrations
+        summary: List Integrations
+        description: This endpoint will return all the integrations active in your workspace.
+        parameters:
+          - name: type
+            in: query
+            schema:
+              type: string
+            description: The type of integrations to filter.
+            example: bigquery
+        responses:
+          '200':
+            description: List of integrations.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/IntegrationResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+    /integration/integrations/{integration_id}:
+      get:
+        tags:
+          - Integrations
+        summary: Get Integration by ID
+        description: This endpoint will provide the details of an individual integration.
+        parameters:
+          - name: integration_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the integration to retrieve.
+            example: d31e59c7-cd52-4398-9d6e-da313a7b7775
+        responses:
+          '200':
+            description: Integration details retrieved successfully.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/IntegrationResponse'
+          '404':
+            description: Integration not found.
+          '500':
+            description: Internal server error.
+    /integration/integrations/{integration_id}/import_metadata:
+      post:
+        tags:
+          - Integrations
+        summary: Upload Integration Metadata (via CSV)
+        description: >-
+          This endpoint allows the upload of integration metadata using a CSV.
+          This can also be done through the UI. See more about CSV uploads
+          [here](https://docs.secoda.co/integrations/custom-integration/import-your-resources).
+        parameters:
+          - name: integration_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the integration to upload metadata for.
+            example: d31e59c7-cd52-4398-9d6e-da313a7b7775
+        requestBody:
+          required: true
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  file:
+                    description: >-
+                      The path to the CSV file containing your metadata and
+                      resources. The format of the CSV file can be found
+                      [here](https://docs.secoda.co/integrations/custom-integration/import-your-resources/create-your-csv).
+                    type: string
+                    format: binary
+                    example: path/to/your/file.csv
+        responses:
+          '200':
+            description: Integration metadata uploaded successfully.
+          '404':
+            description: Integration not found.
+          '500':
+            description: Internal server error.
+    /integration/integrations/{integration_id}/import_jsonl_metadata:
+      post:
+        tags:
+          - Integrations
+        summary: Upload Integration Metadata (via JSONL)
+        description: >-
+          This endpoint allows the upload of integration metadata as well as
+          integration lineage using a JSONL file. This can also be done through
+          the UI. See more about JSONL uploads
+          [here](https://docs.secoda.co/integrations/custom-integration/import-your-resources).
+        parameters:
+          - name: integration_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the integration to upload metadata and/or lineage for.
+            example: d31e59c7-cd52-4398-9d6e-da313a7b7775
+        requestBody:
+          required: true
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                required:
+                  - resources_file
+                properties:
+                  resources_file:
+                    type: string
+                    format: binary
+                    description: >-
+                      The path to the your resources file. The expected formatting
+                      of this file can be found
+                      [here](https://docs.secoda.co/integrations/custom-integration/import-your-resources/create-your-jsonl-file).
+                    example: path/to/your/resources_file.jsonl
+                  lineages_file:
+                    description: >-
+                      The path to the your lineages file. The expected formatting
+                      of this file can be found
+                      [here](https://docs.secoda.co/integrations/custom-integration/import-your-resources/create-your-jsonl-file).
+                    type: string
+                    format: binary
+                    example: path/to/your/lineages_file.jsonl
+        responses:
+          '200':
+            description: Integration JSONL file uploaded successfully.
+          '404':
+            description: Integration not found.
+          '500':
+            description: Internal server error.
+    /table/databases:
+      post:
+        tags:
+          - Databases
+        summary: Create a New Database
+        description: >-
+          Create a new database resource. It must have a schema as a parent, and
+          an associated integration.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Database created successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+      get:
+        tags:
+          - Databases
+        summary: List Databases
+        description: Use this endpoint to see all the databases active in your workspace.
+        parameters:
+          - in: query
+            name: title
+            schema:
+              type: string
+            description: The title of the database to search for.
+            example: customers
+        responses:
+          '200':
+            description: List of databases.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+    /table/databases/{database_id}:
+      get:
+        tags:
+          - Databases
+        summary: Get Database by ID
+        description: Use this endpoint for retrieving a specific database by its ID.
+        parameters:
+          - in: path
+            name: database_id
+            required: true
+            schema:
+              type: string
+            description: The unique identifier of the database to retrieve.
+            example: 27498d73-db31-4a4e-8cf0-faccff1bed0f
+        responses:
+          '200':
+            description: Database retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '404':
+            description: Database not found.
+          '500':
+            description: Internal server error.
+    /table/schemas:
+      post:
+        tags:
+          - Schemas
+        description: >-
+          Create a new schema. Schema must have one database as a parent, and be
+          associated with an integration.
+        summary: Create a New Schema
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  native_type:
+                    type: string
+                    description: >-
+                      The native type of the schema as it's referred to in the
+                      integration.
+                    example: System
+                  database:
+                    type: string
+                    description: The title of the database.
+                    example: Sample Database
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Schema created successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+      get:
+        tags:
+          - Schemas
+        summary: List Schemas
+        description: >-
+          Endpoint for retrieving a list of schemas with optional filtering by
+          parent schema and title.
+        parameters:
+          - in: query
+            name: parent
+            schema:
+              type: string
+            description: The ID of the parent database to filter by.
+          - in: query
+            name: title
+            schema:
+              type: string
+            description: The title of the schema to filter by.
+        responses:
+          '200':
+            description: List of schemas.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+    /table/schemas/{schema_id}:
+      parameters:
+        - in: path
+          name: schema_id
+          required: true
+          description: The ID of the schema to retrieve or update.
+          example: df2c0597-13d9-4159-bb6d-00b3f54235dc
+          schema:
+            type: string
+      get:
+        tags:
+          - Schemas
+        summary: Get Schema by ID
+        description: Retrieve schema details by its unique ID.
+        responses:
+          '200':
+            description: Schema details retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '404':
+            description: Schema not found.
+          '500':
+            description: Internal server error.
+      patch:
+        tags:
+          - Schemas
+        summary: Update Schema by ID
+        description: Use this endpoint to update schema metadata.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: Schema updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad request.
+          '404':
+            description: Schema not found.
+          '500':
+            description: Internal server error.
+    /table/tables:
+      post:
+        tags:
+          - Tables
+        summary: Create a New Table
+        description: >-
+          Create a new table with a schema as a parent. The table must be
+          associated with an integration.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  native_type:
+                    type: string
+                    description: The native type of the table.
+                    example: Dataset
+                  database:
+                    type: string
+                    description: The name of the database the table belongs to.
+                    example: Sample Database
+                  schema:
+                    type: string
+                    description: The name of the schema the table belongs to.
+                    example: Sample Schema
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Table created successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TableResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+      get:
+        tags:
+          - Tables
+        summary: List Tables
+        description: >
+          This endpoint retrieves a list of tables, with optional filters for the
+          integration, the schema, and the title of the table resource.
+        parameters:
+          - name: integration_id
+            in: query
+            description: Integration ID
+            schema:
+              type: string
+              example: df2c0597-13d9-4159-bb6d-00b3f54235dc
+          - name: parent_id
+            in: query
+            description: ID of the schema
+            schema:
+              type: string
+              example: df2c0597-13d9-4159-bb6d-00b3f54235dc
+          - name: title
+            in: query
+            description: Title of the table
+            schema:
+              type: string
+              example: Sample Table
+        responses:
+          '200':
+            description: List of databases.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/TableResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+    /table/tables/{table_id}:
+      get:
+        tags:
+          - Tables
+        summary: Get Table by ID
+        description: |
+          This endpoint retrieves a specific table by its ID.
+        parameters:
+          - name: table_id
+            in: path
+            description: ID of the table to retrieve
+            required: true
+            schema:
+              type: string
+              example: d935a76c-2125-4c30-9389-ef42fa7e23bb
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TableResponse'
+          '404':
+            description: Table not found.
+          '500':
+            description: Internal server error.
+      patch:
+        tags:
+          - Tables
+        summary: Update Table by ID
+        description: |
+          Use this endpoint to update table metadata.
+        parameters:
+          - name: table_id
+            in: path
+            description: ID of the table to update
+            required: true
+            schema:
+              type: string
+              example: d935a76c-2125-4c30-9389-ef42fa7e23bb
+        requestBody:
+          description: Table data to update
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TableResponse'
+          '400':
+            description: Bad request.
+          '404':
+            description: Table not found.
+          '500':
+            description: Internal server error.
+      delete:
+        tags:
+          - Tables
+        summary: Delete Table by ID
+        description: |
+          This endpoint deletes a specific table by its ID.
+        parameters:
+          - name: table_id
+            in: path
+            description: ID of the table to delete
+            required: true
+            schema:
+              type: string
+              example: e7691426-2c2a-46b4-98e7-d09d0b82b2b1
+        responses:
+          '204':
+            description: Table deleted successfully
+          '404':
+            description: Table not found.
+          '500':
+            description: Internal server error.
+    /table/columns:
+      post:
+        tags:
+          - Columns
+        summary: Create a New Column
+        description: >
+          This endpoint allows you to create a new column. Columns must have
+          tables as a parent or another column for nested records. Columns must be
+          associated with an integration.
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  native_type:
+                    type: string
+                    description: The native data type of the column in the source.
+                    example: Record
+                  data_type:
+                    type: string
+                    description: The type of the column.
+                    example: null
+                  is_pk:
+                    type: string
+                    description: Indicates whether the column is a primary key.
+                    example: false
+                  table_database:
+                    type: string
+                    description: The name of the database where the column's table belongs.
+                    example: Sample Database
+                  table_schema:
+                    type: string
+                    description: The name of the schema where the column's table belongs.
+                    example: Sample Schema
+                  table_title:
+                    type: string
+                    description: The title of the table to which the column belongs.
+                    example: Sample Table
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Column created successfully.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ColumnResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+      get:
+        tags:
+          - Columns
+        summary: List Columns
+        description: >
+          This endpoint allows you to retrieve a list of all columns in the
+          workspace. Optional filters for integration_id, title, and parent_id
+          (the table or parent column) are available.
+        parameters:
+          - name: integration_id
+            in: query
+            description: Optional. Filter columns by integration identifier.
+            schema:
+              type: string
+              example: 6c69de0f-b269-4380-bcf5-0686de276b9e
+          - name: parent_id
+            in: query
+            description: >-
+              Optional. Filter columns by parent identifier. This could be the ID
+              of the table or of the parent column in the case of nested columns.
+            schema:
+              type: string
+              example: c444bc26-433e-4cd2-b3ee-f5a1fbb2caf8
+          - name: title
+            in: query
+            description: Optional. Filter columns by title of the column.
+            schema:
+              type: string
+              example: Sample Column
+          - name: table_title
+            in: query
+            description: >-
+              Optional. Filter columns by title of the table that the columns
+              belong to. If several integrations have the same naming of tables,
+              it is recommended to combine this with the `integration_id`.
+            schema:
+              type: string
+              example: Sample Table
+        responses:
+          '200':
+            description: List of columns.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/ColumnResponse'
+          '400':
+            description: Bad request.
+          '500':
+            description: Internal server error.
+    /table/columns/{column_id}:
+      get:
+        tags:
+          - Columns
+        summary: Get Column by ID
+        description: >
+          This endpoint allows you to retrieve information about a specific column
+          by its identifier.
+        parameters:
+          - name: column_id
+            in: path
+            description: Identifier of the column to retrieve.
+            required: true
+            schema:
+              type: string
+              example: 8b2e01e0-603b-4559-8eac-4e16ecc61fc7
+        responses:
+          '200':
+            description: Column retrieved successfully.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ColumnResponse'
+          '404':
+            description: Column not found.
+          '500':
+            description: Internal server error.
+      patch:
+        tags:
+          - Columns
+        summary: Edit Column by ID
+        description: >
+          This endpoint allows you to edit the metadata of a specific column by
+          its identifier.
+        parameters:
+          - name: column_id
+            in: path
+            description: Identifier of the column to retrieve.
+            required: true
+            schema:
+              type: string
+              example: 8b2e01e0-603b-4559-8eac-4e16ecc61fc7
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: Column retrieved successfully.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ColumnResponse'
+          '404':
+            description: Column not found.
+          '500':
+            description: Internal server error.
+      delete:
+        tags:
+          - Columns
+        summary: Delete Column by ID
+        description: |
+          This endpoint allows you to delete a specific column by its identifier.
+        parameters:
+          - name: column_id
+            in: path
+            description: Identifier of the column to delete.
+            required: true
+            schema:
+              type: string
+              example: 8b2e01e0-603b-4559-8eac-4e16ecc61fc7
+        responses:
+          '204':
+            description: Column deleted successfully.
+          '404':
+            description: Column not found.
+          '500':
+            description: Internal server error.
+    /dashboard/groups:
+      post:
+        summary: Create a New Dashboard Group
+        description: >-
+          Use this endpoint to create a dashboard group, which will be the parent
+          of dashboards.
+        tags:
+          - Dashboard Groups
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  native_type:
+                    type: string
+                    description: The native type of the group.
+                    example: dashboard_group
+                  url:
+                    type: string
+                    description: Reprents the URL of the group.
+                    example: sample.url.com
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DashboardGroupResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        summary: List Dashboard Groups
+        description: >-
+          List all the dashboard groups in the workspace. Optional filter by
+          title.
+        tags:
+          - Dashboard Groups
+        parameters:
+          - in: query
+            name: title
+            schema:
+              type: string
+            description: Filter groups by title
+            example: Sample Group
+        responses:
+          '200':
+            description: List of groups.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/DashboardGroupResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /dashboard/groups/{group_id}:
+      get:
+        summary: Get Dashboard Group by ID
+        description: Retrieve the information of a specific dashboard group.
+        tags:
+          - Dashboard Groups
+        parameters:
+          - in: path
+            name: group_id
+            required: true
+            schema:
+              type: string
+            description: ID of the dashboard group to retrieve
+            example: 43d7c33d-ad74-4dfb-bfad-c172f6701afb
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DashboardGroupResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /dashboard/dashboards:
+      post:
+        tags:
+          - Dashboards
+        summary: Create a new Dashboard
+        description: >
+          Create a new dashboard with the provided data. Dashboards must have a
+          Group as a parent, and be associated with an integration.
+        requestBody:
+          description: Dashboard data
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  group:
+                    type: string
+                    description: >-
+                      Indicates the title name of the group to which the dashboard
+                      belongs.
+                    example: Sample Group
+                  url:
+                    type: string
+                    description: Indicates the URL of the dashboard.
+                    example: sample.url.com
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DashboardResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Dashboards
+        summary: List Dashboards
+        description: >
+          Retrieve a list of dashboards with optional filtering using the
+          integration_id, parent_id (the dashboard group), and title.
+        parameters:
+          - name: integration_id
+            in: query
+            schema:
+              type: string
+              example: cf103b47-8576-4467-ad34-384cd523abd9
+            description: Filter by integration ID
+          - name: parent_id
+            in: query
+            schema:
+              type: string
+              example: 43d7c33d-ad74-4dfb-bfad-c172f6701afb
+            description: Filter by parent ID
+          - name: title
+            in: query
+            schema:
+              type: string
+            description: Filter by title
+            example: Sample Dashboard
+        responses:
+          '200':
+            description: List of dashboards.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/DashboardResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /dashboard/dashboards/{dashboard_id}:
+      get:
+        tags:
+          - Dashboards
+        summary: Get Dashboard by ID
+        description: |
+          Retrieve a specific dashboard by its ID.
+        parameters:
+          - name: dashboard_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the dashboard to retrieve.
+            example: 226dc8aa-fa8d-4646-8b11-6652cdc64065
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DashboardResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Dashboards
+        summary: Update Dashboard by ID
+        description: |
+          Use this endpoint to update dashboard metadata.
+        parameters:
+          - name: dashboard_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the dashboard to update.
+            example: 226dc8aa-fa8d-4646-8b11-6652cdc64065
+        requestBody:
+          description: Represents the description of the dashboard
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DashboardResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Dashboards
+        summary: Delete Dashboard by ID
+        description: |
+          Delete a specific dashboard by its ID.
+        parameters:
+          - name: dashboard_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the dashboard to delete.
+            example: 0b3938f4-692c-4d78-b40c-247c75dc6930
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DashboardResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /dashboard/charts:
+      post:
+        tags:
+          - Charts
+        summary: Create a new Chart
+        description: >
+          Create a new chart with the provided data. Charts must have a dashboard
+          as a parent, and be associated with an integration.
+        requestBody:
+          description: Chart data
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  native_type:
+                    type: string
+                    description: Set a different name to the charts term.
+                    example: Other Chart
+                  group:
+                    type: string
+                    description: Indicates the name of the group.
+                  url:
+                    type: string
+                    description: Indicates the URL of the chart.
+                    example: sample.url.com
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ChartResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Charts
+        summary: List Charts
+        description: >
+          Retrieve a list of charts with optional filtering by integration_id,
+          parent_id (the dashboard the chart belongs to), and title.
+        parameters:
+          - name: integration_id
+            in: query
+            schema:
+              type: string
+            description: Filter by integration ID
+            example: cf103b47-8576-4467-ad34-384cd523abd9
+          - name: parent_id
+            in: query
+            schema:
+              type: string
+              example: 226dc8aa-fa8d-4646-8b11-6652cdc64065
+            description: Filter by parent ID
+          - name: title
+            in: query
+            schema:
+              type: string
+            description: Filter by title
+            example: Sample Chart
+        responses:
+          '200':
+            description: List of charts.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/ChartResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /dashboard/charts/{chart_id}:
+      get:
+        tags:
+          - Charts
+        summary: Get Chart by ID
+        description: |
+          Retrieve a specific chart by its ID.
+        parameters:
+          - name: chart_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the chart to retrieve.
+            example: 45813776-8934-442d-adf7-74ec921c53bf
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ChartResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Charts
+        summary: Update Chart by ID
+        description: Use this endpoint to update chart metadata.
+        parameters:
+          - name: chart_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the chart to update.
+            example: 45813776-8934-442d-adf7-74ec921c53bf
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ChartResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Charts
+        summary: Delete Chart by ID
+        description: |
+          Delete a specific chart by its ID.
+        parameters:
+          - name: chart_id
+            in: path
+            required: true
+            schema:
+              type: string
+              description: The ID of the chart to delete.
+              example: 45813776-8934-442d-adf7-74ec921c53bf
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ChartResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /lineage/manual:
+      post:
+        tags:
+          - Lineage
+        summary: Create new Lineage
+        description: >-
+          Create a new lineage object manually. Only one direction of the
+          relationship needs to be created. The opposite direction of the lineage
+          is automatically generated.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  from_entity:
+                    type: string
+                    description: Indicates the source of the resource data.
+                    example: 7879886b-9e0e-4d02-8b37-c7d3c496a587
+                  to_entity:
+                    type: string
+                    description: >-
+                      Points to the final destination of the resouce data through
+                      various transformations and entities.
+                    example: b500ef23-c9b4-4259-a87d-d77b8b588f06
+                  direction:
+                    type: string
+                    description: >-
+                      Represents the flow of the resource data. Values can be -
+                      <ul> <li> Upstream <li> Downstream</ul>
+                    example: DOWNSTREAM
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/LineageResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Lineage
+        summary: List Lineage
+        description: >-
+          Get lineage objects with optional filtering by source and destination
+          entity.
+        parameters:
+          - name: from_entity__in
+            in: query
+            schema:
+              type: string
+              example: 7879886b-9e0e-4d02-8b37-c7d3c496a587
+              description: The source resource.
+          - name: to_entity__in
+            in: query
+            schema:
+              type: string
+              example: b500ef23-c9b4-4259-a87d-d77b8b588f06
+              description: The destination resource.
+        responses:
+          '200':
+            description: List of lineage entries.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/LineageResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /lineage/manual/{lineage_id}:
+      get:
+        tags:
+          - Lineage
+        summary: Get Lineage by ID
+        description: Get a lineage object by its ID.
+        parameters:
+          - name: lineage_id
+            in: path
+            required: true
+            description: The ID of the lineage entry to retrieve.
+            schema:
+              type: string
+              example: 34d983b3-bfe0-4b49-abea-0692c8be6693
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/LineageResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Lineage
+        summary: Delete Lineage by ID
+        description: Delete a lineage object by its ID.
+        parameters:
+          - name: lineage_id
+            in: path
+            required: true
+            description: The ID of the lineage entry to delete.
+            schema:
+              type: string
+              example: 34d983b3-bfe0-4b49-abea-0692c8be6693
+        responses:
+          '204':
+            description: No Content
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /tag:
+      post:
+        tags:
+          - Tags
+        summary: Create a new Tag
+        description: Create a new tag for the workspace.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Indicates the name of the tag.
+                    example: Sample Tag
+                  description:
+                    type: string
+                    description: Indicates the description of the tag.
+                    example: This is a sample tag.
+                  color:
+                    type: string
+                    description: Defines the different colors of the tags.
+                    example: '#4299E1'
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TagsResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Tags
+        summary: List Tags
+        description: Get a list of tags. No filtering is currently available.
+        responses:
+          '200':
+            description: List of tags.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/TagsResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /tag/{tag_id}:
+      get:
+        tags:
+          - Tags
+        summary: Get Tag by ID
+        description: Get a tag by its ID.
+        parameters:
+          - name: tag_id
+            in: path
+            required: true
+            description: The ID of the tag to retrieve.
+            schema:
+              type: string
+              example: 69e0b863-8bb8-47e1-b566-8b8d57441c70
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TagsResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Tags
+        summary: Update Tag by ID
+        description: Use this endpoint to update tag name, colour, or icon.
+        parameters:
+          - name: tag_id
+            in: path
+            required: true
+            description: The ID of the tag to update.
+            schema:
+              type: string
+              example: 38040671-8f1d-4322-b895-4fd7b73317bf
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  color:
+                    type: string
+                    description: Represents the color of the tags.
+                    example: '#316650'
+                required:
+                  - color
+        responses:
+          '204':
+            description: No Content
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Tags
+        summary: Delete Tag by ID
+        description: Delete a tag by its ID.
+        parameters:
+          - name: tag_id
+            in: path
+            required: true
+            description: The ID of the tag to delete.
+            schema:
+              type: string
+              example: 69e0b863-8bb8-47e1-b566-8b8d57441c70
+        responses:
+          '204':
+            description: No Content
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /user:
+      post:
+        tags:
+          - Users
+        summary: Create a New User
+        description: Create a new user in the workspace.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                    description: Indicates the first name of the user.
+                    example: Sample
+                  last_name:
+                    type: string
+                    description: Indicates the last name of the user.
+                    example: User
+                  email:
+                    type: string
+                    description: Indicates the email id of the user.
+                    example: sample@sample.com
+                  role:
+                    type: string
+                    description: >-
+                      Indicates the role of the user. Values can be - <ul><li>
+                      Admin <li> Editor <li> Viewer </ul>
+                    example: editor
+                  _role:
+                    type: string
+                    description: >-
+                      Indicates the role of the user. Values can be - <ul><li>
+                      Admin <li> Editor <li> Viewer </ul>
+                    example: editor
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UsersResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Users
+        summary: List Users
+        description: Get a list of users.
+        responses:
+          '200':
+            description: List of users.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/UsersResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /user/{id}:
+      get:
+        tags:
+          - Users
+        summary: Get User by ID
+        description: Get a user by their ID.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the user to retrieve.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UsersResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Users
+        summary: Update User by ID
+        description: >-
+          Use this endpoint to update the user. Editable fields include the first
+          name, last name, and role.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the user to update.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                    description: Indicates the first name of the user.
+                    example: Sample
+                  last_name:
+                    type: string
+                    description: Indicates the last name of the user.
+                    example: User
+        responses:
+          '200':
+            description: User updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UsersResponse'
+          '400':
+            description: Bad Request
+          '404':
+            description: User not found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Users
+        summary: Delete User by ID
+        description: Delete a user by their ID.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the user to delete.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        responses:
+          '204':
+            description: No Content
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /auth/teams:
+      post:
+        tags:
+          - Teams
+        summary: Create a New Team
+        description: Create a new team in the workspace.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Indicates the name of the team.
+                    example: Test Team
+                  icon:
+                    type: string
+                    description: Indicates the icon of the team.
+                    example: 😀
+                  type:
+                    type: string
+                    description: >-
+                      Indicates the type of the team. If a team is Open, this
+                      means it is Public and can be joined by anyone in the
+                      workspace. If a team is Closed, the team is private and only
+                      admins can invite members into the team. Values can be -
+                      <ul><li> OPEN <li> CLOSED </ul>
+                    example: OPEN
+                  description:
+                    type: string
+                    description: Description of the team.
+                    example: This is the best team in this workspace.
+                  sidebar_settings:
+                    type: object
+                    description: >-
+                      Use these settings to toggle which pages should be shown to
+                      team members in the side bar.
+                    properties:
+                      home:
+                        type: boolean
+                        description: Whether to show the home page to team members.
+                        example: true
+                      catalog:
+                        type: boolean
+                        description: Whether to show the catalog page to team members.
+                        example: true
+                      documents:
+                        type: boolean
+                        description: Whether to show the documents page to team members.
+                        example: true
+                      questions:
+                        type: boolean
+                        description: Whether to show the questions page to team members.
+                        example: true
+                      dictionary:
+                        type: boolean
+                        description: Whether to show the dictionary page to team members.
+                        example: true
+                      collections:
+                        type: boolean
+                        description: Whether to show the collections page to team members.
+                        example: true
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TeamsResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Teams
+        summary: List Teams
+        description: Get a list of teams in the workspace.
+        responses:
+          '200':
+            description: List of teams.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/TeamsResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /auth/teams/{id}:
+      get:
+        tags:
+          - Teams
+        summary: Get Team by ID
+        description: Get a team by their ID.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the team to retrieve.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TeamsResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Teams
+        summary: Update Team by ID
+        description: >-
+          Use this endpoint to update the Team. Editable fields include the name,
+          description, icon, type, and sidebar settings.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the team to update.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Indicates the name of the team.
+                    example: New Team
+        responses:
+          '200':
+            description: Team updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TeamsResponse'
+          '400':
+            description: Bad Request
+          '404':
+            description: User not found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Teams
+        summary: Delete Team by ID
+        description: >-
+          Delete a team by their ID. Any resources that belong solely to this team
+          will be set to the default team.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the team to delete.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        responses:
+          '204':
+            description: No Content
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /auth/group:
+      post:
+        tags:
+          - User Groups
+        summary: Create a New User Group
+        description: Create a new user group in the workspace.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Indicates the name of the group.
+                    example: Data Stewards
+                  icon:
+                    type: string
+                    description: Indicates the icon of the team.
+                    example: 😀
+                  description:
+                    type: string
+                    description: Description of the group.
+                    example: Users responsible for keeping documentation up to date.
+                  users:
+                    type: array
+                    description: A list of user IDs that are part of this group.
+                    example:
+                      - 33733f42-8ff7-460b-9e20-50a2133d3bb0
+                      - c90dedee-40ee-47ec-9c27-96dc3b2ec363
+                    items:
+                      type: string
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UserGroupResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - User Groups
+        summary: List User Groups
+        description: Get a list of user groups in the workspace.
+        responses:
+          '200':
+            description: List of groups.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/UserGroupResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /auth/group/{id}:
+      get:
+        tags:
+          - User Groups
+        summary: Get User Group by ID
+        description: Get a user group by their ID.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the group to retrieve.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UserGroupResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - User Groups
+        summary: Update User Group by ID
+        description: >-
+          Use this endpoint to update the Group. Editable fields include the name,
+          description, icon, and users.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the group to update.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Indicates the name of the group.
+                    example: New Group
+        responses:
+          '200':
+            description: Group updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UserGroupResponse'
+          '400':
+            description: Bad Request
+          '404':
+            description: User not found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - User Groups
+        summary: Delete User Group by ID
+        description: Delete a group by their ID.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: The ID of the group to delete.
+            schema:
+              type: string
+              example: 3131f219-16bb-4c95-853a-894ae12db42a
+        responses:
+          '204':
+            description: No Content
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /dictionary/terms:
+      post:
+        tags:
+          - Terms
+        summary: Create a New Dictionary Term
+        description: >
+          This endpoint allows you to create a new dictionary term with the
+          specified data. The `title` will map to the dictionary term name, and
+          the definition of the term can be added to the `definition` field.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TermResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Terms
+        summary: List Dictionary Terms
+        description: >
+          This endpoint allows you to retrieve a list of dictionary terms with
+          optional filtering by name of the term (title).
+        parameters:
+          - in: query
+            name: title
+            description: Filter terms by title (optional)
+            schema:
+              type: string
+              example: Sample Dictionary Term
+        responses:
+          '200':
+            description: List of dictionary terms.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/TermResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /dictionary/terms/{term_id}:
+      get:
+        tags:
+          - Terms
+        summary: Get Dictionary Term by ID
+        description: >
+          This endpoint allows you to retrieve a single dictionary term by its
+          unique identifier (term_id).
+        parameters:
+          - in: path
+            name: term_id
+            description: The unique identifier of the dictionary term
+            required: true
+            schema:
+              type: string
+              example: 61ce0a34-ce90-4f1a-a135-f122dcbed242
+        responses:
+          '200':
+            description: Dictionary term retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TermResponse'
+          '404':
+            description: Term not found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Terms
+        summary: Edit Dictionary Term by ID
+        description: >
+          This endpoint allows you to edit the metadata of a dictionary term by
+          its unique identifier (term_id).
+        parameters:
+          - in: path
+            name: term_id
+            description: The unique identifier of the dictionary term to edit
+            required: true
+            schema:
+              type: string
+              example: 61ce0a34-ce90-4f1a-a135-f122dcbed24
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: Description updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TermResponse'
+          '400':
+            description: Bad Request
+          '404':
+            description: Term not found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Terms
+        summary: Delete Dictionary Term by ID
+        description: >
+          This endpoint allows you to delete a dictionary term by its unique
+          identifier (term_id).
+        parameters:
+          - in: path
+            name: term_id
+            description: The unique identifier of the dictionary term to delete
+            required: true
+            schema:
+              type: string
+              example: 61ce0a34-ce90-4f1a-a135-f122dcbed242
+        responses:
+          '204':
+            description: Term deleted successfully
+          '404':
+            description: Term not found
+          '500':
+            description: Internal Server Error
+    /collection/collections:
+      post:
+        tags:
+          - Collections
+        summary: Create a New Collection
+        description: >
+          This endpoint allows you to create a new collection. Note, adding
+          resources to a collection through the API must be done on the resource
+          that is added (by adding the collection_id to the `collections`
+          parameter). Related resources cannot be added using the
+          `/collection/collections` endpoints.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  icon:
+                    type: string
+                    description: >-
+                      Graphical or visual representation that symbolizes or
+                      represents an item within the collection
+                    example: 🗂
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CollectionResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Collections
+        summary: List Collections
+        description: >
+          This endpoint allows you to retrieve a list of collections. You can
+          optionally filter the collections by title using the "title" query
+          parameter.
+        parameters:
+          - in: query
+            name: title
+            description: Filter collections by title (optional)
+            schema:
+              type: string
+              example: Sample Collection
+        responses:
+          '200':
+            description: List of collections.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/CollectionResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /collection/collections/{collection_id}:
+      get:
+        tags:
+          - Collections
+        summary: Get Collection by ID
+        description: >
+          This endpoint allows you to retrieve a collection by its unique
+          identifier (collection_id).
+        parameters:
+          - in: path
+            name: collection_id
+            description: The unique identifier of the collection
+            required: true
+            schema:
+              type: string
+              example: 3ea9a7c2-9538-46a0-899d-b2018c80113c
+        responses:
+          '200':
+            description: Collection retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CollectionResponse'
+          '404':
+            description: Collection not found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Collections
+        summary: Edit Collection by ID
+        description: >-
+          Use this endpoint to update collections. Note, adding resources to a
+          collection through the API must be done on the resource that is added
+          (by adding the collection_id to the `collections` parameter). Related
+          resources cannot be added using the `/collection/collections` endpoints.
+        parameters:
+          - in: path
+            name: collection_id
+            description: The unique identifier of the collection to edit
+            required: true
+            schema:
+              type: string
+              example: 3ea9a7c2-9538-46a0-899d-b2018c80113c
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: Description updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CollectionResponse'
+          '400':
+            description: Bad Request
+          '404':
+            description: Collection not found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Collections
+        summary: Delete Collection by ID
+        description: >
+          This endpoint allows you to delete a collection by its unique identifier
+          (collection_id).
+        parameters:
+          - in: path
+            name: collection_id
+            description: The unique identifier of the collection to delete
+            required: true
+            schema:
+              type: string
+              example: 3ea9a7c2-9538-46a0-899d-b2018c80113c
+        responses:
+          '204':
+            description: Collection deleted successfully
+          '404':
+            description: Collection not found
+          '500':
+            description: Internal Server Error
+    /question/questions:
+      post:
+        tags:
+          - Questions
+        summary: Create a New Question
+        description: >
+          This endpoint allows you to create a new question. The answer to the
+          question can be set in the answer field, or added as a reply to the
+          `question/replies` endpoint.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+                properties:
+                  assigned_to:
+                    type: string
+                    description: Represents to whom the question is assigned to.
+                    example: 33733f42-8ff7-460b-9e20-50a2133d3bb0
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/QuestionResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Questions
+        summary: List Questions
+        description: |
+          This endpoint allows you to retrieve a list of questions.
+        responses:
+          '200':
+            description: List of questions.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/QuestionResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /question/questions/{question_id}:
+      get:
+        tags:
+          - Questions
+        summary: Get Question by ID
+        description: >
+          This endpoint allows you to retrieve a question by its unique identifier
+          (question_id).
+        parameters:
+          - in: path
+            name: question_id
+            description: The unique identifier of the question
+            required: true
+            schema:
+              type: string
+              example: 7795133a-6e36-4ef2-b95a-664babb99b71
+        responses:
+          '200':
+            description: Question retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/QuestionResponse'
+          '404':
+            description: Question not found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Questions
+        summary: Edit Question by ID
+        description: >
+          This endpoint allows you to edit the metadata of a question by its
+          unique identifier (question_id).
+        parameters:
+          - in: path
+            name: question_id
+            description: The unique identifier of the question to edit
+            required: true
+            schema:
+              type: string
+              example: 7795133a-6e36-4ef2-b95a-664babb99b71
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: Definition updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/QuestionResponse'
+          '400':
+            description: Bad Request
+          '404':
+            description: Question not found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Questions
+        summary: Delete Question by ID
+        description: >
+          This endpoint allows you to delete a question by its unique identifier
+          (question_id).
+        parameters:
+          - in: path
+            name: question_id
+            description: The unique identifier of the question to delete
+            required: true
+            schema:
+              type: string
+              example: 4272310f-0129-4982-8849-4b20edd3f2d5
+        responses:
+          '204':
+            description: Question deleted successfully
+          '404':
+            description: Question not found
+          '500':
+            description: Internal Server Error
+    /question/replies:
+      post:
+        summary: Create a New Question Reply
+        description: >
+          This endpoint allows you to create a new reply to a specified question
+          (indicated by the parent_id).
+        tags:
+          - Questions
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  definition:
+                    type: string
+                    description: The answer of the reply
+                    example: Replying to the question
+                  accepted_answer:
+                    type: boolean
+                    description: >-
+                      Indicates if the answer is accepted or not. Values can be -
+                      <ul> <li> True <li> False</ul>
+                    example: false
+                  parent:
+                    type: string
+                    description: The unique identifier of the parent question
+                    example: 7795133a-6e36-4ef2-b95a-664babb99b71
+                  owners:
+                    type: array
+                    items:
+                      type: string
+                      description: Defines the UUIDs that are the owners of the replies.
+                      example: 33733f42-8ff7-460b-9e20-50a2133d3bb0
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ReplyResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        summary: List Question Replies
+        description: >
+          This endpoint allows you to retrieve a list of replies. You can
+          optionally filter the replies by question_id using the "question_id"
+          query parameter.
+        tags:
+          - Questions
+        parameters:
+          - in: query
+            name: question_id
+            description: Filter replies by question_id (optional)
+            schema:
+              type: string
+              example: 7795133a-6e36-4ef2-b95a-664babb99b71
+        responses:
+          '200':
+            description: List of replies.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/ReplyResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /question/replies/{reply_id}:
+      get:
+        summary: Get Question Reply by ID
+        description: >
+          This endpoint allows you to retrieve a reply by its unique identifier
+          (reply_id).
+        tags:
+          - Questions
+        parameters:
+          - in: path
+            name: reply_id
+            description: The unique identifier of the reply
+            required: true
+            schema:
+              type: string
+              example: 47f9d5ab-4ae1-4eea-a8b8-6d3847829b3f
+        responses:
+          '200':
+            description: Reply retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ReplyResponse'
+          '404':
+            description: Reply not found
+          '500':
+            description: Internal Server Error
+      patch:
+        summary: Edit Question Reply by ID
+        description: >
+          This endpoint allows you to edit the content of a reply by its unique
+          identifier (reply_id). You can also use this endoint to set this reply
+          as the accepted answer.
+        tags:
+          - Questions
+        parameters:
+          - in: path
+            name: reply_id
+            description: The unique identifier of the reply to edit
+            required: true
+            schema:
+              type: string
+              example: 47f9d5ab-4ae1-4eea-a8b8-6d3847829b3f
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  definition:
+                    type: string
+                    description: The updated definition for the reply
+                    example: Changing the answer.
+                  accepted_answer:
+                    type: boolean
+                    description: >-
+                      Indicates if the answer is accepted or not. Values can be -
+                      <ul> <li> True <li> False</ul>
+                    example: false
+        responses:
+          '200':
+            description: Definition updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ReplyResponse'
+          '400':
+            description: Bad Request
+          '404':
+            description: Reply not found
+          '500':
+            description: Internal Server Error
+      delete:
+        summary: Delete Question Reply by ID
+        description: >
+          This endpoint allows you to delete a reply by its unique identifier
+          (reply_id).
+        tags:
+          - Questions
+        parameters:
+          - in: path
+            name: reply_id
+            description: The unique identifier of the reply to delete
+            required: true
+            schema:
+              type: string
+              example: 47f9d5ab-4ae1-4eea-a8b8-6d3847829b3f
+        responses:
+          '204':
+            description: Reply deleted successfully
+          '404':
+            description: Reply not found
+          '500':
+            description: Internal Server Error
+    /document:
+      post:
+        summary: Create a New Document
+        description: >
+          This endpoint allows you to create a new document with the specified
+          data. The document content is pulled from the `definition` parameter.
+        tags:
+          - Documents
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  icon:
+                    type: string
+                    description: The icon of the document
+                    example: 🗂
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DocumentResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        summary: List Documents
+        description: >
+          This endpoint allows you to retrieve a list of documents. You can
+          optionally filter the documents by title using the "title" query
+          parameter.
+        tags:
+          - Documents
+        parameters:
+          - in: query
+            name: title
+            description: Filter documents by title (optional)
+            schema:
+              type: string
+              example: Sample Document
+        responses:
+          '200':
+            description: List of documents.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/DocumentResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /document/{document_id}:
+      get:
+        summary: Get Document by ID
+        description: >
+          This endpoint allows you to retrieve a document by its unique identifier
+          (document_id).
+        tags:
+          - Documents
+        parameters:
+          - in: path
+            name: document_id
+            description: The unique identifier of the document
+            required: true
+            schema:
+              type: string
+              example: 1f5c76c3-e7a3-406f-b51e-7ba220244f1b
+        responses:
+          '200':
+            description: Document retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DocumentResponse'
+          '404':
+            description: Document not found
+          '500':
+            description: Internal Server Error
+      patch:
+        summary: Edit Document by ID
+        description: >
+          This endpoint allows you to edit the definition of a document by its
+          unique identifier (document_id). The definition of the document maps to
+          the visible content of the document itself.
+        tags:
+          - Documents
+        parameters:
+          - in: path
+            name: document_id
+            description: The unique identifier of the document to edit
+            required: true
+            schema:
+              type: string
+              example: 1f5c76c3-e7a3-406f-b51e-7ba220244f1b
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: Definition updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/DocumentResponse'
+          '400':
+            description: Bad Request
+          '404':
+            description: Document not found
+          '500':
+            description: Internal Server Error
+      delete:
+        summary: Delete Document by ID
+        description: >
+          This endpoint allows you to delete a document by its unique identifier
+          (document_id).
+        tags:
+          - Documents
+        parameters:
+          - in: path
+            name: document_id
+            description: The unique identifier of the document to delete
+            required: true
+            schema:
+              type: string
+              example: 1f5c76c3-e7a3-406f-b51e-7ba220244f1b
+        responses:
+          '204':
+            description: Document deleted successfully
+          '404':
+            description: Document not found
+          '500':
+            description: Internal Server Error
+    /query/queries:
+      get:
+        summary: List Queries
+        description: >
+          This endpoint allows you to retrieve a list of all queries in the
+          workspace. No filtering is available at this time.
+        tags:
+          - Queries
+        responses:
+          '200':
+            description: List of queries.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/QueryResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /query/queries/{query_id}:
+      get:
+        summary: Get Query by ID
+        description: >
+          This endpoint allows you to retrieve a query by its unique identifier
+          (query_id).
+        tags:
+          - Queries
+        parameters:
+          - in: path
+            name: query_id
+            description: The unique identifier of the query
+            required: true
+            schema:
+              type: string
+              example: 871fc00d-828b-4348-9353-c635313ee459
+        responses:
+          '200':
+            description: Query retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/QueryResponse'
+          '404':
+            description: Query not found
+          '500':
+            description: Internal Server Error
+    /monitors/monitors:
+      get:
+        summary: List Monitors
+        description: >
+          This endpoint allows you to retrieve a list of all the monitors in your
+          workspace.
+        tags:
+          - Monitors
+        responses:
+          '200':
+            description: List of Monitors.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/MonitorResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /monitors/monitors/{monitor_id}:
+      get:
+        summary: Get Monitor by ID
+        description: >
+          This endpoint allows you to retrieve a monitors by it's ID. You can find
+          the ID in the URL of the monitor when accessing it from the Secoda UI.
+        tags:
+          - Monitors
+        parameters:
+          - in: path
+            name: monitor_id
+            description: The unique identifier of the monitor
+            required: true
+            schema:
+              type: string
+              example: 871fc00d-828b-4348-9353-c635313ee459
+        responses:
+          '200':
+            description: Monitor retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/MonitorResponse'
+          '404':
+            description: Monitor not found
+          '500':
+            description: Internal Server Error
+    /monitors/incidents:
+      get:
+        summary: List Incidents
+        description: >
+          This endpoint allows you to retrieve a list of all the incidents in your
+          workspace.
+        tags:
+          - Monitors
+        responses:
+          '200':
+            description: List of Incidents.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/IncidentResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /monitors/incident/{incident_id}:
+      get:
+        summary: Get Incident by ID
+        description: |
+          This endpoint allows you to retrieve an incident by it's ID.
+        tags:
+          - Monitors
+        parameters:
+          - in: path
+            name: incident_id
+            description: The unique identifier of the incident
+            required: true
+            schema:
+              type: string
+              example: 871fc00d-828b-4348-9353-c635313ee459
+        responses:
+          '200':
+            description: Monitor retrieved successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/IncidentResponse'
+          '404':
+            description: Incident not found
+          '500':
+            description: Internal Server Error
+    /monitors/measurements:
+      get:
+        summary: List Measurements
+        description: >
+          This endpoint allows you to retrieve a list of all the measurements in
+          your workspace filtered by a Monitor or Incident. A query param of
+          either the Monitor ID or Incident ID is required.
+
+
+          If using monitoring in automatic mode, thresholds will take some time to
+          populate as the system learnins the appropriate range for your data.
+        tags:
+          - Monitors
+        parameters:
+          - in: query
+            name: monitor
+            description: The unique identifier of the monitor
+            schema:
+              type: string
+              example: 871fc00d-828b-4348-9353-c635313ee459
+          - in: query
+            name: incident_id
+            description: The unique identifier of the incident
+            schema:
+              type: string
+              example: 40b3e4d3-3bf8-4ec4-ae87-56d1e738ca76
+        responses:
+          '200':
+            description: List of Measurements.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/MeasurementResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /event/category:
+      post:
+        summary: Create a New Event Category
+        description: >-
+          Use this endpoint to create a new event category. This will be the
+          parent of events. The category must be associated to an integration.
+        tags:
+          - Event Categories
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    description: The name of the category.
+                    example: Landing Page
+                  integration:
+                    type: string
+                    description: The UUID of the associated integration.
+                  teams:
+                    type: array
+                    description: The teams the category belongs to.
+                    example:
+                      - e8ac09ede51e4e618eaf59942c98c260
+        responses:
+          '201':
+            description: Event category created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        summary: List Event Categories
+        description: >-
+          List all the event categories in the workspace. Optional filter by
+          title.
+        tags:
+          - Event Categories
+        parameters:
+          - in: query
+            name: title
+            schema:
+              type: string
+            description: Filter event categories by title
+            example: Landing Page
+        responses:
+          '200':
+            description: List of event categories.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /event/category/{event_category_id}:
+      get:
+        summary: Get Event Category by Id
+        description: Retrieve the information of a specific event category.
+        tags:
+          - Event Categories
+        parameters:
+          - name: event_category_id
+            required: true
+            in: path
+            schema:
+              type: string
+            description: ID of the event category to retrieve
+            example: 43d7c33dad744dfbbfadc172f6701afb
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /event/events:
+      post:
+        tags:
+          - Events
+        summary: Create a new Event
+        description: >-
+          Create a new event with the provided data. Events must have a Category
+          as a parent, and be associated with an integration.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+        responses:
+          '201':
+            description: Event created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Events
+        summary: List Events
+        description: >-
+          Retrieve a list of events with optional filtering using the
+          integration_id, parent_id (the event category), and title.
+        parameters:
+          - name: integration_id
+            in: query
+            schema:
+              type: string
+            example: cf103b4785764467ad34384cd523abd9
+            description: Filter by integration ID
+          - name: parent_id
+            in: query
+            schema:
+              type: string
+            example: 43d7c33dad744dfbbfadc172f6701afb
+            description: Filter by parent ID
+          - name: title
+            in: query
+            schema:
+              type: string
+            description: Filter by title
+            example: Clicked
+        responses:
+          '200':
+            description: List of events.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/BaseResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /event/events/{event_id}:
+      get:
+        tags:
+          - Events
+        summary: Get Event by ID
+        description: Retrieve a specific event by its ID.
+        parameters:
+          - name: event_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the event to retrieve.
+            example: 226dc8aafa8d46468b116652cdc64065
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Events
+        summary: Update an Event by ID
+        description: Use this endpoint to partially update event metadata.
+        parameters:
+          - name: event_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the event to update.
+            example: 226dc8aafa8d46468b116652cdc64065
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Events
+        summary: Delete Event by ID
+        description: Delete a specific event by it's ID.
+        parameters:
+          - name: event_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the event to delete.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BaseResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+    /event/event_properties:
+      post:
+        tags:
+          - Event Properties
+        summary: Create a new Event Property
+        description: >-
+          Create a new event property with the provided data. Event properties
+          must have an Event as a parent, and be associated with an integration.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: '#/components/schemas/BaseResourceRequest'
+                properties:
+                  type:
+                    type: string
+                    description: >-
+                      The type of property associated with the event. Examples
+                      include string, enum, integer, etc.
+                    example: enum
+                  enum:
+                    type: string
+                    description: >-
+                      If the property type is enum, this field indicates the
+                      various enum values.
+                    example: red, green, yellow
+                  is_required:
+                    type: boolean
+                    description: Set this to true if the property is required.
+        responses:
+          '200':
+            description: Event property created.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/EventPropertyResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      get:
+        tags:
+          - Event Properties
+        summary: List Event Properties
+        description: >-
+          Retrieve a list of events with optional filtering using the
+          integration_id, parent_id (the event), and title.
+        parameters:
+          - name: integration_id
+            in: query
+            schema:
+              type: string
+            example: cf103b4785764467ad34384cd523abd9
+            description: Filter by integration ID
+          - name: parent_id
+            in: query
+            schema:
+              type: string
+            example: 43d7c33dad744dfbbfadc172f6701afb
+            description: Filter by parent ID
+          - name: title
+            in: query
+            schema:
+              type: string
+            description: Filter by title
+            example: 'true'
+        responses:
+          '200':
+            description: List of event properties.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/ListResponse'
+                    - type: object
+                      properties:
+                        results:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/EventPropertyResponse'
+          '400':
+            description: Bad Request
+          '500':
+            description: Internal Server Error
+    /event/event_properties/{event_property_id}:
+      get:
+        tags:
+          - Event Properties
+        summary: Get Event Property by ID
+        description: Retrieve a specific event property by its ID.
+        parameters:
+          - name: event_property_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the event property to retrieve.
+            example: 226dc8aafa8d46468b116652cdc64065
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/EventPropertyResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      patch:
+        tags:
+          - Event Properties
+        summary: Update an Event Property by ID
+        description: Use this endpoint to partially update event metadata.
+        parameters:
+          - name: event_property_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the event property to update.
+            example: 226dc8aafa8d46468b116652cdc64065
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasePatchRequest'
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/EventPropertyResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+      delete:
+        tags:
+          - Event Properties
+        summary: Delete Event Property by ID
+        description: Delete a specific event property by it's ID.
+        parameters:
+          - name: event_property_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: The ID of the event property to delete.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/EventPropertyResponse'
+          '404':
+            description: Not Found
+          '500':
+            description: Internal Server Error
+  components:
+    securitySchemes:
+      ApiKeyAuth:
+        type: http
+        scheme: bearer
+        bearerFormat: string
+    schemas:
+      UserGroupResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            example: f3bdd4f8-d6ea-4f9b-8384-e179fa8eb3da
+            description: The ID of the group.
+          created_at:
+            type: string
+            example: '2023-05-10T14:27:23.797657Z'
+            description: The creation timestamp of the group.
+          updated_at:
+            type: string
+            example: '2023-10-20T13:53:06.088248Z'
+            description: The last update timestamp of the group.
+          users:
+            type: array
+            items:
+              type: string
+            example:
+              - 33733f42-8ff7-460b-9e20-50a2133d3bb0
+              - c90dedee-40ee-47ec-9c27-96dc3b2ec363
+            description: List of user IDs of the members in the group.
+          name:
+            type: string
+            example: Data Stewards
+            description: The name of the group.
+          icon:
+            type: string
+            example: 🧪
+            description: The icon associated with the group.
+          description:
+            type: string
+            example: >-
+              Group of users that are responsible for keeping documentation
+              updated.
+            description: The description of the group.
+          workspace_id:
+            type: string
+            example: f71585fa-251c-4102-8d81-c97c57c8d435
+            description: The ID of the workspace associated with the grop.
+          snowflake_role:
+            description: This field can be ignored.
+      MonitorResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            example: 886337a0-f298-4259-84dc-710879c826de
+            description: The unique identifier of the monitor.
+          created_at:
+            type: string
+            example: '2023-10-12T14:59:58.781935Z'
+            description: The timestamp when the monitor was created.
+          updated_at:
+            type: string
+            example: '2023-10-12T15:06:19.251573Z'
+            description: The timestamp when the data was last updated.
+          integration:
+            type: string
+            example: 337c5803-b484-4128-a24d-dcc55dee2ea2
+            description: The identifier of the integration associated with the resource.
+          target:
+            type: string
+            example: 11db7782-4030-4acf-93e4-85aff3b860a1
+            description: The identifier of the resource that the monitor is watching.
+          workspace:
+            type: string
+            example: e051db43-cda6-42dc-8a69-12d1aefc3a91
+            description: The identifier of the workspace.
+          metric_type:
+            type: string
+            enum:
+              - row_count
+              - cardinality
+              - mean
+              - max
+              - min
+              - unique_percentage
+              - null_percentage
+              - freshness
+              - custom_sql
+            example: null_percentage
+            description: The type of metric.
+          metric_config:
+            type: string
+            description: Configuration for the metric.
+          frequency:
+            type: integer
+            example: 24
+            description: The frequency with which this monitor is run.
+          name:
+            type: string
+            example: Null percentage in amount
+            description: >-
+              The full name of the monitor, includes the metric type and target
+              resource.
+          is_enabled:
+            type: boolean
+            example: true
+            description: Whether the monitor is enabled.
+          last_attempted_at:
+            type: string
+            example: '2023-10-12T15:03:40.693728Z'
+            description: The timestamp of the last attempted monitor.
+          last_success_at:
+            type: string
+            format: date-time
+            description: >-
+              The timestamp of the last check on Secoda's access and ability to
+              read the data source on which this monitor is set. This is
+              connctivity check - not a data quality check.
+            example: '2023-09-29T17:46:22.552345Z'
+          last_error_at:
+            type: string
+            example: null
+            description: The timestamp of the last error, if any.
+          last_error_message:
+            type: string
+            example: ''
+            description: The message associated with the last error, if any.
+          condition_auto_sensitivity:
+            type: integer
+            example: 5
+            description: The automatic sensitivity condition.
+          condition_manual_min:
+            type: integer
+            example: null
+            description: The manual minimum condition if set by the user.
+          condition_manual_max:
+            type: integer
+            example: null
+            description: The manual maximum condition if set by the user.
+          status:
+            type: string
+            enum:
+              - normal
+              - incident
+              - error
+              - learning
+              - inactive
+            description: The status of the monitor.
+            example: incident
+          display_metadata:
+            type: object
+            description: >-
+              This is an internally used object that provides additional
+              information about the incident. This can be ignored by customers.
+            properties:
+              target:
+                type: object
+                properties:
+                  icon:
+                    type: string
+                    example: null
+                    description: Icon associated with the target resource, if one exists.
+                  label:
+                    type: string
+                    example: amount
+                    description: Title of the target resource.
+                  entity_type:
+                    type: string
+                    example: column
+                    description: The type of the target resource (e.g., column).
+                  integration:
+                    type: string
+                    example: 337c5803-b484-4128-a24d-dcc55dee2ea2
+                    description: >-
+                      The UUID of the integration from which the target resource
+                      is extracted.
+                  integration_type:
+                    type: string
+                    example: redshift
+                    description: The type of integration.
+          last_measurement_value:
+            type: number
+            description: The last measured value if one is available.
+            example: 1234.56
+          last_incident:
+            type: string
+            description: >-
+              The UUID of the last active incident. If there are no active
+              incidents (if the last incident has been closed), the field is set
+              to null.
+            example: 102ac399-6e3a-42dd-a710-dbbb6b2addbe
+          last_measurement:
+            type: string
+            example: 5d6ad413-5f74-41d6-b2f5-870b6f04de5c
+            description: The identifier of the last measurement.
+          next_run_at:
+            type: string
+            example: '2023-10-13T15:03:40.693728Z'
+            description: >-
+              The timestamp for the next run. Note, the run may occur shortly
+              after the time set, but never before.
+      IncidentResponse:
+        type: object
+        properties:
+          acknowledged_at:
+            type: string
+            format: date-time
+            description: >-
+              The time that the incident was acknowledged at. This will be null if
+              an incident hasn't been acknowledged yet.
+            example: '2023-11-10T19:20:44.975657Z'
+          actions:
+            type: array
+            description: A list of actions associated with the incident.
+            example:
+              - type: notification_initial
+                user_id: e1250ab7-c4dc-4b9c-8963-105fa73d4ba5
+                user_name: John Doe
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - notification_initial
+                    - notification_reminder
+                    - notification_resolved
+                    - acknowledged
+                    - resolved
+                user_id:
+                  type: string
+                user_name:
+                  type: string
+          created_at:
+            type: string
+            format: date-time
+            description: When the incident was created.
+            example: '2023-10-10T19:20:44.975657Z'
+          display_metadata:
+            type: object
+            description: >-
+              This is an internally used object that provides additional
+              information about the incident. This can be ignored by customers.
+            properties:
+              monitor:
+                type: object
+                properties:
+                  label:
+                    type: string
+                    example: Unique percentage on extraction_completed_at
+              target:
+                type: object
+                properties:
+                  entity_type:
+                    type: string
+                    description: The type of resource the incident is associated with.
+                    example: column
+                  icon:
+                    type: string
+                  integration:
+                    type: string
+                    description: The UUID of the integration associated with the resource.
+                    example: 0c6f8b1a-0c8f-4fdf-b95d-57da8f80ef82
+                  integration_type:
+                    type: string
+                    description: >-
+                      The type of the integration that the resource is extracted
+                      from.
+                    example: snowflake
+                  label:
+                    type: string
+          first_seen_at:
+            type: string
+            format: date-time
+            description: The first time this incident was observed.
+            example: '2023-10-10T19:20:44.973632Z'
+          id:
+            type: string
+            description: The UUID of the incident.
+            example: 6ac1bff0-b85f-47e8-84fb-8dca29614785
+          last_notified_at:
+            type: string
+            format: date-time
+            description: The time of the last notification sent about this incident.
+            example: '2023-10-10T19:20:45.047056Z'
+          last_seen_at:
+            type: string
+            format: date-time
+            description: The most recent occurence about this incident.
+            example: '2023-10-10T19:20:45.047056Z'
+          monitor:
+            type: string
+            description: The UUID of the associated monitor.
+            example: b45bc798-763d-4ca5-863a-c12a882967c9
+          name:
+            type: string
+            description: >-
+              The name of the incident, which indicates the type of metric set for
+              the monitor.
+            example: Unique percentage incident
+          resolved_at:
+            type: string
+            format: date-time
+            description: >-
+              The time that the incident was resolved. Will be null if the
+              incident has not yet been resolved.
+          status:
+            type: string
+            enum:
+              - acknowledged
+              - expired
+              - resolved
+              - active
+            description: The status of the incident.
+            example: active
+          summary:
+            type: string
+            example: Unique percentage incident
+            description: An automatically generated short summary of the incident.
+          target:
+            type: string
+            description: The UUID of the target resource being monitored for anomolies.
+            example: c332407c-cfa4-47c9-8d83-31df72b30c20
+          updated_at:
+            type: string
+            format: date-time
+            description: The last updated time for the incident.
+            example: '2023-10-10T19:20:45.047238Z'
+          value:
+            type: number
+            description: The value of the measurement at the time of incident creation.
+            example: 86.4081806
+      MeasurementResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            description: The UUID of the measurement.
+            example: 6ac1bff0-b85f-47e8-84fb-8dca29614785
+          created_at:
+            type: string
+            format: date-time
+            description: Timestamp of when the measurement was created.
+            example: '2023-10-03T04:46:24.290765Z'
+          updated_at:
+            type: string
+            format: date-time
+            description: Timestamp of the when the measurement was updated.
+            example: '2023-10-03T04:46:24.290765Z'
+          incident:
+            type: string
+            nullable: true
+            description: >-
+              The UUID of the associated incident, if it exists. Otherwise, this
+              is set to null.
+            example: 102ac399-6e3a-42dd-a710-dbbb6b2addbe
+          incident_metadata:
+            type: string
+            description: Additional information about the incident.
+          monitor:
+            type: string
+            description: The UUID of the associated monitor.
+            example: 102ac399-6e3a-42dd-a710-dbbb6b2addbe
+          upper_threshold:
+            type: number
+            description: >
+              The upper threshold of the measurement. A value crossing this
+              threshold will trigger an incident. The threshold will be set to
+              null when one is not configured, or the monitor is still learning
+              the thresholds.
+            example: 90.64496791804484
+          lower_threshold:
+            type: number
+            description: >
+              The lower threshold of the measurement. A value crossing this
+              threshold will trigger an incident. The threshold will be set to
+              null when one is not configured, or the monitor is still learning
+              the thresholds.
+            example: 87.83219024929676
+          value:
+            type: number
+            description: The exact value at the time of measurement.
+            example: 90.81823317519981
+      TermResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              parent_id:
+                type: string
+                description: Indicates the UUID of the parent of terms.
+                example: None
+              base_entity_id:
+                type: string
+                description: >-
+                  Indicates the UUID of the highest level ancestor of the
+                  document.
+                example: 1f5c76c3-e7a3-406f-b51e-7ba220244f1b
+              sql:
+                type: string
+                description: Represents the sql query associated with the term.
+                example: select * from sample_table
+              last_run:
+                type: string
+                format: date-time
+                description: >-
+                  Indicates the last time the query was ran in UTC format. This
+                  could be the same as the scheduled last run. If this value is
+                  different, it indicates the the last extraction was triggered
+                  manually.
+                example: '2023-08-16T23:12:53.245493Z'
+              scheduled_delta:
+                type: string
+                description: Represents the time difference between last run and next run.
+                example: 4
+              scheduled_next_run:
+                type: string
+                format: date-time
+                description: Indicates the next time the query will be run in UTC format.
+                example: '2023-08-20T23:12:53.245493Z'
+              scheduled_last_run:
+                type: string
+                description: >-
+                  Indicates the scheduled last run time of the extraction in UTC
+                  format.
+                example: '2023-08-20T14:12:53.245493Z'
+              results:
+                type: array
+                description: Specifies the results of the query of the terms.
+              chart_config:
+                type: object
+                description: Defines chart configuration for the query of the term.
+                properties:
+                  grid:
+                    type: object
+                    description: controls the visibility of gridlines on a chart.
+                    properties:
+                      top:
+                        type: integer
+                        example: 32
+                      left:
+                        type: string
+                        example: 10%
+                      show:
+                        type: boolean
+                        example: false
+                      right:
+                        type: integer
+                        example: 32
+                      bottom:
+                        type: string
+                        example: 10%
+                  color:
+                    type: array
+                    items:
+                      type: string
+                      description: Defines the different colors of the terms.
+                      example: '#198B9A'
+                  title:
+                    type: object
+                    properties:
+                      text:
+                        type: string
+                        description: Defines the details of the title
+                        example: Chart title
+                  xAxis:
+                    type: object
+                    description: Customizes and control xAxis parameters of charts.
+                    properties:
+                      name:
+                        type: string
+                      type:
+                        type: string
+                        example: category
+                      nameGap:
+                        type: integer
+                        example: 32
+                      axisLabel:
+                        type: object
+                        description: Customize and control the labels on the axes of a chart.
+                        properties:
+                          interval:
+                            type: integer
+                      nameLocation:
+                        type: string
+                        example: middle
+                  yAxis:
+                    type: object
+                    description: Customizes and control yAxis parameters of charts.
+                    example: null
+                    properties:
+                      name:
+                        type: string
+                        example: null
+                      type:
+                        type: string
+                        example: category
+                      nameGap:
+                        type: integer
+                        example: 32
+                      nameLocation:
+                        type: string
+                        example: middle
+                      nameTextStyle:
+                        type: object
+                        description: >-
+                          Represents a set of settings and attributes that control
+                          the visual appearance and styling of text
+                        properties:
+                          padding:
+                            type: array
+                            items:
+                              type: integer
+                              example: '-30, 0, 0, 0'
+                  legend:
+                    type: object
+                    description: >-
+                      Indicates the legend associated with the chart if a chart
+                      was generated.
+                  series:
+                    type: array
+                    items:
+                      type: object
+                      description: >-
+                        Represents the series associated with the chart if a chart
+                        was generated.
+                      properties:
+                        type:
+                          type: string
+                          example: line
+                        encode:
+                          type: object
+                          properties:
+                            x:
+                              type: integer
+                              example: 0
+                            'y':
+                              type: integer
+                              example: 1
+                        smooth:
+                          type: boolean
+                          example: false
+                  dataset:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        source:
+                          type: string
+                          description: >-
+                            Refers to data source that serves as the basis for
+                            creating a chart.
+                  toolbox:
+                    type: object
+                    properties:
+                      show:
+                        type: boolean
+                        example: true
+                      feature:
+                        type: object
+                        properties:
+                          dataZoom:
+                            type: object
+                            properties:
+                              show:
+                                type: boolean
+                                example: true
+                          saveAsImage:
+                            type: object
+                            properties:
+                              show:
+                                type: boolean
+                                example: true
+                  tooltip:
+                    type: object
+                    properties:
+                      show:
+                        type: boolean
+                        example: false
+      CollectionResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              pinned:
+                type: boolean
+                description: Refers to whether the resource has been pinned by user.
+                example: false
+              resource_count:
+                type: integer
+                description: Indicates how many resources are part of the collection.
+                example: 0
+      QuestionResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              status:
+                type: string
+                description: >-
+                  Indicates the status of the question. Values can be - <ul><li>
+                  Answered <li> Unanswered </ul>
+                example: UNANSWERED
+              priority:
+                type: string
+                description: Indicates the priority of the question or request.
+                example: High
+              reactions:
+                type: array
+                items:
+                  type: string
+                description: Represents the emoji reactions to a question.
+                example:
+                  - 👍
+              answer:
+                type: string
+                description: Represents the verified answer of the question.
+                example: This is the answer to the question.
+              assigned_to:
+                type: string
+                description: Represents the user whom the question is assigned to.
+                example: 33733f42-8ff7-460b-9e20-50a2133d3bb0
+              votes_sum:
+                type: integer
+                description: Indicates the  amount of votes for the quesion.
+                example: 5
+              current_user_vote:
+                type: integer
+                description: Represents the vote number of the current user.
+                example: 4
+      ReplyResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              reactions:
+                type: array
+                items:
+                  type: string
+                description: Represents the emoji reactions to a question.
+                example:
+                  - 👍
+              accepted_answer:
+                type: boolean
+                description: >-
+                  Indicates if the answer is accepted or not. Values can be - <ul>
+                  <li> True <li> False</ul>
+                example: false
+      DocumentResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              parent_id:
+                type: string
+                description: >-
+                  Indicates the UUID of the parent of the document, which is
+                  always another document.
+                example: 1f5c76c3-e7a3-406f-b51e-7ba220244f1b
+              base_entity_id:
+                type: string
+                description: >-
+                  Indicates the UUID of the highest level ancestor of the
+                  document.
+                example: 1f5c76c3-e7a3-406f-b51e-7ba220244f1b
+      QueryResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              type:
+                type: string
+                description: Indicates the type of query. Currently this is returned as None.
+                example: None
+              freq:
+                type: integer
+                description: >-
+                  Represents the frequency with which the query is running.
+                  Currently this will be returned as 0.
+                example: 0
+      LineageResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            description: The unique identifier of the resource.
+            example: d935a76c-2125-4c30-9389-ef42fa7e23bb
+          created_at:
+            type: string
+            format: date-time
+            description: The timestamp when the resource was created in Secoda in UTC format.
+            example: '2023-08-16T23:12:53.245493Z'
+          updated_at:
+            type: string
+            format: date-time
+            description: >-
+              The timestamp when the resource was last updated in Secoda in UTC
+              format.
+            example: '2023-08-16T23:12:53.245507Z'
+          from_entity:
+            type: string
+            description: Indicates the source resource of the lineage.
+            example: 7879886b-9e0e-4d02-8b37-c7d3c496a587
+          to_entity:
+            type: string
+            description: Indicates the destination resource of the lineage.
+            example: b500ef23-c9b4-4259-a87d-d77b8b588f06
+          direction:
+            type: string
+            description: >-
+              Represents the flow of data between the source and destination.
+              Values can be - <ul> <li> Upstream <li> Downstream</ul>
+            enum:
+              - UPSTREAM
+              - DOWNSTREAM
+            example: DOWNSTREAM
+          is_manual:
+            type: boolean
+            description: >-
+              Represents if data lineage is manually created or not. Values can be
+              - <ul><li> True <li> False </ul>
+            example: true
+      TagsResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            description: The unique identifier of the resource.
+            example: 69e0b863-8bb8-47e1-b566-8b8d57441c70
+          created_at:
+            type: string
+            format: date-time
+            description: The timestamp when the resource was created in Secoda in UTC format.
+            example: '2023-09-05T17:32:56.571134Z'
+          updated_at:
+            type: string
+            format: date-time
+            description: >-
+              The timestamp when the resource was last updated in Secoda in UTC
+              format.
+            example: '2023-09-05T17:32:56.571151Z'
+          name:
+            type: string
+            description: Indicates the name of the tag.
+            example: Sample Tag
+          description:
+            type: string
+            description: Indicates the description of the tag.
+            example: This is a sample tag.
+          color:
+            type: string
+            description: Defines the different colors of the tags in HEX format.
+            example: '#4299E1'
+          integration_id:
+            type: string
+            description: >-
+              The unique identifier of the integration the tag is pulled from.
+              Null if the tag is created manually in Secoda.
+            example: 69e0b863-8bb8-47e1-b566-8b8d57441c70
+          workspace_id:
+            type: string
+            description: Indiactes the workspace ID where the tag belongs.
+            example: f71585fa-251c-4102-8d81-c97c57c8d435
+      TeamsResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Indicates the UUID of the team.
+            example: 3131f219-16bb-4c95-853a-894ae12db42a
+          created_at:
+            type: string
+            format: date-time
+            description: The timestamp when the team was created in Secoda in UTC format.
+            example: '2023-09-22T15:30:00Z'
+          updated_at:
+            type: string
+            format: date-time
+            description: The timestamp when the team was last updated in Secoda UTC format.
+            example: '2023-09-22T15:30:00Z'
+          name:
+            type: string
+            description: Indicates the name of the team.
+            example: Test Team
+          icon:
+            type: string
+            description: Indicates the icon of the team.
+            example: 😀
+          type:
+            type: string
+            description: >-
+              Indicates the type of the team. If a team is Open, this means it is
+              Public and can be joined by anyone in the workspace. If a team is
+              Closed, the team is private and only admins can invite members into
+              the team. Values can be - <ul><li> OPEN <li> CLOSED </ul>
+            example: OPEN
+          description:
+            type: string
+            description: Description of the team.
+            example: This is the best team in this workspace.
+          sidebar_settings:
+            type: object
+            description: >-
+              Use these settings to toggle which pages should be shown to team
+              members in the side bar.
+            properties:
+              home:
+                type: boolean
+                description: Whether to show the home page to team members.
+                example: true
+              catalog:
+                type: boolean
+                description: Whether to show the catalog page to team members.
+                example: true
+              documents:
+                type: boolean
+                description: Whether to show the documents page to team members.
+                example: true
+              questions:
+                type: boolean
+                description: Whether to show the questions page to team members.
+                example: true
+              dictionary:
+                type: boolean
+                description: Whether to show the dictionary page to team members.
+                example: true
+              collections:
+                type: boolean
+                description: Whether to show the collections page to team members.
+                example: true
+          workspace_id:
+            type: string
+            description: Indicates the workspace ID of the user.
+            example: f71585fa-251c-4102-8d81-c97c57c8d435
+          archived:
+            type: boolean
+            description: Indicates if the team has been deleted.
+            example: false
+          is_default_team:
+            type: boolean
+            description: >-
+              Indicates if the team is the default team. Any resource without a
+              specified team will automatically get added to this team.
+            example: true
+          onboarding_complete:
+            type: boolean
+            description: This field will be deprecated.
+            example: true
+      UsersResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Indicates the UUID of the user.
+            example: 3131f219-16bb-4c95-853a-894ae12db42a
+          first_name:
+            type: string
+            description: Indicates the first name of the user.
+            example: Sample
+          last_name:
+            type: string
+            description: Indicates the last name of the user.
+            example: User
+          email:
+            type: string
+            description: Indicates the email id of the user.
+            example: sample@sample.com
+          role:
+            type: string
+            description: >-
+              Indicates the role of the user. Values can be - <ul><li> Admin <li>
+              Editor <li> Viewer </ul>
+            example: editor
+          _role:
+            type: string
+            description: >-
+              Indicates the role of the user. Is the same value as the `role`
+              parameter. Values can be - <ul><li> Admin <li> Editor <li> Viewer
+              </ul>
+            example: editor
+          workspace_id:
+            type: string
+            description: Indicates the workspace ID of the user.
+            example: f71585fa-251c-4102-8d81-c97c57c8d435
+          secoda_is_superuser:
+            type: boolean
+            description: >-
+              Represents if the user is super user or not. Values can be - <ul>
+              <li >True <li> False </ul>
+            example: false
+          profile_picture:
+            type: string
+            description: Indicates the file name of the profile picture for the user.
+            example: image.jpg
+          pending:
+            type: boolean
+            description: >-
+              Represents if the user has been invited to the space but not
+              accepted yet. Values can be - <ul> <li> "True" <li> "False" </ul>
+            example: 'False'
+          viewer_mode:
+            type: boolean
+            description: >-
+              Indicates if the user is in Preview mode. Values can be - <ul>
+              <li>True <li>False </ul>
+            example: false
+          user_groups:
+            type: array
+            description: A list of UUIDs of groups the user belongs to.
+            items:
+              type: string
+            example:
+              - f71585fa-251c-4102-8d81-c97c57c8d435
+          bookmarks:
+            type: array
+            items:
+              type: string
+            description: Represents the resorces that the user has bookmarked.
+            example:
+              - f71585fa-251c-4102-8d81-c97c57c8d435
+          workspace:
+            type: string
+            description: Indicates the workspace of the user.
+            example: f71585fa-251c-4102-8d81-c97c57c8d435
+          is_service_account:
+            type: boolean
+            example: false
+            description: >-
+              Indicates if the user account is a service account or not. Values
+              can be - <ul> <li >True <li> False </ul>
+          service_account_count_popularity:
+            type: boolean
+            description: >-
+              Indicates if the account counts towards popularity calculations.
+              Values can be - <ul> <li> True <li> False </ul>
+            example: true
+          last_login:
+            type: string
+            format: date-time
+            description: >-
+              Indicates the last time account was logged in to Secoda in UTC
+              format.
+            example: None
+          new_feature_acknowledged:
+            type: boolean
+            description: >-
+              Indicates if the new feature has been acknowleged or not. Values can
+              be - <ul> <li >True <li> False </ul>
+            example: true
+          disabled:
+            type: boolean
+            description: >-
+              Represents if the account is disabled or not. Values can be - <ul>
+              <li >True <li> False </ul>
+            example: false
+      DashboardGroupResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              visible:
+                type: boolean
+                description: This is a deprecated field.
+      DashboardResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              group:
+                type: string
+                description: Indicates the name of the group.
+                example: Samples
+              product:
+                type: string
+                description: Indicates the name of the integration.
+                example: tableau
+      ChartResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              product:
+                type: string
+                description: Indicates the name of the integration.
+                example: tableau
+      ListResponse:
+        type: object
+        properties:
+          links:
+            type: object
+            description: Indicates Links to associated pages.
+            properties:
+              next:
+                type: string
+                description: The link to the next page (null if there are no more pages).
+                example: https://api.secoda.co/resource/all/?page=2
+              previous:
+                type: string
+                description: The link to the previous page (null if on the first page).
+                example: None
+          meta:
+            type: object
+            description: Reprents the meta data of the response.
+            properties:
+              page:
+                type: integer
+                description: The current page number.
+                example: 1
+              previous_page:
+                type: integer
+                description: The previous page number (null if on the first page).
+                example: None
+              next_page:
+                type: integer
+                description: The next page number (null if on the last page).
+                example: 2
+          count:
+            type: integer
+            description: The total count of items returned.
+            example: 315
+          total_pages:
+            type: integer
+            description: The total number of pages.
+            example: 7
+      IntegrationResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            description: The ID of the created integration.
+            example: 740904fe-e87d-44f8-8a91-b13631ff2812
+          created_at:
+            type: string
+            format: date-time
+            description: >-
+              The timestamp when the integration was created in Secoda in UTC
+              format.
+            example: '2023-09-22T15:30:00Z'
+          updated_at:
+            type: string
+            format: date-time
+            description: >-
+              The timestamp when the integration was last updated in Secoda UTC
+              format.
+            example: '2023-09-22T15:30:00Z'
+          name:
+            type: string
+            description: The name of the integration.
+            example: Tableau
+          type:
+            type: string
+            description: The type of integration.
+            example: tableau
+          credentials:
+            type: object
+            description: >-
+              The actual credentials of the integration will NOT be returned. Can
+              you find the easter egg in this response parameter for native
+              integrations?
+            example: {}
+          workspace_id:
+            type: string
+            description: The ID of the associated workspace.
+            example: f71585fa-251c-4102-8d81-c97c57c8d435
+          ssh_tunnel:
+            type: string
+            description: Information about SSH tunnel if one is set update.
+            example: None
+          execute_access:
+            type: array
+            items:
+              type: string
+            description: List of IDs that have the permission to trigger the extracton.
+            example:
+              - f71585fa-251c-4102-8d81-c97c57c8d435
+          scheduled_extractions_hour:
+            type: integer
+            description: Hour for scheduled extractions. Will be null for custom extractions.
+            example: 3
+          scheduled_extractions_frequency:
+            type: integer
+            description: >-
+              Frequency in days of scheduled extractions. Will be null for custom
+              extractions.
+            example: 7
+          scheduled_extractions_next_run:
+            type: string
+            format: date-time
+            description: >-
+              Next scheduled extraction run time. Will be null for custom
+              extractions.
+            example: '2023-10-15T09:45:00Z'
+          scheduled_extractions_last_run:
+            type: string
+            description: Last scheduled extraction run time (null in this response).
+            example: '2023-10-15T09:45:00Z'
+          properties:
+            type: object
+            description: Additional properties associated with the integration.
+          preview_access_users:
+            type: array
+            items:
+              type: string
+            description: >-
+              List of users IDs with access to preview the data in the
+              integration.
+            example:
+              - f71585fa-251c-4102-8d81-c97c57c8d435
+          preview_access_roles:
+            type: array
+            items:
+              type: string
+            description: >-
+              List of roles that are allowed to preview the data in the
+              integration. <ul><li> Admin <li> Editor <li> Viewer </ul>
+            example:
+              - Admin
+              - Editor
+          preview_access_groups:
+            type: array
+            items:
+              type: string
+            description: >-
+              List of users group IDs with access to preview the data in the
+              integration.
+            example:
+              - f71585fa-251c-4102-8d81-c97c57c8d435
+          teams:
+            type: array
+            items:
+              type: string
+            description: List of team IDs associated with the integration.
+            example:
+              - e8ac09ed-e51e-4e61-8eaf-59942c98c260
+      ColumnResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              data_type:
+                type: string
+                description: Indicates the data type of the column.
+                example: integer
+              sort_order:
+                type: integer
+                description: >-
+                  Indicates the order the column should be in amongst the other
+                  columns
+                example: 3
+              is_pk:
+                type: boolean
+                description: Whether the column is a primary key.
+                example: true
+              hidden:
+                type: boolean
+                description: This is a deprecated field.
+              table_cluster:
+                type: string
+                description: This is a deprecated field.
+              table_database:
+                type: string
+                description: Indicates the name of the database that the column belongs to.
+                example: aws-datacatalog
+              table_schema:
+                type: string
+                description: Indicates the name of the schema that the column belongs to.
+                example: secoda-glue
+              table_title:
+                type: string
+                description: Indicates the name of the table that the column belongs to.
+                example: customers
+      TableResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              database:
+                type: string
+                description: Indicates the name of the database that the table belongs to.
+                example: awsdatacatalog
+              schema:
+                type: string
+                description: Indicates the name of the schema that the table belongs to.
+                example: secoda-glue
+              cluster:
+                type: string
+                description: This is a deprecated field.
+              creation_query:
+                type: string
+                description: >-
+                  If the table is a view, this indicates the query written to
+                  generate the view.
+                example: select * from customers where country=='CAN'
+      CustomProperties:
+        type: object
+        properties:
+          name:
+            type: string
+            description: The name of the custom property.
+            example: Custom Property
+          type:
+            type: string
+            enum:
+              - string
+              - number
+              - multiselect
+              - checkbox
+              - user
+              - resource
+              - date
+            description: The type of the custom property.
+            example: string
+          order:
+            type: integer
+            description: The order of the custom property.
+            example: 1
+          value:
+            type: string
+            description: The value of the custom property.
+            example: TestValue
+      BaseResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            description: The unique identifier of the resource.
+            example: d935a76c-2125-4c30-9389-ef42fa7e23bb
+          created_at:
+            type: string
+            format: date-time
+            description: The timestamp when the resource was created in Secoda in UTC format.
+            example: '2023-08-16T23:12:53.245493Z'
+          updated_at:
+            type: string
+            format: date-time
+            description: >-
+              The timestamp when the resource was last updated in Secoda in UTC
+              format.
+            example: '2023-08-16T23:12:53.245507Z'
+          entity_type:
+            type: string
+            description: The type of resource in Secoda.
+            example: table
+          native_type:
+            type: string
+            description: >-
+              The native type of the resource as it is referred to in the
+              integration.
+            example: Dataset
+          bookmarked_by:
+            type: array
+            items:
+              type: string
+            description: List of member IDs that have bookmarked the resource.
+            example:
+              - d935a76c-2125-4c30-9389-ef42fa7e23bb
+              - 33733f42-8ff7-460b-9e20-50a2133d3bb0
+              - c90dedee-40ee-47ec-9c27-96dc3b2ec363
+          icon:
+            type: string
+            description: The icon associated with the resource.
+            example: icon-url.png
+          title:
+            type: string
+            description: The title of the resource.
+            example: Sample Table
+          title_full:
+            type: string
+            description: The full title of the resource. This is a generated field
+            example: Sample Database.Sample Schema.Sample Table
+          title_cased:
+            type: string
+            description: The title in a cased format.
+            example: sampleTable
+          description:
+            type: string
+            description: A description of the resource.
+            example: This is a description for a sample table.
+          definition:
+            type: string
+            format: markdown
+            description: The documentation of the resource, written in Mark Down format.
+          definition_version:
+            type: integer
+            description: The version of the resource's documentation.
+            example: 1
+          multiplayers:
+            type: array
+            items:
+              type: string
+            description: >-
+              List of members who have opened or worked with the resource
+              recently.
+            example:
+              - 429693a2-a5e7-4525-b413-ece5e96bc5b3
+              - f71585fa-251c-4102-8d81-c97c57c8d435
+          multiplayer_last_modified_by:
+            type: string
+            description: The last member who modified this resource.
+            example: 429693a2-a5e7-4525-b413-ece5e96bc5b3
+          multiplayer_last_modified:
+            type: string
+            format: date-time
+            description: The timestamp when the multiplayer was last modified in UTC format.
+            example: '2023-08-16T23:12:53.245507Z'
+          owners:
+            type: array
+            items:
+              type: string
+            description: List of owner IDs for the resource.
+            example:
+              - 429693a2-a5e7-4525-b413-ece5e96bc5b3
+              - f71585fa-251c-4102-8d81-c97c57c8d435
+          owners_groups:
+            type: array
+            items:
+              type: string
+            description: List of owner group IDs for the resource.
+            example:
+              - 3b2c7185-fb5d-4d94-89d4-3dae08e093a9
+          collections:
+            type: array
+            items:
+              type: string
+            description: >-
+              List of IDs representing the collection(s) that the resource has
+              been added to.
+            example:
+              - e8ac09ed-e51e-4e61-8eaf-59942c98c260
+          tags:
+            type: array
+            items:
+              type: string
+            description: List of tag IDs added to the resource.
+            example:
+              - f7466f09-33bf-4ac2-9ff2-165fb4b8bdc2
+              - a17f4ed0-0e5a-45a9-92c0-6c93c0b8242c
+          workspace_id:
+            type: string
+            description: The ID of the workspace.
+            example: f71585fa-251c-4102-8d81-c97c57c8d435
+          total_usage:
+            type: integer
+            description: The total usage count for the resource.
+            example: 483
+          published:
+            type: boolean
+            description: Indicates if the resource is published and can be seen by Viewers.
+            example: false
+          archived:
+            type: boolean
+            description: Indicates if the resource is deleted.
+            example: false
+          pii:
+            type: boolean
+            description: >-
+              Indicates if the resource contains Personally Identifiable
+              Information (PII). Values can be - <ul> <li> True <li> False</ul>
+            example: true
+          verified:
+            type: boolean
+            description: >-
+              Indicates if the resource is verified. Values can be - <ul><li> True
+              <li> False</ul>
+            example: false
+          url:
+            type: string
+            description: The URL associated with the resource.
+            example: https://example.com/sample-table
+          parent:
+            type: string
+            description: The parent resource's ID.
+            example: df2c0597-13d9-4159-bb6d-00b3f54235dc
+          children_count:
+            type: integer
+            description: The count of children entities of the resource.
+            example: 2
+          integration:
+            type: string
+            description: The integration ID associated with the resource.
+            example: ca529385-fbc9-4934-afae-e372affe795b
+          external_updated_at:
+            type: string
+            format: date-time
+            description: The timestamp of the last update for the resource in the source.
+            example: '2023-08-16T23:12:53.245507Z'
+          internal_usage:
+            type: integer
+            description: The internal usage count for the resource.
+            example: 3
+          internal_users:
+            type: array
+            items:
+              type: string
+            description: List of internal user IDs for the resource.
+            example:
+              - 04654d61-4f64-4f08-b697-3915b5137c49
+          external_users:
+            type: array
+            items:
+              type: string
+            description: >-
+              List of external user IDs for the resource extracted from the
+              integration.
+            example:
+              - 33733f42-8ff7-460b-9e20-50a2133d3bb0
+          external_usage:
+            type: integer
+            description: >-
+              The external usage count for the resource extracted from the source
+              source. This is what is used to calculate Popularity of a resource.
+            example: 38
+          databuilder_id:
+            type: string
+            description: >-
+              The databuilder ID associated with the resource. This is a generated
+              field.
+            example: b818280a-ae1a-43bf-90d3-dbccf812b025.x68605bd2
+          search_metadata:
+            type: object
+            description: Metadata related to indexing the resource for optimizing search.
+            example:
+              cluster: glue
+              database: awsdatacatalog
+              schema: secoda-glue
+              type: table
+          sources:
+            type: array
+            items:
+              type: string
+            description: >-
+              List of other integrations associated with the resource. For
+              example, if a description is pulled in from DBT for a Snowflake
+              table, this field will reference DBT.
+            example:
+              - 8a3af948-026c-45d6-983d-3873f6156f86
+          subscribers:
+            type: array
+            items:
+              type: string
+            description: List of User IDs who subscribe to the resource.
+            example:
+              - 33733f42-8ff7-460b-9e20-50a2133d3bb0
+              - c90dedee-40ee-47ec-9c27-96dc3b2ec363
+          teams:
+            type: array
+            items:
+              type: string
+            description: List of team IDs associated with the resource.
+            example:
+              - 8680f886-97d2-4f4e-92c8-c80b46a3017d
+          stale:
+            type: boolean
+            description: >-
+              Indicates if the resource is stale. This means this resource no
+              longer exists in the source, as of the last extraction.
+            example: false
+          current_user_permissions:
+            type: object
+            description: Permissions of the current user for this resource.
+            properties:
+              read:
+                type: boolean
+                example: true
+              write:
+                type: boolean
+                example: true
+              execute:
+                type: boolean
+                example: false
+          properties:
+            type: object
+            description: A list of custom properties associated with the resource.
+            properties:
+              custom:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomProperties'
+      BaseResourceRequest:
+        type: object
+        properties:
+          title:
+            type: string
+            description: The title of the resource.
+            example: Sample Title
+          integration:
+            type: string
+            description: The integration ID associated with the resource, if one exists.
+            example: ca529385-fbc9-4934-afae-e372affe795b
+          description:
+            type: string
+            description: A description of the resource.
+            example: This is a description for a sample table.
+          definition:
+            type: string
+            description: Mark down documentation to be added to the resource.
+            example: \n# Castae illa\n\n## Finemque aequore\n\nLorem markdownum motus
+          parent:
+            type: string
+            description: >-
+              The ID of the parent resource. Please keep the resource heirarchy in
+              mind when setting the parent.
+            example: df2c0597-13d9-4159-bb6d-00b3f54235dc
+          pii:
+            type: boolean
+            description: >-
+              Indicates whether the resource contains personally identifiable
+              information (PII). Values can be - <ul><li> True <li> False</ul>
+            example: false
+          verified:
+            type: boolean
+            description: >-
+              Indicates whether the resource has been set as verified. Values can
+              be - <ul><li> True <li> False</ul>
+            example: true
+          published:
+            type: boolean
+            description: >-
+              Indicates if the resource is visible to viewers or not. Values can
+              be - <ul><li> True <li> False</ul>
+            example: true
+          teams:
+            type: array
+            items:
+              type: string
+            description: A list of team IDs that the resource belongs to.
+            example:
+              - e8ac09ed-e51e-4e61-8eaf-59942c98c260
+              - cca810f1-11c1-4117-bc23-20ae8020897f
+          owners:
+            type: array
+            items:
+              type: string
+            description: A list of owner user IDs for the resource.
+            example:
+              - 33733f42-8ff7-460b-9e20-50a2133d3bb0
+              - c90dedee-40ee-47ec-9c27-96dc3b2ec363
+          collections:
+            type: array
+            items:
+              type: string
+            description: A list of collection IDs the resource belongs to.
+            example:
+              - 3b2c7185-fb5d-4d94-89d4-3dae08e093a9
+          tags:
+            type: array
+            items:
+              type: string
+            description: A list of tag IDs associated with the resources.
+            example:
+              - 04654d61-4f64-4f08-b697-3915b5137c49
+              - 429693a2-a5e7-4525-b413-ece5e96bc5b3
+          subscribers:
+            type: array
+            description: >-
+              A list of user IDs that have been subscribed to the resource. Anyone
+              subscribed will be notified of any changes.
+            items:
+              type: string
+            example:
+              - c90dedee-40ee-47ec-9c27-96dc3b2ec363
+          properties:
+            type: object
+            description: A list of custom properties associated with the resource.
+            properties:
+              custom:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomProperties'
+      BasePatchRequest:
+        type: object
+        properties:
+          description:
+            type: string
+            description: A description of the resource.
+            example: This is a description for a sample table.
+          definition:
+            type: string
+            description: Mark down documentation to be added to the resource.
+            example: \n# Castae illa\n\n## Finemque aequore\n\nLorem markdownum motus
+          pii:
+            type: boolean
+            description: >-
+              Indicates whether the resource contains personally identifiable
+              information (PII). Values can be - <ul><li> True <li> False</ul>
+            example: false
+          verified:
+            type: boolean
+            description: >-
+              Indicates whether the table has been set as verified. Values can be
+              - <ul><li> True <li> False</ul>
+            example: true
+          published:
+            type: boolean
+            description: >-
+              Indicates if the resource is visible to viewers or not. Values can
+              be - <ul><li> True <li> False</ul>
+            example: true
+          teams:
+            type: array
+            items:
+              type: string
+            description: A list of team IDs that the resource belongs to.
+            example:
+              - e8ac09ed-e51e-4e61-8eaf-59942c98c260
+              - cca810f1-11c1-4117-bc23-20ae8020897f
+          owners:
+            type: array
+            items:
+              type: string
+            description: A list of owner user IDs for the resource.
+            example:
+              - 33733f42-8ff7-460b-9e20-50a2133d3bb0
+              - c90dedee-40ee-47ec-9c27-96dc3b2ec363
+          collections:
+            type: array
+            items:
+              type: string
+            description: A list of collection IDs the resource belongs to.
+            example:
+              - 3b2c7185-fb5d-4d94-89d4-3dae08e093a9
+          tags:
+            type: array
+            items:
+              type: string
+            description: A list of tag IDs associated with the resources.
+            example:
+              - 04654d61-4f64-4f08-b697-3915b5137c49
+              - 429693a2-a5e7-4525-b413-ece5e96bc5b3
+          subscribers:
+            type: array
+            description: >-
+              A list of the added user IDs that have been subscribed to the
+              resource. Anyone subscribed will be notified of any changes.
+            items:
+              type: string
+            example:
+              - c90dedee-40ee-47ec-9c27-96dc3b2ec363
+          properties:
+            type: object
+            description: A list of custom properties to add to the resource.
+            properties:
+              custom:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomProperties'
+      EventPropertyResponse:
+        allOf:
+          - $ref: '#/components/schemas/BaseResponse'
+          - type: object
+            properties:
+              type:
+                type: string
+                description: >-
+                  The type of property associated with the event. Examples include
+                  string, enum, integer, etc.
+                example: enum
+              enum:
+                type: string
+                description: >-
+                  If the property type is enum, this field indicates the various
+                  enum values.
+                example: red, green, yellow
+              is_required:
+                type: boolean
+                description: Set this to true if the property is required.
+konfigCliVersion: 1.38.34

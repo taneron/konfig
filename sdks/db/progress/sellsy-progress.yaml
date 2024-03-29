@@ -1,0 +1,1345 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /accounting-codes:
+    get: Accounting_getCodes
+    post: Accounting_createCode
+  /accounting-codes/search:
+    post: Accounting_searchCodes
+  /accounting-codes/{id}:
+    delete: Accounting_deleteCode
+  /accounting-journal/{type}:
+    get: Accounting_journalList
+  /accounting-journal/{type}/export:
+    post: Accounting_journalExport
+  /accounting-journal/{type}/metas:
+    get: Accounting_journalMetaGet
+  /accounting-journal/{type}/search:
+    post: Accounting_journalSearch
+  /accounts/conformities:
+    get: Conformities_getInvoicingState
+    post: Conformities_activateInvoiceConformity
+  /accounts/documents:
+    get: Documents_getInvoicesAndCreditNotes
+  /activities/crm:
+    get: CrmActivities_getActivity
+  /activities/crm/export:
+    post: CrmActivities_exportActivitySearch
+  /activities/crm/metas:
+    get: CrmActivities_getMetaInfo
+  /activities/crm/search:
+    post: CrmActivities_searchActivity
+  /activities/search:
+    post: Activities_performSearch
+  /batch:
+    post: Batch_requestCreate
+  /calendar-events:
+    get: Calendar_getEventsList
+    post: Calendar_createEvent
+  /calendar-events/labels:
+    get: Calendar_getLabels
+  /calendar-events/search:
+    post: Calendar_searchEvent
+  /calendar-events/{id}:
+    delete: Calendar_deleteEvent
+    get: Calendar_getEvent
+    put: Calendar_updateEvent
+  /clients:
+    get: ApiManagement_listClients
+    post: ApiManagement_createOAuthClient
+  /clients/{id}:
+    delete: ApiManagement_deleteOAuthClient
+    get: ApiManagement_getOAuthClient
+    put: ApiManagement_updateOAuthClient
+  /comments:
+    get: Comments_getList
+    post: Comments_createComment
+  /comments/search:
+    post: Comments_searchComments
+  /comments/{id}:
+    delete: Comments_removeComment
+    get: Comments_getDetails
+    put: Comments_updateComment
+  /companies:
+    get: Companies_getList
+    post: Companies_createNewCompany
+  /companies/favourite-filters:
+    get: Companies_listFavouriteFilters
+  /companies/search:
+    post: Companies_searchCompanies
+  /companies/{companyId}/addresses:
+    get: Companies_getAddresses
+    post: Companies_addAddress
+  /companies/{companyId}/addresses/{id}:
+    delete: Companies_deleteAddress
+    get: Companies_getAddress
+    put: Companies_updateAddress
+  /companies/{companyId}/contacts/{contactId}:
+    delete: Companies_unlinkContact
+    post: Companies_linkContact
+    put: Companies_updateContactOfCompanyLink
+  /companies/{companyId}/files:
+    get: Companies_listFiles
+    post: Companies_attachFileToCompany
+  /companies/{companyId}/smart-tags:
+    get: Companies_getSmartTagsList
+    post: Companies_linkSmartTags
+  /companies/{id}:
+    delete: Companies_removeCompany
+    get: Companies_getInformations
+    put: Companies_updateInformation
+  /companies/{id}/contacts:
+    get: Companies_getContacts
+  /companies/{id}/custom-fields:
+    get: Companies_getCustomFieldsList
+    put: Companies_updateCustomFields
+  /companies/{id}/payments:
+    post: Companies_recordPayment
+  /contacts:
+    get: Contacts_getList
+    post: Contacts_createContact
+  /contacts/favourite-filters:
+    get: Contacts_listFavouriteFilters
+  /contacts/search:
+    post: Contacts_searchContacts
+  /contacts/{contactId}/addresses:
+    get: Contacts_getAddresses
+    post: Contacts_createAddress
+  /contacts/{contactId}/addresses/{id}:
+    delete: Contacts_deleteAddress
+    get: Contacts_getAddressById
+    put: Contacts_updateAddress
+  /contacts/{contactId}/custom-fields:
+    get: Contacts_getCustomFields
+    put: Contacts_updateCustomFields
+  /contacts/{contactId}/files:
+    get: Contacts_listDirectoriesAndFiles
+    post: Contacts_attachFileToContact
+  /contacts/{contactId}/smart-tags:
+    get: Contacts_getSmartTags
+    post: Contacts_linkSmartTags
+  /contacts/{id}:
+    delete: Contacts_removeContact
+    get: Contacts_getInformations
+    put: Contacts_updateContactInfo
+  /contacts/{id}/companies:
+    get: Contacts_getCompanies
+  /countries:
+    get: Countries_getList
+  /credit-notes:
+    get: CreditNotes_getList
+    post: CreditNotes_createCreditNote
+  /credit-notes/compute:
+    post: CreditNotes_computeCreditNote
+  /credit-notes/favourite-filters:
+    get: CreditNotes_listFavouriteFilters
+  /credit-notes/search:
+    post: CreditNotes_searchCreditNotes
+  /credit-notes/{creditNoteId}/discount-incl-taxes/{discountId}:
+    delete: CreditNotes_unlinkDiscountInclTaxes
+    post: CreditNotes_linkDiscountToCreditNote
+  /credit-notes/{creditNoteId}/invoices/{invoiceId}:
+    delete: CreditNotes_unlinkInvoice
+    post: CreditNotes_linkInvoice
+  /credit-notes/{creditNoteId}/primes/{primeId}:
+    delete: CreditNotes_unlinkPrimeFromNote
+    post: CreditNotes_linkPrimeToCreditNote
+  /credit-notes/{documentId}/files:
+    get: CreditNotes_getDirectoryFiles
+    post: CreditNotes_attachFileToCreditNote
+  /credit-notes/{documentId}/payments/{paymentId}:
+    delete: CreditNotes_unlinkPayment
+    post: CreditNotes_linkPayment
+  /credit-notes/{id}:
+    get: CreditNotes_getById
+    put: CreditNotes_updateNote
+  /credit-notes/{id}/custom-fields:
+    get: CreditNotes_listCustomFields
+    put: CreditNotes_updateCustomFields
+  /credit-notes/{id}/invoices:
+    get: CreditNotes_getLinkedInvoices
+  /credit-notes/{id}/payments:
+    get: CreditNotes_getPaymentsList
+  /credit-notes/{id}/smart-tags:
+    get: CreditNotes_getSmartTagsList
+    post: CreditNotes_linkSmartTags
+  /credit-notes/{id}/validate:
+    post: CreditNotes_validateCreditNote
+  /currencies:
+    get: Currencies_getAll
+  /custom-activities:
+    get: CustomActivities_getList
+    post: CustomActivities_createActivity
+  /custom-activities/search:
+    post: CustomActivities_performSearch
+  /custom-activities/{id}:
+    delete: CustomActivities_deleteCustomActivity
+    get: CustomActivities_getInformation
+    put: CustomActivities_editCustomActivity
+  /custom-activity-types:
+    get: CustomActivities_getList
+    post: CustomActivities_createType
+  /custom-activity-types/{id}:
+    get: CustomActivities_getType
+    put: CustomActivities_updateType
+  /custom-fields:
+    get: CustomFields_getList
+  /custom-fields/search:
+    post: CustomFields_search
+  /custom-fields/{id}:
+    get: CustomFields_getInformation
+  /directories:
+    post: Files_createDirectory
+  /directories/{id}:
+    delete: Files_deleteDirectoryAndItems
+    get: Files_getDirectory
+    put: Files_updateDirectory
+  /directories/{id}/files:
+    get: Files_listDirectoryContents
+    post: Files_attachToDirectory
+  /discount-incl-taxes:
+    get: DiscountIncludingTaxes_list
+    post: DiscountIncludingTaxes_createDiscount
+  /discount-incl-taxes/{id}:
+    delete: DiscountIncludingTaxes_delete
+    get: DiscountIncludingTaxes_getById
+    put: DiscountIncludingTaxes_updateWithId
+  /document-layouts:
+    get: DocumentLayouts_getAllLayouts
+  /documents/models:
+    get: DocumentModels_list
+    post: DocumentModels_createModel
+  /documents/models/search:
+    post: DocumentModels_searchModels
+  /documents/models/tags:
+    get: DocumentModels_getAvailableTags
+  /documents/models/{id}:
+    get: DocumentModels_getById
+    put: DocumentModels_updateModel
+  /documents/models/{id}/convert:
+    post: DocumentModels_convertDocumentModel
+  /email/authenticate:
+    get: Emails_getDnsData
+  /email/domain/validate:
+    post: Emails_validateDns
+  /emails/threads/{id}:
+    get: Emails_getThreadEmails
+  /emails/{id}:
+    get: Emails_getDetails
+  /estimates:
+    get: Estimates_getAll
+    post: Estimates_createNewEstimate
+  /estimates/compute:
+    post: Estimates_computeEstimate
+  /estimates/favourite-filters:
+    get: Estimates_listFavouriteFilters
+  /estimates/search:
+    post: Estimates_searchEstimates
+  /estimates/{documentId}/files:
+    get: Estimates_getFilesForEstimate
+    post: Estimates_attachFile
+  /estimates/{documentId}/payments/{paymentId}:
+    delete: Estimates_unlinkPayment
+    post: Estimates_linkPaymentToEstimate
+  /estimates/{estimateId}/discount-incl-taxes/{discountId}:
+    delete: Estimates_unlinkDiscountInclTaxes
+    post: Estimates_linkDiscountIncludingTaxes
+  /estimates/{estimateId}/primes/{primeId}:
+    delete: Estimates_unlinkPrime
+    post: Estimates_linkPrimeToEstimate
+  /estimates/{id}:
+    get: Estimates_getById
+    put: Estimates_updateEstimate
+  /estimates/{id}/custom-fields:
+    get: Estimates_listCustomFields
+    put: Estimates_updateCustomFields
+  /estimates/{id}/payments:
+    get: Estimates_getPaymentsList
+  /estimates/{id}/smart-tags:
+    get: Estimates_getSmartTagsList
+    post: Estimates_linkSmartTags
+  /estimates/{id}/status:
+    put: Estimates_updateStatus
+  /files/{id}:
+    delete: Files_removeFile
+    get: Files_getById
+    patch: Files_moveFileToDirectory
+  /fiscal-years:
+    get: FiscalYear_getList
+  /individuals:
+    get: Individuals_getList
+    post: Individuals_createNewIndividual
+  /individuals/favourite-filters:
+    get: Individuals_listFavouriteFilters
+  /individuals/search:
+    post: Individuals_searchResults
+  /individuals/{id}:
+    delete: Individuals_removeIndividual
+    get: Individuals_getInfo
+    put: Individuals_updateInfo
+  /individuals/{id}/contacts:
+    get: Individuals_getContacts
+  /individuals/{id}/custom-fields:
+    get: Individuals_getCustomFields
+    put: Individuals_updateCustomFields
+  /individuals/{id}/payments:
+    post: Individuals_recordPayment
+  /individuals/{id}/smart-tags:
+    get: Individuals_getSmartTagsList
+    post: Individuals_linkSmartTags
+  /individuals/{individualId}/addresses:
+    get: Individuals_getAddresses
+    post: Individuals_createAddress
+  /individuals/{individualId}/addresses/{id}:
+    delete: Individuals_deleteAddress
+    get: Individuals_getAddress
+    put: Individuals_updateAddress
+  /individuals/{individualId}/contacts/{contactId}:
+    delete: Individuals_deleteLinkBetweenContactAndIndividual
+    post: Individuals_linkContactToIndividual
+  /individuals/{individualId}/files:
+    get: Individuals_listFilesOfIndividual
+    post: Individuals_attachFile
+  /invoices:
+    get: Invoices_list
+    post: Invoices_createNewInvoice
+  /invoices/compute:
+    post: Invoices_computeInvoice
+  /invoices/favourite-filters:
+    get: Invoices_listFavouriteFilters
+  /invoices/search:
+    post: Invoices_searchInvoices
+  /invoices/{documentId}/files:
+    get: Invoices_listFiles
+    post: Invoices_attachFile
+  /invoices/{documentId}/payments/{paymentId}:
+    delete: Invoices_unlinkPayment
+    post: Invoices_linkPaymentToInvoice
+  /invoices/{id}:
+    get: Invoices_getById
+    put: Invoices_updateInvoiceById
+  /invoices/{id}/credit-notes:
+    get: Invoices_getCreditNotes
+  /invoices/{id}/custom-fields:
+    get: Invoices_getCustomFields
+    put: Invoices_updateCustomFields
+  /invoices/{id}/payments:
+    get: Invoices_getPaymentsList
+  /invoices/{id}/smart-tags:
+    get: Invoices_getSmartTagsList
+    post: Invoices_linkSmartTags
+  /invoices/{id}/validate:
+    post: Invoices_validateInvoice
+  /invoices/{invoiceId}/credit-notes/{creditNoteId}:
+    delete: Invoices_unlinkCreditNote
+    post: Invoices_linkCreditNote
+  /invoices/{invoiceId}/discount-incl-taxes/{discountId}:
+    delete: Invoices_unlinkDiscountIncludingTaxes
+    post: Invoices_linkDiscountIncludingTaxes
+  /invoices/{invoiceId}/primes/{primeId}:
+    delete: Invoices_unlinkPrime
+    post: Invoices_linkPrimeToInvoice
+  /items:
+    get: Items_getList
+    post: Items_createItem
+  /items/favourite-filters:
+    get: Items_listFavouriteFilters
+  /items/search:
+    post: Items_searchItems
+  /items/{id}:
+    delete: Items_removeItem
+    get: Items_getById
+    put: Items_updateItem
+  /items/{id}/declinations:
+    get: Items_getDeclinationsList
+  /items/{id}/prices:
+    get: Items_getPricesList
+    put: Items_updatePricesList
+  /languages:
+    get: Language_getAccountLanguages
+  /notifications:
+    get: Notifications_getUserNotifications
+  /notifications/mark-all-as-read:
+    patch: Notifications_markAllAsRead
+  /notifications/search:
+    post: Notifications_searchUserNotifications
+  /notifications/settings:
+    get: Notifications_getSettings
+    put: Notifications_updateSettings
+  /notifications/{id}:
+    delete: Notifications_deleteNotification
+  /notifications/{id}/mark-as-read:
+    patch: Notifications_markAsRead
+  /ocr/pur-invoice:
+    get: PurchaseOcr_listPurchaseInvoices
+  /ocr/pur-invoice/metas:
+    get: PurchaseOcr_getMetadata
+  /ocr/pur-invoice/search:
+    post: PurchaseOcr_searchDocument
+  /opportunities:
+    get: Opportunities_getList
+    post: Opportunities_createNewOpportunity
+  /opportunities/categories:
+    get: Opportunities_listCategories
+  /opportunities/categories/{id}:
+    get: Opportunities_getCategory
+  /opportunities/categories/{sourceCategoryId}/sources:
+    get: Opportunities_listCategorySources
+  /opportunities/favourite-filters:
+    get: Opportunities_listFavouriteFilters
+  /opportunities/pipelines:
+    get: Opportunities_listPipelines
+  /opportunities/pipelines/search:
+    post: Opportunities_searchPipelines
+  /opportunities/pipelines/{pipelineId}/steps:
+    get: Opportunities_getPipelineSteps
+  /opportunities/pipelines/{pipelineId}/steps/search:
+    post: Opportunities_searchPipelineSteps
+  /opportunities/search:
+    post: Opportunities_searchOpportunities
+  /opportunities/sources:
+    get: Opportunities_getSourcesList
+  /opportunities/sources/search:
+    post: Opportunities_searchSources
+  /opportunities/steps/search:
+    post: Opportunities_searchPipelineSteps
+  /opportunities/{id}:
+    delete: Opportunities_removeOpportunity
+    get: Opportunities_getOpportunity
+    put: Opportunities_updateInformation
+  /opportunities/{id}/custom-fields:
+    get: Opportunities_getCustomFields
+    put: Opportunities_updateCustomFields
+  /opportunities/{id}/smart-tags:
+    get: Opportunities_getSmartTags
+    post: Opportunities_linkSmartTags
+  /opportunities/{id}/step-rank:
+    patch: Opportunities_updateRankStep
+  /opportunities/{opportunityId}/files:
+    get: Opportunities_listFiles
+    post: Opportunities_attachFileToOpportunity
+  /orders:
+    get: Orders_getAll
+    post: Orders_createOrder
+  /orders/compute:
+    post: Orders_calculateOrder
+  /orders/favourite-filters:
+    get: Orders_listFavouriteFilters
+  /orders/search:
+    post: Orders_searchOrders
+  /orders/{documentId}/files:
+    get: Orders_listFiles
+    post: Orders_attachFileToOrder
+  /orders/{documentId}/payments/{paymentId}:
+    delete: Orders_unlinkPayment
+    post: Orders_linkPaymentToOrder
+  /orders/{id}:
+    get: Orders_getById
+    put: Orders_updateById
+  /orders/{id}/custom-fields:
+    get: Orders_getCustomFieldsList
+    put: Orders_updateCustomFields
+  /orders/{id}/payments:
+    get: Orders_getPaymentsList
+  /orders/{id}/smart-tags:
+    get: Orders_listSmartTags
+    post: Orders_linkSmartTags
+  /orders/{orderId}/discount-incl-taxes/{discountId}:
+    delete: Orders_unlinkDiscountInclTaxes
+    post: Orders_linkDiscountInclTaxes
+  /orders/{orderId}/primes/{primeId}:
+    delete: Orders_unlinkPrime
+    post: Orders_linkPrimeToOrder
+  /payments:
+    get: Payments_getList
+  /payments/methods:
+    get: Payments_getMethods
+  /payments/methods/search:
+    post: Payments_searchMethods
+  /payments/methods/{id}:
+    get: Payments_getMethod
+  /payments/search:
+    post: Payments_searchPayments
+  /payments/{id}:
+    delete: Payments_deletePayment
+    get: Payments_getPaymentById
+  /personal-access-tokens:
+    get: ApiManagement_listPersonalAccessTokens
+    post: ApiManagement_createPersonalAccessToken
+  /personal-access-tokens/metas:
+    get: ApiManagement_getPersonalAccessTokensMeta
+  /personal-access-tokens/{id}:
+    delete: ApiManagement_deletePersonalAccessToken
+    get: ApiManagement_getOAuthToken
+  /phone-calls:
+    get: PhoneCalls_getList
+    post: PhoneCalls_createPhoneCall
+  /phone-calls/search:
+    post: PhoneCalls_searchList
+  /phone-calls/{id}:
+    delete: PhoneCalls_deletePhoneCall
+    get: PhoneCalls_getPhoneCall
+    put: PhoneCalls_updatePhoneCall
+  /primes:
+    get: DiscountIncludingTaxes_getPrimesList
+  /profiles:
+    get: Staffs_getProfilesList
+  /quotas:
+    get: Quotas_getCorpQuotas
+  /rate-categories:
+    get: RateCategories_getList
+    post: RateCategories_createCategory
+  /rate-categories/{id}:
+    delete: RateCategories_removeCategory
+    get: RateCategories_getCategory
+    put: RateCategories_updateRateCategory
+  /scopes:
+    get: ApiManagement_listScopes
+  /scopes/tree:
+    get: ApiManagement_getScopesTree
+  /search:
+    get: Listings_searchObjects
+  /settings/email:
+    get: Emails_getSettings
+    put: Emails_updateSettings
+  /settings/email/tags:
+    get: Emails_getAvailableTagsForSettings
+  /settings/subscription:
+    get: Subscription_getDetails
+  /smart-tags/{id}:
+    delete: SmartTags_deleteSmartTag
+  /smart-tags/{linkedtype}/autocomplete:
+    get: SmartTags_autocompleteGet
+  /staffs:
+    get: Staffs_getList
+    post: Staffs_createStaff
+  /staffs/search:
+    post: Staffs_searchList
+  /staffs/{id}:
+    get: Staffs_getStaff
+    put: Staffs_updateInformation
+  /staffs/{id}/licenses:
+    delete: Staffs_removeLicenses
+    put: Staffs_updateLicenses
+  /subscriptions:
+    get: Subscriptions_getList
+    post: Subscriptions_createNewSubscription
+  /subscriptions/payment-installments:
+    get: Subscriptions_getPaymentInstallments
+  /subscriptions/payment-installments/search:
+    post: Subscriptions_searchPaymentInstallments
+  /subscriptions/search:
+    post: Subscriptions_searchSubscriptions
+  /subscriptions/{id}:
+    delete: Subscriptions_deleteSubscription
+    get: Subscriptions_getSubscriptionById
+  /subscriptions/{id}/payment-installments:
+    patch: Subscriptions_addPaymentInstallment
+  /tasks:
+    get: Tasks_getList
+    post: Tasks_createTask
+  /tasks/labels:
+    get: Tasks_getLabels
+  /tasks/search:
+    post: Tasks_searchTasks
+  /tasks/{id}:
+    delete: Tasks_removeTask
+    get: Tasks_getById
+    put: Tasks_updateTaskById
+  /taxes:
+    get: Taxes_getList
+    post: Taxes_createTax
+  /taxes/accounting-codes:
+    get: Taxes_getAccountingCodes
+  /taxes/search:
+    post: Taxes_searchTaxes
+  /taxes/{id}:
+    delete: Taxes_removeTax
+    get: Taxes_getTaxInfo
+    put: Taxes_updateTaxInfo
+  /taxes/{id}/accounting-codes:
+    get: Taxes_getAccountingCodesList
+    put: Taxes_updateAccountingCodes
+  /teams:
+    get: Staffs_listTeams
+  /timeline/{type}/{id}/search:
+    post: Activities_searchTimelineActivity
+  /units:
+    get: Units_getAll
+  /webhooks:
+    get: Webhooks_getList
+    post: Webhooks_createWebhook
+  /webhooks/events:
+    get: Webhooks_listEvents
+  /webhooks/search:
+    post: Webhooks_searchWebhooksList
+  /webhooks/{id}:
+    delete: Webhooks_deleteWebhook
+    get: Webhooks_getWebhook
+    put: Webhooks_updateInformation
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /accounting-codes/search:
+    post:
+      application/json: AccountingSearchCodesRequest
+  /accounting-journal/{type}/export:
+    post:
+      application/json: AccountingJournalExportRequest
+  /accounting-journal/{type}/search:
+    post:
+      application/json: AccountingJournalSearchRequest
+  /accounts/conformities:
+    post:
+      application/json: ConformitiesActivateInvoiceConformityRequest
+  /activities/crm/export:
+    post:
+      application/json: CrmActivitiesExportActivitySearchRequest
+  /activities/search:
+    post:
+      application/json: ActivitiesPerformSearchRequest
+  /batch:
+    post:
+      text/plain: BatchRequestCreateRequest
+  /companies:
+    post:
+      application/json: CompaniesCreateNewCompanyRequest
+  /companies/search:
+    post:
+      application/json: CompaniesSearchCompaniesRequest
+  /companies/{companyId}/smart-tags:
+    post:
+      application/json: CompaniesLinkSmartTagsRequest
+  /companies/{id}:
+    put:
+      application/json: CompaniesUpdateInformationRequest
+  /companies/{id}/custom-fields:
+    put:
+      application/json: CompaniesUpdateCustomFieldsRequest
+  /custom-fields/search:
+    post:
+      application/json: CustomFieldsSearchRequest
+  /documents/models/search:
+    post:
+      application/json: DocumentModelsSearchModelsRequest
+  /documents/models/{id}:
+    put:
+      application/json: DocumentModelsUpdateModelRequest
+  /documents/models/{id}/convert:
+    post:
+      application/json: DocumentModelsConvertDocumentModelRequest
+  /email/domain/validate:
+    post:
+      application/json: EmailsValidateDnsRequest
+  /individuals:
+    post:
+      application/json: IndividualsCreateNewIndividualRequest
+  /individuals/search:
+    post:
+      application/json: IndividualsSearchResultsRequest
+  /individuals/{id}:
+    put:
+      application/json: IndividualsUpdateInfoRequest
+  /invoices/{invoiceId}/credit-notes/{creditNoteId}:
+    post:
+      application/json: InvoicesLinkCreditNoteRequest
+  /items/search:
+    post:
+      application/json: ItemsSearchItemsRequest
+  /items/{id}/declinations:
+    get:
+      application/json: ItemsGetDeclinationsListRequest
+  /items/{id}/prices:
+    put:
+      application/json: ItemsUpdatePricesListRequest
+  /ocr/pur-invoice/search:
+    post:
+      application/json: PurchaseOcrSearchDocumentRequest
+  /payments/methods/search:
+    post:
+      application/json: PaymentsSearchMethodsRequest
+  /payments/search:
+    post:
+      application/json: PaymentsSearchPaymentsRequest
+  /rate-categories:
+    post:
+      application/json: RateCategoriesCreateCategoryRequest
+  /rate-categories/{id}:
+    put:
+      application/json: RateCategoriesUpdateRateCategoryRequest
+  /subscriptions/payment-installments/search:
+    post:
+      application/json: SubscriptionsSearchPaymentInstallmentsRequest
+  /subscriptions/search:
+    post:
+      application/json: SubscriptionsSearchSubscriptionsRequest
+  /subscriptions/{id}/payment-installments:
+    patch:
+      application/json: SubscriptionsAddPaymentInstallmentRequest
+  /taxes:
+    post:
+      application/json: TaxesCreateTaxRequest
+  /taxes/{id}:
+    put:
+      application/json: TaxesUpdateTaxInfoRequest
+  /taxes/{id}/accounting-codes:
+    put:
+      application/json: TaxesUpdateAccountingCodesRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /accounting-codes:
+    get:
+      '200':
+        application/json: AccountingGetCodesResponse
+  /accounting-codes/search:
+    post:
+      '200':
+        application/json: AccountingSearchCodesResponse
+        application/xml: AccountingSearchCodes200Response
+  /accounting-journal/{type}:
+    get:
+      '200':
+        application/json: AccountingJournalListResponse
+  /accounting-journal/{type}/search:
+    post:
+      '200':
+        application/json: AccountingJournalSearchResponse
+  /activities/crm:
+    get:
+      '200':
+        application/json: CrmActivitiesGetActivityResponse
+  /activities/crm/search:
+    post:
+      '200':
+        application/json: CrmActivitiesSearchActivityResponse
+      '206':
+        application/json: CrmActivitiesSearchActivity206Response
+  /activities/search:
+    post:
+      '200':
+        application/json: ActivitiesPerformSearchResponse
+  /batch:
+    post:
+      '207':
+        application/json: BatchRequestCreateResponse
+  /calendar-events:
+    get:
+      '200':
+        application/json: CalendarGetEventsListResponse
+  /calendar-events/labels:
+    get:
+      '200':
+        application/json: CalendarGetLabelsResponse
+  /calendar-events/search:
+    post:
+      '200':
+        application/json: CalendarSearchEventResponse
+  /clients:
+    get:
+      '200':
+        application/json: ApiManagementListClientsResponse
+  /comments:
+    get:
+      '200':
+        application/json: CommentsGetListResponse
+  /comments/search:
+    post:
+      '200':
+        application/json: CommentsSearchCommentsResponse
+  /companies:
+    get:
+      '200':
+        application/json: CompaniesGetListResponse
+    post:
+      '201':
+        application/json: CompaniesCreateNewCompanyResponse
+  /companies/favourite-filters:
+    get:
+      '200':
+        application/json: CompaniesListFavouriteFiltersResponse
+  /companies/search:
+    post:
+      '200':
+        application/json: CompaniesSearchCompaniesResponse
+  /companies/{companyId}/addresses:
+    get:
+      '200':
+        application/json: CompaniesGetAddressesResponse
+  /companies/{companyId}/files:
+    get:
+      '200':
+        application/json: CompaniesListFilesResponse
+  /companies/{companyId}/smart-tags:
+    get:
+      '200':
+        application/json: CompaniesGetSmartTagsListResponse
+    post:
+      '200':
+        application/json: CompaniesLinkSmartTagsResponse
+  /companies/{id}/contacts:
+    get:
+      '200':
+        application/json: CompaniesGetContactsResponse
+  /companies/{id}/custom-fields:
+    get:
+      '200':
+        application/json: CompaniesGetCustomFieldsListResponse
+  /contacts:
+    get:
+      '200':
+        application/json: ContactsGetListResponse
+  /contacts/favourite-filters:
+    get:
+      '200':
+        application/json: ContactsListFavouriteFiltersResponse
+  /contacts/search:
+    post:
+      '200':
+        application/json: ContactsSearchContactsResponse
+  /contacts/{contactId}/addresses:
+    get:
+      '200':
+        application/json: ContactsGetAddressesResponse
+  /contacts/{contactId}/custom-fields:
+    get:
+      '200':
+        application/json: ContactsGetCustomFieldsResponse
+  /contacts/{contactId}/files:
+    get:
+      '200':
+        application/json: ContactsListDirectoriesAndFilesResponse
+  /contacts/{contactId}/smart-tags:
+    get:
+      '200':
+        application/json: ContactsGetSmartTagsResponse
+    post:
+      '200':
+        application/json: ContactsLinkSmartTagsResponse
+  /contacts/{id}/companies:
+    get:
+      '200':
+        application/json: ContactsGetCompaniesResponse
+  /countries:
+    get:
+      '200':
+        application/json: CountriesGetListResponse
+  /credit-notes:
+    get:
+      '200':
+        application/json: CreditNotesGetListResponse
+  /credit-notes/favourite-filters:
+    get:
+      '200':
+        application/json: CreditNotesListFavouriteFiltersResponse
+  /credit-notes/search:
+    post:
+      '200':
+        application/json: CreditNotesSearchCreditNotesResponse
+  /credit-notes/{documentId}/files:
+    get:
+      '200':
+        application/json: CreditNotesGetDirectoryFilesResponse
+  /credit-notes/{documentId}/payments/{paymentId}:
+    post:
+      '201':
+        application/json: CreditNotesLinkPaymentResponse
+  /credit-notes/{id}/custom-fields:
+    get:
+      '200':
+        application/json: CreditNotesListCustomFieldsResponse
+  /credit-notes/{id}/invoices:
+    get:
+      '200':
+        application/json: CreditNotesGetLinkedInvoicesResponse
+  /credit-notes/{id}/payments:
+    get:
+      '200':
+        application/json: CreditNotesGetPaymentsListResponse
+  /credit-notes/{id}/smart-tags:
+    get:
+      '200':
+        application/json: CreditNotesGetSmartTagsListResponse
+    post:
+      '200':
+        application/json: CreditNotesLinkSmartTagsResponse
+  /currencies:
+    get:
+      '200':
+        application/json: CurrenciesGetAllResponse
+  /custom-activities:
+    get:
+      '200':
+        application/json: CustomActivitiesGetListResponse
+  /custom-activities/search:
+    post:
+      '200':
+        application/json: CustomActivitiesPerformSearchResponse
+  /custom-activity-types:
+    get:
+      '200':
+        application/json: CustomActivitiesGetList200Response
+  /custom-fields:
+    get:
+      '200':
+        application/json: CustomFieldsGetListResponse
+  /custom-fields/search:
+    post:
+      '200':
+        application/json: CustomFieldsSearchResponse
+  /custom-fields/{id}:
+    get:
+      '200':
+        application/json: CustomFieldsGetInformationResponse
+  /directories:
+    post:
+      '201':
+        application/json: FilesCreateDirectoryResponse
+  /directories/{id}/files:
+    get:
+      '200':
+        application/json: FilesListDirectoryContentsResponse
+  /discount-incl-taxes:
+    get:
+      '200':
+        application/json: DiscountIncludingTaxesListResponse
+  /documents/models/search:
+    post:
+      '200':
+        application/json: DocumentModelsSearchModelsResponse
+  /documents/models/tags:
+    get:
+      '200':
+        application/json: DocumentModelsGetAvailableTagsResponse
+  /documents/models/{id}/convert:
+    post:
+      '200':
+        application/json: DocumentModelsConvertDocumentModelResponse
+  /emails/threads/{id}:
+    get:
+      '200':
+        application/json: EmailsGetThreadEmailsResponse
+  /estimates:
+    post:
+      '201':
+        application/json: EstimatesCreateNewEstimateResponse
+  /estimates/favourite-filters:
+    get:
+      '200':
+        application/json: EstimatesListFavouriteFiltersResponse
+  /estimates/search:
+    post:
+      '200':
+        application/json: EstimatesSearchEstimatesResponse
+  /estimates/{documentId}/files:
+    get:
+      '200':
+        application/json: EstimatesGetFilesForEstimateResponse
+  /estimates/{documentId}/payments/{paymentId}:
+    post:
+      '201':
+        application/json: EstimatesLinkPaymentToEstimateResponse
+  /estimates/{id}:
+    get:
+      '200':
+        application/json: EstimatesGetByIdResponse
+    put:
+      '200':
+        application/json: EstimatesUpdateEstimateResponse
+  /estimates/{id}/custom-fields:
+    get:
+      '200':
+        application/json: EstimatesListCustomFieldsResponse
+  /estimates/{id}/payments:
+    get:
+      '200':
+        application/json: EstimatesGetPaymentsListResponse
+  /estimates/{id}/smart-tags:
+    get:
+      '200':
+        application/json: EstimatesGetSmartTagsListResponse
+    post:
+      '200':
+        application/json: EstimatesLinkSmartTagsResponse
+  /estimates/{id}/status:
+    put:
+      '200':
+        application/json: EstimatesUpdateStatusResponse
+  /fiscal-years:
+    get:
+      '200':
+        application/json: FiscalYearGetListResponse
+  /individuals:
+    get:
+      '200':
+        application/json: IndividualsGetListResponse
+  /individuals/favourite-filters:
+    get:
+      '200':
+        application/json: IndividualsListFavouriteFiltersResponse
+  /individuals/search:
+    post:
+      '200':
+        application/json: IndividualsSearchResultsResponse
+  /individuals/{id}/contacts:
+    get:
+      '200':
+        application/json: IndividualsGetContactsResponse
+  /individuals/{id}/custom-fields:
+    get:
+      '200':
+        application/json: IndividualsGetCustomFieldsResponse
+  /individuals/{id}/smart-tags:
+    get:
+      '200':
+        application/json: IndividualsGetSmartTagsListResponse
+    post:
+      '200':
+        application/json: IndividualsLinkSmartTagsResponse
+  /individuals/{individualId}/addresses:
+    get:
+      '200':
+        application/json: IndividualsGetAddressesResponse
+  /individuals/{individualId}/files:
+    get:
+      '200':
+        application/json: IndividualsListFilesOfIndividualResponse
+  /invoices:
+    get:
+      '200':
+        application/json: InvoicesListResponse
+  /invoices/favourite-filters:
+    get:
+      '200':
+        application/json: InvoicesListFavouriteFiltersResponse
+  /invoices/search:
+    post:
+      '200':
+        application/json: InvoicesSearchInvoicesResponse
+  /invoices/{documentId}/files:
+    get:
+      '200':
+        application/json: InvoicesListFilesResponse
+  /invoices/{documentId}/payments/{paymentId}:
+    post:
+      '201':
+        application/json: InvoicesLinkPaymentToInvoiceResponse
+  /invoices/{id}/credit-notes:
+    get:
+      '200':
+        application/json: InvoicesGetCreditNotesResponse
+  /invoices/{id}/custom-fields:
+    get:
+      '200':
+        application/json: InvoicesGetCustomFieldsResponse
+  /invoices/{id}/payments:
+    get:
+      '200':
+        application/json: InvoicesGetPaymentsListResponse
+  /invoices/{id}/smart-tags:
+    get:
+      '200':
+        application/json: InvoicesGetSmartTagsListResponse
+    post:
+      '200':
+        application/json: InvoicesLinkSmartTagsResponse
+  /items:
+    get:
+      '200':
+        application/json: ItemsGetListResponse
+  /items/favourite-filters:
+    get:
+      '200':
+        application/json: ItemsListFavouriteFiltersResponse
+  /items/search:
+    post:
+      '200':
+        application/json: ItemsSearchItemsResponse
+  /items/{id}/prices:
+    get:
+      '200':
+        application/json: ItemsGetPricesListResponse
+    put:
+      '200':
+        application/json: ItemsUpdatePricesListResponse
+  /notifications:
+    get:
+      '200':
+        application/json: NotificationsGetUserNotificationsResponse
+  /notifications/search:
+    post:
+      '200':
+        application/json: NotificationsSearchUserNotificationsResponse
+  /ocr/pur-invoice:
+    get:
+      '200':
+        application/json: PurchaseOcrListPurchaseInvoicesResponse
+  /ocr/pur-invoice/search:
+    post:
+      '200':
+        application/json: PurchaseOcrSearchDocumentResponse
+  /opportunities:
+    get:
+      '200':
+        application/json: OpportunitiesGetListResponse
+  /opportunities/categories:
+    get:
+      '200':
+        application/json: OpportunitiesListCategoriesResponse
+  /opportunities/categories/{sourceCategoryId}/sources:
+    get:
+      '200':
+        application/json: OpportunitiesListCategorySourcesResponse
+  /opportunities/favourite-filters:
+    get:
+      '200':
+        application/json: OpportunitiesListFavouriteFiltersResponse
+  /opportunities/pipelines:
+    get:
+      '200':
+        application/json: OpportunitiesListPipelinesResponse
+  /opportunities/pipelines/search:
+    post:
+      '200':
+        application/json: OpportunitiesSearchPipelinesResponse
+  /opportunities/pipelines/{pipelineId}/steps:
+    get:
+      '200':
+        application/json: OpportunitiesGetPipelineStepsResponse
+  /opportunities/pipelines/{pipelineId}/steps/search:
+    post:
+      '200':
+        application/json: OpportunitiesSearchPipelineStepsResponse
+  /opportunities/search:
+    post:
+      '200':
+        application/json: OpportunitiesSearchOpportunitiesResponse
+  /opportunities/sources:
+    get:
+      '200':
+        application/json: OpportunitiesGetSourcesListResponse
+  /opportunities/sources/search:
+    post:
+      '200':
+        application/json: OpportunitiesSearchSourcesResponse
+  /opportunities/steps/search:
+    post:
+      '200':
+        application/json: OpportunitiesSearchPipelineSteps200Response
+  /opportunities/{id}/custom-fields:
+    get:
+      '200':
+        application/json: OpportunitiesGetCustomFieldsResponse
+  /opportunities/{id}/smart-tags:
+    get:
+      '200':
+        application/json: OpportunitiesGetSmartTagsResponse
+    post:
+      '200':
+        application/json: OpportunitiesLinkSmartTagsResponse
+  /opportunities/{opportunityId}/files:
+    get:
+      '200':
+        application/json: OpportunitiesListFilesResponse
+  /orders:
+    get:
+      '200':
+        application/json: OrdersGetAllResponse
+  /orders/favourite-filters:
+    get:
+      '200':
+        application/json: OrdersListFavouriteFiltersResponse
+  /orders/search:
+    post:
+      '200':
+        application/json: OrdersSearchOrdersResponse
+  /orders/{documentId}/files:
+    get:
+      '200':
+        application/json: OrdersListFilesResponse
+  /orders/{documentId}/payments/{paymentId}:
+    post:
+      '201':
+        application/json: OrdersLinkPaymentToOrderResponse
+  /orders/{id}/custom-fields:
+    get:
+      '200':
+        application/json: OrdersGetCustomFieldsListResponse
+  /orders/{id}/payments:
+    get:
+      '200':
+        application/json: OrdersGetPaymentsListResponse
+  /orders/{id}/smart-tags:
+    get:
+      '200':
+        application/json: OrdersListSmartTagsResponse
+    post:
+      '200':
+        application/json: OrdersLinkSmartTagsResponse
+  /payments:
+    get:
+      '200':
+        application/json: PaymentsGetListResponse
+  /payments/methods:
+    get:
+      '200':
+        application/json: PaymentsGetMethodsResponse
+  /payments/methods/search:
+    post:
+      '200':
+        application/json: PaymentsSearchMethodsResponse
+  /payments/search:
+    post:
+      '200':
+        application/json: PaymentsSearchPaymentsResponse
+  /personal-access-tokens:
+    get:
+      '200':
+        application/json: ApiManagementListPersonalAccessTokensResponse
+    post:
+      '201':
+        application/json: ApiManagementCreatePersonalAccessTokenResponse
+  /phone-calls:
+    get:
+      '200':
+        application/json: PhoneCallsGetListResponse
+  /phone-calls/search:
+    post:
+      '200':
+        application/json: PhoneCallsSearchListResponse
+  /primes:
+    get:
+      '200':
+        application/json: DiscountIncludingTaxesGetPrimesListResponse
+  /profiles:
+    get:
+      '200':
+        application/json: StaffsGetProfilesListResponse
+  /rate-categories:
+    get:
+      '200':
+        application/json: RateCategoriesGetListResponse
+  /scopes:
+    get:
+      '200':
+        application/json: ApiManagementListScopesResponse
+  /scopes/tree:
+    get:
+      '200':
+        application/json: ApiManagementGetScopesTreeResponse
+  /search:
+    get:
+      '200':
+        application/json: ListingsSearchObjectsResponse
+  /settings/email/tags:
+    get:
+      '200':
+        application/json: EmailsGetAvailableTagsForSettingsResponse
+  /smart-tags/{linkedtype}/autocomplete:
+    get:
+      '200':
+        application/json: SmartTagsAutocompleteGetResponse
+  /staffs:
+    get:
+      '200':
+        application/json: StaffsGetListResponse
+    post:
+      '201':
+        application/json: StaffsCreateStaffResponse
+  /staffs/search:
+    post:
+      '200':
+        application/json: StaffsSearchListResponse
+  /staffs/{id}:
+    get:
+      '200':
+        application/json: StaffsGetStaffResponse
+    put:
+      '200':
+        application/json: StaffsUpdateInformationResponse
+  /subscriptions:
+    get:
+      '200':
+        application/json: SubscriptionsGetListResponse
+  /subscriptions/payment-installments:
+    get:
+      '200':
+        application/json: SubscriptionsGetPaymentInstallmentsResponse
+  /subscriptions/payment-installments/search:
+    post:
+      '200':
+        application/json: SubscriptionsSearchPaymentInstallmentsResponse
+  /subscriptions/search:
+    post:
+      '200':
+        application/json: SubscriptionsSearchSubscriptionsResponse
+  /tasks:
+    get:
+      '200':
+        application/json: TasksGetListResponse
+  /tasks/labels:
+    get:
+      '200':
+        application/json: TasksGetLabelsResponse
+  /tasks/search:
+    post:
+      '200':
+        application/json: TasksSearchTasksResponse
+  /taxes:
+    get:
+      '200':
+        application/json: TaxesGetListResponse
+  /taxes/accounting-codes:
+    get:
+      '200':
+        application/json: TaxesGetAccountingCodesResponse
+  /taxes/search:
+    post:
+      '200':
+        application/json: TaxesSearchTaxesResponse
+  /teams:
+    get:
+      '200':
+        application/json: StaffsListTeamsResponse
+  /timeline/{type}/{id}/search:
+    post:
+      '200':
+        application/json: ActivitiesSearchTimelineActivityResponse
+  /units:
+    get:
+      '200':
+        application/json: UnitsGetAllResponse
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhooksGetListResponse
+  /webhooks/search:
+    post:
+      '200':
+        application/json: WebhooksSearchWebhooksListResponse
+securityParameters:
+  direction:
+    query: false
+  embed:
+    query: false
+  field:
+    query: false
+  include_ecotax:
+    query: false
+  language:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  order:
+    query: false
+  q:
+    query: false
+  type:
+    query: false
+  verify:
+    query: false
+validServerUrls: {}

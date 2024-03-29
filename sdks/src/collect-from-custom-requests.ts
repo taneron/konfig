@@ -2343,6 +2343,22 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://api.rated.network/openapi.json",
     apiBaseUrl: "https://api.rated.network",
   },
+  "sellsy.com": {
+    type: "GET",
+    url: "https://api.sellsy.com/doc/v2/dist/sellsy.v2.latest.yaml",
+  },
+  "rivery.io": {
+    type: "GET",
+    url: "https://api.rivery.io/openapi.json",
+  },
+  "secoda.co": {
+    type: "GET",
+    url: "https://api.secoda.co/api/schema/",
+  },
+  "relysia.com": {
+    type: "GET",
+    url: "https://api.relysia.com/docs/json",
+  },
   "realcube.com": {
     type: "GET",
     url: "https://api.realcube.com/api/v1/docs.json",

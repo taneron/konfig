@@ -1,0 +1,335 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /auth/group:
+    get: UserGroups_list
+    post: UserGroups_createNewGroup
+  /auth/group/{id}:
+    delete: UserGroups_deleteById
+    get: UserGroups_getUserGroupById
+    patch: UserGroups_updateById
+  /auth/teams:
+    get: Teams_getList
+    post: Teams_createNewTeam
+  /auth/teams/{id}:
+    delete: Teams_deleteById
+    get: Teams_getById
+    patch: Teams_updateById
+  /collection/collections:
+    get: Collections_listCollectionsByTitle
+    post: Collections_createNewCollection
+  /collection/collections/{collection_id}:
+    delete: Collections_deleteById
+    get: Collections_getById
+    patch: Collections_updateById
+  /dashboard/charts:
+    get: Charts_list
+    post: Charts_createNewChart
+  /dashboard/charts/{chart_id}:
+    delete: Charts_deleteById
+    get: Charts_getById
+    patch: Charts_updateById
+  /dashboard/dashboards:
+    get: Dashboards_listWithFilter
+    post: Dashboards_createNewDashboard
+  /dashboard/dashboards/{dashboard_id}:
+    delete: Dashboards_deleteById
+    get: Dashboards_getById
+    patch: Dashboards_updateById
+  /dashboard/groups:
+    get: DashboardGroups_list
+    post: DashboardGroups_createNewGroup
+  /dashboard/groups/{group_id}:
+    get: DashboardGroups_getById
+  /dictionary/terms:
+    get: Terms_getListByTitle
+    post: Terms_createNewTerm
+  /dictionary/terms/{term_id}:
+    delete: Terms_deleteById
+    get: Terms_getById
+    patch: Terms_updateById
+  /document:
+    get: Documents_listDocumentsByTitle
+    post: Documents_createNewDocument
+  /document/{document_id}:
+    delete: Documents_deleteById
+    get: Documents_getById
+    patch: Documents_updateById
+  /event/category:
+    get: EventCategories_list
+    post: EventCategories_createNewCategory
+  /event/category/{event_category_id}:
+    get: EventCategories_getById
+  /event/event_properties:
+    get: EventProperties_listEventProperties
+    post: EventProperties_createNewProperty
+  /event/event_properties/{event_property_id}:
+    delete: EventProperties_deleteById
+    get: EventProperties_getById
+    patch: EventProperties_updateByIdentifier
+  /event/events:
+    get: Events_listEventsByFiltering
+    post: Events_createNewEvent
+  /event/events/{event_id}:
+    delete: Events_deleteById
+    get: Events_getById
+    patch: Events_updateById
+  /integration/integrations:
+    get: Integrations_listActive
+    post: Integrations_createNewIntegration
+  /integration/integrations/{integration_id}:
+    get: Integrations_getById
+  /integration/integrations/{integration_id}/import_jsonl_metadata:
+    post: Integrations_uploadJsonlMetadata
+  /integration/integrations/{integration_id}/import_metadata:
+    post: Integrations_uploadMetadataCsv
+  /lineage/manual:
+    get: Lineage_listObjectsWithFiltering
+    post: Lineage_createNewLineageManually
+  /lineage/manual/{lineage_id}:
+    delete: Lineage_deleteById
+    get: Lineage_getById
+  /monitors/incident/{incident_id}:
+    get: Monitors_getIncidentById
+  /monitors/incidents:
+    get: Monitors_listIncidents
+  /monitors/measurements:
+    get: Monitors_listMeasurements
+  /monitors/monitors:
+    get: Monitors_listMonitors
+  /monitors/monitors/{monitor_id}:
+    get: Monitors_getById
+  /query/queries:
+    get: Queries_getList
+  /query/queries/{query_id}:
+    get: Queries_getById
+  /question/questions:
+    get: Questions_getList
+    post: Questions_createNewQuestion
+  /question/questions/{question_id}:
+    delete: Questions_deleteById
+    get: Questions_getById
+    patch: Questions_updateById
+  /question/replies:
+    get: Questions_listReplies
+    post: Questions_createNewReply
+  /question/replies/{reply_id}:
+    delete: Questions_deleteReplyById
+    get: Questions_getReplyById
+    patch: Questions_editReplyById
+  /table/columns:
+    get: Columns_getList
+    post: Columns_createNewColumn
+  /table/columns/{column_id}:
+    delete: Columns_deleteById
+    get: Columns_getColumnById
+    patch: Columns_editById
+  /table/databases:
+    get: Databases_listAllActive
+    post: Databases_createNewDatabase
+  /table/databases/{database_id}:
+    get: Databases_getById
+  /table/schemas:
+    get: Schemas_listWithFilter
+    post: Schemas_createNewSchema
+  /table/schemas/{schema_id}:
+    get: Schemas_getById
+    patch: Schemas_updateById
+  /table/tables:
+    get: Tables_listTablesByFilter
+    post: Tables_createNewTable
+  /table/tables/{table_id}:
+    delete: Tables_deleteById
+    get: Tables_getTableById
+    patch: Tables_updateById
+  /tag:
+    get: Tags_list
+    post: Tags_createNewTag
+  /tag/{tag_id}:
+    delete: Tags_deleteById
+    get: Tags_getById
+    patch: Tags_updateById
+  /user:
+    get: Users_list
+    post: Users_createNewUser
+  /user/{id}:
+    delete: Users_deleteById
+    get: Users_getUserById
+    patch: Users_updateById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /auth/group:
+    post:
+      application/json: UserGroupsCreateNewGroupRequest
+  /auth/group/{id}:
+    patch:
+      application/json: UserGroupsUpdateByIdRequest
+  /auth/teams:
+    post:
+      application/json: TeamsCreateNewTeamRequest
+  /auth/teams/{id}:
+    patch:
+      application/json: TeamsUpdateByIdRequest
+  /event/category:
+    post:
+      application/json: EventCategoriesCreateNewCategoryRequest
+  /integration/integrations:
+    post:
+      application/json: IntegrationsCreateNewIntegrationRequest
+  /integration/integrations/{integration_id}/import_jsonl_metadata:
+    post:
+      multipart/form-data: IntegrationsUploadJsonlMetadataRequest
+  /integration/integrations/{integration_id}/import_metadata:
+    post:
+      multipart/form-data: IntegrationsUploadMetadataCsvRequest
+  /lineage/manual:
+    post:
+      application/json: LineageCreateNewLineageManuallyRequest
+  /question/replies:
+    post:
+      application/json: QuestionsCreateNewReplyRequest
+  /question/replies/{reply_id}:
+    patch:
+      application/json: QuestionsEditReplyByIdRequest
+  /tag:
+    post:
+      application/json: TagsCreateNewTagRequest
+  /tag/{tag_id}:
+    patch:
+      application/json: TagsUpdateByIdRequest
+  /user:
+    post:
+      application/json: UsersCreateNewUserRequest
+  /user/{id}:
+    patch:
+      application/json: UsersUpdateByIdRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /auth/group:
+    get:
+      '200':
+        application/json: UserGroupsListResponse
+  /auth/teams:
+    get:
+      '200':
+        application/json: TeamsGetListResponse
+  /collection/collections:
+    get:
+      '200':
+        application/json: CollectionsListCollectionsByTitleResponse
+  /dashboard/charts:
+    get:
+      '200':
+        application/json: ChartsListResponse
+  /dashboard/dashboards:
+    get:
+      '200':
+        application/json: DashboardsListWithFilterResponse
+  /dashboard/groups:
+    get:
+      '200':
+        application/json: DashboardGroupsListResponse
+  /dictionary/terms:
+    get:
+      '200':
+        application/json: TermsGetListByTitleResponse
+  /document:
+    get:
+      '200':
+        application/json: DocumentsListDocumentsByTitleResponse
+  /event/category:
+    get:
+      '200':
+        application/json: EventCategoriesListResponse
+  /event/event_properties:
+    get:
+      '200':
+        application/json: EventPropertiesListEventPropertiesResponse
+  /event/events:
+    get:
+      '200':
+        application/json: EventsListEventsByFilteringResponse
+  /integration/integrations:
+    get:
+      '200':
+        application/json: IntegrationsListActiveResponse
+  /lineage/manual:
+    get:
+      '200':
+        application/json: LineageListObjectsWithFilteringResponse
+  /monitors/incidents:
+    get:
+      '200':
+        application/json: MonitorsListIncidentsResponse
+  /monitors/measurements:
+    get:
+      '200':
+        application/json: MonitorsListMeasurementsResponse
+  /monitors/monitors:
+    get:
+      '200':
+        application/json: MonitorsListMonitorsResponse
+  /query/queries:
+    get:
+      '200':
+        application/json: QueriesGetListResponse
+  /question/questions:
+    get:
+      '200':
+        application/json: QuestionsGetListResponse
+  /question/replies:
+    get:
+      '200':
+        application/json: QuestionsListRepliesResponse
+  /table/columns:
+    get:
+      '200':
+        application/json: ColumnsGetListResponse
+  /table/databases:
+    get:
+      '200':
+        application/json: DatabasesListAllActiveResponse
+  /table/schemas:
+    get:
+      '200':
+        application/json: SchemasListWithFilterResponse
+  /table/tables:
+    get:
+      '200':
+        application/json: TablesListTablesByFilterResponse
+  /tag:
+    get:
+      '200':
+        application/json: TagsListResponse
+  /user:
+    get:
+      '200':
+        application/json: UsersListResponse
+securityParameters:
+  from_entity__in:
+    query: false
+  incident_id:
+    query: false
+  integration_id:
+    query: false
+  monitor:
+    query: false
+  parent:
+    query: false
+  parent_id:
+    query: false
+  question_id:
+    query: false
+  table_title:
+    query: false
+  title:
+    query: false
+  to_entity__in:
+    query: false
+  type:
+    query: false
+validServerUrls:
+  https://{customer_domain}.secoda.co/api/v1:
+    url: https://{customer_domain}.secoda.co/api/v1
