@@ -411,6 +411,11 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v1.0/contracts/bcoas1.0.yaml",
   },
+  // Couldn't parse this, kept hanging at "Parsing spec with SwaggerParser"
+  // "microsoft.com_Graph": {
+  //   type: "GET",
+  //   url: "https://raw.githubusercontent.com/microsoftgraph/msgraph-metadata/master/openapi/v1.0/openapi.yaml",
+  // },
   "freeagent.com": {
     apiBaseUrl: "https://api.freeagent.com",
     lambda: async ({ key }) => {
@@ -2623,6 +2628,7 @@ async function processCustomRequest({
     throw Error("Expect rawSpecString to be defined");
   }
 
+  console.log(`Parsing spec for ${key}`);
   const spec = await parseSpec(rawSpecString);
 
   // if getRequest.securitySchemes then also apply to spec
@@ -2647,10 +2653,18 @@ async function processCustomRequest({
   }
   if (apiBaseUrl === undefined) throw Error(`❌ ${key} is missing apiBaseUrl.`);
 
+  console.log(`Collecting number of endpoints for ${key}`);
   const numberOfEndpoints = getNumberOfEndpoints(spec);
+
+  console.log(`Collecting number of operations for ${key}`);
   const numberOfOperations = getNumberOfOperations(spec);
+
+  console.log(`Collecting number of schemas for ${key}`);
   const numberOfSchemas = getNumberOfSchemas(spec);
+
+  console.log(`Collecting number of parameters for ${key}`);
   const numberOfParameters = getNumberOfParameters(spec);
+
   const processedRequest: Db["specifications"][string] = {
     providerName: getProviderName(spec),
     openApiRaw: getOpenApiRaw(spec),

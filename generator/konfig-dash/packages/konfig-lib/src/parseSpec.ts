@@ -48,19 +48,37 @@ export const parseSpec = async (rawSpecString: string): Promise<Spec> => {
   // see if rawSpecString is yaml and convert it to JSON before writing to specFilePath
   // we do this because yaml parsing actually supports dates which is problematic when
   let specJson: string | null = null
+  if (typeof process.env.DEBUG !== 'undefined') {
+    console.debug(`Parsing spec as JSON or YAML for ${specFilePath}`)
+  }
   try {
     specJson = JSON.stringify(JSON.parse(rawSpecString))
   } catch (e) {
     specJson = JSON.stringify(yaml.load(rawSpecString))
   }
   if (specJson === null) throw Error('Could not parse spec as JSON or YAML')
+  if (typeof process.env.DEBUG !== 'undefined') {
+    console.debug(`Finished parsing spec as JSON or YAML for ${specFilePath}`)
+    console.debug(`Writing parsed spec as JSON for ${specFilePath}`)
+  }
   fs.writeFileSync(specFilePath, specJson)
+  if (typeof process.env.DEBUG !== 'undefined') {
+    console.debug(`Finished writing parsed spec as JSON for ${specFilePath}`)
+  }
 
   // We specifically do not want to fully SwaggerParser#dereference the spec so
   // that generated SDKs generates and uses the provided refs & schemas (models)
   // SwaggerParser#parse is exactly what we want to call.
+  if (typeof process.env.DEBUG !== 'undefined') {
+    console.debug(`Parsing spec with SwaggerParser for ${specFilePath}`)
+  }
   const parser = new SwaggerParser()
   let spec = await parser.parse(specFilePath)
+  if (typeof process.env.DEBUG !== 'undefined') {
+    console.debug(
+      `Finished parsing spec with SwaggerParser for ${specFilePath}`
+    )
+  }
 
   // Handle Swagger / OAS2 by converting to OAS3
   if (!('openapi' in spec)) {
