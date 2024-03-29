@@ -57,7 +57,7 @@ export default function Localizely() {
       homepage="localizely.com"
       companyKebabCase="localizely"
       categories={allCategories}
-      metaDescription={`Localizely is a translation management system for agile teams that streamlines software localization. 
+      metaDescription={`Localizely is a translation management system for agile teams that streamlines software localization.
 
 We believe translation management for apps should be easy, so the team can focus on things that bring business value.
 

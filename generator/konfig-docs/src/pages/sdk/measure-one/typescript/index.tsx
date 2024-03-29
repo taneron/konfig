@@ -17,7 +17,7 @@ export default function MeasureOneTypeScriptSdk() {
       companyKebabCase="measure-one"
       clientNameCamelCase="measureOne"
       homepage="measureone.com"
-      lastUpdated={new Date("2024-03-29T22:11:39.095Z")}
+      lastUpdated={new Date("2024-03-29T22:55:31.557Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/measureone/favicon.png"
       // Missing contactUrl
       contactEmail="support@measureone.com"

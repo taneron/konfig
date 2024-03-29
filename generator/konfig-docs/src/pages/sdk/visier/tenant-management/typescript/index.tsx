@@ -21,7 +21,7 @@ As the global leader in people analytics, Visier has over 25,000 customers in 75
       companyKebabCase="visier"
       clientNameCamelCase="visierTenantManagement"
       homepage="visier.com"
-      lastUpdated={new Date("2024-03-26T20:40:42.558Z")}
+      lastUpdated={new Date("2024-03-29T22:55:31.557Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/tenant-management/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -597,7 +597,7 @@ As the global leader in people analytics, Visier has over 25,000 customers in 75
       sdkMethods={13}
       schemas={21}
       parameters={59}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/tenant-management/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/visier/tenant-management/openapi.yaml"
       developerDocumentation="docs.visier.com/developer/apis/apis.htm"

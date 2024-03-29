@@ -17,7 +17,7 @@ export default function PostmarkTypeScriptSdk() {
       companyKebabCase="postmark"
       clientNameCamelCase="postmark"
       homepage="postmarkapp.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-29T22:55:31.557Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/postmark/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2044,7 +2044,7 @@ export default function PostmarkTypeScriptSdk() {
       sdkMethods={43}
       schemas={75}
       parameters={214}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/postmark/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/postmark/openapi.yaml"
       

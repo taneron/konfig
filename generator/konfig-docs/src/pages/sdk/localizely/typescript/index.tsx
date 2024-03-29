@@ -10,7 +10,7 @@ export default function LocalizelyTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="localizely-typescript-sdk"
-      metaDescription={`Localizely is a translation management system for agile teams that streamlines software localization. 
+      metaDescription={`Localizely is a translation management system for agile teams that streamlines software localization.
 
 We believe translation management for apps should be easy, so the team can focus on things that bring business value.
 
@@ -23,7 +23,7 @@ We built Localizely from our experience by working on software projects with 2 t
       companyKebabCase="localizely"
       clientNameCamelCase="localizely"
       homepage="localizely.com"
-      lastUpdated={new Date("2024-03-29T22:25:17.346Z")}
+      lastUpdated={new Date("2024-03-29T22:42:59.082Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/localizely/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

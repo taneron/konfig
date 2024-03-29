@@ -21,7 +21,7 @@ Griffin is authorised (with restrictions) by the PRA and FCA and backed by leadi
       companyKebabCase="griffin"
       clientNameCamelCase="griffin"
       homepage="griffin.com"
-      lastUpdated={new Date("2024-03-29T22:11:39.095Z")}
+      lastUpdated={new Date("2024-03-29T22:55:31.557Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/griffin/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

@@ -17,7 +17,7 @@ export default function KomboTypeScriptSdk() {
       companyKebabCase="kombo"
       clientNameCamelCase="kombo"
       homepage="kombo.dev"
-      lastUpdated={new Date("2024-03-29T22:25:17.346Z")}
+      lastUpdated={new Date("2024-03-29T22:44:15.641Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/kombo/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
