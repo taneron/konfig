@@ -2461,6 +2461,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://docs.banksapi.de/api-documentation/banksapi-v2-openapi-3_0.yaml",
   },
+  "bity.com": {
+    type: "GET",
+    url: "https://doc.bity.com/exchange/exchange_api_v2.openapi.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

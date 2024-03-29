@@ -1,0 +1,59 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /currencies/{currency_code}:
+    get: Currencies_getByCode
+  /orders/estimate:
+    post: Orders_calculateAmountEstimate
+  /orders/estimate/multiple:
+    post: Orders_performMultipleEstimations
+  /orders/{order_uuid}:
+    get: Orders_getOrderDetails
+  /orders/{order_uuid}/bank_transfer_qr_bill:
+    get: Orders_getQrBill
+  /orders/{order_uuid}/signature:
+    post: Orders_submitSignature
+  /pairs:
+    get: Currencies_getList
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /orders/estimate/multiple:
+    post:
+      application/json: OrdersPerformMultipleEstimationsRequest
+  /orders/{order_uuid}/signature:
+    post:
+      '*/*': OrdersSubmitSignatureRequest
+      text/plain: OrdersSubmitSignatureRequest1
+responseDescriptions: {}
+responseSchemaNames:
+  /orders:
+    get:
+      '200':
+        application/json: ListOrdersResponse
+  /orders/estimate/multiple:
+    post:
+      '200':
+        application/json: OrdersPerformMultipleEstimationsResponse
+  /orders/{order_uuid}:
+    get:
+      '200':
+        application/json: OrdersGetOrderDetailsResponse
+securityParameters:
+  enabled:
+    query: false
+  input:
+    query: false
+  output:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  status:
+    query: false
+  tags:
+    query: false
+validServerUrls: {}
