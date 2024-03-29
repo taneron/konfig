@@ -2324,6 +2324,23 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "apaleo.com": {
+    type: "GET",
+    url: "https://api.apaleo.com/swagger/inventory-v1/swagger.json",
+    apiBaseUrl: "api.apaleo.com",
+  },
+  "wallester.com": {
+    type: "GET",
+    url: "https://api-doc.wallester.com/swagger.json",
+  },
+  "telintel.com_NumberPortability": {
+    type: "GET",
+    url: "http://numberportability.telintel.com/portability.yaml",
+  },
+  "telintel.com_SmsGateway": {
+    type: "GET",
+    url: "http://smsapi.telintel.com/SMSGateway.yaml",
+  },
   "token.io": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

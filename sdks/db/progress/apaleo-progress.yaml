@@ -1,0 +1,102 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /inventory/v1/properties:
+    get: Property_listGet
+    post: Property_create
+  /inventory/v1/properties/$count:
+    get: Property_getTotalCount
+  /inventory/v1/properties/{id}:
+    get: Property_getById
+    head: Property_existsByIdHead
+    patch: Property_modifyDetails
+  /inventory/v1/property-actions/{id}/archive:
+    put: PropertyActions_archiveProperty
+  /inventory/v1/property-actions/{id}/clone:
+    post: PropertyActions_cloneProperty
+  /inventory/v1/property-actions/{id}/reset:
+    put: PropertyActions_resetPropertyData
+  /inventory/v1/property-actions/{id}/set-live:
+    put: PropertyActions_moveToLive
+  /inventory/v1/types/countries:
+    get: Types_supportedCountriesList
+  /inventory/v1/unit-attributes:
+    get: UnitAttribute_listAttributes
+    post: UnitAttribute_createNewAttribute
+  /inventory/v1/unit-attributes/{id}:
+    delete: UnitAttribute_deleteById
+    get: UnitAttribute_getById
+    head: UnitAttribute_checkExistsHead
+    patch: UnitAttribute_modifyDescription
+  /inventory/v1/unit-groups:
+    get: UnitGroup_getAll
+    post: UnitGroup_createNewGroup
+  /inventory/v1/unit-groups/$count:
+    get: UnitGroup_getCount
+  /inventory/v1/unit-groups/{id}:
+    delete: UnitGroup_deleteById
+    get: UnitGroup_getById
+    head: UnitGroup_checkExistsByIdHead
+    put: UnitGroup_updateGroup
+  /inventory/v1/units:
+    get: Unit_listUnits
+    patch: Unit_updateUnitsAttributes
+    post: Unit_create
+  /inventory/v1/units/$count:
+    get: Unit_getCount
+  /inventory/v1/units/bulk:
+    post: Unit_bulkCreateUnits
+  /inventory/v1/units/{id}:
+    delete: Unit_deleteById
+    get: Unit_getById
+    head: Unit_existsByIdHead
+    patch: Unit_updateProperties
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /inventory/v1/properties/{id}:
+    patch:
+      application/json: PropertyModifyDetailsRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  Idempotency-Key:
+    header: false
+  condition:
+    query: false
+  countryCode:
+    query: false
+  expand:
+    query: false
+  includeArchived:
+    query: false
+  isOccupied:
+    query: false
+  languages:
+    query: false
+  maintenanceType:
+    query: false
+  pageNumber:
+    query: false
+  pageSize:
+    query: false
+  propertyId:
+    query: false
+  status:
+    query: false
+  textSearch:
+    query: false
+  unitAttributeIds:
+    query: false
+  unitGroupId:
+    query: false
+  unitGroupIds:
+    query: false
+  unitGroupTypes:
+    query: false
+  unitIds:
+    query: false
+validServerUrls:
+  api.apaleo.com:
+    url: api.apaleo.com

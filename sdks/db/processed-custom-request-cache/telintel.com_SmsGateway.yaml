@@ -1,0 +1,31 @@
+processed:
+  securitySchemes: {}
+  apiBaseUrl: http://smsapi.telintel.net:8080/SmppUtilsWeb
+  apiVersion: 1.0.0
+  apiDescription: >-
+    This service is intended for live traffic, it is scoped for notification
+    systems. It works synchronously (the answer of each message will contain the
+    termination answer, and the message ID), but it may receive several requests
+    simultaneously. Telintel LTD provides an HTTP API to send and receive SMS.
+    It requires an application capable of reading JSON objects, GET/POST
+    request, Authentication credentials (login and password that can be obtained
+    through your Telintel sales manager) and enough credit to complete the
+    procedure.
+
+    Please note: the IP address where the requests will be sent must be
+    reported, as the account will bind with that IP address. If a delivery
+    receipt (DLR) is required for each SMS submission (where applicable) or a
+    short code or long number has been purchased and the receipt of each inbound
+    mobile originated (MO) message is desired, then a CallBack URL must be setup
+    with the Telintel Support team.
+  apiTitle: Telintel SMS Gateway HTTP API
+  endpoints: 4
+  sdkMethods: 4
+  schemas: 6
+  parameters: 32
+  contactUrl: https://telintel.com/
+  originalCustomRequest:
+    type: GET
+    url: http://smsapi.telintel.com/SMSGateway.yaml
+  customRequestSpecFilename: telintel.com_SmsGateway.yaml
+  difficultyScore: 15

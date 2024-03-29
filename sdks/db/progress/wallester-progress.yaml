@@ -1,0 +1,656 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /host:port/v1/3d-secure-otp-event:
+    post: Webhooks_threeDSecureOtpEventNotification
+  /host:port/v1/account-adjustment-notification:
+    post: Webhooks_notifyAccountAdjustment
+  /host:port/v1/account-to-account-transfer-notification:
+    post: Webhooks_notifyAccountTransfer
+  /host:port/v1/activate-card-event:
+    post: Webhooks_notifyCardActivation
+  /host:port/v1/apple-pay-incentive-notification-incomplete-provisioning-event:
+    post: Webhooks_sendIncompleteProvisioningNotification
+  /host:port/v1/apple-pay-incentive-notification-successful-transaction-event:
+    post: Webhooks_sendApplePayIncentiveNotification
+  /host:port/v1/apple-pay-orange-flow-event:
+    post: Webhooks_notifyAuthenticationOptions
+  /host:port/v1/authorization-event:
+    post: Webhooks_authorizeEvent
+  /host:port/v1/block-card-event:
+    post: Webhooks_notifyCardBlocked
+  /host:port/v1/cancel-fee-event:
+    post: Webhooks_cancelFeeEvent
+  /host:port/v1/closed-card-event:
+    post: Webhooks_notifyCardClosure
+  /host:port/v1/closing-card-event:
+    post: Webhooks_notifyCardClosingStatus
+  /host:port/v1/complete-fee-event:
+    post: Webhooks_completeFeeEventNotification
+  /host:port/v1/create-card-event:
+    post: Webhooks_triggerCardEventNotification
+  /host:port/v1/create-fee-event:
+    post: Webhooks_notifyNewFee
+  /host:port/v1/decision-request-authorization-event:
+    post: Webhooks_authorizeDecisionRequest
+  /host:port/v1/decision-request-balance-inquiry-authorization-event:
+    post: Webhooks_balanceInquiryAuthorization
+  /host:port/v1/dispatch-card-event:
+    post: Webhooks_dispatchCardEvent
+  /host:port/v1/expire-card-event:
+    post: Webhooks_expireCardEventNotification
+  /host:port/v1/initiate-action-event:
+    post: Webhooks_initiateActionEvent
+  /host:port/v1/kyc-check-event:
+    post: Webhooks_kycCheckEventCreate
+  /host:port/v1/kyc-status-change-event:
+    post: Webhooks_kycStatusChange
+  /host:port/v1/ordered-card-event:
+    post: Webhooks_notifyCardOrder
+  /host:port/v1/partial-authorization-event:
+    post: Webhooks_partialAuthorizationEventPost
+  /host:port/v1/personalize-card-event:
+    post: Webhooks_notifyCardPersonalization
+  /host:port/v1/release-authorization-event:
+    post: Webhooks_releaseAuthorizationEvent
+  /host:port/v1/renew-card-event:
+    post: Webhooks_renewCardEventNotification
+  /host:port/v1/replace-card-event:
+    post: Webhooks_cardReplaceEventNotification
+  /host:port/v1/reversal-authorization-event:
+    post: Webhooks_reversalAuthorization
+  /host:port/v1/transaction-clearing-event:
+    post: Webhooks_triggerTransactionClearing
+  /host:port/v1/update-fee-event:
+    post: Webhooks_updateFeeEvent
+  /host:port/v1/validate-event:
+    post: Webhooks_validateEvent
+  /v1/account-adjustments:
+    post: AccountAdjustments_createAccountAdjustment
+  /v1/account-adjustments-by-external-id/{external_id}:
+    get: AccountAdjustments_getByExternalId
+  /v1/account-adjustments/{account_adjustment_id}:
+    get: AccountAdjustments_getInformation
+  /v1/account-payments:
+    patch: Account_transferFunds
+  /v1/accounts:
+    get: Account_searchList
+    post: Account_createNewAccount
+  /v1/accounts-by-external-id/{external_id}:
+    get: Account_getByExternalId
+  /v1/accounts-by-ids:
+    post: Account_getByIds
+  /v1/accounts-exceeding-credit-limit:
+    get: Account_getExceedingCreditAccounts
+  /v1/accounts/{account_id}:
+    get: Account_getInformation
+  /v1/accounts/{account_id}/account-adjustments/{account_adjustment_id}/external-id:
+    patch: Account_updateExternalId
+  /v1/accounts/{account_id}/authorizations:
+    get: Authorizations_getAccountAuthorizations
+  /v1/accounts/{account_id}/balance:
+    patch: Account_adjustBalanceById
+  /v1/accounts/{account_id}/cards:
+    get: Account_getCards
+  /v1/accounts/{account_id}/close:
+    delete: Account_closeAccount
+    patch: Account_closeAccount
+  /v1/accounts/{account_id}/credit-limit:
+    patch: Account_updateCreditLimit
+  /v1/accounts/{account_id}/download-statement:
+    get: Account_downloadStatement
+  /v1/accounts/{account_id}/external-id:
+    patch: Account_updateExternalId
+  /v1/accounts/{account_id}/history:
+    get: Account_getHistory
+  /v1/accounts/{account_id}/limits:
+    patch: Account_updateLimits
+  /v1/accounts/{account_id}/limits-usage:
+    get: Account_getLimitsUsage
+  /v1/accounts/{account_id}/name:
+    patch: Account_updateName
+  /v1/accounts/{account_id}/reopen:
+    patch: Account_reopenAccount
+  /v1/accounts/{account_id}/statement:
+    get: Account_getStatement
+  /v1/accounts/{account_id}/statement-by-cursor:
+    get: Account_getStatementByCursor
+  /v1/accounts/{account_id}/statement-by-date:
+    get: Account_getStatementByDate
+  /v1/accounts/{account_id}/top-up-details:
+    put: Account_updateTopUpDetails
+  /v1/accounts/{account_id}/transactions:
+    get: Transactions_getAccountTransactions
+  /v1/authorizations/{authorization_id}:
+    get: Authorizations_getAuthorizationInfo
+  /v1/authorizations/{authorization_id}/additional-info:
+    get: Authorizations_getAdditionalInfo
+  /v1/authorizations/{authorization_id}/fees:
+    get: Fee_getFeesById
+  /v1/batch/cards/block:
+    patch: Card_blockBatch
+  /v1/batch/cards/close:
+    patch: Card_closeBatchCards
+  /v1/batch/cards/fees:
+    patch: Card_updateFeesBatch
+  /v1/batch/cards/replace:
+    patch: Card_updateBatchFees
+  /v1/batch/cards/unblock:
+    patch: Card_unblockBatchCards
+  /v1/batch/persons/deactivate:
+    patch: Person_batchDeactivate
+  /v1/batch/persons/{person_id}/additional-infos:
+    post: Person_createAdditionalInfoBatch
+  /v1/batch/persons/{person_id}/additional-infos/delete:
+    post: Person_deleteAdditionalInfoBatch
+  /v1/card-by-reference-number/{reference_number}:
+    get: Card_getByReferenceNumber
+  /v1/cards:
+    get: Card_search
+    post: Card_registerNewCard
+  /v1/cards-by-external-id/{external_id}:
+    get: Card_getByExternalId
+  /v1/cards-by-last-digits/{last_four_digits}:
+    get: Card_getByLastFourDigits
+  /v1/cards-dispatch-methods:
+    get: Card_getDispatchMethods
+  /v1/cards/fee-waivers:
+    put: Fee_updateWaivers
+  /v1/cards/{card_id}:
+    get: Card_information
+  /v1/cards/{card_id}/3d-secure:
+    patch: Card_update3dSecureSettings
+  /v1/cards/{card_id}/3d-secure/enrol:
+    patch: Card_enrol3dSecure
+  /v1/cards/{card_id}/3d-secure/unenrol:
+    patch: Card_unenrol3dSecure
+  /v1/cards/{card_id}/3ds-password:
+    put: Reminders_send3dsPasswordBySms
+  /v1/cards/{card_id}/activate:
+    patch: Card_activateCardById
+  /v1/cards/{card_id}/activate-by-cvv:
+    patch: Card_activateByCvvPatch
+  /v1/cards/{card_id}/authorizations:
+    get: Authorizations_getCardBlockingAuthorizations
+  /v1/cards/{card_id}/block:
+    patch: Card_blockCard
+  /v1/cards/{card_id}/close:
+    delete: Card_closeCard
+    patch: Card_closeCard
+  /v1/cards/{card_id}/delivery-address:
+    patch: Card_updateDeliveryAddress
+  /v1/cards/{card_id}/download-statement:
+    get: Card_downloadStatement
+  /v1/cards/{card_id}/encrypted-3ds-password:
+    post: Card_getEncrypted3dsPassword
+  /v1/cards/{card_id}/encrypted-card-number:
+    post: Card_getEncryptedCardNumber
+  /v1/cards/{card_id}/encrypted-cvv2:
+    post: Card_getEncryptedCvv2
+  /v1/cards/{card_id}/encrypted-pin:
+    post: Card_getEncryptedPin
+  /v1/cards/{card_id}/external-id:
+    patch: Card_updateExternalId
+  /v1/cards/{card_id}/fee-waivers:
+    get: Fee_getCardFeeWaivers
+  /v1/cards/{card_id}/fee-waivers/{fee_waiver_id}:
+    delete: Fee_deleteFeeWaiver
+    get: Fee_getFeeWaiverById
+  /v1/cards/{card_id}/fees:
+    get: Card_getFees
+    patch: Card_updateFees
+  /v1/cards/{card_id}/history:
+    get: Card_getHistory
+  /v1/cards/{card_id}/is-card-renewal-allowed:
+    get: Card_checkRenewalStatus
+  /v1/cards/{card_id}/limits:
+    get: Card_getLimitsUsage
+    patch: Card_updateLimits
+  /v1/cards/{card_id}/link-to-account/{account_id}:
+    patch: Card_linkToAccount
+  /v1/cards/{card_id}/merchant-rules:
+    get: Card_getMerchantRules
+    post: Card_createMerchantRules
+  /v1/cards/{card_id}/merchant-rules/{merchant_rule_id}:
+    delete: Card_deleteMerchantRule
+    get: Card_getMerchantRuleById
+  /v1/cards/{card_id}/name:
+    patch: Card_updateNameOperation
+  /v1/cards/{card_id}/pin:
+    patch: Card_changePin
+    put: Reminders_sendPinBySms
+  /v1/cards/{card_id}/push-provisioning/apple-pay:
+    post: Token_pushProvisioningApplePay
+  /v1/cards/{card_id}/push-provisioning/google-pay:
+    post: Token_pushProvisioningGooglePay
+  /v1/cards/{card_id}/renew-automatically:
+    patch: Card_renewAutomaticallyPatch
+  /v1/cards/{card_id}/replace:
+    patch: Card_updateCardData
+  /v1/cards/{card_id}/security:
+    patch: Card_updateSecurity
+  /v1/cards/{card_id}/statement:
+    get: Card_getStatement
+  /v1/cards/{card_id}/sync-tokens:
+    post: Token_syncAndUpdate
+  /v1/cards/{card_id}/tokens:
+    get: Token_getByCardId
+  /v1/cards/{card_id}/transactions:
+    get: Transactions_getCardTransactions
+  /v1/cards/{card_id}/unblock:
+    patch: Card_unblockCard
+  /v1/cards/{card_id}/users:
+    delete: Card_deleteUsers
+    get: Card_getUsers
+    post: Card_createUser
+  /v1/companies:
+    get: Company_search
+    post: Company_createNewCompany
+  /v1/companies/{company_id}:
+    delete: Company_deactivateCompany
+    get: Company_getInformation
+    patch: Company_updateDetails
+  /v1/companies/{company_id}/3ds-settings:
+    delete: Company_delete3dsSettings
+    get: Company_get3dsSettings
+    patch: Company_update3dsSettings
+    post: Company_create3dsSettings
+  /v1/companies/{company_id}/accounts:
+    get: Company_getAccounts
+  /v1/companies/{company_id}/cards:
+    get: Company_getCards
+  /v1/companies/{company_id}/corporate-documents:
+    post: Company_addCorporateDocuments
+  /v1/companies/{company_id}/fcm-tokens:
+    post: Company_registerFcmToken
+  /v1/companies/{company_id}/fcm-tokens-by-device-id/{device_id}:
+    delete: Company_deleteFcmToken
+    get: Company_getFcmTokenByDeviceId
+  /v1/companies/{company_id}/fcm-tokens-by-device-id/{device_id}/push-notifications-enabled:
+    patch: Company_updatePushNotificationsEnabledForDevice
+  /v1/companies/{company_id}/history:
+    get: Company_getHistory
+  /v1/companies/{company_id}/limits:
+    patch: Company_updateLimits
+  /v1/companies/{company_id}/push-notifications-enabled:
+    patch: Company_updatePushNotificationsEnabled
+  /v1/companies/{company_id}/representatives:
+    get: Company_getRepresentatives
+    post: Company_addRepresentatives
+  /v1/companies/{company_id}/representatives/{representative_id}:
+    delete: Company_removeRepresentative
+    get: Company_getRepresentativeInfo
+    patch: Company_updateRepresentative
+  /v1/companies/{company_id}/representatives/{representative_id}/history:
+    get: Company_getRepresentativeHistory
+  /v1/companies/{company_id}/representatives/{representative_id}/verification-link:
+    put: Company_sendVerificationLink
+  /v1/companies/{company_id}/submit-agreement:
+    post: Company_submitAgreement
+  /v1/companies/{company_id}/users:
+    delete: Company_deleteUsers
+    get: Company_getUsers
+    post: Company_createUser
+  /v1/expiring-cards:
+    get: Card_getExpiringCards
+  /v1/extract-files:
+    get: ExtractFiles_listDirectories
+  /v1/extract-files/{directory_name}:
+    get: ExtractFiles_getFilesList
+  /v1/extract-files/{directory_name}/{file_name}:
+    get: ExtractFiles_downloadFile
+  /v1/fees/{fee_id}:
+    get: Fee_getFeeInformation
+  /v1/fraud-cases:
+    get: FraudCase_listCases
+  /v1/fraud-cases/card-owners:
+    get: FraudCase_getCardOwners
+  /v1/fraud-cases/{fraud_case_id}:
+    get: FraudCase_getCase
+    put: FraudCase_updateCase
+  /v1/fraud-cases/{fraud_case_id}/history:
+    get: FraudCase_getHistory
+  /v1/kyc-checks:
+    get: KycCheck_getAll
+    post: KycCheck_createNew
+  /v1/kyc-checks/{kyc_check_id}:
+    delete: KycCheck_deleteCheck
+    get: KycCheck_getDetails
+  /v1/kyc-checks/{kyc_check_id}/initiate:
+    post: KycCheck_initiateProcess
+  /v1/kyc-documents:
+    post: KycDocument_uploadDocument
+  /v1/kyc-documents/{kyc_document_id}:
+    get: KycDocument_getDetails
+  /v1/payment-documents:
+    post: PaymentDocument_addDocuments
+  /v1/payment-documents/download:
+    get: PaymentDocument_downloadFiles
+  /v1/payment-documents/thumbnails:
+    get: PaymentDocument_getThumbnail
+  /v1/payment-documents/{payment_document_id}:
+    delete: PaymentDocument_deleteDocument
+    get: PaymentDocument_getDocument
+  /v1/payments/authorizations:
+    get: Authorizations_getProductAuthorizations
+  /v1/payments/transactions:
+    get: Transactions_getProductTransactions
+  /v1/pending-orders:
+    get: Card_listPendingOrders
+  /v1/persons:
+    get: Person_search
+    post: Person_createNew
+  /v1/persons-by-external-id/{external_id}:
+    get: Person_getByExternalId
+  /v1/persons/{person_id}:
+    delete: Person_deactivate
+    get: Person_getInformation
+    patch: Person_updatePatch
+    put: Person_updateDetails
+  /v1/persons/{person_id}/3ds-settings:
+    delete: Person_delete3dsSettings
+    get: Person_get3dsSettings
+    patch: Person_update3dsSettings
+    post: Person_create3dsSettings
+  /v1/persons/{person_id}/accounts:
+    get: Person_getAccounts
+  /v1/persons/{person_id}/activate:
+    patch: Person_activatePatch
+  /v1/persons/{person_id}/activate-card:
+    patch: Person_activateCardByLastFourDigits
+  /v1/persons/{person_id}/additional-infos:
+    get: Person_getAdditionalInfos
+  /v1/persons/{person_id}/additional-infos/{person_additional_info_id}:
+    delete: Person_deleteAdditionalInfo
+    get: Person_getAdditionalInfo
+    patch: Person_updateAdditionalInfo
+  /v1/persons/{person_id}/card-blocks:
+    get: Person_getCardBlockLogs
+  /v1/persons/{person_id}/cards:
+    get: Person_getCards
+  /v1/persons/{person_id}/fcm-tokens:
+    post: Person_registerFcmToken
+  /v1/persons/{person_id}/fcm-tokens-by-device-id/{device_id}:
+    delete: Person_deleteFcmToken
+    get: Person_getFcmToken
+  /v1/persons/{person_id}/fcm-tokens-by-device-id/{device_id}/push-notifications-enabled:
+    patch: Person_updatePushNotificationsEnabled
+  /v1/persons/{person_id}/fees-statements:
+    get: Person_getFeesStatement
+  /v1/persons/{person_id}/history:
+    get: Person_getHistory
+  /v1/persons/{person_id}/onfido-check:
+    post: Person_createOnfidoCheck
+  /v1/persons/{person_id}/onfido-sdk-token:
+    post: Person_generateSdkToken
+  /v1/persons/{person_id}/push-notifications-enabled:
+    patch: Person_togglePushNotifications
+  /v1/persons/{person_id}/users:
+    delete: Person_deleteUser
+    get: Person_getUserList
+    post: Person_createUser
+  /v1/product-cards:
+    get: Card_getList
+  /v1/product-settings/about-company:
+    get: Product_getCompanyInfo
+  /v1/product-settings/account-allowed-currencies:
+    get: Product_getAllowedCurrencies
+  /v1/product-settings/account-limits:
+    get: Product_getAccountLimits
+  /v1/product-settings/allowed-card-delivery-country-codes:
+    get: Product_getAllowedDeliveryCountries
+  /v1/product-settings/card-limits:
+    get: Product_getCardLimits
+  /v1/product-settings/embossing-name:
+    get: Product_getEmbossingNameSettings
+  /v1/product-settings/mobile-application:
+    get: Product_getMobileApplicationSettings
+  /v1/product-settings/personalization-product-codes:
+    get: Product_getPersonalizationProductCodes
+  /v1/product-settings/product-fees:
+    get: Product_getFees
+  /v1/products/card-designs:
+    get: Product_getCardDesignsByCodes
+  /v1/reserved-settlement-balance:
+    get: Settlement_getReservedBalance
+  /v1/search:
+    get: Other_searchAccountsAndPersons
+  /v1/status:
+    get: Status_checkApiStatus
+  /v1/templates:
+    get: Templates_getList
+    post: Templates_createNewTemplate
+  /v1/templates/{template_id}:
+    delete: Templates_deleteTemplate
+    get: Templates_getById
+    patch: Templates_updateTemplate
+  /v1/test/authorizations:
+    post: Testing_createAuthorization
+  /v1/test/cards/{card_id}/3ds-otp:
+    post: Testing_send3dsOtpNotification
+  /v1/test/cards/{card_id}/status:
+    patch: Testing_updateCardStatus
+  /v1/test/no-access:
+    get: Testing_handleNoAccessError
+  /v1/test/ping:
+    post: Testing_jwtToken
+  /v1/test/transactions:
+    post: Testing_submitTransaction
+  /v1/tokens/{token_id}:
+    get: Token_getById
+  /v1/tokens/{token_id}/activate:
+    post: Token_activateToken
+  /v1/tokens/{token_id}/deactivate:
+    post: Token_deactivateToken
+  /v1/tokens/{token_id}/resume:
+    post: Token_resume
+  /v1/tokens/{token_id}/suspend:
+    post: Token_suspendToken
+  /v1/transactions/summary:
+    get: Transactions_getSummary
+  /v1/transactions/{transaction_id}:
+    get: Transactions_getInformation
+  /v1/transactions/{transaction_id}/fees:
+    get: Fee_getByTransactionId
+  /v2/cards-by-hashed-card-number/{sha}:
+    get: Card_getByShaHashedCardNumber
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/companies/{company_id}/corporate-documents:
+    post:
+      multipart/form-data: CompanyAddCorporateDocumentsRequest
+  /v1/kyc-documents:
+    post:
+      multipart/form-data: KycDocumentUploadDocumentRequest
+  /v1/payment-documents:
+    post:
+      multipart/form-data: PaymentDocumentAddDocumentsRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  Authorization:
+    header: false
+  X-Audit-Source-Type:
+    header: false
+  X-Audit-User-Id:
+    header: false
+  X-Product-Code:
+    header: false
+  X-Request-ID:
+    header: false
+  account_ids:
+    query: false
+  account_name:
+    query: false
+  account_statuses:
+    query: false
+  adjustment_type:
+    query: false
+  assigned_to_name:
+    query: false
+  available_amount_is_zero:
+    query: false
+  balance_is_zero:
+    query: false
+  block_types:
+    query: false
+  blocked_amount_is_zero:
+    query: false
+  card_owner_country_code:
+    query: false
+  card_owner_ids:
+    query: false
+  card_owner_name:
+    query: false
+  card_statuses:
+    query: false
+  card_types:
+    query: false
+  case_statuses:
+    query: false
+  company_id:
+    query: false
+  country_code:
+    query: false
+  create_matching_transaction_and_perform_clearing:
+    query: false
+  cursor:
+    query: false
+  date_field:
+    query: false
+  email:
+    query: false
+  exceeding_credit_limit:
+    query: false
+  exclude_cleared_authorizations:
+    query: false
+  exclude_cleared_fees:
+    query: false
+  exclude_declined_authorizations:
+    query: false
+  exclude_declined_fees:
+    query: false
+  exclude_fx_fees:
+    query: false
+  exclude_pending_authorizations:
+    query: false
+  exclude_pending_fees:
+    query: false
+  exclude_reversed_authorizations:
+    query: false
+  exclude_status_authorizations:
+    query: false
+  external_id:
+    query: false
+  fee_types:
+    query: false
+  first_name:
+    query: false
+  from_cases_count:
+    query: false
+  from_date:
+    query: false
+  from_expiry_date:
+    query: false
+  from_record:
+    query: false
+  from_risk_score:
+    query: false
+  include_account_adjustments:
+    query: false
+  include_authorizations:
+    query: false
+  include_fees:
+    query: false
+  include_transactions:
+    query: false
+  ip_address:
+    query: false
+  is_active:
+    query: false
+  is_main:
+    query: false
+  is_not_system:
+    query: false
+  is_white_list:
+    query: false
+  language_code:
+    query: false
+  last_name:
+    query: false
+  masked_card_number:
+    query: false
+  merchant_category_codes:
+    query: false
+  merchant_category_types:
+    query: false
+  merchant_country_code:
+    query: false
+  merge_fees:
+    query: false
+  minimum_scoring:
+    query: false
+  mobile:
+    query: false
+  move_forward:
+    query: false
+  name:
+    query: false
+  order_direction:
+    query: false
+  order_field:
+    query: false
+  payment_id:
+    query: false
+  payment_type:
+    query: false
+  person_id:
+    query: false
+  personal_number:
+    query: false
+  personalization_product_code:
+    query: false
+  records_count:
+    query: false
+  reference_number:
+    query: false
+  registration_number:
+    query: false
+  risk_profiles:
+    query: false
+  risk_statuses:
+    query: false
+  risk_zones:
+    query: false
+  scoring:
+    query: false
+  search_keyword:
+    query: false
+  send_notification:
+    query: false
+  statement_file_type:
+    query: false
+  statuses:
+    query: false
+  timezone:
+    query: false
+  to_cases_count:
+    query: false
+  to_date:
+    query: false
+  to_expiry_date:
+    query: false
+  to_risk_score:
+    query: false
+  user_ids:
+    query: false
+  value:
+    query: false
+  viban:
+    query: false
+validServerUrls:
+  https://localhost:8000:
+    url: https://localhost:8000

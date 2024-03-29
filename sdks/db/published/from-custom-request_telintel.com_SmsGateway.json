@@ -1,0 +1,301 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "http://smsapi.telintel.net:8080/SmppUtilsWeb",
+  "apiVersion": "1.0.0",
+  "apiDescription": "This service is intended for live traffic, it is scoped for notification systems. It works synchronously (the answer of each message will contain the termination answer, and the message ID), but it may receive several requests simultaneously. Telintel LTD provides an HTTP API to send and receive SMS. It requires an application capable of reading JSON objects, GET/POST request, Authentication credentials (login and password that can be obtained through your Telintel sales manager) and enough credit to complete the procedure.\nPlease note: the IP address where the requests will be sent must be reported, as the account will bind with that IP address. If a delivery receipt (DLR) is required for each SMS submission (where applicable) or a short code or long number has been purchased and the receipt of each inbound mobile originated (MO) message is desired, then a CallBack URL must be setup with the Telintel Support team.",
+  "apiTitle": "Telintel SMS Gateway HTTP API",
+  "endpoints": 4,
+  "sdkMethods": 4,
+  "schemas": 14,
+  "parameters": 32,
+  "contactUrl": "https://telintel.com/",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "http://smsapi.telintel.com/SMSGateway.yaml"
+  },
+  "customRequestSpecFilename": "telintel.com_SmsGateway.yaml",
+  "difficultyScore": 15,
+  "difficulty": "Very Easy",
+  "company": "Telintel",
+  "serviceName": "SMS Gateway",
+  "sdkName": "telintel-sms-gateway-{language}-sdk",
+  "clientName": "TelintelSmsGateway",
+  "metaDescription": "With +20 years of experience in the market, Telintel makes the experience of communicating with your clients easier. We are leaders on technological solutions that makes the interaction with any user simpler no matter neither the business size nor the industrial sector at hand. Our products based on SMS and VoIP (SMS 2-Way, Landing Pages, RoboCall, Text2Speech, IVR, SMS2Call & Click2Call) allow us to offer a vast service spectrum for any need including reminders, alerts, promotions and client loyalty, along with commercial presence on any the continents around the world.\n\nOur Go4Clients and TestMySMS platforms will allow you to enhance your user experience, centralize operational processes and improve your response times with the best service quality and 24/7 technical support, 365 days a year. These are smart solutions that will allow you to have infinite possibilities at your hands reach.\n\nWe count on our strategic allies and important customers satisfied with our services. Be one of them today and contact us at social@telintel.net or give us a call at +1 786-871-6540.\n\nCon más de 20 años de experiencia en el mercado, Telintel hace más sencilla la manera de comunicarse con sus clientes. Somos líderes en soluciones tecnológicas que hacen más simple la interacción con cualquier usuario sin importar el tamaño de su organización o la industria a la que se dedique. Nuestros productos basados en SMS y VoIP (SMS 2way, Landing Page, Robocall, Text2Speech, IVR, SMS2Call y Click2Call) nos permiten ofrecer una amplia gama de servicios para cualquier necesidad incluyendo recordatorios, alertas, promociones y fidelización de clientes en todo el mundo, con presencia comercial en los 5 continentes. \n\nNuestras plataformas Go4Clients y TestmySMS le permitirán mejorar la experiencia de sus usuarios con el mejor servicio y soporte 24/7 los 365 días del año, centralizar procesos operativos y mejorar sus tiempo de respuesta.",
+  "apiStatusUrls": "inherit",
+  "homepage": "telintel.com",
+  "developerDocumentation": "smsapi.telintel.com",
+  "categories": [
+    "communications",
+    "messaging",
+    "sms"
+  ],
+  "category": "Phone & SMS",
+  "methods": [
+    {
+      "url": "/HttpSmppServiceTypeV2/HttpServiceType",
+      "method": "messageDelivery",
+      "httpMethod": "post",
+      "tag": "Send Single SMS",
+      "typeScriptTag": "sendSingleSms",
+      "description": "The request will contain a JSON object in the body of the request.",
+      "parameters": [
+        {
+          "name": "username",
+          "schema": "string",
+          "description": "",
+          "example": "testhttp"
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "description": "",
+          "example": "passthttp"
+        },
+        {
+          "name": "destinationNumber",
+          "schema": "string",
+          "description": "",
+          "example": "573005555555"
+        },
+        {
+          "name": "message",
+          "schema": "string",
+          "description": "",
+          "example": "testMessage"
+        },
+        {
+          "name": "from",
+          "schema": "string",
+          "description": "",
+          "example": "573121112222"
+        },
+        {
+          "name": "serviceType",
+          "schema": "string",
+          "description": "",
+          "example": "serviceTypeTest"
+        },
+        {
+          "name": "datacoding",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/HttpMassSmppGatewayV2/HttpMassService",
+      "method": "notificationService",
+      "httpMethod": "post",
+      "tag": "Send Mass SMS",
+      "typeScriptTag": "sendMassSms",
+      "description": "The request will contain a JSON object in the body of the request.",
+      "parameters": [
+        {
+          "name": "username",
+          "schema": "string",
+          "description": "",
+          "example": "testhttp"
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "description": "",
+          "example": "passthttp"
+        },
+        {
+          "name": "serviceType",
+          "schema": "string",
+          "description": "",
+          "example": "testhttp"
+        },
+        {
+          "name": "smppUtilsMassInformationRequestItemList",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/Delivery",
+      "method": "confirmDeliveryReceipt",
+      "httpMethod": "post",
+      "tag": "Delivery Receipt",
+      "typeScriptTag": "deliveryReceipt",
+      "description": "The request parameters are sent via a GET (https://smsapi.telintel.com to your CallBack URL. Telintel will be expecting a response 200 OK response, or it will keep retrying until the Delivery Receipt expires (up to 24 hours).",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "description": "",
+          "example": "smsId"
+        },
+        {
+          "name": "submitted",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "delivered",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "submitDate",
+          "schema": "string",
+          "description": "",
+          "example": "2015-08-04 14:26:57"
+        },
+        {
+          "name": "doneDate",
+          "schema": "string",
+          "description": "",
+          "example": "2015-08-04 14:26:57"
+        },
+        {
+          "name": "finalStatus",
+          "schema": "string",
+          "description": "",
+          "example": "DELIVRD"
+        },
+        {
+          "name": "error",
+          "schema": "integer",
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "text",
+          "schema": "string",
+          "description": "",
+          "example": "text message"
+        },
+        {
+          "name": "mcc",
+          "schema": "integer",
+          "description": "",
+          "example": 123
+        },
+        {
+          "name": "mnc",
+          "schema": "string",
+          "description": "",
+          "example": "321"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/MO",
+      "method": "callbackResponse",
+      "httpMethod": "post",
+      "tag": "Receive message",
+      "typeScriptTag": "receiveMessage",
+      "description": "The request parameters are sent via a GET (https://smsapi.telintel.com to your Callback URL and Telintel will be expecting a response 200 OK response, or it will keep retrying for 24 hours.",
+      "parameters": [
+        {
+          "name": "serviceType",
+          "schema": "string",
+          "description": "",
+          "example": ""
+        },
+        {
+          "name": "originTypeOfNumber",
+          "schema": "string",
+          "description": "",
+          "example": "NATIONAL"
+        },
+        {
+          "name": "originNumberingPlanIndicator",
+          "schema": "string",
+          "description": "",
+          "example": "ISDN"
+        },
+        {
+          "name": "sourceAddress",
+          "schema": "string",
+          "description": "",
+          "example": "573005555555"
+        },
+        {
+          "name": "destinationTypeOfNumber",
+          "schema": "string",
+          "description": "",
+          "example": "INTERNATIONAL"
+        },
+        {
+          "name": "destinationNumberingPlanIndicator",
+          "schema": "string",
+          "description": "",
+          "example": "ISDN"
+        },
+        {
+          "name": "destinationAddress",
+          "schema": "string",
+          "description": "",
+          "example": "86865"
+        },
+        {
+          "name": "esmeClass",
+          "schema": "string",
+          "description": "",
+          "example": "0"
+        },
+        {
+          "name": "protocolId",
+          "schema": "integer",
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "PriorityFlag",
+          "schema": "string",
+          "description": "",
+          "example": "0"
+        },
+        {
+          "name": "shortMessage",
+          "schema": "string",
+          "description": "",
+          "example": "Sae 1234 456"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Telintel simplifies client communication with 20+ years of experience. Leaders in SMS and VoIP solutions for all business sizes and industries. Enhance user experience, centralize operations, and improve response times with smart solutions. Contact us for 24/7 support.",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/telintel/sms-gateway/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/telintel/sms-gateway/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/telintel/sms-gateway/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/telintel/sms-gateway/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/telintel/sms-gateway/favicon.png",
+  "clientNameCamelCase": "telintelSmsGateway",
+  "lastUpdated": "2024-03-29T20:34:56.573Z",
+  "typescriptSdkUsageCode": "import { TelintelSmsGateway } from 'telintel-sms-gateway-typescript-sdk';\n\nconst telintelSmsGateway = new TelintelSmsGateway()",
+  "typescriptSdkFirstRequestCode": "// The request will contain a JSON object in the body of the request.\nconst messageDeliveryResponse = telintelSmsGateway.sendSingleSms.messageDelivery({\n    username: \"testhttp\"\n    password: \"passthttp\"\n    destinationNumber: \"573005555555\"\n    message: \"testMessage\"\n    from: \"573121112222\"\n    serviceType: \"serviceTypeTest\"\n    datacoding: 1\n})",
+  "fixedSpecFileName": "telintel-sms-gateway-fixed-spec.yaml"
+}
