@@ -2169,6 +2169,14 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "layer2financial.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.layer2financial.com/api-docs/openapi/layer2/overview/",
+        browser,
+      });
+    },
+  },
   "30k.com_Milefy": {
     type: "GET",
     url: "http://milefy-api-docs.30k.com/milefy.yaml",

@@ -1,0 +1,183 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1/accounts/deposits:
+    get: AccountsDeposits_getList
+    post: AccountsDeposits_openNewAccount
+  /v1/accounts/deposits/{id}:
+    get: AccountsDeposits_getDetails
+    patch: AccountsDeposits_updateStatus
+  /v1/accounts/deposits/{id}/address:
+    post: AccountsDeposits_requestAddress
+  /v1/accounts/deposits/{id}/transactions:
+    get: AccountsDeposits_getTransactions
+  /v1/accounts/deposits/{id}/transactions/{id}:
+    get: AccountsDeposits_getTransaction
+  /v1/accounts/payments:
+    get: AccountsPayments_getList
+    post: AccountsPayments_createPaymentAccount
+  /v1/accounts/payments/{id}:
+    get: AccountsPayments_getDetails
+    patch: AccountsPayments_updateStatus
+  /v1/accounts/payments/{id}/address:
+    post: AccountsPayments_requestPaymentAddress
+  /v1/accounts/payments/{id}/transactions:
+    get: AccountsPayments_getTransactions
+  /v1/accounts/payments/{id}/transactions/{id}:
+    get: AccountsPayments_getTransaction
+  /v1/adjustments:
+    post: Adjustments_createNewAdjustment
+  /v1/adjustments/{id}:
+    get: Adjustments_getDetails
+  /v1/adjustments/{id}/accept:
+    post: Adjustments_acceptance
+  /v1/applications:
+    post: Applications_startNewApplication
+  /v1/applications/{id}:
+    get: Applications_getDetails
+    patch: Applications_updateProperties
+  /v1/applications/{id}/accesscode:
+    post: Applications_generateAccessCode
+  /v1/applications/{id}/individual:
+    post: Applications_addIndividual
+  /v1/applications/{id}/individual/{individual_id}:
+    delete: Applications_deleteIndividual
+    patch: Applications_updateIndividualProperties
+  /v1/applications/{id}/status:
+    get: Applications_getStatus
+  /v1/applications/{id}/submit:
+    post: Applications_submitForProcessing
+  /v1/counterparties:
+    get: Counterparty_getList
+    post: Counterparty_createNewCounterparty
+  /v1/counterparties/{id}:
+    get: Counterparty_getList
+  /v1/counterparties/{id}/link/accounts:
+    post: Counterparty_getLinkableAccounts
+  /v1/counterparties/{id}/link/connect:
+    post: Counterparty_establishConnection
+  /v1/counterparties/{id}/link/details:
+    post: Counterparty_getLinkingDetails
+  /v1/customers:
+    get: Customers_getMatchingQuery
+    post: Customers_createNew
+  /v1/customers/{id}:
+    get: Customers_getDetails
+    patch: Customers_updateDetails
+  /v1/customers/{id}/individuals:
+    post: Customers_addNewIndividual
+  /v1/customers/{id}/individuals/{individual_id}:
+    get: Customers_getIndividualDetails
+    patch: Customers_updateIndividualDetails
+  /v1/customers/{id}/payor:
+    post: Customers_createPayor
+  /v1/deposits:
+    post: Deposits_createRequest
+  /v1/deposits/{id}:
+    get: Deposits_getDetails
+  /v1/deposits/{id}/accept:
+    post: Deposits_acceptance
+  /v1/documents/{id}:
+    post: Documents_uploadDocument
+  /v1/documents/{id}/download:
+    get: Documents_getDocument
+  /v1/exchanges/market:
+    post: Exchanges_createMarketExchange
+  /v1/exchanges/quote:
+    post: Exchanges_requestQuote
+  /v1/exchanges/{id}:
+    get: Exchanges_getDetails
+  /v1/exchanges/{id}/accept:
+    post: Exchanges_acceptQuote
+  /v1/settlements/{id}:
+    get: Settlements_getDetailsByAccount
+  /v1/subscriptions:
+    get: Subscriptions_listAll
+    post: Subscriptions_createEventCallback
+  /v1/subscriptions/{id}:
+    delete: Subscriptions_deleteExistingSubscription
+  /v1/transfers:
+    post: Transfers_requestNewTransfer
+  /v1/transfers/{id}:
+    get: Transfers_getDetails
+  /v1/transfers/{id}/accept:
+    post: Transfers_acceptTransfer
+  /v1/withdrawals:
+    post: Withdrawals_requestNewWithdrawal
+  /v1/withdrawals/{id}:
+    get: Withdrawals_getDetails
+  /v1/withdrawals/{id}/accept:
+    post: Withdrawals_acceptanceOperation
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/documents/{id}:
+    post:
+      multipart/form-data: DocumentsUploadDocumentRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/adjustments:
+    post:
+      '200':
+        application/json: AdjustmentsCreateNewAdjustmentResponse
+  /v1/adjustments/{id}:
+    get:
+      '200':
+        application/json: AdjustmentsGetDetailsResponse
+  /v1/adjustments/{id}/accept:
+    post:
+      '200':
+        application/json: AdjustmentsAcceptanceResponse
+  /v1/applications/{id}:
+    get:
+      '200':
+        application/json: ApplicationsGetDetailsResponse
+  /v1/customers/{id}:
+    get:
+      '200':
+        application/json: CustomersGetDetailsResponse
+  /v1/deposits:
+    post:
+      '200':
+        application/json: DepositsCreateRequestResponse
+  /v1/deposits/{id}:
+    get:
+      '200':
+        application/json: DepositsGetDetailsResponse
+  /v1/withdrawals/{id}:
+    get:
+      '200':
+        application/json: WithdrawalsGetDetailsResponse
+securityParameters:
+  customer_id:
+    query: false
+  destination_account_id:
+    query: false
+  end_date:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  product_type:
+    query: false
+  source_account_id:
+    query: false
+  start_date:
+    query: false
+  status:
+    query: false
+  type:
+    query: false
+  x-l2f-idempotency-id:
+    header: false
+  x-l2f-request-id:
+    header: false
+  x-signature:
+    header: false
+  x-timestamp:
+    header: false
+validServerUrls: {}
