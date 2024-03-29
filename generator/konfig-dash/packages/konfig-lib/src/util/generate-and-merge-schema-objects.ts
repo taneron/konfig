@@ -12,13 +12,16 @@ export function generateAndMergeSchemaObjects({
 }: {
   examples: Json[]
   version: OpenApiVersion
-}) {
+}): SchemaOrReference {
   const exampleSchemaObjects: SchemaOrReference[] = examples.map((example) =>
     generateSchemaObjectFromJson({
       json: example,
       version,
     })
   )
+  if (exampleSchemaObjects.length === 0) {
+    return {}
+  }
   const mergedSchemaObject = exampleSchemaObjects.reduce((a, b) =>
     mergeSchemaObject({ a, b })
   )
