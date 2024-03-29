@@ -1,0 +1,744 @@
+hash: 612dc12109424ac5ba99e0c5be838803ac68f4927b97822cee583cff0cda463e
+methodObjects:
+  - url: /keyword_canibalization/{site_id}/{group_id}
+    method: listCanibalizationKeywords
+    httpMethod: get
+    tag: Keyword Data
+    typeScriptTag: keywordData
+    description: Keyword Canibalization
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: groupId
+        schema: undefined
+        required: true
+        description: The unique group identifier. 0 for 'All keywords'
+      - name: startDate
+        schema: undefined
+        required: false
+        description: Start Date
+      - name: endDate
+        schema: undefined
+        required: false
+        description: End Date
+    responses:
+      - statusCode: '200'
+        description: An array of keywords
+      - statusCode: default
+        description: Unexpected error
+  - url: /sites
+    method: getList
+    httpMethod: get
+    tag: Sites
+    typeScriptTag: sites
+    description: Sites
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: An array of sites
+      - statusCode: default
+        description: Unexpected error
+  - url: /on_target/{site_id}
+    method: trafficForecastStatus
+    httpMethod: get
+    tag: Forecast
+    typeScriptTag: forecast
+    description: Forecast
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: Unexpected error
+  - url: /on_target/by_dates/{site_id}
+    method: objectiveData
+    httpMethod: get
+    tag: Forecast
+    typeScriptTag: forecast
+    description: Objective/Forecast
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+    responses:
+      - statusCode: '200'
+        description: >-
+          It returns the traffic forecast data for the last 12 months for the
+          selected website, such as: month, search volume, real traffic,
+          estimated traffic and visibility score.
+      - statusCode: default
+        description: Unexpected error
+  - url: /keyword_groups/{site_id}/{date_start}/{date_end}
+    method: getKeywordGroups
+    httpMethod: get
+    tag: Groups
+    typeScriptTag: groups
+    description: Keyword Groups
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: offset
+        schema: undefined
+        description: >-
+          By default, a request is limited to 1000 groups (or 10 if
+          load_keywords_ids is active), if you want more you can set the offset
+      - name: limit
+        schema: undefined
+        description: >-
+          By default, a request is limited to 1000 groups (or 10 if
+          load_keywords_ids is active). Use the limit parameter to change the
+          number of results per request (max. 10 if load_keyword_ids is active)
+      - name: loadKeywordIds
+        schema: undefined
+        description: >-
+          Loads Keyword IDs in the keywords array if set to 1. When active, the
+          response is limited to 10 groups
+    responses:
+      - statusCode: '200'
+        description: An array of groups
+      - statusCode: default
+        description: Unexpected error
+  - url: /groups_list/{site_id}
+    method: getList
+    httpMethod: get
+    tag: Groups
+    typeScriptTag: groups
+    description: Groups List
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+    responses:
+      - statusCode: '200'
+        description: >-
+          It returns Group ID, Group name and Group type (normal or smart) for
+          the selected website.
+      - statusCode: default
+        description: Unexpected error
+  - url: /group_details/{site_id}/{group_id}/{date_start}/{date_end}
+    method: getPerformanceData
+    httpMethod: get
+    tag: Groups
+    typeScriptTag: groups
+    description: Group Performance
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: groupId
+        schema: undefined
+        required: true
+        description: The group identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+    responses:
+      - statusCode: '200'
+        description: An array of groups
+      - statusCode: default
+        description: Unexpected error
+  - url: /all_group_details/{site_id}/{date_start}/{date_end}
+    method: getKeywordsDetails
+    httpMethod: get
+    tag: Groups
+    typeScriptTag: groups
+    description: Group performance
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+    responses:
+      - statusCode: '200'
+        description: An array of groups
+      - statusCode: default
+        description: Unexpected error
+  - url: /keyword_data/{site_id}/{date_start}/{date_end}
+    method: getDetails
+    httpMethod: get
+    tag: Keyword Data
+    typeScriptTag: keywordData
+    description: Keyword Data
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: offset
+        schema: undefined
+        description: >-
+          By default a  request is limited to 1000 rows, if you want more you
+          can set the offset
+      - name: keywordName
+        schema: undefined
+        required: false
+        description: The keyword name you wish to retrieve data for
+    responses:
+      - statusCode: '200'
+        description: An array of keywords details
+      - statusCode: default
+        description: Unexpected error
+  - url: /keyword_data/{site_id}/{group_id}/{date_start}/{date_end}
+    method: getPerformance
+    httpMethod: get
+    tag: Keyword Data
+    typeScriptTag: keywordData
+    description: Keyword Performance
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: groupId
+        schema: undefined
+        required: true
+        description: Group id. For Brand folder you can use `brand` as value for group id
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: offset
+        schema: undefined
+        description: >-
+          By default, a request is limited to 1000 rows. If you need to get
+          more, you can set an offset, accordingly (an offset of 1000 will
+          provide the following 1000 rows). 
+           For example, if you need rows 3000-4000, you would set the offset at 3000.
+      - name: keywordName
+        schema: undefined
+        required: false
+        description: The keyword (name, not ID) you need data for.
+    responses:
+      - statusCode: '200'
+        description: Keyword details for a specific group.
+      - statusCode: default
+        description: Unexpected error
+  - url: /ranks/{site_id}/{date_start}/{date_end}
+    method: getDesktopMobileRanks
+    httpMethod: get
+    tag: Ranks
+    typeScriptTag: ranks
+    description: Ranks
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: offset
+        schema: undefined
+        description: >-
+          By default a rank request is limited to 100 keywords, if you want the
+          next 100 keywords you can set the offset
+      - name: limit
+        schema: undefined
+        description: >-
+          If this field is not set, default value is 100.If this field is set,
+          allowed values are between 100 and 1000
+    responses:
+      - statusCode: '200'
+        description: An array of positions grouped by keyword
+      - statusCode: default
+        description: Unexpected error
+  - url: /ranks/{site_id}/{date_start}/{date_end}/{group_id}
+    method: getGroupRanks
+    httpMethod: get
+    tag: Ranks
+    typeScriptTag: ranks
+    description: Keywords Ranks
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: groupId
+        schema: undefined
+        required: true
+        description: The unique group identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: offset
+        schema: undefined
+        description: >-
+          By default, a rank request is limited to 100 keywords. If you need to
+          get more, you can set an offset, accordingly (an offset of 100 will
+          provide the following 100 keywords). 
+           For example, if you need keywords 300-400, you would set the offset at 300.
+      - name: limit
+        schema: undefined
+        description: >-
+          If this field is not set, default value is 100.If this field is set,
+          allowed values are between 100 and 1000
+    responses:
+      - statusCode: '200'
+        description: An array of positions grouped by keyword
+      - statusCode: default
+        description: Unexpected error
+  - url: /organic_traffic/{site_id}/{date_start}/{date_end}
+    method: getPerformanceData
+    httpMethod: get
+    tag: Organic Traffic
+    typeScriptTag: organicTraffic
+    description: Organic Traffic Performance
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+    responses:
+      - statusCode: '200'
+        description: An array of Organic Traffic statistics grouped by date
+      - statusCode: default
+        description: Unexpected error
+  - url: /organic_traffic/split/{site_id}/{date_start}/{date_end}
+    method: splitByDates
+    httpMethod: get
+    tag: Organic Traffic
+    typeScriptTag: organicTraffic
+    description: Organic Traffic
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: type
+        schema: undefined
+        description: 'Possible values: brand | non-brand.'
+    responses:
+      - statusCode: '200'
+        description: An array of Organic Traffic statistics grouped by date
+      - statusCode: default
+        description: Unexpected error
+  - url: /content/{site_id}/{date_start}/{date_end}
+    method: getPerformanceData
+    httpMethod: get
+    tag: Content Performance
+    typeScriptTag: contentPerformance
+    description: Content Performance
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: offset
+        schema: undefined
+        required: false
+        description: >-
+          By default, a request is limited to 1000 rows. If you need to get
+          more, you can set an offset, accordingly (an offset of 1000 will
+          provide the following 1000 rows). 
+           For example, if you need rows 3000-4000, you would set the offset at 3000.
+    responses:
+      - statusCode: '200'
+        description: List of articles associated to your site
+      - statusCode: default
+        description: Unexpected error
+  - url: /keyword_serp/{site_id}
+    method: getCompetitors
+    httpMethod: get
+    tag: Keyword SERP
+    typeScriptTag: keywordSerp
+    description: Keyword Competitors
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: keywordName
+        schema: undefined
+        required: true
+        description: The keyword name
+      - name: queryEndDate
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: mobile
+        schema: undefined
+        description: Check to retrieve mobile landing pages.
+    responses:
+      - statusCode: '200'
+        description: An array of landing pages
+      - statusCode: default
+        description: Unexpected error
+  - url: /visibility_score_data/{site_id}/{group_id}/{date_start}/{date_end}
+    method: dailyVisibilityData
+    httpMethod: get
+    tag: Visibility Score
+    typeScriptTag: visibilityScore
+    description: Daily Visibility
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: groupId
+        schema: undefined
+        required: true
+        description: The unique group identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+      - name: device
+        schema: undefined
+        required: false
+        description: >-
+          Device value. If it's not provided, default value is 1
+          (https://api.seomonitor.com/api-docs. Get all devices from
+          &quot;/devices&quot; endpoint. Possible values: 1 or 2
+    responses:
+      - statusCode: '200'
+        description: An array containing dates and visibility scores for each date
+      - statusCode: default
+        description: Unexpected error
+  - url: /visibility_score/{site_id}/{group_id}/{date_start}/{date_end}
+    method: getByDateRange
+    httpMethod: get
+    tag: Visibility Score
+    typeScriptTag: visibilityScore
+    description: Visibility scores
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: groupId
+        schema: undefined
+        required: true
+        description: The unique group identifier
+      - name: dateStart
+        schema: undefined
+        required: true
+        description: >-
+          The start of the period. (Accepts date format as YYYY-mm-dd or
+          relative like "1 week ago", "3 months ago", etc.)
+      - name: dateEnd
+        schema: undefined
+        required: true
+        description: >-
+          The end of the period. (Accepts date format as YYYY-mm-dd or relative
+          like "now", "today", etc.)
+    responses:
+      - statusCode: '200'
+        description: An array of visibility scores
+      - statusCode: default
+        description: Unexpected error
+  - url: /compare/keywords/{site_id}/{start_date}/{end_date}/{competitors}
+    method: competitorKeywords
+    httpMethod: get
+    tag: Compare
+    typeScriptTag: compare
+    description: Get competitors keywords
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: startDate
+        schema: undefined
+        required: true
+        description: The start of the period. (Relative date)
+      - name: endDate
+        schema: undefined
+        required: true
+        description: The end of the period. (Relative date)
+      - name: competitors
+        schema: undefined
+        required: true
+        description: Maximum 10 competitors, separated by comma.
+      - name: offset
+        schema: undefined
+        description: >-
+          By default a  request is limited to 1000 rows, if you want more you
+          can set the offset
+    responses:
+      - statusCode: '200'
+        description: Competition data for keywords
+      - statusCode: default
+        description: Unexpected error
+  - url: >-
+      /compare/keywords/{site_id}/{start_date}/{end_date}/{competitors}/{group_id}
+    method: competitorRankings
+    httpMethod: get
+    tag: Compare
+    typeScriptTag: compare
+    description: Competitors' Rankings
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: startDate
+        schema: undefined
+        required: true
+        description: The start of the period. (Relative date)
+      - name: endDate
+        schema: undefined
+        required: true
+        description: The end of the period. (Relative date)
+      - name: competitors
+        schema: undefined
+        required: true
+        description: Maximum 10 competitors, separated by comma.
+      - name: groupId
+        schema: undefined
+        required: false
+        description: >-
+          Group id from /groups_list/{site_id}. If it's not provided, default
+          group is 'All keywords'
+      - name: device
+        schema: undefined
+        description: Check to retrieve mobile data.
+      - name: offset
+        schema: undefined
+        description: >-
+          By default, a request is limited to 1000 rows. If you need to get
+          more, you can set an offset, accordingly (an offset of 1000 will
+          provide the following 1000 rows). 
+           For example, if you need rows 3000-4000, you would set the offset at 3000.
+    responses:
+      - statusCode: '200'
+        description: Competition data for keywords
+      - statusCode: default
+        description: Unexpected error
+  - url: /compare/competitors/visibility_score/{site_id}/{start_date}/{end_date}
+    method: competitorsVisibilityScore
+    httpMethod: get
+    tag: Compare
+    typeScriptTag: compare
+    description: Get competitors visibility score
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: startDate
+        schema: undefined
+        required: true
+        description: The start of the period. (Relative date)
+      - name: endDate
+        schema: undefined
+        required: true
+        description: The end of the period. (Relative date)
+      - name: groupId
+        schema: undefined
+        required: false
+        description: >-
+          Group id from /groups_list/{site_id}. If it's not provided, default
+          group is &quotAll keywords&quot.  Use comma for multiple groups (Eg:
+          group_id_1,group_id_2) 
+      - name: competitors
+        schema: undefined
+        required: false
+        description: Maximum 10 competitors, separated by comma.
+      - name: device
+        schema: undefined
+        required: false
+        description: >-
+          Device value. If it's not provided, default value is 1
+          (https://api.seomonitor.com/api-docs. Get all devices from
+          &quot;/devices&quot; endpoint. Possible values: 1 or 2
+    responses:
+      - statusCode: '200'
+        description: >-
+          An array with all marked as "default over all groups" in competitors
+          and their visibility score on interval [startDate - endDate ]
+      - statusCode: default
+        description: Unexpected error
+  - url: >-
+      /compare/competitors/visibility_score/{site_id}/{start_date}/{end_date}/{competitors}/{group_id}
+    method: dailyVisibility
+    httpMethod: get
+    tag: Compare
+    typeScriptTag: compare
+    description: Competitors' Daily visibility
+    parameters:
+      - name: siteId
+        schema: undefined
+        required: true
+        description: The unique site identifier
+      - name: startDate
+        schema: undefined
+        required: true
+        description: The start of the period. (Relative date)
+      - name: endDate
+        schema: undefined
+        required: true
+        description: The end of the period. (Relative date)
+      - name: competitors
+        schema: undefined
+        required: true
+        description: Maximum 10 competitors, separated by comma.
+      - name: groupId
+        schema: undefined
+        required: false
+        description: >-
+          Group id from /groups_list/{site_id}. If it's not provided, default
+          group is &quotAll keywords&quot 
+      - name: device
+        schema: undefined
+        required: false
+        description: >-
+          Device value. If it's not provided, default value is 1
+          (https://api.seomonitor.com/api-docs. Get all devices from
+          &quot;/devices&quot; endpoint. Possible values: 1 or 2
+    responses:
+      - statusCode: '200'
+        description: >-
+          An array with all competitors and their visibility score on interval
+          [startDate - endDate ]
+      - statusCode: default
+        description: Unexpected error
+  - url: /devices
+    method: getAll
+    httpMethod: get
+    tag: Devices
+    typeScriptTag: devices
+    description: Get all devices
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: Result with all devices
+numberOfSchemas: 0
+apiDescription: >-
+  `
+
+  We have now released the new `<a href='https://api-docs.seomonitor.com/'>API
+  3.0</a>`!
+
+  It comes with enhanced data coverage and organization, and easy-to-use
+  documentation.
+
+  This version will continue to be functional, and you can use it alongside the
+  new version, if needed.`

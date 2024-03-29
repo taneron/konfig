@@ -1,0 +1,418 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/api-keys/{id}:
+    delete:
+      '204':
+        application/json: {}
+  /v1/apple-pay-domains/{id}:
+    delete:
+      '204':
+        application/json: {}
+  /v1/applications/{account_id}/submit:
+    post:
+      '202':
+        application/json: {}
+  /v1/customers/{id}:
+    delete:
+      '204':
+        application/json: {}
+  /v1/files/{id}:
+    delete:
+      '204':
+        application/json: {}
+  /v1/users/{id}:
+    delete:
+      '204':
+        application/json: {}
+  /v1/webhook-endpoints/{id}:
+    delete:
+      '204':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /v1/accounts:
+    get: Accounts_getDetails
+    patch: Accounts_updateAccount
+  /v1/accounts/capabilities:
+    post: Accounts_addCapability
+  /v1/accounts/capabilities/{id}:
+    delete: Accounts_removeCapability
+    post: Accounts_updateCapability
+  /v1/accounts/connected:
+    delete: Accounts_deleteMerchantAccount
+    get: Accounts_listConnected
+    post: Accounts_createConnectedAccount
+  /v1/api-keys:
+    get: ApiKeys_listAll
+    post: ApiKeys_createNewKey
+  /v1/api-keys/{id}:
+    delete: ApiKeys_permanentlyDeleteById
+    patch: ApiKeys_updateKey
+  /v1/apple-pay-domains:
+    get: ApplePayDomains_listAll
+    post: ApplePayDomains_createDomain
+  /v1/apple-pay-domains/{id}:
+    delete: ApplePayDomains_deleteDomain
+    get: ApplePayDomains_getById
+  /v1/applications/{account_id}:
+    get: Onboarding_getMerchantApplication
+    put: Onboarding_updateMerchantApplication
+  /v1/applications/{account_id}/submit:
+    post: Onboarding_submitMerchantApplication
+  /v1/auth-links:
+    post: AuthLinks_createLink
+  /v1/auth/forgot:
+    post: Users_requestPasswordReset
+  /v1/auth/login:
+    post: Users_createJwtToken
+  /v1/auth/logout:
+    post: Users_invalidateRefreshToken
+  /v1/auth/refresh:
+    post: Users_refreshAccessToken
+  /v1/auth/register:
+    post: Users_registerUserAndPartnerAccount
+  /v1/auth/reset:
+    post: Users_resetPassword
+  /v1/balance-transactions:
+    get: BalanceTransactions_listAll
+  /v1/balance-transactions/summary:
+    get: BalanceTransactions_getSummary
+  /v1/balance-transactions/{id}:
+    get: BalanceTransactions_getById
+  /v1/charges/{id}:
+    get: Charges_getById
+  /v1/checkout-sessions:
+    get: CheckoutSessions_listAll
+    post: CheckoutSessions_createSession
+  /v1/checkout-sessions/{id}:
+    get: CheckoutSessions_getDetails
+  /v1/checkout-sessions/{id}/expire:
+    post: CheckoutSessions_expireSession
+  /v1/customers:
+    get: Customers_listAll
+    post: Customers_createCustomerObject
+  /v1/customers/{id}:
+    delete: Customers_deleteCustomer
+    get: Customers_getDetails
+    patch: Customers_updateCustomerById
+  /v1/disputes:
+    get: Disputes_listAll
+  /v1/disputes/{id}:
+    get: Disputes_getDetails
+    post: Disputes_submitEvidence
+  /v1/documents:
+    get: Documents_listAll
+  /v1/documents/bulk-submit:
+    post: Documents_bulkSubmit
+  /v1/documents/{id}:
+    get: Documents_getDetailsById
+  /v1/documents/{id}/submit:
+    post: Documents_submitDocument
+  /v1/events:
+    get: Events_listAll
+  /v1/events/{id}:
+    get: Events_getDetails
+  /v1/files:
+    get: Files_getAll
+    post: Files_uploadFile
+  /v1/files/{id}:
+    delete: Files_permanentlyDeleteById
+    get: Files_getById
+  /v1/files/{id}/contents:
+    get: Files_getContentsById
+  /v1/health:
+    get: Health_overallStatus
+  /v1/outbound-transfers:
+    get: OutboundTransfers_listAll
+    post: OutboundTransfers_createTransfer
+  /v1/outbound-transfers/{id}:
+    get: OutboundTransfers_getDetails
+  /v1/outbound-transfers/{id}/cancel:
+    post: OutboundTransfers_cancelTransfer
+  /v1/payment-intents:
+    get: PaymentIntents_listAll
+    post: PaymentIntents_createPaymentIntent
+  /v1/payment-intents/{id}:
+    get: PaymentIntents_getDetails
+    patch: PaymentIntents_updateWithoutConfirmation
+  /v1/payment-intents/{id}/cancel:
+    post: PaymentIntents_cancelIntent
+  /v1/payment-intents/{id}/capture:
+    post: PaymentIntents_captureFunds
+  /v1/payment-intents/{id}/confirm:
+    post: PaymentIntents_confirmIntent
+  /v1/payment-methods:
+    get: PaymentMethods_listForCustomer
+    post: PaymentMethods_createNewMethod
+  /v1/payment-methods/ach-debit-token:
+    post: PaymentMethods_createAchDebitSingleUseToken
+  /v1/payment-methods/{id}:
+    get: PaymentMethods_getById
+    patch: PaymentMethods_updateMethod
+  /v1/payment-methods/{id}/attach:
+    put: PaymentMethods_attachCustomer
+  /v1/payment-methods/{id}/detach:
+    put: PaymentMethods_detachMethodFromCustomer
+  /v1/payouts:
+    get: Payouts_getAll
+  /v1/payouts/{id}:
+    get: Payouts_getDetailsById
+  /v1/platform-fees:
+    get: PlatformFees_listAll
+  /v1/platform-fees/{id}:
+    get: PlatformFees_getDetails
+  /v1/platform-fees/{id}/refunds/{refund_id}:
+    get: PlatformFeeRefunds_getDetailsById
+  /v1/pricing-templates:
+    get: PricingTemplates_listAll
+  /v1/pricing-templates/{id}:
+    get: PricingTemplates_getDetailsById
+  /v1/product-codes:
+    get: ProductCodes_listForAccount
+  /v1/refunds:
+    get: Refunds_listAll
+    post: Refunds_createNewRefund
+  /v1/refunds/{id}:
+    get: Refunds_getDetailsById
+  /v1/report-runs:
+    get: ReportRuns_listAll
+    post: ReportRuns_createRun
+  /v1/report-runs/{id}:
+    get: ReportRuns_getById
+  /v1/subscriptions:
+    get: Subscriptions_listAll
+    post: Subscriptions_createNewSubscription
+  /v1/subscriptions/{id}:
+    get: Subscriptions_getById
+    patch: Subscriptions_updateSubscription
+  /v1/subscriptions/{id}/cancel:
+    post: Subscriptions_cancelSubscription
+  /v1/subscriptions/{id}/pause:
+    post: Subscriptions_pauseSubscription
+  /v1/subscriptions/{id}/resume:
+    post: Subscriptions_resumeSubscription
+  /v1/subscriptions/{id}/retry:
+    post: Subscriptions_retryPaymentAt
+  /v1/terminal-readers:
+    get: TerminalReaders_listAll
+  /v1/terminal-readers/{id}:
+    get: TerminalReaders_getById
+    post: TerminalReaders_updateReader
+  /v1/terminal-readers/{id}/status:
+    get: TerminalReaders_getStatus
+  /v1/user-invitations:
+    get: Users_listAllUserInvitations
+    post: Users_sendInvitation
+  /v1/user-invitations/check/{id}:
+    get: Users_checkUserInvitation
+  /v1/user-invitations/{id}:
+    delete: Users_deleteUserInvitation
+    get: Users_getInvitationById
+  /v1/user-invitations/{id}/resend:
+    post: Users_resendInvitation
+  /v1/users:
+    get: Users_getAll
+    post: Users_createNewUser
+  /v1/users/{id}:
+    delete: Users_removeUser
+    get: Users_getUserById
+    patch: Users_updateUser
+  /v1/webhook-endpoints:
+    get: WebhookEndpoints_getAll
+    post: WebhookEndpoints_createEndpoint
+  /v1/webhook-endpoints/{id}:
+    delete: WebhookEndpoints_deleteEndpoint
+    get: WebhookEndpoints_getById
+    patch: WebhookEndpoints_updateEndpoint
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/accounts/connected:
+    get:
+      '200':
+        application/json: AccountsListConnectedResponse
+  /v1/api-keys:
+    get:
+      '200':
+        application/json: ApiKeysListAllResponse
+  /v1/api-keys/{id}:
+    delete:
+      '204':
+        application/json: ApiKeysPermanentlyDeleteByIdResponse
+  /v1/apple-pay-domains:
+    get:
+      '200':
+        application/json: ApplePayDomainsListAllResponse
+  /v1/apple-pay-domains/{id}:
+    delete:
+      '204':
+        application/json: ApplePayDomainsDeleteDomainResponse
+  /v1/applications/{account_id}/submit:
+    post:
+      '202':
+        application/json: OnboardingSubmitMerchantApplicationResponse
+  /v1/balance-transactions:
+    get:
+      '200':
+        application/json: BalanceTransactionsListAllResponse
+  /v1/checkout-sessions:
+    get:
+      '200':
+        application/json: CheckoutSessionsListAllResponse
+  /v1/customers:
+    get:
+      '200':
+        application/json: CustomersListAllResponse
+  /v1/customers/{id}:
+    delete:
+      '204':
+        application/json: CustomersDeleteCustomerResponse
+  /v1/disputes:
+    get:
+      '200':
+        application/json: DisputesListAllResponse
+  /v1/documents:
+    get:
+      '200':
+        application/json: DocumentsListAllResponse
+  /v1/events:
+    get:
+      '200':
+        application/json: EventsListAllResponse
+  /v1/files:
+    get:
+      '200':
+        application/json: FilesGetAllResponse
+  /v1/files/{id}:
+    delete:
+      '204':
+        application/json: FilesPermanentlyDeleteByIdResponse
+  /v1/files/{id}/contents:
+    get:
+      '200':
+        application/octet-stream: FilesGetContentsByIdResponse
+  /v1/outbound-transfers:
+    get:
+      '200':
+        application/json: OutboundTransfersListAllResponse
+  /v1/payment-intents:
+    get:
+      '200':
+        application/json: PaymentIntentsListAllResponse
+  /v1/payment-methods:
+    get:
+      '200':
+        application/json: PaymentMethodsListForCustomerResponse
+  /v1/payouts:
+    get:
+      '200':
+        application/json: PayoutsGetAllResponse
+  /v1/platform-fees:
+    get:
+      '200':
+        application/json: PlatformFeesListAllResponse
+  /v1/pricing-templates:
+    get:
+      '200':
+        application/json: PricingTemplatesListAllResponse
+  /v1/product-codes:
+    get:
+      '200':
+        application/json: ProductCodesListForAccountResponse
+  /v1/refunds:
+    get:
+      '200':
+        application/json: RefundsListAllResponse
+  /v1/report-runs:
+    get:
+      '200':
+        application/json: ReportRunsListAllResponse
+  /v1/subscriptions:
+    get:
+      '200':
+        application/json: SubscriptionsListAllResponse
+  /v1/terminal-readers:
+    get:
+      '200':
+        application/json: TerminalReadersListAllResponse
+  /v1/user-invitations:
+    get:
+      '200':
+        application/json: UsersListAllUserInvitationsResponse
+  /v1/users:
+    get:
+      '200':
+        application/json: UsersGetAllResponse
+  /v1/users/{id}:
+    delete:
+      '204':
+        application/json: UsersRemoveUserResponse
+  /v1/webhook-endpoints:
+    get:
+      '200':
+        application/json: WebhookEndpointsGetAllResponse
+  /v1/webhook-endpoints/{id}:
+    delete:
+      '204':
+        application/json: WebhookEndpointsDeleteEndpointResponse
+securityParameters:
+  charge_id:
+    query: false
+  created_at_gte:
+    query: false
+  created_at_lte:
+    query: false
+  customer_id:
+    query: false
+  include:
+    query: false
+  include_connected_accounts:
+    query: false
+  limit:
+    query: false
+  metadata:
+    query: false
+  next_payment_at_gte:
+    query: false
+  next_payment_at_lte:
+    query: false
+  object_id:
+    query: false
+  offset:
+    query: false
+  paid_at_gte:
+    query: false
+  paid_at_lte:
+    query: false
+  payment_intent_id:
+    query: false
+  payout_id:
+    query: false
+  purposes:
+    query: false
+  q:
+    query: false
+  sort:
+    query: false
+  source_id:
+    query: false
+  status:
+    query: false
+  subscription_id:
+    query: false
+  terminal_reader_id:
+    query: false
+  tilled-account:
+    header: false
+  time_unit:
+    query: false
+  time_zone:
+    query: false
+  type:
+    query: false
+  types:
+    query: false
+validServerUrls: {}

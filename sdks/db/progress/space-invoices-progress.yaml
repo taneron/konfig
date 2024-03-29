@@ -1,0 +1,2612 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/AccountOrganizations/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Accounts/authorized:
+    get:
+      '200':
+        application/json: {}
+  /v1/Accounts/identity-verification:
+    get:
+      '200':
+        application/json: {}
+  /v1/AtcudSeries/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Bokun/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/BusinessPremises/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Categories/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Clients/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/CustomIntegrations/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Defaults/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/DocumentCategories/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Documents/public/{id}:
+    get:
+      '200':
+        application/json: {}
+  /v1/Documents/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Documents/{id}/fiscally-verify:
+    post:
+      '200':
+        application/json: {}
+  /v1/FileMeta/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Items/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Magento1/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Orders/{id}/documents/create:
+    post:
+      '200':
+        application/json: {}
+  /v1/Organizations/{id}/invite:
+    post:
+      '200':
+        application/json: {}
+  /v1/Organizations/{id}/subscription:
+    get:
+      '200':
+        application/json: {}
+  /v1/Payments/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/PriceLists/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Prices/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Recurrences/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Shopamine/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Shopify/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Stripe/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Subscriptions/{id}/payment-method:
+    get:
+      '200':
+        application/json: {}
+    post:
+      '200':
+        application/json: {}
+  /v1/Taxes/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Thrivecart/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/TicketingHub/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Units/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Warehouses/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Webhooks/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/Woocommerce/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/geoip/locate:
+    post:
+      '200':
+        application/json: {}
+  /v1/payment-processing:
+    patch:
+      '204':
+        application/json: {}
+  /v1/payment-processing/webhooks:
+    post:
+      '200':
+        application/json: {}
+  /v1/stripe-connect:
+    patch:
+      '204':
+        application/json: {}
+  /v1/stripe-connect/accounts/{id}:
+    patch:
+      '204':
+        application/json: {}
+  /v1/stripe-connect/{id}/webhooks:
+    post:
+      '200':
+        application/json: {}
+  /v2/invoices/{id}:
+    delete:
+      '204':
+        application/json: {}
+    patch:
+      '204':
+        application/json: {}
+    put:
+      '204':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /:
+    get: HealthController_getStatus
+  /live:
+    get: HealthController_getStatus
+  /ready:
+    get: HealthController_getStatus
+  /v1/AWSSES/webhook:
+    post: Awsses_createWebhook
+  /v1/AccountOrganizations/{id}:
+    delete: AccountOrganization_deleteById
+  /v1/AccountOrganizations/{id}/accept:
+    post: AccountOrganization_confirmInvitation
+  /v1/AccountOrganizations/{id}/change-role:
+    post: AccountOrganization_changeRole
+  /v1/AccountOrganizations/{id}/disable:
+    post: AccountOrganization_disableAccess
+  /v1/AccountOrganizations/{id}/enable:
+    post: AccountOrganization_enableAccess
+  /v1/AccountOrganizations/{id}/reject:
+    post: AccountOrganization_rejectInvitation
+  /v1/Accounts:
+    post: Account_createNewInstance
+  /v1/Accounts/authorized:
+    get: Account_checkAuthorizationAndReturnUser
+  /v1/Accounts/change-password:
+    post: Account_changePassword
+  /v1/Accounts/confirm:
+    get: Account_confirmUserRegistration
+  /v1/Accounts/identity-verification:
+    get: Account_getIdentityHash
+  /v1/Accounts/impersonate:
+    post: Account_impersonateChild
+  /v1/Accounts/is-unique:
+    get: Account_checkEmailUnique
+  /v1/Accounts/login:
+    post: Account_userLogin
+  /v1/Accounts/logout:
+    post: Account_logoutUser
+  /v1/Accounts/reset:
+    post: Account_resetPasswordByEmail
+  /v1/Accounts/reset-password:
+    post: Account_resetPasswordViaToken
+  /v1/Accounts/subscription:
+    get: Account_getActiveSubscription
+  /v1/Accounts/{id}:
+    get: Account_findById
+    patch: Account_patchAttributesById
+  /v1/Accounts/{id}/accessTokens:
+    get: Account_queryAccessTokens
+    post: Account_createAccessToken
+  /v1/Accounts/{id}/accessTokens/{fk}:
+    delete: Account_deleteAccessTokenById
+  /v1/Accounts/{id}/is-verified:
+    get: Account_checkVerifiedStatus
+  /v1/Accounts/{id}/logs:
+    get: Account_queryLogs
+  /v1/Accounts/{id}/logs/count:
+    get: Account_countLogs
+  /v1/Accounts/{id}/organizations:
+    get: Account_queryOrganizations
+    post: Account_createInstanceInOrganizations
+  /v1/Accounts/{id}/organizations/count:
+    get: Account_countOrganizations
+  /v1/Accounts/{id}/send-verification:
+    post: Account_requestVerificationEmail
+  /v1/Accounts/{id}/usages:
+    get: Account_queryUsages
+  /v1/Accounts/{id}/usages/count:
+    get: Account_countUsages
+  /v1/Accounts/{id}/verify:
+    post: Account_triggerIdentityVerification
+  /v1/AtcudSeries:
+    get: AtcudSeries_findAllByFilter
+    post: AtcudSeries_createNewInstance
+  /v1/AtcudSeries/count:
+    get: AtcudSeries_countInstancesByWhere
+  /v1/AtcudSeries/findOne:
+    get: AtcudSeries_findFirstByFilter
+  /v1/AtcudSeries/{id}:
+    delete: AtcudSeries_deleteById
+    get: AtcudSeries_findById
+    patch: AtcudSeries_updateAttributes
+    put: AtcudSeries_replaceAttributesById
+  /v1/AtcudSeries/{id}/organization:
+    get: AtcudSeries_getOrganizationBelongsTo
+  /v1/AtcudSeries/{id}/replace:
+    post: AtcudSeries_replaceAttributesById
+  /v1/Bokun/{id}:
+    delete: Bokun_deleteById
+    patch: Bokun_patchAttributesById
+  /v1/Bokun/{id}/import:
+    post: Bokun_importIntegrationData
+  /v1/Bokun/{id}/order:
+    post: Bokun_createOrder
+  /v1/BusinessPremises/{id}:
+    delete: BusinessPremise_deleteById
+    patch: BusinessPremise_updateAttributesById
+  /v1/BusinessPremises/{id}/electronicDevices:
+    post: BusinessPremise_createElectronicDevicesInstance
+  /v1/Categories/{id}:
+    delete: Category_removeById
+    get: Category_findById
+    put: Category_replaceAttributesById
+  /v1/Categories/{id}/replace:
+    post: Category_replaceAttributesById
+  /v1/Certificates/expiry-cron:
+    get: Certificate_getExpiryCron
+  /v1/Clients/{id}:
+    delete: Client_deleteById
+    get: Client_findById
+    patch: Client_updateAttributesById
+    put: Client_replaceAttributesById
+  /v1/Clients/{id}/replace:
+    post: Client_replaceAttributesById
+  /v1/Clients/{id}/send-reminder:
+    post: Client_sendReminder
+  /v1/Companies:
+    get: Company_findAllInstances
+  /v1/Companies/search:
+    get: Company_searchGet
+  /v1/Countries:
+    get: Country_findAllByFilter
+  /v1/Countries/match:
+    get: Country_matchTermAgainstAvailable
+  /v1/Currencies:
+    get: Currency_listByFilter
+  /v1/CustomIntegrations/{id}:
+    delete: CustomIntegration_deleteById
+    patch: CustomIntegration_patchAttributes
+  /v1/CustomIntegrations/{id}/import:
+    post: CustomIntegration_importExcelData
+  /v1/CustomIntegrations/{id}/order:
+    post: CustomIntegration_createOrder
+  /v1/Defaults/{id}:
+    delete: Default_deleteById
+    get: Default_findById
+    patch: Default_patchAttributesById
+  /v1/DocumentCategories/{id}:
+    delete: DocumentCategory_deleteById
+    patch: DocumentCategory_updateAttributesById
+    put: DocumentCategory_updateAttributesById
+  /v1/DocumentCategories/{id}/replace:
+    post: DocumentCategory_replaceAttributesById
+  /v1/Documents/cron/incoming:
+    get: Document_getIncoming
+  /v1/Documents/cron/outgoing:
+    get: Document_getOutgoingDocuments
+  /v1/Documents/parse-xml:
+    post: Document_convertXmlToJson
+  /v1/Documents/public/{id}:
+    get: Document_getByShareableId
+  /v1/Documents/public/{id}/attachments/{attachmentId}/download:
+    get: Document_getAttachmentByShareableId
+  /v1/Documents/public/{id}/e-slog:
+    get: Document_generateEslogXml
+  /v1/Documents/public/{id}/pdf:
+    get: Document_getPdfById
+  /v1/Documents/{id}:
+    delete: Document_deleteById
+    get: Document_findById
+    patch: Document_patchAttributesById
+    put: Document_replaceAttributesById
+  /v1/Documents/{id}/attachments/upload:
+    post: Document_uploadAttachment
+  /v1/Documents/{id}/cancel:
+    post: Document_cancelById
+  /v1/Documents/{id}/comments:
+    post: Document_createInstanceInComments
+  /v1/Documents/{id}/comments/{fk}:
+    delete: Document_deleteRelatedItemByIdForComments
+    put: Document_updateRelatedItemById
+  /v1/Documents/{id}/documentCategories:
+    post: Document_createInstanceInDocumentCategories
+  /v1/Documents/{id}/e-slog:
+    get: Document_generateEslogXml
+  /v1/Documents/{id}/fiscally-verify:
+    post: Document_fiscallyVerify
+  /v1/Documents/{id}/mark-sent:
+    post: Document_markAsSentViaSnailMail
+  /v1/Documents/{id}/payments:
+    get: Document_getPayments
+    post: Document_createPaymentInstance
+  /v1/Documents/{id}/payments/count:
+    get: Document_countPayments
+  /v1/Documents/{id}/pdf:
+    get: Document_getPdfById
+  /v1/Documents/{id}/recurrence:
+    get: Document_getRecurrence
+    post: Document_createInstanceInRecurrence
+  /v1/Documents/{id}/replace:
+    post: Document_replaceAttributesById
+  /v1/Documents/{id}/send:
+    post: Document_sendNotification
+  /v1/Documents/{id}/share:
+    post: Document_generateShareableId
+  /v1/Documents/{id}/uncancel:
+    post: Document_markUncancelled
+  /v1/ElectronicDevices/{id}:
+    patch: ElectronicDevice_patchAttributesById
+  /v1/FileMeta/{id}:
+    delete: FileMeta_deleteById
+  /v1/Items/{id}:
+    delete: Item_deleteById
+    get: Item_findById
+    put: Item_updateAttributesById
+  /v1/Items/{id}/components:
+    post: Item_createInstance
+  /v1/Items/{id}/components/{fk}:
+    put: Item_updateRelatedComponentById
+  /v1/Items/{id}/inventories:
+    get: Item_queryInventories
+  /v1/Items/{id}/replace:
+    post: Item_replaceAttributesById
+  /v1/Logs/cron/clear:
+    get: Log_clearCronLogs
+  /v1/Magento1/{id}:
+    delete: Magento1_deleteById
+    patch: Magento1_updateAttributesById
+  /v1/Magento1/{id}/import:
+    post: Magento1_importIntegrationData
+  /v1/Magento1/{id}/order:
+    post: Magento1_createOrder
+  /v1/Messages/contact-sales:
+    post: Message_submitContactForm
+  /v1/Orders/{id}:
+    get: Order_findById
+  /v1/Orders/{id}/documents/create:
+    post: Order_createDocument
+  /v1/Organizations/mailgun-route:
+    post: Organization_redirectMailgunToModel
+  /v1/Organizations/{id}:
+    get: Organization_findById
+    patch: Organization_updateAttributesById
+  /v1/Organizations/{id}/accountOrganizations:
+    get: Organization_getAccountOrganizations
+  /v1/Organizations/{id}/accountOrganizations/count:
+    get: Organization_countAccountOrganizations
+  /v1/Organizations/{id}/activate:
+    post: Organization_activateById
+  /v1/Organizations/{id}/bokun:
+    get: Organization_getBokun
+    post: Organization_createBokunInstance
+  /v1/Organizations/{id}/bokun/count:
+    get: Organization_countBokun
+  /v1/Organizations/{id}/business-stats:
+    get: Organization_getBusinessStats
+  /v1/Organizations/{id}/businessPremises:
+    get: Organization_getBusinessPremises
+    post: Organization_createBusinessPremises
+  /v1/Organizations/{id}/categories:
+    get: Organization_getCategories
+    post: Organization_createCategoryInstance
+  /v1/Organizations/{id}/categories/count:
+    get: Organization_countCategories
+  /v1/Organizations/{id}/category-total-stats:
+    get: Organization_getCategoryTotalStats
+  /v1/Organizations/{id}/clients:
+    get: Organization_queryClients
+    post: Organization_createClientInstance
+  /v1/Organizations/{id}/clients/count:
+    get: Organization_countClients
+  /v1/Organizations/{id}/clients/search:
+    get: Organization_findClientsBySearch
+  /v1/Organizations/{id}/customIntegrations:
+    get: Organization_queryCustomIntegrations
+    post: Organization_createCustomIntegrationInstance
+  /v1/Organizations/{id}/customIntegrations/count:
+    get: Organization_countCustomIntegrations
+  /v1/Organizations/{id}/deactivate:
+    post: Organization_deactivateById
+  /v1/Organizations/{id}/defaults:
+    get: Organization_getDefaults
+    post: Organization_createInstanceInDefaults
+  /v1/Organizations/{id}/defaults/count:
+    get: Organization_countDefaults
+  /v1/Organizations/{id}/defaults/{fk}:
+    put: Organization_updateRelatedItemById
+  /v1/Organizations/{id}/delete-image:
+    delete: Organization_removeImage
+  /v1/Organizations/{id}/document-total-stats:
+    get: Organization_getDocumentStats
+  /v1/Organizations/{id}/documentCategories:
+    get: Organization_queryDocumentCategories
+  /v1/Organizations/{id}/documentCategories/count:
+    get: Organization_countDocumentCategories
+  /v1/Organizations/{id}/documents:
+    get: Organization_queryDocuments
+    post: Organization_createNewInstanceInDocuments
+  /v1/Organizations/{id}/documents/count:
+    get: Organization_countDocuments
+  /v1/Organizations/{id}/documents/parse-image:
+    post: Organization_submitImageProcessing
+  /v1/Organizations/{id}/documents/pdfs:
+    get: Organization_getMultipleDocumentPdfs
+  /v1/Organizations/{id}/download-image:
+    get: Organization_getImageById
+  /v1/Organizations/{id}/electronicDevices:
+    get: Organization_queryElectronicDevices
+    post: Organization_createNewElectronicDevice
+  /v1/Organizations/{id}/export:
+    get: Organization_exportById
+  /v1/Organizations/{id}/has-certificate:
+    get: Organization_checkCertificateType
+  /v1/Organizations/{id}/images:
+    delete: Organization_deleteImageById
+    get: Organization_getImagesById
+    post: Organization_uploadImage
+  /v1/Organizations/{id}/images/logo:
+    get: Organization_getImageLogo
+  /v1/Organizations/{id}/import:
+    post: Organization_importCsvData
+  /v1/Organizations/{id}/invite:
+    post: Organization_inviteUser
+  /v1/Organizations/{id}/is-unique-doc-number:
+    get: Organization_checkUniqueDocNumber
+  /v1/Organizations/{id}/items:
+    get: Organization_queryItems
+    post: Organization_createNewItemInstance
+  /v1/Organizations/{id}/items/count:
+    get: Organization_countItems
+  /v1/Organizations/{id}/items/search:
+    get: Organization_findItemsBySearch
+  /v1/Organizations/{id}/last-doc-number:
+    get: Organization_getLastDocNumber
+  /v1/Organizations/{id}/magento1:
+    get: Organization_getMagento1
+    post: Organization_createMagentoInstance
+  /v1/Organizations/{id}/magento1/count:
+    get: Organization_countMagento1
+  /v1/Organizations/{id}/next-doc-number:
+    get: Organization_getNextDocNumber
+  /v1/Organizations/{id}/orders:
+    get: Organization_getOrders
+  /v1/Organizations/{id}/orders/count:
+    get: Organization_countOrders
+  /v1/Organizations/{id}/payment-total-stats:
+    get: Organization_getPaymentTotalStats
+  /v1/Organizations/{id}/payments:
+    get: Organization_getPayments
+    post: Organization_createPaymentInstance
+  /v1/Organizations/{id}/payments/count:
+    get: Organization_countPayments
+  /v1/Organizations/{id}/priceLists:
+    get: Organization_queryPriceLists
+    post: Organization_createPriceList
+  /v1/Organizations/{id}/priceLists/count:
+    get: Organization_countPriceLists
+  /v1/Organizations/{id}/recurrences:
+    get: Organization_queryRecurrences
+  /v1/Organizations/{id}/recurrences/count:
+    get: Organization_countRecurrences
+  /v1/Organizations/{id}/reports/balance-sheet:
+    get: Organization_getBalanceSheet
+  /v1/Organizations/{id}/reports/profit-and-loss:
+    get: Organization_getProfitAndLossReport
+  /v1/Organizations/{id}/search-clients:
+    get: Organization_searchClients
+  /v1/Organizations/{id}/search-documents:
+    get: Organization_searchDocuments
+  /v1/Organizations/{id}/search-items:
+    get: Organization_searchItems
+  /v1/Organizations/{id}/shopamine:
+    get: Organization_queryShopamine
+    post: Organization_createShopamineInstance
+  /v1/Organizations/{id}/shopamine/count:
+    get: Organization_countShopamine
+  /v1/Organizations/{id}/shopify:
+    get: Organization_queryShopify
+    post: Organization_createShopifyInstance
+  /v1/Organizations/{id}/shopify/count:
+    get: Organization_countShopify
+  /v1/Organizations/{id}/stripe:
+    get: Organization_getStripe
+    post: Organization_createStripeInstance
+  /v1/Organizations/{id}/stripe/count:
+    get: Organization_countStripe
+  /v1/Organizations/{id}/subscription:
+    get: Organization_getCurrentSubscription
+  /v1/Organizations/{id}/taxes:
+    get: Organization_queryTaxes
+    post: Organization_createInstanceInTaxes
+  /v1/Organizations/{id}/taxes/count:
+    get: Organization_countTaxes
+  /v1/Organizations/{id}/this-month-invoices:
+    get: Organization_getThisMonthInvoices
+  /v1/Organizations/{id}/thrivecart:
+    get: Organization_queryThrivecart
+    post: Organization_createThrivecartInstance
+  /v1/Organizations/{id}/thrivecart/count:
+    get: Organization_getThrivecartCount
+  /v1/Organizations/{id}/ticketingHub:
+    get: Organization_getTicketingHub
+    post: Organization_createTicketingHubInstance
+  /v1/Organizations/{id}/ticketingHub/count:
+    get: Organization_countTicketingHub
+  /v1/Organizations/{id}/total-stats:
+    get: Organization_getFinancialStats
+  /v1/Organizations/{id}/units:
+    get: Organization_queryUnits
+    post: Organization_createUnitInstance
+  /v1/Organizations/{id}/units/count:
+    get: Organization_countUnits
+  /v1/Organizations/{id}/upload-certificate:
+    post: Organization_uploadCertificate
+  /v1/Organizations/{id}/upload-image:
+    post: Organization_uploadImage
+  /v1/Organizations/{id}/warehouses:
+    get: Organization_queryWarehouses
+    post: Organization_createWarehouseInstance
+  /v1/Organizations/{id}/warehouses/count:
+    get: Organization_countWarehouses
+  /v1/Organizations/{id}/webhooks:
+    get: Organization_queryWebhooks
+    post: Organization_createWebhook
+  /v1/Organizations/{id}/webhooks/count:
+    get: Organization_countWebhooks
+  /v1/Organizations/{id}/woocommerce:
+    get: Organization_queryWoocommerce
+    post: Organization_createInstanceInWoocommerce
+  /v1/Organizations/{id}/woocommerce/count:
+    get: Organization_countWooCommerce
+  /v1/Payments/{id}:
+    delete: Payment_deleteById
+    get: Payment_findById
+    put: Payment_replaceAttributesById
+  /v1/Payments/{id}/replace:
+    post: Payment_replaceAttributesById
+  /v1/Plans:
+    get: Plan_findAllByFilter
+  /v1/PriceLists/{id}:
+    delete: PriceList_deleteById
+    get: PriceList_findById
+    patch: PriceList_updateAttributesById
+  /v1/PriceLists/{id}/items:
+    get: PriceList_queryItems
+  /v1/PriceLists/{id}/items/count:
+    get: PriceList_countItems
+  /v1/PriceLists/{id}/prices:
+    get: PriceList_queryPrices
+    post: PriceList_createNewInstanceInPrices
+  /v1/PriceLists/{id}/prices/count:
+    get: PriceList_countPrices
+  /v1/Prices/{id}:
+    delete: Price_deleteById
+    patch: Price_patchAttributes
+  /v1/Recurrences/cron:
+    get: Recurrence_getCron
+  /v1/Recurrences/{id}:
+    delete: Recurrence_deleteById
+    get: Recurrence_findById
+    put: Recurrence_updateAttributesById
+  /v1/Recurrences/{id}/replace:
+    post: Recurrence_replaceAttributesById
+  /v1/Sendgrid/webhook:
+    post: Sendgrid_webhookNotification
+  /v1/Shopamine/{id}:
+    delete: Shopamine_deleteModelById
+    patch: Shopamine_updateAttributesById
+  /v1/Shopamine/{id}/import:
+    post: Shopamine_importIntegrationData
+  /v1/Shopamine/{id}/order:
+    post: Shopamine_createOrder
+  /v1/Shopify/app:
+    get: Shopify_getApp
+  /v1/Shopify/incoming:
+    post: Shopify_incomingPost
+  /v1/Shopify/{id}:
+    delete: Shopify_deleteById
+    patch: Shopify_patchAttributesById
+  /v1/Shopify/{id}/import:
+    post: Shopify_importIntegrationData
+  /v1/Shopify/{id}/order:
+    post: Shopify_createOrder
+  /v1/Shopify/{id}/orders/document:
+    get: Shopify_getOrderDocument
+  /v1/Stripe/{id}:
+    delete: Stripe_deleteById
+    patch: Stripe_updateAttributes
+  /v1/Stripe/{id}/incoming:
+    post: Stripe_createIncoming
+  /v1/Subscriptions:
+    get: Subscription_findAllByFilter
+  /v1/Subscriptions/client-token:
+    get: Subscription_getClientToken
+  /v1/Subscriptions/cron:
+    get: Subscription_getCron
+  /v1/Subscriptions/{id}/payment-method:
+    get: Subscription_getPaymentMethod
+    post: Subscription_addPaymentMethod
+  /v1/Subscriptions/{id}/whiteLabel:
+    post: Subscription_createWhiteLabelInstance
+  /v1/Taxes/clause-type:
+    post: Tax_createClauseType
+  /v1/Taxes/{id}:
+    delete: Tax_deleteById
+    get: Tax_findById
+    put: Tax_updateById
+  /v1/Taxes/{id}/replace:
+    post: Tax_replaceAttributesById
+  /v1/Taxes/{id}/taxRates:
+    post: Tax_createInstanceInTaxRates
+  /v1/Taxes/{id}/taxRates/{fk}:
+    delete: Tax_deleteRelatedItemById
+  /v1/Thrivecart/{id}:
+    delete: Thrivecart_deleteById
+    patch: Thrivecart_updateAttributesById
+  /v1/Thrivecart/{id}/import:
+    post: Thrivecart_importIntegrationData
+  /v1/Thrivecart/{id}/order:
+    head: Thrivecart_headOrderById
+    post: Thrivecart_createOrder
+  /v1/TicketingHub/{id}:
+    delete: TicketingHub_deleteById
+    put: TicketingHub_replaceAttributesById
+  /v1/TicketingHub/{id}/replace:
+    post: TicketingHub_replaceAttributesById
+  /v1/Typless/webhook:
+    post: Typless_createWebhook
+  /v1/Units/{id}:
+    delete: Unit_deleteById
+    patch: Unit_updateAttributes
+  /v1/Units/{id}/delete-image:
+    delete: Unit_deleteImage
+  /v1/Units/{id}/download-image:
+    get: Unit_downloadImage
+  /v1/Units/{id}/images:
+    delete: Unit_deleteImageById
+    get: Unit_findImagesById
+    post: Unit_uploadImage
+  /v1/Units/{id}/last-doc-number:
+    get: Unit_getLastDocNumber
+  /v1/Units/{id}/next-doc-number:
+    get: Unit_getNextDocNumber
+  /v1/Units/{id}/upload-image:
+    post: Unit_uploadImage
+  /v1/Warehouses/{id}:
+    delete: Warehouse_deleteById
+    get: Warehouse_findById
+    patch: Warehouse_updateAttributes
+    put: Warehouse_replaceAttributesById
+  /v1/Warehouses/{id}/replace:
+    post: Warehouse_replaceAttributesById
+  /v1/Webhooks/{id}:
+    delete: Webhook_deleteById
+    get: Webhook_findById
+    patch: Webhook_updateAttributesById
+    put: Webhook_updateAttributesById
+  /v1/Webhooks/{id}/replace:
+    post: Webhook_replaceAttributesById
+  /v1/WhiteLabels:
+    get: WhiteLabel_findAll
+    post: WhiteLabel_createNewInstance
+  /v1/WhiteLabels/{id}:
+    patch: WhiteLabel_updateAttributesById
+  /v1/Woocommerce/{id}:
+    delete: Woocommerce_deleteById
+    patch: Woocommerce_updateAttributesById
+  /v1/Woocommerce/{id}/import:
+    post: Woocommerce_importIntegrationData
+  /v1/Woocommerce/{id}/order:
+    post: Woocommerce_createOrderById
+  /v1/accounts:
+    get: AccountController_list
+  /v1/accounts/count:
+    get: AccountController_getCount
+  /v1/containers/{container}/download/{file}:
+    get: Container_downloadFile
+  /v1/documents/{shareableId}/payment-intent:
+    get: DocumentPaymentIntentController_getPaymentIntentByShareableId
+  /v1/documents/{shareableId}/stripe-connect/payment-intent:
+    get: DocumentStripeConnectPaymentIntentController_getByShareableId
+  /v1/fattura-pa/webhooks:
+    post: FatturaPaController_createWebhooksSubscription
+  /v1/geoip/locate:
+    post: GeoIp_parseIpToGeoLocation
+  /v1/organizations/{id}/merchant:
+    get: OrganizationMerchantController_getById
+    patch: OrganizationMerchantController_updateMerchantById
+    post: OrganizationMerchantController_createMerchant
+  /v1/organizations/{id}/merchant/link:
+    get: OrganizationMerchantLinkController_getMerchantLink
+  /v1/organizations/{id}/payment-intents:
+    get: OrganizationPaymentIntentController_getPaymentIntents
+    post: OrganizationPaymentIntentController_createPaymentIntent
+  /v1/organizations/{id}/payment-intents/authorized:
+    post: OrganizationPaymentIntentController_createAuthorizedPaymentIntent
+  /v1/organizations/{id}/saft-pt/report:
+    get: SaftPtController_generateReportById
+  /v1/organizations/{id}/stripe-connect/account:
+    get: OrganizationStripeConnectAccountController_getById
+    post: OrganizationStripeConnectAccountController_createStripeAccount
+  /v1/organizations/{id}/stripe-connect/account/link:
+    get: OrganizationStripeConnectAccountLinkController_getStripeLink
+  /v1/organizations/{id}/transactions:
+    get: OrganizationTransactionController_listById
+  /v1/organizations/{organizationId}/atcud:
+    get: AtcudSeriesController_getByOrganization
+    post: AtcudSeriesController_createAtcud
+  /v1/organizations/{organizationId}/atcud/get-active:
+    post: AtcudSeriesController_getActiveAtcud
+  /v1/organizations/{organizationId}/atcud/{id}:
+    get: AtcudSeriesController_getAtcudById
+  /v1/payment-processing:
+    get: AccountPaymentProcessingController_getPaymentProcessing
+    patch: AccountPaymentProcessingController_updatePaymentProcessing
+    post: AccountPaymentProcessingController_createPaymentProcess
+  /v1/payment-processing/webhooks:
+    post: PaymentProcessingController_createWebhook
+  /v1/stripe-connect:
+    get: AccountStripeConnectController_getStripeConnect
+    patch: AccountStripeConnectController_updateStripeConnect
+    post: AccountStripeConnectController_createStripeConnect
+  /v1/stripe-connect/accounts/{id}:
+    patch: StripeConnectAccountController_updateById
+  /v1/stripe-connect/{id}/webhooks:
+    post: StripeConnectController_createWebhooks
+  /v1/tracking/webhook:
+    post: Tracking_webhookNotification
+  /v2/invoices/{id}:
+    delete: InvoiceController_removeById
+    get: InvoiceController_getById
+    patch: InvoiceController_updateById
+    put: InvoiceController_updateById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/AccountOrganizations/{id}/change-role:
+    post:
+      application/x-www-form-urlencoded: AccountOrganizationChangeRoleRequest
+  /v1/Accounts/change-password:
+    post:
+      application/x-www-form-urlencoded: AccountChangePasswordRequest
+  /v1/Accounts/impersonate:
+    post:
+      application/x-www-form-urlencoded: AccountImpersonateChildRequest
+  /v1/Accounts/login:
+    post:
+      application/json: AccountUserLoginRequest
+      application/x-www-form-urlencoded: AccountUserLoginRequest1
+      application/xml: AccountUserLoginRequest2
+      text/xml: AccountUserLoginRequest3
+  /v1/Accounts/reset-password:
+    post:
+      application/x-www-form-urlencoded: AccountResetPasswordViaTokenRequest
+  /v1/Clients/{id}/send-reminder:
+    post:
+      application/x-www-form-urlencoded: ClientSendReminderRequest
+  /v1/Documents/{id}/send:
+    post:
+      application/x-www-form-urlencoded: DocumentSendNotificationRequest
+  /v1/Documents/{id}/share:
+    post:
+      application/x-www-form-urlencoded: DocumentGenerateShareableIdRequest
+  /v1/Messages/contact-sales:
+    post:
+      application/x-www-form-urlencoded: MessageSubmitContactFormRequest
+  /v1/Organizations/mailgun-route:
+    post:
+      application/json: OrganizationRedirectMailgunToModelRequest
+      application/x-www-form-urlencoded: OrganizationRedirectMailgunToModelRequest1
+      application/xml: OrganizationRedirectMailgunToModelRequest2
+      text/xml: OrganizationRedirectMailgunToModelRequest3
+  /v1/Organizations/{id}/invite:
+    post:
+      application/x-www-form-urlencoded: OrganizationInviteUserRequest
+  /v1/Organizations/{id}/upload-certificate:
+    post:
+      application/x-www-form-urlencoded: OrganizationUploadCertificateRequest
+  /v1/Organizations/{id}/upload-image:
+    post:
+      application/x-www-form-urlencoded: OrganizationUploadImageRequest
+  /v1/Sendgrid/webhook:
+    post:
+      application/json: SendgridWebhookNotificationRequest
+      application/x-www-form-urlencoded: SendgridWebhookNotificationRequest1
+      application/xml: SendgridWebhookNotificationRequest2
+      text/xml: SendgridWebhookNotificationRequest3
+  /v1/Shopify/{id}/import:
+    post:
+      application/x-www-form-urlencoded: ShopifyImportIntegrationDataRequest
+  /v1/Subscriptions/{id}/payment-method:
+    post:
+      application/x-www-form-urlencoded: SubscriptionAddPaymentMethodRequest
+  /v1/Taxes/clause-type:
+    post:
+      application/json: TaxCreateClauseTypeRequest
+      application/x-www-form-urlencoded: TaxCreateClauseTypeRequest1
+      application/xml: TaxCreateClauseTypeRequest2
+      text/xml: TaxCreateClauseTypeRequest3
+  /v1/Typless/webhook:
+    post:
+      application/json: TyplessCreateWebhookRequest
+      application/x-www-form-urlencoded: TyplessCreateWebhookRequest1
+      application/xml: TyplessCreateWebhookRequest2
+      text/xml: TyplessCreateWebhookRequest3
+  /v1/fattura-pa/webhooks:
+    post:
+      text/xml: FatturaPaControllerCreateWebhooksSubscriptionRequest
+  /v1/geoip/locate:
+    post:
+      application/x-www-form-urlencoded: GeoIpParseIpToGeoLocationRequest
+  /v1/organizations/{id}/payment-intents:
+    post:
+      application/json: OrganizationPaymentIntentControllerCreatePaymentIntentRequest
+  /v1/organizations/{id}/payment-intents/authorized:
+    post:
+      application/json: OrganizationPaymentIntentControllerCreateAuthorizedPaymentIntentRequest
+  /v1/payment-processing/webhooks:
+    post:
+      application/json: PaymentProcessingControllerCreateWebhookRequest
+  /v1/stripe-connect/{id}/webhooks:
+    post:
+      application/json: StripeConnectControllerCreateWebhooksRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /:
+    get:
+      '200':
+        application/json: HealthControllerGetStatus200Response
+      '500':
+        application/json: HealthControllerGetStatus500Response
+      '503':
+        application/json: HealthControllerGetStatus503Response
+  /live:
+    get:
+      '200':
+        application/json: HealthControllerGetStatusResponse
+      '500':
+        application/json: HealthControllerGetStatus500Response
+      '503':
+        application/json: HealthControllerGetStatus503Response
+  /ready:
+    get:
+      '200':
+        application/json: HealthControllerGetStatus200Response
+      '500':
+        application/json: HealthControllerGetStatus500Response
+      '503':
+        application/json: HealthControllerGetStatus503Response
+  /v1/AWSSES/webhook:
+    post:
+      '200':
+        application/javascript: AwssesCreateWebhook200Response
+        application/json: AwssesCreateWebhookResponse
+        application/xml: AwssesCreateWebhook200Response
+        text/javascript: AwssesCreateWebhook200Response
+        text/xml: AwssesCreateWebhook200Response
+  /v1/AccountOrganizations/{id}:
+    delete:
+      '200':
+        application/javascript: AccountOrganizationDeleteById200Response
+        application/json: AccountOrganizationDeleteByIdResponse
+        application/xml: AccountOrganizationDeleteById200Response
+        text/javascript: AccountOrganizationDeleteById200Response
+        text/xml: AccountOrganizationDeleteById200Response
+  /v1/AccountOrganizations/{id}/accept:
+    post:
+      '200':
+        application/javascript: AccountOrganizationConfirmInvitation200Response
+        application/json: AccountOrganizationConfirmInvitationResponse
+        application/xml: AccountOrganizationConfirmInvitation200Response
+        text/javascript: AccountOrganizationConfirmInvitation200Response
+        text/xml: AccountOrganizationConfirmInvitation200Response
+  /v1/AccountOrganizations/{id}/change-role:
+    post:
+      '200':
+        application/javascript: AccountOrganizationChangeRole200Response
+        application/json: AccountOrganizationChangeRoleResponse
+        application/xml: AccountOrganizationChangeRole200Response
+        text/javascript: AccountOrganizationChangeRole200Response
+        text/xml: AccountOrganizationChangeRole200Response
+  /v1/AccountOrganizations/{id}/disable:
+    post:
+      '200':
+        application/javascript: AccountOrganizationDisableAccess200Response
+        application/json: AccountOrganizationDisableAccessResponse
+        application/xml: AccountOrganizationDisableAccess200Response
+        text/javascript: AccountOrganizationDisableAccess200Response
+        text/xml: AccountOrganizationDisableAccess200Response
+  /v1/AccountOrganizations/{id}/enable:
+    post:
+      '200':
+        application/javascript: AccountOrganizationEnableAccess200Response
+        application/json: AccountOrganizationEnableAccessResponse
+        application/xml: AccountOrganizationEnableAccess200Response
+        text/javascript: AccountOrganizationEnableAccess200Response
+        text/xml: AccountOrganizationEnableAccess200Response
+  /v1/AccountOrganizations/{id}/reject:
+    post:
+      '200':
+        application/javascript: AccountOrganizationRejectInvitation200Response
+        application/json: AccountOrganizationRejectInvitationResponse
+        application/xml: AccountOrganizationRejectInvitation200Response
+        text/javascript: AccountOrganizationRejectInvitation200Response
+        text/xml: AccountOrganizationRejectInvitation200Response
+  /v1/Accounts/authorized:
+    get:
+      '200':
+        application/javascript: AccountCheckAuthorizationAndReturnUser200Response
+        application/json: AccountCheckAuthorizationAndReturnUserResponse
+        application/xml: AccountCheckAuthorizationAndReturnUser200Response
+        text/javascript: AccountCheckAuthorizationAndReturnUser200Response
+        text/xml: AccountCheckAuthorizationAndReturnUser200Response
+  /v1/Accounts/identity-verification:
+    get:
+      '200':
+        application/javascript: AccountGetIdentityHash200Response
+        application/json: AccountGetIdentityHashResponse
+        application/xml: AccountGetIdentityHash200Response
+        text/javascript: AccountGetIdentityHash200Response
+        text/xml: AccountGetIdentityHash200Response
+  /v1/Accounts/is-unique:
+    get:
+      '200':
+        application/javascript: AccountCheckEmailUnique200Response
+        application/json: AccountCheckEmailUniqueResponse
+        application/xml: AccountCheckEmailUnique200Response
+        text/javascript: AccountCheckEmailUnique200Response
+        text/xml: AccountCheckEmailUnique200Response
+  /v1/Accounts/login:
+    post:
+      '200':
+        application/javascript: AccountUserLogin200Response
+        application/json: AccountUserLoginResponse
+        application/xml: AccountUserLogin200Response
+        text/javascript: AccountUserLogin200Response
+        text/xml: AccountUserLogin200Response
+  /v1/Accounts/subscription:
+    get:
+      '200':
+        application/javascript: AccountGetActiveSubscription200Response
+        application/json: AccountGetActiveSubscriptionResponse
+        application/xml: AccountGetActiveSubscription200Response
+        text/javascript: AccountGetActiveSubscription200Response
+        text/xml: AccountGetActiveSubscription200Response
+  /v1/Accounts/{id}/accessTokens:
+    get:
+      '200':
+        application/javascript: AccountQueryAccessTokens200Response
+        application/json: AccountQueryAccessTokensResponse
+        application/xml: AccountQueryAccessTokens200Response
+        text/javascript: AccountQueryAccessTokens200Response
+        text/xml: AccountQueryAccessTokens200Response
+  /v1/Accounts/{id}/is-verified:
+    get:
+      '200':
+        application/javascript: AccountCheckVerifiedStatus200Response
+        application/json: AccountCheckVerifiedStatusResponse
+        application/xml: AccountCheckVerifiedStatus200Response
+        text/javascript: AccountCheckVerifiedStatus200Response
+        text/xml: AccountCheckVerifiedStatus200Response
+  /v1/Accounts/{id}/logs:
+    get:
+      '200':
+        application/javascript: AccountQueryLogs200Response
+        application/json: AccountQueryLogsResponse
+        application/xml: AccountQueryLogs200Response
+        text/javascript: AccountQueryLogs200Response
+        text/xml: AccountQueryLogs200Response
+  /v1/Accounts/{id}/logs/count:
+    get:
+      '200':
+        application/javascript: AccountCountLogs200Response
+        application/json: AccountCountLogsResponse
+        application/xml: AccountCountLogs200Response
+        text/javascript: AccountCountLogs200Response
+        text/xml: AccountCountLogs200Response
+  /v1/Accounts/{id}/organizations:
+    get:
+      '200':
+        application/javascript: AccountQueryOrganizations200Response
+        application/json: AccountQueryOrganizationsResponse
+        application/xml: AccountQueryOrganizations200Response
+        text/javascript: AccountQueryOrganizations200Response
+        text/xml: AccountQueryOrganizations200Response
+  /v1/Accounts/{id}/organizations/count:
+    get:
+      '200':
+        application/javascript: AccountCountOrganizations200Response
+        application/json: AccountCountOrganizationsResponse
+        application/xml: AccountCountOrganizations200Response
+        text/javascript: AccountCountOrganizations200Response
+        text/xml: AccountCountOrganizations200Response
+  /v1/Accounts/{id}/send-verification:
+    post:
+      '200':
+        application/javascript: AccountRequestVerificationEmail200Response
+        application/json: AccountRequestVerificationEmailResponse
+        application/xml: AccountRequestVerificationEmail200Response
+        text/javascript: AccountRequestVerificationEmail200Response
+        text/xml: AccountRequestVerificationEmail200Response
+  /v1/Accounts/{id}/usages:
+    get:
+      '200':
+        application/javascript: AccountQueryUsages200Response
+        application/json: AccountQueryUsagesResponse
+        application/xml: AccountQueryUsages200Response
+        text/javascript: AccountQueryUsages200Response
+        text/xml: AccountQueryUsages200Response
+  /v1/Accounts/{id}/usages/count:
+    get:
+      '200':
+        application/javascript: AccountCountUsages200Response
+        application/json: AccountCountUsagesResponse
+        application/xml: AccountCountUsages200Response
+        text/javascript: AccountCountUsages200Response
+        text/xml: AccountCountUsages200Response
+  /v1/AtcudSeries:
+    get:
+      '200':
+        application/javascript: AtcudSeriesFindAllByFilter200Response
+        application/json: AtcudSeriesFindAllByFilterResponse
+        application/xml: AtcudSeriesFindAllByFilter200Response
+        text/javascript: AtcudSeriesFindAllByFilter200Response
+        text/xml: AtcudSeriesFindAllByFilter200Response
+  /v1/AtcudSeries/count:
+    get:
+      '200':
+        application/javascript: AtcudSeriesCountInstancesByWhere200Response
+        application/json: AtcudSeriesCountInstancesByWhereResponse
+        application/xml: AtcudSeriesCountInstancesByWhere200Response
+        text/javascript: AtcudSeriesCountInstancesByWhere200Response
+        text/xml: AtcudSeriesCountInstancesByWhere200Response
+  /v1/AtcudSeries/{id}:
+    delete:
+      '200':
+        application/javascript: AtcudSeriesDeleteById200Response
+        application/json: AtcudSeriesDeleteByIdResponse
+        application/xml: AtcudSeriesDeleteById200Response
+        text/javascript: AtcudSeriesDeleteById200Response
+        text/xml: AtcudSeriesDeleteById200Response
+  /v1/Bokun/{id}:
+    delete:
+      '200':
+        application/javascript: BokunDeleteById200Response
+        application/json: BokunDeleteByIdResponse
+        application/xml: BokunDeleteById200Response
+        text/javascript: BokunDeleteById200Response
+        text/xml: BokunDeleteById200Response
+  /v1/Bokun/{id}/import:
+    post:
+      '200':
+        application/javascript: BokunImportIntegrationData200Response
+        application/json: BokunImportIntegrationDataResponse
+        application/xml: BokunImportIntegrationData200Response
+        text/javascript: BokunImportIntegrationData200Response
+        text/xml: BokunImportIntegrationData200Response
+  /v1/BusinessPremises/{id}:
+    delete:
+      '200':
+        application/javascript: BusinessPremiseDeleteById200Response
+        application/json: BusinessPremiseDeleteByIdResponse
+        application/xml: BusinessPremiseDeleteById200Response
+        text/javascript: BusinessPremiseDeleteById200Response
+        text/xml: BusinessPremiseDeleteById200Response
+  /v1/Categories/{id}:
+    delete:
+      '200':
+        application/javascript: CategoryRemoveById200Response
+        application/json: CategoryRemoveByIdResponse
+        application/xml: CategoryRemoveById200Response
+        text/javascript: CategoryRemoveById200Response
+        text/xml: CategoryRemoveById200Response
+  /v1/Certificates/expiry-cron:
+    get:
+      '200':
+        application/javascript: CertificateGetExpiryCron200Response
+        application/json: CertificateGetExpiryCronResponse
+        application/xml: CertificateGetExpiryCron200Response
+        text/javascript: CertificateGetExpiryCron200Response
+        text/xml: CertificateGetExpiryCron200Response
+  /v1/Clients/{id}:
+    delete:
+      '200':
+        application/javascript: ClientDeleteById200Response
+        application/json: ClientDeleteByIdResponse
+        application/xml: ClientDeleteById200Response
+        text/javascript: ClientDeleteById200Response
+        text/xml: ClientDeleteById200Response
+  /v1/Clients/{id}/send-reminder:
+    post:
+      '200':
+        application/javascript: ClientSendReminder200Response
+        application/json: ClientSendReminderResponse
+        application/xml: ClientSendReminder200Response
+        text/javascript: ClientSendReminder200Response
+        text/xml: ClientSendReminder200Response
+  /v1/Companies:
+    get:
+      '200':
+        application/javascript: CompanyFindAllInstances200Response
+        application/json: CompanyFindAllInstancesResponse
+        application/xml: CompanyFindAllInstances200Response
+        text/javascript: CompanyFindAllInstances200Response
+        text/xml: CompanyFindAllInstances200Response
+  /v1/Companies/search:
+    get:
+      '200':
+        application/javascript: CompanySearchGet200Response
+        application/json: CompanySearchGetResponse
+        application/xml: CompanySearchGet200Response
+        text/javascript: CompanySearchGet200Response
+        text/xml: CompanySearchGet200Response
+  /v1/Countries:
+    get:
+      '200':
+        application/javascript: CountryFindAllByFilter200Response
+        application/json: CountryFindAllByFilterResponse
+        application/xml: CountryFindAllByFilter200Response
+        text/javascript: CountryFindAllByFilter200Response
+        text/xml: CountryFindAllByFilter200Response
+  /v1/Countries/match:
+    get:
+      '200':
+        application/javascript: CountryMatchTermAgainstAvailable200Response
+        application/json: CountryMatchTermAgainstAvailableResponse
+        application/xml: CountryMatchTermAgainstAvailable200Response
+        text/javascript: CountryMatchTermAgainstAvailable200Response
+        text/xml: CountryMatchTermAgainstAvailable200Response
+  /v1/Currencies:
+    get:
+      '200':
+        application/javascript: CurrencyListByFilter200Response
+        application/json: CurrencyListByFilterResponse
+        application/xml: CurrencyListByFilter200Response
+        text/javascript: CurrencyListByFilter200Response
+        text/xml: CurrencyListByFilter200Response
+  /v1/CustomIntegrations/{id}:
+    delete:
+      '200':
+        application/javascript: CustomIntegrationDeleteById200Response
+        application/json: CustomIntegrationDeleteByIdResponse
+        application/xml: CustomIntegrationDeleteById200Response
+        text/javascript: CustomIntegrationDeleteById200Response
+        text/xml: CustomIntegrationDeleteById200Response
+  /v1/CustomIntegrations/{id}/import:
+    post:
+      '200':
+        application/javascript: CustomIntegrationImportExcelData200Response
+        application/json: CustomIntegrationImportExcelDataResponse
+        application/xml: CustomIntegrationImportExcelData200Response
+        text/javascript: CustomIntegrationImportExcelData200Response
+        text/xml: CustomIntegrationImportExcelData200Response
+  /v1/Defaults/{id}:
+    delete:
+      '200':
+        application/javascript: DefaultDeleteById200Response
+        application/json: DefaultDeleteByIdResponse
+        application/xml: DefaultDeleteById200Response
+        text/javascript: DefaultDeleteById200Response
+        text/xml: DefaultDeleteById200Response
+  /v1/DocumentCategories/{id}:
+    delete:
+      '200':
+        application/javascript: DocumentCategoryDeleteById200Response
+        application/json: DocumentCategoryDeleteByIdResponse
+        application/xml: DocumentCategoryDeleteById200Response
+        text/javascript: DocumentCategoryDeleteById200Response
+        text/xml: DocumentCategoryDeleteById200Response
+  /v1/Documents/cron/incoming:
+    get:
+      '200':
+        application/javascript: DocumentGetIncoming200Response
+        application/json: DocumentGetIncomingResponse
+        application/xml: DocumentGetIncoming200Response
+        text/javascript: DocumentGetIncoming200Response
+        text/xml: DocumentGetIncoming200Response
+  /v1/Documents/cron/outgoing:
+    get:
+      '200':
+        application/javascript: DocumentGetOutgoingDocuments200Response
+        application/json: DocumentGetOutgoingDocumentsResponse
+        application/xml: DocumentGetOutgoingDocuments200Response
+        text/javascript: DocumentGetOutgoingDocuments200Response
+        text/xml: DocumentGetOutgoingDocuments200Response
+  /v1/Documents/parse-xml:
+    post:
+      '200':
+        application/javascript: DocumentConvertXmlToJson200Response
+        application/json: DocumentConvertXmlToJsonResponse
+        application/xml: DocumentConvertXmlToJson200Response
+        text/javascript: DocumentConvertXmlToJson200Response
+        text/xml: DocumentConvertXmlToJson200Response
+  /v1/Documents/public/{id}:
+    get:
+      '200':
+        application/javascript: DocumentGetByShareableId200Response
+        application/json: DocumentGetByShareableIdResponse
+        application/xml: DocumentGetByShareableId200Response
+        text/javascript: DocumentGetByShareableId200Response
+        text/xml: DocumentGetByShareableId200Response
+  /v1/Documents/public/{id}/attachments/{attachmentId}/download:
+    get:
+      '200':
+        application/javascript: DocumentGetAttachmentByShareableId200Response
+        application/json: DocumentGetAttachmentByShareableIdResponse
+        application/xml: DocumentGetAttachmentByShareableId200Response
+        text/javascript: DocumentGetAttachmentByShareableId200Response
+        text/xml: DocumentGetAttachmentByShareableId200Response
+  /v1/Documents/public/{id}/e-slog:
+    get:
+      '200':
+        application/javascript: DocumentGenerateEslogXml200Response
+        application/json: DocumentGenerateEslogXml200Response
+        application/xml: DocumentGenerateEslogXml200Response
+        text/javascript: DocumentGenerateEslogXml200Response
+        text/xml: DocumentGenerateEslogXml200Response
+  /v1/Documents/public/{id}/pdf:
+    get:
+      '200':
+        application/javascript: DocumentGetPdfById200Response
+        application/json: DocumentGetPdfById200Response
+        application/xml: DocumentGetPdfById200Response
+        text/javascript: DocumentGetPdfById200Response
+        text/xml: DocumentGetPdfById200Response
+  /v1/Documents/{id}:
+    delete:
+      '200':
+        application/javascript: DocumentDeleteById200Response
+        application/json: DocumentDeleteByIdResponse
+        application/xml: DocumentDeleteById200Response
+        text/javascript: DocumentDeleteById200Response
+        text/xml: DocumentDeleteById200Response
+  /v1/Documents/{id}/attachments/upload:
+    post:
+      '200':
+        application/javascript: DocumentUploadAttachment200Response
+        application/json: DocumentUploadAttachmentResponse
+        application/xml: DocumentUploadAttachment200Response
+        text/javascript: DocumentUploadAttachment200Response
+        text/xml: DocumentUploadAttachment200Response
+  /v1/Documents/{id}/cancel:
+    post:
+      '200':
+        application/javascript: DocumentCancelById200Response
+        application/json: DocumentCancelByIdResponse
+        application/xml: DocumentCancelById200Response
+        text/javascript: DocumentCancelById200Response
+        text/xml: DocumentCancelById200Response
+  /v1/Documents/{id}/e-slog:
+    get:
+      '200':
+        application/javascript: DocumentGenerateEslogXml200Response
+        application/json: DocumentGenerateEslogXmlResponse
+        application/xml: DocumentGenerateEslogXml200Response
+        text/javascript: DocumentGenerateEslogXml200Response
+        text/xml: DocumentGenerateEslogXml200Response
+  /v1/Documents/{id}/fiscally-verify:
+    post:
+      '200':
+        application/javascript: DocumentFiscallyVerify200Response
+        application/json: DocumentFiscallyVerifyResponse
+        application/xml: DocumentFiscallyVerify200Response
+        text/javascript: DocumentFiscallyVerify200Response
+        text/xml: DocumentFiscallyVerify200Response
+  /v1/Documents/{id}/mark-sent:
+    post:
+      '200':
+        application/javascript: DocumentMarkAsSentViaSnailMail200Response
+        application/json: DocumentMarkAsSentViaSnailMailResponse
+        application/xml: DocumentMarkAsSentViaSnailMail200Response
+        text/javascript: DocumentMarkAsSentViaSnailMail200Response
+        text/xml: DocumentMarkAsSentViaSnailMail200Response
+  /v1/Documents/{id}/payments:
+    get:
+      '200':
+        application/javascript: DocumentGetPayments200Response
+        application/json: DocumentGetPaymentsResponse
+        application/xml: DocumentGetPayments200Response
+        text/javascript: DocumentGetPayments200Response
+        text/xml: DocumentGetPayments200Response
+  /v1/Documents/{id}/payments/count:
+    get:
+      '200':
+        application/javascript: DocumentCountPayments200Response
+        application/json: DocumentCountPaymentsResponse
+        application/xml: DocumentCountPayments200Response
+        text/javascript: DocumentCountPayments200Response
+        text/xml: DocumentCountPayments200Response
+  /v1/Documents/{id}/pdf:
+    get:
+      '200':
+        application/javascript: DocumentGetPdfById200Response
+        application/json: DocumentGetPdfByIdResponse
+        application/xml: DocumentGetPdfById200Response
+        text/javascript: DocumentGetPdfById200Response
+        text/xml: DocumentGetPdfById200Response
+  /v1/Documents/{id}/send:
+    post:
+      '200':
+        application/javascript: DocumentSendNotification200Response
+        application/json: DocumentSendNotificationResponse
+        application/xml: DocumentSendNotification200Response
+        text/javascript: DocumentSendNotification200Response
+        text/xml: DocumentSendNotification200Response
+  /v1/Documents/{id}/share:
+    post:
+      '200':
+        application/javascript: DocumentGenerateShareableId200Response
+        application/json: DocumentGenerateShareableIdResponse
+        application/xml: DocumentGenerateShareableId200Response
+        text/javascript: DocumentGenerateShareableId200Response
+        text/xml: DocumentGenerateShareableId200Response
+  /v1/Documents/{id}/uncancel:
+    post:
+      '200':
+        application/javascript: DocumentMarkUncancelled200Response
+        application/json: DocumentMarkUncancelledResponse
+        application/xml: DocumentMarkUncancelled200Response
+        text/javascript: DocumentMarkUncancelled200Response
+        text/xml: DocumentMarkUncancelled200Response
+  /v1/FileMeta/{id}:
+    delete:
+      '200':
+        application/javascript: FileMetaDeleteById200Response
+        application/json: FileMetaDeleteByIdResponse
+        application/xml: FileMetaDeleteById200Response
+        text/javascript: FileMetaDeleteById200Response
+        text/xml: FileMetaDeleteById200Response
+  /v1/Items/{id}:
+    delete:
+      '200':
+        application/javascript: ItemDeleteById200Response
+        application/json: ItemDeleteByIdResponse
+        application/xml: ItemDeleteById200Response
+        text/javascript: ItemDeleteById200Response
+        text/xml: ItemDeleteById200Response
+  /v1/Items/{id}/inventories:
+    get:
+      '200':
+        application/javascript: ItemQueryInventories200Response
+        application/json: ItemQueryInventoriesResponse
+        application/xml: ItemQueryInventories200Response
+        text/javascript: ItemQueryInventories200Response
+        text/xml: ItemQueryInventories200Response
+  /v1/Logs/cron/clear:
+    get:
+      '200':
+        application/javascript: LogClearCronLogs200Response
+        application/json: LogClearCronLogsResponse
+        application/xml: LogClearCronLogs200Response
+        text/javascript: LogClearCronLogs200Response
+        text/xml: LogClearCronLogs200Response
+  /v1/Magento1/{id}:
+    delete:
+      '200':
+        application/javascript: Magento1DeleteById200Response
+        application/json: Magento1DeleteByIdResponse
+        application/xml: Magento1DeleteById200Response
+        text/javascript: Magento1DeleteById200Response
+        text/xml: Magento1DeleteById200Response
+  /v1/Magento1/{id}/import:
+    post:
+      '200':
+        application/javascript: Magento1ImportIntegrationData200Response
+        application/json: Magento1ImportIntegrationDataResponse
+        application/xml: Magento1ImportIntegrationData200Response
+        text/javascript: Magento1ImportIntegrationData200Response
+        text/xml: Magento1ImportIntegrationData200Response
+  /v1/Messages/contact-sales:
+    post:
+      '200':
+        application/javascript: MessageSubmitContactForm200Response
+        application/json: MessageSubmitContactFormResponse
+        application/xml: MessageSubmitContactForm200Response
+        text/javascript: MessageSubmitContactForm200Response
+        text/xml: MessageSubmitContactForm200Response
+  /v1/Orders/{id}/documents/create:
+    post:
+      '200':
+        application/javascript: OrderCreateDocument200Response
+        application/json: OrderCreateDocumentResponse
+        application/xml: OrderCreateDocument200Response
+        text/javascript: OrderCreateDocument200Response
+        text/xml: OrderCreateDocument200Response
+  /v1/Organizations/{id}/accountOrganizations:
+    get:
+      '200':
+        application/javascript: OrganizationGetAccountOrganizations200Response
+        application/json: OrganizationGetAccountOrganizationsResponse
+        application/xml: OrganizationGetAccountOrganizations200Response
+        text/javascript: OrganizationGetAccountOrganizations200Response
+        text/xml: OrganizationGetAccountOrganizations200Response
+  /v1/Organizations/{id}/accountOrganizations/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountAccountOrganizations200Response
+        application/json: OrganizationCountAccountOrganizationsResponse
+        application/xml: OrganizationCountAccountOrganizations200Response
+        text/javascript: OrganizationCountAccountOrganizations200Response
+        text/xml: OrganizationCountAccountOrganizations200Response
+  /v1/Organizations/{id}/activate:
+    post:
+      '200':
+        application/javascript: OrganizationActivateById200Response
+        application/json: OrganizationActivateByIdResponse
+        application/xml: OrganizationActivateById200Response
+        text/javascript: OrganizationActivateById200Response
+        text/xml: OrganizationActivateById200Response
+  /v1/Organizations/{id}/bokun:
+    get:
+      '200':
+        application/javascript: OrganizationGetBokun200Response
+        application/json: OrganizationGetBokunResponse
+        application/xml: OrganizationGetBokun200Response
+        text/javascript: OrganizationGetBokun200Response
+        text/xml: OrganizationGetBokun200Response
+  /v1/Organizations/{id}/bokun/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountBokun200Response
+        application/json: OrganizationCountBokunResponse
+        application/xml: OrganizationCountBokun200Response
+        text/javascript: OrganizationCountBokun200Response
+        text/xml: OrganizationCountBokun200Response
+  /v1/Organizations/{id}/business-stats:
+    get:
+      '200':
+        application/javascript: OrganizationGetBusinessStats200Response
+        application/json: OrganizationGetBusinessStatsResponse
+        application/xml: OrganizationGetBusinessStats200Response
+        text/javascript: OrganizationGetBusinessStats200Response
+        text/xml: OrganizationGetBusinessStats200Response
+  /v1/Organizations/{id}/businessPremises:
+    get:
+      '200':
+        application/javascript: OrganizationGetBusinessPremises200Response
+        application/json: OrganizationGetBusinessPremisesResponse
+        application/xml: OrganizationGetBusinessPremises200Response
+        text/javascript: OrganizationGetBusinessPremises200Response
+        text/xml: OrganizationGetBusinessPremises200Response
+  /v1/Organizations/{id}/categories:
+    get:
+      '200':
+        application/javascript: OrganizationGetCategories200Response
+        application/json: OrganizationGetCategoriesResponse
+        application/xml: OrganizationGetCategories200Response
+        text/javascript: OrganizationGetCategories200Response
+        text/xml: OrganizationGetCategories200Response
+  /v1/Organizations/{id}/categories/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountCategories200Response
+        application/json: OrganizationCountCategoriesResponse
+        application/xml: OrganizationCountCategories200Response
+        text/javascript: OrganizationCountCategories200Response
+        text/xml: OrganizationCountCategories200Response
+  /v1/Organizations/{id}/category-total-stats:
+    get:
+      '200':
+        application/javascript: OrganizationGetCategoryTotalStats200Response
+        application/json: OrganizationGetCategoryTotalStatsResponse
+        application/xml: OrganizationGetCategoryTotalStats200Response
+        text/javascript: OrganizationGetCategoryTotalStats200Response
+        text/xml: OrganizationGetCategoryTotalStats200Response
+  /v1/Organizations/{id}/clients:
+    get:
+      '200':
+        application/javascript: OrganizationQueryClients200Response
+        application/json: OrganizationQueryClientsResponse
+        application/xml: OrganizationQueryClients200Response
+        text/javascript: OrganizationQueryClients200Response
+        text/xml: OrganizationQueryClients200Response
+  /v1/Organizations/{id}/clients/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountClients200Response
+        application/json: OrganizationCountClientsResponse
+        application/xml: OrganizationCountClients200Response
+        text/javascript: OrganizationCountClients200Response
+        text/xml: OrganizationCountClients200Response
+  /v1/Organizations/{id}/clients/search:
+    get:
+      '200':
+        application/javascript: OrganizationFindClientsBySearch200Response
+        application/json: OrganizationFindClientsBySearchResponse
+        application/xml: OrganizationFindClientsBySearch200Response
+        text/javascript: OrganizationFindClientsBySearch200Response
+        text/xml: OrganizationFindClientsBySearch200Response
+  /v1/Organizations/{id}/customIntegrations:
+    get:
+      '200':
+        application/javascript: OrganizationQueryCustomIntegrations200Response
+        application/json: OrganizationQueryCustomIntegrationsResponse
+        application/xml: OrganizationQueryCustomIntegrations200Response
+        text/javascript: OrganizationQueryCustomIntegrations200Response
+        text/xml: OrganizationQueryCustomIntegrations200Response
+  /v1/Organizations/{id}/customIntegrations/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountCustomIntegrations200Response
+        application/json: OrganizationCountCustomIntegrationsResponse
+        application/xml: OrganizationCountCustomIntegrations200Response
+        text/javascript: OrganizationCountCustomIntegrations200Response
+        text/xml: OrganizationCountCustomIntegrations200Response
+  /v1/Organizations/{id}/deactivate:
+    post:
+      '200':
+        application/javascript: OrganizationDeactivateById200Response
+        application/json: OrganizationDeactivateByIdResponse
+        application/xml: OrganizationDeactivateById200Response
+        text/javascript: OrganizationDeactivateById200Response
+        text/xml: OrganizationDeactivateById200Response
+  /v1/Organizations/{id}/defaults:
+    get:
+      '200':
+        application/javascript: OrganizationGetDefaults200Response
+        application/json: OrganizationGetDefaultsResponse
+        application/xml: OrganizationGetDefaults200Response
+        text/javascript: OrganizationGetDefaults200Response
+        text/xml: OrganizationGetDefaults200Response
+  /v1/Organizations/{id}/defaults/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountDefaults200Response
+        application/json: OrganizationCountDefaultsResponse
+        application/xml: OrganizationCountDefaults200Response
+        text/javascript: OrganizationCountDefaults200Response
+        text/xml: OrganizationCountDefaults200Response
+  /v1/Organizations/{id}/delete-image:
+    delete:
+      '200':
+        application/javascript: OrganizationRemoveImage200Response
+        application/json: OrganizationRemoveImageResponse
+        application/xml: OrganizationRemoveImage200Response
+        text/javascript: OrganizationRemoveImage200Response
+        text/xml: OrganizationRemoveImage200Response
+  /v1/Organizations/{id}/document-total-stats:
+    get:
+      '200':
+        application/javascript: OrganizationGetDocumentStats200Response
+        application/json: OrganizationGetDocumentStatsResponse
+        application/xml: OrganizationGetDocumentStats200Response
+        text/javascript: OrganizationGetDocumentStats200Response
+        text/xml: OrganizationGetDocumentStats200Response
+  /v1/Organizations/{id}/documentCategories:
+    get:
+      '200':
+        application/javascript: OrganizationQueryDocumentCategories200Response
+        application/json: OrganizationQueryDocumentCategoriesResponse
+        application/xml: OrganizationQueryDocumentCategories200Response
+        text/javascript: OrganizationQueryDocumentCategories200Response
+        text/xml: OrganizationQueryDocumentCategories200Response
+  /v1/Organizations/{id}/documentCategories/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountDocumentCategories200Response
+        application/json: OrganizationCountDocumentCategoriesResponse
+        application/xml: OrganizationCountDocumentCategories200Response
+        text/javascript: OrganizationCountDocumentCategories200Response
+        text/xml: OrganizationCountDocumentCategories200Response
+  /v1/Organizations/{id}/documents:
+    get:
+      '200':
+        application/javascript: OrganizationQueryDocuments200Response
+        application/json: OrganizationQueryDocumentsResponse
+        application/xml: OrganizationQueryDocuments200Response
+        text/javascript: OrganizationQueryDocuments200Response
+        text/xml: OrganizationQueryDocuments200Response
+  /v1/Organizations/{id}/documents/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountDocuments200Response
+        application/json: OrganizationCountDocumentsResponse
+        application/xml: OrganizationCountDocuments200Response
+        text/javascript: OrganizationCountDocuments200Response
+        text/xml: OrganizationCountDocuments200Response
+  /v1/Organizations/{id}/documents/parse-image:
+    post:
+      '200':
+        application/javascript: OrganizationSubmitImageProcessing200Response
+        application/json: OrganizationSubmitImageProcessingResponse
+        application/xml: OrganizationSubmitImageProcessing200Response
+        text/javascript: OrganizationSubmitImageProcessing200Response
+        text/xml: OrganizationSubmitImageProcessing200Response
+  /v1/Organizations/{id}/documents/pdfs:
+    get:
+      '200':
+        application/javascript: OrganizationGetMultipleDocumentPdfs200Response
+        application/json: OrganizationGetMultipleDocumentPdfsResponse
+        application/xml: OrganizationGetMultipleDocumentPdfs200Response
+        text/javascript: OrganizationGetMultipleDocumentPdfs200Response
+        text/xml: OrganizationGetMultipleDocumentPdfs200Response
+  /v1/Organizations/{id}/download-image:
+    get:
+      '200':
+        application/javascript: OrganizationGetImageById200Response
+        application/json: OrganizationGetImageByIdResponse
+        application/xml: OrganizationGetImageById200Response
+        text/javascript: OrganizationGetImageById200Response
+        text/xml: OrganizationGetImageById200Response
+  /v1/Organizations/{id}/electronicDevices:
+    get:
+      '200':
+        application/javascript: OrganizationQueryElectronicDevices200Response
+        application/json: OrganizationQueryElectronicDevicesResponse
+        application/xml: OrganizationQueryElectronicDevices200Response
+        text/javascript: OrganizationQueryElectronicDevices200Response
+        text/xml: OrganizationQueryElectronicDevices200Response
+  /v1/Organizations/{id}/export:
+    get:
+      '200':
+        application/javascript: OrganizationExportById200Response
+        application/json: OrganizationExportByIdResponse
+        application/xml: OrganizationExportById200Response
+        text/javascript: OrganizationExportById200Response
+        text/xml: OrganizationExportById200Response
+  /v1/Organizations/{id}/has-certificate:
+    get:
+      '200':
+        application/javascript: OrganizationCheckCertificateType200Response
+        application/json: OrganizationCheckCertificateTypeResponse
+        application/xml: OrganizationCheckCertificateType200Response
+        text/javascript: OrganizationCheckCertificateType200Response
+        text/xml: OrganizationCheckCertificateType200Response
+  /v1/Organizations/{id}/images:
+    delete:
+      '200':
+        application/javascript: OrganizationDeleteImageById200Response
+        application/json: OrganizationDeleteImageByIdResponse
+        application/xml: OrganizationDeleteImageById200Response
+        text/javascript: OrganizationDeleteImageById200Response
+        text/xml: OrganizationDeleteImageById200Response
+    get:
+      '200':
+        application/javascript: OrganizationGetImagesById200Response
+        application/json: OrganizationGetImagesByIdResponse
+        application/xml: OrganizationGetImagesById200Response
+        text/javascript: OrganizationGetImagesById200Response
+        text/xml: OrganizationGetImagesById200Response
+    post:
+      '200':
+        application/javascript: OrganizationUploadImage200Response
+        application/json: OrganizationUploadImage200Response
+        application/xml: OrganizationUploadImage200Response
+        text/javascript: OrganizationUploadImage200Response
+        text/xml: OrganizationUploadImage200Response
+  /v1/Organizations/{id}/images/logo:
+    get:
+      '200':
+        application/javascript: OrganizationGetImageLogo200Response
+        application/json: OrganizationGetImageLogoResponse
+        application/xml: OrganizationGetImageLogo200Response
+        text/javascript: OrganizationGetImageLogo200Response
+        text/xml: OrganizationGetImageLogo200Response
+  /v1/Organizations/{id}/import:
+    post:
+      '200':
+        application/javascript: OrganizationImportCsvData200Response
+        application/json: OrganizationImportCsvDataResponse
+        application/xml: OrganizationImportCsvData200Response
+        text/javascript: OrganizationImportCsvData200Response
+        text/xml: OrganizationImportCsvData200Response
+  /v1/Organizations/{id}/invite:
+    post:
+      '200':
+        application/javascript: OrganizationInviteUser200Response
+        application/json: OrganizationInviteUserResponse
+        application/xml: OrganizationInviteUser200Response
+        text/javascript: OrganizationInviteUser200Response
+        text/xml: OrganizationInviteUser200Response
+  /v1/Organizations/{id}/is-unique-doc-number:
+    get:
+      '200':
+        application/javascript: OrganizationCheckUniqueDocNumber200Response
+        application/json: OrganizationCheckUniqueDocNumberResponse
+        application/xml: OrganizationCheckUniqueDocNumber200Response
+        text/javascript: OrganizationCheckUniqueDocNumber200Response
+        text/xml: OrganizationCheckUniqueDocNumber200Response
+  /v1/Organizations/{id}/items:
+    get:
+      '200':
+        application/javascript: OrganizationQueryItems200Response
+        application/json: OrganizationQueryItemsResponse
+        application/xml: OrganizationQueryItems200Response
+        text/javascript: OrganizationQueryItems200Response
+        text/xml: OrganizationQueryItems200Response
+  /v1/Organizations/{id}/items/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountItems200Response
+        application/json: OrganizationCountItemsResponse
+        application/xml: OrganizationCountItems200Response
+        text/javascript: OrganizationCountItems200Response
+        text/xml: OrganizationCountItems200Response
+  /v1/Organizations/{id}/items/search:
+    get:
+      '200':
+        application/javascript: OrganizationFindItemsBySearch200Response
+        application/json: OrganizationFindItemsBySearchResponse
+        application/xml: OrganizationFindItemsBySearch200Response
+        text/javascript: OrganizationFindItemsBySearch200Response
+        text/xml: OrganizationFindItemsBySearch200Response
+  /v1/Organizations/{id}/last-doc-number:
+    get:
+      '200':
+        application/javascript: OrganizationGetLastDocNumber200Response
+        application/json: OrganizationGetLastDocNumberResponse
+        application/xml: OrganizationGetLastDocNumber200Response
+        text/javascript: OrganizationGetLastDocNumber200Response
+        text/xml: OrganizationGetLastDocNumber200Response
+  /v1/Organizations/{id}/magento1:
+    get:
+      '200':
+        application/javascript: OrganizationGetMagento1200Response
+        application/json: OrganizationGetMagento1Response
+        application/xml: OrganizationGetMagento1200Response
+        text/javascript: OrganizationGetMagento1200Response
+        text/xml: OrganizationGetMagento1200Response
+  /v1/Organizations/{id}/magento1/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountMagento1200Response
+        application/json: OrganizationCountMagento1Response
+        application/xml: OrganizationCountMagento1200Response
+        text/javascript: OrganizationCountMagento1200Response
+        text/xml: OrganizationCountMagento1200Response
+  /v1/Organizations/{id}/next-doc-number:
+    get:
+      '200':
+        application/javascript: OrganizationGetNextDocNumber200Response
+        application/json: OrganizationGetNextDocNumberResponse
+        application/xml: OrganizationGetNextDocNumber200Response
+        text/javascript: OrganizationGetNextDocNumber200Response
+        text/xml: OrganizationGetNextDocNumber200Response
+  /v1/Organizations/{id}/orders:
+    get:
+      '200':
+        application/javascript: OrganizationGetOrders200Response
+        application/json: OrganizationGetOrdersResponse
+        application/xml: OrganizationGetOrders200Response
+        text/javascript: OrganizationGetOrders200Response
+        text/xml: OrganizationGetOrders200Response
+  /v1/Organizations/{id}/orders/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountOrders200Response
+        application/json: OrganizationCountOrdersResponse
+        application/xml: OrganizationCountOrders200Response
+        text/javascript: OrganizationCountOrders200Response
+        text/xml: OrganizationCountOrders200Response
+  /v1/Organizations/{id}/payment-total-stats:
+    get:
+      '200':
+        application/javascript: OrganizationGetPaymentTotalStats200Response
+        application/json: OrganizationGetPaymentTotalStatsResponse
+        application/xml: OrganizationGetPaymentTotalStats200Response
+        text/javascript: OrganizationGetPaymentTotalStats200Response
+        text/xml: OrganizationGetPaymentTotalStats200Response
+  /v1/Organizations/{id}/payments:
+    get:
+      '200':
+        application/javascript: OrganizationGetPayments200Response
+        application/json: OrganizationGetPaymentsResponse
+        application/xml: OrganizationGetPayments200Response
+        text/javascript: OrganizationGetPayments200Response
+        text/xml: OrganizationGetPayments200Response
+  /v1/Organizations/{id}/payments/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountPayments200Response
+        application/json: OrganizationCountPaymentsResponse
+        application/xml: OrganizationCountPayments200Response
+        text/javascript: OrganizationCountPayments200Response
+        text/xml: OrganizationCountPayments200Response
+  /v1/Organizations/{id}/priceLists:
+    get:
+      '200':
+        application/javascript: OrganizationQueryPriceLists200Response
+        application/json: OrganizationQueryPriceListsResponse
+        application/xml: OrganizationQueryPriceLists200Response
+        text/javascript: OrganizationQueryPriceLists200Response
+        text/xml: OrganizationQueryPriceLists200Response
+  /v1/Organizations/{id}/priceLists/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountPriceLists200Response
+        application/json: OrganizationCountPriceListsResponse
+        application/xml: OrganizationCountPriceLists200Response
+        text/javascript: OrganizationCountPriceLists200Response
+        text/xml: OrganizationCountPriceLists200Response
+  /v1/Organizations/{id}/recurrences:
+    get:
+      '200':
+        application/javascript: OrganizationQueryRecurrences200Response
+        application/json: OrganizationQueryRecurrencesResponse
+        application/xml: OrganizationQueryRecurrences200Response
+        text/javascript: OrganizationQueryRecurrences200Response
+        text/xml: OrganizationQueryRecurrences200Response
+  /v1/Organizations/{id}/recurrences/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountRecurrences200Response
+        application/json: OrganizationCountRecurrencesResponse
+        application/xml: OrganizationCountRecurrences200Response
+        text/javascript: OrganizationCountRecurrences200Response
+        text/xml: OrganizationCountRecurrences200Response
+  /v1/Organizations/{id}/reports/balance-sheet:
+    get:
+      '200':
+        application/javascript: OrganizationGetBalanceSheet200Response
+        application/json: OrganizationGetBalanceSheetResponse
+        application/xml: OrganizationGetBalanceSheet200Response
+        text/javascript: OrganizationGetBalanceSheet200Response
+        text/xml: OrganizationGetBalanceSheet200Response
+  /v1/Organizations/{id}/reports/profit-and-loss:
+    get:
+      '200':
+        application/javascript: OrganizationGetProfitAndLossReport200Response
+        application/json: OrganizationGetProfitAndLossReportResponse
+        application/xml: OrganizationGetProfitAndLossReport200Response
+        text/javascript: OrganizationGetProfitAndLossReport200Response
+        text/xml: OrganizationGetProfitAndLossReport200Response
+  /v1/Organizations/{id}/search-clients:
+    get:
+      '200':
+        application/javascript: OrganizationSearchClients200Response
+        application/json: OrganizationSearchClientsResponse
+        application/xml: OrganizationSearchClients200Response
+        text/javascript: OrganizationSearchClients200Response
+        text/xml: OrganizationSearchClients200Response
+  /v1/Organizations/{id}/search-documents:
+    get:
+      '200':
+        application/javascript: OrganizationSearchDocuments200Response
+        application/json: OrganizationSearchDocumentsResponse
+        application/xml: OrganizationSearchDocuments200Response
+        text/javascript: OrganizationSearchDocuments200Response
+        text/xml: OrganizationSearchDocuments200Response
+  /v1/Organizations/{id}/search-items:
+    get:
+      '200':
+        application/javascript: OrganizationSearchItems200Response
+        application/json: OrganizationSearchItemsResponse
+        application/xml: OrganizationSearchItems200Response
+        text/javascript: OrganizationSearchItems200Response
+        text/xml: OrganizationSearchItems200Response
+  /v1/Organizations/{id}/shopamine:
+    get:
+      '200':
+        application/javascript: OrganizationQueryShopamine200Response
+        application/json: OrganizationQueryShopamineResponse
+        application/xml: OrganizationQueryShopamine200Response
+        text/javascript: OrganizationQueryShopamine200Response
+        text/xml: OrganizationQueryShopamine200Response
+  /v1/Organizations/{id}/shopamine/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountShopamine200Response
+        application/json: OrganizationCountShopamineResponse
+        application/xml: OrganizationCountShopamine200Response
+        text/javascript: OrganizationCountShopamine200Response
+        text/xml: OrganizationCountShopamine200Response
+  /v1/Organizations/{id}/shopify:
+    get:
+      '200':
+        application/javascript: OrganizationQueryShopify200Response
+        application/json: OrganizationQueryShopifyResponse
+        application/xml: OrganizationQueryShopify200Response
+        text/javascript: OrganizationQueryShopify200Response
+        text/xml: OrganizationQueryShopify200Response
+  /v1/Organizations/{id}/shopify/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountShopify200Response
+        application/json: OrganizationCountShopifyResponse
+        application/xml: OrganizationCountShopify200Response
+        text/javascript: OrganizationCountShopify200Response
+        text/xml: OrganizationCountShopify200Response
+  /v1/Organizations/{id}/stripe:
+    get:
+      '200':
+        application/javascript: OrganizationGetStripe200Response
+        application/json: OrganizationGetStripeResponse
+        application/xml: OrganizationGetStripe200Response
+        text/javascript: OrganizationGetStripe200Response
+        text/xml: OrganizationGetStripe200Response
+  /v1/Organizations/{id}/stripe/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountStripe200Response
+        application/json: OrganizationCountStripeResponse
+        application/xml: OrganizationCountStripe200Response
+        text/javascript: OrganizationCountStripe200Response
+        text/xml: OrganizationCountStripe200Response
+  /v1/Organizations/{id}/subscription:
+    get:
+      '200':
+        application/javascript: OrganizationGetCurrentSubscription200Response
+        application/json: OrganizationGetCurrentSubscriptionResponse
+        application/xml: OrganizationGetCurrentSubscription200Response
+        text/javascript: OrganizationGetCurrentSubscription200Response
+        text/xml: OrganizationGetCurrentSubscription200Response
+  /v1/Organizations/{id}/taxes:
+    get:
+      '200':
+        application/javascript: OrganizationQueryTaxes200Response
+        application/json: OrganizationQueryTaxesResponse
+        application/xml: OrganizationQueryTaxes200Response
+        text/javascript: OrganizationQueryTaxes200Response
+        text/xml: OrganizationQueryTaxes200Response
+  /v1/Organizations/{id}/taxes/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountTaxes200Response
+        application/json: OrganizationCountTaxesResponse
+        application/xml: OrganizationCountTaxes200Response
+        text/javascript: OrganizationCountTaxes200Response
+        text/xml: OrganizationCountTaxes200Response
+  /v1/Organizations/{id}/this-month-invoices:
+    get:
+      '200':
+        application/javascript: OrganizationGetThisMonthInvoices200Response
+        application/json: OrganizationGetThisMonthInvoicesResponse
+        application/xml: OrganizationGetThisMonthInvoices200Response
+        text/javascript: OrganizationGetThisMonthInvoices200Response
+        text/xml: OrganizationGetThisMonthInvoices200Response
+  /v1/Organizations/{id}/thrivecart:
+    get:
+      '200':
+        application/javascript: OrganizationQueryThrivecart200Response
+        application/json: OrganizationQueryThrivecartResponse
+        application/xml: OrganizationQueryThrivecart200Response
+        text/javascript: OrganizationQueryThrivecart200Response
+        text/xml: OrganizationQueryThrivecart200Response
+  /v1/Organizations/{id}/thrivecart/count:
+    get:
+      '200':
+        application/javascript: OrganizationGetThrivecartCount200Response
+        application/json: OrganizationGetThrivecartCountResponse
+        application/xml: OrganizationGetThrivecartCount200Response
+        text/javascript: OrganizationGetThrivecartCount200Response
+        text/xml: OrganizationGetThrivecartCount200Response
+  /v1/Organizations/{id}/ticketingHub:
+    get:
+      '200':
+        application/javascript: OrganizationGetTicketingHub200Response
+        application/json: OrganizationGetTicketingHubResponse
+        application/xml: OrganizationGetTicketingHub200Response
+        text/javascript: OrganizationGetTicketingHub200Response
+        text/xml: OrganizationGetTicketingHub200Response
+  /v1/Organizations/{id}/ticketingHub/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountTicketingHub200Response
+        application/json: OrganizationCountTicketingHubResponse
+        application/xml: OrganizationCountTicketingHub200Response
+        text/javascript: OrganizationCountTicketingHub200Response
+        text/xml: OrganizationCountTicketingHub200Response
+  /v1/Organizations/{id}/total-stats:
+    get:
+      '200':
+        application/javascript: OrganizationGetFinancialStats200Response
+        application/json: OrganizationGetFinancialStatsResponse
+        application/xml: OrganizationGetFinancialStats200Response
+        text/javascript: OrganizationGetFinancialStats200Response
+        text/xml: OrganizationGetFinancialStats200Response
+  /v1/Organizations/{id}/units:
+    get:
+      '200':
+        application/javascript: OrganizationQueryUnits200Response
+        application/json: OrganizationQueryUnitsResponse
+        application/xml: OrganizationQueryUnits200Response
+        text/javascript: OrganizationQueryUnits200Response
+        text/xml: OrganizationQueryUnits200Response
+  /v1/Organizations/{id}/units/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountUnits200Response
+        application/json: OrganizationCountUnitsResponse
+        application/xml: OrganizationCountUnits200Response
+        text/javascript: OrganizationCountUnits200Response
+        text/xml: OrganizationCountUnits200Response
+  /v1/Organizations/{id}/upload-certificate:
+    post:
+      '200':
+        application/javascript: OrganizationUploadCertificate200Response
+        application/json: OrganizationUploadCertificateResponse
+        application/xml: OrganizationUploadCertificate200Response
+        text/javascript: OrganizationUploadCertificate200Response
+        text/xml: OrganizationUploadCertificate200Response
+  /v1/Organizations/{id}/upload-image:
+    post:
+      '200':
+        application/javascript: OrganizationUploadImage200Response
+        application/json: OrganizationUploadImageResponse
+        application/xml: OrganizationUploadImage200Response
+        text/javascript: OrganizationUploadImage200Response
+        text/xml: OrganizationUploadImage200Response
+  /v1/Organizations/{id}/warehouses:
+    get:
+      '200':
+        application/javascript: OrganizationQueryWarehouses200Response
+        application/json: OrganizationQueryWarehousesResponse
+        application/xml: OrganizationQueryWarehouses200Response
+        text/javascript: OrganizationQueryWarehouses200Response
+        text/xml: OrganizationQueryWarehouses200Response
+  /v1/Organizations/{id}/warehouses/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountWarehouses200Response
+        application/json: OrganizationCountWarehousesResponse
+        application/xml: OrganizationCountWarehouses200Response
+        text/javascript: OrganizationCountWarehouses200Response
+        text/xml: OrganizationCountWarehouses200Response
+  /v1/Organizations/{id}/webhooks:
+    get:
+      '200':
+        application/javascript: OrganizationQueryWebhooks200Response
+        application/json: OrganizationQueryWebhooksResponse
+        application/xml: OrganizationQueryWebhooks200Response
+        text/javascript: OrganizationQueryWebhooks200Response
+        text/xml: OrganizationQueryWebhooks200Response
+  /v1/Organizations/{id}/webhooks/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountWebhooks200Response
+        application/json: OrganizationCountWebhooksResponse
+        application/xml: OrganizationCountWebhooks200Response
+        text/javascript: OrganizationCountWebhooks200Response
+        text/xml: OrganizationCountWebhooks200Response
+  /v1/Organizations/{id}/woocommerce:
+    get:
+      '200':
+        application/javascript: OrganizationQueryWoocommerce200Response
+        application/json: OrganizationQueryWoocommerceResponse
+        application/xml: OrganizationQueryWoocommerce200Response
+        text/javascript: OrganizationQueryWoocommerce200Response
+        text/xml: OrganizationQueryWoocommerce200Response
+  /v1/Organizations/{id}/woocommerce/count:
+    get:
+      '200':
+        application/javascript: OrganizationCountWooCommerce200Response
+        application/json: OrganizationCountWooCommerceResponse
+        application/xml: OrganizationCountWooCommerce200Response
+        text/javascript: OrganizationCountWooCommerce200Response
+        text/xml: OrganizationCountWooCommerce200Response
+  /v1/Payments/{id}:
+    delete:
+      '200':
+        application/javascript: PaymentDeleteById200Response
+        application/json: PaymentDeleteByIdResponse
+        application/xml: PaymentDeleteById200Response
+        text/javascript: PaymentDeleteById200Response
+        text/xml: PaymentDeleteById200Response
+  /v1/Plans:
+    get:
+      '200':
+        application/javascript: PlanFindAllByFilter200Response
+        application/json: PlanFindAllByFilterResponse
+        application/xml: PlanFindAllByFilter200Response
+        text/javascript: PlanFindAllByFilter200Response
+        text/xml: PlanFindAllByFilter200Response
+  /v1/PriceLists/{id}:
+    delete:
+      '200':
+        application/javascript: PriceListDeleteById200Response
+        application/json: PriceListDeleteByIdResponse
+        application/xml: PriceListDeleteById200Response
+        text/javascript: PriceListDeleteById200Response
+        text/xml: PriceListDeleteById200Response
+  /v1/PriceLists/{id}/items:
+    get:
+      '200':
+        application/javascript: PriceListQueryItems200Response
+        application/json: PriceListQueryItemsResponse
+        application/xml: PriceListQueryItems200Response
+        text/javascript: PriceListQueryItems200Response
+        text/xml: PriceListQueryItems200Response
+  /v1/PriceLists/{id}/items/count:
+    get:
+      '200':
+        application/javascript: PriceListCountItems200Response
+        application/json: PriceListCountItemsResponse
+        application/xml: PriceListCountItems200Response
+        text/javascript: PriceListCountItems200Response
+        text/xml: PriceListCountItems200Response
+  /v1/PriceLists/{id}/prices:
+    get:
+      '200':
+        application/javascript: PriceListQueryPrices200Response
+        application/json: PriceListQueryPricesResponse
+        application/xml: PriceListQueryPrices200Response
+        text/javascript: PriceListQueryPrices200Response
+        text/xml: PriceListQueryPrices200Response
+  /v1/PriceLists/{id}/prices/count:
+    get:
+      '200':
+        application/javascript: PriceListCountPrices200Response
+        application/json: PriceListCountPricesResponse
+        application/xml: PriceListCountPrices200Response
+        text/javascript: PriceListCountPrices200Response
+        text/xml: PriceListCountPrices200Response
+  /v1/Prices/{id}:
+    delete:
+      '200':
+        application/javascript: PriceDeleteById200Response
+        application/json: PriceDeleteByIdResponse
+        application/xml: PriceDeleteById200Response
+        text/javascript: PriceDeleteById200Response
+        text/xml: PriceDeleteById200Response
+  /v1/Recurrences/cron:
+    get:
+      '200':
+        application/javascript: RecurrenceGetCron200Response
+        application/json: RecurrenceGetCronResponse
+        application/xml: RecurrenceGetCron200Response
+        text/javascript: RecurrenceGetCron200Response
+        text/xml: RecurrenceGetCron200Response
+  /v1/Recurrences/{id}:
+    delete:
+      '200':
+        application/javascript: RecurrenceDeleteById200Response
+        application/json: RecurrenceDeleteByIdResponse
+        application/xml: RecurrenceDeleteById200Response
+        text/javascript: RecurrenceDeleteById200Response
+        text/xml: RecurrenceDeleteById200Response
+  /v1/Sendgrid/webhook:
+    post:
+      '200':
+        application/javascript: SendgridWebhookNotification200Response
+        application/json: SendgridWebhookNotificationResponse
+        application/xml: SendgridWebhookNotification200Response
+        text/javascript: SendgridWebhookNotification200Response
+        text/xml: SendgridWebhookNotification200Response
+  /v1/Shopamine/{id}:
+    delete:
+      '200':
+        application/javascript: ShopamineDeleteModelById200Response
+        application/json: ShopamineDeleteModelByIdResponse
+        application/xml: ShopamineDeleteModelById200Response
+        text/javascript: ShopamineDeleteModelById200Response
+        text/xml: ShopamineDeleteModelById200Response
+  /v1/Shopamine/{id}/import:
+    post:
+      '200':
+        application/javascript: ShopamineImportIntegrationData200Response
+        application/json: ShopamineImportIntegrationDataResponse
+        application/xml: ShopamineImportIntegrationData200Response
+        text/javascript: ShopamineImportIntegrationData200Response
+        text/xml: ShopamineImportIntegrationData200Response
+  /v1/Shopify/app:
+    get:
+      '200':
+        application/javascript: ShopifyGetApp200Response
+        application/json: ShopifyGetAppResponse
+        application/xml: ShopifyGetApp200Response
+        text/javascript: ShopifyGetApp200Response
+        text/xml: ShopifyGetApp200Response
+  /v1/Shopify/{id}:
+    delete:
+      '200':
+        application/javascript: ShopifyDeleteById200Response
+        application/json: ShopifyDeleteByIdResponse
+        application/xml: ShopifyDeleteById200Response
+        text/javascript: ShopifyDeleteById200Response
+        text/xml: ShopifyDeleteById200Response
+  /v1/Shopify/{id}/import:
+    post:
+      '200':
+        application/javascript: ShopifyImportIntegrationData200Response
+        application/json: ShopifyImportIntegrationDataResponse
+        application/xml: ShopifyImportIntegrationData200Response
+        text/javascript: ShopifyImportIntegrationData200Response
+        text/xml: ShopifyImportIntegrationData200Response
+  /v1/Stripe/{id}:
+    delete:
+      '200':
+        application/javascript: StripeDeleteById200Response
+        application/json: StripeDeleteByIdResponse
+        application/xml: StripeDeleteById200Response
+        text/javascript: StripeDeleteById200Response
+        text/xml: StripeDeleteById200Response
+  /v1/Subscriptions:
+    get:
+      '200':
+        application/javascript: SubscriptionFindAllByFilter200Response
+        application/json: SubscriptionFindAllByFilterResponse
+        application/xml: SubscriptionFindAllByFilter200Response
+        text/javascript: SubscriptionFindAllByFilter200Response
+        text/xml: SubscriptionFindAllByFilter200Response
+  /v1/Subscriptions/client-token:
+    get:
+      '200':
+        application/javascript: SubscriptionGetClientToken200Response
+        application/json: SubscriptionGetClientTokenResponse
+        application/xml: SubscriptionGetClientToken200Response
+        text/javascript: SubscriptionGetClientToken200Response
+        text/xml: SubscriptionGetClientToken200Response
+  /v1/Subscriptions/cron:
+    get:
+      '200':
+        application/javascript: SubscriptionGetCron200Response
+        application/json: SubscriptionGetCronResponse
+        application/xml: SubscriptionGetCron200Response
+        text/javascript: SubscriptionGetCron200Response
+        text/xml: SubscriptionGetCron200Response
+  /v1/Subscriptions/{id}/payment-method:
+    get:
+      '200':
+        application/javascript: SubscriptionGetPaymentMethod200Response
+        application/json: SubscriptionGetPaymentMethodResponse
+        application/xml: SubscriptionGetPaymentMethod200Response
+        text/javascript: SubscriptionGetPaymentMethod200Response
+        text/xml: SubscriptionGetPaymentMethod200Response
+    post:
+      '200':
+        application/javascript: SubscriptionAddPaymentMethod200Response
+        application/json: SubscriptionAddPaymentMethodResponse
+        application/xml: SubscriptionAddPaymentMethod200Response
+        text/javascript: SubscriptionAddPaymentMethod200Response
+        text/xml: SubscriptionAddPaymentMethod200Response
+  /v1/Taxes/clause-type:
+    post:
+      '200':
+        application/javascript: TaxCreateClauseType200Response
+        application/json: TaxCreateClauseTypeResponse
+        application/xml: TaxCreateClauseType200Response
+        text/javascript: TaxCreateClauseType200Response
+        text/xml: TaxCreateClauseType200Response
+  /v1/Taxes/{id}:
+    delete:
+      '200':
+        application/javascript: TaxDeleteById200Response
+        application/json: TaxDeleteByIdResponse
+        application/xml: TaxDeleteById200Response
+        text/javascript: TaxDeleteById200Response
+        text/xml: TaxDeleteById200Response
+  /v1/Thrivecart/{id}:
+    delete:
+      '200':
+        application/javascript: ThrivecartDeleteById200Response
+        application/json: ThrivecartDeleteByIdResponse
+        application/xml: ThrivecartDeleteById200Response
+        text/javascript: ThrivecartDeleteById200Response
+        text/xml: ThrivecartDeleteById200Response
+  /v1/Thrivecart/{id}/import:
+    post:
+      '200':
+        application/javascript: ThrivecartImportIntegrationData200Response
+        application/json: ThrivecartImportIntegrationDataResponse
+        application/xml: ThrivecartImportIntegrationData200Response
+        text/javascript: ThrivecartImportIntegrationData200Response
+        text/xml: ThrivecartImportIntegrationData200Response
+  /v1/TicketingHub/{id}:
+    delete:
+      '200':
+        application/javascript: TicketingHubDeleteById200Response
+        application/json: TicketingHubDeleteByIdResponse
+        application/xml: TicketingHubDeleteById200Response
+        text/javascript: TicketingHubDeleteById200Response
+        text/xml: TicketingHubDeleteById200Response
+  /v1/Units/{id}:
+    delete:
+      '200':
+        application/javascript: UnitDeleteById200Response
+        application/json: UnitDeleteByIdResponse
+        application/xml: UnitDeleteById200Response
+        text/javascript: UnitDeleteById200Response
+        text/xml: UnitDeleteById200Response
+  /v1/Units/{id}/delete-image:
+    delete:
+      '200':
+        application/javascript: UnitDeleteImage200Response
+        application/json: UnitDeleteImageResponse
+        application/xml: UnitDeleteImage200Response
+        text/javascript: UnitDeleteImage200Response
+        text/xml: UnitDeleteImage200Response
+  /v1/Units/{id}/download-image:
+    get:
+      '200':
+        application/javascript: UnitDownloadImage200Response
+        application/json: UnitDownloadImageResponse
+        application/xml: UnitDownloadImage200Response
+        text/javascript: UnitDownloadImage200Response
+        text/xml: UnitDownloadImage200Response
+  /v1/Units/{id}/images:
+    delete:
+      '200':
+        application/javascript: UnitDeleteImageById200Response
+        application/json: UnitDeleteImageByIdResponse
+        application/xml: UnitDeleteImageById200Response
+        text/javascript: UnitDeleteImageById200Response
+        text/xml: UnitDeleteImageById200Response
+    get:
+      '200':
+        application/javascript: UnitFindImagesById200Response
+        application/json: UnitFindImagesByIdResponse
+        application/xml: UnitFindImagesById200Response
+        text/javascript: UnitFindImagesById200Response
+        text/xml: UnitFindImagesById200Response
+    post:
+      '200':
+        application/javascript: UnitUploadImage200Response
+        application/json: UnitUploadImage200Response
+        application/xml: UnitUploadImage200Response
+        text/javascript: UnitUploadImage200Response
+        text/xml: UnitUploadImage200Response
+  /v1/Units/{id}/last-doc-number:
+    get:
+      '200':
+        application/javascript: UnitGetLastDocNumber200Response
+        application/json: UnitGetLastDocNumberResponse
+        application/xml: UnitGetLastDocNumber200Response
+        text/javascript: UnitGetLastDocNumber200Response
+        text/xml: UnitGetLastDocNumber200Response
+  /v1/Units/{id}/next-doc-number:
+    get:
+      '200':
+        application/javascript: UnitGetNextDocNumber200Response
+        application/json: UnitGetNextDocNumberResponse
+        application/xml: UnitGetNextDocNumber200Response
+        text/javascript: UnitGetNextDocNumber200Response
+        text/xml: UnitGetNextDocNumber200Response
+  /v1/Units/{id}/upload-image:
+    post:
+      '200':
+        application/javascript: UnitUploadImage200Response
+        application/json: UnitUploadImageResponse
+        application/xml: UnitUploadImage200Response
+        text/javascript: UnitUploadImage200Response
+        text/xml: UnitUploadImage200Response
+  /v1/Warehouses/{id}:
+    delete:
+      '200':
+        application/javascript: WarehouseDeleteById200Response
+        application/json: WarehouseDeleteByIdResponse
+        application/xml: WarehouseDeleteById200Response
+        text/javascript: WarehouseDeleteById200Response
+        text/xml: WarehouseDeleteById200Response
+  /v1/Webhooks/{id}:
+    delete:
+      '200':
+        application/javascript: WebhookDeleteById200Response
+        application/json: WebhookDeleteByIdResponse
+        application/xml: WebhookDeleteById200Response
+        text/javascript: WebhookDeleteById200Response
+        text/xml: WebhookDeleteById200Response
+  /v1/WhiteLabels:
+    get:
+      '200':
+        application/javascript: WhiteLabelFindAll200Response
+        application/json: WhiteLabelFindAllResponse
+        application/xml: WhiteLabelFindAll200Response
+        text/javascript: WhiteLabelFindAll200Response
+        text/xml: WhiteLabelFindAll200Response
+  /v1/Woocommerce/{id}:
+    delete:
+      '200':
+        application/javascript: WoocommerceDeleteById200Response
+        application/json: WoocommerceDeleteByIdResponse
+        application/xml: WoocommerceDeleteById200Response
+        text/javascript: WoocommerceDeleteById200Response
+        text/xml: WoocommerceDeleteById200Response
+  /v1/Woocommerce/{id}/import:
+    post:
+      '200':
+        application/javascript: WoocommerceImportIntegrationData200Response
+        application/json: WoocommerceImportIntegrationDataResponse
+        application/xml: WoocommerceImportIntegrationData200Response
+        text/javascript: WoocommerceImportIntegrationData200Response
+        text/xml: WoocommerceImportIntegrationData200Response
+  /v1/accounts:
+    get:
+      '200':
+        application/json: AccountControllerListResponse
+  /v1/fattura-pa/webhooks:
+    post:
+      '200':
+        text/plain: FatturaPaControllerCreateWebhooksSubscriptionResponse
+  /v1/geoip/locate:
+    post:
+      '200':
+        application/javascript: GeoIpParseIpToGeoLocation200Response
+        application/json: GeoIpParseIpToGeoLocationResponse
+        application/xml: GeoIpParseIpToGeoLocation200Response
+        text/javascript: GeoIpParseIpToGeoLocation200Response
+        text/xml: GeoIpParseIpToGeoLocation200Response
+  /v1/organizations/{id}/merchant/link:
+    get:
+      '200':
+        application/json: OrganizationMerchantLinkControllerGetMerchantLinkResponse
+  /v1/organizations/{id}/payment-intents:
+    get:
+      '200':
+        application/json: OrganizationPaymentIntentControllerGetPaymentIntentsResponse
+  /v1/organizations/{id}/stripe-connect/account/link:
+    get:
+      '200':
+        application/json: OrganizationStripeConnectAccountLinkControllerGetStripeLinkResponse
+  /v1/organizations/{id}/transactions:
+    get:
+      '200':
+        application/json: OrganizationTransactionControllerListByIdResponse
+  /v1/organizations/{organizationId}/atcud:
+    get:
+      '200':
+        application/json: AtcudSeriesControllerGetByOrganizationResponse
+  /v1/payment-processing:
+    patch:
+      '204':
+        application/json: AccountPaymentProcessingControllerUpdatePaymentProcessingResponse
+  /v1/payment-processing/webhooks:
+    post:
+      '200':
+        application/json: PaymentProcessingControllerCreateWebhookResponse
+  /v1/stripe-connect:
+    patch:
+      '204':
+        application/json: AccountStripeConnectControllerUpdateStripeConnectResponse
+  /v1/stripe-connect/accounts/{id}:
+    patch:
+      '204':
+        application/json: StripeConnectAccountControllerUpdateByIdResponse
+  /v1/stripe-connect/{id}/webhooks:
+    post:
+      '200':
+        application/json: StripeConnectControllerCreateWebhooksResponse
+  /v1/tracking/webhook:
+    post:
+      '200':
+        application/javascript: TrackingWebhookNotification200Response
+        application/json: TrackingWebhookNotificationResponse
+        application/xml: TrackingWebhookNotification200Response
+        text/javascript: TrackingWebhookNotification200Response
+        text/xml: TrackingWebhookNotification200Response
+  /v2/invoices/{id}:
+    delete:
+      '204':
+        application/json: InvoiceControllerRemoveByIdResponse
+    patch:
+      '204':
+        application/json: InvoiceControllerUpdateByIdResponse
+    put:
+      '204':
+        application/json: InvoiceControllerUpdateById204Response
+securityParameters:
+  BPid:
+    query: false
+  EDid:
+    query: false
+  accountId:
+    query: false
+  categoryId:
+    query: false
+  connect:
+    query: false
+  country:
+    query: false
+  date:
+    query: false
+  dist:
+    query: false
+  dryRun:
+    query: false
+  email:
+    query: false
+  environment:
+    query: false
+  filter:
+    query: false
+  from:
+    query: false
+  fvStrategy:
+    query: false
+  gross:
+    query: false
+  hide_header_footer:
+    query: false
+  ids:
+    query: false
+  ignoreId:
+    query: false
+  include:
+    query: false
+  incoming:
+    query: false
+  l:
+    query: false
+  lang:
+    query: false
+  mobile:
+    query: false
+  number:
+    query: false
+  old:
+    query: false
+  options:
+    query: false
+  provider:
+    query: false
+  redirect:
+    query: false
+  refresh:
+    query: false
+  send:
+    query: false
+  shop:
+    query: false
+  shopifyToken:
+    query: false
+  skipIssuingInvoices:
+    query: false
+  skipSendingEmails:
+    query: false
+  source:
+    query: false
+  subscriptionId:
+    query: false
+  technical:
+    query: false
+  term:
+    query: false
+  text:
+    query: false
+  to:
+    query: false
+  token:
+    query: false
+  type:
+    query: false
+  uid:
+    query: false
+  unitId:
+    query: false
+  upn_qr:
+    query: false
+  where:
+    query: false
+validServerUrls: {}

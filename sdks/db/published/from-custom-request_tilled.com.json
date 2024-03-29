@@ -1,0 +1,4877 @@
+{
+  "securitySchemes": {
+    "TilledApiKey": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "tilled-api-key",
+      "description": "Tilled uses API keys to authenticate requests. You can view and manage your API keys in the Tilled Dashboard."
+    },
+    "JWT": {
+      "scheme": "bearer",
+      "bearerFormat": "JWT",
+      "type": "http",
+      "description": "You can create a JSON Web Token (JWT) via our LOGIN resource. Usage format: `Bearer <JWT>`"
+    }
+  },
+  "apiBaseUrl": "https://api.tilled.com",
+  "apiVersion": "1.0",
+  "apiDescription": "The Tilled API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer).\nOur API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.\n\nYou can use the Tilled API in test mode, which does not affect your live data or interact with the banking networks.\nThe API key you use to authenticate the request determines whether the request is live mode or test mode.\nBefore your account is activated you will only be able to interact with test mode.\n\nAuthentication uses a standard web token schema.\n\n**Notice**: The Tilled API treats HTTP status `401` to mean `Unauthenticated`\nand not the HTTP standard name of `Unauthorized`.\nRequests made for materials the requester does not have permission to access, the API will respond with `403: Forbidden`.\n\n# Authentication\n\nThe tilled API uses API keys to authenticate requests. You can view and manage your API keys in the\nTilled Dashboard.\n\nTest mode secret keys have the prefix sk*test* and live mode secret keys have the prefix sk*live*.\nAlternatively, you can use restricted API keys for granular permissions.\n\nYour API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys\nin publicly accessible areas such as GitHub, client-side code, and so forth.\n\nAuthentication to the API is performed via custom HTTP Header `tilled-api-key`. Provide your API key as the value.\n\nAll API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests\nwithout authentication will also fail.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n\n# Errors\n\nTilled uses conventional HTTP response codes to indicate the success or failure of an API request.\nIn general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error\nthat failed given the information provided (e.g., a required parameter was omitted, a charge failed,\netc.). Codes in the `5xx` range indicate an error with Tilled's servers (these are rare).\n\nSome `4xx` errors that could be handled programmatically (e.g., a card is declined)\ninclude an error code that briefly explains the error reported.\n\n# Request IDs\n\nEach API request has an associated request identifier. You can find this value in the response headers, under `request-id`. If you need to contact us about a specific request, providing the request identifier will ensure the fastest possible resolution.\n\n# Metadata\n\nUpdatable Tilled objects—including [Account](https://api.tilled.com), [Customer](https://api.tilled.com), [PaymentIntent](https://api.tilled.com), [Refund](https://api.tilled.com), and [Subscription](https://api.tilled.com)—have a `metadata` parameter. You can use this parameter to attach key-value data to these Tilled objects.\n\nYou can specify up to 50 keys, with key names up to 40 characters long and values up to 500 characters long.\n\nMetadata is useful for storing additional, structured information on an object. As an example, you could store your user's full name and corresponding unique identifier from your system on a Tilled [Customer](https://api.tilled.com) object. Metadata is not used by Tilled—for example, not used to authorize or decline a charge—and won't be seen by your users unless you choose to show it to them. Do not store any sensitive information (bank account numbers, card details, etc.) as metadata.\n\n# Apple Pay\n\nTilled supports Apple Pay through the Tilled.js [`PaymentRequest`](https://docs.tilled.com/tilledjs/#paymentrequest-ie-apple-pay) object.\n\nIn order to start accepting payments with Apple Pay, you will first need to validate the domains you plan to host the Apple Pay Button on by:\n\n- Hosting Tilled's Apple Domain Verification File on the domain\n- Use the Tilled API to register the domain\n\n## Domain Verification File\n\nDomains hosting an Apple Pay Button must be secured with HTTPS (TLS 1.2 or later) and have a valid SSL certificate.\n\nBefore [registering your domain](https://api.tilled.com) with the Tilled API, you need to host Tilled's [Apple Domain Verification File](https://api.tilled.com/apple-developer-merchantid-domain-association) on the domain at the path: `/.well-known/apple-developer-merchantid-domain-association`\n\n# Tilled.js\n\nTilled.js is the easiest way to get started collecting payments. It allows you to embed a payments form in your application and stores credit card information securely on remote servers instead of passing through your network. View the documentation [here](https://docs.tilled.com/tilledjs/).\n\n# Webhooks\n\n## Receive event notifications with webhooks\n\nListen for events on your Tilled account so your integration can automatically trigger reactions.\n\nTilled uses webhooks to notify your application when an event happens in your account. Webhooks are particularly useful for asynchronous events like when a customer’s bank confirms a payment, a customer disputes a charge, or a recurring payment succeeds.\n\nBegin using webhooks with your Tilled integration in just a couple steps:\n\n- Create a webhook endpoint on your server.\n- Register the endpoint with Tilled to go live.\n\nNot all Tilled integrations require webhooks. Keep reading to learn more about what webhooks are and when you should use them.\n\n### What are webhooks\n\n_Webhooks_ refers to a combination of elements that collectively create a notification and reaction system within a larger integration.\n\nMetaphorically, webhooks are like a phone number that Tilled calls to notify you of activity in your Tilled account. The activity could be the creation of a new customer or the payout of funds to your bank account. The webhook endpoint is the person answering that call who takes actions based upon the specific information it receives.\n\nNon-metaphorically, the webhook endpoint is just more code on your server, which could be written in Ruby, PHP, Node.js, or whatever. The webhook endpoint has an associated URL (e.g., https://example.com/webhooks). The Tilled notifications are Event objects. This Event object contains all the relevant information about what just happened, including the type of event and the data associated with that event. The webhook endpoint uses the event details to take any required actions, such as indicating that an order should be fulfilled.\n\n### When to use webhooks\n\nMany events that occur within a Tilled account have synchronous results–immediate and direct–to an executed request. For example, a successful request to create a customer immediately returns a Customer object. Such requests don’t require webhooks, as the key information is already available.\n\nOther events that occur within a Tilled account are asynchronous: happening at a later time and not directly in response to your code’s execution. Most commonly these involve:\n\n- The [Payment Intents API](https://api.tilled.com)\n\nWith these and similar APIs, Tilled needs to notify your integration about changes to the status of an object so your integration can take subsequent steps.\n\nThe specific actions your webhook endpoint may take differs based upon the event. Some examples include:\n\n- Updating a customer’s membership record in your database when a subscription payment succeeds\n- Logging an accounting entry when a transfer is paid\n- Indicating that an order can be fulfilled (i.e., boxed and shipped)\n\n## Verifying signatures manually\n\nThe `tilled-signature` header included in each signed event contains a timestamp and one or more signatures. The timestamp is prefixed by `t=`, and each signature is prefixed by a `scheme`. Schemes start with `v`, followed by an integer. Currently, the only valid live signature scheme is `v1`.\n\n```\ntilled-signature:t=1614049713663,v1=8981f5902896f479fa9079eec71fca01e9a065c5b59a96b221544023ce994b02\n```\n\nTilled generates signatures using a hash-based message authentication code ([HMAC](https://en.wikipedia.org/wiki/Hash-based_message_authentication_code)) with [SHA-256](https://en.wikipedia.org/wiki/SHA-2). You should ignore all schemes that are not `v1`.\n\nYou can verify the webhook event signature by following these steps.\n\n### Step 1: Extract the timestamp and signatures from the header\n\nSplit the header, using the `,` character as the separator, to get a list of elements. Then split each element, using the `=` character as the separator, to get a prefix and value pair.\n\nThe value for the prefix `t` corresponds to the timestamp, and `v1` corresponds to the signature (or signatures). You can discard all other elements.\n\n### Step 2: Prepare the signed_payload string\n\nThe `signed_payload` string is created by concatenating:\n\n- The timestamp (as a string)\n- The character `.`\n- The actual JSON payload (i.e., the request body)\n\n### Step 3: Determine the expected signature\n\nCompute an HMAC with the SHA256 hash function. Use the endpoint’s signing secret as the key, and use the `signed_payload` string as the message.\n\n### Step 4: Compare the signatures\n\nCompare the signature (or signatures) in the header to the expected signature. For an equality match, compute the difference between the current timestamp and the received timestamp, then decide if the difference is within your tolerance.\n\nTo protect against timing attacks, use a constant-time string comparison to compare the expected signature to each of the received signatures.\n",
+  "apiTitle": "Tilled API",
+  "endpoints": 80,
+  "sdkMethods": 114,
+  "schemas": 172,
+  "parameters": 446,
+  "contactUrl": "https://www.tilled.com/contact-us/",
+  "contactEmail": "integrations@tilled.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://api.tilled.com/docs/spec3.json"
+  },
+  "customRequestSpecFilename": "tilled.com.yaml",
+  "difficultyScore": 295.5,
+  "difficulty": "Hard",
+  "company": "Tilled",
+  "sdkName": "tilled-{language}-sdk",
+  "clientName": "Tilled",
+  "metaDescription": "Tilled was created to empower software vendors, marketplaces, and SaaS companies to start generating revenue from accepting credit cards. With our suite of powerful financial tools and industry leading revenue sharing programs, Tilled will power the financial backend of the next generation of marketplaces, SaaS companies, and integrated software vendors allowing them to focus on their core product, not payments. We enable these companies to enjoy all the benefits of a fully registered payment facilitator program without the upfront cost, hassle, or liability. Welcome to Payfac-as-a-service. Plug in our easy to implement APIs and start making revenue from credit card processing today. For far too long options like Stripe and Braintree have had a monopoly on the market, and have charged far too much for their services. For B2B software companies looking for a better option that provides all of the benefits with none of the hassle, it's time to Get Tilled and experience Payfac-as-a-Service.",
+  "apiStatusUrls": "inherit",
+  "homepage": "tilled.com",
+  "developerDocumentation": "docs.tilled.com/api/",
+  "categories": [
+    "payments"
+  ],
+  "category": "Payment Processing",
+  "methods": [
+    {
+      "url": "/v1/accounts",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "Get an Account",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/accounts",
+      "method": "updateAccount",
+      "httpMethod": "patch",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "Update an Account",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "bank_account",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "settings",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "white_label_domain",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/accounts/capabilities",
+      "method": "addCapability",
+      "httpMethod": "post",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "Add an Account Capability",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "pricing_template_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PRICING_TEMPLATE_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/accounts/capabilities/{id}",
+      "method": "removeCapability",
+      "httpMethod": "delete",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "Delete an Account Capability",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/accounts/capabilities/{id}",
+      "method": "updateCapability",
+      "httpMethod": "post",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "Update an Account Capability",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "pricing_template_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PRICING_TEMPLATE_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/accounts/connected",
+      "method": "deleteMerchantAccount",
+      "httpMethod": "delete",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "Delete a Connected Account",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/accounts/connected",
+      "method": "listConnected",
+      "httpMethod": "get",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "List all Connected Accounts",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "q",
+          "schema": "string",
+          "required": false,
+          "description": "The partial search of text fields. Supports searching by `account.name`, `account.business_profile.legal_name`,\n`account.id`, `account.email`, `user.name`, `user.email`"
+        },
+        {
+          "name": "sort",
+          "schema": "string",
+          "required": false,
+          "description": "The sort parameters, value:direction. Possible values: `name`, `created_at`. Possible directions:  `asc`, `desc`\n\nFor example `name:asc`.\n\nDefault: `created_at:desc`"
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/accounts/connected",
+      "method": "createConnectedAccount",
+      "httpMethod": "post",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "Create a Connected Account",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "bank_account",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "pricing_template_ids",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "product_code_ids",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "settings",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/api-keys",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "API Keys",
+      "typeScriptTag": "apiKeys",
+      "description": "List all API Keys",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/api-keys",
+      "method": "createNewKey",
+      "httpMethod": "post",
+      "tag": "API Keys",
+      "typeScriptTag": "apiKeys",
+      "description": "Create an API key",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "scopes",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TYPE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/api-keys/{id}",
+      "method": "permanentlyDeleteById",
+      "httpMethod": "delete",
+      "tag": "API Keys",
+      "typeScriptTag": "apiKeys",
+      "description": "Delete an API Key",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/api-keys/{id}",
+      "method": "updateKey",
+      "httpMethod": "patch",
+      "tag": "API Keys",
+      "typeScriptTag": "apiKeys",
+      "description": "Update an API key",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "scopes",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/apple-pay-domains",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "ApplePayDomains",
+      "typeScriptTag": "applePayDomains",
+      "description": "List all Apple Pay Domains",
+      "parameters": [
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        },
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/apple-pay-domains",
+      "method": "createDomain",
+      "httpMethod": "post",
+      "tag": "ApplePayDomains",
+      "typeScriptTag": "applePayDomains",
+      "description": "Create an Apple Pay Domain",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "hostname",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "HOSTNAME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/apple-pay-domains/{id}",
+      "method": "deleteDomain",
+      "httpMethod": "delete",
+      "tag": "ApplePayDomains",
+      "typeScriptTag": "applePayDomains",
+      "description": "Delete an Apple Pay Domain",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/apple-pay-domains/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "ApplePayDomains",
+      "typeScriptTag": "applePayDomains",
+      "description": "Get an Apple Pay Domain",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/applications/{account_id}",
+      "method": "getMerchantApplication",
+      "httpMethod": "get",
+      "tag": "Onboarding",
+      "typeScriptTag": "onboarding",
+      "description": "Get a Merchant Application",
+      "parameters": [
+        {
+          "name": "accountId",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the associated connected (i.e. merchant) account.",
+          "example": "ACCOUNT_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/applications/{account_id}",
+      "method": "updateMerchantApplication",
+      "httpMethod": "put",
+      "tag": "Onboarding",
+      "typeScriptTag": "onboarding",
+      "description": "Update a Merchant Application",
+      "parameters": [
+        {
+          "name": "accountId",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the associated connected (i.e. merchant) account.",
+          "example": "ACCOUNT_ID"
+        },
+        {
+          "name": "accept_terms_and_conditions",
+          "schema": "boolean",
+          "required": true,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "business_legal_entity",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/applications/{account_id}/submit",
+      "method": "submitMerchantApplication",
+      "httpMethod": "post",
+      "tag": "Onboarding",
+      "typeScriptTag": "onboarding",
+      "description": "Submit a Merchant Application",
+      "parameters": [
+        {
+          "name": "accountId",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the associated connected (i.e. merchant) account.",
+          "example": "ACCOUNT_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "202",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth-links",
+      "method": "createLink",
+      "httpMethod": "post",
+      "tag": "Auth Links",
+      "typeScriptTag": "authLinks",
+      "description": "Create an Auth Link",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "expiration",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EXPIRATION"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "redirect_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "user_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "USER_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth/forgot",
+      "method": "requestPasswordReset",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Forgot Password",
+      "parameters": [
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth/login",
+      "method": "createJwtToken",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Login",
+      "parameters": [
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PASSWORD"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth/logout",
+      "method": "invalidateRefreshToken",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Logout",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth/refresh",
+      "method": "refreshAccessToken",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Refresh an Access Token",
+      "parameters": [
+        {
+          "name": "refresh_token",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REFRESH_TOKEN"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth/register",
+      "method": "registerUserAndPartnerAccount",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Register",
+      "parameters": [
+        {
+          "name": "account_name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PASSWORD"
+        },
+        {
+          "name": "user_invitation_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth/reset",
+      "method": "resetPassword",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Reset Password",
+      "parameters": [
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PASSWORD"
+        },
+        {
+          "name": "password_reset_token",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PASSWORD_RESET_TOKEN"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/balance-transactions",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Balance Transactions",
+      "typeScriptTag": "balanceTransactions",
+      "description": "List all Balance Transactions",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": false,
+          "description": "Only return transaction of the given type."
+        },
+        {
+          "name": "sourceId",
+          "schema": "string",
+          "required": false,
+          "description": "Only returns the original transaction."
+        },
+        {
+          "name": "payoutId",
+          "schema": "string",
+          "required": false,
+          "description": "Only returns transactions that were paid out on the specified payout ID."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/balance-transactions/summary",
+      "method": "getSummary",
+      "httpMethod": "get",
+      "tag": "Balance Transactions",
+      "typeScriptTag": "balanceTransactions",
+      "description": "Get a Balance Transactions Summary",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "timeUnit",
+          "schema": "string",
+          "required": false,
+          "description": "String indicating the unit of time to aggregate the summary of data.",
+          "default": "month"
+        },
+        {
+          "name": "timeZone",
+          "schema": "string",
+          "required": false,
+          "description": "Time Zone by which to aggregate the results.",
+          "default": "America/Chicago"
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/. Defaults to the beginning of the current month."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/. Defaults to midnight tonight."
+        },
+        {
+          "name": "types",
+          "schema": "array",
+          "required": false,
+          "description": "An array containing specific balance transaction types. The data will be filtered to include only transactions with a matching type property."
+        },
+        {
+          "name": "includeConnectedAccounts",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether or not to include the results from any connected accounts.",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/balance-transactions/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Balance Transactions",
+      "typeScriptTag": "balanceTransactions",
+      "description": "Get a Balance Transaction",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/charges/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Charges",
+      "typeScriptTag": "charges",
+      "description": "Get a Charge",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/checkout-sessions",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Checkout Sessions",
+      "typeScriptTag": "checkoutSessions",
+      "description": "List all Checkout Sessions",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "paymentIntentId",
+          "schema": "string",
+          "required": false,
+          "description": "Only return the checkout session for the payment intent specified."
+        },
+        {
+          "name": "customerId",
+          "schema": "string",
+          "required": false,
+          "description": "Only return the checkout session for the customer specified."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/checkout-sessions",
+      "method": "createSession",
+      "httpMethod": "post",
+      "tag": "Checkout Sessions",
+      "typeScriptTag": "checkoutSessions",
+      "description": "Create a Checkout Session",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "cancel_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "customer_email",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "customer_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expires_at",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "line_items",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "payment_intent_data",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "success_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/checkout-sessions/{id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Checkout Sessions",
+      "typeScriptTag": "checkoutSessions",
+      "description": "Get a Checkout Session",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/checkout-sessions/{id}/expire",
+      "method": "expireSession",
+      "httpMethod": "post",
+      "tag": "Checkout Sessions",
+      "typeScriptTag": "checkoutSessions",
+      "description": "Expire a Checkout Session",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/customers",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Customers",
+      "typeScriptTag": "customers",
+      "description": "List all Customers",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "q",
+          "schema": "string",
+          "required": false,
+          "description": "The partial search of text fields. Supports searching by `customer.first_name`, `customer.last_name`,\n`customer.email`, `customer.phone`"
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/customers",
+      "method": "createCustomerObject",
+      "httpMethod": "post",
+      "tag": "Customers",
+      "typeScriptTag": "customers",
+      "description": "Create a Customer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "middle_name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "phone",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/customers/{id}",
+      "method": "deleteCustomer",
+      "httpMethod": "delete",
+      "tag": "Customers",
+      "typeScriptTag": "customers",
+      "description": "Delete a Customer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/customers/{id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Customers",
+      "typeScriptTag": "customers",
+      "description": "Get a Customer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/customers/{id}",
+      "method": "updateCustomerById",
+      "httpMethod": "patch",
+      "tag": "Customers",
+      "typeScriptTag": "customers",
+      "description": "Update a Customer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "middle_name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "phone",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/disputes",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Disputes",
+      "typeScriptTag": "disputes",
+      "description": "List all Disputes",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "chargeId",
+          "schema": "string",
+          "required": false,
+          "description": "Only returns disputes for the charge specified by this charge ID."
+        },
+        {
+          "name": "includeConnectedAccounts",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether or not to include the results from any connected accounts.",
+          "default": false
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "status",
+          "schema": "array",
+          "required": false,
+          "description": "String indicating the status to filter the result by."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/disputes/{id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Disputes",
+      "typeScriptTag": "disputes",
+      "description": "Get a Dispute",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/disputes/{id}",
+      "method": "submitEvidence",
+      "httpMethod": "post",
+      "tag": "Disputes",
+      "typeScriptTag": "disputes",
+      "description": "Create Dispute Evidence",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "files",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/documents",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Documents",
+      "typeScriptTag": "documents",
+      "description": "List all Documents",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/documents/bulk-submit",
+      "method": "bulkSubmit",
+      "httpMethod": "post",
+      "tag": "Documents",
+      "typeScriptTag": "documents",
+      "description": "Bulk Submit Documents",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "submissions",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/documents/{id}",
+      "method": "getDetailsById",
+      "httpMethod": "get",
+      "tag": "Documents",
+      "typeScriptTag": "documents",
+      "description": "Get a Document",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the document to be retrieved.",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/documents/{id}/submit",
+      "method": "submitDocument",
+      "httpMethod": "post",
+      "tag": "Documents",
+      "typeScriptTag": "documents",
+      "description": "Submit a Document",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the document to be updated.",
+          "example": "ID"
+        },
+        {
+          "name": "file_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "written_response",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/events",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Events",
+      "typeScriptTag": "events",
+      "description": "List all Events",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "types",
+          "schema": "array",
+          "required": false,
+          "description": "An array of up to 20 strings containing specific event names. The list will be filtered to include only events with a matching event property."
+        },
+        {
+          "name": "objectId",
+          "schema": "string",
+          "required": false,
+          "description": "Id of related resource. The list will be filtered to include events that are related to the resource with this id."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/events/{id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Events",
+      "typeScriptTag": "events",
+      "description": "Get an Event",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/files",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "Files",
+      "typeScriptTag": "files",
+      "description": "List all Files",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "purposes",
+          "schema": "array",
+          "required": false,
+          "description": "A list of file purposes to filter on."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/files",
+      "method": "uploadFile",
+      "httpMethod": "post",
+      "tag": "Files",
+      "typeScriptTag": "files",
+      "description": "Create a File",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "title",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FILE"
+        },
+        {
+          "name": "purpose",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PURPOSE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/files/{id}",
+      "method": "permanentlyDeleteById",
+      "httpMethod": "delete",
+      "tag": "Files",
+      "typeScriptTag": "files",
+      "description": "Delete a File",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/files/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Files",
+      "typeScriptTag": "files",
+      "description": "Get a File",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/files/{id}/contents",
+      "method": "getContentsById",
+      "httpMethod": "get",
+      "tag": "Files",
+      "typeScriptTag": "files",
+      "description": "Get the Contents of a File",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/health",
+      "method": "overallStatus",
+      "httpMethod": "get",
+      "tag": "Health",
+      "typeScriptTag": "health",
+      "description": "Get the Overall Health of the API",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/outbound-transfers",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Outbound Transfers",
+      "typeScriptTag": "outboundTransfers",
+      "description": "List all Outbound Transfers",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "status",
+          "schema": "array",
+          "required": false,
+          "description": "Only return OutboundTransfers whose status is included by this array. Example: `/v1/outbound-transfers?status=succeeded`"
+        },
+        {
+          "name": "includeConnectedAccounts",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether or not to include the results from any connected accounts.",
+          "default": false
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/outbound-transfers",
+      "method": "createTransfer",
+      "httpMethod": "post",
+      "tag": "Outbound Transfers",
+      "typeScriptTag": "outboundTransfers",
+      "description": "Create an Outbound Transfer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "amount",
+          "schema": "number",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "currency",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CURRENCY"
+        },
+        {
+          "name": "destination_payment_method_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "DESTINATION_PAYMENT_METHOD_ID"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/outbound-transfers/{id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Outbound Transfers",
+      "typeScriptTag": "outboundTransfers",
+      "description": "Get an Outbound Transfer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/outbound-transfers/{id}/cancel",
+      "method": "cancelTransfer",
+      "httpMethod": "post",
+      "tag": "Outbound Transfers",
+      "typeScriptTag": "outboundTransfers",
+      "description": "Cancel an Outbound Transfer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-intents",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "PaymentIntents",
+      "typeScriptTag": "paymentIntents",
+      "description": "List all Payment Intents",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "status",
+          "schema": "array",
+          "required": false,
+          "description": "Only return PaymentIntents whose status is included by this array. Examples: `/v1/payment-intents?status=succeeded,requires_payment_method` and `/v1/payment-intents?status=succeeded&status=requires_payment_method`."
+        },
+        {
+          "name": "includeConnectedAccounts",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether or not to include the results from any connected accounts.",
+          "default": false
+        },
+        {
+          "name": "subscriptionId",
+          "schema": "string",
+          "required": false,
+          "description": "The ID of the subscription whose payment intents will be retrieved."
+        },
+        {
+          "name": "q",
+          "schema": "string",
+          "required": false,
+          "description": "Supports searching by `payment_intent.id`, `payment_intent.amount`, `payment_method.billing_details.name`,\n`payment_method.details.last4`, `payment_method.details.last2`, `customer.first_name`, `customer.last_name`"
+        },
+        {
+          "name": "customerId",
+          "schema": "string",
+          "required": false,
+          "description": "The ID of the customer whose payment intents will be retrieved."
+        },
+        {
+          "name": "terminalReaderId",
+          "schema": "string",
+          "required": false,
+          "description": "The ID of the terminal reader for which payment intents will be retrieved."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-intents",
+      "method": "createPaymentIntent",
+      "httpMethod": "post",
+      "tag": "PaymentIntents",
+      "typeScriptTag": "paymentIntents",
+      "description": "Create a Payment Intent",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "amount",
+          "schema": "number",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "capture_method",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "confirm",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "currency",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CURRENCY"
+        },
+        {
+          "name": "level3",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "occurrence_type",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "payment_method_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "payment_method_types",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "platform_fee_amount",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "statement_descriptor_suffix",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-intents/{id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "PaymentIntents",
+      "typeScriptTag": "paymentIntents",
+      "description": "Get a Payment Intent",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-intents/{id}",
+      "method": "updateWithoutConfirmation",
+      "httpMethod": "patch",
+      "tag": "PaymentIntents",
+      "typeScriptTag": "paymentIntents",
+      "description": "Update a Payment Intent",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "amount",
+          "schema": "number",
+          "description": ""
+        },
+        {
+          "name": "capture_method",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "currency",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "level3",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "occurrence_type",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "payment_method_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "payment_method_types",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "platform_fee_amount",
+          "schema": "number",
+          "description": ""
+        },
+        {
+          "name": "statement_descriptor_suffix",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-intents/{id}/cancel",
+      "method": "cancelIntent",
+      "httpMethod": "post",
+      "tag": "PaymentIntents",
+      "typeScriptTag": "paymentIntents",
+      "description": "Cancel a Payment Intent",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "cancellation_reason",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-intents/{id}/capture",
+      "method": "captureFunds",
+      "httpMethod": "post",
+      "tag": "PaymentIntents",
+      "typeScriptTag": "paymentIntents",
+      "description": "Capture a Payment Intent",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "amount_to_capture",
+          "schema": "number",
+          "description": ""
+        },
+        {
+          "name": "platform_fee_amount",
+          "schema": "number",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-intents/{id}/confirm",
+      "method": "confirmIntent",
+      "httpMethod": "post",
+      "tag": "PaymentIntents",
+      "typeScriptTag": "paymentIntents",
+      "description": "Confirm a Payment Intent",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "payment_method_id",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-methods",
+      "method": "listForCustomer",
+      "httpMethod": "get",
+      "tag": "PaymentMethods",
+      "typeScriptTag": "paymentMethods",
+      "description": "List a Customer's Payment Methods",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "Only return payment methods of the given type.",
+          "example": "TYPE"
+        },
+        {
+          "name": "customerId",
+          "schema": "string",
+          "required": true,
+          "description": "Customer identifier",
+          "example": "CUSTOMER_ID"
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-methods",
+      "method": "createNewMethod",
+      "httpMethod": "post",
+      "tag": "PaymentMethods",
+      "typeScriptTag": "paymentMethods",
+      "description": "Create a Payment Method",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "ach_debit",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "billing_details",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "card",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "eft_debit",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "nick_name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "payment_token",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "terminal_reader_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TYPE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-methods/ach-debit-token",
+      "method": "createAchDebitSingleUseToken",
+      "httpMethod": "post",
+      "tag": "PaymentMethods",
+      "typeScriptTag": "paymentMethods",
+      "description": "Create an ACH Debit Single-Use Token",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "ach_debit",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "billing_details",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-methods/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "PaymentMethods",
+      "typeScriptTag": "paymentMethods",
+      "description": "Get a Payment Method",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-methods/{id}",
+      "method": "updateMethod",
+      "httpMethod": "patch",
+      "tag": "PaymentMethods",
+      "typeScriptTag": "paymentMethods",
+      "description": "Update a Payment Method",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "billing_details",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "nick_name",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-methods/{id}/attach",
+      "method": "attachCustomer",
+      "httpMethod": "put",
+      "tag": "PaymentMethods",
+      "typeScriptTag": "paymentMethods",
+      "description": "Attach a Payment Method to a Customer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "customer_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CUSTOMER_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payment-methods/{id}/detach",
+      "method": "detachMethodFromCustomer",
+      "httpMethod": "put",
+      "tag": "PaymentMethods",
+      "typeScriptTag": "paymentMethods",
+      "description": "Detach a Payment Method from a Customer",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payouts",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "Payouts",
+      "typeScriptTag": "payouts",
+      "description": "List all Payouts",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/. Cannot be paired with paid_at_gte or paid_at_lte."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/. Cannot be paired with paid_at_gte or paid_at_lte."
+        },
+        {
+          "name": "paidAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `paid_at` value to filter by (https://docs.tilled.com/api/. Cannot be paired with created_at_gte or created_at_lte."
+        },
+        {
+          "name": "paidAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `paid_at` value to filter by (https://docs.tilled.com/api/. Cannot be paired with created_at_gte or created_at_lte."
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": "Only return payouts that have the given status."
+        },
+        {
+          "name": "include",
+          "schema": "string",
+          "required": false,
+          "description": "An array of optional include parameters, specifying extra properties to return. Currently for this endpoint only accepts 'transaction_count'. In the query parameters, this is specified as include=value1,value2,value3,etc."
+        },
+        {
+          "name": "includeConnectedAccounts",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether or not to include the results from any connected accounts.",
+          "default": false
+        },
+        {
+          "name": "q",
+          "schema": "string",
+          "required": false,
+          "description": "Supports searching by `payouts.id`, `payouts.amount`"
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payouts/{id}",
+      "method": "getDetailsById",
+      "httpMethod": "get",
+      "tag": "Payouts",
+      "typeScriptTag": "payouts",
+      "description": "Get a Payout",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "include",
+          "schema": "array",
+          "required": false,
+          "description": "An array of optional include parameters, specifying extra properties to return. Currently for this endpoint only accepts 'transaction_count'. In the query parameters, this is specified as include=value1,value2,value3,etc."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/platform-fees",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Platform Fees",
+      "typeScriptTag": "platformFees",
+      "description": "List all Platform Fees",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "chargeId",
+          "schema": "string",
+          "required": false,
+          "description": "Only return application fees for the charge specified by this charge id."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/platform-fees/{id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Platform Fees",
+      "typeScriptTag": "platformFees",
+      "description": "Get a Platform Fee",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/platform-fees/{id}/refunds/{refund_id}",
+      "method": "getDetailsById",
+      "httpMethod": "get",
+      "tag": "Platform Fee Refunds",
+      "typeScriptTag": "platformFeeRefunds",
+      "description": "Get a Platform Fee Refund",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "refundId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REFUND_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/pricing-templates",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Pricing Templates",
+      "typeScriptTag": "pricingTemplates",
+      "description": "List all Pricing Templates",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": false,
+          "description": "String indicating the type to filter the result by."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/pricing-templates/{id}",
+      "method": "getDetailsById",
+      "httpMethod": "get",
+      "tag": "Pricing Templates",
+      "typeScriptTag": "pricingTemplates",
+      "description": "Get a Pricing Template",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/product-codes",
+      "method": "listForAccount",
+      "httpMethod": "get",
+      "tag": "ProductCodes",
+      "typeScriptTag": "productCodes",
+      "description": "List an Account's Product Codes",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/refunds",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Refunds",
+      "typeScriptTag": "refunds",
+      "description": "List all Refunds",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/refunds",
+      "method": "createNewRefund",
+      "httpMethod": "post",
+      "tag": "Refunds",
+      "typeScriptTag": "refunds",
+      "description": "Create a Refund",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "amount",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "payment_intent_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENT_INTENT_ID"
+        },
+        {
+          "name": "reason",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "refund_platform_fee",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/refunds/{id}",
+      "method": "getDetailsById",
+      "httpMethod": "get",
+      "tag": "Refunds",
+      "typeScriptTag": "refunds",
+      "description": "Get a Refund",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/report-runs",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "ReportRuns",
+      "typeScriptTag": "reportRuns",
+      "description": "List all Report Runs",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "type",
+          "schema": "array",
+          "required": false,
+          "description": "Only return ReportRuns whose type is included by this array. Examples: `?type=payments_summary_1,payouts_summary_2` and `?type=payouts_summary_2`."
+        },
+        {
+          "name": "status",
+          "schema": "array",
+          "required": false,
+          "description": "Only return ReportRuns whose status is included by this array. Examples: `?status=finished` and `?status=finished,queued`."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        },
+        {
+          "name": "include_expired",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/report-runs",
+      "method": "createRun",
+      "httpMethod": "post",
+      "tag": "ReportRuns",
+      "typeScriptTag": "reportRuns",
+      "description": "Create a Report Run",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "parameters",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "report_name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TYPE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/report-runs/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "ReportRuns",
+      "typeScriptTag": "reportRuns",
+      "description": "Get a Report Run",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/subscriptions",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "Subscriptions",
+      "typeScriptTag": "subscriptions",
+      "description": "List all Subscriptions",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "customerId",
+          "schema": "string",
+          "required": false,
+          "description": "The ID of the customer whose subscriptions will be retrieved."
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": false,
+          "description": "The status of the subscriptions to retrieve."
+        },
+        {
+          "name": "nextPaymentAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `next_payment_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "nextPaymentAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `next_payment_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/subscriptions",
+      "method": "createNewSubscription",
+      "httpMethod": "post",
+      "tag": "Subscriptions",
+      "typeScriptTag": "subscriptions",
+      "description": "Create a Subscription",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "billing_cycle_anchor",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "BILLING_CYCLE_ANCHOR"
+        },
+        {
+          "name": "cancel_at",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "currency",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CURRENCY"
+        },
+        {
+          "name": "customer_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CUSTOMER_ID"
+        },
+        {
+          "name": "interval_count",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "interval_unit",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "INTERVAL_UNIT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "payment_method_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENT_METHOD_ID"
+        },
+        {
+          "name": "platform_fee_amount",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "price",
+          "schema": "number",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/subscriptions/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Subscriptions",
+      "typeScriptTag": "subscriptions",
+      "description": "Get a Subscription",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/subscriptions/{id}",
+      "method": "updateSubscription",
+      "httpMethod": "patch",
+      "tag": "Subscriptions",
+      "typeScriptTag": "subscriptions",
+      "description": "Update a Subscription",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "cancel_at",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "pause_at",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "payment_method_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "platform_fee_amount",
+          "schema": "number",
+          "description": ""
+        },
+        {
+          "name": "price",
+          "schema": "number",
+          "description": ""
+        },
+        {
+          "name": "resume_at",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/subscriptions/{id}/cancel",
+      "method": "cancelSubscription",
+      "httpMethod": "post",
+      "tag": "Subscriptions",
+      "typeScriptTag": "subscriptions",
+      "description": "Cancel a Subscription",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/subscriptions/{id}/pause",
+      "method": "pauseSubscription",
+      "httpMethod": "post",
+      "tag": "Subscriptions",
+      "typeScriptTag": "subscriptions",
+      "description": "Pause a Subscription",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "resume_at",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/subscriptions/{id}/resume",
+      "method": "resumeSubscription",
+      "httpMethod": "post",
+      "tag": "Subscriptions",
+      "typeScriptTag": "subscriptions",
+      "description": "Resume a Subscription",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/subscriptions/{id}/retry",
+      "method": "retryPaymentAt",
+      "httpMethod": "post",
+      "tag": "Subscriptions",
+      "typeScriptTag": "subscriptions",
+      "description": "Retry a Subscription",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "next_payment_at",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/terminal-readers",
+      "method": "listAll",
+      "httpMethod": "get",
+      "tag": "TerminalReaders",
+      "typeScriptTag": "terminalReaders",
+      "description": "List all Terminal Readers",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": "`metadata` key-value pairs to filter by. Only exact matches on the key-value pair(https://docs.tilled.com/api/ will be returned. Example: `?metadata[internal_customer_id]=7cb1159d-875e-47ae-a309-319fa7ff395b`."
+        },
+        {
+          "name": "q",
+          "schema": "string",
+          "required": false,
+          "description": "The partial search of text fields. Supports searching by `terminal_reader.description`, `terminal_reader.serial_number`,\n`terminal_reader.type`"
+        },
+        {
+          "name": "includeConnectedAccounts",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether or not to include the results from any connected accounts.",
+          "default": false
+        },
+        {
+          "name": "createdAtGte",
+          "schema": "string",
+          "required": false,
+          "description": "Minimum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "createdAtLte",
+          "schema": "string",
+          "required": false,
+          "description": "Maximum `created_at` value to filter by (https://docs.tilled.com/api/."
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/terminal-readers/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "TerminalReaders",
+      "typeScriptTag": "terminalReaders",
+      "description": "Get a Terminal Reader",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/terminal-readers/{id}",
+      "method": "updateReader",
+      "httpMethod": "post",
+      "tag": "TerminalReaders",
+      "typeScriptTag": "terminalReaders",
+      "description": "Update a Terminal Reader",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "description": "",
+          "example": {
+            "order_id": "100123",
+            "internal_customer_id": "7cb1159d-875e-47ae-a309-319fa7ff395b"
+          }
+        },
+        {
+          "name": "serial_number",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "settings",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/terminal-readers/{id}/status",
+      "method": "getStatus",
+      "httpMethod": "get",
+      "tag": "TerminalReaders",
+      "typeScriptTag": "terminalReaders",
+      "description": "Get a Terminal Reader status",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/user-invitations",
+      "method": "listAllUserInvitations",
+      "httpMethod": "get",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "List all User Invitations",
+      "parameters": [
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        },
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/user-invitations",
+      "method": "sendInvitation",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Create a User Invitation",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        },
+        {
+          "name": "email_template",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "role",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ROLE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/user-invitations/check/{id}",
+      "method": "checkUserInvitation",
+      "httpMethod": "get",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Check a User Invitation",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/user-invitations/{id}",
+      "method": "deleteUserInvitation",
+      "httpMethod": "delete",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Delete a User Invitation",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/user-invitations/{id}",
+      "method": "getInvitationById",
+      "httpMethod": "get",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Get a User Invitation",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/user-invitations/{id}/resend",
+      "method": "resendInvitation",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Resend a User Invitation",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/users",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "List all Users",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "includeConnectedAccounts",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether or not to include the results from any connected accounts.",
+          "default": false
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/users",
+      "method": "createNewUser",
+      "httpMethod": "post",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Create a User",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EMAIL"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "NAME"
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PASSWORD"
+        },
+        {
+          "name": "role",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ROLE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/users/{id}",
+      "method": "removeUser",
+      "httpMethod": "delete",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Delete a User",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/users/{id}",
+      "method": "getUserById",
+      "httpMethod": "get",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Get a User",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/users/{id}",
+      "method": "updateUser",
+      "httpMethod": "patch",
+      "tag": "Users",
+      "typeScriptTag": "users",
+      "description": "Update a User",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "email_settings",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "role",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhook-endpoints",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "WebhookEndpoints",
+      "typeScriptTag": "webhookEndpoints",
+      "description": "List all Webhook Endpoints",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "offset",
+          "schema": "number",
+          "required": false,
+          "description": "The (https://docs.tilled.com/api/ offset of the first item in the collection to return.",
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "number",
+          "required": false,
+          "description": "The maximum number of entries to return. If the value exceeds the maximum, then the maximum value will be used.",
+          "default": 30
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhook-endpoints",
+      "method": "createEndpoint",
+      "httpMethod": "post",
+      "tag": "WebhookEndpoints",
+      "typeScriptTag": "webhookEndpoints",
+      "description": "Create a Webhook Endpoint",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "enabled_events",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "url",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "URL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhook-endpoints/{id}",
+      "method": "deleteEndpoint",
+      "httpMethod": "delete",
+      "tag": "WebhookEndpoints",
+      "typeScriptTag": "webhookEndpoints",
+      "description": "Delete a Webhook Endpoint",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhook-endpoints/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "WebhookEndpoints",
+      "typeScriptTag": "webhookEndpoints",
+      "description": "Get a Webhook Endpoint",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhook-endpoints/{id}",
+      "method": "updateEndpoint",
+      "httpMethod": "patch",
+      "tag": "WebhookEndpoints",
+      "typeScriptTag": "webhookEndpoints",
+      "description": "Update a Webhook Endpoint",
+      "parameters": [
+        {
+          "name": "tilledAccount",
+          "schema": "string",
+          "required": true,
+          "description": "The id of the Tilled Account (usually starting with the prefix `acct_`) that the request is performed on behalf of.",
+          "example": "TILLED-ACCOUNT"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "enabled_events",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "url",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Tilled empowers software vendors, marketplaces, and SaaS companies to profit from credit card payments with powerful financial tools, revenue sharing, and hassle-free payment processing. Get Tilled for Payfac-as-a-Service and start earning today! Tilled's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tilled/logo.webp",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tilled/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/tilled/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tilled/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tilled/favicon.png",
+  "clientNameCamelCase": "tilled",
+  "lastUpdated": "2024-03-29T23:26:36.999Z",
+  "typescriptSdkUsageCode": "import { Tilled } from 'tilled-typescript-sdk';\n\nconst tilled = new Tilled({\n    // Tilled uses API keys to authenticate requests. You can view and manage your API keys in the Tilled Dashboard.\n    tilledApiKey: \"TILLED_API_KEY\",\n    // You can create a JSON Web Token (JWT) via our LOGIN resource. Usage format: `Bearer <JWT>`\n    jwt: \"JWT\"\n})",
+  "typescriptSdkFirstRequestCode": "// Get an Account\nconst getDetailsResponse = tilled.accounts.getDetails({\n    tilledAccount: \"TILLED-ACCOUNT\"\n})",
+  "fixedSpecFileName": "tilled-fixed-spec.yaml"
+}

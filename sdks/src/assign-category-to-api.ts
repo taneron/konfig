@@ -96,6 +96,7 @@ export const categoriesToMapTo = {
     "Forms & Surveys",
     "Scheduling & Booking",
     "Signatures",
+    "Lead Generation",
   ],
   Data: [
     "Science",

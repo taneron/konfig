@@ -1,0 +1,170 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v0/company_lists/add_companies:
+    post:
+      '200':
+        application/json: {}
+  /v0/company_lists/{list_id}:
+    delete:
+      '200':
+        application/json: {}
+  /v0/saved_searches/{search_id}:
+    delete:
+      '200':
+        application/json: {}
+  /v1/jobs/search:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v0/catalog/companies_per_company_country_code:
+    get: Catalog_getCompaniesPerCountryCode
+  /v0/catalog/industries:
+    get: Catalog_getIndustries
+  /v0/catalog/jobs_companies_per_job_country_code:
+    get: Catalog_getJobsAndCompaniesPerJobCountryCode
+  /v0/catalog/technologies:
+    get: Catalog_getTechnologies
+  /v0/catalog/technologies/categories:
+    get: Catalog_listTechnologyCategories
+  /v0/companies/search_by_url:
+    get: Companies_searchByDomain
+  /v0/company_lists:
+    get: CompanyLists_getAllLists
+    post: CompanyLists_createList
+  /v0/company_lists/add_companies:
+    post: CompanyLists_addCompaniesToMultipleLists
+  /v0/company_lists/{list_id}:
+    delete: CompanyLists_removeList
+    get: CompanyLists_getList
+    patch: CompanyLists_renameList
+  /v0/company_lists/{list_id}/add_companies:
+    post: CompanyLists_addCompaniesToList
+  /v0/company_lists/{list_id}/companies:
+    get: CompanyLists_getListCompanies
+  /v0/company_lists/{list_id}/remove_companies:
+    post: CompanyLists_removeCompaniesFromList
+  /v0/decision_makers/search:
+    get: DecisionMakers_findByCriteria
+  /v0/saved_searches:
+    get: SavedSearches_getAll
+    post: SavedSearches_createSearch
+    put: SavedSearches_upsertSavedSearch
+  /v0/saved_searches/{search_id}:
+    delete: SavedSearches_deleteSearch
+    get: SavedSearches_getDetails
+    patch: SavedSearches_updateSearch
+  /v1/companies/search:
+    post: Companies_searchFilteredData
+  /v1/companies/tech_details:
+    post: Companies_listTechDetails
+  /v1/jobs/search:
+    post: Jobs_searchByCriteria
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v0/catalog/technologies:
+    get:
+      '200':
+        application/json: CatalogGetTechnologiesResponse
+  /v0/companies/search_by_url:
+    get:
+      '200':
+        application/json: CompaniesSearchByDomainResponse
+  /v0/company_lists:
+    get:
+      '200':
+        application/json: CompanyListsGetAllListsResponse
+  /v0/company_lists/add_companies:
+    post:
+      '200':
+        application/json: CompanyListsAddCompaniesToMultipleListsResponse
+  /v0/company_lists/{list_id}:
+    delete:
+      '200':
+        application/json: CompanyListsRemoveListResponse
+  /v0/company_lists/{list_id}/companies:
+    get:
+      '200':
+        application/json: CompanyListsGetListCompaniesResponse
+  /v0/decision_makers/search:
+    get:
+      '200':
+        application/json: DecisionMakersFindByCriteriaResponse
+  /v0/saved_searches:
+    get:
+      '200':
+        application/json: SavedSearchesGetAllResponse
+  /v0/saved_searches/{search_id}:
+    delete:
+      '200':
+        application/json: SavedSearchesDeleteSearchResponse
+  /v1/jobs/search:
+    post:
+      '200':
+        application/json: JobsSearchByCriteriaResponse
+securityParameters:
+  category_pattern:
+    query: false
+  category_slug:
+    query: false
+  companies_pattern:
+    query: false
+  companies_urls:
+    query: false
+  company_name_partial:
+    query: false
+  country:
+    query: false
+  description_pattern:
+    query: false
+  domains:
+    query: false
+  emails:
+    query: false
+  format:
+    query: false
+  fromage:
+    query: false
+  group_by:
+    query: false
+  include_total_results:
+    query: false
+  industry:
+    query: false
+  job_title_pattern:
+    query: false
+  limit:
+    query: false
+  max_employee_count:
+    query: false
+  min_employee_count:
+    query: false
+  name_pattern:
+    query: false
+  new_companies:
+    query: false
+  num_technologies_per_category:
+    query: false
+  order_by:
+    query: false
+  order_direction:
+    query: false
+  page:
+    query: false
+  slug:
+    query: false
+  slugs:
+    query: false
+  technology_pattern:
+    query: false
+  types:
+    query: false
+  user_ids:
+    query: false
+validServerUrls: {}

@@ -1,0 +1,77 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /all_group_details/{site_id}/{date_start}/{date_end}:
+    get: Groups_getKeywordsDetails
+  /compare/competitors/visibility_score/{site_id}/{start_date}/{end_date}:
+    get: Compare_competitorsVisibilityScore
+  /compare/competitors/visibility_score/{site_id}/{start_date}/{end_date}/{competitors}/{group_id}:
+    get: Compare_dailyVisibility
+  /compare/keywords/{site_id}/{start_date}/{end_date}/{competitors}:
+    get: Compare_competitorKeywords
+  /compare/keywords/{site_id}/{start_date}/{end_date}/{competitors}/{group_id}:
+    get: Compare_competitorRankings
+  /content/{site_id}/{date_start}/{date_end}:
+    get: ContentPerformance_getPerformanceData
+  /devices:
+    get: Devices_getAll
+  /group_details/{site_id}/{group_id}/{date_start}/{date_end}:
+    get: Groups_getPerformanceData
+  /groups_list/{site_id}:
+    get: Groups_getList
+  /keyword_canibalization/{site_id}/{group_id}:
+    get: KeywordData_listCanibalizationKeywords
+  /keyword_data/{site_id}/{date_start}/{date_end}:
+    get: KeywordData_getDetails
+  /keyword_data/{site_id}/{group_id}/{date_start}/{date_end}:
+    get: KeywordData_getPerformance
+  /keyword_groups/{site_id}/{date_start}/{date_end}:
+    get: Groups_getKeywordGroups
+  /keyword_serp/{site_id}:
+    get: KeywordSerp_getCompetitors
+  /on_target/by_dates/{site_id}:
+    get: Forecast_objectiveData
+  /on_target/{site_id}:
+    get: Forecast_trafficForecastStatus
+  /organic_traffic/split/{site_id}/{date_start}/{date_end}:
+    get: OrganicTraffic_splitByDates
+  /organic_traffic/{site_id}/{date_start}/{date_end}:
+    get: OrganicTraffic_getPerformanceData
+  /ranks/{site_id}/{date_start}/{date_end}:
+    get: Ranks_getDesktopMobileRanks
+  /ranks/{site_id}/{date_start}/{date_end}/{group_id}:
+    get: Ranks_getGroupRanks
+  /sites:
+    get: Sites_getList
+  /visibility_score/{site_id}/{group_id}/{date_start}/{date_end}:
+    get: VisibilityScore_getByDateRange
+  /visibility_score_data/{site_id}/{group_id}/{date_start}/{date_end}:
+    get: VisibilityScore_dailyVisibilityData
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  competitors:
+    query: false
+  device:
+    query: false
+  group_id:
+    query: false
+  keyword_name:
+    query: false
+  limit:
+    query: false
+  load_keyword_ids:
+    query: false
+  mobile:
+    query: false
+  offset:
+    query: false
+  query_end_date:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

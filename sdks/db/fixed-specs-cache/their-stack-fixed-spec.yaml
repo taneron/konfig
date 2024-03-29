@@ -1,0 +1,4861 @@
+publishJson:
+  company: TheirStack
+  serviceName: false
+  sdkName: their-stack-{language}-sdk
+  clientName: TheirStack
+  metaDescription: >-
+    TheirStack is a sales tool designed to discover purchase intent signals
+    through job postings. It helps SaaS companies, recruiting agencies and
+    consulting firms find their next customer by analyzing 40 million job
+    listings across 100 countries.
+
+
+    It features instant alerts on new openings, identifies companies based on
+    technology use, and pinpoints those with specific software needs.
+
+
+    Primarily used by sales and marketing teams, it facilitates lead generation
+    and enrichment, targeted marketing, and offers data-driven insights while
+    significantly reducing research time.
+  apiStatusUrls: inherit
+  homepage: theirstack.com
+  developerDocumentation: api.theirstack.com/
+  categories:
+    - sales
+    - lead_generation
+rawSpecString: |
+  openapi: 3.1.0
+  info:
+    title: TheirStack API Reference
+    description: >+
+
+
+      # Introduction
+
+
+      Welcome to TheirStack’s API!
+
+      <br>
+
+      You can use this API to access all our API endpoints, such as the [Jobs
+      endpoint](https://api.theirstack.com) to get real-time and historical jobs
+      from more than 100 countries or the [Companies
+      endpoint](https://api.theirstack.com) to get a list of companies by the
+      technology they use or by the roles they are hiring for.
+
+
+      The API is organized around [REST](https://en.wikipedia.org/wiki/REST). All
+      requests should be made over SSL. All request and response bodies, including
+      errors, are encoded in JSON.
+
+
+      # Authentication
+
+
+      Authentication is done via the API key which you can find in [your account
+      settings](https://app.theirstack.com/settings/api).
+
+      When making a call, you’ll have to specify this API key with the
+      Authorization header. Here’s an example:
+
+
+      ```sh
+
+      Authorization: Bearer <token>
+
+      ```
+
+    version: 1.0.0
+  paths:
+    /v0/company_lists:
+      get:
+        tags:
+          - Company Lists
+        summary: Get Lists
+        description: Get all the lists for the current user
+        operationId: get_lists_v0_company_lists_get
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/CompanyList'
+                  type: array
+                  title: Response Get Lists V0 Company Lists Get
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+      post:
+        tags:
+          - Company Lists
+        summary: Create List
+        operationId: create_list_v0_company_lists_post
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyListCreate'
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CompanyList'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/company_lists/{list_id}:
+      get:
+        tags:
+          - Company Lists
+        summary: Get List
+        operationId: get_list_v0_company_lists__list_id__get
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: List Id
+            name: list_id
+            in: path
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CompanyList'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+      delete:
+        tags:
+          - Company Lists
+        summary: Delete List
+        operationId: delete_list_v0_company_lists__list_id__delete
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: List Id
+            name: list_id
+            in: path
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+      patch:
+        tags:
+          - Company Lists
+        summary: Rename List
+        operationId: rename_list_v0_company_lists__list_id__patch
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: List Id
+            name: list_id
+            in: path
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyListRename'
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CompanyList'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/company_lists/{list_id}/companies:
+      get:
+        tags:
+          - Company Lists
+        summary: Get List Companies
+        operationId: get_list_companies_v0_company_lists__list_id__companies_get
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: List Id
+            name: list_id
+            in: path
+          - description: Order by field
+            required: false
+            schema:
+              type: string
+              enum:
+                - added_at_last_time
+                - name
+              title: Order By
+              description: Order by field
+              default: added_at_last_time
+            name: order_by
+            in: query
+          - description: Order direction
+            required: false
+            schema:
+              type: string
+              enum:
+                - asc
+                - desc
+              title: Order Direction
+              description: Order direction
+              default: desc
+            name: order_direction
+            in: query
+          - description: Pass a partial company name to filter the list of companies
+            required: false
+            schema:
+              type: string
+              title: Company Name Partial
+              description: Pass a partial company name to filter the list of companies
+            name: company_name_partial
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Page
+              default: 0
+            name: page
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Limit
+              default: 25
+            name: limit
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/CompanyListItem'
+                  type: array
+                  title: >-
+                    Response Get List Companies V0 Company Lists  List Id 
+                    Companies Get
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/company_lists/{list_id}/add_companies:
+      post:
+        tags:
+          - Company Lists
+        summary: Add Companies To List
+        operationId: add_companies_to_list_v0_company_lists__list_id__add_companies_post
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: List Id
+            name: list_id
+            in: path
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/Body_add_companies_to_list_v0_company_lists__list_id__add_companies_post
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CompanyList'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/company_lists/{list_id}/remove_companies:
+      post:
+        tags:
+          - Company Lists
+        summary: Remove Companies From List
+        operationId: >-
+          remove_companies_from_list_v0_company_lists__list_id__remove_companies_post
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: List Id
+            name: list_id
+            in: path
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/Body_remove_companies_from_list_v0_company_lists__list_id__remove_companies_post
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CompanyList'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/company_lists/add_companies:
+      post:
+        tags:
+          - Company Lists
+        summary: Add Companies To Multiple Lists
+        operationId: add_companies_to_multiple_lists_v0_company_lists_add_companies_post
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/Body_add_companies_to_multiple_lists_v0_company_lists_add_companies_post
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/saved_searches:
+      get:
+        tags:
+          - Saved Searches
+        summary: Get Saved Searches
+        description: Get all the saved searches for the current user
+        operationId: get_saved_searches_v0_saved_searches_get
+        parameters:
+          - description: >-
+              Get saved searches from users with these IDs. The IDs must be from
+              people in the current users' team.
+            required: false
+            schema:
+              items:
+                type: integer
+              type: array
+              title: User Ids
+              description: >-
+                Get saved searches from users with these IDs. The IDs must be from
+                people in the current users' team.
+            name: user_ids
+            in: query
+          - description: Filter by type of search. For example, 'jobs' or 'tech_details'
+            required: false
+            schema:
+              items:
+                type: string
+              type: array
+              title: Types
+              description: Filter by type of search. For example, 'jobs' or 'tech_details'
+            name: types
+            in: query
+          - description: Order by field
+            required: false
+            schema:
+              type: string
+              enum:
+                - name
+                - created_at
+                - updated_at
+              title: Order By
+              description: Order by field
+              default: updated_at
+            name: order_by
+            in: query
+          - description: Order direction
+            required: false
+            schema:
+              type: string
+              enum:
+                - asc
+                - desc
+              title: Order Direction
+              description: Order direction
+              default: desc
+            name: order_direction
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/SavedSearch'
+                  type: array
+                  title: Response Get Saved Searches V0 Saved Searches Get
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+      put:
+        tags:
+          - Saved Searches
+        summary: Upsert Saved Search
+        description: >-
+          Create or update a saved search. If one with the same name and type
+          exists, it will be updated. If not, a new one will be created.
+        operationId: upsert_saved_search_v0_saved_searches_put
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedSearchCreate'
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SavedSearch'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+      post:
+        tags:
+          - Saved Searches
+        summary: Create Saved Search
+        operationId: create_saved_search_v0_saved_searches_post
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedSearchCreate'
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SavedSearch'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/saved_searches/{search_id}:
+      get:
+        tags:
+          - Saved Searches
+        summary: Get Saved Search
+        operationId: get_saved_search_v0_saved_searches__search_id__get
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: Search Id
+            name: search_id
+            in: path
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SavedSearch'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+      delete:
+        tags:
+          - Saved Searches
+        summary: Delete Saved Search
+        operationId: delete_saved_search_v0_saved_searches__search_id__delete
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: Search Id
+            name: search_id
+            in: path
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+      patch:
+        tags:
+          - Saved Searches
+        summary: Update Saved Search
+        operationId: update_saved_search_v0_saved_searches__search_id__patch
+        parameters:
+          - required: true
+            schema:
+              type: integer
+              title: Search Id
+            name: search_id
+            in: path
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedSearchUpdate'
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SavedSearch'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/catalog/technologies:
+      get:
+        tags:
+          - Catalog
+        summary: Get Technologies
+        description: >-
+          This endpoint lets you:
+
+          - List all the technologies we track
+
+          - Search for any given technology. Pass a `name_pattern` parameter
+          (case-insensitive, can be a regex pattern)
+
+          - List the technologies within one or several categories. Pass a
+          `category_pattern` parameter (case-insensitive, can be a regex pattern)
+
+
+          Calls to this endpoint don't cost you credits.
+        operationId: get_technologies_v0_catalog_technologies_get
+        parameters:
+          - description: Regex pattern of a technology name, case-insensitive
+            required: false
+            schema:
+              type: string
+              title: Name Pattern
+              description: Regex pattern of a technology name, case-insensitive
+            name: name_pattern
+            in: query
+          - description: >-
+              Regex pattern of a technology category, case-insensitive. For
+              example, `data|storage|queue` to find data tools.
+            required: false
+            schema:
+              type: string
+              title: Category Pattern
+              description: >-
+                Regex pattern of a technology category, case-insensitive. For
+                example, `data|storage|queue` to find data tools.
+            name: category_pattern
+            in: query
+          - description: Slug of one or many technologies
+            required: false
+            schema:
+              items:
+                type: string
+              type: array
+              title: Slug
+              description: Slug of one or many technologies
+            name: slug
+            in: query
+          - description: Slugs of one or many technologies
+            required: false
+            schema:
+              items:
+                type: string
+              type: array
+              title: Slugs
+              description: Slugs of one or many technologies
+            name: slugs
+            in: query
+          - description: Slug of a technology category
+            required: false
+            schema:
+              type: string
+              title: Category Slug
+              description: Slug of a technology category
+            name: category_slug
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Page
+              default: 0
+            name: page
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Limit
+              default: 25
+            name: limit
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/TechnologyAggregated'
+                  type: array
+                  title: Response Get Technologies V0 Catalog Technologies Get
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /v0/catalog/industries:
+      get:
+        tags:
+          - Catalog
+        summary: Get Industries
+        description: |-
+          This endpoint lets you:
+          - List all the industries and their codes
+          - See how many jobs and companies we have per industry
+          - Search for an industry
+
+          Calls to this endpoint don't cost you credits.
+        operationId: get_industries_v0_catalog_industries_get
+        parameters:
+          - description: >-
+              Name of an industry, case-insensitive. Will return industries that
+              contain the given string either in their name, hierarchy or
+              description
+            required: false
+            schema:
+              type: string
+              title: Industry
+              description: >-
+                Name of an industry, case-insensitive. Will return industries that
+                contain the given string either in their name, hierarchy or
+                description
+            name: industry
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Page
+              default: 0
+            name: page
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Limit
+              default: 25
+            name: limit
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/IndustryStatsResponse'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /v0/catalog/jobs_companies_per_job_country_code:
+      get:
+        tags:
+          - Catalog
+        summary: Get Jobs And Companies Per Job Country Code
+        description: >-
+          This endpoint will return all the country codes and the number of jobs
+          whose location's country code is the given one, and the number of
+          companies with jobs in that country.
+              
+          Calls to this endpoint don't cost you credits.
+        operationId: >-
+          get_jobs_and_companies_per_job_country_code_v0_catalog_jobs_companies_per_job_country_code_get
+        parameters:
+          - description: >-
+              Name of a country. Will return any countries that contain the given
+              string
+            required: false
+            schema:
+              type: string
+              title: Country
+              description: >-
+                Name of a country. Will return any countries that contain the
+                given string
+            name: country
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Page
+              default: 0
+            name: page
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Limit
+              default: 25
+            name: limit
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/JobsCompaniesPerJobCountryCodeResponse'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /v0/catalog/companies_per_company_country_code:
+      get:
+        tags:
+          - Catalog
+        summary: Get Companies Per Company Country Code
+        description: >-
+          This endpoint will return all country codes and the number of companies
+          whose HQ is in that country.
+              
+          Calls to this endpoint don't cost you credits.
+        operationId: >-
+          get_companies_per_company_country_code_v0_catalog_companies_per_company_country_code_get
+        parameters:
+          - description: >-
+              Name of a country. Will return any countries that contain the given
+              string
+            required: false
+            schema:
+              type: string
+              title: Country
+              description: >-
+                Name of a country. Will return any countries that contain the
+                given string
+            name: country
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Page
+              default: 0
+            name: page
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Limit
+              default: 25
+            name: limit
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CompaniesPerCountryCodeResponse'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /v0/catalog/technologies/categories:
+      get:
+        tags:
+          - Catalog
+        summary: Get Technology Categories
+        description: >-
+          This endpoint lets you get all the categories of the technologies we
+          monitor, and the number of technologies and companies in each category.
+        operationId: get_technology_categories_v0_catalog_technologies_categories_get
+        parameters:
+          - description: Category slug
+            required: false
+            schema:
+              type: string
+              title: Category Slug
+              description: Category slug
+            name: category_slug
+            in: query
+          - description: Number of technologies per category
+            required: false
+            schema:
+              type: integer
+              title: Num Technologies Per Category
+              description: Number of technologies per category
+              default: 5
+            name: num_technologies_per_category
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TechnologyCategoryResponse'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /v1/jobs/search:
+      post:
+        tags:
+          - Jobs
+        summary: Search Jobs
+        description: >-
+          This endpoints lets you find the most recent jobs, filter them by
+          companies, technologies or any pattern in the job description.
+        operationId: search_jobs_v1_jobs_search_post
+        parameters:
+          - description: Page number. Will only apply when not passed in the body
+            required: false
+            schema:
+              type: integer
+              title: Page
+              description: Page number. Will only apply when not passed in the body
+            name: page
+            in: query
+          - description: >-
+              Number of results per page. Will only apply when not passed in the
+              body.
+            required: false
+            schema:
+              type: integer
+              title: Limit
+              description: >-
+                Number of results per page. Will only apply when not passed in the
+                body.
+            name: limit
+            in: query
+          - description: >-
+              Whether to include the total number of results in the response. Will
+              only apply when not passed in the body.
+            required: false
+            schema:
+              type: boolean
+              title: Include Total Results
+              description: >-
+                Whether to include the total number of results in the response.
+                Will only apply when not passed in the body.
+            name: include_total_results
+            in: query
+          - description: >-
+              Group results by a given field and get the number of jobs per group.
+              If you pass `company`, you'll get the number of jobs per company. If
+              you pass `job_title`, you'll get the number of jobs per job title.
+              If you pass `location`, you'll get the number of jobs per location.
+              Will only apply when not passed in the body
+            required: false
+            schema:
+              items:
+                type: string
+              type: array
+              title: Group By
+              description: >-
+                Group results by a given field and get the number of jobs per
+                group. If you pass `company`, you'll get the number of jobs per
+                company. If you pass `job_title`, you'll get the number of jobs
+                per job title. If you pass `location`, you'll get the number of
+                jobs per location. Will only apply when not passed in the body
+            name: group_by
+            in: query
+          - description: Format of the response. One of `json` or `csv`. Defaults to `json`.
+            required: false
+            schema:
+              type: string
+              enum:
+                - json
+                - csv
+              title: Format
+              description: >-
+                Format of the response. One of `json` or `csv`. Defaults to
+                `json`.
+              default: json
+            name: format
+            in: query
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobSearchFilters'
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v1/companies/search:
+      post:
+        tags:
+          - Companies
+        summary: Search Companies
+        description: >-
+          Search for companies filtering them by
+
+          - company attributes
+
+          - technology attributes
+
+          - jobs attributes.
+
+
+          Returns a list of companies that match the search criteria, and the jobs
+          and technology objects for each company that match the filters you've
+          passed.
+        operationId: search_companies_v1_companies_search_post
+        parameters:
+          - description: Format of the response. One of `json` or `csv`. Defaults to `json`.
+            required: false
+            schema:
+              type: string
+              enum:
+                - json
+                - csv
+              title: Format
+              description: >-
+                Format of the response. One of `json` or `csv`. Defaults to
+                `json`.
+              default: json
+            name: format
+            in: query
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanySearchFilters'
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CompanySearchResponse'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v1/companies/tech_details:
+      post:
+        tags:
+          - Companies
+        summary: Tech Details
+        description: >-
+          List all the technologies used by companies, with quantitative details
+          for each technology, for one or many companies at once, such as how many
+          jobs were found from each technology and company in the last 180/30/7
+          days.
+              
+          This endpoint enables account-based marketing strategies. For example,
+          you can find all the companies that use a specific technology, and then
+          find out how many jobs they have posted in the last 30 days. You can
+          then use this information to target them with a marketing campaign.
+        operationId: tech_details_v1_companies_tech_details_post
+        parameters:
+          - description: Format of the response. One of `json` or `csv`. Defaults to `json`.
+            required: false
+            schema:
+              type: string
+              enum:
+                - json
+                - csv
+              title: Format
+              description: >-
+                Format of the response. One of `json` or `csv`. Defaults to
+                `json`.
+              default: json
+            name: format
+            in: query
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TechDetailsFilters'
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CompanyTechDetailsResponse'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/companies/search_by_url:
+      get:
+        tags:
+          - Companies
+        summary: Search Companies By Domain
+        description: >-
+          Get enriched data for a list of companies given their domains, full URLs
+          or emails from those companies.
+              
+          Calls to this endpoint cost you credits if you hadn't fetched the
+          companies returned before.
+        operationId: Search_companies_by_domain_v0_companies_search_by_url_get
+        parameters:
+          - description: >-
+              Comma-sep rated list of domains. Deprecated - use the
+              `companies_urls` parameter instead. You can pass domains, emails or
+              full URLs to it directly.
+            required: false
+            deprecated: true
+            schema:
+              type: string
+              title: Domains
+              description: >-
+                Comma-sep rated list of domains. Deprecated - use the
+                `companies_urls` parameter instead. You can pass domains, emails
+                or full URLs to it directly.
+            name: domains
+            in: query
+          - description: >-
+              Comma-sep rated list of emails. Deprecated - use the
+              `companies_urls` parameter instead. You can pass domains, emails or
+              full URLs to it directly.
+            required: false
+            deprecated: true
+            schema:
+              type: string
+              title: Emails
+              description: >-
+                Comma-sep rated list of emails. Deprecated - use the
+                `companies_urls` parameter instead. You can pass domains, emails
+                or full URLs to it directly.
+            name: emails
+            in: query
+          - description: Format of the response. One of `json` or `csv`. Defaults to `json`.
+            required: false
+            schema:
+              type: string
+              enum:
+                - json
+                - csv
+              title: Format
+              description: >-
+                Format of the response. One of `json` or `csv`. Defaults to
+                `json`.
+              default: json
+            name: format
+            in: query
+          - description: >-
+              Array or comma-separated string containing domains, emails or full
+              URLs.
+            required: false
+            schema:
+              items:
+                type: string
+              type: array
+              title: Companies Urls
+              description: >-
+                Array or comma-separated string containing domains, emails or full
+                URLs.
+              default: []
+            name: companies_urls
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/CompanyWithTechnologies'
+                  type: array
+                  title: >-
+                    Response Search Companies By Domain V0 Companies Search By Url
+                    Get
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+    /v0/decision_makers/search:
+      get:
+        tags:
+          - Decision makers
+        summary: Search Decision Makers
+        description: >-
+          We extract the people job posts tell the hired person would report to.
+          This endpoint lets you find those decision makers associated to certain
+          technologies, job titles or terms found in the job descriptions.
+        operationId: search_decision_makers_v0_decision_makers_search_get
+        parameters:
+          - description: >-
+              Regex pattern to match any of the technologies we track, listed on
+              the /technologies endpoint
+            required: false
+            schema:
+              type: string
+              title: Technology Pattern
+              description: >-
+                Regex pattern to match any of the technologies we track, listed on
+                the /technologies endpoint
+            name: technology_pattern
+            in: query
+          - description: Regex pattern to match job titles
+            required: false
+            schema:
+              type: string
+              title: Job Title Pattern
+              description: Regex pattern to match job titles
+            name: job_title_pattern
+            in: query
+          - description: Country name of the company to filter by. Case sensitive
+            required: false
+            schema:
+              type: string
+              title: Country
+              description: Country name of the company to filter by. Case sensitive
+            name: country
+            in: query
+          - description: Minimum number of employees
+            required: false
+            schema:
+              type: integer
+              title: Min Employee Count
+              description: Minimum number of employees
+            name: min_employee_count
+            in: query
+          - description: Minimum number of employees
+            required: false
+            schema:
+              type: integer
+              title: Max Employee Count
+              description: Minimum number of employees
+            name: max_employee_count
+            in: query
+          - description: Regex pattern to search in job descriptions. Case insensitive
+            required: false
+            schema:
+              type: string
+              title: Description Pattern
+              description: Regex pattern to search in job descriptions. Case insensitive
+            name: description_pattern
+            in: query
+          - description: Regex pattern to match company names
+            required: false
+            schema:
+              type: string
+              title: Companies Pattern
+              description: Regex pattern to match company names
+            name: companies_pattern
+            in: query
+          - description: Number of days to look back for jobs
+            required: false
+            schema:
+              type: integer
+              title: Fromage
+              description: Number of days to look back for jobs
+            name: fromage
+            in: query
+          - description: Format of the response. One of `json` or `csv`. Defaults to `json`.
+            required: false
+            schema:
+              type: string
+              enum:
+                - json
+                - csv
+              title: Format
+              description: >-
+                Format of the response. One of `json` or `csv`. Defaults to
+                `json`.
+              default: json
+            name: format
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Page
+              default: 0
+            name: page
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Limit
+              default: 25
+            name: limit
+            in: query
+          - description: >-
+              If `true`, only companies that haven't been fetched by the user will
+              be returned. Credits will be consumed.
+
+
+              If `false`, only companies that have been fetched by the user will
+              be returned. In this case, your call won't consume credits.
+
+
+              If `all`, both new and fetched companies may be returned.
+
+
+              Defaults to `all`
+            required: false
+            schema:
+              type: string
+              enum:
+                - 'true'
+                - 'false'
+                - all
+              title: New Companies
+              description: >-
+                If `true`, only companies that haven't been fetched by the user
+                will be returned. Credits will be consumed.
+
+
+                If `false`, only companies that have been fetched by the user will
+                be returned. In this case, your call won't consume credits.
+
+
+                If `all`, both new and fetched companies may be returned.
+
+
+                Defaults to `all`
+              default: all
+            name: new_companies
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  items:
+                    $ref: '#/components/schemas/DecisionMaker'
+                  type: array
+                  title: Response Search Decision Makers V0 Decision Makers Search Get
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+        security:
+          - APIKeyQuery: []
+          - APIKeyCookie: []
+          - Bearer: []
+          - OAuth2PasswordBearer: []
+  components:
+    schemas:
+      BaseMetadata:
+        properties:
+          total_results:
+            type: integer
+            title: Total Results
+            description: Total number of results
+            example: 2034
+        type: object
+        title: BaseMetadata
+      BaseMetadataWithTruncatedResults:
+        properties:
+          total_results:
+            type: integer
+            title: Total Results
+            description: Total number of results
+            example: 2034
+          truncated_results:
+            type: integer
+            title: Truncated Results
+            description: >-
+              Number of results that were not returned because the user doesn't
+              have enough credits to fetch them all the possible results the API
+              could have returned
+            default: 0
+          truncated_companies:
+            type: integer
+            title: Truncated Companies
+            description: >-
+              Number of companies that were not returned because the user doesn't
+              have enough credits to fetch all the possible results the API could
+              have returned
+            default: 0
+        type: object
+        title: BaseMetadataWithTruncatedResults
+      BaseMetadataWitihTotalCompanies:
+        properties:
+          total_results:
+            type: integer
+            title: Total Results
+            description: Total number of results
+            example: 2034
+          truncated_results:
+            type: integer
+            title: Truncated Results
+            description: >-
+              Number of results that were not returned because the user doesn't
+              have enough credits to fetch them all the possible results the API
+              could have returned
+            default: 0
+          truncated_companies:
+            type: integer
+            title: Truncated Companies
+            description: >-
+              Number of companies that were not returned because the user doesn't
+              have enough credits to fetch all the possible results the API could
+              have returned
+            default: 0
+          total_companies:
+            type: integer
+            title: Total Companies
+            description: Total number of companies
+            example: 1045
+        type: object
+        title: BaseMetadataWitihTotalCompanies
+      Body_add_companies_to_list_v0_company_lists__list_id__add_companies_post:
+        properties:
+          company_names:
+            items:
+              type: string
+            type: array
+            title: Company Names
+            description: Company names to add to the list
+            default: []
+        type: object
+        title: Body_add_companies_to_list_v0_company_lists__list_id__add_companies_post
+      Body_add_companies_to_multiple_lists_v0_company_lists_add_companies_post:
+        properties:
+          list_ids:
+            items:
+              type: integer
+            type: array
+            title: List Ids
+            description: List ids to add companies to
+            default: []
+          company_names:
+            items:
+              type: string
+            type: array
+            title: Company Names
+            description: Company names to add to the list
+            default: []
+        type: object
+        title: Body_add_companies_to_multiple_lists_v0_company_lists_add_companies_post
+      Body_remove_companies_from_list_v0_company_lists__list_id__remove_companies_post:
+        properties:
+          company_names:
+            items:
+              type: string
+            type: array
+            title: Company Names
+            description: Company names to remove from the list
+            default: []
+        type: object
+        title: >-
+          Body_remove_companies_from_list_v0_company_lists__list_id__remove_companies_post
+      ColumnSortCompanySearch:
+        properties:
+          desc:
+            type: boolean
+            title: Desc
+            description: Whether to order by descending or ascending values
+            default: true
+          field:
+            type: string
+            enum:
+              - name
+              - num_jobs
+              - num_jobs_last_30_days
+              - num_jobs_found
+              - employee_count
+              - alexa_ranking
+              - founded_year
+              - annual_revenue_usd
+              - total_funding_usd
+              - last_funding_round_date
+              - confidence
+              - first_date_found
+            title: Field
+            description: Order the results by some of these fields
+        additionalProperties: false
+        type: object
+        required:
+          - field
+        title: ColumnSortCompanySearch
+      ColumnSortCompanyTechDetails:
+        properties:
+          desc:
+            type: boolean
+            title: Desc
+            description: Whether to order by descending or ascending values
+            default: true
+          field:
+            type: string
+            enum:
+              - jobs
+              - jobs_last_7_days
+              - jobs_last_30_days
+              - jobs_last_180_days
+              - last_date_found
+              - first_date_found
+              - relative_occurrence_within_category
+              - theirstack_score
+              - confidence
+              - company.name
+              - company.employee_count
+              - company.alexa_ranking
+              - company.founded_year
+              - company.annual_revenue_usd
+              - company.total_funding_usd
+              - company.last_funding_round_date
+            title: Field
+            description: Order the results by some of these fields
+        additionalProperties: false
+        type: object
+        title: ColumnSortCompanyTechDetails
+      ColumnSortJobSearch:
+        properties:
+          desc:
+            type: boolean
+            title: Desc
+            description: Whether to order by descending or ascending values
+            default: true
+          field:
+            type: string
+            enum:
+              - date_posted
+              - discovered_at
+              - salary
+              - company
+              - num_jobs
+            title: Field
+            description: Field to order by
+            default: date_posted
+        additionalProperties: false
+        type: object
+        title: ColumnSortJobSearch
+      CompaniesPerCountryCode:
+        properties:
+          iso2:
+            type: string
+            title: Iso2
+            description: ISO2 country code
+          country:
+            type: string
+            title: Country
+            description: Country name
+          num_companies:
+            type: integer
+            title: Num Companies
+            description: Number of companies in the country
+        type: object
+        title: CompaniesPerCountryCode
+      CompaniesPerCountryCodeResponse:
+        properties:
+          data:
+            items:
+              $ref: '#/components/schemas/CompaniesPerCountryCode'
+            type: array
+            title: Data
+          metadata:
+            $ref: '#/components/schemas/BaseMetadata'
+        type: object
+        required:
+          - data
+          - metadata
+        title: CompaniesPerCountryCodeResponse
+      CompanyList:
+        properties:
+          name:
+            type: string
+            title: Name
+          id:
+            type: integer
+            title: Id
+          created_at:
+            type: string
+            format: date-time
+            title: Created At
+          deletable:
+            type: boolean
+            title: Deletable
+          companies_count:
+            type: integer
+            title: Companies Count
+            description: Number of companies in the list
+            default: 0
+        type: object
+        required:
+          - name
+          - id
+          - created_at
+          - deletable
+        title: CompanyList
+      CompanyListCreate:
+        properties:
+          name:
+            type: string
+            title: Name
+        type: object
+        required:
+          - name
+        title: CompanyListCreate
+      CompanyListItem:
+        properties:
+          company_name:
+            type: string
+            title: Company Name
+          added_at:
+            type: string
+            format: date-time
+            title: Added At
+          added_at_last_time:
+            type: string
+            format: date-time
+            title: Added At Last Time
+          company_object:
+            $ref: '#/components/schemas/CompanyWithTechnologySlugs'
+        type: object
+        required:
+          - company_name
+          - added_at
+          - added_at_last_time
+          - company_object
+        title: CompanyListItem
+      CompanyListRename:
+        properties:
+          new_name:
+            type: string
+            title: New Name
+        type: object
+        required:
+          - new_name
+        title: CompanyListRename
+      CompanySearchFilters:
+        properties:
+          order_by:
+            items:
+              $ref: '#/components/schemas/ColumnSortCompanySearch'
+            type: array
+            title: Order By
+            description: >-
+              List of column objects. You can pass several columns to order by, in
+              order of priority. Only `field` is required, `desc` is True by
+              default
+            default: []
+          page:
+            type: integer
+            title: Page
+            description: Page number
+            default: 0
+            examples:
+              - 0
+          limit:
+            type: integer
+            title: Limit
+            description: >-
+              Number of results per page.Default value is 25. Can't be higher than
+              500
+            default: 25
+            examples:
+              - 25
+          company_description_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Company Description Pattern Or
+            description: >-
+              Case-insensitive patterns to match in the company description. Will
+              return companies that match any of the patterns.
+            default: []
+          company_description_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Company Description Pattern Not
+            description: >-
+              Case-insensitive patterns to match in the company description. Will
+              return companies that match any of the patterns.
+            default: []
+          company_description_pattern_accent_insensitive:
+            type: boolean
+            title: Company Description Pattern Accent Insensitive
+            description: >-
+              Set to True to make company description searches accent insensitive.
+              For example, "á" will match "a" as well.
+            default: false
+          min_revenue_usd:
+            type: integer
+            title: Min Revenue Usd
+            description: Minimum company revenue, in USD
+            examples:
+              - null
+          max_revenue_usd:
+            type: integer
+            title: Max Revenue Usd
+            description: Maximum company revenue, in USD
+            examples:
+              - null
+          min_employee_count:
+            type: integer
+            title: Min Employee Count
+            description: Minimum number of employees in a company
+            examples:
+              - null
+          max_employee_count:
+            type: integer
+            title: Max Employee Count
+            description: Maximum number of employees in a company
+            examples:
+              - null
+          min_employee_count_or_null:
+            type: integer
+            title: Min Employee Count Or Null
+            description: >-
+              Minimum number of employees in a company. If we don't have company
+              size information, we will return it as well.
+            examples:
+              - null
+          max_employee_count_or_null:
+            type: integer
+            title: Max Employee Count Or Null
+            description: >-
+              Maximum number of employees in a company. If we don't have company
+              size information, we will return it as well.
+            examples:
+              - null
+          min_funding_usd:
+            type: integer
+            title: Min Funding Usd
+            description: Minimum company funding, in USD
+            examples:
+              - null
+          max_funding_usd:
+            type: integer
+            title: Max Funding Usd
+            description: Maximum company funding, in USD
+            examples:
+              - null
+          funding_stage_or:
+            items:
+              type: string
+            type: array
+            title: Funding Stage Or
+            description: >-
+              Funding stages of companies returned. One of the values in the round
+              column of
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=472436935
+            default: []
+          industry_or:
+            items:
+              type: string
+            type: array
+            title: Industry Or
+            description: >-
+              Names of industries, case-insensitive. Results will only include
+              companies that belong to any of the industries specified in this
+              parameter. Available values:
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit?usp=sharing
+            default: []
+          industry_not:
+            items:
+              type: string
+            type: array
+            title: Industry Not
+            description: >-
+              Names of industries, case-insensitive. Results will exclude
+              companies that belong to any of the industries specified in this
+              parameter. Available values:
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit?usp=sharing
+            default: []
+          industry_id_or:
+            items:
+              type: integer
+            type: array
+            title: Industry Id Or
+            description: >-
+              Industry codes. You can use any of LinkedIn's Industry Codes V2:
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+            default: []
+          industry_id_not:
+            items:
+              type: integer
+            type: array
+            title: Industry Id Not
+            description: >-
+              Industry codes to exclude. You can use any of LinkedIn's Industry
+              Codes V2:
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+            default: []
+          company_tags_or:
+            items:
+              type: string
+            type: array
+            title: Company Tags Or
+            description: Return companies that match any of these keywords
+            default: []
+          company_type:
+            type: string
+            enum:
+              - recruiting_agency
+              - direct_employer
+              - all
+            title: Company Type
+            description: Filter by company type.
+            default: all
+          company_investors_or:
+            items:
+              type: string
+            type: array
+            title: Company Investors Or
+            description: Investors of the company
+            default: []
+          company_investors_partial_match_or:
+            items:
+              type: string
+            type: array
+            title: Company Investors Partial Match Or
+            description: >-
+              Investors of the company. Will return companies for which any of
+              their investors contains any of the substrings passed here. For
+              example, if you pass 'andree', all funds that match it (like
+              'Andreessen Horowitz', 'Andreessen Horowitz LLC', etc).
+            default: []
+          company_technology_slug_or:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug Or
+            description: >-
+              Will return jobs from companies that that have mentioned any of
+              these technologies in their jobs. Case sensitive. Pass slugs. Check
+              out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          company_technology_slug_and:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug And
+            description: >-
+              Will return jobs from companies that that have mentioned all of
+              these technologies in their jobs (not necessarily in the jobs
+              returned). Case sensitive. Pass slugs. Check out all the
+              technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          company_technology_slug_not:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug Not
+            description: >-
+              Will return jobs from companies that that haven't mentioned any of
+              these technologies in their jobs. Case sensitive. Pass slugs. Check
+              out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          only_yc_companies:
+            type: boolean
+            title: Only Yc Companies
+            description: Only return YC companies
+            default: false
+          company_location_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Company Location Pattern Or
+            description: >-
+              Return companies whose location matches any of the patterns passed
+              here. Case insensitive. For example, if you pass 'san francisco', it
+              will return companies whose location is 'San Francisco', 'San
+              Francisco Bay Area', etc.
+            default: []
+          company_country_code_or:
+            items:
+              type: string
+            type: array
+            title: Company Country Code Or
+            description: >-
+              Return companies whose HQ country code is any of the ones passed
+              here, case sensitive. Pass ISO2 country codes.
+            default: []
+          company_country_code_not:
+            items:
+              type: string
+            type: array
+            title: Company Country Code Not
+            description: >-
+              Return companies whose HQ country code is not any of the ones passed
+              here, case sensitive. Pass ISO2 country codes.
+            default: []
+          company_list_id_or:
+            items:
+              type: integer
+            type: array
+            title: Company List Id Or
+            description: Return companies that belong to any of the company lists passed here
+            default: []
+          company_list_id_not:
+            items:
+              type: integer
+            type: array
+            title: Company List Id Not
+            description: >-
+              Return companies that don't belong to any of the company lists
+              passed here
+            default: []
+          company_name_or:
+            items:
+              type: string
+            type: array
+            title: Company Name Or
+            description: >-
+              Company names. Will return companies that match these names exactly,
+              case-sensitively.
+            default: []
+          company_domain_or:
+            items:
+              type: string
+            type: array
+            title: Company Domain Or
+            description: Company domains, full URLs or emails
+            default: []
+          company_domain_not:
+            items:
+              type: string
+            type: array
+            title: Company Domain Not
+            description: Exclude by domains, full URLs or emails
+            default: []
+          company_name_not:
+            items:
+              type: string
+            type: array
+            title: Company Name Not
+            description: >-
+              Company names. Will exclude companies that match these names
+              exactly, case-sensitively.
+            default: []
+          company_name_partial_match_or:
+            items:
+              type: string
+            type: array
+            title: Company Name Partial Match Or
+            description: >-
+              Company names. Will return companies whose name contain any of the
+              the substrings passed here, case-insensitively. For example, if you
+              pass "google", it will return "Google", "Google LLC", "Google Inc",
+              etc.
+            default: []
+          company_name_partial_match_not:
+            items:
+              type: string
+            type: array
+            title: Company Name Partial Match Not
+            description: >-
+              Company names. Will return companies whose name doesn't contain any
+              of the the substrings passed here, case-insensitively. For example,
+              if you pass 'google', it will exclude 'Google', 'Google LLC',
+              'Google Inc', etc.
+            default: []
+          include_total_results:
+            type: boolean
+            title: Include Total Results
+            description: >-
+              Include a field in the response with the total number of results.
+              WARNING: setting this to True will make the responses much slower,
+              or you'll very likely get timeouts. Set to true only in combination
+              with a date filter, and to get all results, better set a high limit
+              and iterate over pages, setting this to False.
+            default: false
+          job_filters:
+            $ref: '#/components/schemas/JobFilters'
+          tech_filters:
+            $ref: '#/components/schemas/TechDetailsTechnologyFilters'
+        additionalProperties: false
+        type: object
+        title: CompanySearchFilters
+      CompanySearchResponse:
+        properties:
+          data:
+            items:
+              $ref: '#/components/schemas/CompanyWithTechnologiesAndJobs'
+            type: array
+            title: Data
+          metadata:
+            $ref: '#/components/schemas/BaseMetadataWithTruncatedResults'
+        type: object
+        required:
+          - data
+        title: CompanySearchResponse
+      CompanyTechDetailsResponse:
+        properties:
+          data:
+            items:
+              $ref: '#/components/schemas/CompanyTechnology'
+            type: array
+            title: Data
+          metadata:
+            $ref: '#/components/schemas/BaseMetadataWitihTotalCompanies'
+        type: object
+        title: CompanyTechDetailsResponse
+      CompanyTechnology:
+        properties:
+          technology:
+            allOf:
+              - $ref: '#/components/schemas/KeywordExtended'
+            title: Technology
+            description: Technology object
+          jobs:
+            type: integer
+            title: Jobs
+            description: Number of jobs found mentioning this technology
+            example: 54
+          first_date_found:
+            type: string
+            format: date
+            title: First Date Found
+            description: >-
+              Date when the keyword was first mentioned by the company in a job
+              post
+          last_date_found:
+            type: string
+            format: date
+            title: Last Date Found
+            description: >-
+              Date when the keyword was last mentioned by the company in a job
+              post
+          rank_within_category:
+            type: integer
+            title: Rank Within Category
+            description: >-
+              Measures how common this technology is among the company's jobs,
+              compared to other technologies in the same category. The most
+              mentioned technology in its category will have a rank of 1. This
+              helps you infer which is the technology the company is most likely
+              to be using, when they mention several technologies that belong to
+              the same category.
+          relative_occurrence_within_category:
+            type: number
+            title: Relative Occurrence Within Category
+            description: >-
+              Measures the relative occurance of this technology among other
+              technologies in the same category, in jobs by this company. If there
+              are 10 jobs where a company mentions 3 categories, and they appear
+              in 8, 3 and 2 jobs respectively, its relative occurrences will be
+              0.8, 0.3 and 0.2. This helps you infer how likely it is that the
+              company is using this technology, when they mention several
+              technologies that belong to the same category.
+          theirstack_score:
+            type: number
+            title: Theirstack Score
+            description: >-
+              This is a score we assign to every technology used by each company
+              to asses how likely it is that they're using it, combining the value
+              of `jobs` and `relative_occurrence_within_category`. The higher this
+              value is, the higher the chances that the company uses this
+              technology. Values lower than 1 mean it's not very likely they use
+              it. Then, the higher the value of theirstack_score, the more likely
+              it is that they actually use it.
+          confidence:
+            type: string
+            enum:
+              - low
+              - medium
+              - high
+            title: Confidence
+            description: How confident we are that the company uses this technology
+            default: []
+          jobs_last_7_days:
+            type: integer
+            title: Jobs Last 7 Days
+            description: >-
+              Number of jobs from the given company mentioning this technology in
+              the last 7 days
+            default: 0
+          jobs_last_30_days:
+            type: integer
+            title: Jobs Last 30 Days
+            description: >-
+              Number of jobs from the given company mentioning this technology in
+              the last 30 days
+            default: 0
+          jobs_last_180_days:
+            type: integer
+            title: Jobs Last 180 Days
+            description: >-
+              Number of jobs from the given company mentioning this technology in
+              the last 180 days
+            default: 0
+          job_objects:
+            items:
+              $ref: '#/components/schemas/JobBase'
+            type: array
+            title: Job Objects
+            description: List of jobs mentioning this technology from this company
+            default: []
+          job_country_codes:
+            items:
+              type: string
+            type: array
+            title: Job Country Codes
+            description: >-
+              List of unique country codes of the jobs mentioning this technology
+              from the given company
+          company_object:
+            allOf:
+              - $ref: '#/components/schemas/CompanyWithTechnologySlugs'
+            title: Company Object
+            description: Company object
+        type: object
+        title: CompanyTechnology
+      CompanyWithTechnologies:
+        properties:
+          name:
+            type: string
+            title: Name
+            description: Company name
+            example: Google
+          url:
+            type: string
+            title: Url
+            description: >-
+              Company domain. Same as the "domain" field. Will be deprecated in
+              the future.
+            example: google.com
+          domain:
+            type: string
+            title: Domain
+            description: Company domain
+            example: google.com
+          probability_actual_domain_found:
+            type: number
+            title: Probability Actual Domain Found
+            description: >-
+              Estimates the probability the the domain we found for a given
+              company name is the actual domain of that company. Between 0 and 1.
+          industry:
+            type: string
+            title: Industry
+            description: Industry of the company
+            example: internet
+          industry_id:
+            type: integer
+            title: Industry Id
+            description: >-
+              Code of the industry. One of LinkedIn's Industry Codes V2 from
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+          country:
+            type: string
+            title: Country
+            description: Country of the company's HQ
+            example: United States
+          country_code:
+            type: string
+            title: Country Code
+            description: ISO2 country code. E.g. "US"
+          employee_count:
+            type: integer
+            title: Employee Count
+            description: Number of employees of the company
+            example: 7543
+          linkedin_url:
+            type: string
+            title: Linkedin Url
+            example: http://www.linkedin.com/company/google
+          num_jobs:
+            type: integer
+            title: Num Jobs
+            description: Number of jobs from this company in our database
+            example: 746
+          num_jobs_last_30_days:
+            type: integer
+            title: Num Jobs Last 30 Days
+            description: >-
+              Number of jobs from this company in our database posted in the last
+              30 days
+            example: 34
+          num_jobs_found:
+            type: integer
+            title: Num Jobs Found
+            description: >-
+              When filtering companies by jobs, number of jobs found for this
+              company
+            example: 23
+          yc_batch:
+            type: string
+            title: Yc Batch
+            description: If the company went through YC, this is its batch
+            example: W21
+          apollo_id:
+            type: string
+            title: Apollo Id
+            description: ID of the company in Apollo
+            example: 5b839bd0324d4445051f9a5a
+          linkedin_id:
+            type: string
+            title: Linkedin Id
+            description: ID of the company in LinkedIn
+          url_source:
+            type: string
+            title: Url Source
+            description: Source of the company URL
+          is_recruiting_agency:
+            type: boolean
+            title: Is Recruiting Agency
+            description: Is a recruiting agency
+          logo:
+            type: string
+            maxLength: 65536
+            minLength: 1
+            format: uri
+            title: Logo
+            description: Logo of the company
+            example: https://example.com/logo.png
+          founded_year:
+            type: integer
+            title: Founded Year
+            description: Year the company was founded
+            example: 2019
+          annual_revenue_usd:
+            type: number
+            title: Annual Revenue Usd
+            description: Annual revenue of the company in USD
+            example: 189000000
+          annual_revenue_usd_readable:
+            type: string
+            title: Annual Revenue Usd Readable
+            description: >-
+              Annual revenue of the company in USD, formated as an easily readable
+              string
+            example: 189M
+          total_funding_usd:
+            type: integer
+            title: Total Funding Usd
+            description: Funding of the company in USD
+            example: 500000
+          last_funding_round_date:
+            type: string
+            format: date
+            title: Last Funding Round Date
+            description: Date of the last funding round of the company
+            example: '2020-01-01'
+          last_funding_round_amount_readable:
+            type: string
+            title: Last Funding Round Amount Readable
+            description: >-
+              Amount of the last funding round of the company, formated as an
+              easily readable string
+            example: $1.2M
+          employee_count_range:
+            type: string
+            title: Employee Count Range
+            description: Number range of employees at the company
+            example: 1001-5000
+          long_description:
+            type: string
+            title: Long Description
+            description: Short description of the company
+            example: >-
+              Google is a California-based multinational technology company that
+              offers internet-related services such as a search engine, online
+              advertising and cloud computing.
+          seo_description:
+            type: string
+            title: Seo Description
+            description: SEO description of the company, extracted from their website
+          city:
+            type: string
+            title: City
+            description: City of the company's HQ
+            example: Mountain View
+          postal_code:
+            type: string
+            title: Postal Code
+            description: Postal code of the company's HQ
+            example: '28040'
+          company_keywords:
+            items:
+              type: string
+            type: array
+            title: Company Keywords
+            description: Company keywords, related to what the company does
+          alexa_ranking:
+            type: integer
+            title: Alexa Ranking
+            description: Alexa ranking
+            example: 1
+          publicly_traded_symbol:
+            type: string
+            title: Publicly Traded Symbol
+            example: GOOG
+          publicly_traded_exchange:
+            type: string
+            title: Publicly Traded Exchange
+            example: NASDAQ
+          investors:
+            items:
+              type: string
+            type: array
+            title: Investors
+            description: List of investors in this company
+          funding_stage:
+            type: string
+            title: Funding Stage
+            description: Latest funding stage of the company
+          technology_slugs:
+            items:
+              type: string
+            type: array
+            title: Technology Slugs
+            description: slugs of the technologies found to be used by the company
+            example:
+              - kafka
+              - elasticsearch
+          technology_names:
+            items:
+              type: string
+            type: array
+            title: Technology Names
+            description: Names of the technologies found to be used by the company
+            deprecated: true
+            example:
+              - Kafka
+              - Elasticsearch
+          technologies_found:
+            items:
+              $ref: '#/components/schemas/KeywordFound'
+            type: array
+            title: Technologies Found
+            description: >-
+              List of technologies found to be used by the company, relevant to
+              the current search
+        type: object
+        required:
+          - technologies_found
+        title: CompanyWithTechnologies
+      CompanyWithTechnologiesAndJobs:
+        properties:
+          name:
+            type: string
+            title: Name
+            description: Company name
+            example: Google
+          url:
+            type: string
+            title: Url
+            description: >-
+              Company domain. Same as the "domain" field. Will be deprecated in
+              the future.
+            example: google.com
+          domain:
+            type: string
+            title: Domain
+            description: Company domain
+            example: google.com
+          probability_actual_domain_found:
+            type: number
+            title: Probability Actual Domain Found
+            description: >-
+              Estimates the probability the the domain we found for a given
+              company name is the actual domain of that company. Between 0 and 1.
+          industry:
+            type: string
+            title: Industry
+            description: Industry of the company
+            example: internet
+          industry_id:
+            type: integer
+            title: Industry Id
+            description: >-
+              Code of the industry. One of LinkedIn's Industry Codes V2 from
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+          country:
+            type: string
+            title: Country
+            description: Country of the company's HQ
+            example: United States
+          country_code:
+            type: string
+            title: Country Code
+            description: ISO2 country code. E.g. "US"
+          employee_count:
+            type: integer
+            title: Employee Count
+            description: Number of employees of the company
+            example: 7543
+          linkedin_url:
+            type: string
+            title: Linkedin Url
+            example: http://www.linkedin.com/company/google
+          num_jobs:
+            type: integer
+            title: Num Jobs
+            description: Number of jobs from this company in our database
+            example: 746
+          num_jobs_last_30_days:
+            type: integer
+            title: Num Jobs Last 30 Days
+            description: >-
+              Number of jobs from this company in our database posted in the last
+              30 days
+            example: 34
+          num_jobs_found:
+            type: integer
+            title: Num Jobs Found
+            description: >-
+              When filtering companies by jobs, number of jobs found for this
+              company
+            example: 23
+          yc_batch:
+            type: string
+            title: Yc Batch
+            description: If the company went through YC, this is its batch
+            example: W21
+          apollo_id:
+            type: string
+            title: Apollo Id
+            description: ID of the company in Apollo
+            example: 5b839bd0324d4445051f9a5a
+          linkedin_id:
+            type: string
+            title: Linkedin Id
+            description: ID of the company in LinkedIn
+          url_source:
+            type: string
+            title: Url Source
+            description: Source of the company URL
+          is_recruiting_agency:
+            type: boolean
+            title: Is Recruiting Agency
+            description: Is a recruiting agency
+          logo:
+            type: string
+            maxLength: 65536
+            minLength: 1
+            format: uri
+            title: Logo
+            description: Logo of the company
+            example: https://example.com/logo.png
+          founded_year:
+            type: integer
+            title: Founded Year
+            description: Year the company was founded
+            example: 2019
+          annual_revenue_usd:
+            type: number
+            title: Annual Revenue Usd
+            description: Annual revenue of the company in USD
+            example: 189000000
+          annual_revenue_usd_readable:
+            type: string
+            title: Annual Revenue Usd Readable
+            description: >-
+              Annual revenue of the company in USD, formated as an easily readable
+              string
+            example: 189M
+          total_funding_usd:
+            type: integer
+            title: Total Funding Usd
+            description: Funding of the company in USD
+            example: 500000
+          last_funding_round_date:
+            type: string
+            format: date
+            title: Last Funding Round Date
+            description: Date of the last funding round of the company
+            example: '2020-01-01'
+          last_funding_round_amount_readable:
+            type: string
+            title: Last Funding Round Amount Readable
+            description: >-
+              Amount of the last funding round of the company, formated as an
+              easily readable string
+            example: $1.2M
+          employee_count_range:
+            type: string
+            title: Employee Count Range
+            description: Number range of employees at the company
+            example: 1001-5000
+          long_description:
+            type: string
+            title: Long Description
+            description: Short description of the company
+            example: >-
+              Google is a California-based multinational technology company that
+              offers internet-related services such as a search engine, online
+              advertising and cloud computing.
+          seo_description:
+            type: string
+            title: Seo Description
+            description: SEO description of the company, extracted from their website
+          city:
+            type: string
+            title: City
+            description: City of the company's HQ
+            example: Mountain View
+          postal_code:
+            type: string
+            title: Postal Code
+            description: Postal code of the company's HQ
+            example: '28040'
+          company_keywords:
+            items:
+              type: string
+            type: array
+            title: Company Keywords
+            description: Company keywords, related to what the company does
+          alexa_ranking:
+            type: integer
+            title: Alexa Ranking
+            description: Alexa ranking
+            example: 1
+          publicly_traded_symbol:
+            type: string
+            title: Publicly Traded Symbol
+            example: GOOG
+          publicly_traded_exchange:
+            type: string
+            title: Publicly Traded Exchange
+            example: NASDAQ
+          investors:
+            items:
+              type: string
+            type: array
+            title: Investors
+            description: List of investors in this company
+          funding_stage:
+            type: string
+            title: Funding Stage
+            description: Latest funding stage of the company
+          technology_slugs:
+            items:
+              type: string
+            type: array
+            title: Technology Slugs
+            description: slugs of the technologies found to be used by the company
+            example:
+              - kafka
+              - elasticsearch
+          technology_names:
+            items:
+              type: string
+            type: array
+            title: Technology Names
+            description: Names of the technologies found to be used by the company
+            deprecated: true
+            example:
+              - Kafka
+              - Elasticsearch
+          technologies_found:
+            items:
+              $ref: '#/components/schemas/KeywordFound'
+            type: array
+            title: Technologies Found
+            description: >-
+              List of technologies found to be used by the company, relevant to
+              the current search
+          jobs_found:
+            items:
+              $ref: '#/components/schemas/JobBase'
+            type: array
+            title: Jobs Found
+            description: >-
+              List of jobs found to be posted by the company, relevant to the
+              current search
+        type: object
+        required:
+          - technologies_found
+          - jobs_found
+        title: CompanyWithTechnologiesAndJobs
+      CompanyWithTechnologySlugs:
+        properties:
+          name:
+            type: string
+            title: Name
+            description: Company name
+            example: Google
+          url:
+            type: string
+            title: Url
+            description: >-
+              Company domain. Same as the "domain" field. Will be deprecated in
+              the future.
+            example: google.com
+          domain:
+            type: string
+            title: Domain
+            description: Company domain
+            example: google.com
+          probability_actual_domain_found:
+            type: number
+            title: Probability Actual Domain Found
+            description: >-
+              Estimates the probability the the domain we found for a given
+              company name is the actual domain of that company. Between 0 and 1.
+          industry:
+            type: string
+            title: Industry
+            description: Industry of the company
+            example: internet
+          industry_id:
+            type: integer
+            title: Industry Id
+            description: >-
+              Code of the industry. One of LinkedIn's Industry Codes V2 from
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+          country:
+            type: string
+            title: Country
+            description: Country of the company's HQ
+            example: United States
+          country_code:
+            type: string
+            title: Country Code
+            description: ISO2 country code. E.g. "US"
+          employee_count:
+            type: integer
+            title: Employee Count
+            description: Number of employees of the company
+            example: 7543
+          linkedin_url:
+            type: string
+            title: Linkedin Url
+            example: http://www.linkedin.com/company/google
+          num_jobs:
+            type: integer
+            title: Num Jobs
+            description: Number of jobs from this company in our database
+            example: 746
+          num_jobs_last_30_days:
+            type: integer
+            title: Num Jobs Last 30 Days
+            description: >-
+              Number of jobs from this company in our database posted in the last
+              30 days
+            example: 34
+          num_jobs_found:
+            type: integer
+            title: Num Jobs Found
+            description: >-
+              When filtering companies by jobs, number of jobs found for this
+              company
+            example: 23
+          yc_batch:
+            type: string
+            title: Yc Batch
+            description: If the company went through YC, this is its batch
+            example: W21
+          apollo_id:
+            type: string
+            title: Apollo Id
+            description: ID of the company in Apollo
+            example: 5b839bd0324d4445051f9a5a
+          linkedin_id:
+            type: string
+            title: Linkedin Id
+            description: ID of the company in LinkedIn
+          url_source:
+            type: string
+            title: Url Source
+            description: Source of the company URL
+          is_recruiting_agency:
+            type: boolean
+            title: Is Recruiting Agency
+            description: Is a recruiting agency
+          logo:
+            type: string
+            maxLength: 65536
+            minLength: 1
+            format: uri
+            title: Logo
+            description: Logo of the company
+            example: https://example.com/logo.png
+          founded_year:
+            type: integer
+            title: Founded Year
+            description: Year the company was founded
+            example: 2019
+          annual_revenue_usd:
+            type: number
+            title: Annual Revenue Usd
+            description: Annual revenue of the company in USD
+            example: 189000000
+          annual_revenue_usd_readable:
+            type: string
+            title: Annual Revenue Usd Readable
+            description: >-
+              Annual revenue of the company in USD, formated as an easily readable
+              string
+            example: 189M
+          total_funding_usd:
+            type: integer
+            title: Total Funding Usd
+            description: Funding of the company in USD
+            example: 500000
+          last_funding_round_date:
+            type: string
+            format: date
+            title: Last Funding Round Date
+            description: Date of the last funding round of the company
+            example: '2020-01-01'
+          last_funding_round_amount_readable:
+            type: string
+            title: Last Funding Round Amount Readable
+            description: >-
+              Amount of the last funding round of the company, formated as an
+              easily readable string
+            example: $1.2M
+          employee_count_range:
+            type: string
+            title: Employee Count Range
+            description: Number range of employees at the company
+            example: 1001-5000
+          long_description:
+            type: string
+            title: Long Description
+            description: Short description of the company
+            example: >-
+              Google is a California-based multinational technology company that
+              offers internet-related services such as a search engine, online
+              advertising and cloud computing.
+          seo_description:
+            type: string
+            title: Seo Description
+            description: SEO description of the company, extracted from their website
+          city:
+            type: string
+            title: City
+            description: City of the company's HQ
+            example: Mountain View
+          postal_code:
+            type: string
+            title: Postal Code
+            description: Postal code of the company's HQ
+            example: '28040'
+          company_keywords:
+            items:
+              type: string
+            type: array
+            title: Company Keywords
+            description: Company keywords, related to what the company does
+          alexa_ranking:
+            type: integer
+            title: Alexa Ranking
+            description: Alexa ranking
+            example: 1
+          publicly_traded_symbol:
+            type: string
+            title: Publicly Traded Symbol
+            example: GOOG
+          publicly_traded_exchange:
+            type: string
+            title: Publicly Traded Exchange
+            example: NASDAQ
+          investors:
+            items:
+              type: string
+            type: array
+            title: Investors
+            description: List of investors in this company
+          funding_stage:
+            type: string
+            title: Funding Stage
+            description: Latest funding stage of the company
+          technology_slugs:
+            items:
+              type: string
+            type: array
+            title: Technology Slugs
+            description: slugs of the technologies found to be used by the company
+            example:
+              - kafka
+              - elasticsearch
+          technology_names:
+            items:
+              type: string
+            type: array
+            title: Technology Names
+            description: Names of the technologies found to be used by the company
+            deprecated: true
+            example:
+              - Kafka
+              - Elasticsearch
+        type: object
+        title: CompanyWithTechnologySlugs
+      DecisionMaker:
+        properties:
+          decision_maker:
+            type: string
+            title: Decision Maker
+            example: Head of Data
+          company_name:
+            type: string
+            title: Company Name
+            example: Zoom
+          date_posted:
+            type: string
+            format: date
+            title: Date Posted
+          technology:
+            type: string
+            title: Technology
+            example: Kafka
+          url:
+            type: string
+            title: Url
+            description: URL of the job post
+          country:
+            type: string
+            title: Country
+            description: Country of the company
+            example: United States
+          job_title:
+            type: string
+            title: Job Title
+            description: Job title of the job post where the decision maker was found
+            example: Senior Data Engineer
+          employee_count:
+            type: integer
+            title: Employee Count
+            description: Number of employees in the company
+            example: '437'
+        type: object
+        title: DecisionMaker
+      HTTPValidationError:
+        properties:
+          detail:
+            items:
+              $ref: '#/components/schemas/ValidationError'
+            type: array
+            title: Detail
+        type: object
+        title: HTTPValidationError
+      IndustryStats:
+        properties:
+          industry_id:
+            type: integer
+            title: Industry Id
+            description: ID of the industry
+          industry:
+            type: string
+            title: Industry
+            description: Name of the industry
+          hierarchy:
+            type: string
+            title: Hierarchy
+            description: Hierarchy of the industry, according to LinkedIn's taxonomy
+          description:
+            type: string
+            title: Description
+            description: Description of the industry
+          companies:
+            type: integer
+            title: Companies
+            description: Number of companies in the industry
+          jobs:
+            type: integer
+            title: Jobs
+            description: Number of jobs in the industry
+        type: object
+        title: IndustryStats
+      IndustryStatsResponse:
+        properties:
+          data:
+            items:
+              $ref: '#/components/schemas/IndustryStats'
+            type: array
+            title: Data
+          metadata:
+            $ref: '#/components/schemas/BaseMetadata'
+        type: object
+        required:
+          - data
+          - metadata
+        title: IndustryStatsResponse
+      JobBase:
+        properties:
+          id:
+            type: integer
+            title: Id
+            description: ID of the job
+            examples:
+              - 1234
+          job_title:
+            type: string
+            title: Job Title
+            description: Job title
+            examples:
+              - Senior Data Engineer
+          url:
+            type: string
+            title: Url
+            description: URL of the job post
+            examples:
+              - https://example.com/job/1234
+          date_posted:
+            type: string
+            format: date
+            title: Date Posted
+            description: Date when the job was posted
+            examples:
+              - '2021-01-01'
+        type: object
+        title: JobBase
+      JobFilters:
+        properties:
+          job_title_or:
+            items:
+              type: string
+            type: array
+            title: Job Title Or
+            description: >-
+              Natural language patterns to match job titles. Case-insensitive.
+              Only jobs with title that match any of these patterns will be
+              returned. Uses Postgres full text search.
+            default: []
+          job_title_not:
+            items:
+              type: string
+            type: array
+            title: Job Title Not
+            description: >-
+              Natural language patterns to match job titles. Case-insensitive.
+              Only jobs with title that do not match any of these patterns will be
+              returned. Uses Postgres full text search.
+            default: []
+          job_title_pattern_and:
+            items:
+              type: string
+            type: array
+            title: Job Title Pattern And
+            description: >-
+              Regex patterns to match job titles. Case-insensitive. Only jobs with
+              title that match all of these patterns will be returned.
+            default: []
+          job_title_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Job Title Pattern Or
+            description: >-
+              Regex patterns to match job titles. Case-insensitive. Jobs whose job
+              title matches of the filters will be returned.
+            default: []
+          job_title_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Job Title Pattern Not
+            description: >-
+              Regex patterns to match job titles. Case-insensitive. Jobs whose job
+              title doesn't match any of the patterns will be returned.
+            default: []
+          job_country_code_or:
+            items:
+              type: string
+            type: array
+            title: Job Country Code Or
+            description: >-
+              2-letter ISO country code of the location of the job. Can pass more
+              than 1
+            default: []
+          job_country_code_not:
+            items:
+              type: string
+            type: array
+            title: Job Country Code Not
+            description: >-
+              2-letter ISO country code of the location of the job. Can pass more
+              than 1. Will exclude jobs from these countries
+            default: []
+          posted_at_max_age_days:
+            type: integer
+            title: Posted At Max Age Days
+            description: >-
+              Date posted max age in days. If 0, only return jobs posted today. If
+              1, from today and yesterday, etc.
+            examples:
+              - null
+          posted_at_gte:
+            type: string
+            format: date
+            title: Posted At Gte
+            description: >-
+              ISO 8601 date string (yyyy-mm-dd). Only jobs published in this date
+              or after will be returned.
+            examples:
+              - null
+          posted_at_lte:
+            type: string
+            format: date
+            title: Posted At Lte
+            description: >-
+              ISO 8601 date string (yyyy-mm-dd). Only jobs published in this date
+              or before will be returned.
+            examples:
+              - null
+          discovered_at_max_age_days:
+            type: integer
+            title: Discovered At Max Age Days
+            description: >-
+              If 0, only return jobs added to our database in the current day. If
+              1, from today and yesterday, etc.
+            examples:
+              - null
+          discovered_at_min_age_days:
+            type: integer
+            title: Discovered At Min Age Days
+            description: >-
+              If 1, only return jobs created until yesterday. If 2, until 2 days
+              ago, etc.
+            examples:
+              - null
+          discovered_at_gte:
+            type: string
+            format: date
+            title: Discovered At Gte
+            description: >-
+              ISO 8601 date string (yyyy-mm-dd). Only jobs discovered on this date
+              or after will be returned.
+            examples:
+              - null
+          discovered_at_lte:
+            type: string
+            format: date
+            title: Discovered At Lte
+            description: >-
+              ISO 8601 date string (yyyy-mm-dd). Only jobs discovered on this date
+              or before will be returned.
+            examples:
+              - null
+          job_description_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Job Description Pattern Or
+            description: >-
+              Regex patterns to look for in job descriptions. Results will include
+              jobs whose description matches any of these patterns. Can pass more
+              than one.
+            default: []
+          job_description_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Job Description Pattern Not
+            description: >-
+              Regex patterns to look for in job descriptions. Results will include
+              jobs whose description don't match any of these patterns. Can pass
+              more than one.
+            default: []
+          job_description_pattern_is_case_insensitive:
+            type: boolean
+            title: Job Description Pattern Is Case Insensitive
+            description: >-
+              Whether to make searches on job descriptions case-sensitive or
+              insensitive.
+            default: true
+          remote:
+            type: boolean
+            title: Remote
+            description: >-
+              True: only show remote jobs. False: only show non-remote jobs. None:
+              show all jobs.
+            examples:
+              - null
+          only_jobs_with_reports_to:
+            type: boolean
+            title: Only Jobs With Reports To
+            description: >-
+              Only return jobs where we identified the role the hired person would
+              report to
+            default: false
+          only_jobs_with_hiring_managers:
+            type: boolean
+            title: Only Jobs With Hiring Managers
+            description: Only return jobs with a hiring manager
+          job_ids:
+            items:
+              type: integer
+            type: array
+            title: Job Ids
+            description: Get jobs with these IDs only.
+            default: []
+            embed: true
+          min_salary_usd:
+            type: number
+            title: Min Salary Usd
+            description: Minimum annual salary
+            examples:
+              - null
+          max_salary_usd:
+            type: number
+            title: Max Salary Usd
+            description: Maximum annual salary
+            examples:
+              - null
+          job_technology_slug_or:
+            items:
+              type: string
+            type: array
+            title: Job Technology Slug Or
+            description: >-
+              Will return jobs where any of these technologies appear. Case
+              sensitive. Pass slugs. Check out all the technologies we track with
+              the technologies endpoint. If you pass more than one technology, we
+              will return jobs that mentnion all of the technologies.
+            default: []
+          job_technology_slug_not:
+            items:
+              type: string
+            type: array
+            title: Job Technology Slug Not
+            description: >-
+              Will return jobs where none of these technologies appear. Case
+              sensitive. Pass slugs. Check out all the technologies we track with
+              the technologies endpoint.
+            default: []
+          job_technology_slug_and:
+            items:
+              type: string
+            type: array
+            title: Job Technology Slug And
+            description: >-
+              Will return jobs where all of these technologies appear. Case
+              sensitive. Pass slugs. Check out all the technologies we track with
+              the technologies endpoint.
+            default: []
+          job_location_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Job Location Pattern Or
+            description: >-
+              Regex patterns to match job locations. Case-insensitive. Only jobs
+              with location that match all patterns will be returned.
+            default: []
+          job_location_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Job Location Pattern Not
+            description: >-
+              Regex patterns to match job locations. Case-insensitive. Only jobs
+              with location that do not match any of the patterns will be
+              returned.
+            default: []
+          scraper_name_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Scraper Name Pattern Or
+            description: Regex patterns to match job sources. Case-insensitive.
+            default: []
+        type: object
+        title: JobFilters
+      JobSearchFilters:
+        properties:
+          order_by:
+            items:
+              $ref: '#/components/schemas/ColumnSortJobSearch'
+            type: array
+            title: Order By
+            description: >-
+              List of column objects. You can pass several columns to order by, in
+              order of priority. Only `field` is required, `desc` is True by
+              default.
+            default:
+              - desc: true
+                field: date_posted
+              - desc: true
+                field: discovered_at
+          page:
+            type: integer
+            title: Page
+            description: Page number
+            default: 0
+            examples:
+              - 0
+          limit:
+            type: integer
+            title: Limit
+            description: >-
+              Number of results per page.Default value is 25. Can't be higher than
+              500
+            default: 25
+            examples:
+              - 25
+          company_description_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Company Description Pattern Or
+            description: >-
+              Case-insensitive patterns to match in the company description. Will
+              return companies that match any of the patterns.
+            default: []
+          company_description_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Company Description Pattern Not
+            description: >-
+              Case-insensitive patterns to match in the company description. Will
+              return companies that match any of the patterns.
+            default: []
+          company_description_pattern_accent_insensitive:
+            type: boolean
+            title: Company Description Pattern Accent Insensitive
+            description: >-
+              Set to True to make company description searches accent insensitive.
+              For example, "á" will match "a" as well.
+            default: false
+          min_revenue_usd:
+            type: integer
+            title: Min Revenue Usd
+            description: Minimum company revenue, in USD
+            examples:
+              - null
+          max_revenue_usd:
+            type: integer
+            title: Max Revenue Usd
+            description: Maximum company revenue, in USD
+            examples:
+              - null
+          min_employee_count:
+            type: integer
+            title: Min Employee Count
+            description: Minimum number of employees in a company
+            examples:
+              - null
+          max_employee_count:
+            type: integer
+            title: Max Employee Count
+            description: Maximum number of employees in a company
+            examples:
+              - null
+          min_employee_count_or_null:
+            type: integer
+            title: Min Employee Count Or Null
+            description: >-
+              Minimum number of employees in a company. If we don't have company
+              size information, we will return it as well.
+            examples:
+              - null
+          max_employee_count_or_null:
+            type: integer
+            title: Max Employee Count Or Null
+            description: >-
+              Maximum number of employees in a company. If we don't have company
+              size information, we will return it as well.
+            examples:
+              - null
+          min_funding_usd:
+            type: integer
+            title: Min Funding Usd
+            description: Minimum company funding, in USD
+            examples:
+              - null
+          max_funding_usd:
+            type: integer
+            title: Max Funding Usd
+            description: Maximum company funding, in USD
+            examples:
+              - null
+          funding_stage_or:
+            items:
+              type: string
+            type: array
+            title: Funding Stage Or
+            description: >-
+              Funding stages of companies returned. One of the values in the round
+              column of
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=472436935
+            default: []
+          industry_or:
+            items:
+              type: string
+            type: array
+            title: Industry Or
+            description: >-
+              Names of industries, case-insensitive. Results will only include
+              companies that belong to any of the industries specified in this
+              parameter. Available values:
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit?usp=sharing
+            default: []
+          industry_not:
+            items:
+              type: string
+            type: array
+            title: Industry Not
+            description: >-
+              Names of industries, case-insensitive. Results will exclude
+              companies that belong to any of the industries specified in this
+              parameter. Available values:
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit?usp=sharing
+            default: []
+          industry_id_or:
+            items:
+              type: integer
+            type: array
+            title: Industry Id Or
+            description: >-
+              Industry codes. You can use any of LinkedIn's Industry Codes V2:
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+            default: []
+          industry_id_not:
+            items:
+              type: integer
+            type: array
+            title: Industry Id Not
+            description: >-
+              Industry codes to exclude. You can use any of LinkedIn's Industry
+              Codes V2:
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+            default: []
+          company_tags_or:
+            items:
+              type: string
+            type: array
+            title: Company Tags Or
+            description: Return companies that match any of these keywords
+            default: []
+          company_type:
+            type: string
+            enum:
+              - recruiting_agency
+              - direct_employer
+              - all
+            title: Company Type
+            description: Filter by company type.
+            default: all
+          company_investors_or:
+            items:
+              type: string
+            type: array
+            title: Company Investors Or
+            description: Investors of the company
+            default: []
+          company_investors_partial_match_or:
+            items:
+              type: string
+            type: array
+            title: Company Investors Partial Match Or
+            description: >-
+              Investors of the company. Will return companies for which any of
+              their investors contains any of the substrings passed here. For
+              example, if you pass 'andree', all funds that match it (like
+              'Andreessen Horowitz', 'Andreessen Horowitz LLC', etc).
+            default: []
+          company_technology_slug_or:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug Or
+            description: >-
+              Will return jobs from companies that that have mentioned any of
+              these technologies in their jobs. Case sensitive. Pass slugs. Check
+              out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          company_technology_slug_and:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug And
+            description: >-
+              Will return jobs from companies that that have mentioned all of
+              these technologies in their jobs (not necessarily in the jobs
+              returned). Case sensitive. Pass slugs. Check out all the
+              technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          company_technology_slug_not:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug Not
+            description: >-
+              Will return jobs from companies that that haven't mentioned any of
+              these technologies in their jobs. Case sensitive. Pass slugs. Check
+              out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          only_yc_companies:
+            type: boolean
+            title: Only Yc Companies
+            description: Only return YC companies
+            default: false
+          company_location_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Company Location Pattern Or
+            description: >-
+              Return companies whose location matches any of the patterns passed
+              here. Case insensitive. For example, if you pass 'san francisco', it
+              will return companies whose location is 'San Francisco', 'San
+              Francisco Bay Area', etc.
+            default: []
+          company_country_code_or:
+            items:
+              type: string
+            type: array
+            title: Company Country Code Or
+            description: >-
+              Return companies whose HQ country code is any of the ones passed
+              here, case sensitive. Pass ISO2 country codes.
+            default: []
+          company_country_code_not:
+            items:
+              type: string
+            type: array
+            title: Company Country Code Not
+            description: >-
+              Return companies whose HQ country code is not any of the ones passed
+              here, case sensitive. Pass ISO2 country codes.
+            default: []
+          company_list_id_or:
+            items:
+              type: integer
+            type: array
+            title: Company List Id Or
+            description: Return companies that belong to any of the company lists passed here
+            default: []
+          company_list_id_not:
+            items:
+              type: integer
+            type: array
+            title: Company List Id Not
+            description: >-
+              Return companies that don't belong to any of the company lists
+              passed here
+            default: []
+          company_name_or:
+            items:
+              type: string
+            type: array
+            title: Company Name Or
+            description: >-
+              Company names. Will return companies that match these names exactly,
+              case-sensitively.
+            default: []
+          company_domain_or:
+            items:
+              type: string
+            type: array
+            title: Company Domain Or
+            description: Company domains, full URLs or emails
+            default: []
+          company_domain_not:
+            items:
+              type: string
+            type: array
+            title: Company Domain Not
+            description: Exclude by domains, full URLs or emails
+            default: []
+          company_name_not:
+            items:
+              type: string
+            type: array
+            title: Company Name Not
+            description: >-
+              Company names. Will exclude companies that match these names
+              exactly, case-sensitively.
+            default: []
+          company_name_partial_match_or:
+            items:
+              type: string
+            type: array
+            title: Company Name Partial Match Or
+            description: >-
+              Company names. Will return companies whose name contain any of the
+              the substrings passed here, case-insensitively. For example, if you
+              pass "google", it will return "Google", "Google LLC", "Google Inc",
+              etc.
+            default: []
+          company_name_partial_match_not:
+            items:
+              type: string
+            type: array
+            title: Company Name Partial Match Not
+            description: >-
+              Company names. Will return companies whose name doesn't contain any
+              of the the substrings passed here, case-insensitively. For example,
+              if you pass 'google', it will exclude 'Google', 'Google LLC',
+              'Google Inc', etc.
+            default: []
+          job_title_or:
+            items:
+              type: string
+            type: array
+            title: Job Title Or
+            description: >-
+              Natural language patterns to match job titles. Case-insensitive.
+              Only jobs with title that match any of these patterns will be
+              returned. Uses Postgres full text search.
+            default: []
+          job_title_not:
+            items:
+              type: string
+            type: array
+            title: Job Title Not
+            description: >-
+              Natural language patterns to match job titles. Case-insensitive.
+              Only jobs with title that do not match any of these patterns will be
+              returned. Uses Postgres full text search.
+            default: []
+          job_title_pattern_and:
+            items:
+              type: string
+            type: array
+            title: Job Title Pattern And
+            description: >-
+              Regex patterns to match job titles. Case-insensitive. Only jobs with
+              title that match all of these patterns will be returned.
+            default: []
+          job_title_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Job Title Pattern Or
+            description: >-
+              Regex patterns to match job titles. Case-insensitive. Jobs whose job
+              title matches of the filters will be returned.
+            default: []
+          job_title_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Job Title Pattern Not
+            description: >-
+              Regex patterns to match job titles. Case-insensitive. Jobs whose job
+              title doesn't match any of the patterns will be returned.
+            default: []
+          job_country_code_or:
+            items:
+              type: string
+            type: array
+            title: Job Country Code Or
+            description: >-
+              2-letter ISO country code of the location of the job. Can pass more
+              than 1
+            default: []
+          job_country_code_not:
+            items:
+              type: string
+            type: array
+            title: Job Country Code Not
+            description: >-
+              2-letter ISO country code of the location of the job. Can pass more
+              than 1. Will exclude jobs from these countries
+            default: []
+          posted_at_max_age_days:
+            type: integer
+            title: Posted At Max Age Days
+            description: >-
+              Date posted max age in days. If 0, only return jobs posted today. If
+              1, from today and yesterday, etc.
+            examples:
+              - null
+          posted_at_gte:
+            type: string
+            format: date
+            title: Posted At Gte
+            description: >-
+              ISO 8601 date string (yyyy-mm-dd). Only jobs published in this date
+              or after will be returned.
+            examples:
+              - null
+          posted_at_lte:
+            type: string
+            format: date
+            title: Posted At Lte
+            description: >-
+              ISO 8601 date string (yyyy-mm-dd). Only jobs published in this date
+              or before will be returned.
+            examples:
+              - null
+          discovered_at_max_age_days:
+            type: integer
+            title: Discovered At Max Age Days
+            description: >-
+              If 0, only return jobs added to our database in the current day. If
+              1, from today and yesterday, etc.
+            examples:
+              - null
+          discovered_at_min_age_days:
+            type: integer
+            title: Discovered At Min Age Days
+            description: >-
+              If 1, only return jobs created until yesterday. If 2, until 2 days
+              ago, etc.
+            examples:
+              - null
+          discovered_at_gte:
+            type: string
+            format: date
+            title: Discovered At Gte
+            description: >-
+              ISO 8601 date string (yyyy-mm-dd). Only jobs discovered on this date
+              or after will be returned.
+            examples:
+              - null
+          discovered_at_lte:
+            type: string
+            format: date
+            title: Discovered At Lte
+            description: >-
+              ISO 8601 date string (yyyy-mm-dd). Only jobs discovered on this date
+              or before will be returned.
+            examples:
+              - null
+          job_description_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Job Description Pattern Or
+            description: >-
+              Regex patterns to look for in job descriptions. Results will include
+              jobs whose description matches any of these patterns. Can pass more
+              than one.
+            default: []
+          job_description_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Job Description Pattern Not
+            description: >-
+              Regex patterns to look for in job descriptions. Results will include
+              jobs whose description don't match any of these patterns. Can pass
+              more than one.
+            default: []
+          job_description_pattern_is_case_insensitive:
+            type: boolean
+            title: Job Description Pattern Is Case Insensitive
+            description: >-
+              Whether to make searches on job descriptions case-sensitive or
+              insensitive.
+            default: true
+          remote:
+            type: boolean
+            title: Remote
+            description: >-
+              True: only show remote jobs. False: only show non-remote jobs. None:
+              show all jobs.
+            examples:
+              - null
+          only_jobs_with_reports_to:
+            type: boolean
+            title: Only Jobs With Reports To
+            description: >-
+              Only return jobs where we identified the role the hired person would
+              report to
+            default: false
+          only_jobs_with_hiring_managers:
+            type: boolean
+            title: Only Jobs With Hiring Managers
+            description: Only return jobs with a hiring manager
+          job_ids:
+            items:
+              type: integer
+            type: array
+            title: Job Ids
+            description: Get jobs with these IDs only.
+            default: []
+            embed: true
+          min_salary_usd:
+            type: number
+            title: Min Salary Usd
+            description: Minimum annual salary
+            examples:
+              - null
+          max_salary_usd:
+            type: number
+            title: Max Salary Usd
+            description: Maximum annual salary
+            examples:
+              - null
+          job_technology_slug_or:
+            items:
+              type: string
+            type: array
+            title: Job Technology Slug Or
+            description: >-
+              Will return jobs where any of these technologies appear. Case
+              sensitive. Pass slugs. Check out all the technologies we track with
+              the technologies endpoint. If you pass more than one technology, we
+              will return jobs that mentnion all of the technologies.
+            default: []
+          job_technology_slug_not:
+            items:
+              type: string
+            type: array
+            title: Job Technology Slug Not
+            description: >-
+              Will return jobs where none of these technologies appear. Case
+              sensitive. Pass slugs. Check out all the technologies we track with
+              the technologies endpoint.
+            default: []
+          job_technology_slug_and:
+            items:
+              type: string
+            type: array
+            title: Job Technology Slug And
+            description: >-
+              Will return jobs where all of these technologies appear. Case
+              sensitive. Pass slugs. Check out all the technologies we track with
+              the technologies endpoint.
+            default: []
+          job_location_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Job Location Pattern Or
+            description: >-
+              Regex patterns to match job locations. Case-insensitive. Only jobs
+              with location that match all patterns will be returned.
+            default: []
+          job_location_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Job Location Pattern Not
+            description: >-
+              Regex patterns to match job locations. Case-insensitive. Only jobs
+              with location that do not match any of the patterns will be
+              returned.
+            default: []
+          scraper_name_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Scraper Name Pattern Or
+            description: Regex patterns to match job sources. Case-insensitive.
+            default: []
+          include_total_results:
+            type: boolean
+            title: Include Total Results
+            description: >-
+              Include a field in the response with the total number of results.
+              WARNING: setting this to True will make the responses much slower,
+              or you'll very likely get timeouts. Set to true only in combination
+              with a date filter, and to get all results, better set a high limit
+              and iterate over pages, setting this to False.
+            default: false
+          group_by:
+            items:
+              type: string
+            type: array
+            title: Group By
+            description: >-
+              Group results by a given field and get the number of jobs per group.
+              If you pass `company`, you'll get the number of jobs per company. If
+              you pass `job_title`, you'll get the number of jobs per job title.
+              If you pass `location`, you'll get the number of jobs per location.
+            examples:
+              - []
+        additionalProperties: false
+        type: object
+        title: JobSearchFilters
+      JobsCompaniesPerJobCountryCode:
+        properties:
+          iso2:
+            type: string
+            title: Iso2
+            description: ISO2 country code
+          country:
+            type: string
+            title: Country
+            description: Country name
+          num_jobs:
+            type: integer
+            title: Num Jobs
+            description: Number of jobs with the location in the country
+          num_companies:
+            type: integer
+            title: Num Companies
+            description: Number of companies from jobs with the location in the country
+        type: object
+        title: JobsCompaniesPerJobCountryCode
+      JobsCompaniesPerJobCountryCodeResponse:
+        properties:
+          data:
+            items:
+              $ref: '#/components/schemas/JobsCompaniesPerJobCountryCode'
+            type: array
+            title: Data
+          metadata:
+            $ref: '#/components/schemas/BaseMetadata'
+        type: object
+        required:
+          - data
+          - metadata
+        title: JobsCompaniesPerJobCountryCodeResponse
+      KeywordExtended:
+        properties:
+          name:
+            type: string
+            title: Name
+            example: PostgreSQL
+          category:
+            type: string
+            title: Category
+            description: Category of the technology
+            example: Relational Database
+          slug:
+            type: string
+            title: Slug
+            description: Slug of the technology
+            example: kafka
+          category_slug:
+            type: string
+            title: Category Slug
+            description: Slug of the category of the technology
+            example: message-queue
+          logo:
+            type: string
+            title: Logo
+            description: Logo of the technology
+          logo_thumbnail:
+            type: string
+            title: Logo Thumbnail
+            description: Thumbnail of the technology
+        type: object
+        required:
+          - name
+        title: KeywordExtended
+      KeywordFound:
+        properties:
+          technology:
+            allOf:
+              - $ref: '#/components/schemas/KeywordExtended'
+            title: Technology
+            description: Technology object
+          jobs:
+            type: integer
+            title: Jobs
+            description: Number of jobs found mentioning this technology
+            example: 54
+          first_date_found:
+            type: string
+            format: date
+            title: First Date Found
+            description: >-
+              Date when the keyword was first mentioned by the company in a job
+              post
+          last_date_found:
+            type: string
+            format: date
+            title: Last Date Found
+            description: >-
+              Date when the keyword was last mentioned by the company in a job
+              post
+          rank_within_category:
+            type: integer
+            title: Rank Within Category
+            description: >-
+              Measures how common this technology is among the company's jobs,
+              compared to other technologies in the same category. The most
+              mentioned technology in its category will have a rank of 1. This
+              helps you infer which is the technology the company is most likely
+              to be using, when they mention several technologies that belong to
+              the same category.
+          relative_occurrence_within_category:
+            type: number
+            title: Relative Occurrence Within Category
+            description: >-
+              Measures the relative occurance of this technology among other
+              technologies in the same category, in jobs by this company. If there
+              are 10 jobs where a company mentions 3 categories, and they appear
+              in 8, 3 and 2 jobs respectively, its relative occurrences will be
+              0.8, 0.3 and 0.2. This helps you infer how likely it is that the
+              company is using this technology, when they mention several
+              technologies that belong to the same category.
+          theirstack_score:
+            type: number
+            title: Theirstack Score
+            description: >-
+              This is a score we assign to every technology used by each company
+              to asses how likely it is that they're using it, combining the value
+              of `jobs` and `relative_occurrence_within_category`. The higher this
+              value is, the higher the chances that the company uses this
+              technology. Values lower than 1 mean it's not very likely they use
+              it. Then, the higher the value of theirstack_score, the more likely
+              it is that they actually use it.
+          confidence:
+            type: string
+            enum:
+              - low
+              - medium
+              - high
+            title: Confidence
+            description: How confident we are that the company uses this technology
+            default: []
+          jobs_last_7_days:
+            type: integer
+            title: Jobs Last 7 Days
+            description: >-
+              Number of jobs from the given company mentioning this technology in
+              the last 7 days
+            default: 0
+          jobs_last_30_days:
+            type: integer
+            title: Jobs Last 30 Days
+            description: >-
+              Number of jobs from the given company mentioning this technology in
+              the last 30 days
+            default: 0
+          jobs_last_180_days:
+            type: integer
+            title: Jobs Last 180 Days
+            description: >-
+              Number of jobs from the given company mentioning this technology in
+              the last 180 days
+            default: 0
+        type: object
+        title: KeywordFound
+      SavedSearch:
+        properties:
+          name:
+            type: string
+            title: Name
+            description: Name of the saved search
+          url:
+            type: string
+            title: Url
+            description: >-
+              URL of the search, without the host name. For example,
+              "/search?tech=React"
+          body:
+            type: object
+            title: Body
+            description: Body of the request
+            default: {}
+          method:
+            type: string
+            title: Method
+            description: Method of the request
+          type:
+            type: string
+            title: Type
+            description: Type of the saved search. `tech-details` or `jobs` for example
+          is_alert_active:
+            type: boolean
+            title: Is Alert Active
+            description: Is the alert active
+            default: false
+          frequency:
+            type: string
+            title: Frequency
+          emails_subscribed:
+            items:
+              type: string
+            type: array
+            title: Emails Subscribed
+            default: []
+          id:
+            type: integer
+            title: Id
+          user_id:
+            type: integer
+            title: User Id
+          team_id:
+            type: integer
+            title: Team Id
+          created_at:
+            type: string
+            format: date-time
+            title: Created At
+          updated_at:
+            type: string
+            format: date-time
+            title: Updated At
+          query:
+            type: string
+            title: Query
+            description: Query of the request
+          path:
+            type: string
+            title: Path
+            description: Path of the request
+          querystring_params:
+            type: object
+            title: Querystring Params
+            description: Dictionary containing the querystring parameters of the request.
+          creator:
+            $ref: '#/components/schemas/UserSimple'
+        type: object
+        title: SavedSearch
+      SavedSearchCreate:
+        properties:
+          name:
+            type: string
+            title: Name
+            description: Name of the saved search
+          url:
+            type: string
+            title: Url
+            description: >-
+              URL of the search, without the host name. For example,
+              "/search?tech=React"
+          body:
+            type: object
+            title: Body
+            description: Body of the request
+            default: {}
+          method:
+            type: string
+            title: Method
+            description: Method of the request
+          type:
+            type: string
+            title: Type
+            description: Type of the saved search. `tech-details` or `jobs` for example
+          is_alert_active:
+            type: boolean
+            title: Is Alert Active
+            description: Is the alert active
+            default: false
+        type: object
+        title: SavedSearchCreate
+      SavedSearchUpdate:
+        properties:
+          name:
+            type: string
+            title: Name
+            description: Name of the saved search
+          url:
+            type: string
+            title: Url
+            description: >-
+              URL of the search, without the host name. For example,
+              "/search?tech=React"
+          body:
+            type: object
+            title: Body
+            description: Body of the request
+            default: {}
+          method:
+            type: string
+            title: Method
+            description: Method of the request
+          type:
+            type: string
+            title: Type
+            description: Type of the saved search. `tech-details` or `jobs` for example
+          is_alert_active:
+            type: boolean
+            title: Is Alert Active
+            description: Is the alert active
+            default: false
+          frequency:
+            type: string
+            title: Frequency
+          emails_subscribed:
+            items:
+              type: string
+            type: array
+            title: Emails Subscribed
+            default: []
+        type: object
+        title: SavedSearchUpdate
+      TechDetailsFilters:
+        properties:
+          order_by:
+            items:
+              $ref: '#/components/schemas/ColumnSortCompanyTechDetails'
+            type: array
+            title: Order By
+            description: >-
+              List of column objects. You can pass several columns to order by, in
+              order of priority. Only `field` is required, `desc` is True by
+              default.
+            default:
+              - desc: true
+                field: theirstack_score
+          page:
+            type: integer
+            title: Page
+            description: Page number
+            default: 0
+            examples:
+              - 0
+          limit:
+            type: integer
+            title: Limit
+            description: >-
+              Number of results per page.Default value is 25. Can't be higher than
+              500
+            default: 25
+            examples:
+              - 25
+          include_total_results:
+            type: boolean
+            title: Include Total Results
+            description: >-
+              Include a field in the response with the total number of results.
+              WARNING: setting this to True will make the responses much slower,
+              or you'll very likely get timeouts. Set to true only in combination
+              with a date filter, and to get all results, better set a high limit
+              and iterate over pages, setting this to False.
+            default: false
+          company_description_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Company Description Pattern Or
+            description: >-
+              Case-insensitive patterns to match in the company description. Will
+              return companies that match any of the patterns.
+            default: []
+          company_description_pattern_not:
+            items:
+              type: string
+            type: array
+            title: Company Description Pattern Not
+            description: >-
+              Case-insensitive patterns to match in the company description. Will
+              return companies that match any of the patterns.
+            default: []
+          company_description_pattern_accent_insensitive:
+            type: boolean
+            title: Company Description Pattern Accent Insensitive
+            description: >-
+              Set to True to make company description searches accent insensitive.
+              For example, "á" will match "a" as well.
+            default: false
+          min_revenue_usd:
+            type: integer
+            title: Min Revenue Usd
+            description: Minimum company revenue, in USD
+            examples:
+              - null
+          max_revenue_usd:
+            type: integer
+            title: Max Revenue Usd
+            description: Maximum company revenue, in USD
+            examples:
+              - null
+          min_employee_count:
+            type: integer
+            title: Min Employee Count
+            description: Minimum number of employees in a company
+            examples:
+              - null
+          max_employee_count:
+            type: integer
+            title: Max Employee Count
+            description: Maximum number of employees in a company
+            examples:
+              - null
+          min_employee_count_or_null:
+            type: integer
+            title: Min Employee Count Or Null
+            description: >-
+              Minimum number of employees in a company. If we don't have company
+              size information, we will return it as well.
+            examples:
+              - null
+          max_employee_count_or_null:
+            type: integer
+            title: Max Employee Count Or Null
+            description: >-
+              Maximum number of employees in a company. If we don't have company
+              size information, we will return it as well.
+            examples:
+              - null
+          min_funding_usd:
+            type: integer
+            title: Min Funding Usd
+            description: Minimum company funding, in USD
+            examples:
+              - null
+          max_funding_usd:
+            type: integer
+            title: Max Funding Usd
+            description: Maximum company funding, in USD
+            examples:
+              - null
+          funding_stage_or:
+            items:
+              type: string
+            type: array
+            title: Funding Stage Or
+            description: >-
+              Funding stages of companies returned. One of the values in the round
+              column of
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=472436935
+            default: []
+          industry_or:
+            items:
+              type: string
+            type: array
+            title: Industry Or
+            description: >-
+              Names of industries, case-insensitive. Results will only include
+              companies that belong to any of the industries specified in this
+              parameter. Available values:
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit?usp=sharing
+            default: []
+          industry_not:
+            items:
+              type: string
+            type: array
+            title: Industry Not
+            description: >-
+              Names of industries, case-insensitive. Results will exclude
+              companies that belong to any of the industries specified in this
+              parameter. Available values:
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit?usp=sharing
+            default: []
+          industry_id_or:
+            items:
+              type: integer
+            type: array
+            title: Industry Id Or
+            description: >-
+              Industry codes. You can use any of LinkedIn's Industry Codes V2:
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+            default: []
+          industry_id_not:
+            items:
+              type: integer
+            type: array
+            title: Industry Id Not
+            description: >-
+              Industry codes to exclude. You can use any of LinkedIn's Industry
+              Codes V2:
+              https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2
+            default: []
+          company_tags_or:
+            items:
+              type: string
+            type: array
+            title: Company Tags Or
+            description: Return companies that match any of these keywords
+            default: []
+          company_type:
+            type: string
+            enum:
+              - recruiting_agency
+              - direct_employer
+              - all
+            title: Company Type
+            description: Filter by company type.
+            default: all
+          company_investors_or:
+            items:
+              type: string
+            type: array
+            title: Company Investors Or
+            description: Investors of the company
+            default: []
+          company_investors_partial_match_or:
+            items:
+              type: string
+            type: array
+            title: Company Investors Partial Match Or
+            description: >-
+              Investors of the company. Will return companies for which any of
+              their investors contains any of the substrings passed here. For
+              example, if you pass 'andree', all funds that match it (like
+              'Andreessen Horowitz', 'Andreessen Horowitz LLC', etc).
+            default: []
+          company_technology_slug_or:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug Or
+            description: >-
+              Will return jobs from companies that that have mentioned any of
+              these technologies in their jobs. Case sensitive. Pass slugs. Check
+              out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          company_technology_slug_and:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug And
+            description: >-
+              Will return jobs from companies that that have mentioned all of
+              these technologies in their jobs (not necessarily in the jobs
+              returned). Case sensitive. Pass slugs. Check out all the
+              technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          company_technology_slug_not:
+            items:
+              type: string
+            type: array
+            title: Company Technology Slug Not
+            description: >-
+              Will return jobs from companies that that haven't mentioned any of
+              these technologies in their jobs. Case sensitive. Pass slugs. Check
+              out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          only_yc_companies:
+            type: boolean
+            title: Only Yc Companies
+            description: Only return YC companies
+            default: false
+          company_location_pattern_or:
+            items:
+              type: string
+            type: array
+            title: Company Location Pattern Or
+            description: >-
+              Return companies whose location matches any of the patterns passed
+              here. Case insensitive. For example, if you pass 'san francisco', it
+              will return companies whose location is 'San Francisco', 'San
+              Francisco Bay Area', etc.
+            default: []
+          company_country_code_or:
+            items:
+              type: string
+            type: array
+            title: Company Country Code Or
+            description: >-
+              Return companies whose HQ country code is any of the ones passed
+              here, case sensitive. Pass ISO2 country codes.
+            default: []
+          company_country_code_not:
+            items:
+              type: string
+            type: array
+            title: Company Country Code Not
+            description: >-
+              Return companies whose HQ country code is not any of the ones passed
+              here, case sensitive. Pass ISO2 country codes.
+            default: []
+          company_list_id_or:
+            items:
+              type: integer
+            type: array
+            title: Company List Id Or
+            description: Return companies that belong to any of the company lists passed here
+            default: []
+          company_list_id_not:
+            items:
+              type: integer
+            type: array
+            title: Company List Id Not
+            description: >-
+              Return companies that don't belong to any of the company lists
+              passed here
+            default: []
+          company_name_or:
+            items:
+              type: string
+            type: array
+            title: Company Name Or
+            description: >-
+              Company names. Will return companies that match these names exactly,
+              case-sensitively.
+            default: []
+          company_domain_or:
+            items:
+              type: string
+            type: array
+            title: Company Domain Or
+            description: Company domains, full URLs or emails
+            default: []
+          company_domain_not:
+            items:
+              type: string
+            type: array
+            title: Company Domain Not
+            description: Exclude by domains, full URLs or emails
+            default: []
+          company_name_not:
+            items:
+              type: string
+            type: array
+            title: Company Name Not
+            description: >-
+              Company names. Will exclude companies that match these names
+              exactly, case-sensitively.
+            default: []
+          company_name_partial_match_or:
+            items:
+              type: string
+            type: array
+            title: Company Name Partial Match Or
+            description: >-
+              Company names. Will return companies whose name contain any of the
+              the substrings passed here, case-insensitively. For example, if you
+              pass "google", it will return "Google", "Google LLC", "Google Inc",
+              etc.
+            default: []
+          company_name_partial_match_not:
+            items:
+              type: string
+            type: array
+            title: Company Name Partial Match Not
+            description: >-
+              Company names. Will return companies whose name doesn't contain any
+              of the the substrings passed here, case-insensitively. For example,
+              if you pass 'google', it will exclude 'Google', 'Google LLC',
+              'Google Inc', etc.
+            default: []
+          technology_slug_or:
+            items:
+              type: string
+            type: array
+            title: Technology Slug Or
+            description: >-
+              Will return jobs from companies that that have mentioned any of
+              these technologies in their jobs. Case sensitive. Pass slugs. Check
+              out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          technology_category_slug_or:
+            items:
+              type: string
+            type: array
+            title: Technology Category Slug Or
+            description: >-
+              Will return jobs from companies that that have mentioned any
+              technology from any of these categories in their jobs Case
+              sensitive. Pass slugs. Check out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          max_rank:
+            type: integer
+            title: Max Rank
+            description: >-
+              The rank measures how common is a technology within its category.
+              The technology most used among similar ones by a company will have a
+              rank of 1, the second: 2, etc. This is useful to filter results by
+              technology and get only results for the primary technology. 
+            examples:
+              - null
+          min_jobs:
+            type: integer
+            title: Min Jobs
+            description: Minimum number of jobs found by each company using a technology
+            examples:
+              - null
+          max_jobs:
+            type: integer
+            title: Max Jobs
+            description: Maximum number of jobs found by each company using a technology
+            examples:
+              - null
+          min_relative_occurrence:
+            type: number
+            title: Min Relative Occurrence
+            description: >-
+              Minimum value of relative_occurrence_within_category for each
+              technology. Higher values increase the probability that this
+              technology is actually used by the company, because it means a
+              higher percentage of mentions to technologies among this category
+              are of this technology.
+            examples:
+              - null
+          first_date_found_gte:
+            type: string
+            format: date
+            title: First Date Found Gte
+            description: >-
+              Only return technologies where the first time they were found was
+              after or on this date. Format: "YYYY-MM-DD"
+            examples:
+              - null
+          first_date_found_lte:
+            type: string
+            format: date
+            title: First Date Found Lte
+            description: >-
+              Only return technologies where the first time they were found was
+              before or on this date. Format: "YYYY-MM-DD"
+            examples:
+              - null
+          last_date_found_gte:
+            type: string
+            format: date
+            title: Last Date Found Gte
+            description: >-
+              Only return technologies where the last time they were found was
+              after or on this date. Format: "YYYY-MM-DD"
+            examples:
+              - null
+          last_date_found_lte:
+            type: string
+            format: date
+            title: Last Date Found Lte
+            description: >-
+              Only return technologies where the last time they were found was
+              before or on this date. Format: "YYYY-MM-DD"
+            examples:
+              - null
+          confidence_or:
+            items:
+              type: string
+              enum:
+                - low
+                - medium
+                - high
+            type: array
+            title: Confidence Or
+            description: >-
+              Returns technologies with any of these confidence values that the
+              companies use them. Available values: "high", "medium", "low"
+            default: []
+        additionalProperties: false
+        type: object
+        title: TechDetailsFilters
+      TechDetailsTechnologyFilters:
+        properties:
+          technology_slug_or:
+            items:
+              type: string
+            type: array
+            title: Technology Slug Or
+            description: >-
+              Will return jobs from companies that that have mentioned any of
+              these technologies in their jobs. Case sensitive. Pass slugs. Check
+              out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          technology_category_slug_or:
+            items:
+              type: string
+            type: array
+            title: Technology Category Slug Or
+            description: >-
+              Will return jobs from companies that that have mentioned any
+              technology from any of these categories in their jobs Case
+              sensitive. Pass slugs. Check out all the technologies we track at
+              https://docs.google.com/spreadsheets/d/1ybzFfmYH6q_sEux2Jq05ciqVsmIE-6FOpMK5mxJGmIU/edit#gid=1486730285.
+            default: []
+          max_rank:
+            type: integer
+            title: Max Rank
+            description: >-
+              The rank measures how common is a technology within its category.
+              The technology most used among similar ones by a company will have a
+              rank of 1, the second: 2, etc. This is useful to filter results by
+              technology and get only results for the primary technology. 
+            examples:
+              - null
+          min_jobs:
+            type: integer
+            title: Min Jobs
+            description: Minimum number of jobs found by each company using a technology
+            examples:
+              - null
+          max_jobs:
+            type: integer
+            title: Max Jobs
+            description: Maximum number of jobs found by each company using a technology
+            examples:
+              - null
+          min_relative_occurrence:
+            type: number
+            title: Min Relative Occurrence
+            description: >-
+              Minimum value of relative_occurrence_within_category for each
+              technology. Higher values increase the probability that this
+              technology is actually used by the company, because it means a
+              higher percentage of mentions to technologies among this category
+              are of this technology.
+            examples:
+              - null
+          first_date_found_gte:
+            type: string
+            format: date
+            title: First Date Found Gte
+            description: >-
+              Only return technologies where the first time they were found was
+              after or on this date. Format: "YYYY-MM-DD"
+            examples:
+              - null
+          first_date_found_lte:
+            type: string
+            format: date
+            title: First Date Found Lte
+            description: >-
+              Only return technologies where the first time they were found was
+              before or on this date. Format: "YYYY-MM-DD"
+            examples:
+              - null
+          last_date_found_gte:
+            type: string
+            format: date
+            title: Last Date Found Gte
+            description: >-
+              Only return technologies where the last time they were found was
+              after or on this date. Format: "YYYY-MM-DD"
+            examples:
+              - null
+          last_date_found_lte:
+            type: string
+            format: date
+            title: Last Date Found Lte
+            description: >-
+              Only return technologies where the last time they were found was
+              before or on this date. Format: "YYYY-MM-DD"
+            examples:
+              - null
+          confidence_or:
+            items:
+              type: string
+              enum:
+                - low
+                - medium
+                - high
+            type: array
+            title: Confidence Or
+            description: >-
+              Returns technologies with any of these confidence values that the
+              companies use them. Available values: "high", "medium", "low"
+            default: []
+        type: object
+        title: TechDetailsTechnologyFilters
+      TechnologyAggregated:
+        properties:
+          name:
+            type: string
+            title: Name
+            example: PostgreSQL
+          category:
+            type: string
+            title: Category
+            description: Category of the technology
+            example: Relational Database
+          slug:
+            type: string
+            title: Slug
+            description: Slug of the technology
+            example: kafka
+          category_slug:
+            type: string
+            title: Category Slug
+            description: Slug of the category of the technology
+            example: message-queue
+          logo:
+            type: string
+            title: Logo
+            description: Logo of the technology
+          logo_thumbnail:
+            type: string
+            title: Logo Thumbnail
+            description: Thumbnail of the technology
+          one_liner:
+            type: string
+            title: One Liner
+            description: One-line description of the technology
+            example: Apache Kafka
+          url:
+            type: string
+            title: Url
+            description: URL of the technology
+          description:
+            type: string
+            title: Description
+            description: Description of the technology
+          jobs:
+            type: integer
+            title: Jobs
+            description: Number of jobs found mentioning this technology
+          companies:
+            type: integer
+            title: Companies
+            description: Number of companies using this technology
+          companies_found_last_week:
+            type: integer
+            title: Companies Found Last Week
+            description: >-
+              Number of companies found using this technology in the last week for
+              the first time
+        type: object
+        required:
+          - name
+        title: TechnologyAggregated
+      TechnologyCategoryItem:
+        properties:
+          name:
+            type: string
+            title: Name
+            description: Name of the category
+          slug:
+            type: string
+            title: Slug
+            description: Slug of the category
+          number_of_technologies:
+            type: integer
+            title: Number Of Technologies
+            description: Number of technologies in the category
+          number_of_companies:
+            type: integer
+            title: Number Of Companies
+            description: Number of companies using technologies in the category
+          technologies:
+            items:
+              $ref: '#/components/schemas/TechnologyFromCategorySmallDetails'
+            type: array
+            title: Technologies
+        type: object
+        title: TechnologyCategoryItem
+      TechnologyCategoryResponse:
+        properties:
+          data:
+            items:
+              $ref: '#/components/schemas/TechnologyCategoryItem'
+            type: array
+            title: Data
+          metadata:
+            $ref: '#/components/schemas/BaseMetadata'
+        type: object
+        required:
+          - data
+          - metadata
+        title: TechnologyCategoryResponse
+      TechnologyFromCategorySmallDetails:
+        properties:
+          name:
+            type: string
+            title: Name
+            description: Names of the top 5 technologies
+          logo:
+            type: string
+            title: Logo
+            description: Logos of the top 5 technologies
+          slug:
+            type: string
+            title: Slug
+            description: Slugs of the top 5 technologies
+        type: object
+        title: TechnologyFromCategorySmallDetails
+      UserSimple:
+        properties:
+          id:
+            type: integer
+            title: Id
+          email:
+            type: string
+            title: Email
+          first_name:
+            type: string
+            title: First Name
+          last_name:
+            type: string
+            title: Last Name
+        type: object
+        required:
+          - id
+          - email
+        title: UserSimple
+      ValidationError:
+        properties:
+          loc:
+            items:
+              anyOf:
+                - type: string
+                - type: integer
+            type: array
+            title: Location
+          msg:
+            type: string
+            title: Message
+          type:
+            type: string
+            title: Error Type
+        type: object
+        required:
+          - loc
+          - msg
+          - type
+        title: ValidationError
+    securitySchemes:
+      APIKeyQuery:
+        type: apiKey
+        in: query
+        name: token
+      APIKeyCookie:
+        type: apiKey
+        in: cookie
+        name: theirstack_token
+      Bearer:
+        type: http
+        scheme: bearer
+      OAuth2PasswordBearer:
+        type: oauth2
+        flows:
+          password:
+            scopes: {}
+            tokenUrl: /token
+  tags:
+    - name: Jobs
+      description: Operations with jobs
+    - name: Companies
+      description: Operations with companies
+    - name: Decision makers
+      description: Finding decision makers
+  servers:
+    - url: https://api.theirstack.com/
+konfigCliVersion: 1.38.34

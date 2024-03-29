@@ -2355,6 +2355,23 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://api.secoda.co/api/schema/",
   },
+  "tilled.com": {
+    type: "GET",
+    url: "https://api.tilled.com/docs/spec3.json",
+  },
+  "theirstack.com": {
+    type: "GET",
+    url: "https://api.theirstack.com/openapi.json",
+    apiBaseUrl: "https://api.theirstack.com/",
+  },
+  "spaceinvoices.com": {
+    type: "GET",
+    url: "https://api.spaceinvoices.com/openapi.yaml",
+  },
+  "seomonitor.com": {
+    type: "GET",
+    url: "https://api.seomonitor.com/api-json",
+  },
   "relysia.com": {
     type: "GET",
     url: "https://api.relysia.com/docs/json",
@@ -2589,7 +2606,7 @@ const customRequests: Record<string, CustomRequest> = {
   "mega-api.app.br": {
     type: "GET",
     url: "https://apistart01.megaapi.com.br/docs/swagger.json",
-    apiBaseUrl: "https://apistart01.megaapi.com.br"
+    apiBaseUrl: "https://apistart01.megaapi.com.br",
   },
 };
 
