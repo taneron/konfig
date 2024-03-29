@@ -2329,6 +2329,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://docs.surfly.com/redocusaurus/plugin-redoc-0.yaml",
   },
+  "relynk.io": {
+    type: "GET",
+    url: "https://docs.relynk.io/redocusaurus/api-v2_0_0.yaml",
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({
