@@ -1,0 +1,185 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1/Webhooks:
+    get: Webhooks_getAll
+    post: Webhooks_createNewWebhook
+  /v1/Webhooks/{id}:
+    delete: Webhooks_deleteWebhook
+    get: Webhooks_getSingleById
+    put: Webhooks_updateWebhook
+  /v1/accounts:
+    get: Accounts_list
+  /v1/accounts/{accountId}:
+    get: Accounts_getDetails
+  /v1/accounts/{accountId}/balances:
+    get: Accounts_getBalances
+  /v1/accounts/{accountId}/transactions:
+    get: Transactions_listForAccount
+  /v1/accounts/{accountId}/transactions/{transactionId}:
+    get: Transactions_getById
+  /v1/bankId/identify:
+    post: BankId_initiateAuthenticationOrder
+  /v1/bankId/qr:
+    post: BankId_getQrCodeData
+  /v1/bankId/{orderRef}:
+    get: BankId_collectOrderResult
+  /v1/cards:
+    get: Cards_getList
+  /v1/cards/{cardId}:
+    get: Cards_getDetails
+  /v1/cards/{cardId}/cardtransactions:
+    get: CardTransactions_getList
+  /v1/cards/{cardId}/cardtransactions/{transactionId}:
+    get: CardTransactions_getByTransactionId
+  /v1/compliance-data:
+    get: ComplianceData_getBasedParameters
+  /v1/compliance/dk/{ssn}/cpr:
+    get: CentralPersonRegisterDenmark_getMappedResponse
+  /v1/consent-authorizations/{id}:
+    get: ConsentAuthorizations_getStatusWithExpiryTime
+  /v1/insights/request:
+    post: Insights_createRequest
+  /v1/insights/{requestId}:
+    get: Insights_getReport
+  /v1/kyc:
+    post: Kyc_submitReport
+  /v1/kyc/{id}:
+    get: Kyc_reportFetch
+  /v1/payments:
+    get: PaymentRequests_getAll
+    post: PaymentRequests_createRequest
+  /v1/payments/templates:
+    get: PaymentTemplates_getAllTemplates
+    post: PaymentTemplates_createTemplate
+  /v1/payments/templates/{id}:
+    delete: PaymentTemplates_removeTemplate
+    get: PaymentTemplates_getById
+    put: PaymentTemplates_updateRequest
+  /v1/payments/templates/{id}/initiate:
+    post: PaymentTemplates_initiateRequest
+  /v1/payments/{id}:
+    delete: PaymentRequests_deleteRequest
+    get: PaymentRequests_getDetailsById
+  /v1/payments/{id}/details:
+    get: PaymentRequests_getDetailsById
+  /v1/payments/{id}/refund:
+    post: PaymentRequests_createRefundRequest
+  /v1/payouts:
+    get: Payouts_getAllPayouts
+    post: Payouts_createPayout
+  /v1/payouts/{id}:
+    get: Payouts_getById
+  /v1/payouts/{id}/authorization:
+    post: Payouts_authorizePayout
+  /v1/providers/authorizations/{authorizationId}/validation:
+    post: ProviderAuthorizations_validatePsuAuthorizationData
+  /v1/recurring-payments:
+    post: RecurringPayments_createNewRecurringPayment
+  /v1/recurring-payments/{id}:
+    delete: RecurringPayments_cancelRecurringPayment
+    get: RecurringPayments_getRecurringPayment
+  /v1/signing-baskets:
+    post: SigningBaskets_createNewBasket
+  /v1/signing-baskets/{id}:
+    delete: SigningBaskets_cancel
+    get: SigningBaskets_getDetails
+  /v1/tra-result:
+    get: Tra_getRecommendationValue
+  /v1/user-identification:
+    post: UserIdentification_postData
+  /v1/user-identity-verification/session-details:
+    get: UserIdentityVerification_getSessionDetails
+  /v1/user-identity-verification/user-authentication:
+    post: UserIdentityVerification_startFtnAuthenticationFlow
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/payments:
+    post:
+      application/json: PaymentRequestsCreateRequestRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/Webhooks:
+    get:
+      '200':
+        application/json: WebhooksGetAllResponse
+  /v1/payments:
+    post:
+      '201':
+        application/json: PaymentRequestsCreateRequestResponse
+  /v1/payments/templates:
+    get:
+      '200':
+        application/json: PaymentTemplatesGetAllTemplatesResponse
+  /v1/payments/templates/{id}/initiate:
+    post:
+      '201':
+        application/json: PaymentTemplatesInitiateRequestResponse
+  /v1/payments/{id}:
+    get:
+      '200':
+        application/json: PaymentRequestsGetDetailsByIdResponse
+  /v1/payments/{id}/refund:
+    post:
+      '201':
+        application/json: PaymentRequestsCreateRefundRequestResponse
+  /v1/payouts:
+    get:
+      '200':
+        application/json: PayoutsGetAllPayoutsResponse
+securityParameters:
+  authorizationId:
+    header: false
+    query: false
+  bookingStatus:
+    query: false
+  callbackUri:
+    query: false
+  dateFrom:
+    query: false
+  dateTo:
+    query: false
+  filterParam:
+    query: false
+  hash:
+    query: false
+  ignoreSizeLimit:
+    query: false
+  pageIndex:
+    query: false
+  pageNumber:
+    query: false
+  pageSize:
+    query: false
+  paymentId:
+    query: false
+  sandbox:
+    query: false
+  searchClientAccess:
+    query: false
+  searchClientId:
+    query: false
+  searchRecipient:
+    query: false
+  searchStatus:
+    query: false
+  sequenceNumber:
+    query: false
+  sessionId:
+    header: false
+    query: false
+  sortBy:
+    query: false
+  sortDirection:
+    query: false
+  ssn:
+    query: false
+  status:
+    query: false
+  userIdentification:
+    query: false
+validServerUrls:
+  api.finshark.io:
+    url: api.finshark.io

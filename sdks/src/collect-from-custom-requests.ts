@@ -2512,6 +2512,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://developer.keatext.ai/specs.yaml",
   },
+  "finshark.io": {
+    type: "GET",
+    url: "https://cdn.finshark.io/docs/openapi_v1.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
