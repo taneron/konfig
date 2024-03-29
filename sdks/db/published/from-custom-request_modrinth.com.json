@@ -1,0 +1,2109 @@
+{
+  "securitySchemes": {
+    "TokenAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "apiBaseUrl": "https://api.modrinth.com/v2",
+  "apiVersion": "v2.7.0/15cf3fc",
+  "apiDescription": "This documentation doesn't provide a way to test our API. In order to facilitate testing, we recommend the following tools:\n\n- [cURL](https://curl.se/) (recommended, command-line)\n- [ReqBIN](https://reqbin.com/) (recommended, online)\n- [Postman](https://www.postman.com/downloads/)\n- [Insomnia](https://insomnia.rest/)\n- Your web browser, if you don't need to send headers or a request body\n\nOnce you have a working client, you can test that it works by making a `GET` request to `https://staging-api.modrinth.com/`:\n\n```json\n{\n  \"about\": \"Welcome traveler!\",\n  \"documentation\": \"https://docs.modrinth.com\",\n  \"name\": \"modrinth-labrinth\",\n  \"version\": \"2.7.0\"\n}\n```\n\nIf you got a response similar to the one above, you can use the Modrinth API!\nWhen you want to go live using the production API, use `api.modrinth.com` instead of `staging-api.modrinth.com`.\n\n## Authentication\nThis API has two options for authentication: personal access tokens and [OAuth2](https://en.wikipedia.org/wiki/OAuth).\nAll tokens are tied to a Modrinth user and use the `Authorization` header of the request.\n\nExample:\n```\nAuthorization: mrp_RNtLRSPmGj2pd1v1ubi52nX7TJJM9sznrmwhAuj511oe4t1jAqAQ3D6Wc8Ic\n```\n\nYou do not need a token for most requests. Generally speaking, only the following types of requests require a token:\n- those which create data (such as version creation)\n- those which modify data (such as editing a project)\n- those which access private data (such as draft projects, notifications, emails, and payout data)\n\nEach request requiring authentication has a certain scope. For example, to view the email of the user being requested, the token must have the `USER_READ_EMAIL` scope.\nYou can find the list of available scopes [on GitHub](https://github.com/modrinth/labrinth/blob/master/src/models/pats.rs#L15). Making a request with an invalid scope will return a 401 error.\n\nPlease note that certain scopes and requests cannot be completed with a personal access token or using OAuth.\nFor example, deleting a user account can only be done through Modrinth's frontend.\n\n### OAuth2\nApplications interacting with the authenticated API should create an OAuth2 application.\nYou can do this in [the developer settings](https://modrinth.com/settings/applications).\n\nOnce you have created a client, use the following URL to have a user authorize your client:\n```\nhttps://modrinth.com/auth/authorize?client_id=<CLIENT_ID>&redirect_uri=<CALLBACK_URL>&scope=<SCOPE_ONE>+<SCOPE_TWO>+<SCOPE_THREE>\n```\n\nThen, use the following URL to get the token:\n```\nhttps://api.modrinth.com/_internal/oauth/token\n```\n\nThis route will be changed in the future to move the `_internal` part to `v3`.\n\n### Personal access tokens\nPersonal access tokens (PATs) can be generated in from [the user settings](https://modrinth.com/settings/account).\n\n### GitHub tokens\nFor backwards compatibility purposes, some types of GitHub tokens also work for authenticating a user with Modrinth's API, granting all scopes.\n**We urge any application still using GitHub tokens to start using personal access tokens for security and reliability purposes.**\nGitHub tokens will cease to function to authenticate with Modrinth's API as soon as version 3 of the API is made generally available.\n\n## Cross-Origin Resource Sharing\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with the [W3C spec](https://www.w3.org/TR/cors/).\nThis allows for cross-domain communication from the browser.\nAll responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.\n\n## Identifiers\nThe majority of items you can interact with in the API have a unique eight-digit base62 ID.\nProjects, versions, users, threads, teams, and reports all use this same way of identifying themselves.\nVersion files use the sha1 or sha512 file hashes as identifiers.\n\nEach project and user has a friendlier way of identifying them; slugs and usernames, respectively.\nWhile unique IDs are constant, slugs and usernames can change at any moment.\nIf you want to store something in the long term, it is recommended to use the unique ID.\n\n## Ratelimits\nThe API has a ratelimit defined per IP. Limits and remaining amounts are given in the response headers.\n- `X-Ratelimit-Limit`: the maximum number of requests that can be made in a minute\n- `X-Ratelimit-Remaining`: the number of requests remaining in the current ratelimit window\n- `X-Ratelimit-Reset`: the time in seconds until the ratelimit window resets\n\nRatelimits are the same no matter whether you use a token or not.\nThe ratelimit is currently 300 requests per minute. If you have a use case requiring a higher limit, please [contact us](mailto:admin@modrinth.com).\n\n## User Agents\nTo access the Modrinth API, you **must** use provide a uniquely-identifying `User-Agent` header.\nProviding a user agent that only identifies your HTTP client library (such as \"okhttp/4.9.3\") increases the likelihood that we will block your traffic.\nIt is recommended, but not required, to include contact information in your user agent.\nThis allows us to contact you if we would like a change in your application's behavior without having to block your traffic.\n- Bad: `User-Agent: okhttp/4.9.3`\n- Good: `User-Agent: project_name`\n- Better: `User-Agent: github_username/project_name/1.56.0`\n- Best: `User-Agent: github_username/project_name/1.56.0 (launcher.com)` or `User-Agent: github_username/project_name/1.56.0 (contact@launcher.com)`\n\n## Versioning\nModrinth follows a simple pattern for its API versioning.\nIn the event of a breaking API change, the API version in the URL path is bumped, and migration steps will be published below.\n\nWhen an API is no longer the current one, it will immediately be considered deprecated.\nNo more support will be provided for API versions older than the current one.\nIt will be kept for some time, but this amount of time is not certain.\n\nWe will exercise various tactics to get people to update their implementation of our API.\nOne example is by adding something like `STOP USING THIS API` to various data returned by the API.\n\nOnce an API version is completely deprecated, it will permanently return a 410 error.\nPlease ensure your application handles these 410 errors.\n\n### Migrations\nInside the following spoiler, you will be able to find all changes between versions of the Modrinth API, accompanied by tips and a guide to migrate applications to newer versions.\n\nHere, you can also find changes for [Minotaur](https://github.com/modrinth/minotaur), Modrinth's official Gradle plugin. Major versions of Minotaur directly correspond to major versions of the Modrinth API.\n\n<details><summary>API v1 to API v2</summary>\n\nThese bullet points cover most changes in the v2 API, but please note that fields containing `mod` in most contexts have been shifted to `project`.  For example, in the search route, the field `mod_id` was renamed to `project_id`.\n\n- The search route has been moved from `/api/v1/mod` to `/v2/search`\n- New project fields: `project_type` (may be `mod` or `modpack`), `moderation_message` (which has a `message` and `body`), `gallery`\n- New search facet: `project_type`\n- Alphabetical sort removed (it didn't work and is not possible due to limits in MeiliSearch)\n- New search fields: `project_type`, `gallery`\n  - The gallery field is an array of URLs to images that are part of the project's gallery\n- The gallery is a new feature which allows the user to upload images showcasing their mod to the CDN which will be displayed on their mod page\n- Internal change: Any project file uploaded to Modrinth is now validated to make sure it's a valid Minecraft mod, Modpack, etc.\n  - For example, a Forge 1.17 mod with a JAR not containing a mods.toml will not be allowed to be uploaded to Modrinth\n- In project creation, projects may not upload a mod with no versions to review, however they can be saved as a draft\n  - Similarly, for version creation, a version may not be uploaded without any files\n- Donation URLs have been enabled\n- New project status: `archived`. Projects with this status do not appear in search\n- Tags (such as categories, loaders) now have icons (SVGs) and specific project types attached\n- Dependencies have been wiped and replaced with a new system\n- Notifications now have a `type` field, such as `project_update`\n\nAlong with this, project subroutes (such as `/v2/project/{id}/version`) now allow the slug to be used as the ID. This is also the case with user routes.\n\n</details><details><summary>Minotaur v1 to Minotaur v2</summary>\n\nMinotaur 2.x introduced a few breaking changes to how your buildscript is formatted.\n\nFirst, instead of registering your own `publishModrinth` task, Minotaur now automatically creates a `modrinth` task. As such, you can replace the `task publishModrinth(type: TaskModrinthUpload) {` line with just `modrinth {`.\n\nTo declare supported Minecraft versions and mod loaders, the `gameVersions` and `loaders` arrays must now be used. The syntax for these are pretty self-explanatory.\n\nInstead of using `releaseType`, you must now use `versionType`. This was actually changed in v1.2.0, but very few buildscripts have moved on from v1.1.0.\n\nDependencies have been changed to a special DSL. Create a `dependencies` block within the `modrinth` block, and then use `scope.type(\"project/version\")`. For example, `required.project(\"fabric-api\")` adds a required project dependency on Fabric API.\n\nYou may now use the slug anywhere that a project ID was previously required.\n\n</details>\n",
+  "apiTitle": "Labrinth",
+  "endpoints": 55,
+  "sdkMethods": 115,
+  "schemas": 91,
+  "parameters": 73,
+  "contactUrl": "https://support.modrinth.com",
+  "contactEmail": "support@modrinth.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://docs.modrinth.com/redocusaurus/plugin-redoc-0.yaml"
+  },
+  "customRequestSpecFilename": "modrinth.com.yaml",
+  "difficultyScore": 162.25,
+  "difficulty": "Medium",
+  "company": "Modrinth",
+  "sdkName": "modrinth-{language}-sdk",
+  "clientName": "Modrinth",
+  "metaDescription": "Modrinth is a modding platform providing gamers a site where they can discover modifications for their favorite games and developers a site where they can upload their projects and share them to the world.",
+  "apiStatusUrls": "inherit",
+  "homepage": "modrinth.com/",
+  "developerDocumentation": "docs.modrinth.com/",
+  "categories": [
+    "gaming",
+    "platform",
+    "modding",
+    "development_platforms",
+    "communities",
+    "marketplace"
+  ],
+  "category": "Gaming",
+  "methods": [
+    {
+      "url": "/search",
+      "method": "find",
+      "httpMethod": "get",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Search projects",
+      "parameters": [
+        {
+          "name": "query",
+          "schema": "string",
+          "description": "The query to search for",
+          "example": "gravestones"
+        },
+        {
+          "name": "facets",
+          "schema": "string",
+          "description": "Facets are an essential concept for understanding how to filter out results.\n\nThese are the most commonly used facet types:\n- `project_type`\n- `categories` (loaders are lumped in with categories in search)\n- `versions`\n- `client_side`\n- `server_side`\n- `open_source`\n\nSeveral others are also available for use, though these should not be used outside very specific use cases.\n- `title`\n- `author`\n- `follows`\n- `project_id`\n- `license`\n- `downloads`\n- `color`\n- `created_timestamp`\n- `modified_timestamp`\n\nIn order to then use these facets, you need a value to filter by, as well as an operation to perform on this value.\nThe most common operation is `:` (same as `=`), though you can also use `!=`, `>=`, `>`, `<=`, and `<`.\nJoin together the type, operation, and value, and you've got your string.\n```\n{type} {operation} {value}\n```\n\nExamples:\n```\ncategories = adventure\nversions != 1.20.1\ndownloads <= 100\n```\n\nYou then join these strings together in arrays to signal `AND` and `OR` operators.\n\n##### OR\nAll elements in a single array are considered to be joined by OR statements.  \nFor example, the search `[[\"versions:1.16.5\", \"versions:1.17.1\"]]` translates to `Projects that support 1.16.5 OR 1.17.1`.\n\n##### AND\nSeparate arrays are considered to be joined by AND statements.  \nFor example, the search `[[\"versions:1.16.5\"], [\"project_type:modpack\"]]` translates to `Projects that support 1.16.5 AND are modpacks`.\n",
+          "example": "[[\"categories:forge\"],[\"versions:1.17.1\"],[\"project_type:mod\"],[\"license:mit\"]]"
+        },
+        {
+          "name": "index",
+          "schema": "string",
+          "description": "The sorting method used for sorting search results",
+          "example": "downloads",
+          "default": "relevance"
+        },
+        {
+          "name": "offset",
+          "schema": "integer",
+          "description": "The offset into the search. Skips this number of results",
+          "example": 20,
+          "default": 0
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The number of results returned by the search",
+          "example": 20,
+          "default": 10
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}",
+      "method": "removeBySlug",
+      "httpMethod": "delete",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Delete a project",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}",
+      "method": "getProjectByIdOrSlug",
+      "httpMethod": "get",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Get a project",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}",
+      "method": "updateProjectByIdOrSlug",
+      "httpMethod": "patch",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Modify a project",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/projects",
+      "method": "listProjects",
+      "httpMethod": "get",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Get multiple projects",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/projects",
+      "method": "bulkEdit",
+      "httpMethod": "patch",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Bulk-edit multiple projects",
+      "parameters": [
+        {
+          "name": "categories",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "add_categories",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "remove_categories",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "additional_categories",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "add_additional_categories",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "remove_additional_categories",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "donation_urls",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "add_donation_urls",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "remove_donation_urls",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "issues_url",
+          "schema": "string",
+          "description": "",
+          "example": "https://github.com/my_user/my_project/issues"
+        },
+        {
+          "name": "source_url",
+          "schema": "string",
+          "description": "",
+          "example": "https://github.com/my_user/my_project"
+        },
+        {
+          "name": "wiki_url",
+          "schema": "string",
+          "description": "",
+          "example": "https://github.com/my_user/my_project/wiki"
+        },
+        {
+          "name": "discord_url",
+          "schema": "string",
+          "description": "",
+          "example": "https://discord.gg/AaBbCcDd"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/projects_random",
+      "method": "getRandomList",
+      "httpMethod": "get",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Get a list of random projects",
+      "parameters": [
+        {
+          "name": "count",
+          "schema": "integer",
+          "required": true,
+          "description": "The number of random projects to return",
+          "example": 70
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project",
+      "method": "createNewProject",
+      "httpMethod": "post",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Create a project",
+      "parameters": [
+        {
+          "name": "data",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/icon",
+      "method": "deleteProjectIcon",
+      "httpMethod": "delete",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Delete project's icon",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/icon",
+      "method": "changeProjectIcon",
+      "httpMethod": "patch",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Change project's icon",
+      "parameters": [
+        {
+          "name": "ext",
+          "schema": "string",
+          "required": true,
+          "description": "Image extension",
+          "example": "EXT"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/check",
+      "method": "checkValidity",
+      "httpMethod": "get",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Check project slug/ID validity",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/gallery",
+      "method": "deleteGalleryImage",
+      "httpMethod": "delete",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Delete a gallery image",
+      "parameters": [
+        {
+          "name": "url",
+          "schema": "string",
+          "required": true,
+          "description": "URL link of the image to delete",
+          "example": "URL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/gallery",
+      "method": "modifyGalleryImage",
+      "httpMethod": "patch",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Modify a gallery image",
+      "parameters": [
+        {
+          "name": "url",
+          "schema": "string",
+          "required": true,
+          "description": "URL link of the image to modify",
+          "example": "URL"
+        },
+        {
+          "name": "featured",
+          "schema": "boolean",
+          "description": "Whether the image is featured"
+        },
+        {
+          "name": "title",
+          "schema": "string",
+          "description": "New title of the image"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": "New description of the image"
+        },
+        {
+          "name": "ordering",
+          "schema": "integer",
+          "description": "New ordering of the image"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/gallery",
+      "method": "addGalleryImage",
+      "httpMethod": "post",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Add a gallery image",
+      "parameters": [
+        {
+          "name": "ext",
+          "schema": "string",
+          "required": true,
+          "description": "Image extension",
+          "example": "EXT"
+        },
+        {
+          "name": "featured",
+          "schema": "boolean",
+          "required": true,
+          "description": "Whether an image is featured",
+          "example": true
+        },
+        {
+          "name": "title",
+          "schema": "string",
+          "description": "Title of the image"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": "Description of the image"
+        },
+        {
+          "name": "ordering",
+          "schema": "integer",
+          "description": "Ordering of the image"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/dependencies",
+      "method": "getDependencies",
+      "httpMethod": "get",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Get all of a project's dependencies",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/follow",
+      "method": "unfollowProject",
+      "httpMethod": "delete",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Unfollow a project",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/follow",
+      "method": "followProjectBySlug",
+      "httpMethod": "post",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Follow a project",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/schedule",
+      "method": "scheduleProject",
+      "httpMethod": "post",
+      "tag": "projects",
+      "typeScriptTag": "projects",
+      "description": "Schedule a project",
+      "parameters": [
+        {
+          "name": "time",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2023-02-05T19:39:55.551839Z"
+        },
+        {
+          "name": "requested_status",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REQUESTED_STATUS"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/version",
+      "method": "listProjectVersions",
+      "httpMethod": "get",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "List project's versions",
+      "parameters": [
+        {
+          "name": "loaders",
+          "schema": "string",
+          "required": false,
+          "description": "The types of loaders to filter for",
+          "example": "[\"fabric\"]"
+        },
+        {
+          "name": "gameVersions",
+          "schema": "string",
+          "required": false,
+          "description": "The game versions to filter for",
+          "example": "[\"1.18.1\"]"
+        },
+        {
+          "name": "featured",
+          "schema": "boolean",
+          "required": false,
+          "description": "Allows to filter for featured or non-featured versions only"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/version/{id}",
+      "method": "deleteVersionById",
+      "httpMethod": "delete",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "Delete a version",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/version/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "Get a version",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/version/{id}",
+      "method": "modifyVersionById",
+      "httpMethod": "patch",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "Modify a version",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/version/{id|number}",
+      "method": "getByVersionIdOrNumber",
+      "httpMethod": "get",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "Get a version given a version number or ID",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/version",
+      "method": "createNewVersion",
+      "httpMethod": "post",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "Create a version",
+      "parameters": [
+        {
+          "name": "data",
+          "schema": "undefined",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/version/{id}/schedule",
+      "method": "scheduleVersion",
+      "httpMethod": "post",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "Schedule a version",
+      "parameters": [
+        {
+          "name": "time",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2023-02-05T19:39:55.551839Z"
+        },
+        {
+          "name": "requested_status",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REQUESTED_STATUS"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/versions",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "Get multiple versions",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/version/{id}/file",
+      "method": "addFilesToVersion",
+      "httpMethod": "post",
+      "tag": "versions",
+      "typeScriptTag": "versions",
+      "description": "Add files to version",
+      "parameters": [
+        {
+          "name": "data",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/version_file/{hash}",
+      "method": "deleteByHash",
+      "httpMethod": "delete",
+      "tag": "version-files",
+      "typeScriptTag": "versionFiles",
+      "description": "Delete a file from its hash",
+      "parameters": [
+        {
+          "name": "versionId",
+          "schema": "string",
+          "required": false,
+          "description": "Version ID to delete the version from, if multiple files of the same hash exist",
+          "example": [
+            "IIJJKKLL"
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/version_file/{hash}",
+      "method": "getVersionFromHash",
+      "httpMethod": "get",
+      "tag": "version-files",
+      "typeScriptTag": "versionFiles",
+      "description": "Get version from hash",
+      "parameters": [
+        {
+          "name": "multiple",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether to return multiple results when looking for this hash",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/version_file/{hash}/update",
+      "method": "updateFromHashes",
+      "httpMethod": "post",
+      "tag": "version-files",
+      "typeScriptTag": "versionFiles",
+      "description": "Latest version of a project from a hash, loader(https://docs.modrinth.com/, and game version(https://docs.modrinth.com/",
+      "parameters": [
+        {
+          "name": "loaders",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "game_versions",
+          "schema": "array",
+          "required": true,
+          "description": "",
+          "example": [
+            "1.18",
+            "1.18.1"
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Request was invalid, see given error"
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/version_files",
+      "method": "getVersionsFromHashes",
+      "httpMethod": "post",
+      "tag": "version-files",
+      "typeScriptTag": "versionFiles",
+      "description": "Get versions from hashes",
+      "parameters": [
+        {
+          "name": "hashes",
+          "schema": "array",
+          "required": true,
+          "description": "",
+          "example": [
+            "ea0f38408102e4d2efd53c2cc11b88b711996b48d8922f76ea6abf731219c5bd1efe39ddf9cce77c54d49a62ff10fb685c00d2e4c524ab99d20f6296677ab2c4",
+            "925a5c4899affa4098d997dfa4a4cb52c636d539e94bc489d1fa034218cb96819a70eb8b01647a39316a59fcfe223c1a8c05ed2e2ae5f4c1e75fa48f6af1c960"
+          ]
+        },
+        {
+          "name": "algorithm",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "sha512"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A map from hashes to versions"
+        },
+        {
+          "statusCode": "400",
+          "description": "Request was invalid, see given error"
+        }
+      ]
+    },
+    {
+      "url": "/version_files/update",
+      "method": "updateMultipleVersions",
+      "httpMethod": "post",
+      "tag": "version-files",
+      "typeScriptTag": "versionFiles",
+      "description": "Latest versions of multiple project from hashes, loader(https://docs.modrinth.com/, and game version(https://docs.modrinth.com/",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A map from hashes to versions"
+        },
+        {
+          "statusCode": "400",
+          "description": "Request was invalid, see given error"
+        }
+      ]
+    },
+    {
+      "url": "/user/{id|username}",
+      "method": "getUserByIdOrUsername",
+      "httpMethod": "get",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Get a user",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/user/{id|username}",
+      "method": "modifyUserPatch",
+      "httpMethod": "patch",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Modify a user",
+      "parameters": [
+        {
+          "name": "username",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "my_user"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "My User"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "bio",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "My short biography"
+        },
+        {
+          "name": "payout_data",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/user",
+      "method": "getUserFromAuthHeader",
+      "httpMethod": "get",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Get user from authorization header",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/users",
+      "method": "getMultipleUsers",
+      "httpMethod": "get",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Get multiple users",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/user/{id|username}/icon",
+      "method": "changeAvatar",
+      "httpMethod": "patch",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Change user's avatar",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/user/{id|username}/projects",
+      "method": "getUserProjects",
+      "httpMethod": "get",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Get user's projects",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/user/{id|username}/follows",
+      "method": "getFollowedProjects",
+      "httpMethod": "get",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Get user's followed projects",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/user/{id|username}/payouts",
+      "method": "getPayouts",
+      "httpMethod": "get",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Get user's payout history",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/user/{id|username}/payouts",
+      "method": "withdrawPayoutBalanceToPaypal",
+      "httpMethod": "post",
+      "tag": "users",
+      "typeScriptTag": "users",
+      "description": "Withdraw payout balance to PayPal or Venmo",
+      "parameters": [
+        {
+          "name": "amount",
+          "schema": "integer",
+          "required": true,
+          "description": "Amount to withdraw",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/user/{id|username}/notifications",
+      "method": "getUserNotifications",
+      "httpMethod": "get",
+      "tag": "notifications",
+      "typeScriptTag": "notifications",
+      "description": "Get user's notifications",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/notification/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "notifications",
+      "typeScriptTag": "notifications",
+      "description": "Delete notification",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/notification/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "notifications",
+      "typeScriptTag": "notifications",
+      "description": "Get notification from ID",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/notification/{id}",
+      "method": "markAsRead",
+      "httpMethod": "patch",
+      "tag": "notifications",
+      "typeScriptTag": "notifications",
+      "description": "Mark notification as read",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/notifications",
+      "method": "deleteMultiple",
+      "httpMethod": "delete",
+      "tag": "notifications",
+      "typeScriptTag": "notifications",
+      "description": "Delete multiple notifications",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/notifications",
+      "method": "getMultiple",
+      "httpMethod": "get",
+      "tag": "notifications",
+      "typeScriptTag": "notifications",
+      "description": "Get multiple notifications",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/notifications",
+      "method": "markAsRead",
+      "httpMethod": "patch",
+      "tag": "notifications",
+      "typeScriptTag": "notifications",
+      "description": "Mark multiple notifications as read",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/report",
+      "method": "getOpenReports",
+      "httpMethod": "get",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Get your open reports",
+      "parameters": [
+        {
+          "name": "count",
+          "schema": "integer",
+          "description": "",
+          "example": 100
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/report",
+      "method": "reportProjectUserVersion",
+      "httpMethod": "post",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Report a project, user, or version",
+      "parameters": [
+        {
+          "name": "report_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "copyright"
+        },
+        {
+          "name": "item_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EEFFGGHH"
+        },
+        {
+          "name": "item_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "project"
+        },
+        {
+          "name": "body",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "This is a reupload of my mod, AABBCCDD!"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/report/{id}",
+      "method": "getReportById",
+      "httpMethod": "get",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Get report from ID",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/report/{id}",
+      "method": "modifyReport",
+      "httpMethod": "patch",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Modify a report",
+      "parameters": [
+        {
+          "name": "body",
+          "schema": "string",
+          "description": "",
+          "example": "This is the meat and potatoes of the report!"
+        },
+        {
+          "name": "closed",
+          "schema": "boolean",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/reports",
+      "method": "getMultipleReports",
+      "httpMethod": "get",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Get multiple reports",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/thread/{id}",
+      "method": "getThreadById",
+      "httpMethod": "get",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Get a thread",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/thread/{id}",
+      "method": "sendMessage",
+      "httpMethod": "post",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Send a text message to a thread",
+      "parameters": [
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "status_change"
+        },
+        {
+          "name": "body",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "This is the text of the message."
+        },
+        {
+          "name": "private",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "replying_to",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "SSTTUUVV"
+        },
+        {
+          "name": "old_status",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "processing"
+        },
+        {
+          "name": "new_status",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "approved"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/threads",
+      "method": "listThreads",
+      "httpMethod": "get",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Get multiple threads",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/message/{id}",
+      "method": "deleteThreadMessage",
+      "httpMethod": "delete",
+      "tag": "threads",
+      "typeScriptTag": "threads",
+      "description": "Delete a thread message",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/project/{id|slug}/members",
+      "method": "getProjectMembers",
+      "httpMethod": "get",
+      "tag": "teams",
+      "typeScriptTag": "teams",
+      "description": "Get a project's team members",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "An array of team members"
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/team/{id}/members",
+      "method": "getTeamMembers",
+      "httpMethod": "get",
+      "tag": "teams",
+      "typeScriptTag": "teams",
+      "description": "Get a team's members",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "An array of team members"
+        }
+      ]
+    },
+    {
+      "url": "/team/{id}/members",
+      "method": "addUserToTeam",
+      "httpMethod": "post",
+      "tag": "teams",
+      "typeScriptTag": "teams",
+      "description": "Add a user to a team",
+      "parameters": [
+        {
+          "name": "user_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EEFFGGHH"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/teams",
+      "method": "getMembers",
+      "httpMethod": "get",
+      "tag": "teams",
+      "typeScriptTag": "teams",
+      "description": "Get the members of multiple teams",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/team/{id}/join",
+      "method": "joinTeam",
+      "httpMethod": "post",
+      "tag": "teams",
+      "typeScriptTag": "teams",
+      "description": "Join a team",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/team/{id}/members/{id|username}",
+      "method": "removeMember",
+      "httpMethod": "delete",
+      "tag": "teams",
+      "typeScriptTag": "teams",
+      "description": "Remove a member from a team",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/team/{id}/members/{id|username}",
+      "method": "modifyMemberInfo",
+      "httpMethod": "patch",
+      "tag": "teams",
+      "typeScriptTag": "teams",
+      "description": "Modify a team member's information",
+      "parameters": [
+        {
+          "name": "role",
+          "schema": "string",
+          "description": "",
+          "example": "Contributor"
+        },
+        {
+          "name": "permissions",
+          "schema": "integer",
+          "description": "",
+          "example": 127
+        },
+        {
+          "name": "payouts_split",
+          "schema": "integer",
+          "description": "",
+          "example": 100
+        },
+        {
+          "name": "ordering",
+          "schema": "integer",
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/team/{id}/owner",
+      "method": "transferOwnership",
+      "httpMethod": "patch",
+      "tag": "teams",
+      "typeScriptTag": "teams",
+      "description": "Transfer team's ownership to another user",
+      "parameters": [
+        {
+          "name": "user_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "EEFFGGHH"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "Expected response to a valid request"
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": "The requested item(https://docs.modrinth.com/ were not found or no authorization to access the requested item(https://docs.modrinth.com/"
+        }
+      ]
+    },
+    {
+      "url": "/tag/category",
+      "method": "listCategoriesWithIcons",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get a list of categories",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tag/loader",
+      "method": "getLoaderList",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get a list of loaders",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tag/game_version",
+      "method": "listGameVersions",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get a list of game versions",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tag/license",
+      "method": "listLicenses",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get a list of licenses",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tag/license/{id}",
+      "method": "getLicenseTextTitle",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get the text and title of a license",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "A full license"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tag/donation_platform",
+      "method": "listDonationPlatforms",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get a list of donation platforms",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tag/report_type",
+      "method": "listReportTypes",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get a list of report types",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tag/project_type",
+      "method": "listProjectTypes",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get a list of project types",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/tag/side_type",
+      "method": "listSideTypes",
+      "httpMethod": "get",
+      "tag": "tags",
+      "typeScriptTag": "tags",
+      "description": "Get a list of side types",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/updates/{id|slug}/forge_updates.json",
+      "method": "getForgeUpdatesJson",
+      "httpMethod": "get",
+      "tag": "misc",
+      "typeScriptTag": "misc",
+      "description": "Forge Updates JSON file",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Mod version information that can be consumed by Forge's update checker"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/statistics",
+      "method": "instanceStatistics",
+      "httpMethod": "get",
+      "tag": "misc",
+      "typeScriptTag": "misc",
+      "description": "Various statistics about this Modrinth instance",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Modrinth is a modding platform providing gamers a site where they can discover modifications for their favorite games and developers a site where they can upload their projects and share them to the world. Modrinth's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/modrinth/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/modrinth/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/modrinth/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/modrinth/imagePreview.webp",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/modrinth/favicon.png",
+  "clientNameCamelCase": "modrinth",
+  "lastUpdated": "2024-03-29T19:02:49.632Z",
+  "typescriptSdkUsageCode": "import { Modrinth } from 'modrinth-typescript-sdk';\n\nconst modrinth = new Modrinth({\n    tokenAuth: \"AUTHORIZATION\"\n})",
+  "typescriptSdkFirstRequestCode": "// Search projects\nconst findResponse = modrinth.projects.find({\n    query: \"gravestones\"\n    facets: \"[[\\\"categories:forge\\\"],[\\\"versions:1.17.1\\\"],[\\\"project_type:mod\\\"],[\\\"license:mit\\\"]]\"\n    index: \"downloads\"\n    offset: 20\n    limit: 20\n})",
+  "fixedSpecFileName": "modrinth-fixed-spec.yaml"
+}

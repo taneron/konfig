@@ -1,0 +1,285 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /message/{id}:
+    delete: Threads_deleteThreadMessage
+  /notification/{id}:
+    delete: Notifications_deleteById
+    get: Notifications_getById
+    patch: Notifications_markAsRead
+  /notifications:
+    delete: Notifications_deleteMultiple
+    get: Notifications_getMultiple
+    patch: Notifications_markAsRead
+  /project:
+    post: Projects_createNewProject
+  /project/{id|slug}:
+    delete: Projects_removeBySlug
+    get: Projects_getProjectByIdOrSlug
+    patch: Projects_updateProjectByIdOrSlug
+  /project/{id|slug}/check:
+    get: Projects_checkValidity
+  /project/{id|slug}/dependencies:
+    get: Projects_getDependencies
+  /project/{id|slug}/follow:
+    delete: Projects_unfollowProject
+    post: Projects_followProjectBySlug
+  /project/{id|slug}/gallery:
+    delete: Projects_deleteGalleryImage
+    patch: Projects_modifyGalleryImage
+    post: Projects_addGalleryImage
+  /project/{id|slug}/icon:
+    delete: Projects_deleteProjectIcon
+    patch: Projects_changeProjectIcon
+  /project/{id|slug}/members:
+    get: Teams_getProjectMembers
+  /project/{id|slug}/schedule:
+    post: Projects_scheduleProject
+  /project/{id|slug}/version:
+    get: Versions_listProjectVersions
+  /project/{id|slug}/version/{id|number}:
+    get: Versions_getByVersionIdOrNumber
+  /projects:
+    get: Projects_listProjects
+    patch: Projects_bulkEdit
+  /projects_random:
+    get: Projects_getRandomList
+  /report:
+    get: Threads_getOpenReports
+    post: Threads_reportProjectUserVersion
+  /report/{id}:
+    get: Threads_getReportById
+    patch: Threads_modifyReport
+  /reports:
+    get: Threads_getMultipleReports
+  /search:
+    get: Projects_find
+  /statistics:
+    get: Misc_instanceStatistics
+  /tag/category:
+    get: Tags_listCategoriesWithIcons
+  /tag/donation_platform:
+    get: Tags_listDonationPlatforms
+  /tag/game_version:
+    get: Tags_listGameVersions
+  /tag/license:
+    get: Tags_listLicenses
+  /tag/license/{id}:
+    get: Tags_getLicenseTextTitle
+  /tag/loader:
+    get: Tags_getLoaderList
+  /tag/project_type:
+    get: Tags_listProjectTypes
+  /tag/report_type:
+    get: Tags_listReportTypes
+  /tag/side_type:
+    get: Tags_listSideTypes
+  /team/{id}/join:
+    post: Teams_joinTeam
+  /team/{id}/members:
+    get: Teams_getTeamMembers
+    post: Teams_addUserToTeam
+  /team/{id}/members/{id|username}:
+    delete: Teams_removeMember
+    patch: Teams_modifyMemberInfo
+  /team/{id}/owner:
+    patch: Teams_transferOwnership
+  /teams:
+    get: Teams_getMembers
+  /thread/{id}:
+    get: Threads_getThreadById
+    post: Threads_sendMessage
+  /threads:
+    get: Threads_listThreads
+  /updates/{id|slug}/forge_updates.json:
+    get: Misc_getForgeUpdatesJson
+  /user:
+    get: Users_getUserFromAuthHeader
+  /user/{id|username}:
+    get: Users_getUserByIdOrUsername
+    patch: Users_modifyUserPatch
+  /user/{id|username}/follows:
+    get: Users_getFollowedProjects
+  /user/{id|username}/icon:
+    patch: Users_changeAvatar
+  /user/{id|username}/notifications:
+    get: Notifications_getUserNotifications
+  /user/{id|username}/payouts:
+    get: Users_getPayouts
+    post: Users_withdrawPayoutBalanceToPaypal
+  /user/{id|username}/projects:
+    get: Users_getUserProjects
+  /users:
+    get: Users_getMultipleUsers
+  /version:
+    post: Versions_createNewVersion
+  /version/{id}:
+    delete: Versions_deleteVersionById
+    get: Versions_getById
+    patch: Versions_modifyVersionById
+  /version/{id}/file:
+    post: Versions_addFilesToVersion
+  /version/{id}/schedule:
+    post: Versions_scheduleVersion
+  /version_file/{hash}:
+    delete: Versionfiles_deleteByHash
+    get: Versionfiles_getVersionFromHash
+  /version_file/{hash}/update:
+    post: Versionfiles_updateFromHashes
+  /version_files:
+    post: Versionfiles_getVersionsFromHashes
+  /version_files/update:
+    post: Versionfiles_updateMultipleVersions
+  /versions:
+    get: Versions_list
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /project/{id|slug}/icon:
+    patch:
+      image/bmp: ProjectsChangeProjectIconRequest2
+      image/gif: ProjectsChangeProjectIconRequest3
+      image/jpeg: ProjectsChangeProjectIconRequest1
+      image/png: ProjectsChangeProjectIconRequest
+      image/rgb: ProjectsChangeProjectIconRequest7
+      image/svg: ProjectsChangeProjectIconRequest5
+      image/svgz: ProjectsChangeProjectIconRequest6
+      image/webp: ProjectsChangeProjectIconRequest4
+  /report/{id}:
+    patch:
+      application/json: ThreadsModifyReportRequest
+  /version/{id}/file:
+    post:
+      multipart/form-data: VersionsAddFilesToVersionRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /notifications:
+    get:
+      '200':
+        application/json: NotificationsGetMultipleResponse
+  /project/{id|slug}/members:
+    get:
+      '200':
+        application/json: TeamsGetProjectMembersResponse
+  /project/{id|slug}/version:
+    get:
+      '200':
+        application/json: VersionsListProjectVersionsResponse
+  /projects:
+    get:
+      '200':
+        application/json: ProjectsListProjectsResponse
+  /projects_random:
+    get:
+      '200':
+        application/json: ProjectsGetRandomListResponse
+  /report:
+    get:
+      '200':
+        application/json: ThreadsGetOpenReportsResponse
+  /reports:
+    get:
+      '200':
+        application/json: ThreadsGetMultipleReportsResponse
+  /tag/category:
+    get:
+      '200':
+        application/json: TagsListCategoriesWithIconsResponse
+  /tag/donation_platform:
+    get:
+      '200':
+        application/json: TagsListDonationPlatformsResponse
+  /tag/game_version:
+    get:
+      '200':
+        application/json: TagsListGameVersionsResponse
+  /tag/license:
+    get:
+      '200':
+        application/json: TagsListLicensesResponse
+  /tag/loader:
+    get:
+      '200':
+        application/json: TagsGetLoaderListResponse
+  /tag/project_type:
+    get:
+      '200':
+        application/json: TagsListProjectTypesResponse
+  /tag/report_type:
+    get:
+      '200':
+        application/json: TagsListReportTypesResponse
+  /tag/side_type:
+    get:
+      '200':
+        application/json: TagsListSideTypesResponse
+  /team/{id}/members:
+    get:
+      '200':
+        application/json: TeamsGetTeamMembersResponse
+  /teams:
+    get:
+      '200':
+        application/json: TeamsGetMembersResponse
+  /threads:
+    get:
+      '200':
+        application/json: ThreadsListThreadsResponse
+  /user/{id|username}/follows:
+    get:
+      '200':
+        application/json: UsersGetFollowedProjectsResponse
+  /user/{id|username}/notifications:
+    get:
+      '200':
+        application/json: NotificationsGetUserNotificationsResponse
+  /user/{id|username}/projects:
+    get:
+      '200':
+        application/json: UsersGetUserProjectsResponse
+  /users:
+    get:
+      '200':
+        application/json: UsersGetMultipleUsersResponse
+  /versions:
+    get:
+      '200':
+        application/json: VersionsListResponse
+securityParameters:
+  amount:
+    query: false
+  count:
+    query: false
+  description:
+    query: false
+  ext:
+    query: false
+  facets:
+    query: false
+  featured:
+    query: false
+  game_versions:
+    query: false
+  index:
+    query: false
+  limit:
+    query: false
+  loaders:
+    query: false
+  multiple:
+    query: false
+  offset:
+    query: false
+  ordering:
+    query: false
+  query:
+    query: false
+  title:
+    query: false
+  url:
+    query: false
+  version_id:
+    query: false
+validServerUrls: {}

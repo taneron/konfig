@@ -2349,6 +2349,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://docs.prolific.com/docs/api-docs/public-openapi",
   },
+  "modrinth.com": {
+    type: "GET",
+    url: "https://docs.modrinth.com/redocusaurus/plugin-redoc-0.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
