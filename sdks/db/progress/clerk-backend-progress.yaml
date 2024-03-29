@@ -1,0 +1,440 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /templates/{template_type}/{slug}/preview:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /actor_tokens:
+    post: ActorTokens_createToken
+  /actor_tokens/{actor_token_id}/revoke:
+    post: ActorTokens_revokeToken
+  /allowlist_identifiers:
+    get: AllowlistBlocklist_listAllowedIdentifiers
+    post: AllowlistBlocklist_addIdentifierToAllowList
+  /allowlist_identifiers/{identifier_id}:
+    delete: AllowlistBlocklist_deleteIdentifier
+  /beta_features/domain:
+    put: BetaFeatures_updateProductionInstanceDomain
+  /beta_features/instance_settings:
+    patch: BetaFeatures_updateInstanceSettings
+  /blocklist_identifiers:
+    get: AllowlistBlocklist_listBlockedIdentifiers
+    post: AllowlistBlocklist_addIdentifier
+  /blocklist_identifiers/{identifier_id}:
+    delete: AllowlistBlocklist_deleteIdentifierFromBlocklist
+  /clients:
+    get: Clients_listSortedByCreationDate
+  /clients/verify:
+    post: Clients_verifyClientToken
+  /clients/{client_id}:
+    get: Clients_getDetails
+  /domains:
+    get: Domains_getAllDomains
+    post: Domains_addSatelliteDomain
+  /domains/{domain_id}:
+    delete: Domains_deleteSatelliteDomain
+    patch: Domains_updateDomain
+  /email_addresses:
+    post: EmailAddresses_createNewAddress
+  /email_addresses/{email_address_id}:
+    delete: EmailAddresses_deleteById
+    get: EmailAddresses_getDetails
+    patch: EmailAddresses_updateAddress
+  /instance:
+    patch: InstanceSettings_updateInstanceSettings
+  /instance/change_domain:
+    post: BetaFeatures_updateInstanceDomain
+  /instance/organization_settings:
+    patch: InstanceSettings_updateOrganizationSettings
+  /instance/restrictions:
+    patch: InstanceSettings_updateRestrictions
+  /invitations:
+    get: Invitations_listAllNonRevoked
+    post: Invitations_createNewInvitation
+  /invitations/{invitation_id}/revoke:
+    post: Invitations_revokeInvitation
+  /jwks:
+    get: Jwks_getJsonWebKeySet
+  /jwt_templates:
+    get: JwtTemplates_listAllTemplates
+    post: JwtTemplates_createTemplate
+  /jwt_templates/{template_id}:
+    delete: JwtTemplates_deleteTemplateById
+    get: JwtTemplates_getTemplateDetails
+    patch: JwtTemplates_updateTemplateById
+  /oauth_applications:
+    get: OAuthApplications_listSortedByDescendingCreationDate
+    post: OAuthApplications_createNewApplication
+  /oauth_applications/{oauth_application_id}:
+    delete: OAuthApplications_deleteById
+    get: OAuthApplications_getById
+    patch: OAuthApplications_updateApplication
+  /oauth_applications/{oauth_application_id}/rotate_secret:
+    post: OAuthApplications_rotateSecret
+  /organizations:
+    get: Organizations_listSortedByCreationDate
+    post: Organizations_createNewOrganization
+  /organizations/{organization_id}:
+    delete: Organizations_deleteOrganization
+    get: Organizations_getByIdOrSlug
+    patch: Organizations_updateOrganization
+  /organizations/{organization_id}/invitations:
+    get: OrganizationInvitations_list
+    post: OrganizationInvitations_createAndSend
+  /organizations/{organization_id}/invitations/bulk:
+    post: OrganizationInvitations_bulkCreateAndSend
+  /organizations/{organization_id}/invitations/pending:
+    get: OrganizationInvitations_listPending
+  /organizations/{organization_id}/invitations/{invitation_id}:
+    get: OrganizationInvitations_getById
+  /organizations/{organization_id}/invitations/{invitation_id}/revoke:
+    post: OrganizationInvitations_revokeInvitation
+  /organizations/{organization_id}/logo:
+    delete: Organizations_removeLogo
+    put: Organizations_updateOrganizationLogo
+  /organizations/{organization_id}/memberships:
+    get: OrganizationMemberships_getAllMembers
+    post: OrganizationMemberships_addUserToOrganization
+  /organizations/{organization_id}/memberships/{user_id}:
+    delete: OrganizationMemberships_removeUserFromOrganization
+    patch: OrganizationMemberships_updateMembershipProperties
+  /organizations/{organization_id}/memberships/{user_id}/metadata:
+    patch: OrganizationMemberships_updateMembershipMetadata
+  /organizations/{organization_id}/metadata:
+    patch: Organizations_mergeOrganizationMetadata
+  /phone_numbers:
+    post: PhoneNumbers_createNewPhoneNumber
+  /phone_numbers/{phone_number_id}:
+    delete: PhoneNumbers_deletePhoneNumberById
+    get: PhoneNumbers_getDetails
+    patch: PhoneNumbers_updateDetails
+  /proxy_checks:
+    post: ProxyChecks_verifyProxyConfiguration
+  /public/interstitial:
+    get: Miscellaneous_getInterstitialMarkup
+  /redirect_urls:
+    get: RedirectUrLs_listAll
+    post: RedirectUrLs_createNewUrl
+  /redirect_urls/{id}:
+    delete: RedirectUrLs_removeById
+    get: RedirectUrLs_getById
+  /saml_connections:
+    get: SamlConnectionsBeta_getList
+    post: SamlConnectionsBeta_createNewConnection
+  /saml_connections/{saml_connection_id}:
+    delete: SamlConnectionsBeta_deleteConnectionById
+    get: SamlConnectionsBeta_getById
+    patch: SamlConnectionsBeta_updateConnectionById
+  /sessions:
+    get: Sessions_listSortedByCreationDate
+  /sessions/{session_id}:
+    get: Sessions_getDetails
+  /sessions/{session_id}/revoke:
+    post: Sessions_revokeSession
+  /sessions/{session_id}/tokens/{template_name}:
+    post: Sessions_createSessionTokenFromTemplate
+  /sessions/{session_id}/verify:
+    post: Sessions_verifySession
+  /sign_in_tokens:
+    post: SigninTokens_createToken
+  /sign_in_tokens/{sign_in_token_id}/revoke:
+    post: SigninTokens_revokeToken
+  /sign_ups/{id}:
+    patch: Signups_updateSignUpById
+  /templates/{template_type}:
+    get: EmailSmsTemplates_listSortedByPosition
+  /templates/{template_type}/{slug}:
+    get: EmailSmsTemplates_getTemplateDetails
+    put: EmailSmsTemplates_updateTemplateByTypeAndSlug
+  /templates/{template_type}/{slug}/preview:
+    post: EmailSmsTemplates_previewTemplate
+  /templates/{template_type}/{slug}/revert:
+    post: EmailSmsTemplates_revertTemplate
+  /templates/{template_type}/{slug}/toggle_delivery:
+    post: EmailSmsTemplates_toggleDeliveryByTypeAndSlug
+  /users:
+    get: Users_listSortedByCreationDate
+    post: Users_createNewUser
+  /users/count:
+    get: Users_getTotalCount
+  /users/{user_id}:
+    delete: Users_deleteUserById
+    get: Users_getUserDetails
+    patch: Users_updateUserAttributes
+  /users/{user_id}/ban:
+    post: Users_markBanned
+  /users/{user_id}/lock:
+    post: Users_lockUser
+  /users/{user_id}/metadata:
+    patch: Users_mergeUserMetadataAttributes
+  /users/{user_id}/mfa:
+    delete: Users_disableMfa
+  /users/{user_id}/oauth_access_tokens/{provider}:
+    get: Users_getOAuthAccessToken
+  /users/{user_id}/organization_memberships:
+    get: Users_getOrganizationMemberships
+  /users/{user_id}/profile_image:
+    delete: Users_deleteProfileImage
+    post: Users_setProfileImage
+  /users/{user_id}/unban:
+    post: Users_removeBanFromUser
+  /users/{user_id}/unlock:
+    post: Users_removeLock
+  /users/{user_id}/verify_password:
+    post: Users_verifyPassword
+  /users/{user_id}/verify_totp:
+    post: Users_verifyTotp
+  /webhooks/svix:
+    delete: Webhooks_deleteSvixApp
+    post: Webhooks_createSvixApp
+  /webhooks/svix_url:
+    post: Webhooks_generateSvixDashboardUrl
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /actor_tokens:
+    post:
+      application/json: ActorTokensCreateTokenRequest
+  /allowlist_identifiers:
+    post:
+      application/json: AllowlistBlocklistAddIdentifierToAllowListRequest
+  /beta_features/domain:
+    put:
+      application/json: BetaFeaturesUpdateProductionInstanceDomainRequest
+  /beta_features/instance_settings:
+    patch:
+      application/json: BetaFeaturesUpdateInstanceSettingsRequest
+  /blocklist_identifiers:
+    post:
+      application/json: AllowlistBlocklistAddIdentifierRequest
+  /clients/verify:
+    post:
+      application/json: ClientsVerifyClientTokenRequest
+  /domains:
+    post:
+      application/json: DomainsAddSatelliteDomainRequest
+  /domains/{domain_id}:
+    patch:
+      application/json: DomainsUpdateDomainRequest
+  /email_addresses:
+    post:
+      application/json: EmailAddressesCreateNewAddressRequest
+  /email_addresses/{email_address_id}:
+    patch:
+      application/json: EmailAddressesUpdateAddressRequest
+  /instance:
+    patch:
+      application/json: InstanceSettingsUpdateInstanceSettingsRequest
+  /instance/change_domain:
+    post:
+      application/json: BetaFeaturesUpdateInstanceDomainRequest
+  /instance/organization_settings:
+    patch:
+      application/json: InstanceSettingsUpdateOrganizationSettingsRequest
+  /instance/restrictions:
+    patch:
+      application/json: InstanceSettingsUpdateRestrictionsRequest
+  /invitations:
+    post:
+      application/json: InvitationsCreateNewInvitationRequest
+  /jwt_templates:
+    post:
+      application/json: JwtTemplatesCreateTemplateRequest
+  /jwt_templates/{template_id}:
+    patch:
+      application/json: JwtTemplatesUpdateTemplateByIdRequest
+  /oauth_applications:
+    post:
+      application/json: OAuthApplicationsCreateNewApplicationRequest
+  /oauth_applications/{oauth_application_id}:
+    patch:
+      application/json: OAuthApplicationsUpdateApplicationRequest
+  /organizations:
+    post:
+      application/json: OrganizationsCreateNewOrganizationRequest
+  /organizations/{organization_id}:
+    patch:
+      application/json: OrganizationsUpdateOrganizationRequest
+  /organizations/{organization_id}/invitations:
+    post:
+      application/json: OrganizationInvitationsCreateAndSendRequest
+  /organizations/{organization_id}/invitations/bulk:
+    post:
+      application/json: OrganizationInvitationsBulkCreateAndSendRequest
+  /organizations/{organization_id}/invitations/{invitation_id}/revoke:
+    post:
+      application/json: OrganizationInvitationsRevokeInvitationRequest
+  /organizations/{organization_id}/logo:
+    put:
+      multipart/form-data: OrganizationsUpdateOrganizationLogoRequest
+  /organizations/{organization_id}/memberships:
+    post:
+      application/json: OrganizationMembershipsAddUserToOrganizationRequest
+  /organizations/{organization_id}/memberships/{user_id}:
+    patch:
+      application/json: OrganizationMembershipsUpdateMembershipPropertiesRequest
+  /organizations/{organization_id}/memberships/{user_id}/metadata:
+    patch:
+      application/json: OrganizationMembershipsUpdateMembershipMetadataRequest
+  /organizations/{organization_id}/metadata:
+    patch:
+      application/json: OrganizationsMergeOrganizationMetadataRequest
+  /phone_numbers:
+    post:
+      application/json: PhoneNumbersCreateNewPhoneNumberRequest
+  /phone_numbers/{phone_number_id}:
+    patch:
+      application/json: PhoneNumbersUpdateDetailsRequest
+  /proxy_checks:
+    post:
+      application/json: ProxyChecksVerifyProxyConfigurationRequest
+  /redirect_urls:
+    post:
+      application/json: RedirectUrLsCreateNewUrlRequest
+  /saml_connections:
+    post:
+      application/json: SamlConnectionsBetaCreateNewConnectionRequest
+  /saml_connections/{saml_connection_id}:
+    patch:
+      application/json: SamlConnectionsBetaUpdateConnectionByIdRequest
+  /sessions/{session_id}/verify:
+    post:
+      application/json: SessionsVerifySessionRequest
+  /sign_in_tokens:
+    post:
+      application/json: SigninTokensCreateTokenRequest
+  /sign_ups/{id}:
+    patch:
+      application/json: SignupsUpdateSignUpByIdRequest
+  /templates/{template_type}/{slug}:
+    put:
+      application/json: EmailSmsTemplatesUpdateTemplateByTypeAndSlugRequest
+  /templates/{template_type}/{slug}/preview:
+    post:
+      application/json: EmailSmsTemplatesPreviewTemplateRequest
+  /templates/{template_type}/{slug}/toggle_delivery:
+    post:
+      application/json: EmailSmsTemplatesToggleDeliveryByTypeAndSlugRequest
+  /users:
+    post:
+      application/json: UsersCreateNewUserRequest
+  /users/{user_id}:
+    patch:
+      application/json: UsersUpdateUserAttributesRequest
+  /users/{user_id}/metadata:
+    patch:
+      application/json: UsersMergeUserMetadataAttributesRequest
+  /users/{user_id}/profile_image:
+    post:
+      multipart/form-data: UsersSetProfileImageRequest
+  /users/{user_id}/verify_password:
+    post:
+      application/json: UsersVerifyPasswordRequest
+  /users/{user_id}/verify_totp:
+    post:
+      application/json: UsersVerifyTotpRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /allowlist_identifiers:
+    get:
+      '200':
+        application/json: AllowlistBlocklistListAllowedIdentifiersResponse
+  /beta_features/instance_settings:
+    patch:
+      '200':
+        application/json: BetaFeaturesUpdateInstanceSettingsResponse
+  /clients:
+    get:
+      '200':
+        application/json: ClientsListSortedByCreationDateResponse
+  /invitations:
+    get:
+      '200':
+        application/json: InvitationsListAllNonRevokedResponse
+  /invitations/{invitation_id}/revoke:
+    post:
+      '200':
+        application/json: InvitationsRevokeInvitationResponse
+  /jwt_templates:
+    get:
+      '200':
+        application/json: JwtTemplatesListAllTemplatesResponse
+  /redirect_urls:
+    get:
+      '200':
+        application/json: RedirectUrLsListAllResponse
+  /sessions:
+    get:
+      '200':
+        application/json: SessionsListSortedByCreationDateResponse
+  /sessions/{session_id}/tokens/{template_name}:
+    post:
+      '200':
+        application/json: SessionsCreateSessionTokenFromTemplateResponse
+  /templates/{template_type}:
+    get:
+      '200':
+        application/json: EmailSmsTemplatesListSortedByPositionResponse
+  /templates/{template_type}/{slug}/preview:
+    post:
+      '200':
+        application/json: EmailSmsTemplatesPreviewTemplateResponse
+  /users:
+    get:
+      '200':
+        application/json: UsersListSortedByCreationDateResponse
+  /users/{user_id}/mfa:
+    delete:
+      '200':
+        application/json: UsersDisableMfaResponse
+  /users/{user_id}/oauth_access_tokens/{provider}:
+    get:
+      '200':
+        application/json: UsersGetOAuthAccessTokenResponse
+  /users/{user_id}/verify_password:
+    post:
+      '200':
+        application/json: UsersVerifyPasswordResponse
+  /users/{user_id}/verify_totp:
+    post:
+      '200':
+        application/json: UsersVerifyTotpResponse
+securityParameters:
+  client_id:
+    query: false
+  email_address:
+    query: false
+  external_id:
+    query: false
+  frontendApi:
+    query: false
+  include_members_count:
+    query: false
+  last_active_at_since:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  order_by:
+    query: false
+  organization_id:
+    query: false
+  phone_number:
+    query: false
+  publishable_key:
+    query: false
+  query:
+    query: false
+  status:
+    query: false
+  user_id:
+    query: false
+  username:
+    query: false
+  web3_wallet:
+    query: false
+validServerUrls: {}

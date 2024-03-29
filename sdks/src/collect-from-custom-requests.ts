@@ -204,6 +204,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "clerk.com_Backend": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://clerk.com/docs/reference/backend-api",
+        browser,
+      });
+    },
+  },
   "circleci.com": {
     type: "GET",
     url: "https://circleci.com/api/v2/openapi.json",
