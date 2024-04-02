@@ -6,6 +6,7 @@ import { generateFaviconLink } from './generate-favicon-link'
 import { generateLogoLink } from './generate-logo-link'
 import { githubGetOpenApiSpec } from './github-get-openapi-spec'
 import { githubGetKonfigYaml } from './github-get-konfig-yaml'
+import * as nodePath from 'path'
 
 export type GithubResources = UnwrapPromise<
   ReturnType<typeof githubGetReferenceResources>
@@ -34,19 +35,20 @@ export async function githubGetReferenceResources({
     octokit,
   })
 
-  const faviconLink = generateFaviconLink({
+  const faviconLink = await generateFaviconLink({
     konfigYaml: konfigYaml.content,
-    defaultBranch: repoData.default_branch,
     konfigYamlPath: konfigYaml.info.path,
     owner,
     repo,
+    octokit,
   })
-  const logoLink = generateLogoLink({
+  const logoLink = await generateLogoLink({
     konfigYaml: konfigYaml.content,
     defaultBranch: repoData.default_branch,
     konfigYamlPath: konfigYaml.info.path,
     owner,
     repo,
+    octokit,
   })
 
   // time the next three lines
@@ -72,5 +74,6 @@ export async function githubGetReferenceResources({
     logo: logoLink,
     spec,
     konfigYaml: konfigYaml.content,
+    konfigYamlDir: nodePath.dirname(konfigYaml.info.path),
   }
 }

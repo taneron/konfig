@@ -17,7 +17,10 @@ import { createOctokitInstance } from './octokit'
 import { transformImageLinks } from './transform-image-links'
 import { transformInternalLinks } from './transform-internal-links'
 import { generateFaviconLink } from './generate-favicon-link'
-import { generateLogoLink } from './generate-logo-link'
+import {
+  GenerateLogoLinkResponse,
+  generateLogoLink,
+} from './generate-logo-link'
 import { computeDocumentProps } from './compute-document-props'
 import { githubGetKonfigYamlsSafe } from './github-get-konfig-yamls-safe'
 import { extractMetaDescription } from './extract-meta-description'
@@ -54,7 +57,7 @@ export type MarkdownPageProps = {
 
   omitOwnerAndRepo: boolean
   faviconLink: string | null
-  logo: ReturnType<typeof generateLogoLink>
+  logo: GenerateLogoLinkResponse
 }
 
 export async function generatePropsForMarkdownPage({
@@ -93,20 +96,21 @@ export async function generatePropsForMarkdownPage({
   // TODO: handle multiple konfig.yaml
   const konfigYaml = konfigYamls[0]
 
-  const faviconLink = generateFaviconLink({
+  const faviconLink = await generateFaviconLink({
     konfigYaml: konfigYaml.content,
-    defaultBranch,
     konfigYamlPath: konfigYaml.info.path,
     owner,
     repo,
+    octokit,
   })
 
-  const logoLink = generateLogoLink({
+  const logoLink = await generateLogoLink({
     konfigYaml: konfigYaml.content,
     defaultBranch,
     konfigYamlPath: konfigYaml.info.path,
     owner,
     repo,
+    octokit,
   })
 
   const documentationConfig = konfigYaml?.content.portal?.documentation
@@ -147,7 +151,7 @@ export async function generatePropsForMarkdownPage({
     octokit,
     owner,
     repo,
-    path: doc.path,
+    path: path.join(path.dirname(konfigYaml.info.path), doc.path),
   })
 
   const specPath = konfigYaml.content.specPath
@@ -163,7 +167,7 @@ export async function generatePropsForMarkdownPage({
   const spec = await parseSpec(openapi)
   const operations = getOperations({ spec: spec.spec })
 
-  const markdown = transformImageLinks({
+  const markdown = await transformImageLinks({
     markdown: transformInternalLinks({
       markdown: originalMarkdown,
       owner,
@@ -174,7 +178,8 @@ export async function generatePropsForMarkdownPage({
     owner,
     repo,
     docPath: doc.path,
-    defaultBranch,
+    octokit,
+    konfigYamlDir: path.dirname(konfigYaml.info.path),
   })
 
   const demos = await generateDemosDataFromGithub({
@@ -193,6 +198,7 @@ export async function generatePropsForMarkdownPage({
       owner,
       repo,
       octokit,
+      konfigYamlDir: path.dirname(konfigYaml.info.path),
     })
 
   const breadcrumb = idToBreadcrumbs[documentId]

@@ -1,4 +1,5 @@
 import { createClient } from 'redis'
+import crypto from 'crypto'
 
 function redisUrl() {
   if (process.env.GITHUB_API_REDIS_CACHE) {
@@ -8,7 +9,7 @@ function redisUrl() {
 }
 
 let globalClient: ReturnType<typeof createClient> | null = null
-async function githubApiRedisCache() {
+async function redisCache() {
   if (globalClient != null) return globalClient
   globalClient = createClient({ url: redisUrl() })
   globalClient.on('error', (err) => console.log('Redis Client Error', err))
@@ -27,12 +28,29 @@ function computeCacheKey({
 }
 
 export async function clearGithubApiCache() {
-  const client = await githubApiRedisCache()
+  const client = await redisCache()
 
   // Flush all keys under GitHub Namespaces
   const namespaces = Object.keys(GitHubNamespaces)
   for (const namespace of namespaces) {
     const keys = await client.keys(`${namespace}:*`)
+    for (const key of keys) {
+      await client.del(key)
+    }
+  }
+}
+
+export async function clearCloudflareImagesRedisCache({
+  owner,
+  repo,
+}: {
+  owner: string
+  repo: string
+}) {
+  const client = await redisCache()
+  const namespaces = Object.keys(CloudflareNamespaces)
+  for (const namespace of namespaces) {
+    const keys = await client.keys(`${namespace}:${owner}:${repo}:*`)
     for (const key of keys) {
       await client.del(key)
     }
@@ -50,10 +68,15 @@ const OpenAINamespaces = {
   'meta-description': true,
 }
 
+const CloudflareNamespaces = {
+  'cloudflare-images-from-github': true,
+}
+
 type GitHubNamespaces = keyof typeof GitHubNamespaces
 type OpenAINamespaces = keyof typeof OpenAINamespaces
+type CloudflareNamespaces = keyof typeof CloudflareNamespaces
 
-type AllNamespaces = GitHubNamespaces | OpenAINamespaces
+type AllNamespaces = GitHubNamespaces | OpenAINamespaces | CloudflareNamespaces
 
 export async function setOpenAiRedisCache({
   namespace,
@@ -65,6 +88,41 @@ export async function setOpenAiRedisCache({
   value: string
 }) {
   await _setCache({ namespace, key, value })
+}
+
+export async function setCloudflareImagesRedisCache({
+  namespace,
+  base64,
+  value,
+  owner,
+  repo,
+}: {
+  namespace: CloudflareNamespaces
+  owner: string
+  repo: string
+  base64: string
+  value: string
+}) {
+  await _setCache({
+    namespace,
+    key: computeCloudflareImagesCacheKey({ base64, owner, repo }),
+    value,
+  })
+}
+
+function computeCloudflareImagesCacheKey({
+  base64,
+  owner,
+  repo,
+}: {
+  base64: string
+  owner: string
+  repo: string
+}) {
+  const hash = crypto.createHash('sha256')
+  hash.update(base64)
+  const shortenedBase64 = hash.digest('hex')
+  return `${owner}:${repo}:${shortenedBase64}`
 }
 
 export async function setGithubApiCache({
@@ -88,7 +146,7 @@ async function _setCache({
   key: string
   value: string
 }) {
-  const client = await githubApiRedisCache()
+  const client = await redisCache()
   const cacheKey = computeCacheKey({ namespace, key })
   // time in seconds how long it took to cache
   const start = Date.now()
@@ -117,6 +175,23 @@ export async function getOpenAiRedisCache({
   return await _getCache({ namespace, key })
 }
 
+export async function getCloudflareImagesRedisCache({
+  namespace,
+  base64,
+  owner,
+  repo,
+}: {
+  namespace: CloudflareNamespaces
+  base64: string
+  owner: string
+  repo: string
+}) {
+  return await _getCache({
+    namespace,
+    key: computeCloudflareImagesCacheKey({ base64, owner, repo }),
+  })
+}
+
 async function _getCache({
   namespace,
   key,
@@ -124,7 +199,7 @@ async function _getCache({
   namespace: AllNamespaces
   key: string
 }) {
-  const client = await githubApiRedisCache()
+  const client = await redisCache()
   const cacheKey = computeCacheKey({ namespace, key })
   const start = Date.now()
   const cached = await client.get(cacheKey)

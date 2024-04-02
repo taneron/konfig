@@ -17,13 +17,17 @@ import {
 import { NavbarDataItem } from '@/components/LinksGroup'
 import { generateDemosDataFromGithub } from './generate-demos-from-github'
 import { sortParametersByRequired } from './sort-parameters-by-required'
-import { generateLogoLink } from './generate-logo-link'
+import {
+  GenerateLogoLinkResponse,
+  generateLogoLink,
+} from './generate-logo-link'
 import { MarkdownPageProps } from './generate-props-for-markdown-page'
 import { computeDocumentProps } from './compute-document-props'
 import { createOctokitInstance } from './octokit'
 import { transformSpecForReferencePage } from './transform-spec-for-reference-page'
 import { githubGetFileContent } from './github-get-file-content'
 import { githubGetCustomSnippet } from './github-get-custom-snippet'
+import * as nodePath from 'path'
 
 export type ReferencePageProps = Omit<GithubResources, 'spec'> & {
   spec: Spec['spec']
@@ -55,7 +59,7 @@ export type ReferencePageProps = Omit<GithubResources, 'spec'> & {
   securityRequirements: Record<string, string[]> | null
   securitySchemes: Record<string, SecurityScheme> | null
   omitOwnerAndRepo?: boolean
-  logo: ReturnType<typeof generateLogoLink>
+  logo: GenerateLogoLinkResponse
 }
 
 export async function generatePropsForReferencePage({
@@ -279,6 +283,7 @@ export async function generatePropsForReferencePage({
       owner,
       repo,
       octokit,
+      konfigYamlDir: props.konfigYamlDir,
     })
   ).allMarkdown
 

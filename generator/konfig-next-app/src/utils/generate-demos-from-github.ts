@@ -6,12 +6,16 @@ import { githubGetRepository } from './github-get-repository'
 import type { KonfigYamlType, SocialObject } from 'konfig-lib'
 import { Octokit } from '@octokit/rest'
 import { generateFaviconLink } from './generate-favicon-link'
-import { generateLogoLink } from './generate-logo-link'
+import {
+  GenerateLogoLinkResponse,
+  generateLogoLink,
+} from './generate-logo-link'
 import { MarkdownPageProps } from './generate-props-for-markdown-page'
 import { computeDocumentProps } from './compute-document-props'
 import { githubGetKonfigYamlsSafe } from './github-get-konfig-yamls-safe'
-import { extractMetaDescription } from './extract-meta-description'
 import { githubGetCustomSnippet } from './github-get-custom-snippet'
+import { transformImageLinks } from './transform-image-links'
+import * as nodePath from 'path'
 
 /**
  * Custom mappings to preserve existing links for SnapTrade
@@ -41,7 +45,7 @@ export type FetchResult = {
   mainBranch: string
   hasDocumentation: boolean
   faviconLink: string | null
-  logo: ReturnType<typeof generateLogoLink>
+  logo: GenerateLogoLinkResponse
 }
 
 export type GenerationResult =
@@ -95,7 +99,7 @@ export async function generateDemosDataFromGithub({
       hasDocumentation: boolean
       allMarkdown: MarkdownPageProps['allMarkdown']
       faviconLink: string | null
-      logo: ReturnType<typeof generateLogoLink>
+      logo: GenerateLogoLinkResponse
     }
   | { result: 'error'; reason: 'no demos' }
   | { result: 'error'; reason: 'demo not found' }
@@ -164,19 +168,20 @@ async function _fetch({
   if (konfigYaml.content.portal === undefined)
     throw Error('No portal configuration found')
 
-  const faviconLink = generateFaviconLink({
+  const faviconLink = await generateFaviconLink({
     konfigYaml: konfigYaml.content,
-    defaultBranch: repository.data.default_branch,
     konfigYamlPath: konfigYaml.info.path,
     owner,
     repo,
+    octokit,
   })
-  const logoLink = generateLogoLink({
+  const logoLink = await generateLogoLink({
     konfigYaml: konfigYaml.content,
     defaultBranch: repository.data.default_branch,
     konfigYamlPath: konfigYaml.info.path,
     owner,
     repo,
+    octokit,
   })
 
   const demos =
@@ -185,6 +190,7 @@ async function _fetch({
       repo,
       owner,
       konfigYaml: konfigYaml.content,
+      konfigYamlDir: nodePath.dirname(konfigYaml.info.path),
     })) ?? []
 
   const portal: Portal = {
@@ -205,6 +211,7 @@ async function _fetch({
       owner,
       repo,
       octokit,
+      konfigYamlDir: nodePath.dirname(konfigYaml.info.path),
     })
   ).allMarkdown
 
@@ -214,6 +221,17 @@ async function _fetch({
     octokit,
     konfigYaml: konfigYaml.content,
   })
+
+  for (const demo of portal.demos) {
+    demo.markdown = await transformImageLinks({
+      markdown: demo.markdown,
+      owner,
+      repo,
+      docPath: demo.path,
+      octokit,
+      konfigYamlDir: '',
+    })
+  }
 
   return {
     organization,
@@ -239,11 +257,13 @@ export async function getDemos({
   repo,
   owner,
   octokit,
+  konfigYamlDir,
 }: {
   konfigYaml: KonfigYamlType
   repo: string
   owner: string
   octokit: Octokit
+  konfigYamlDir: string
 }) {
   if (konfigYaml?.portal?.demos === undefined) {
     return null
@@ -254,8 +274,14 @@ export async function getDemos({
   const content = await Promise.all(
     markdownFiles.map(async ({ path, ...rest }) => {
       return {
-        content: await githubGetFileContent({ path, repo, owner, octokit }),
+        content: await githubGetFileContent({
+          path: nodePath.join(konfigYamlDir, path),
+          repo,
+          owner,
+          octokit,
+        }),
         ...rest,
+        path: nodePath.join(konfigYamlDir, path),
       }
     })
   )
