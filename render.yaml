@@ -107,6 +107,39 @@ services:
       - key: PORT
         value: 10000
 
+  - name: konfig-demo-portal-staging
+    type: web
+    env: node
+    buildCommand: yarn; yarn build;
+    startCommand: yarn start;
+    repo: https://github.com/konfig-dev/konfig
+    branch: staging
+    rootDir: generator/konfig-next-app
+    plan: standard
+    buildFilter:
+      paths:
+      - generator/konfig-dash/**/*
+    domains:
+      - *.konfig.dev
+    envVars:
+      - key: GITHUB_API_REDIS_CACHE
+        fromService:
+          name: github-api-cache
+          type: redis
+          property: connectionString
+      - key: PYTHON_RCE_API_HOST_PORT
+        fromService:
+          name: konfig-python-remote-code-executor
+          type: pserv
+          property: hostport
+      - fromGroup: github
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NPM_TOKEN
+        value: DUMMY_VALUE
+      - key: PORT
+        value: 10000
+
   # - name: konfig-dash
   #   type: web
   #   env: static
