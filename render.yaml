@@ -78,7 +78,7 @@ services:
   - name: konfig-demo-portal
     type: web
     env: node
-    buildCommand: yarn; yarn build;
+    buildCommand: yarn --ignore-engines; yarn build;
     startCommand: yarn start;
     repo: https://github.com/konfig-dev/konfig
     rootDir: generator/konfig-next-app
@@ -99,6 +99,8 @@ services:
           name: konfig-python-remote-code-executor
           type: pserv
           property: hostport
+      - fromGroup: cloudflare
+      - fromGroup: openai
       - fromGroup: github
       - key: OPENAI_API_KEY
         sync: false
@@ -132,6 +134,8 @@ services:
           name: konfig-python-remote-code-executor
           type: pserv
           property: hostport
+      - fromGroup: openai
+      - fromGroup: cloudflare
       - fromGroup: github
       - key: OPENAI_API_KEY
         sync: false
@@ -328,6 +332,14 @@ databases:
     plan: starter
 
 envVarGroups:
+  - name: cloudflare
+    envVars:
+      - key: CLOUDFLARE_IMAGES_API_KEY
+        sync: false
+  - name: openai
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
   - name: konfig-changeset-bot
     envVars:
       - key: APP_ID
