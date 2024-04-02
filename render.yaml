@@ -132,6 +132,7 @@ services:
           name: konfig-python-remote-code-executor
           type: pserv
           property: hostport
+      - fromGroup: cloudflare
       - fromGroup: github
       - key: OPENAI_API_KEY
         sync: false
@@ -328,6 +329,10 @@ databases:
     plan: starter
 
 envVarGroups:
+  - name: cloudflare
+    envVars:
+      - key: CLOUDFLARE_IMAGES_API_KEY
+        sync: false
   - name: konfig-changeset-bot
     envVars:
       - key: APP_ID
