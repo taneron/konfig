@@ -66,6 +66,36 @@ export const domainToRepoMappings: Record<
     repo: 'groundx-sdks',
   },
 
+  // *.konfig.dev
+  'bellhop.konfig.dev': {
+    owner: 'konfig-dev',
+    repo: 'bellhop-sdks',
+  },
+  'acme.konfig.dev': {
+    owner: 'konfig-dev',
+    repo: 'acme-sdks',
+  },
+  'leap.konfig.dev': {
+    owner: 'leap-ai',
+    repo: 'workflows-sdks',
+  },
+  'splitit.konfig.dev': {
+    owner: 'konfig-dev',
+    repo: 'splitit-web-sdks',
+  },
+  'snaptrade.konfig.dev': {
+    owner: 'passiv',
+    repo: 'snaptrade-sdks',
+  },
+  'humanloop.konfig.dev': {
+    owner: 'humanloop',
+    repo: 'humanloop-sdks',
+  },
+  'groundx.konfig.dev': {
+    owner: 'groundxai',
+    repo: 'groundx-sdks',
+  },
+
   // *.konfigthis.com
   'snaptrade.konfigthis.com': {
     owner: 'passiv',
