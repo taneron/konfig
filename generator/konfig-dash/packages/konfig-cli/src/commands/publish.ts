@@ -118,7 +118,7 @@ const publishScripts = {
       skipTag,
     })
     // git tag has to be present for pod trunk to work
-    return [...gitTagCommands, `pod trunk push ${projectName}.podspec`]
+    return [...gitTagCommands, `pod trunk push ${projectName}.podspec --allow-warnings`]
   },
   go: async ({
     version,
