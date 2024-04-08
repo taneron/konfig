@@ -138,6 +138,7 @@ const publishScripts = {
     skipTag?: boolean
   }) => {
     const majorVersion = version.split('.')[0]
+    const majorVersionStr = parseInt(majorVersion) > 1 ? `/v${majorVersion}` : ''
     return [
       ...(await generateGitTagCommands({
         version,
@@ -146,7 +147,7 @@ const publishScripts = {
         isSubmodule,
         skipTag,
       })),
-      `GOPROXY=proxy.golang.org go list -m ${gitHost}/${owner}/${repo}/v${majorVersion}@v${version}`,
+      `GOPROXY=proxy.golang.org go list -m ${gitHost}/${owner}/${repo}${majorVersionStr}@v${version}`,
     ]
   },
   npm: async ({
