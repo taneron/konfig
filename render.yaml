@@ -22,7 +22,7 @@ services:
   - name: carbon-polling
     type: cron
     env: node
-    schedule: "*/30 * * * *"
+    schedule: "0 0 * * *"
     buildCommand: npm init -y; npm install konfig-cli
     repo: https://github.com/Carbon-for-Developers/carbon-sdks
     startCommand: ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o Carbon-for-Developers -r carbon-sdks -s openapi.json
