@@ -108,13 +108,14 @@ This endpoint initializes the KYC process for a customer.
 - **Endpoint:** `/initialize`
 - **Method:** `POST`
 - **Required Parameters:**
-  - `customer_id`: The unique identifier of the customer from your system
   - `workflow_id`: The unique identifier of the workflow from ACME
+  - `customer_id`: The unique identifier of the customer from your system
   - `address`: The address of the customer
   - `gender`: The gender of the customer
 
 <Admonition type="note">
-The `customer_id`, `address`, and `gender` should be dynamically fetched from your system.
+We pulled `workflow_id` from your account. The `customer_id`, `address`, and
+`gender` should be dynamically fetched from your system.
 </Admonition>
 
 Here is a Python example that includes the required parameters:
