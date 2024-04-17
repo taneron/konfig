@@ -204,6 +204,10 @@ async function createConfig() {
                   label: "Blog",
                   to: "/blog",
                 },
+                {
+                  label: "Enterprise",
+                  to: "/enterprise",
+                },
               ],
             },
             {
