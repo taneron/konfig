@@ -23,7 +23,7 @@ How Konfig Works
 
 For example, lets walkthrough the following scenario:
 
-- You have a customer that wants to integrate with your KYC Identity Verification API
+- You have a customer that wants to integrate with your KYC (Know Your Customer) Identity Verification API
 - Your customer has a custom verification workflow that is setup elsewhere
 
 ### 1. 🛠️ Configure Konfig
@@ -53,19 +53,22 @@ graph LR
 
 ### 2. 📄 Generate Custom Guides
 
-When the customer is ready to onboard, easily generate custom guides on the fly that are tailored to your customer's needs.
+When the customer is ready to onboard, easily generate custom guides on the fly
+that are tailored to your customer's needs.
 
-<div className="max-w-[90vw] block mb-[calc(0.20_*_100%_*_-1)] ">
-<div className="scale-75 h-[500px] overflow-scroll origin-top border border-slate-800 shadow-lg p-4 md:p-8">
+Here is an example generated guide:
+
+<div className="max-w-[90vw] block mb-[calc(0.00_*_100%_*_-1)] ">
+<div className="scale-80 h-[700px] overflow-scroll origin-top border border-slate-800 shadow-lg p-4 md:p-8">
 
 <h1>{`ACME 🤝 Customer`}</h1>
 
 ## KYC API Integration Onboarding Guide for Customer
 
 Welcome to ACME! This guide is intended to assist your integration of our KYC
-(Know Your Customer) solutions using our API. This document will guide you
-through setting up your environment, authenticating requests, and making API
-calls with custom configurations.
+solutions using our API. This document will guide you through setting up your
+environment, authenticating requests, and making API calls with custom
+configurations.
 
 ### Required Parameters Based on Your Configuration
 
@@ -212,13 +215,17 @@ tailored to understands the way your system works and your customer's needs.
 Chatbots need to be prompted to understand what to generate. Konfig is
 configured to understand your customer's needs without any work from your side.
 
-<Mermaid value={`
-graph LR
-  CC["Workflow Configuration (API Call)"] --> Konfig
-  HC["Health checks (API Call)"] --> Konfig
+<div className="border p-2 md:p-4 max-w-fit mx-auto">
+#### Required API Parameters
 
-  style Konfig fill:#0351b3,stroke:#0351b3,color:#fff,stroke-width:2,stroke-opacity:0.3
-`}/>
+- `name_first`:
+- `name_middle`:
+- `name_last`:
+- `address`: ✅
+- `gender`: ✅
+- `email_address`:
+
+</div>
 
 ### 🧠 Deeply Understands OpenAPI Specification
 
@@ -240,7 +247,7 @@ graph LR
 
 Chatbots fail to understand the nuances of how your customer needs to integrate
 with your API. Konfig *infers these nuances* from hand-written documentation and
-infers the necessary guidance based on your customer's configurations.
+generates the necessary guidance based on your customer's configurations.
 
 To solve this, we developed an AI-powered rule and nuance understanding engine
 to ensure accurate guidance.
