@@ -1,4 +1,4 @@
-export function ScheduleDemo() {
+export default function ScheduleDemo() {
   return (
     <div className="py-4 px-8 mt-16 mb-8 bg-blue-100 ring-1 shadow-md">
       <h3 className="font-bold text-blue-900">
