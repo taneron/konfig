@@ -1,0 +1,17 @@
+<div id="container">
+  {% include 'chat_select.html' %} {% include 'chatbox.html' %}
+
+  <form
+    hx-post="{% url 'chatbox_view' %}"
+    hx-target="#chatbox"
+    hx-swap="outerHTML"
+  >
+    {% csrf_token %}
+    <input type="hidden" name="chat_id" value="{{ current_chat.id }}" />
+    <div class="my-indicator"></div>
+    <div class="input-fields">
+      <input type="text" name="message" />
+      <button type="submit">Send</button>
+    </div>
+  </form>
+</div>
