@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -18,14 +19,24 @@ class Space(models.Model):
 
 class CurrentUserSpace(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="user_spaces"
+        User, on_delete=models.CASCADE, related_name="user_spaces", unique=True
     )
     space = models.OneToOneField(
         Space, on_delete=models.CASCADE, related_name="user_spaces"
     )
 
 
+class CurrentUserOrganization(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="user_organizations", unique=True
+    )
+    organization = models.OneToOneField(
+        Organization, on_delete=models.CASCADE, related_name="user_organizations"
+    )
+
+
 class Chat(models.Model):
+    chat_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     space = models.ForeignKey(Space, on_delete=models.CASCADE, related_name="chats")
     name = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

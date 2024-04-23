@@ -1,26 +1,43 @@
 from django.http import HttpRequest, HttpResponseBadRequest
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
-from .models import Message, Chat
+from django.contrib.auth.decorators import login_required
+from django.db.models import QuerySet
+from django.db import transaction
+from typing import TypedDict
+from .models import (
+    CurrentUserOrganization,
+    Membership,
+    Message,
+    Chat,
+    CurrentUserSpace,
+    Organization,
+    Space,
+)
 import requests
 import os
 
 
+@login_required
 def chat_view(request: HttpRequest):
-    chat = Chat.objects.first()
-    if not chat:
-        chat = Chat.objects.create()
-    messages = Message.objects.filter(chat=chat)
-    chats = Chat.objects.all().order_by("-created_at")
+    context_data = get_context_data(request)
     return render(
         request,
         "chat.html",
-        {"messages": messages, "current_chat": chat, "chats": chats},
+        context_data,
     )
 
 
+@login_required
 def chat_select_view(request: HttpRequest):
     chat_id = request.GET.get("chat_id")
+
+    # make sure chat_id is apart of the current space
+    current_user_space_edge = CurrentUserSpace.objects.get(user_id=request.user.pk)
+    current_space = current_user_space_edge.space
+    if not Chat.objects.filter(space=current_space, id=chat_id).exists():
+        raise ValueError("Chat is not apart of the current space")
+
     chat = Chat.objects.get(id=chat_id)
     chats = Chat.objects.all().order_by("-created_at")
     messages = Message.objects.filter(chat=chat)
@@ -31,9 +48,88 @@ def chat_select_view(request: HttpRequest):
     )
 
 
+@login_required
+def organization_select_view(request: HttpRequest):
+    organization_id = request.GET.get("organization_id")
+
+    # make sure user has membership to the organization
+    if not Membership.objects.filter(user_id=request.user.pk, organization_id=organization_id).exists():
+        raise ValueError("User is not apart of the organization")
+
+    # change current organization to the selected organization
+    with transaction.atomic():
+        CurrentUserOrganization.objects.filter(user_id=request.user.pk).delete()
+        CurrentUserOrganization.objects.create(
+            user_id=request.user.pk, organization_id=organization_id
+        )
+
+    context_data = get_context_data(request)
+    return render(request, "_chat_container_inner.html", context_data)
+
+
+@login_required
+def create_organization_view(request: HttpRequest):
+    organization = Organization.objects.create()
+
+    # set the current organization to the newly created organization and add membership of role owner
+    with transaction.atomic():
+        CurrentUserOrganization.objects.filter(user_id=request.user.pk).delete()
+        CurrentUserOrganization.objects.create(
+            user_id=request.user.pk, organization_id=organization.pk
+        )
+        Membership.objects.create(
+            user_id=request.user.pk, organization_id=organization.pk, role="owner"
+        )
+
+    context_data = get_context_data(request)
+    return render(request, "_chat_container_inner.html", context_data)
+
+
+@login_required
+def create_space_view(request: HttpRequest):
+    current_organization = CurrentUserOrganization.objects.get(
+        user_id=request.user.pk
+    ).organization
+    space = Space.objects.create(organization_id=current_organization.pk)
+
+    # set the current space to the newly created space
+    with transaction.atomic():
+        CurrentUserSpace.objects.filter(user_id=request.user.pk).delete()
+        CurrentUserSpace.objects.create(user_id=request.user.pk, space_id=space.pk)
+
+    context_data = get_context_data(request)
+    return render(request, "_chat_container_inner.html", context_data)
+
+
+@login_required
+def space_select_view(request: HttpRequest):
+    space_id = request.GET.get("space_id")
+    space = Space.objects.get(id=space_id)
+
+    # set the current space to the newly selected space
+    with transaction.atomic():
+        CurrentUserSpace.objects.filter(user_id=request.user.pk).delete()
+        CurrentUserSpace.objects.create(user_id=request.user.pk, space_id=space.pk)
+
+    context_data = get_context_data(request)
+    return render(
+        request,
+        "_chat_container_inner.html",
+        context_data,
+    )
+
+
+@login_required
+@require_POST
 def create_chat_view(request: HttpRequest):
+    user = request.user
+    user_id = user.pk
+    current_space = CurrentUserSpace.objects.get(user_id=user_id)
+    if not current_space:
+        raise ValueError("Current user space not found")
+    current_space_id = current_space.space.pk
     chats = Chat.objects.all().order_by("-created_at")
-    chat = Chat.objects.create()
+    chat = Chat.objects.create(space_id=current_space_id)
     messages = Message.objects.filter(chat=chat)
     return render(
         request,
@@ -42,6 +138,7 @@ def create_chat_view(request: HttpRequest):
     )
 
 
+@login_required
 @require_POST
 def chatbox_view(request: HttpRequest):
     user_message = request.POST.get("message")
@@ -55,6 +152,84 @@ def chatbox_view(request: HttpRequest):
     )
     messages = Message.objects.filter(chat=chat)
     return render(request, "chatbox.html", {"messages": messages})
+
+
+class ChatData(TypedDict):
+    current_organization: Organization
+    current_space: Space
+    current_chat: Chat | None
+    organizations: QuerySet[Organization]
+    spaces: QuerySet[Space]
+    chats: QuerySet[Chat]
+    messages: QuerySet[Message] | None
+
+
+def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatData:
+    user = request.user
+    user_id = user.pk
+    current_user_organization_edge = CurrentUserOrganization.objects.filter(
+        user_id=user_id
+    ).first()
+    if not current_user_organization_edge:
+        # get memberships and select the first one
+        membership = Membership.objects.filter(user_id=user_id).first()
+        if not membership:
+            # create a new organization and membership
+            current_organization = Organization.objects.create()
+            membership = Membership.objects.create(
+                user_id=user_id, organization_id=current_organization.pk
+            )
+        else:
+            current_organization = membership.organization
+    else:
+        current_organization = current_user_organization_edge.organization
+
+    memberships = Membership.objects.filter(user_id=user_id)
+    organizations = Organization.objects.filter(memberships__in=memberships)
+
+
+    # get spaces from current organization
+    spaces = Space.objects.filter(organization=current_organization)
+
+    current_user_space_edge = CurrentUserSpace.objects.filter(user_id=user_id).first()
+    if not current_user_space_edge:
+        # create a new space and current user space edge
+        current_space = Space.objects.create(organization_id=current_organization.pk)
+        current_user_space_edge = CurrentUserSpace.objects.create(
+            user_id=user_id, space_id=current_space.pk
+        )
+    else:
+        current_space = current_user_space_edge.space
+
+    # if space is not apart of the current organization, set the current space to the first space of the current organization
+    if current_space.organization.pk != current_organization.pk:
+        current_space = Space.objects.filter(organization=current_organization).first()
+        # create space for this org if it doesn't exist
+        if not current_space:
+            current_space = Space.objects.create(organization=current_organization)
+    # modify CurrentUserSpace in this case. Delete existing one and create new one
+    with transaction.atomic():
+        CurrentUserSpace.objects.filter(user_id=user_id).delete()
+        CurrentUserSpace.objects.create(user_id=user_id, space_id=current_space.pk)
+
+    if chat_id:
+        chat = Chat.objects.get(chat_id=chat_id)
+        messages = Message.objects.filter(chat=chat)
+    else:
+        chat = None
+        messages = None
+
+    chats = Chat.objects.filter(space=current_space)
+
+    return {
+        "current_organization": current_organization,
+        "current_space": current_space,
+        "current_chat": chat,
+        "organizations": organizations,
+        "spaces": spaces,
+        "chats": chats,
+        "messages": messages,
+    }
 
 
 def get_ai_response(user_input: str) -> str:

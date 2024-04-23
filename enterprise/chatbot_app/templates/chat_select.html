@@ -1,9 +1,9 @@
+<label>Select Chat</label>
 <select name="chat_id" hx-get="{% url 'chat_select_view' %}" hx-target="#container">
   {% for chat in chats %}
     <option value="{{ chat.id }}" {% if chat.id == current_chat.id %}selected{% endif %}>{{ chat.name }}</option>
   {% endfor %}
 </select>
-<form hx-post="{% url 'create_chat_view' %}" hx-target="#container">
-  {% csrf_token %}
-  <button>Create Chat</button>
-</form>
+<div>
+<a href="{% url 'chat_view' %}">Create Chat</a>
+</div>

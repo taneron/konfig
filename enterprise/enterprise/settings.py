@@ -52,8 +52,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "enterprise.urls"
 
-LOGIN_REDIRECT_URL = '/login/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/chat/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 TEMPLATES = [
     {
