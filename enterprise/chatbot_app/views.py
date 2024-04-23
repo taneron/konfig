@@ -1,4 +1,5 @@
 from django.http import HttpRequest, HttpResponseBadRequest
+from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -20,6 +21,23 @@ import os
 
 @login_required
 def chat_view(request: HttpRequest):
+    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
+    if request.method == "POST":
+        user_message = request.POST.get("message")
+        if user_message is None:
+            return HttpResponseBadRequest("No message provided")
+
+        # create a new chat
+        chat = Chat.objects.create(space_id=current_space.pk)
+        bot_message = get_ai_response(user_message)
+        Message.objects.create(
+            user_message=user_message, bot_message=bot_message, chat=chat
+        )
+        context_data = get_context_data(request, chat_id=str(chat.chat_id))
+        response = render(request, "chat.html", context_data)
+        response['HX-Push-Url'] = reverse('specific_chat_view', kwargs={'chat_id': chat.chat_id})
+        return response
+
     context_data = get_context_data(request)
     return render(
         request,
@@ -29,23 +47,32 @@ def chat_view(request: HttpRequest):
 
 
 @login_required
-def chat_select_view(request: HttpRequest):
-    chat_id = request.GET.get("chat_id")
+def specific_chat_view(request: HttpRequest, chat_id: str):
+    is_allowed = can_user_see_chat(request.user.pk, chat_id)
+    if not is_allowed:
+        return HttpResponseBadRequest("User is not allowed to see this chat")
 
-    # make sure chat_id is apart of the current space
-    current_user_space_edge = CurrentUserSpace.objects.get(user_id=request.user.pk)
-    current_space = current_user_space_edge.space
-    if not Chat.objects.filter(space=current_space, id=chat_id).exists():
-        raise ValueError("Chat is not apart of the current space")
+    # if POST request, then send a message
+    if request.method == "POST":
+        user_message = request.POST.get("message")
+        if user_message is None:
+            return HttpResponseBadRequest("No message provided")
+        chat = Chat.objects.get(chat_id=chat_id)
+        bot_message = get_ai_response(user_message)
+        Message.objects.create(
+            user_message=user_message, bot_message=bot_message, chat=chat
+        )
+        messages = Message.objects.filter(chat=chat)
+        return render(request, "chatbox.html", {"messages": messages})
 
-    chat = Chat.objects.get(id=chat_id)
-    chats = Chat.objects.all().order_by("-created_at")
-    messages = Message.objects.filter(chat=chat)
-    return render(
-        request,
-        "_chat_container_inner.html",
-        {"chats": chats, "current_chat": chat, "messages": messages},
-    )
+    context_data = get_context_data(request, chat_id)
+    return render(request, "chat.html", context_data)
+
+
+def can_user_see_chat(user_id: int, chat_id: str) -> bool:
+    return Chat.objects.filter(
+        chat_id=chat_id, space__organization__memberships__user_id=user_id
+    ).exists()
 
 
 @login_required
@@ -53,7 +80,9 @@ def organization_select_view(request: HttpRequest):
     organization_id = request.GET.get("organization_id")
 
     # make sure user has membership to the organization
-    if not Membership.objects.filter(user_id=request.user.pk, organization_id=organization_id).exists():
+    if not Membership.objects.filter(
+        user_id=request.user.pk, organization_id=organization_id
+    ).exists():
         raise ValueError("User is not apart of the organization")
 
     # change current organization to the selected organization
@@ -138,22 +167,6 @@ def create_chat_view(request: HttpRequest):
     )
 
 
-@login_required
-@require_POST
-def chatbox_view(request: HttpRequest):
-    user_message = request.POST.get("message")
-    chat_id = request.POST.get("chat_id")
-    if user_message is None:
-        return HttpResponseBadRequest("No message provided")
-    bot_message = get_ai_response(user_message)
-    chat = Chat.objects.get(id=chat_id)
-    Message.objects.create(
-        user_message=user_message, bot_message=bot_message, chat=chat
-    )
-    messages = Message.objects.filter(chat=chat)
-    return render(request, "chatbox.html", {"messages": messages})
-
-
 class ChatData(TypedDict):
     current_organization: Organization
     current_space: Space
@@ -186,7 +199,6 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
 
     memberships = Membership.objects.filter(user_id=user_id)
     organizations = Organization.objects.filter(memberships__in=memberships)
-
 
     # get spaces from current organization
     spaces = Space.objects.filter(organization=current_organization)

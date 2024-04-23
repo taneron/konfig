@@ -1,9 +1,15 @@
-<label>Select Chat</label>
-<select name="chat_id" hx-get="{% url 'chat_select_view' %}" hx-target="#container">
-  {% for chat in chats %}
-    <option value="{{ chat.id }}" {% if chat.id == current_chat.id %}selected{% endif %}>{{ chat.name }}</option>
-  {% endfor %}
-</select>
-<div>
+{% if chats %}
+<div style="padding: 10px 0;">
+<div style="padding: 5px 0;">
 <a href="{% url 'chat_view' %}">Create Chat</a>
 </div>
+  <label>Select Chat</label>
+{% endif %}
+<ul>
+  {% for chat in chats %}
+    <li {% if chat.id == current_chat.id %}style="font-weight: bold;"{% endif %}><a href="{% url 'specific_chat_view' chat_id=chat.chat_id %}">{{ chat.name }}</a></li>
+  {% endfor %}
+</ul>
+{% if messages %}
+</div>
+{% endif %}

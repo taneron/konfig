@@ -5,9 +5,14 @@
   {% include 'chatbox.html' %}
 
   <form
-    hx-post="{% url 'chatbox_view' %}"
+    {% if current_chat %}
+    hx-post="{% url 'specific_chat_view' current_chat.chat_id %}"
     hx-target="#chatbox"
     hx-swap="outerHTML"
+    {% else %}
+    hx-post="{% url 'chat_view' %}"
+    hx-target="#container"
+    {% endif %}
     hx-on::before-request="this.reset()"
   >
     {% csrf_token %}
