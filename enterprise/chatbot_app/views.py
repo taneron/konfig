@@ -35,7 +35,9 @@ def chat_view(request: HttpRequest):
         )
         context_data = get_context_data(request, chat_id=str(chat.chat_id))
         response = render(request, "chat.html", context_data)
-        response['HX-Push-Url'] = reverse('specific_chat_view', kwargs={'chat_id': chat.chat_id})
+        response["HX-Push-Url"] = reverse(
+            "specific_chat_view", kwargs={"chat_id": chat.chat_id}
+        )
         return response
 
     context_data = get_context_data(request)
@@ -145,25 +147,6 @@ def space_select_view(request: HttpRequest):
         request,
         "_chat_container_inner.html",
         context_data,
-    )
-
-
-@login_required
-@require_POST
-def create_chat_view(request: HttpRequest):
-    user = request.user
-    user_id = user.pk
-    current_space = CurrentUserSpace.objects.get(user_id=user_id)
-    if not current_space:
-        raise ValueError("Current user space not found")
-    current_space_id = current_space.space.pk
-    chats = Chat.objects.all().order_by("-created_at")
-    chat = Chat.objects.create(space_id=current_space_id)
-    messages = Message.objects.filter(chat=chat)
-    return render(
-        request,
-        "_chat_container_inner.html",
-        {"current_chat": chat, "messages": messages, "chats": chats},
     )
 
 

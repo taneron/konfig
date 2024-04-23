@@ -16,7 +16,11 @@
     hx-on::before-request="this.reset()"
   >
     {% csrf_token %}
+
+    {% if current_chat %}
     <input type="hidden" name="chat_id" value="{{ current_chat.id }}" />
+    {% endif %}
+
     <div class="my-indicator"></div>
     <div class="input-fields">
       <input type="text" name="message" />
