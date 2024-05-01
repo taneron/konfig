@@ -58,7 +58,7 @@ async function createConfig() {
     trailingSlash: true,
     scripts: [
       {
-        src: "js/rb2b.js",
+        src: "/js/rb2b.js",
         async: false,
       },
       {
