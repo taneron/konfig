@@ -34,7 +34,7 @@ def chat_view(request: HttpRequest):
             user_message=user_message, bot_message=bot_message, chat=chat
         )
         context_data = get_context_data(request, chat_id=str(chat.chat_id))
-        response = render(request, "chat.html", context_data)
+        response = render(request, "_chat_container_inner.html", context_data)
         response["HX-Push-Url"] = reverse(
             "specific_chat_view", kwargs={"chat_id": chat.chat_id}
         )

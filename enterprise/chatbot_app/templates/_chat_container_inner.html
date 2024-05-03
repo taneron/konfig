@@ -8,7 +8,6 @@
     {% if current_chat %}
     hx-post="{% url 'specific_chat_view' current_chat.chat_id %}"
     hx-target="#chatbox"
-    hx-swap="outerHTML"
     {% else %}
     hx-post="{% url 'chat_view' %}"
     hx-target="#container"
@@ -23,7 +22,7 @@
 
     <div class="my-indicator"></div>
     <div class="input-fields">
-      <input type="text" name="message" />
-      <button type="submit">Send</button>
+      <input class="input input-bordered" type="text" name="message" />
+      <button class="btn" type="submit">Send</button>
     </div>
   </form>

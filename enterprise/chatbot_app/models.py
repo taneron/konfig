@@ -12,6 +12,8 @@ class Organization(models.Model):
 
 
 class Space(models.Model):
+    name = models.CharField(max_length=100)
+
     organization = models.ForeignKey(
         Organization, on_delete=models.CASCADE, related_name="spaces"
     )
