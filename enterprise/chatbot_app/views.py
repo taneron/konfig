@@ -95,7 +95,9 @@ def organization_select_view(request: HttpRequest):
         )
 
     context_data = get_context_data(request)
-    return render(request, "_chat_container_inner.html", context_data)
+    response = render(request, "_chat_container_inner.html", context_data)
+    response["HX-Push-Url"] = reverse("chat_view")
+    return response
 
 
 @login_required
@@ -143,11 +145,13 @@ def space_select_view(request: HttpRequest):
         CurrentUserSpace.objects.create(user_id=request.user.pk, space_id=space.pk)
 
     context_data = get_context_data(request)
-    return render(
+    response = render(
         request,
         "_chat_container_inner.html",
         context_data,
     )
+    response["HX-Push-Url"] = reverse("chat_view")
+    return response
 
 
 class ChatData(TypedDict):
