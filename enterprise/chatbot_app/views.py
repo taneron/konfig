@@ -34,7 +34,7 @@ def chat_view(request: HttpRequest):
             user_message=user_message, bot_message=bot_message, chat=chat
         )
         context_data = get_context_data(request, chat_id=str(chat.chat_id))
-        response = render(request, "_chat_container_inner.html", context_data)
+        response = render(request, "chat_container.html", context_data)
         response["HX-Push-Url"] = reverse(
             "specific_chat_view", kwargs={"chat_id": chat.chat_id}
         )
@@ -64,8 +64,8 @@ def specific_chat_view(request: HttpRequest, chat_id: str):
         Message.objects.create(
             user_message=user_message, bot_message=bot_message, chat=chat
         )
-        messages = Message.objects.filter(chat=chat)
-        return render(request, "chatbox.html", {"messages": messages})
+        context_data = get_context_data(request, chat_id)
+        return render(request, "chatbox.html", context_data)
 
     context_data = get_context_data(request, chat_id)
     return render(request, "chat.html", context_data)
@@ -218,7 +218,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         chat = None
         messages = None
 
-    chats = Chat.objects.filter(space=current_space)
+    chats = Chat.objects.filter(space=current_space).order_by("-created_at")
 
     return {
         "current_organization": current_organization,
