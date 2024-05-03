@@ -1,28 +1,14 @@
-
-  {% include 'organization_select.html' %}
-  {% include 'space_select.html' %}
-  {% include 'chat_select.html' %}
-  {% include 'chatbox.html' %}
-
-  <form
-    {% if current_chat %}
-    hx-post="{% url 'specific_chat_view' current_chat.chat_id %}"
-    hx-target="#chatbox"
-    {% else %}
-    hx-post="{% url 'chat_view' %}"
-    hx-target="#container"
-    {% endif %}
-    hx-on::before-request="this.reset()"
-  >
-    {% csrf_token %}
-
-    {% if current_chat %}
-    <input type="hidden" name="chat_id" value="{{ current_chat.id }}" />
-    {% endif %}
-
-    <div class="my-indicator"></div>
-    <div class="input-fields">
-      <input class="input input-bordered" type="text" name="message" />
-      <button class="btn" type="submit">Send</button>
-    </div>
-  </form>
+{% comment %} {% include 'organization_select.html' %}
+{% include 'space_select.html' %} {% endcomment %}
+{% include "chat_select.html" %}
+{% include "chatbox.html" %}
+<form {% if current_chat %} hx-post="{% url 'specific_chat_view' current_chat.chat_id %}" hx-target="#chatbox" {% else %} hx-post="{% url 'chat_view' %}" hx-target="#container" {% endif %}
+      hx-on::before-request="this.reset()">
+  {% csrf_token %}
+  {% if current_chat %}<input type="hidden" name="chat_id" value="{{ current_chat.id }}" />{% endif %}
+  <div class="my-indicator"></div>
+  <div class="input-fields">
+    <input class="input input-bordered" type="text" name="message" />
+    <button class="btn" type="submit">Send</button>
+  </div>
+</form>
