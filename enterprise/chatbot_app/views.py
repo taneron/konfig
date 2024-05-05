@@ -16,6 +16,7 @@ from .models import (
     Organization,
     Space,
 )
+import json
 import requests
 import os
 
@@ -213,15 +214,93 @@ def space_select_view(request: HttpRequest):
     return response
 
 
+class Customer(TypedDict):
+    id: str
+    name: str
+    configuration: dict
+    configuration_formatted: str
+
+
 class ChatData(TypedDict):
     current_organization: Organization
     current_space: Space
     current_chat: Chat | None
     organizations: QuerySet[Organization]
     customer: str | None
+    customers: list[Customer]
     spaces: QuerySet[Space]
     chats: QuerySet[Chat]
     messages: QuerySet[Message] | None
+
+
+def get_customers() -> list[Customer]:
+    customer_a_configuration = {
+        "journey_token": "J-VCQoADBJxeHtmdAvFqoS",
+        "journey_version": "1",
+        "timestamp": 1632400000,
+        "data": [
+            {
+                "branch_name": "branch1",
+                "workflows": [
+                    {
+                        "workflow_name": "workflow1",
+                        "parameters": {
+                            "required": [
+                                {
+                                    "name_first": True,
+                                    "name_last": True,
+                                    "birth_date": True,
+                                    "email_address": True,
+                                }
+                            ],
+                            "optional": [{"name_middle": True}],
+                            "or": [],
+                        },
+                    }
+                ],
+            }
+        ],
+    }
+    customer_b_configuration = {
+        "journey_token": "J-FRNanEWqvEfacVDAFeSE",
+        "journey_version": "1",
+        "timestamp": 1632500000,
+        "data": [
+            {
+                "branch_name": "branch1",
+                "workflows": [
+                    {
+                        "workflow_name": "workflow1",
+                        "parameters": {
+                            "required": [
+                                {
+                                    "business_name": True,
+                                    "business_federal_eid": True,
+                                    "business_registry_id": True,
+                                }
+                            ],
+                            "optional": [{"business_website": True}],
+                            "or": [],
+                        },
+                    }
+                ],
+            }
+        ],
+    }
+    return [
+        {
+            "id": "customer_a",
+            "name": "Customer A",
+            "configuration": customer_a_configuration,
+            "configuration_formatted": json.dumps(customer_a_configuration, indent=2),
+        },
+        {
+            "id": "customer_b",
+            "name": "Customer B",
+            "configuration": customer_b_configuration,
+            "configuration_formatted": json.dumps(customer_b_configuration, indent=2),
+        },
+    ]
 
 
 def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatData:
@@ -288,6 +367,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "current_chat": chat,
         "organizations": organizations,
         "customer": customer,
+        "customers": get_customers(),
         "spaces": spaces,
         "chats": chats,
         "messages": messages,
