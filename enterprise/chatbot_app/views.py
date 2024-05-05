@@ -20,9 +20,37 @@ import requests
 import os
 
 
-@require_http_methods(["POST"])
+@require_http_methods(["GET"])
 @login_required
 def customer_configuration(request: HttpRequest):
+    customer_id = request.GET.get("customer_id")
+    if customer_id == "A":
+        configurations = {
+            "configurations": [
+                {
+                    "id": "A",
+                    "name": "Customer A",
+                },
+            ]
+        }
+    elif customer_id == "B":
+        configurations = {
+            "configurations": [
+                {
+                    "id": "B",
+                    "name": "Customer B",
+                },
+            ]
+        }
+    else:
+        raise ValueError(f"Invalid customer_id: {customer_id}")
+
+    return render(request, "customer_configurations.html", configurations)
+
+
+@require_http_methods(["POST"])
+@login_required
+def save_onboarding_form(request: HttpRequest):
     customer_id = request.POST.get("customer_id")
     chat_id = request.POST.get("chat_id")
     current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
