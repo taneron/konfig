@@ -51,6 +51,29 @@ def customer_configuration(request: HttpRequest):
 
 @require_http_methods(["POST"])
 @login_required
+def select_language(request: HttpRequest):
+    customer_id = request.POST.get("customer_id")
+    customer_id = request.POST.get("customer_id")
+    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
+    if customer_id == "customer_a":
+        form_data = {
+            "customer": "customer_a",
+        }
+    elif customer_id == "customer_b":
+        form_data = {
+            "customer": "customer_b",
+        }
+    else:
+        raise ValueError(f"Invalid customer_id: {customer_id}")
+
+    chat = Chat.objects.create(space_id=current_space.pk, form_data=form_data)
+    context = get_context_data(request, chat_id=str(chat.chat_id))
+    response = render(request, "chat_container.html", context)
+    return response
+
+
+@require_http_methods(["POST"])
+@login_required
 def select_customer(request: HttpRequest):
     customer_id = request.POST.get("customer_id")
     current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
@@ -246,6 +269,10 @@ class Customer(TypedDict):
     configuration_formatted: str
 
 
+class Language(TypedDict):
+    name: str
+
+
 class ChatData(TypedDict):
     current_organization: Organization
     current_space: Space
@@ -255,6 +282,7 @@ class ChatData(TypedDict):
     customers: list[Customer]
     spaces: QuerySet[Space]
     chats: QuerySet[Chat]
+    languages: list[Language]
     messages: QuerySet[Message] | None
 
 
@@ -392,6 +420,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "current_customer": customer,
         "current_chat": chat,
         "organizations": organizations,
+        "languages": [{"name": "TypeScript"}, {"name": "Python"}],
         "customers": get_customers(),
         "spaces": spaces,
         "chats": chats,

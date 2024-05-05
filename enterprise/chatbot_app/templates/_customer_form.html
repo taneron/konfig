@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     {% for customer in customers %}
-                        <tr class="bg-white border-b dark:bg-slate-800 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600">
+                        <tr class="bg-white border-b dark:bg-slate-800 dark:border-slate-700">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap dark:text-white">
                                 {{ customer.name }}
@@ -43,9 +43,7 @@
                                             </form>
                                         </div>
                                         <div class="max-h-96 overflow-y-auto">
-                                            <pre>
-                                                    <code class="language-json">{{ customer.configuration_formatted }}</code>
-                                                </pre>
+                                            <pre><code class="language-json">{{ customer.configuration_formatted }}</code></pre>
                                         </div>
                                     </div>
                                     <form method="dialog" class="modal-backdrop">
