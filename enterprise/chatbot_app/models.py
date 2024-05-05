@@ -42,11 +42,20 @@ class Chat(models.Model):
     space = models.ForeignKey(Space, on_delete=models.CASCADE, related_name="chats")
     name = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    form_data = models.JSONField(default=dict)
+    configuration_data = models.JSONField(default=dict)
 
     def save(self, *args, **kwargs):
         if not self.name:
             self.name = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
         super(Chat, self).save(*args, **kwargs)
+
+
+class Configuration(models.Model):
+    chat = models.ForeignKey(
+        Chat, on_delete=models.CASCADE, related_name="configurations"
+    )
+    data = models.JSONField(default=dict)
 
 
 MEMBERSHIP_ROLES = (

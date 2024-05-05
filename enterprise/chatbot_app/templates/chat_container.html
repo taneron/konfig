@@ -6,7 +6,7 @@
                 <div class="flex-1 flex gap-2">
                     <div class="breadcrumbs">
                         <ul>
-                            <li>
+                            <li class="text-slate-500">
                                 <a>
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          fill="none"
@@ -34,7 +34,11 @@
                 </div>
                 <div class="flex-none">
                     <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="btn btn-ghost">{{ user.username }}</div>
+                        <div tabindex="0" role="button" class="avatar placeholder">
+                            <div class="bg-neutral text-neutral-content rounded-full w-9">
+                                <span class="text-lg">{{ user.username|slice:":1"|upper }}</span>
+                            </div>
+                        </div>
                         <form method="post" action="{% url 'logout' %}" class="inline">
                             <ul tabindex="0"
                                 class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box bg-base-100 w-52">
@@ -49,19 +53,19 @@
             </div>
         </header>
         <main class="flex-grow flex bg-slate-50">
-            <div class="pl-1 py-2 h-full">
-                <label for="chats" class="btn btn-ghost drawer-button h-full">{% include "chevron_right.html" %}</label>
+            <div class="px-1 py-1 h-full">
+                <label for="chats" class="btn btn-ghost btn-xs drawer-button h-full">{% include "chevron_right.html" %}</label>
             </div>
-            <div id="container flex-grow" class="h-full">{% include "_chat_container_inner.html" %}</div>
+            <div id="container" class="h-full flex-grow">{% include "_chat_container_inner.html" %}</div>
         </main>
         <footer>
             <!-- Add your footer content here -->
         </footer>
     </div>
-    <div class="drawer-side">
+    <div class="drawer-side z-20">
         <label for="chats" aria-label="close sidebar" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-            <li>
+        <ul class="menu px-4 pt-0 pb-4 w-80 min-h-full bg-base-200 text-base-content">
+            <li class="sticky top-0 pt-4 bg-base-200 z-10">
                 <a href="{% url 'chat_view' %}">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          fill="none"
@@ -75,7 +79,7 @@
                 </a>
             </li>
             {% for chat in chats %}
-                <li class="{% if chat.id == current_chat.id %}bg-slate-600 text-white rounded-btn{% endif %}">
+                <li class="{% if chat.id == current_chat.id %}bg-slate-700 text-white rounded-btn{% else %}text-slate-500{% endif %}">
                     <a href="{% url 'specific_chat_view' chat_id=chat.chat_id %}">{{ chat.name }}</a>
                 </li>
             {% endfor %}

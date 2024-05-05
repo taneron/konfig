@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 from django.db.models import QuerySet
 from django.db import transaction
 from typing import TypedDict
@@ -17,6 +18,36 @@ from .models import (
 )
 import requests
 import os
+
+
+@require_http_methods(["POST"])
+@login_required
+def customer_configuration(request: HttpRequest):
+    customer_id = request.POST.get("customer_id")
+    chat_id = request.POST.get("chat_id")
+    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
+
+    if customer_id == "A":
+        form_data = {
+            "customer": "A",
+        }
+    elif customer_id == "B":
+        form_data = {
+            "customer": "B",
+        }
+    else:
+        raise ValueError(f"Invalid customer_id: {customer_id}")
+
+    if chat_id is None:
+        chat = Chat.objects.create(space_id=current_space.pk, form_data=form_data)
+        context = get_context_data(request, chat_id=str(chat.chat_id))
+        response = render(request, "chat_container.html", context)
+        response["HX-Push-Url"] = reverse(
+            "specific_chat_view", kwargs={"chat_id": chat.chat_id}
+        )
+        return response
+    else:
+        raise NotImplementedError("Not implemented")
 
 
 @login_required
@@ -159,6 +190,7 @@ class ChatData(TypedDict):
     current_space: Space
     current_chat: Chat | None
     organizations: QuerySet[Organization]
+    customer: str | None
     spaces: QuerySet[Space]
     chats: QuerySet[Chat]
     messages: QuerySet[Message] | None
@@ -219,12 +251,15 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         messages = None
 
     chats = Chat.objects.filter(space=current_space).order_by("-created_at")
+    form_data = chat.form_data if chat else None
+    customer = form_data.get("customer") if form_data else None
 
     return {
         "current_organization": current_organization,
         "current_space": current_space,
         "current_chat": chat,
         "organizations": organizations,
+        "customer": customer,
         "spaces": spaces,
         "chats": chats,
         "messages": messages,
