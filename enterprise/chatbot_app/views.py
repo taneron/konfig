@@ -51,6 +51,31 @@ def customer_configuration(request: HttpRequest):
 
 @require_http_methods(["POST"])
 @login_required
+def select_customer(request: HttpRequest):
+    customer_id = request.POST.get("customer_id")
+    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
+    if customer_id == "customer_a":
+        form_data = {
+            "customer": "customer_a",
+        }
+    elif customer_id == "customer_b":
+        form_data = {
+            "customer": "customer_b",
+        }
+    else:
+        raise ValueError(f"Invalid customer_id: {customer_id}")
+
+    chat = Chat.objects.create(space_id=current_space.pk, form_data=form_data)
+    context = get_context_data(request, chat_id=str(chat.chat_id))
+    response = render(request, "chat_container.html", context)
+    response["HX-Push-Url"] = reverse(
+        "specific_chat_view", kwargs={"chat_id": chat.chat_id}
+    )
+    return response
+
+
+@require_http_methods(["POST"])
+@login_required
 def save_onboarding_form(request: HttpRequest):
     customer_id = request.POST.get("customer_id")
     chat_id = request.POST.get("chat_id")
@@ -225,8 +250,8 @@ class ChatData(TypedDict):
     current_organization: Organization
     current_space: Space
     current_chat: Chat | None
+    current_customer: str | None
     organizations: QuerySet[Organization]
-    customer: str | None
     customers: list[Customer]
     spaces: QuerySet[Space]
     chats: QuerySet[Chat]
@@ -364,9 +389,9 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     return {
         "current_organization": current_organization,
         "current_space": current_space,
+        "current_customer": customer,
         "current_chat": chat,
         "organizations": organizations,
-        "customer": customer,
         "customers": get_customers(),
         "spaces": spaces,
         "chats": chats,

@@ -5,6 +5,7 @@ from .views import (
     create_space_view,
     customer_configuration,
     organization_select_view,
+    select_customer,
     space_select_view,
     specific_chat_view,
 )
@@ -23,4 +24,5 @@ urlpatterns = [
     path(
         "customer_configuration", customer_configuration, name="customer_configuration"
     ),
+    path("select_customer", select_customer, name="select_customer"),
 ]
