@@ -4,6 +4,7 @@ from .views import (
     create_organization_view,
     create_space_view,
     customer_configuration,
+    generate_onboarding_guide,
     organization_select_view,
     select_customer,
     select_language,
@@ -27,4 +28,9 @@ urlpatterns = [
     ),
     path("select_customer", select_customer, name="select_customer"),
     path("select_language", select_language, name="select_language"),
+    path(
+        "generate_onboarding_guide",
+        generate_onboarding_guide,
+        name="generate_onboarding_guide",
+    ),
 ]

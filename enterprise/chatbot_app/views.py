@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponseBadRequest
+from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
@@ -19,6 +19,29 @@ from .models import (
 import json
 import requests
 import os
+import time
+
+
+@require_http_methods(["POST"])
+@login_required
+def generate_onboarding_guide(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
+    if chat_id is None:
+        raise ValueError("Chat id is not provided")
+    time.sleep(3)
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.form_data[
+        "current_guide"
+    ] = """# This is a generated onboarding guide
+## API Interaction Steps
+- **Step 1:** Authenticate using your API key.
+- **Step 2:** Use the `POST /create` endpoint to create a new resource.
+- **Step 3:** Retrieve the resource using `GET /resource/{id}`.
+- **Step 4:** Update the resource with `PUT /resource/{id}`.
+- **Step 5:** Monitor the resource status with `GET /resource/status/{id}`."""
+    chat.save()
+    context = get_context_data(request, chat_id=chat_id)
+    return render(request, "_review_onboarding_guide_inner.html", context)
 
 
 @require_http_methods(["GET"])
@@ -63,6 +86,7 @@ def select_language(request: HttpRequest):
     chat.save()
     context = get_context_data(request, chat_id=str(chat.chat_id))
     response = render(request, "chat_container.html", context)
+    response["HX-Trigger-After-Settle"] = "forms-complete"
     return response
 
 
@@ -273,6 +297,7 @@ class ChatData(TypedDict):
     current_chat: Chat | None
     current_customer: str | None
     current_language: str | None
+    current_guide: str | None
     organizations: QuerySet[Organization]
     customers: list[Customer]
     spaces: QuerySet[Space]
@@ -351,6 +376,14 @@ def get_customers() -> list[Customer]:
     ]
 
 
+def get_customer_configuration(customer_id: str) -> dict:
+    customers = get_customers()
+    for customer in customers:
+        if customer["id"] == customer_id:
+            return customer["configuration"]
+    raise ValueError(f"Invalid customer_id: {customer_id}")
+
+
 def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatData:
     user = request.user
     user_id = user.pk
@@ -409,6 +442,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     form_data = chat.form_data if chat else None
     customer = form_data.get("customer") if form_data else None
     language = form_data.get("language") if form_data else None
+    current_guide = form_data.get("current_guide") if form_data else None
 
     return {
         "current_organization": current_organization,
@@ -416,6 +450,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "current_customer": customer,
         "current_language": language,
         "current_chat": chat,
+        "current_guide": current_guide,
         "organizations": organizations,
         "languages": [{"name": "TypeScript"}, {"name": "Python"}],
         "customers": get_customers(),
