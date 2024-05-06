@@ -52,21 +52,15 @@ def customer_configuration(request: HttpRequest):
 @require_http_methods(["POST"])
 @login_required
 def select_language(request: HttpRequest):
-    customer_id = request.POST.get("customer_id")
-    customer_id = request.POST.get("customer_id")
-    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
-    if customer_id == "customer_a":
-        form_data = {
-            "customer": "customer_a",
-        }
-    elif customer_id == "customer_b":
-        form_data = {
-            "customer": "customer_b",
-        }
-    else:
-        raise ValueError(f"Invalid customer_id: {customer_id}")
+    chat_id = request.POST.get("chat_id")
+    language = request.POST.get("language")
 
-    chat = Chat.objects.create(space_id=current_space.pk, form_data=form_data)
+    if language is None:
+        raise ValueError("Language is not selected")
+
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.form_data["language"] = language
+    chat.save()
     context = get_context_data(request, chat_id=str(chat.chat_id))
     response = render(request, "chat_container.html", context)
     return response
@@ -278,6 +272,7 @@ class ChatData(TypedDict):
     current_space: Space
     current_chat: Chat | None
     current_customer: str | None
+    current_language: str | None
     organizations: QuerySet[Organization]
     customers: list[Customer]
     spaces: QuerySet[Space]
@@ -413,11 +408,13 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     chats = Chat.objects.filter(space=current_space).order_by("-created_at")
     form_data = chat.form_data if chat else None
     customer = form_data.get("customer") if form_data else None
+    language = form_data.get("language") if form_data else None
 
     return {
         "current_organization": current_organization,
         "current_space": current_space,
         "current_customer": customer,
+        "current_language": language,
         "current_chat": chat,
         "organizations": organizations,
         "languages": [{"name": "TypeScript"}, {"name": "Python"}],

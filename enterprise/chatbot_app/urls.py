@@ -6,6 +6,7 @@ from .views import (
     customer_configuration,
     organization_select_view,
     select_customer,
+    select_language,
     space_select_view,
     specific_chat_view,
 )
@@ -25,4 +26,5 @@ urlpatterns = [
         "customer_configuration", customer_configuration, name="customer_configuration"
     ),
     path("select_customer", select_customer, name="select_customer"),
+    path("select_language", select_language, name="select_language"),
 ]

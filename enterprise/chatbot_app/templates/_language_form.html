@@ -29,11 +29,18 @@
                                     {{ language.name }}
                                 </th>
                                 <td class="px-6 py-4 text-right">
-                                    <button name="customer_id"
-                                            value="{{ customer.id }}"
-                                            hx-post="{% url 'select_customer' %}"
-                                            hx-target="body"
-                                            class="btn btn-primary btn-sm">Select</button>
+                                    {% if current_language %}
+                                        {% if current_language == language.name %}<span class="font-bold">Selected</span>{% endif %}
+                                    {% else %}
+                                        <form>
+                                            <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
+                                            <button name="language"
+                                                    value="{{ language.name }}"
+                                                    hx-post="{% url 'select_language' %}"
+                                                    hx-target="body"
+                                                    class="btn btn-primary btn-sm">Select</button>
+                                        </form>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
