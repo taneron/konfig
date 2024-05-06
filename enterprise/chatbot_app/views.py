@@ -92,6 +92,15 @@ def select_language(request: HttpRequest):
 
 @require_http_methods(["POST"])
 @login_required
+def search_customer(request: HttpRequest):
+    search = request.POST.get("search")
+    customers = get_customers(filter=search)
+    time.sleep(1.5)
+    return render(request, "_customer_search_results.html", {"customers": customers})
+
+
+@require_http_methods(["POST"])
+@login_required
 def select_customer(request: HttpRequest):
     customer_id = request.POST.get("customer_id")
     current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
@@ -306,7 +315,9 @@ class ChatData(TypedDict):
     messages: QuerySet[Message] | None
 
 
-def get_customers() -> list[Customer]:
+def get_customers(
+    filter: str | None = None, customer_id: str | None = None
+) -> list[Customer]:
     customer_a_configuration = {
         "journey_token": "J-VCQoADBJxeHtmdAvFqoS",
         "journey_version": "1",
@@ -360,20 +371,41 @@ def get_customers() -> list[Customer]:
             }
         ],
     }
-    return [
+    customers: list[Customer] = [
         {
             "id": "customer_a",
-            "name": "Customer A",
+            "name": "Individual",
             "configuration": customer_a_configuration,
             "configuration_formatted": json.dumps(customer_a_configuration, indent=2),
         },
         {
             "id": "customer_b",
-            "name": "Customer B",
+            "name": "Business",
             "configuration": customer_b_configuration,
             "configuration_formatted": json.dumps(customer_b_configuration, indent=2),
         },
     ]
+
+    filtered: list[Customer] = []
+
+    for customer in customers:
+        # if customer_id is provided, return the customer if it matches the customer_id
+        if customer_id is not None:
+            if customer_id != customer["id"]:
+                continue
+            filtered.append(customer)
+            # break the loop if customer_id is provided
+            break
+
+        # if filter is provided, return the customer if it matches the filter
+        if filter is None:
+            continue
+        if filter.lower() in customer["id"].lower():
+            filtered.append(customer)
+        elif filter.lower() in customer["name"].lower():
+            filtered.append(customer)
+
+    return filtered
 
 
 def get_customer_configuration(customer_id: str) -> dict:
@@ -443,6 +475,9 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     customer = form_data.get("customer") if form_data else None
     language = form_data.get("language") if form_data else None
     current_guide = form_data.get("current_guide") if form_data else None
+    customers = (
+        get_customers(customer_id=customer) if customer is not None else get_customers()
+    )
 
     return {
         "current_organization": current_organization,
@@ -453,7 +488,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "current_guide": current_guide,
         "organizations": organizations,
         "languages": [{"name": "TypeScript"}, {"name": "Python"}],
-        "customers": get_customers(),
+        "customers": customers,
         "spaces": spaces,
         "chats": chats,
         "messages": messages,

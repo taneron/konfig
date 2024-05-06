@@ -6,6 +6,7 @@ from .views import (
     customer_configuration,
     generate_onboarding_guide,
     organization_select_view,
+    search_customer,
     select_customer,
     select_language,
     space_select_view,
@@ -33,4 +34,5 @@ urlpatterns = [
         generate_onboarding_guide,
         name="generate_onboarding_guide",
     ),
+    path("search_customer", search_customer, name="search_customer"),
 ]

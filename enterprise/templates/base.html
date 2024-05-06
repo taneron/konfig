@@ -29,7 +29,9 @@
     {% block style %}
     {% endblock style %}
   </head>
-  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' class="h-full">
+  <body hx-on::after-swap="hljs.highlightAll()"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        class="h-full">
     {% block body %}
     {% endblock body %}
   </body>

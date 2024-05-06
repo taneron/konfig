@@ -11,64 +11,34 @@
     <h3 class="font-medium leading-tight text-slate-800">Customer</h3>
     <p class="text-sm">Select a customer</p>
     <div class="mt-3">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400">
-                <thead class="text-xs text-slate-8t 00 uppercase bg-slate-200 dark:bg-slate-700 dark:text-slate-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Customer</th>
-                        <th scope="col" class="px-6 py-3">Configuration</th>
-                        <th scope="col" class="px-6 py-3">
-                            <span class="sr-only">Select</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for customer in customers %}
-                        <tr class="bg-white border-b dark:bg-slate-800 dark:border-slate-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap dark:text-white">
-                                {{ customer.name }}
-                            </th>
-                            <td class="px-6 py-4">
-                                <button class="btn btn-sm"
-                                        onclick="{{ customer.id }}_configuration.showModal()">
-                                    View Configuration
-                                </button>
-                                <dialog id="{{ customer.id }}_configuration" class="modal">
-                                    <div class="modal-box">
-                                        <div class="flex items-center justify-between pb-4">
-                                            <h3 class="font-bold text-lg">{{ customer.name }} Configuration</h3>
-                                            <form method="dialog">
-                                                <button class="btn btn-sm btn-circle btn-ghost">✕</button>
-                                            </form>
-                                        </div>
-                                        <div class="max-h-96 overflow-y-auto rounded-box">
-                                            <pre><code class="language-json">{{ customer.configuration_formatted }}</code></pre>
-                                        </div>
-                                    </div>
-                                    <form method="dialog" class="modal-backdrop">
-                                        <button>close</button>
-                                    </form>
-                                </dialog>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                {% if current_customer %}
-                                    {% if current_customer == customer.id %}
-                                        <span class="font-bold">Selected</span>
-                                    {% else %}
-                                    {% endif %}
-                                {% else %}
-                                    <button name="customer_id"
-                                            value="{{ customer.id }}"
-                                            hx-post="{% url 'select_customer' %}"
-                                            hx-target="body"
-                                            class="btn btn-primary btn-sm">Select</button>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <style>
+#empty-search-results-skeleton {
+    display: none;
+}
+.htmx-request #empty-search-results-skeleton {
+    display: block;
+}
+.htmx-request #search-results-table {
+    display: none
+}
+.htmx-request #search-results-empty {
+    display: none;
+}
+        </style>
+        {% if not current_customer %}
+            <input class="input input-bordered mb-2"
+                   type="search"
+                   name="search"
+                   placeholder="Search Customers..."
+                   hx-post="{% url 'search_customer' %}"
+                   hx-trigger="input changed delay:500ms, search"
+                   hx-target="#search-results"
+                   hx-indicator="closest div">
+        {% endif %}
+        <div id="search-results"
+             hx-on::after-swap="hljs.highlightAll()"
+             class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            {% include "_customer_search_results.html" %}
         </div>
     </div>
 </li>
