@@ -18,7 +18,6 @@ from .models import (
     Organization,
     Space,
 )
-import json
 import requests
 import os
 import time
@@ -115,18 +114,31 @@ def select_language(request: HttpRequest):
 
 @require_http_methods(["POST"])
 @login_required
+def select_relevant_documents(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
+    selected_documents = request.POST.getlist("selected_documents[]")
+    print(selected_documents)
+    documents = get_documents(ids=selected_documents)
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.form_data["selected_documents"] = documents
+    chat.save()
+    context = get_context_data(request, chat_id=str(chat.chat_id))
+    return render(request, "chat_container.html", context)
+
+
+@require_http_methods(["POST"])
+@login_required
 def search_relevant_documents(request: HttpRequest):
     chat_id = request.POST.get("chat_id")
-    search = request.POST.get("search")
-    documents = get_documents(filter=search)
+    documents = get_documents()
     chat = Chat.objects.get(chat_id=chat_id)
-    chat.form_data["relevant_documents"] = documents
+    chat.form_data["searched_documents"] = documents
     chat.save()
-    time.sleep(1)
+    time.sleep(3)
     return render(
         request,
         "_select_relevant_docs_search_results.html",
-        {"documents": documents, "current_chat": chat},
+        {"searched_documents": documents, "current_chat": chat},
     )
 
 
@@ -340,7 +352,8 @@ class ChatData(TypedDict):
     current_guide: str | None
     organizations: QuerySet[Organization]
     customers: list[Customer]
-    documents: list[Document] | None
+    searched_documents: list[Document] | None
+    selected_documents: list[Document] | None
     spaces: QuerySet[Space]
     chats: QuerySet[Chat]
     languages: list[Language]
@@ -415,7 +428,8 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     language = form_data.get("language") if form_data else None
     current_topic = form_data.get("topic") if form_data else None
     current_guide = form_data.get("current_guide") if form_data else None
-    documents = form_data.get("relevant_documents") if form_data else None
+    searched_documents = form_data.get("searched_documents") if form_data else None
+    selected_documents = form_data.get("selected_documents") if form_data else None
     customers = (
         get_customers(customer_id=customer) if customer is not None else get_customers()
     )
@@ -429,7 +443,8 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "current_chat": chat,
         "current_guide": current_guide,
         "organizations": organizations,
-        "documents": documents,
+        "searched_documents": searched_documents,
+        "selected_documents": selected_documents,
         "languages": [{"name": "TypeScript"}, {"name": "Python"}],
         "customers": customers,
         "spaces": spaces,
@@ -439,6 +454,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
 
 
 def get_ai_response(user_input: str) -> str:
+
     # Set up the API endpoint and headers
     endpoint = "https://api.openai.com/v1/chat/completions"
     headers = {

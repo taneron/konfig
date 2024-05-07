@@ -1,78 +1,46 @@
-<table class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400">
-    <thead class="text-xs text-slate-8t 00 uppercase bg-slate-200 dark:bg-slate-700 dark:text-slate-400">
-        <tr>
-            <th scope="col" class="px-6 py-3">
-                <span class="sr-only">Select</span>
-            </th>
-            <th scope="col" class="px-6 py-3">Document</th>
-            <th scope="col" class="px-6 py-3">Content</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for document in documents %}
-            <tr class="bg-white border-b dark:bg-slate-800 dark:border-slate-700">
-                <td class="px-6 py-4 text-right">
-                    {% if relevant_docs %}
-                        {% if document.id in relevant_docs %}<span class="font-bold">Selected</span>{% endif %}
-                    {% else %}
-                        <label>
-                            <input type="checkbox" class="checkbox" />
-                        </label>
-                    {% endif %}
-                </td>
-                <td scope="row"
-                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap dark:text-white">
-                    {{ document.name }}
-                </td>
-                <td class="px-6 py-4">
-                    <button class="btn btn-sm"
-                            onclick="{{ document.id }}_doc.showModal(); event.stopPropagation();">
-                        View Contents
-                    </button>
-                    <dialog id="{{ document.id }}_doc" class="modal">
-                        <div class="modal-box max-w-[45rem]">
-                            <div class="flex items-center justify-between pb-4">
-                                <h3 class="font-bold text-lg">{{ document.name }}</h3>
-                                <form method="dialog">
-                                    <button class="btn btn-sm btn-circle btn-ghost">✕</button>
-                                </form>
-                            </div>
-                            <div class="max-h-[40rem] overflow-y-auto rounded-box">
-                                <pre><code class="language-markdown">{{ document.content }}</code></pre>
-                            </div>
-                        </div>
-                        <form method="dialog" class="modal-backdrop">
-                            <button>close</button>
-                        </form>
-                    </dialog>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-    {% if documents|length > 0 %}
-        <tfoot class="bg-slate-200 ">
+<form>
+    <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
+    <table class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400">
+        <thead class="text-xs text-slate-8t 00 uppercase bg-slate-200 dark:bg-slate-700 dark:text-slate-400">
             <tr>
-                <td></td>
-                <td></td>
-                <td class="px-6 py-4 text-right">
-                    <form>
-                        <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
-                        <button name="document"
-                                value="{{ document.id }}"
-                                hx-post="{% url 'select_language' %}"
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Select</span>
+                </th>
+                <th scope="col" class="px-6 py-3">Document</th>
+                <th scope="col" class="px-6 py-3">Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if selected_documents %}
+                {% for document in selected_documents %}
+                    {% include "_select_relevant_docs_search_results_document.html" %}
+                {% endfor %}
+            {% else %}
+                {% for document in searched_documents %}
+                    {% include "_select_relevant_docs_search_results_document.html" %}
+                {% endfor %}
+            {% endif %}
+        </tbody>
+        {% if searched_documents|length > 0 and not selected_documents %}
+            <tfoot class="bg-slate-200 ">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="px-6 py-4 text-right">
+                        <button hx-post="{% url 'select_relevant_documents' %}"
                                 hx-target="body"
                                 class="btn btn-primary">Select</button>
-                    </form>
-                </td>
-            </tr>
-        </tfoot>
-    {% endif %}
-</table>
+                    </td>
+                </tr>
+            </tfoot>
+        {% endif %}
+    </table>
+</form>
 <div class="empty-search-results-skeleton px-6 py-4 flex-col items-center text-center">
     <span class="loading loading-ring loading-sm"></span>
     <div class="text-slate-500">Searching documents...</div>
 </div>
-{% if documents|length == 0 %}
+{% if searched_documents|length == 0 %}
     <div class="search-results-empty px-6 py-4 flex flex-col items-center text-center">
         <div class="p-2 mb-3 bg-slate-200 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg"

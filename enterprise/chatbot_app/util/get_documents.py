@@ -7,7 +7,7 @@ class Document(TypedDict):
     content: str
 
 
-def get_documents(filter: str | None = None) -> list[Document]:
+def get_documents(ids: list[str] | None = None) -> list[Document]:
     documents = []
     documents.append(
         {
@@ -220,5 +220,10 @@ Our single-API platform connects you and other clients like Gemini, Marqeta and 
 Here, you'll find comprehensive guides and documentation to help you integrate with Alloy quickly and seamlessly.
 """,
         }
+    )
+    documents = (
+        [document for document in documents if document["id"] in ids]
+        if ids
+        else documents
     )
     return documents
