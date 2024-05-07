@@ -8,6 +8,7 @@ from .views import (
     organization_select_view,
     save_topic,
     search_customer,
+    search_documents,
     select_customer,
     select_language,
     space_select_view,
@@ -37,4 +38,5 @@ urlpatterns = [
     ),
     path("search_customer", search_customer, name="search_customer"),
     path("save_topic", save_topic, name="save_topic"),
+    path("search_documents", search_documents, name="search_documents"),
 ]

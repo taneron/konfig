@@ -89,6 +89,7 @@ def save_topic(request: HttpRequest):
     response["HX-Push-Url"] = reverse(
         "specific_chat_view", kwargs={"chat_id": chat.chat_id}
     )
+    response["HX-Trigger-After-Settle"] = "search-docs"
     return response
 
 
@@ -108,6 +109,21 @@ def select_language(request: HttpRequest):
     response = render(request, "chat_container.html", context)
     response["HX-Trigger-After-Settle"] = "forms-complete"
     return response
+
+
+@require_http_methods(["POST"])
+@login_required
+def search_documents(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
+    search = request.POST.get("search")
+    documents = get_documents(filter=search)
+    chat = Chat.objects.get(chat_id=chat_id)
+    time.sleep(1)
+    return render(
+        request,
+        "_select_relevant_docs_search_results.html",
+        {"documents": documents, "current_chat": chat},
+    )
 
 
 @require_http_methods(["POST"])
@@ -331,6 +347,32 @@ class ChatData(TypedDict):
     chats: QuerySet[Chat]
     languages: list[Language]
     messages: QuerySet[Message] | None
+
+
+class Document(TypedDict):
+    id: str
+    name: str
+    content: str
+
+
+def get_documents(filter: str | None = None) -> list[Document]:
+    documents = []
+    documents.append(
+        {"id": "doc_1", "name": "Document 1", "content": "Document 1 Content"}
+    )
+    documents.append(
+        {"id": "doc_2", "name": "Document 2", "content": "Document 2 Content"}
+    )
+    documents.append(
+        {"id": "doc_3", "name": "Document 3", "content": "Document 3 Content"}
+    )
+    documents.append(
+        {"id": "doc_4", "name": "Document 4", "content": "Document 4 Content"}
+    )
+    documents.append(
+        {"id": "doc_5", "name": "Document 5", "content": "Document 5 Content"}
+    )
+    return documents
 
 
 def get_customers(

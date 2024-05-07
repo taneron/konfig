@@ -1,5 +1,5 @@
 <li class="pb-10 pl-6 border-l {% if current_topic %}border-l-green-200{% endif %}">
-    <span class="absolute flex items-center justify-center w-8 h-8 {% if current_topic %}bg-green-200{% else %}bg-slate-200{% endif %} rounded-full -start-4 ring-4 ring-slate-50 dark:ring-slate-900 dark:bg-slate-700">
+    <span class="absolute flex items-center justify-center w-8 h-8 {% if current_topic %}bg-green-200{% else %}bg-slate-200{% endif %} rounded-full -start-4 ring-4 ring-white dark:ring-slate-900 dark:bg-slate-700">
         <svg class="w-3.5 h-3.5 {% if current_topic %}text-green-900{% else %}text-slate-400{% endif %}"
              aria-hidden="true"
              xmlns="http://www.w3.org/2000/svg"
@@ -12,20 +12,6 @@
     <p class="text-sm">Select a customer</p>
     {% if current_topic %}
         <div class="mt-3">
-            <style>
-#empty-search-results-skeleton {
-    display: none;
-}
-.htmx-request #empty-search-results-skeleton {
-    display: block;
-}
-.htmx-request #search-results-table {
-    display: none
-}
-.htmx-request #search-results-empty {
-    display: none;
-}
-            </style>
             {% if not current_customer %}
                 <form>
                     <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
@@ -35,11 +21,11 @@
                            placeholder="Search Customers..."
                            hx-post="{% url 'search_customer' %}"
                            hx-trigger="input changed delay:500ms, search"
-                           hx-target="#search-results"
+                           hx-target="#customer-search-results"
                            hx-indicator="closest div">
                 </form>
             {% endif %}
-            <div id="search-results"
+            <div id="customer-search-results"
                  hx-on::after-swap="hljs.highlightAll()"
                  class="relative overflow-x-auto shadow-md rounded-lg">
                 {% include "_customer_search_results.html" %}
