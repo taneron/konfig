@@ -117,7 +117,7 @@ def search_customer(request: HttpRequest):
     search = request.POST.get("search")
     customers = get_customers(filter=search)
     chat = Chat.objects.get(chat_id=chat_id)
-    time.sleep(1.5)
+    time.sleep(1)
     return render(
         request,
         "_customer_search_results.html",
