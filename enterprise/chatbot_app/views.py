@@ -74,6 +74,26 @@ def customer_configuration(request: HttpRequest):
 
 @require_http_methods(["POST"])
 @login_required
+def save_topic(request: HttpRequest):
+    topic = request.POST.get("topic")
+
+    if topic is None:
+        raise ValueError("Topic is not selected")
+
+    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
+    chat = Chat.objects.create(space_id=current_space.pk, name=topic)
+    chat.form_data["topic"] = topic
+    chat.save()
+    context = get_context_data(request, chat_id=str(chat.chat_id))
+    response = render(request, "chat_container.html", context)
+    response["HX-Push-Url"] = reverse(
+        "specific_chat_view", kwargs={"chat_id": chat.chat_id}
+    )
+    return response
+
+
+@require_http_methods(["POST"])
+@login_required
 def select_language(request: HttpRequest):
     chat_id = request.POST.get("chat_id")
     language = request.POST.get("language")
@@ -93,34 +113,31 @@ def select_language(request: HttpRequest):
 @require_http_methods(["POST"])
 @login_required
 def search_customer(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
     search = request.POST.get("search")
     customers = get_customers(filter=search)
+    chat = Chat.objects.get(chat_id=chat_id)
     time.sleep(1.5)
-    return render(request, "_customer_search_results.html", {"customers": customers})
+    return render(
+        request,
+        "_customer_search_results.html",
+        {"customers": customers, "current_chat": chat},
+    )
 
 
 @require_http_methods(["POST"])
 @login_required
 def select_customer(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
     customer_id = request.POST.get("customer_id")
-    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
-    if customer_id == "customer_a":
-        form_data = {
-            "customer": "customer_a",
-        }
-    elif customer_id == "customer_b":
-        form_data = {
-            "customer": "customer_b",
-        }
-    else:
+    if customer_id not in ["customer_a", "customer_b"]:
         raise ValueError(f"Invalid customer_id: {customer_id}")
 
-    chat = Chat.objects.create(space_id=current_space.pk, form_data=form_data)
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.form_data["customer"] = customer_id
+    chat.save()
     context = get_context_data(request, chat_id=str(chat.chat_id))
     response = render(request, "chat_container.html", context)
-    response["HX-Push-Url"] = reverse(
-        "specific_chat_view", kwargs={"chat_id": chat.chat_id}
-    )
     return response
 
 
@@ -303,6 +320,7 @@ class Language(TypedDict):
 class ChatData(TypedDict):
     current_organization: Organization
     current_space: Space
+    current_topic: str | None
     current_chat: Chat | None
     current_customer: str | None
     current_language: str | None
@@ -474,12 +492,14 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     form_data = chat.form_data if chat else None
     customer = form_data.get("customer") if form_data else None
     language = form_data.get("language") if form_data else None
+    current_topic = form_data.get("topic") if form_data else None
     current_guide = form_data.get("current_guide") if form_data else None
     customers = (
         get_customers(customer_id=customer) if customer is not None else get_customers()
     )
 
     return {
+        "current_topic": current_topic,
         "current_organization": current_organization,
         "current_space": current_space,
         "current_customer": customer,

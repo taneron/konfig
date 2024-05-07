@@ -17,7 +17,7 @@
                 </th>
                 <td class="px-6 py-4">
                     <button class="btn btn-sm"
-                            onclick="{{ customer.id }}_configuration.showModal()">View Configuration</button>
+                            onclick="{{ customer.id }}_configuration.showModal(); event.stopPropagation();">View Configuration</button>
                     <dialog id="{{ customer.id }}_configuration" class="modal">
                         <div class="modal-box">
                             <div class="flex items-center justify-between pb-4">
@@ -42,11 +42,14 @@
                         {% else %}
                         {% endif %}
                     {% else %}
+                        <form>
+                            <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
                         <button name="customer_id"
                                 value="{{ customer.id }}"
                                 hx-post="{% url 'select_customer' %}"
                                 hx-target="body"
                                 class="btn btn-primary btn-sm">Select</button>
+                        </form>
                     {% endif %}
                 </td>
             </tr>
