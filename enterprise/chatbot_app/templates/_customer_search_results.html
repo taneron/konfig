@@ -3,9 +3,11 @@
         <tr>
             <th scope="col" class="px-6 py-3">Customer</th>
             <th scope="col" class="px-6 py-3">Configuration</th>
-            <th scope="col" class="px-6 py-3">
-                <span class="sr-only">Select</span>
-            </th>
+            {% if not current_customer %}
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Select</span>
+                </th>
+            {% endif %}
         </tr>
     </thead>
     <tbody class="search-results-table">
@@ -37,13 +39,8 @@
                         </form>
                     </dialog>
                 </td>
-                <td class="px-6 py-4 text-right">
-                    {% if current_customer %}
-                        {% if current_customer == customer.id %}
-                            <span class="font-bold">Selected</span>
-                        {% else %}
-                        {% endif %}
-                    {% else %}
+                {% if not current_customer %}
+                    <td class="px-6 py-4 text-right">
                         <form>
                             <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
                             <button name="customer_id"
@@ -52,8 +49,8 @@
                                     hx-target="body"
                                     class="btn btn-primary btn-sm">Select</button>
                         </form>
-                    {% endif %}
-                </td>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
     </tbody>

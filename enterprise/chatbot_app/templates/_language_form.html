@@ -16,33 +16,22 @@
                     <thead class="text-xs text-slate-8t 00 uppercase bg-slate-200 dark:bg-slate-700 dark:text-slate-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">Language</th>
-                            <th scope="col" class="px-6 py-3">
-                                <span class="sr-only">Select</span>
-                            </th>
+                            {% if not current_language %}
+                                <th scope="col" class="px-6 py-3">
+                                    <span class="sr-only">Select</span>
+                                </th>
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>
                         {% for language in languages %}
-                            <tr class="bg-white border-b dark:bg-slate-800 dark:border-slate-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap dark:text-white">
-                                    {{ language.name }}
-                                </th>
-                                <td class="px-6 py-4 text-right">
-                                    {% if current_language %}
-                                        {% if current_language == language.name %}<span class="font-bold">Selected</span>{% endif %}
-                                    {% else %}
-                                        <form>
-                                            <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
-                                            <button name="language"
-                                                    value="{{ language.name }}"
-                                                    hx-post="{% url 'select_language' %}"
-                                                    hx-target="body"
-                                                    class="btn btn-primary btn-sm">Select</button>
-                                        </form>
-                                    {% endif %}
-                                </td>
-                            </tr>
+                            {% if current_language %}
+                                {% if current_language == language.name %}
+                                    {% include "_language_form_row.html" %}
+                                {% endif %}
+                            {% else %}
+                                {% include "_language_form_row.html" %}
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>

@@ -1,16 +1,12 @@
 <tr class="bg-white border-b dark:bg-slate-800 dark:border-slate-700">
-    <td class="px-6 py-4 text-right">
-        {% if selected_documents %}
-            {% for selected_document in selected_documents %}
-                {% if document.id == selected_document.id %}<span class="font-bold">Selected</span>{% endif %}
-            {% endfor %}
-        {% else %}
+    {% if not selected_documents %}
+        <td class="px-6 py-4 text-right">
             <input value="{{ document.id }}"
                    name="selected_documents[]"
                    type="checkbox"
                    class="checkbox" />
-        {% endif %}
-    </td>
+        </td>
+    {% endif %}
     <td scope="row"
         class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap dark:text-white">{{ document.name }}</td>
     <td class="px-6 py-4">
