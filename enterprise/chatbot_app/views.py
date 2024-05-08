@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
+from django.utils.safestring import mark_safe
 from django.db.models import QuerySet
 from django.db import transaction
 from typing import TypedDict
@@ -38,6 +39,22 @@ def generate_draft_template(request: HttpRequest):
     chat.save()
     context = get_context_data(request, chat_id=chat_id)
     return render(request, "_review_generated_template_inner.html", context)
+
+
+@require_http_methods(["POST"])
+@login_required
+def submit_template(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
+    if chat_id is None:
+        raise ValueError("Chat id is not provided")
+    template = request.POST.get("template")
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.form_data["final_template"] = template
+    chat.save()
+    context = get_context_data(request, chat_id=chat_id)
+    response = render(request, "chat_container.html", context)
+    response["HX-Trigger-After-Settle"] = "generate-guide"
+    return response
 
 
 @require_http_methods(["POST"])
@@ -398,6 +415,7 @@ class ChatData(TypedDict):
     current_customer: str | None
     current_language: str | None
     current_guide: str | None
+    final_template: str | None
     draft_template: str | None
     organizations: QuerySet[Organization]
     customers: list[Customer]
@@ -483,7 +501,15 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     selected_documents = form_data.get("selected_documents") if form_data else None
     searched_operations = form_data.get("searched_operations") if form_data else None
     selected_operations = form_data.get("selected_operations") if form_data else None
+
     draft_template = form_data.get("draft_template") if form_data else None
+    if draft_template:
+        draft_template = draft_template.replace("`", "\\`")
+
+    final_template = form_data.get("final_template") if form_data else None
+    if final_template:
+        final_template = final_template.replace("`", "\\`")
+
     customers = (
         get_customers(customer_id=customer) if customer is not None else get_customers()
     )
@@ -496,7 +522,8 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "current_language": language,
         "current_chat": chat,
         "current_guide": current_guide,
-        "draft_template": draft_template,
+        "final_template": final_template,
+        "draft_template": mark_safe(draft_template) if draft_template else None,
         "organizations": organizations,
         "searched_documents": searched_documents,
         "selected_documents": selected_documents,

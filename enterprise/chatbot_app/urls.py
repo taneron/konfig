@@ -17,6 +17,7 @@ from .views import (
     select_relevant_operations,
     space_select_view,
     specific_chat_view,
+    submit_template,
 )
 
 urlpatterns = [
@@ -67,4 +68,5 @@ urlpatterns = [
         generate_draft_template,
         name="generate_draft_template",
     ),
+    path("submit_template", submit_template, name="submit_template"),
 ]
