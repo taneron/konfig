@@ -10,6 +10,7 @@ from django.db import transaction
 from typing import TypedDict
 
 from .util.generate_template_for_guide import generate_template_for_guide
+from .util.generate_guide import generate_guide
 from .util.get_operations import Operation, get_operations
 from .util.get_documents import Document, get_documents
 from .util.get_customers import Customer, get_customers
@@ -65,15 +66,7 @@ def generate_onboarding_guide(request: HttpRequest):
         raise ValueError("Chat id is not provided")
     time.sleep(3)
     chat = Chat.objects.get(chat_id=chat_id)
-    chat.form_data[
-        "current_guide"
-    ] = """# This is a generated onboarding guide
-## API Interaction Steps
-- **Step 1:** Authenticate using your API key.
-- **Step 2:** Use the `POST /create` endpoint to create a new resource.
-- **Step 3:** Retrieve the resource using `GET /resource/{id}`.
-- **Step 4:** Update the resource with `PUT /resource/{id}`.
-- **Step 5:** Monitor the resource status with `GET /resource/status/{id}`."""
+    chat.form_data["current_guide"] = generate_guide()
     chat.save()
     context = get_context_data(request, chat_id=chat_id)
     return render(request, "_review_onboarding_guide_inner.html", context)
