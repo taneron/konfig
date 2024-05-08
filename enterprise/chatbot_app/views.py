@@ -8,6 +8,7 @@ from django.db.models import QuerySet
 from django.db import transaction
 from typing import TypedDict
 
+from .util.generate_template_for_guide import generate_template_for_guide
 from .util.get_operations import Operation, get_operations
 from .util.get_documents import Document, get_documents
 from .util.get_customers import Customer, get_customers
@@ -23,6 +24,20 @@ from .models import (
 import requests
 import os
 import time
+
+
+@require_http_methods(["POST"])
+@login_required
+def generate_template(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
+    if chat_id is None:
+        raise ValueError("Chat id is not provided")
+    time.sleep(3)
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.form_data["current_guide"] = generate_template_for_guide()
+    chat.save()
+    context = get_context_data(request, chat_id=chat_id)
+    return render(request, "_review_generated_template_inner.html", context)
 
 
 @require_http_methods(["POST"])
@@ -110,7 +125,7 @@ def select_language(request: HttpRequest):
     chat.save()
     context = get_context_data(request, chat_id=str(chat.chat_id))
     response = render(request, "chat_container.html", context)
-    response["HX-Trigger-After-Settle"] = "forms-complete"
+    response["HX-Trigger-After-Settle"] = "generate-template"
     return response
 
 
