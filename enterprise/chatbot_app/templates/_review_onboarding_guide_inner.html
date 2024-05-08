@@ -20,8 +20,39 @@
 <p class="text-sm">Review the onboarding guide</p>
 {% if current_guide %}
     <div class="mt-3">
-        <div class="max-h-96 overflow-y-auto shadow-md rounded-box">
-            <pre><code class="language-markdown">{{ current_guide }}</code></pre>
-        </div>
-    </div>
+        <div class="flex flex-col items-end">
+            <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
+            <textarea name="template" id="draft-template"></textarea>
+            <script>
+        easyMde = new EasyMDE({
+            previewRender: function(plainText) {
+                let html = this.parent.markdown(plainText);
+
+                // Add "hljs" class to code blocks
+                html = html.replace(/<pre><code class="([^"]+)">/g, function(match, p1) {
+                    return '<pre class="not-prose"><code class="' + p1 + ' hljs not-prose">';
+                });
+
+                html = '<div class="prose {% if not final_template %}prose-sm{% endif %}">' + html + '</div>';
+
+                return html
+            },
+            status: false,
+            renderingConfig: {
+                codeSyntaxHighlighting: true
+            },
+            spellChecker: false,
+            autosave: {
+                enabled: true,
+                uniqueId: "{{ current_chat.chat_id }}_guide",
+            },
+            forceSync: true,
+            maxHeight: "500px",
+            initialValue: `{{ current_guide }}`,
+            element: document.currentScript.closest('div').querySelector('textarea'),
+        });
+
+</script>
+</div>
+</div>
 {% endif %}

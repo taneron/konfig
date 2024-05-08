@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
+from django.http import HttpRequest, HttpResponseBadRequest
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
@@ -496,11 +496,14 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     customer = form_data.get("customer") if form_data else None
     language = form_data.get("language") if form_data else None
     current_topic = form_data.get("topic") if form_data else None
-    current_guide = form_data.get("current_guide") if form_data else None
     searched_documents = form_data.get("searched_documents") if form_data else None
     selected_documents = form_data.get("selected_documents") if form_data else None
     searched_operations = form_data.get("searched_operations") if form_data else None
     selected_operations = form_data.get("selected_operations") if form_data else None
+
+    current_guide = form_data.get("current_guide") if form_data else None
+    if current_guide:
+        current_guide = current_guide.replace("`", "\\`")
 
     draft_template = form_data.get("draft_template") if form_data else None
     if draft_template:
@@ -521,8 +524,8 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "current_customer": customer,
         "current_language": language,
         "current_chat": chat,
-        "current_guide": current_guide,
-        "final_template": final_template,
+        "current_guide": mark_safe(current_guide) if current_guide else None,
+        "final_template": mark_safe(final_template) if final_template else None,
         "draft_template": mark_safe(draft_template) if draft_template else None,
         "organizations": organizations,
         "searched_documents": searched_documents,

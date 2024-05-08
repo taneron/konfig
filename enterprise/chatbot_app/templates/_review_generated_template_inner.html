@@ -20,7 +20,7 @@
 <p class="text-sm">Review the generated template</p>
 {% if draft_template %}
     <div class="mt-3">
-        <form class="flex flex-col items-end">
+        <form id="template-drafting" class="flex flex-col items-end">
             <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
             <textarea name="template" id="draft-template"></textarea>
             <style>
@@ -30,10 +30,10 @@
             width: 100%;
         }
         {% if final_template %}
-        .cm-s-easymde {
+        #template-drafting .cm-s-easymde {
             border-radius: 0.5rem;
         }
-        .editor-preview {
+        #template-drafting .editor-preview {
             padding: 20px;
         }
         {% endif %}
