@@ -2,7 +2,7 @@
   <div class="flex-1 flex flex-col border-r border-l">
     {% include "custom_form.html" %}
     <form class="flex-1 flex flex-col justify-between bg-slate-50 p-4 shadow-inner"
-          {% if current_chat %} hx-post="{% url 'specific_chat_view' current_chat.chat_id %}" hx-target="#chatbox" {% else %} hx-post="{% url 'chat_view' %}" hx-target="body" {% endif %}
+          {% if current_chat %} hx-post="{% url 'specific_chat_view' current_chat.chat_id %}" hx-target="#chatbox" {% else %} hx-post="{% url 'chat_view' %}" hx-target="#app" {% endif %}
           hx-on::before-request="this.reset()">
       <h2 class="font-bold text-slate-400 text-xl mb-4">Chat</h2>
       <div>

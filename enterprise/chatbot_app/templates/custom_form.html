@@ -1,7 +1,7 @@
 <div id="custom-form" class="flex-1 bg-white border-b p-4 z-10">
     <form method="post"
           class="flex flex-col gap-1 h-full"
-          hx-target="body"
+          hx-target="#app"
           hx-post="{% url 'customer_configuration' %}">
         {% if current_chat %}<input type="hidden" name="chat_id" value="{{ current_chat.id }}" />{% endif %}
         <div class="flex-1">
