@@ -28,13 +28,13 @@ import time
 
 @require_http_methods(["POST"])
 @login_required
-def generate_template(request: HttpRequest):
+def generate_draft_template(request: HttpRequest):
     chat_id = request.POST.get("chat_id")
     if chat_id is None:
         raise ValueError("Chat id is not provided")
-    time.sleep(3)
+    time.sleep(5)
     chat = Chat.objects.get(chat_id=chat_id)
-    chat.form_data["current_guide"] = generate_template_for_guide()
+    chat.form_data["draft_template"] = generate_template_for_guide()
     chat.save()
     context = get_context_data(request, chat_id=chat_id)
     return render(request, "_review_generated_template_inner.html", context)
@@ -398,6 +398,7 @@ class ChatData(TypedDict):
     current_customer: str | None
     current_language: str | None
     current_guide: str | None
+    draft_template: str | None
     organizations: QuerySet[Organization]
     customers: list[Customer]
     searched_documents: list[Document] | None
@@ -482,6 +483,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     selected_documents = form_data.get("selected_documents") if form_data else None
     searched_operations = form_data.get("searched_operations") if form_data else None
     selected_operations = form_data.get("selected_operations") if form_data else None
+    draft_template = form_data.get("draft_template") if form_data else None
     customers = (
         get_customers(customer_id=customer) if customer is not None else get_customers()
     )
@@ -494,6 +496,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "current_language": language,
         "current_chat": chat,
         "current_guide": current_guide,
+        "draft_template": draft_template,
         "organizations": organizations,
         "searched_documents": searched_documents,
         "selected_documents": selected_documents,

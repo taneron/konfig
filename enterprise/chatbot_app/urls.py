@@ -4,8 +4,8 @@ from .views import (
     create_organization_view,
     create_space_view,
     customer_configuration,
+    generate_draft_template,
     generate_onboarding_guide,
-    generate_template,
     organization_select_view,
     save_topic,
     search_customer,
@@ -62,5 +62,9 @@ urlpatterns = [
         select_relevant_operations,
         name="select_relevant_operations",
     ),
-    path("generate_template", generate_template, name="generate_template"),
+    path(
+        "generate_draft_template",
+        generate_draft_template,
+        name="generate_draft_template",
+    ),
 ]
