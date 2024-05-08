@@ -9,9 +9,11 @@ from .views import (
     save_topic,
     search_customer,
     search_relevant_documents,
+    search_relevant_operations,
     select_customer,
     select_language,
     select_relevant_documents,
+    select_relevant_operations,
     space_select_view,
     specific_chat_view,
 )
@@ -48,5 +50,15 @@ urlpatterns = [
         "select_relevant_documents",
         select_relevant_documents,
         name="select_relevant_documents",
+    ),
+    path(
+        "search_relevant_operations",
+        search_relevant_operations,
+        name="search_relevant_operations",
+    ),
+    path(
+        "select_relevant_operations",
+        select_relevant_operations,
+        name="select_relevant_operations",
     ),
 ]

@@ -7,6 +7,8 @@ from django.views.decorators.http import require_http_methods
 from django.db.models import QuerySet
 from django.db import transaction
 from typing import TypedDict
+
+from .util.get_operations import Operation, get_operations
 from .util.get_documents import Document, get_documents
 from .util.get_customers import Customer, get_customers
 from .models import (
@@ -117,13 +119,44 @@ def select_language(request: HttpRequest):
 def select_relevant_documents(request: HttpRequest):
     chat_id = request.POST.get("chat_id")
     selected_documents = request.POST.getlist("selected_documents[]")
-    print(selected_documents)
     documents = get_documents(ids=selected_documents)
     chat = Chat.objects.get(chat_id=chat_id)
     chat.form_data["selected_documents"] = documents
     chat.save()
     context = get_context_data(request, chat_id=str(chat.chat_id))
-    return render(request, "chat_container.html", context)
+    response = render(request, "chat_container.html", context)
+    response["HX-Trigger-After-Settle"] = "search-operations"
+    return response
+
+
+@require_http_methods(["POST"])
+@login_required
+def select_relevant_operations(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
+    selected_operations = request.POST.getlist("selected_operations[]")
+    operations = get_operations(ids=selected_operations)
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.form_data["selected_operations"] = operations
+    chat.save()
+    context = get_context_data(request, chat_id=str(chat.chat_id))
+    response = render(request, "chat_container.html", context)
+    return response
+
+
+@require_http_methods(["POST"])
+@login_required
+def search_relevant_operations(request: HttpRequest):
+    chat_id = request.POST.get("chat_id")
+    operations = get_operations()
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.form_data["searched_operations"] = operations
+    chat.save()
+    time.sleep(2)
+    return render(
+        request,
+        "_select_relevant_operations_search_results.html",
+        {"searched_operations": operations, "current_chat": chat},
+    )
 
 
 @require_http_methods(["POST"])
@@ -354,6 +387,8 @@ class ChatData(TypedDict):
     customers: list[Customer]
     searched_documents: list[Document] | None
     selected_documents: list[Document] | None
+    searched_operations: list[Operation] | None
+    selected_operations: list[Operation] | None
     spaces: QuerySet[Space]
     chats: QuerySet[Chat]
     languages: list[Language]
@@ -430,6 +465,8 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
     current_guide = form_data.get("current_guide") if form_data else None
     searched_documents = form_data.get("searched_documents") if form_data else None
     selected_documents = form_data.get("selected_documents") if form_data else None
+    searched_operations = form_data.get("searched_operations") if form_data else None
+    selected_operations = form_data.get("selected_operations") if form_data else None
     customers = (
         get_customers(customer_id=customer) if customer is not None else get_customers()
     )
@@ -445,6 +482,8 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "organizations": organizations,
         "searched_documents": searched_documents,
         "selected_documents": selected_documents,
+        "searched_operations": searched_operations,
+        "selected_operations": selected_operations,
         "languages": [{"name": "TypeScript"}, {"name": "Python"}],
         "customers": customers,
         "spaces": spaces,
