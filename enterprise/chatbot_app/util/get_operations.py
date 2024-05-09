@@ -21,6 +21,14 @@ def get_operations(ids: list[str] | None = None) -> list[Operation]:
             "summary": "Create Journey Application",
         },
         {
+            "id": "/journeys/{journey_token}/applications/{journey_application_token}:GET",
+            "base_path": "https://demo-qasandbox.alloy.co/v1",
+            "http_method": "GET",
+            "path": "/journeys/{journey_token}/applications/{journey_application_token}",
+            "description": "Returns relevant data associated with a journey application.",
+            "summary": "Get Journey Application",
+        },
+        {
             "id": "/journeys/{journey_token}/parameters:GET",
             "base_path": "https://demo-qasandbox.alloy.co/v1",
             "http_method": "GET",

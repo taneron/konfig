@@ -9,9 +9,16 @@ from django.utils.safestring import mark_safe
 from django.db.models import QuerySet
 from django.db import transaction
 from typing import TypedDict
+import sys
+import os
+
+sys.path.append(
+    os.path.join(os.path.dirname(__file__), "../../misc/building_ai_applications/demo")
+)
+
+from demo import generate_plan, generate_guide
 
 from .util.generate_template_for_guide import generate_template_for_guide
-from .util.generate_guide import generate_guide
 from .util.get_operations import Operation, get_operations
 from .util.get_documents import Document, get_documents
 from .util.get_customers import Customer, get_customers
@@ -35,12 +42,26 @@ def generate_draft_template(request: HttpRequest):
     chat_id = request.POST.get("chat_id")
     if chat_id is None:
         raise ValueError("Chat id is not provided")
-    time.sleep(5)
     chat = Chat.objects.get(chat_id=chat_id)
-    chat.form_data["draft_template"] = generate_template_for_guide()
+    query = chat.form_data.get("topic")
+    language = chat.form_data.get("language")
+    customer_id = chat.form_data.get("customer")
+    config = get_customer_configuration(customer_id)
+    customer_name = get_customer_name(customer_id)
+    plan = generate_plan(query, language, config, customer_name)
+    chat.form_data["draft_template"] = plan["plan"]
+    chat.form_data["plan"] = plan
     chat.save()
     context = get_context_data(request, chat_id=chat_id)
     return render(request, "_review_generated_template_inner.html", context)
+
+
+def get_customer_name(customer_id: str):
+    customers = get_customers(all_customers=True)
+    for customer in customers:
+        if customer["id"] == customer_id:
+            return customer["name"]
+    raise ValueError(f"Invalid customer_id: {customer_id}")
 
 
 @require_http_methods(["POST"])
@@ -52,6 +73,7 @@ def submit_template(request: HttpRequest):
     template = request.POST.get("template")
     chat = Chat.objects.get(chat_id=chat_id)
     chat.form_data["final_template"] = template
+    chat.form_data["plan"]["plan"] = template
     chat.save()
     context = get_context_data(request, chat_id=chat_id)
     response = render(request, "chat_container.html", context)
@@ -65,9 +87,10 @@ def generate_onboarding_guide(request: HttpRequest):
     chat_id = request.POST.get("chat_id")
     if chat_id is None:
         raise ValueError("Chat id is not provided")
-    time.sleep(3)
     chat = Chat.objects.get(chat_id=chat_id)
-    chat.form_data["current_guide"] = generate_guide()
+    plan = chat.form_data["plan"]
+    guide = generate_guide(plan)
+    chat.form_data["current_guide"] = guide
     chat.save()
     context = get_context_data(request, chat_id=chat_id)
     return render(request, "_review_onboarding_guide_inner.html", context)
@@ -440,7 +463,7 @@ class ChatData(TypedDict):
 
 
 def get_customer_configuration(customer_id: str) -> dict:
-    customers = get_customers()
+    customers = get_customers(all_customers=True)
     for customer in customers:
         if customer["id"] == customer_id:
             return customer["configuration"]
@@ -513,15 +536,15 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
 
     current_guide = form_data.get("current_guide") if form_data else None
     if current_guide:
-        current_guide = current_guide.replace("`", "\\`")
+        current_guide = current_guide.replace("`", "\\`").replace("$", "\\$")
 
     draft_template = form_data.get("draft_template") if form_data else None
     if draft_template:
-        draft_template = draft_template.replace("`", "\\`")
+        draft_template = draft_template.replace("`", "\\`").replace("$", "\\$")
 
     final_template = form_data.get("final_template") if form_data else None
     if final_template:
-        final_template = final_template.replace("`", "\\`")
+        final_template = final_template.replace("`", "\\`").replace("$", "\\$")
 
     customers = (
         get_customers(customer_id=customer) if customer is not None else get_customers()
