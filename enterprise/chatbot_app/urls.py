@@ -6,6 +6,7 @@ from .views import (
     customer_configuration,
     generate_draft_template,
     generate_onboarding_guide,
+    guides_view,
     organization_select_view,
     save_topic,
     search_customer,
@@ -22,6 +23,7 @@ from .views import (
 
 urlpatterns = [
     path("", chat_view, name="chat_view"),
+    path("guides", guides_view, name="guides_view"),
     path("c/<str:chat_id>", specific_chat_view, name="specific_chat_view"),
     path("create_space", create_space_view, name="create_space_view"),
     path(

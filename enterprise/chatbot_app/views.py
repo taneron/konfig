@@ -262,6 +262,16 @@ def save_onboarding_form(request: HttpRequest):
 
 
 @login_required
+def guides_view(request: HttpRequest):
+    context_data = get_context_data(request)
+    return render(
+        request,
+        "guides.html",
+        context_data,
+    )
+
+
+@login_required
 def chat_view(request: HttpRequest):
     current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
     if request.method == "POST":
