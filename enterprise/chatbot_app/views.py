@@ -532,7 +532,6 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         # get customer name from id
         customer_id = chat_iter.form_data.get("customer")
         all_customers = get_customers(all_customers=True)
-        print(all_customers)
         customer_name = next(
             (
                 customer["name"]
@@ -541,7 +540,6 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
             ),
             None,
         )
-        print(customer_name)
         chat_topic = chat_iter.form_data.get("topic")
         guides.append(
             {
