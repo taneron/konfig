@@ -23,7 +23,7 @@ class Plan(TypedDict):
     docs_summary: str
     config_summary: str
     plan: str
-    plan_stream: any  # async_generator
+    plan_stream: any 
 
 
 config_description = (
@@ -44,6 +44,7 @@ def generate_plan(query, language, config, customer_name: str):
         [docs_path],
         config,
         config_description,
+        customer_name
     )
 
 
@@ -71,7 +72,7 @@ def generate_guide(plan):
     return chain.stream(params)
 
 
-def generate_plan_helper(query, spec_path, docs_paths, config, config_description):
+def generate_plan_helper(query, spec_path, docs_paths, config, config_description, customer_name):
     spec = read_spec(spec_path)
     docs = read_docs(docs_paths)
     model = ChatOpenAI(model="gpt-4-turbo", temperature=0, model_kwargs={"seed": 0})
@@ -81,7 +82,7 @@ def generate_plan_helper(query, spec_path, docs_paths, config, config_descriptio
         query, config, config_description, docs_reader_output, model
     )
     planner_stream = gen_plan(
-        query, spec_selector_output, docs_reader_output, config_reader_output, model
+        query, spec_selector_output, docs_reader_output, config_reader_output, customer_name, model
     )
     return {
         "query": query,
@@ -179,13 +180,14 @@ def summarize_config(query, config, config_description, docs_summary, model):
     return chain.invoke(params)
 
 
-def gen_plan(query, spec_parts, docs_summary, config_summary, model):
+def gen_plan(query, spec_parts, docs_summary, config_summary, customer_name, model):
     chain = (
         {
             "spec_parts": itemgetter("spec_parts"),
             "query": itemgetter("query"),
             "docs_summary": itemgetter("docs_summary"),
             "config_summary": itemgetter("config_summary"),
+            "customer_name": itemgetter("customer_name"),
         }
         | prompts.planner_prompt
         | model
@@ -196,6 +198,7 @@ def gen_plan(query, spec_parts, docs_summary, config_summary, model):
         "query": query,
         "docs_summary": docs_summary,
         "config_summary": config_summary,
+        "customer_name": customer_name,
     }
     return chain.stream(params)
 

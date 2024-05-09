@@ -104,9 +104,11 @@ Write a specification document for the junior engineer who will write the person
 The specification document contains all the sections that you would like the junior engineer to have in their guide.
 Each section should contain bullet points specifying what information should be contained in that section. 
 When a section should include a code snippet, you should indicate this by starting a bullet point with "Code snippet:" followed by a detailed, specific description of the code snippet. 
-Remember that this guide is configured towards a specific customer, so information from the configuration is used to tailor the guide to apply to this specific customer. 
+Remember that this guide is configured towards a specific customer, so information from the configuration is used to tailor the guide to apply to this specific customer. You should include a section near the top entitled "Customer-Specific Configuration" which should contain a description of how the customer's configuration should be incorporated into the guide.
 Even if some parts of the guide can be made more generic, the guide should be tailored to the customer's configuration specifically - do not include redundant generic information.
-Format your output as a clean markdown specification document.
+Format your output as a clean markdown specification document. 
+The h1 header of the document should be "Guide For {customer_name}: " followed by the query, but made into a statement instead of a question.
+Do not include any additional preamble or postamble in your output.
 """), ("user", data_template )])
 
 writer_prompt = ChatPromptTemplate.from_messages([("system",
@@ -124,6 +126,7 @@ Write a personalized technical guide for the customer from the plan provided by 
 The guide should be tailored to the customer's configuration specifically - do not include redundant generic information.
 Write clean, clear, and concise code snippets where indicated in the plan.
 Format your output as a clean markdown document.
+Do not include any additional preamble or postamble in your output. Do not try to add links to additional documentation or resources.
 """), ("user", 
 """
 {plan}
@@ -131,29 +134,3 @@ Format your output as a clean markdown document.
 -----
 
 """ + data_template )])
-
-editor_prompt = ChatPromptTemplate.from_messages([("system",
-"""
-# Overview
-
-You're working as a senior technical writer. One of your customers has requested a personalized technical guide.
-One of your junior technical writers has written the guide, but you need to review it to ensure it meets the specifications outlined by the engineering department, and matches the high quality standards of your company.
-The guide answers a specific query, and the answer is sourced from an the OpenAPI Specification, other relevant documentation, and also contains a configuration specific to that customer.
-You are also given a plan/specification from the engineering department that outlines the expected structure and content of this personalized technical guide.
-
-# Instructions
-
-Edit the personalized technical guide written by the junior technical writer to ensure it meets the specifications outlined by the engineering department, and matches the high quality standards of your company.
-Ensure that all of the code is correct and well-written.
-The output should be only the guide itself, with any necessary corrections made. It is ok if the guide is already perfect: then just output the guide as is.
-Do not add any editorial comments or feedback: your output is the final, edited guide going directly to the customer.
-
-Below is the plan from engineering:
-
-{plan}
-
-""" + data_template), ("user", 
-"""
-{guide}
-"""
-)])
