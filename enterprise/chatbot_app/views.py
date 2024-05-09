@@ -108,15 +108,13 @@ def save_topic(request: HttpRequest):
     if topic is None:
         raise ValueError("Topic is not selected")
 
-    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
-    chat = Chat.objects.create(space_id=current_space.pk, name=topic)
+    chat_id = request.POST.get("chat_id")
+    chat = Chat.objects.get(chat_id=chat_id)
+    chat.name = topic
     chat.form_data["topic"] = topic
     chat.save()
     context = get_context_data(request, chat_id=str(chat.chat_id))
     response = render(request, "chat_container.html", context)
-    response["HX-Push-Url"] = reverse(
-        "specific_chat_view", kwargs={"chat_id": chat.chat_id}
-    )
     response["HX-Trigger-After-Settle"] = "search-docs"
     return response
 
@@ -203,31 +201,31 @@ def search_relevant_documents(request: HttpRequest):
 @require_http_methods(["POST"])
 @login_required
 def search_customer(request: HttpRequest):
-    chat_id = request.POST.get("chat_id")
     search = request.POST.get("search")
     customers = get_customers(filter=search)
-    chat = Chat.objects.get(chat_id=chat_id)
     time.sleep(1)
     return render(
         request,
         "_customer_search_results.html",
-        {"customers": customers, "current_chat": chat},
+        {"customers": customers},
     )
 
 
 @require_http_methods(["POST"])
 @login_required
 def select_customer(request: HttpRequest):
-    chat_id = request.POST.get("chat_id")
     customer_id = request.POST.get("customer_id")
     if customer_id not in ["customer_a", "customer_b"]:
         raise ValueError(f"Invalid customer_id: {customer_id}")
-
-    chat = Chat.objects.get(chat_id=chat_id)
+    current_space = CurrentUserSpace.objects.get(user_id=request.user.pk).space
+    chat = Chat.objects.create(space_id=current_space.pk)
     chat.form_data["customer"] = customer_id
     chat.save()
     context = get_context_data(request, chat_id=str(chat.chat_id))
     response = render(request, "chat_container.html", context)
+    response["HX-Push-Url"] = reverse(
+        "specific_chat_view", kwargs={"chat_id": chat.chat_id}
+    )
     return response
 
 
