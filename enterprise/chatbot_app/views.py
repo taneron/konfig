@@ -49,7 +49,17 @@ def generate_draft_template(request: HttpRequest):
     config = get_customer_configuration(customer_id)
     customer_name = get_customer_name(customer_id)
     plan = generate_plan(query, language, config, customer_name)
-    chat.form_data["draft_template"] = plan["plan"]
+    stream = plan["plan_stream"]
+    tokens = []
+    for chunk in stream:
+        print(chunk)
+        tokens.append(chunk)
+    final_plan = "".join(tokens)
+    chat.form_data["draft_template"] = final_plan
+    # delete plan_stream since its not serializable
+    del plan["plan_stream"]
+    # set "plan" to final plan
+    plan["plan"] = final_plan
     chat.form_data["plan"] = plan
     chat.save()
     context = get_context_data(request, chat_id=chat_id)
@@ -89,8 +99,13 @@ def generate_onboarding_guide(request: HttpRequest):
         raise ValueError("Chat id is not provided")
     chat = Chat.objects.get(chat_id=chat_id)
     plan = chat.form_data["plan"]
-    guide = generate_guide(plan)
-    chat.form_data["current_guide"] = guide
+    stream = generate_guide(plan)
+    tokens = []
+    for chunk in stream:
+        print(chunk)
+        tokens.append(chunk)
+    final_guide = "".join(tokens)
+    chat.form_data["current_guide"] = final_guide
     chat.save()
     context = get_context_data(request, chat_id=chat_id)
     return render(request, "_review_onboarding_guide_inner.html", context)
