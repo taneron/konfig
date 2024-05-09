@@ -12,6 +12,7 @@ class Plan(TypedDict):
     docs_summary: str
     config_summary: str
     plan: str
+    plan_stream: any  # async_generator
 
 
 config_description = (
@@ -56,7 +57,7 @@ def generate_guide(plan):
         "config_summary": plan["config_summary"],
         "plan": plan["plan"],
     }
-    return chain.invoke(params)
+    return chain.stream(params)
 
 
 def generate_plan_helper(query, spec_path, docs_paths, config, config_description):
@@ -68,7 +69,7 @@ def generate_plan_helper(query, spec_path, docs_paths, config, config_descriptio
     config_reader_output = summarize_config(
         query, config, config_description, docs_reader_output, model
     )
-    planner_output = gen_plan(
+    planner_stream = gen_plan(
         query, spec_selector_output, docs_reader_output, config_reader_output, model
     )
     return {
@@ -76,7 +77,7 @@ def generate_plan_helper(query, spec_path, docs_paths, config, config_descriptio
         "spec_parts": spec_selector_output,
         "docs_summary": docs_reader_output,
         "config_summary": config_reader_output,
-        "plan": planner_output,
+        "plan_stream": planner_stream,
     }
 
 
@@ -185,7 +186,7 @@ def gen_plan(query, spec_parts, docs_summary, config_summary, model):
         "docs_summary": docs_summary,
         "config_summary": config_summary,
     }
-    return chain.invoke(params)
+    return chain.stream(params)
 
 
 def read_spec(spec_path):
