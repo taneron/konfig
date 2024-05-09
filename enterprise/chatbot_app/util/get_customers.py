@@ -10,7 +10,9 @@ class Customer(TypedDict):
 
 
 def get_customers(
-    filter: str | None = None, customer_id: str | None = None
+    filter: str | None = None,
+    customer_id: str | None = None,
+    all_customers: bool = False,
 ) -> list[Customer]:
     customer_a_configuration = {
         "journey_token": "J-VCQoADBJxeHtmdAvFqoS",
@@ -83,6 +85,9 @@ def get_customers(
     filtered: list[Customer] = []
 
     for customer in customers:
+        if all_customers:
+            filtered.append(customer)
+            continue
         # if customer_id is provided, return the customer if it matches the customer_id
         if customer_id is not None:
             if customer_id != customer["id"]:

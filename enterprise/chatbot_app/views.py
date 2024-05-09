@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import HttpRequest, HttpResponseBadRequest
 from django.urls import reverse
 from django.views.decorators.http import require_POST
@@ -408,6 +409,13 @@ class Language(TypedDict):
     name: str
 
 
+class Guide(TypedDict):
+    id: str
+    topic: str | None
+    customer: str | None
+    created_at: datetime
+
+
 class ChatData(TypedDict):
     current_organization: Organization
     current_space: Space
@@ -420,6 +428,7 @@ class ChatData(TypedDict):
     draft_template: str | None
     organizations: QuerySet[Organization]
     customers: list[Customer]
+    guides: list[Guide]
     searched_documents: list[Document] | None
     selected_documents: list[Document] | None
     searched_operations: list[Operation] | None
@@ -518,6 +527,31 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         get_customers(customer_id=customer) if customer is not None else get_customers()
     )
 
+    guides: list[Guide] = []
+    for chat_iter in chats:
+        # get customer name from id
+        customer_id = chat_iter.form_data.get("customer")
+        all_customers = get_customers(all_customers=True)
+        print(all_customers)
+        customer_name = next(
+            (
+                customer["name"]
+                for customer in all_customers
+                if customer["id"] == customer_id
+            ),
+            None,
+        )
+        print(customer_name)
+        chat_topic = chat_iter.form_data.get("topic")
+        guides.append(
+            {
+                "id": str(chat_iter.chat_id),
+                "topic": chat_topic,
+                "customer": customer_name,
+                "created_at": chat_iter.created_at,
+            }
+        )
+
     return {
         "current_topic": current_topic,
         "current_organization": current_organization,
@@ -536,6 +570,7 @@ def get_context_data(request: HttpRequest, chat_id: str | None = None) -> ChatDa
         "languages": [{"name": "TypeScript"}, {"name": "Python"}],
         "customers": customers,
         "spaces": spaces,
+        "guides": guides,
         "chats": chats,
         "messages": messages,
     }
