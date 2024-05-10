@@ -9,6 +9,8 @@ from django.utils.safestring import mark_safe
 from django.db.models import QuerySet
 from django.db import transaction
 from typing import TypedDict
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 import sys
 import os
 
@@ -35,6 +37,8 @@ import requests
 import os
 import time
 
+channel_layer = get_channel_layer()
+
 
 @require_http_methods(["POST"])
 @login_required
@@ -54,6 +58,9 @@ def generate_draft_template(request: HttpRequest):
     for chunk in stream:
         print(chunk)
         tokens.append(chunk)
+        async_to_sync(channel_layer.group_send)(
+            chat_id, {"type": "template.update", "template": "".join(tokens)}
+        )
     final_plan = "".join(tokens)
     chat.form_data["draft_template"] = final_plan
     # delete plan_stream since its not serializable

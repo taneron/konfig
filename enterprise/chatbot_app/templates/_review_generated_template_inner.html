@@ -103,6 +103,12 @@
                 + '/ws/template/{{ current_chat.chat_id }}'
                 + '/'
             );
+            chatSocket.onmessage = function(event) {
+                let data = JSON.parse(event.data);
+                if (data.type === "template.update") {
+                    easyMde.value(data.template);
+                }
+            }
         }
 
 </script>
