@@ -1,4 +1,5 @@
 import json, re, yaml
+import os
 from typing import TypedDict
 import prompts
 from operator import itemgetter
@@ -6,8 +7,9 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 import phoenix as px
 
-# Launch phoenix
-session = px.launch_app()
+# Only launch phoenix if Django if env variable PHOENIX is true
+if os.environ.get("PHOENIX", "false") == "true":
+    session = px.launch_app()
 
 # Once you have started a Phoenix server, you can start your LangChain application with the OpenInferenceTracer as a callback. To do this, you will have to instrument your LangChain application with the tracer:
 
@@ -23,7 +25,7 @@ class Plan(TypedDict):
     docs_summary: str
     config_summary: str
     plan: str
-    plan_stream: any 
+    plan_stream: any
 
 
 config_description = (
@@ -44,7 +46,7 @@ def generate_plan(query, language, config, customer_name: str):
         [docs_path],
         config,
         config_description,
-        customer_name
+        customer_name,
     )
 
 
@@ -72,7 +74,9 @@ def generate_guide(plan):
     return chain.stream(params)
 
 
-def generate_plan_helper(query, spec_path, docs_paths, config, config_description, customer_name):
+def generate_plan_helper(
+    query, spec_path, docs_paths, config, config_description, customer_name
+):
     spec = read_spec(spec_path)
     docs = read_docs(docs_paths)
     model = ChatOpenAI(model="gpt-4-turbo", temperature=0, model_kwargs={"seed": 0})
@@ -82,7 +86,12 @@ def generate_plan_helper(query, spec_path, docs_paths, config, config_descriptio
         query, config, config_description, docs_reader_output, model
     )
     planner_stream = gen_plan(
-        query, spec_selector_output, docs_reader_output, config_reader_output, customer_name, model
+        query,
+        spec_selector_output,
+        docs_reader_output,
+        config_reader_output,
+        customer_name,
+        model,
     )
     return {
         "query": query,

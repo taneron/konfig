@@ -25,9 +25,8 @@ urlpatterns = [
     path("", views.home, name="home"),
     # path("signup/", views.signup, name="signup"),
     path("login/", views.user_login, name="login"),
-    path(
-        "logout/", auth_views.LogoutView.as_view(), name="logout"
-    ),
+    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("admin/", admin.site.urls),
     path("chat/", include("chatbot_app.urls")),
+    path("websocket/", include("chat.urls")),
 ]
