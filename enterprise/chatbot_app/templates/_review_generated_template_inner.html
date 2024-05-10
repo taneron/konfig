@@ -64,7 +64,13 @@
         }
             </style>
             <script>
-        easyMde = new EasyMDE({
+        if (typeof templateEditor !== 'undefined') {
+            isTemplateEditorFullScreen = templateEditor.codemirror.getOption('fullScreen')
+            if (isTemplateEditorFullScreen) {
+                templateEditor.toggleFullScreen()
+            }
+        }
+        templateEditor = new EasyMDE({
             previewRender: function(plainText) {
                 let html = this.parent.markdown(plainText);
 
@@ -94,19 +100,19 @@
             toolbar: false,
             {% endif %}
         });
-        easyMde.togglePreview();
+        templateEditor.togglePreview();
 
-        if (typeof chatSocket === 'undefined') {
-            chatSocket = new WebSocket(
+        if (typeof templateWebSocket === 'undefined') {
+            templateWebSocket = new WebSocket(
                 'ws://'
                 + window.location.host
                 + '/ws/guide/{{ current_chat.chat_id }}'
                 + '/'
             );
-            chatSocket.onmessage = function(event) {
+            templateWebSocket.onmessage = function(event) {
                 let data = JSON.parse(event.data);
                 if (data.type === "template.update") {
-                    easyMde.value(data.template);
+                    templateEditor.value(data.template);
                 }
             }
         }

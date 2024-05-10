@@ -111,6 +111,9 @@ def generate_onboarding_guide(request: HttpRequest):
     for chunk in stream:
         print(chunk)
         tokens.append(chunk)
+        async_to_sync(channel_layer.group_send)(
+            chat_id, {"type": "guide.update", "guide": "".join(tokens)}
+        )
     final_guide = "".join(tokens)
     chat.form_data["current_guide"] = final_guide
     chat.save()

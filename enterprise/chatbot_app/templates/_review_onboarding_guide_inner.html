@@ -21,13 +21,19 @@
     <span class="htmx-request-hidden">Review the onboarding guide</span>
     <span class="hidden ellipsis htmx-request-inline">Generating onboarding guide</span>
 </p>
-{% if current_guide %}
+{% if final_template %}
     <div class="mt-3">
         <div class="flex flex-col items-end">
             <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
             <textarea name="template" id="draft-template"></textarea>
             <script>
-        easyMde = new EasyMDE({
+        if (typeof guideEditor !== 'undefined') {
+            isGuideEditorFullScreen = guideEditor.codemirror.getOption('fullScreen')
+            if (isGuideEditorFullScreen) {
+                guideEditor.toggleFullScreen()
+            }
+        }
+        guideEditor = new EasyMDE({
             previewRender: function(plainText) {
                 let html = this.parent.markdown(plainText);
 
@@ -45,16 +51,31 @@
                 codeSyntaxHighlighting: true
             },
             spellChecker: false,
-            autosave: {
-                enabled: true,
-                uniqueId: "{{ current_chat.chat_id }}_guide",
-            },
+            // autosave: {
+            //     enabled: true,
+            //     uniqueId: "{{ current_chat.chat_id }}_guide",
+            // },
             forceSync: true,
             maxHeight: "500px",
-            initialValue: `{{ current_guide }}`,
+            initialValue: `{{ current_guide|default:"" }}`,
             element: document.currentScript.closest('div').querySelector('textarea'),
         });
-        easyMde.togglePreview()
+        guideEditor.togglePreview()
+
+        if (typeof guideWebSocket === 'undefined') {
+            guideWebSocket = new WebSocket(
+                'ws://'
+                + window.location.host
+                + '/ws/guide/{{ current_chat.chat_id }}'
+                + '/'
+            );
+            guideWebSocket.onmessage = function(event) {
+                let data = JSON.parse(event.data);
+                if (data.type === "guide.update") {
+                    guideEditor.value(data.guide);
+                }
+            }
+        }
 
 </script>
 </div>
