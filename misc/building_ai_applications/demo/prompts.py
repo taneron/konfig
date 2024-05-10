@@ -106,9 +106,10 @@ Each section should contain bullet points specifying what information should be 
 When a section should include a code snippet, you should indicate this by starting a bullet point with "Code snippet:" followed by a detailed, specific description of the code snippet. 
 Remember that this guide is configured towards a specific customer, so information from the configuration is used to tailor the guide to apply to this specific customer. You should include a section near the top entitled "Customer-Specific Configuration" which should contain a description of how the customer's configuration should be incorporated into the guide.
 Even if some parts of the guide can be made more generic, the guide should be tailored to the customer's configuration specifically - do not include redundant generic information.
-Format your output as a clean markdown specification document. 
-The h1 header of the document should be "Guide For {customer_name}: " followed by the query, but made into a statement instead of a question.
-Do not include any additional preamble or postamble in your output.
+Format your output as a raw markdown document (do not include ```markdown at the start - it should just be raw markdown).
+The h1 header of the document should be # Title: "Guide For {customer_name}: X" where X is the query, but made into a statement instead of a question.
+Do not include an "Appendix" section in your output.
+Do not include any additional preamble or postamble in your output, do not have any mention of the junior engineer, and do not have any additional editorializing - the ONLY output should be the plan document itself.
 """), ("user", data_template )])
 
 writer_prompt = ChatPromptTemplate.from_messages([("system",
