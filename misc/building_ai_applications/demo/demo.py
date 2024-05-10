@@ -5,6 +5,8 @@ import prompts
 from operator import itemgetter
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
+from langchain.cache import SQLiteCache
+from langchain.globals import set_llm_cache
 import phoenix as px
 
 # Only launch phoenix if Django if env variable PHOENIX is true
@@ -80,11 +82,15 @@ def generate_plan_helper(
     spec = read_spec(spec_path)
     docs = read_docs(docs_paths)
     model = ChatOpenAI(model="gpt-4-turbo", temperature=0, model_kwargs={"seed": 0})
+    # enable caching for pre-processing agents
+    set_llm_cache(SQLiteCache(database_path=".langchain.db"))
     spec_selector_output = select_spec_parts(query, spec, model)
     docs_reader_output = summarize_docs(query, docs, model)
     config_reader_output = summarize_config(
         query, config, config_description, docs_reader_output, model
     )
+    # disable caching for the planner
+    set_llm_cache(None)
     planner_stream = gen_plan(
         query,
         spec_selector_output,
