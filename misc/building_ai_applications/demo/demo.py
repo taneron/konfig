@@ -11,12 +11,12 @@ import phoenix as px
 if os.environ.get("PHOENIX", "false") == "true":
     session = px.launch_app()
 
-# Once you have started a Phoenix server, you can start your LangChain application with the OpenInferenceTracer as a callback. To do this, you will have to instrument your LangChain application with the tracer:
+    # Once you have started a Phoenix server, you can start your LangChain application with the OpenInferenceTracer as a callback. To do this, you will have to instrument your LangChain application with the tracer:
 
-from phoenix.trace.langchain import LangChainInstrumentor
+    from phoenix.trace.langchain import LangChainInstrumentor
 
-# By default, the traces will be exported to the locally running Phoenix server.
-LangChainInstrumentor().instrument()
+    # By default, the traces will be exported to the locally running Phoenix server.
+    LangChainInstrumentor().instrument()
 
 
 class Plan(TypedDict):
