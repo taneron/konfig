@@ -109,7 +109,7 @@ Even if some parts of the guide can be made more generic, the guide should be ta
 Format your output as a raw markdown document. This is VERY IMPORTANT: DO NOT INCLUDE "```markdown" at the start. To reiterate, do NOT wrap the output in a markdown code block.
 The h1 header of the document should be # Title: "Guide For {customer_name}: X" where X is the query, but made into a statement instead of a question.
 Do not include an "Appendix" section in your output.
-Do not include any additional preamble or postamble in your output, do not have any mention of the junior engineer, and do not have any additional editorializing - the ONLY output should be the plan document itself.
+Very Important: Do NOT include any additional preamble or postamble in your output; do NOT have any mention of the junior engineer; the ONLY output should be the plan document itself. For example, do NOT write at the end "This guide should provide a comprehensive understanding..." etc. 
 """), ("user", data_template )])
 
 writer_prompt = ChatPromptTemplate.from_messages([("system",
@@ -126,7 +126,7 @@ You are also given a plan/specification from the engineering department that out
 Write a personalized technical guide for the customer from the plan provided by engineering as well as summaries of information from the other documents.
 The guide should be tailored to the customer's configuration specifically - do not include redundant generic information.
 Write clean, clear, and concise code snippets where indicated in the plan.
-Format your output as a clean markdown document.
+Format your output as a raw markdown document. This is VERY IMPORTANT: DO NOT INCLUDE "```markdown" at the start. To reiterate, do NOT wrap the output in a markdown code block.
 Do not include any additional preamble or postamble in your output. Do not try to add links to additional documentation or resources.
 """), ("user", 
 """
