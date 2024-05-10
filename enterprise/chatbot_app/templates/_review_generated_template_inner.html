@@ -21,7 +21,7 @@
     <span class="htmx-request-hidden">Review the generated template</span>
     <span class="hidden ellipsis htmx-request-inline">Generating template</span>
 </p>
-{% if draft_template %}
+{% if current_language %}
     <div class="mt-3">
         <form id="template-drafting" class="flex flex-col items-end">
             <input type="hidden" name="chat_id" value="{{ current_chat.chat_id }}">
@@ -82,24 +82,31 @@
                 codeSyntaxHighlighting: true
             },
             spellChecker: false,
-            autosave: {
-                enabled: true,
-                uniqueId: "{{ current_chat.chat_id }}_template",
-            },
+            // autosave: {
+            //     enabled: true,
+            //     uniqueId: "{{ current_chat.chat_id }}_template",
+            // },
             forceSync: true,
             maxHeight: "500px",
-            initialValue: `{{ draft_template }}`,
+            initialValue: `{{ draft_template|default:"" }}`,
             element: document.currentScript.closest('div').querySelector('textarea'),
-            {% if final_template %}
+            {% if final_template or not draft_template %}
             toolbar: false,
             {% endif %}
         });
-        {% if final_template %}
         easyMde.togglePreview();
-        {% endif %}
+
+        if (typeof chatSocket === 'undefined') {
+            chatSocket = new WebSocket(
+                'ws://'
+                + window.location.host
+                + '/ws/template/{{ current_chat.chat_id }}'
+                + '/'
+            );
+        }
 
 </script>
-{% if not final_template %}
+{% if not final_template and draft_template %}
 <button hx-target="#app" hx-post={% url 'submit_template' %} class="mt-2 btn btn-primary">Submit</button>
 {% endif %}
 </form>
