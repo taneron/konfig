@@ -4,7 +4,7 @@ from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
 
-class TemplateConsumer(WebsocketConsumer):
+class GuideConsumer(WebsocketConsumer):
     def connect(self):
         self.chat_id = self.scope["url_route"]["kwargs"]["chat_id"]
         async_to_sync(self.channel_layer.group_add)(self.chat_id, self.channel_name)
