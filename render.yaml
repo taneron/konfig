@@ -88,10 +88,6 @@ services:
       - generator/konfig-dash/**/*
     domains:
       - demo.konfigthis.com
-    disk:
-      name: Just for building
-      mountPath: /var/data
-      sizeGB: 20
     envVars:
       - key: GITHUB_API_REDIS_CACHE
         fromService:
@@ -250,10 +246,6 @@ services:
     rootDir: generator/konfig-dash
     domains:
       - api.konfigthis.com
-    disk:
-      name: Just for building
-      mountPath: /var/data
-      sizeGB: 20
     buildCommand: yarn && yarn build && yarn rw build api
     startCommand: yarn rw deploy render api --prisma=false --data-migrate=false
     envVars:
