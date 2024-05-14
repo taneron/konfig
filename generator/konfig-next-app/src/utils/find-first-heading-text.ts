@@ -16,7 +16,9 @@ const processor = unified()
  */
 export function findFirstHeadingText({ markdown }: { markdown: string }) {
   const mdast = processor.parse(markdown)
-  const node = mdast.children.find(({ type }) => type === 'heading')
+  const node = (mdast as any).children.find(
+    ({ type }: { type: string }) => type === 'heading'
+  )
   const demoName = toString(node)
   return demoName
 }

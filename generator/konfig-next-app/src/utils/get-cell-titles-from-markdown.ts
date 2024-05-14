@@ -2,7 +2,7 @@ import { unified } from "unified";
 import remarkDirective from "remark-directive";
 import remarkParse from "remark-parse";
 import { toString } from "mdast-util-to-string";
-import type { Heading } from "mdast";
+import type { Heading } from "mdast"
 
 export function getCellTitlesFromMarkdown({
   markdown,
@@ -15,7 +15,7 @@ export function getCellTitlesFromMarkdown({
   const titles: string[] = [];
 
   let heading: Heading | null = null;
-  mdast.children.forEach((child) => {
+  (mdast as any).children.forEach((child: any) => {
     if (child.type === "heading") heading = child;
     if (
       heading !== null &&
