@@ -339,7 +339,7 @@ const _Form: Components['form'] = ({
   // Find the first section of code that is a Python snippet
   let firstPreNode: Element | undefined
   visit(
-    node as any,
+    node,
     (node) => {
       const element = node as Element
       return element.type === 'element' && element.tagName === 'code'
