@@ -230,87 +230,85 @@ export function OperationReferenceMain({
     }
   }
 
+  const handleSubmit: Parameters<typeof form.onSubmit>[0] = async (values) => {
+    // validate that any required parameters are set
+    const requiredParameters = parameters.filter(
+      (parameter) => parameter.required
+    )
+
+    const missingRequiredParameters = requiredParameters.filter((parameter) => {
+      const value = values[PARAMETER_FORM_NAME_PREFIX][parameter.name]
+      const parameterNotValid = validateValueForParameter(
+        parameter,
+        parameter.name
+      )(recursivelyRemoveEmptyValues(value))
+      return parameterNotValid
+    })
+
+    if (missingRequiredParameters.length > 0) {
+      for (const parameter of missingRequiredParameters) {
+        const message =
+          parameter.schema.type === 'array'
+            ? `Add a non-empty item to required parameter "${parameter.name}"`
+            : `Missing required parameter "${parameter.name}"`
+        form.setFieldError(
+          `${PARAMETER_FORM_NAME_PREFIX}.${parameter.name}`,
+          message
+        )
+        notifications.show({ message, color: 'red', id: parameter.name })
+      }
+      return
+    }
+
+    setRequestInProgress(true)
+    try {
+      // IMPORTANT: files is used by the code generator so its fine that this is not used
+      // the IDE will complain that it is not used but it is used by the code generator
+      // see implementation of .setupFiles() and .snippet()
+      const files = CodeGeneratorTypeScript.setupFiles(values)
+
+      const snippet = await new CodeGeneratorTypeScript({
+        mode: 'execution',
+        ...codegenArgs,
+      }).snippet()
+
+      const wrapped = `(async () => {
+            ${snippet}
+            })()`
+      const result = await eval(wrapped)
+      setResult(result)
+    } catch (e) {
+      console.error(e)
+      if (
+        typeof e === 'object' &&
+        e !== null &&
+        'status' in e &&
+        typeof e.status === 'number' &&
+        'statusText' in e &&
+        typeof e.statusText === 'string' &&
+        'responseBody' in e
+      ) {
+        setResult({
+          data: e.responseBody,
+          status: e.status,
+          statusText: e.statusText,
+        })
+      }
+    } finally {
+      if (typeof window !== 'undefined') {
+        await localforage.setItem(
+          FORM_VALUES_LOCAL_STORAGE_KEY({ owner, repo }),
+          values
+        )
+      }
+      setRequestInProgress(false)
+    }
+  }
+
   const header = operation.operation.summary ?? operation.path
   return (
     <FormProvider form={form}>
-      <form
-        onSubmit={form.onSubmit(async (values) => {
-          // validate that any required parameters are set
-          const requiredParameters = parameters.filter(
-            (parameter) => parameter.required
-          )
-
-          const missingRequiredParameters = requiredParameters.filter(
-            (parameter) => {
-              const value = values[PARAMETER_FORM_NAME_PREFIX][parameter.name]
-              const parameterNotValid = validateValueForParameter(
-                parameter,
-                parameter.name
-              )(recursivelyRemoveEmptyValues(value))
-              return parameterNotValid
-            }
-          )
-
-          if (missingRequiredParameters.length > 0) {
-            for (const parameter of missingRequiredParameters) {
-              const message =
-                parameter.schema.type === 'array'
-                  ? `Add a non-empty item to required parameter "${parameter.name}"`
-                  : `Missing required parameter "${parameter.name}"`
-              form.setFieldError(
-                `${PARAMETER_FORM_NAME_PREFIX}.${parameter.name}`,
-                message
-              )
-              notifications.show({ message, color: 'red', id: parameter.name })
-            }
-            return
-          }
-
-          setRequestInProgress(true)
-          try {
-            // IMPORTANT: files is used by the code generator so its fine that this is not used
-            // the IDE will complain that it is not used but it is used by the code generator
-            // see implementation of .setupFiles() and .snippet()
-            const files = CodeGeneratorTypeScript.setupFiles(values)
-
-            const snippet = await new CodeGeneratorTypeScript({
-              mode: 'execution',
-              ...codegenArgs,
-            }).snippet()
-
-            const wrapped = `(async () => {
-            ${snippet}
-            })()`
-            const result = await eval(wrapped)
-            setResult(result)
-          } catch (e) {
-            console.error(e)
-            if (
-              typeof e === 'object' &&
-              e !== null &&
-              'status' in e &&
-              typeof e.status === 'number' &&
-              'statusText' in e &&
-              typeof e.statusText === 'string' &&
-              'responseBody' in e
-            ) {
-              setResult({
-                data: e.responseBody,
-                status: e.status,
-                statusText: e.statusText,
-              })
-            }
-          } finally {
-            if (typeof window !== 'undefined') {
-              await localforage.setItem(
-                FORM_VALUES_LOCAL_STORAGE_KEY({ owner, repo }),
-                values
-              )
-            }
-            setRequestInProgress(false)
-          }
-        }, handleError)}
-      >
+      <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
         <Flex
           direction={{ base: 'column', sm: 'row' }}
           justify={{ base: undefined, sm: 'space-between' }}
