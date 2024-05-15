@@ -1,4 +1,4 @@
-name: Daily Merge Staging to Main
+name: Merge Staging to Main
 
 on:
   push:
@@ -22,14 +22,8 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
-      - name: Checkout staging branch
-        run: git checkout staging
-
-      - name: Create temporary merge branch
-        run: git checkout -b temp-merge-staging-to-main
-
-      - name: Push temporary merge branch
-        run: git push --force origin temp-merge-staging-to-main --no-verify
+      - name: Push staging to temporary merge branch
+        run: git push --force origin staging:temp-merge-staging-to-main --no-verify
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
