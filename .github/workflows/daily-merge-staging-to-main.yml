@@ -21,14 +21,11 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
-      - name: Checkout main branch
-        run: git checkout main
+      - name: Checkout staging branch
+        run: git checkout staging
 
       - name: Create temporary merge branch
         run: git checkout -b temp-merge-staging-to-main
-
-      - name: Merge staging into temporary branch
-        run: git merge origin/staging --no-ff -m "Daily merge staging to main"
 
       - name: Push temporary merge branch
         run: git push --force origin temp-merge-staging-to-main --no-verify
