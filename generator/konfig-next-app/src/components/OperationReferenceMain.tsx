@@ -5,6 +5,8 @@ import {
   useMantineColorScheme,
   MediaQuery,
   useMantineTheme,
+  Title,
+  clsx,
 } from '@mantine/core'
 import { OperationForm } from './OperationForm'
 import {
@@ -224,6 +226,8 @@ export function OperationReferenceMain({
     statusText: string
   } | null>(null)
 
+  const hasParameters = parameters.length > 0
+
   const handleError = (errors: typeof form.errors) => {
     for (const [id, message] of Object.entries(errors)) {
       notifications.show({ message, color: 'red', id })
@@ -309,12 +313,8 @@ export function OperationReferenceMain({
   return (
     <FormProvider form={form}>
       <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
-        <Flex
-          direction={{ base: 'column', sm: 'row' }}
-          justify={{ base: undefined, sm: 'space-between' }}
-          className="px-3 sm:px-8"
-        >
-          <Stack w={{ base: '100%', sm: '55%' }} spacing="md">
+        <div className="px-3 sm:px-8">
+          <div className="mb-14 mt-6">
             <OperationReferenceDocumentation
               operation={operation}
               tag={tag}
@@ -323,7 +323,25 @@ export function OperationReferenceMain({
               theme={theme}
               basePath={basePath}
             />
+          </div>
+          <Title
+            className={clsx(
+              'mb-8',
+              'border-b pb-3 border-b-mantine-gray-100 dark:border-b-mantine-gray-900'
+            )}
+            order={4}
+          >
+            Request Parameters
+          </Title>
+        </div>
+        <Flex
+          direction={{ base: 'column', sm: 'row' }}
+          justify={{ base: undefined, sm: 'space-between' }}
+          className="px-3 sm:px-8"
+        >
+          <Stack w={{ base: '100%', sm: '55%' }} spacing="md">
             <OperationForm
+              hasParameters={hasParameters}
               requestBody={requestBodyParameter}
               owner={owner}
               repo={repo}

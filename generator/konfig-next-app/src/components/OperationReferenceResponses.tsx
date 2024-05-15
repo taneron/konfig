@@ -12,6 +12,7 @@ import {
   Accordion,
   createStyles,
   Tabs,
+  clsx,
 } from '@mantine/core'
 import { IconFile, IconFileCode } from '@tabler/icons-react'
 import { useState } from 'react'
@@ -46,7 +47,13 @@ export function OperationReferenceResponses({
 
   return (
     <Box my="lg">
-      <Title mb="xs" order={4}>
+      <Title
+        className={clsx(
+          'mb-8',
+          'border-b pb-3 border-b-mantine-gray-100 dark:border-b-mantine-gray-900'
+        )}
+        order={4}
+      >
         Responses
       </Title>
       <Accordion

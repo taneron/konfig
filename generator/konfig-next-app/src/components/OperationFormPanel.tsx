@@ -43,7 +43,9 @@ export function OperationFormPanel({
     <Box className="flex flex-col gap-6" w={{ base: '100%', sm: '40%' }}>
       {authorization.length > 0 && (
         <div className="space-y-2">
-          <Title order={6}>Authorization</Title>
+          <div className="text-xs text-mantine-gray-600 mb-3 font-semibold">
+            Authorization
+          </div>
           {authorization
             .filter(([name]) => {
               return !hideSecurity.map(({ name }) => name).includes(name)

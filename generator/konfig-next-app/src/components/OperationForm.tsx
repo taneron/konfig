@@ -25,6 +25,7 @@ export function OperationForm({
   requestBody,
   owner,
   repo,
+  hasParameters,
 }: {
   requestBody: Parameter | null
   pathParameters: Parameter[]
@@ -35,7 +36,11 @@ export function OperationForm({
   requestBodyRequired: string[] | null
   owner: string
   repo: string
+  hasParameters: boolean
 }) {
+  if (!hasParameters) {
+    return <div className="text-mantine-gray-600">No parameters.</div>
+  }
   return (
     <Stack spacing="xl">
       <ParameterGroup
