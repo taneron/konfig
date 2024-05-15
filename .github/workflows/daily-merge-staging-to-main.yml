@@ -28,10 +28,10 @@ jobs:
         run: git checkout -b temp-merge-staging-to-main
 
       - name: Merge staging into temporary branch
-        run: git merge origin/staging --no-ff
+        run: git merge origin/staging --no-ff -m "Daily merge staging to main"
 
       - name: Push temporary merge branch
-        run: git push origin temp-merge-staging-to-main
+        run: git push --force origin temp-merge-staging-to-main --no-verify
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
