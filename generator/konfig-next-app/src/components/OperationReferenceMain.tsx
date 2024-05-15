@@ -1,21 +1,11 @@
 import {
   Flex,
   Stack,
-  Title,
-  Group,
-  Code,
-  Box,
   Divider,
-  Badge,
-  Text,
   useMantineColorScheme,
-  Paper,
   MediaQuery,
-  Alert,
   useMantineTheme,
-  ScrollArea,
 } from '@mantine/core'
-import { HttpMethodBadge } from './HttpMethodBadge'
 import { OperationForm } from './OperationForm'
 import {
   FORM_VALUES_LOCAL_STORAGE_KEY,
@@ -23,10 +13,6 @@ import {
   generateInitialFormValues,
   generateInitialFormValuesWithStorage,
 } from '../utils/generate-initial-operation-form-values'
-import {
-  OperationClientStateForm,
-  OperationSecuritySchemeForm,
-} from './OperationSecuritySchemeForm'
 import type { SecurityScheme, RequestBodyObject } from 'konfig-lib'
 import { generateParametersFromRequestBodyProperties } from '../utils/generate-parameters-from-request-body-properties'
 import { useEffect, useMemo, useState } from 'react'
@@ -34,21 +20,16 @@ import { FormProvider, useForm } from '../utils/operation-form-context'
 import { useRouter } from 'next/router'
 import { CodeGeneratorConstructorArgs } from '../utils/code-generator'
 import { CodeGeneratorTypeScript } from '../utils/code-generator-typescript'
-import { ExecuteOutput } from './ExecuteOutput'
-import { tryJsonOutput } from '../utils/try-json-output'
-import { tryTableOutput } from '../utils/try-table-output'
-import { IconAlertCircle } from '@tabler/icons-react'
 import { deepmerge } from '../utils/deepmerge'
 import { notifications } from '@mantine/notifications'
 import localforage from 'localforage'
 import { ReferencePageProps } from '../utils/generate-props-for-reference-page'
 import { SocialFooter } from './SocialFooter'
-import { Breadcrumbs } from './Breadcrumbs'
 import { OperationReferenceResponses } from './OperationReferenceResponses'
-import { OperationRequest } from './OperationRequest'
 import { validateValueForParameter } from '@/utils/validate-value-for-parameter'
-import ReactMarkdown from 'react-markdown'
 import { recursivelyRemoveEmptyValues } from '@/utils/recursively-remove-empty-values'
+import { OperationFormPanel } from './OperationFormPanel'
+import { OperationReferenceDocumentation } from './OperationReferenceDocumentation'
 
 export function OperationReferenceMain({
   pathParameters,
@@ -336,56 +317,14 @@ export function OperationReferenceMain({
           className="px-3 sm:px-8"
         >
           <Stack w={{ base: '100%', sm: '55%' }} spacing="md">
-            <Stack mb="lg" spacing="xs">
-              <Breadcrumbs breadcrumbs={[tag, header]} />
-              <Title
-                color={colorScheme === 'dark' ? theme.white : undefined}
-                order={2}
-              >
-                {header}
-              </Title>
-              <Group noWrap spacing="xs">
-                <HttpMethodBadge httpMethod={operation.method} />
-                <Box
-                  h={2}
-                  w={2}
-                  className="flex-shrink-0"
-                  style={{
-                    backgroundColor:
-                      theme.colorScheme === 'dark'
-                        ? theme.colors.dark[3]
-                        : theme.colors.gray[5],
-                    borderRadius: theme.radius.xl,
-                  }}
-                />
-                <ScrollArea type="never">
-                  <Code
-                    className="whitespace-nowrap"
-                    style={{ backgroundColor: 'unset' }}
-                  >
-                    {`${basePath}${operation.path}`}
-                  </Code>
-                </ScrollArea>
-              </Group>
-              {operation.operation.deprecated && (
-                <Alert
-                  p="xs"
-                  radius="xs"
-                  icon={<IconAlertCircle size="1rem" />}
-                  title="Deprecated"
-                  color="red"
-                >
-                  Refrain from usage of this operation
-                </Alert>
-              )}
-              {operation.operation.description && (
-                <Box className="space-y-4 text-mantine-gray-700 dark:text-mantine-gray-500 text-sm">
-                  <ReactMarkdown>
-                    {operation.operation.description}
-                  </ReactMarkdown>
-                </Box>
-              )}
-            </Stack>
+            <OperationReferenceDocumentation
+              operation={operation}
+              tag={tag}
+              header={header}
+              colorScheme={colorScheme}
+              theme={theme}
+              basePath={basePath}
+            />
             <OperationForm
               requestBody={requestBodyParameter}
               owner={owner}
@@ -401,62 +340,16 @@ export function OperationReferenceMain({
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <div className="h-10" />
           </MediaQuery>
-          <Box className="flex flex-col gap-6" w={{ base: '100%', sm: '40%' }}>
-            {authorization.length > 0 && (
-              <div className="space-y-2">
-                <Title order={6}>Authorization</Title>
-                {authorization
-                  .filter(([name]) => {
-                    return !hideSecurity.map(({ name }) => name).includes(name)
-                  })
-                  .map(([name, scheme]) => {
-                    return (
-                      <OperationSecuritySchemeForm
-                        key={name}
-                        name={name}
-                        scheme={scheme}
-                      />
-                    )
-                  })}
-                {clientState.map((name) => {
-                  return <OperationClientStateForm key={name} name={name} />
-                })}
-                {clientStateWithExamples.map(({ name, required }) => {
-                  return (
-                    <OperationClientStateForm
-                      required={required}
-                      key={name}
-                      name={name}
-                    />
-                  )
-                })}
-              </div>
-            )}
-            <div className="sticky top-[calc(var(--mantine-header-height,0px)+1rem)] space-y-4">
-              <OperationRequest
-                hideNonSdkSnippets={hideNonSdkSnippets}
-                codegenArgs={codegenArgs}
-                requestInProgress={requestInProgress}
-              />
-              {result?.data != null && (
-                <Paper shadow="sm" radius="xs" p={0} withBorder>
-                  <Box p="sm">
-                    {/* if status is not successful (e.g. 4xx or 5xx), the badge is red */}
-                    <Badge
-                      color={result.status >= 300 ? 'red' : 'blue'}
-                    >{`${result.status} ${result.statusText}`}</Badge>
-                  </Box>
-                  <ExecuteOutput
-                    jsonOutput={tryJsonOutput(JSON.stringify(result.data))}
-                    tableOutput={tryTableOutput(JSON.stringify(result.data))}
-                    processedOutput={JSON.stringify(result.data, null, 2)}
-                    disableTable
-                    show={true}
-                  />
-                </Paper>
-              )}
-            </div>
-          </Box>
+          <OperationFormPanel
+            authorization={authorization}
+            hideSecurity={hideSecurity}
+            clientState={clientState}
+            clientStateWithExamples={clientStateWithExamples}
+            codegenArgs={codegenArgs}
+            result={result}
+            requestInProgress={requestInProgress}
+            hideNonSdkSnippets={hideNonSdkSnippets}
+          />
         </Flex>
         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
           <Divider className="my-16" />
