@@ -23,7 +23,9 @@ jobs:
         run: git fetch --all
 
       - name: Push staging to temporary merge branch
-        run: git push --force origin staging:temp-merge-staging-to-main --no-verify
+        run: |
+          git checkout staging
+          git push --force origin staging:temp-merge-staging-to-main --no-verify
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
