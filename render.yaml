@@ -247,7 +247,7 @@ services:
     rootDir: generator/konfig-dash
     domains:
       - api.konfigthis.com
-    buildCommand: yarn && yarn build && yarn rw build api
+    buildCommand: ./bash-scripts/build-render.sh
     startCommand: yarn rw deploy render api --prisma=false --data-migrate=false
     envVars:
       - fromGroup: npm

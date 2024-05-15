@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+rm -rf ../../.git
+
 # make sure you can run this from any directory
 cd "$(dirname "$0")"
 
