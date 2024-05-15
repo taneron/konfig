@@ -332,10 +332,10 @@ export function OperationReferenceMain({
       >
         <Flex
           direction={{ base: 'column', sm: 'row' }}
-          justify={{ base: undefined, sm: 'space-around' }}
-          pt="sm"
+          justify={{ base: undefined, sm: 'space-between' }}
+          className="px-3 sm:px-8"
         >
-          <Stack px="sm" w={{ base: '100%', sm: '55%' }} spacing="md">
+          <Stack w={{ base: '100%', sm: '55%' }} spacing="md">
             <Stack mb="lg" spacing="xs">
               <Breadcrumbs breadcrumbs={[tag, header]} />
               <Title
@@ -397,26 +397,11 @@ export function OperationReferenceMain({
               requestBodyProperties={requestBodyProperties}
               requestBodyRequired={requestBodyRequired}
             />
-            {responses && (
-              <OperationReferenceResponses
-                operation={operation}
-                responses={responses}
-              />
-            )}
-            <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-              <Box>
-                <SocialFooter konfigYaml={konfigYaml} />
-              </Box>
-            </MediaQuery>
           </Stack>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Divider my="xl" />
+            <div className="h-10" />
           </MediaQuery>
-          <Box
-            className="flex flex-col gap-6"
-            px="sm"
-            w={{ base: '100%', sm: '40%' }}
-          >
+          <Box className="flex flex-col gap-6" w={{ base: '100%', sm: '40%' }}>
             {authorization.length > 0 && (
               <div className="space-y-2">
                 <Title order={6}>Authorization</Title>
@@ -471,13 +456,20 @@ export function OperationReferenceMain({
                 </Paper>
               )}
             </div>
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-              <Box>
-                <SocialFooter konfigYaml={konfigYaml} />
-              </Box>
-            </MediaQuery>
           </Box>
         </Flex>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+          <Divider className="my-16" />
+        </MediaQuery>
+        <div className="px-3 sm:px-8">
+          {responses && (
+            <OperationReferenceResponses
+              operation={operation}
+              responses={responses}
+            />
+          )}
+          <SocialFooter konfigYaml={konfigYaml} />
+        </div>
       </form>
     </FormProvider>
   )

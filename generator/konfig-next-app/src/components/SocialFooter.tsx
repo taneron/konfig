@@ -6,10 +6,10 @@ export function SocialFooter({ konfigYaml }: { konfigYaml: KonfigYamlType }) {
   if (konfigYaml.portal?.socials === undefined) return null
   return (
     <Box>
-      <Divider mt={rem(60)} />
-      <Box my={rem(20)}>
+      <Divider className="mt-24" />
+      <div className="my-10">
         <DemoSocials socials={konfigYaml.portal.socials} />
-      </Box>
+      </div>
     </Box>
   )
 }
