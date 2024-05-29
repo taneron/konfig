@@ -53,6 +53,7 @@ import org.openapitools.codegen.languages.JavaClientCodegen;
 import org.openapitools.codegen.languages.PythonClientCodegen;
 import org.openapitools.codegen.languages.PythonPriorClientCodegen;
 import org.openapitools.codegen.languages.RustServerCodegen;
+import org.openapitools.codegen.languages.TypeScriptAxiosClientCodegen;
 import org.openapitools.codegen.meta.FeatureSet;
 import org.openapitools.codegen.meta.GeneratorMetadata;
 import org.openapitools.codegen.meta.Stability;
@@ -5339,7 +5340,8 @@ public class DefaultCodegen implements CodegenConfig {
         if (parameter.getSchema() != null) {
             parameterSchema = unaliasSchema(parameter.getSchema());
             parameterModelName = getParameterDataType(parameter, parameterSchema);
-            if (this instanceof PythonPriorClientCodegen && parameter.getSchema().get$ref() != null
+            if ((this instanceof PythonPriorClientCodegen || this instanceof TypeScriptAxiosClientCodegen)
+                    && parameter.getSchema().get$ref() != null
                     && parameterModelName != null) {
                 // This is a ref so add it to list of imports
                 imports.add(parameterModelName);
