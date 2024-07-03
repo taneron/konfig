@@ -11,10 +11,6 @@ export const domainToRepoMappings: Record<
     owner: 'konfig-dev',
     repo: 'splitit-web-sdks',
   },
-  'leap.localhost:3000': {
-    owner: 'leap-ai',
-    repo: 'workflows-sdks',
-  },
   'snaptrade.localhost:3000': {
     owner: 'passiv',
     repo: 'snaptrade-sdks',
@@ -45,10 +41,6 @@ export const domainToRepoMappings: Record<
     owner: 'konfig-dev',
     repo: 'acme-sdks',
   },
-  'leap.onkonfig.com': {
-    owner: 'leap-ai',
-    repo: 'workflows-sdks',
-  },
   'splitit.onkonfig.com': {
     owner: 'konfig-dev',
     repo: 'splitit-web-sdks',
@@ -75,10 +67,6 @@ export const domainToRepoMappings: Record<
     owner: 'konfig-dev',
     repo: 'acme-sdks',
   },
-  'leap.konfig.dev': {
-    owner: 'leap-ai',
-    repo: 'workflows-sdks',
-  },
   'splitit.konfig.dev': {
     owner: 'konfig-dev',
     repo: 'splitit-web-sdks',
@@ -103,10 +91,6 @@ export const domainToRepoMappings: Record<
   },
 
   // custom domain
-  'docs.workflows.tryleap.ai': {
-    owner: 'leap-ai',
-    repo: 'workflows-sdks',
-  },
   'docs.snaptrade.com': {
     owner: 'passiv',
     repo: 'snaptrade-sdks',
