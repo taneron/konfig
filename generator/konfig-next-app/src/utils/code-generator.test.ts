@@ -61,6 +61,7 @@ function testArgs(): CodeGeneratorConstructorArgs {
         packageName: 'test',
         projectName: 'test',
         git: gitConfig,
+        disabled: false,
       },
     },
     tag: 'Test',

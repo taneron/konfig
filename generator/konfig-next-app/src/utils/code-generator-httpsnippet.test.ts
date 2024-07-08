@@ -47,6 +47,7 @@ test('httpsnippet - HAR validation error', async () => {
         packageName: 'leap_workflows',
         projectName: 'leap-python-sdk',
         git: gitConfig,
+        disabled: false,
       },
     },
     servers: ['https://api.workflows.tryleap.ai'],
@@ -163,6 +164,7 @@ test('httpsnippet - deeply nested objects with files', async () => {
         packageName: 'groundx',
         projectName: 'groundx-python-sdk',
         git: gitConfig,
+        disabled: false,
       },
     },
     servers: ['https://api.groundx.ai/api'],
@@ -246,6 +248,7 @@ test('generate "requestBody" parameter when non-request body parameter and reque
           owner: 'konfig-dev',
           path: 'bellhop-sdks/tree/main/python',
         },
+        disabled: false,
       },
     },
     servers: [
@@ -463,6 +466,7 @@ test('request body should not be used if schema is object', async () => {
           owner: 'konfig-dev',
           path: 'bellhop-sdks/tree/main/python',
         },
+        disabled: false,
       },
     },
     servers: [

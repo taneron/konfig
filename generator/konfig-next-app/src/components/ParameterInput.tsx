@@ -236,19 +236,24 @@ export function ParameterInput({
     parameter.schema.format === 'date'
   ) {
     const { value, onChange, ...rest } = inputProps
+    const parsed = parseDateString(value)
     return (
       <DatePickerInput
         icon={<IconCalendar size="1.1rem" stroke={1.5} />}
         clearable
-        value={parseDateString(value)}
+        value={parsed}
         onChange={(date) => {
           if (date === null) {
             onChange('')
             return
           }
           if (date instanceof Date) {
+            const YYYYMMDD = `${date.getFullYear()}-${(date.getMonth() + 1)
+              .toString()
+              .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+            console.log(YYYYMMDD)
             // converts date to YYYY-MM-DD format
-            onChange(date.toISOString().split('T')[0])
+            onChange(YYYYMMDD)
           }
         }}
         {...rest}
