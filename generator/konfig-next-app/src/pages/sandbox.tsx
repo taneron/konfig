@@ -196,6 +196,7 @@ const DemoPortalWrapper = observer(() => {
           })
         }}
         sandbox
+        cta={null}
         state={state.portalState}
       />
     </MantineProvider>
