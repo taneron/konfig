@@ -1,0 +1,49 @@
+# Configuring a Call To Action Button
+
+<Figure caption="Example call-to-action button shown in the top-right of the documentation">
+![call-to-action-button](/img/call-to-action-button.png)
+</Figure>
+
+To configure a call-to-action button, simpel add the `cta` property to your
+portal configuration. The `cta` property is an object that include a `url` and
+`label` for the button.
+
+<CH.Code rows={20}>
+```yaml konfig.yaml focus=11:13
+outputDirectory: /tmp/acme-sdks-out
+specInputPath: api.yaml
+specPath: api-fixed.yaml
+portal:
+  title: Acme
+  primaryColor: "#1f334e"
+  logo:
+    light: portal-logo-light.png
+    dark: portal-logo-dark.png
+  googleAnalyticsId: G-XXXXXXXXXX
+  cta:
+    url: https://acme.com/book-a-demo
+    label: Book A Demo
+  documentation:
+    sidebar:
+      sections:
+        - label: Guides
+          links:
+            - id: getting-started
+              path: docs/getting-started.md
+            - id: client-side-direct-api-usage
+              path: docs/client-side-direct-api-usage.md
+  demos:
+    - id: getting-started
+      path: demos/getting-started.md
+generators:
+  python:
+    version: 1.0.0
+    packageName: acme_client
+    projectName: acme-python-sdk
+    outputDirectory: python
+    clientName: Acme
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/python
+```
+</CH.Code>

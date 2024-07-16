@@ -123,6 +123,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Configuring a Call To Action",
+              id: "portal/tutorials/configuring-a-call-to-action",
+            },
+            {
+              type: "doc",
               label: "Configuring Custom Code",
               id: "portal/tutorials/configuring-custom-code",
             },
