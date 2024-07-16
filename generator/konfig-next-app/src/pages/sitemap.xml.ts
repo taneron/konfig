@@ -14,15 +14,16 @@ function generateSitemapXml(host: string, pages: PageData[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${pages
-        .map(
-          (page) => `
+        .map((page) => {
+          const url = `https://${host}${page.slug}`
+          return `
         <url>
-          <loc>${`https://${host}${page.slug}`}</loc>
+          <loc>${encodeURI(url)}</loc>
           <changefreq>daily</changefreq>
           <priority>0.7</priority>
         </url>
       `
-        )
+        })
         .join('')}
     </urlset>`
 }
