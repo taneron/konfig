@@ -6,6 +6,7 @@ import {
   MantineNumberSize,
   MediaQuery,
   Title,
+  clsx,
   createStyles,
   rem,
   useMantineTheme,
@@ -66,7 +67,7 @@ export const LayoutHeader = observer(
           // }`,
         }}
       >
-        <Group h="100%" spacing="xs">
+        <Group h="100%" spacing="xs" noWrap>
           <MediaQuery largerThan={breakpoint} styles={{ display: 'none' }}>
             <Burger
               opened={opened}
@@ -76,24 +77,17 @@ export const LayoutHeader = observer(
             />
           </MediaQuery>
           {logo !== null ? (
-            // <MantineImage height={24} mx="auto" src={logo} alt="Random image" />
             <div
               style={{
                 display: 'flex',
                 position: 'relative',
-                height: '33%',
               }}
+              className="h-1/3"
             >
               <Link style={{ position: 'relative' }} href={baseUrl}>
-                <Image
-                  className={classes.logo}
-                  sizes="20vw"
-                  style={{
-                    objectFit: 'contain',
-                  }}
-                  fill
+                <img
+                  className={clsx(classes.logo, 'h-full')}
                   alt="logo"
-                  priority
                   src={
                     typeof logo === 'string'
                       ? logo
@@ -108,7 +102,7 @@ export const LayoutHeader = observer(
             <Title order={4}>{title}</Title>
           )}
         </Group>
-        <Group>
+        <Group className="flex-none">
           <div className="sm:hidden">
             <Search />
           </div>
