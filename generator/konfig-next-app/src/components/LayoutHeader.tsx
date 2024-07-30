@@ -66,7 +66,7 @@ export const LayoutHeader = observer(
           // }`,
         }}
       >
-        <Group spacing="xs">
+        <Group h="100%" spacing="xs">
           <MediaQuery largerThan={breakpoint} styles={{ display: 'none' }}>
             <Burger
               opened={opened}
@@ -81,7 +81,7 @@ export const LayoutHeader = observer(
               style={{
                 display: 'flex',
                 position: 'relative',
-                height: 24,
+                height: '33%',
               }}
             >
               <Link style={{ position: 'relative' }} href={baseUrl}>
