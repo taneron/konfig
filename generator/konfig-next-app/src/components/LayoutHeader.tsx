@@ -82,7 +82,6 @@ export const LayoutHeader = observer(
                 display: 'flex',
                 position: 'relative',
                 height: 24,
-                width: rem(140),
               }}
             >
               <Link style={{ position: 'relative' }} href={baseUrl}>
