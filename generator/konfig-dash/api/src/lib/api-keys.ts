@@ -5,6 +5,7 @@ const apiKeys: Record<string, string> = {
   Mu82mVyHm4D1p1zljd8T8sQvxtaIZ5b2: 'konfig-dev',
   g774QbmWUqt6BgqYqaDRhs70bhb9GcEd: 'groundxai',
   mlTgDY71gh0IArP2rmlcFnLcyHmvUZWr: 'leap-ai',
+  WhSlSOXvNo1pp5895MM2RatQndYurSUw: 'Carbon-for-Developers',
 }
 
 export function validateApiKey({
