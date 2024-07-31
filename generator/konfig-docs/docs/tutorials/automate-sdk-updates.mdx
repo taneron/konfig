@@ -106,17 +106,25 @@ and publishing process. To add a new repository secret, navigate to your GitHub 
     - Format in key=value pairs (no spaces) separated by newlines.
     - Rest assured that our automation pipeline takes the necessary steps to ensure that no individual secret values are
     leaked despite having multiple sensitive values in one repository secret.
-3. **NPM_TOKEN**
-    - Received from Konfig.
-    - Scoped token for publishing typescript SDKs to `npm`. Omit if you do not have a typescript SDK.
-4. **PYPI_TOKEN_1**
-    - Received from Konfig.
-    - Scoped token for publishing python SDKs to `PyPi`. Omit if you do not have a python SDK.
+
+Each SDK language requires additional GitHub repository secrets to be added to the SDK repository and provided as arguments in the `release` workflow file for the SDK publishing process. 
+For each of the following languages in your SDK repo, add the following as a new repository secret (values obtained from Konfig), and add them as arguments in `release.yaml` as such:
+VARIABLE_NAME: ${{ secrets.VARIABLE_NAME }}
+
+1. TypeScript: **NPM_TOKEN**
+2. Python: **PYPI_TOKEN_1**
+    - Additionally, your `konfig.yaml` file needs to be configured with the variable name PYPI_TOKEN_1. See the instructions below.
     - `PyPi` only allows scoped tokens for a single package. In the case where you have multiple `konfig.yaml` files in
     your SDK repository specifying different `PyPi` packages, you will need a token per package. Set any additional
     tokens as repository secrets named PYPI_TOKEN_2, etc.
+3. Java: **GPG_PASSPHRASE**, **GPG_PRIVATE_KEY**, **GPG_KEY_ID**, **OSSRH_USERNAME**, **OSSRH_PASSWORD**
+4. C#: **NUGET_API_KEY**
+5. PHP: **PACKAGIST_API_TOKEN**
+6. Ruby: **GEM_HOST_API_KEY**
+7. Swift: **COCOAPODS_SESSION_EMAIL**, **COCOAPODS_SESSION_PASSWORD**
+8. Go: No additional variables required.
 
-Finally, if you have a python SDK, you will need to modify your `konfig.yaml` file like so: Set
+If you have a python SDK, you will need to modify your `konfig.yaml` file like so: Set
 `generators.python.pypiApiTokenEnvironmentVariable` to the name of the token used to publish to `PyPi` for that
 package. This tells Konfig's publishing script to publish to `PyPi` using that token instead of a username/password.
 <CH.Section>
@@ -126,6 +134,9 @@ package. This tells Konfig's publishing script to publish to `PyPi` using that t
 ```yaml konfig.yaml
 # from ./assets/konfig.yaml
 ```
+
+Finally, you will need to edit some additional settings in GitHub. In the SDK repository and any submodule repositories, navigate to 
+`Settings` > `Actions` > `General` > `Workflow permissions` and check the boxes next to `Read and write permissions` and `Allow GitHub Actions to create and approve pull requests`. 
 
 </CH.Section>
 
@@ -146,3 +157,5 @@ key pair.
 3. Add the **private** key to your **top-level** SDK repository as a repository secret.
     - From your top-level repository, go to `Settings` > `Secrets and variables` > `Actions` > `New Repository Secret`
     - Call the secret `SUBMODULE_DEPLOY_KEY_<LANGUAGE>` (e.g. `SUBMODULE_DEPLOY_KEY_TYPESCRIPT`)
+4. Pass the SUBMODULE_DEPLOY_KEY_<LANGUAGE> variables to Konfig's reusable workflows in BOTH the `regenerate-sdks-on-oas-change.yaml` and `release.yaml` workflow files. 
+5. Ensure that Konfig's GitHub app is also installed in the submodule repository.  
