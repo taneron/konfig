@@ -109,7 +109,7 @@ and publishing process. To add a new repository secret, navigate to your GitHub 
 
 Each SDK language requires additional GitHub repository secrets to be added to the SDK repository and provided as arguments in the `release` workflow file for the SDK publishing process. 
 For each of the following languages in your SDK repo, add the following as a new repository secret (values obtained from Konfig), and add them as arguments in `release.yaml` as such:
-VARIABLE_NAME: ${{ secrets.VARIABLE_NAME }}
+`VARIABLE_NAME: ${{ secrets.VARIABLE_NAME }}`
 
 1. TypeScript: **NPM_TOKEN**
 2. Python: **PYPI_TOKEN_1**
@@ -157,5 +157,5 @@ key pair.
 3. Add the **private** key to your **top-level** SDK repository as a repository secret.
     - From your top-level repository, go to `Settings` > `Secrets and variables` > `Actions` > `New Repository Secret`
     - Call the secret `SUBMODULE_DEPLOY_KEY_<LANGUAGE>` (e.g. `SUBMODULE_DEPLOY_KEY_TYPESCRIPT`)
-4. Pass the SUBMODULE_DEPLOY_KEY_<LANGUAGE> variables to Konfig's reusable workflows in BOTH the `regenerate-sdks-on-oas-change.yaml` and `release.yaml` workflow files. 
+4. Pass the `SUBMODULE_DEPLOY_KEY_<LANGUAGE>` variables to Konfig's reusable workflows in BOTH the `regenerate-sdks-on-oas-change.yaml` and `release.yaml` workflow files. 
 5. Ensure that Konfig's GitHub app is also installed in the submodule repository.  
