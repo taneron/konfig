@@ -7,6 +7,10 @@ export const domainToRepoMappings: Record<
     owner: 'groundxai',
     repo: 'groundx-sdks',
   },
+  'eyelevel.localhost:3000': {
+    owner: 'groundxai',
+    repo: 'groundx-sdks',
+  },
   'splitit.localhost:3000': {
     owner: 'konfig-dev',
     repo: 'splitit-web-sdks',
@@ -57,6 +61,10 @@ export const domainToRepoMappings: Record<
     owner: 'groundxai',
     repo: 'groundx-sdks',
   },
+  'eyelevel.onkonfig.com': {
+    owner: 'groundxai',
+    repo: 'groundx-sdks',
+  },
 
   // *.konfig.dev
   'bellhop.konfig.dev': {
@@ -83,6 +91,10 @@ export const domainToRepoMappings: Record<
     owner: 'groundxai',
     repo: 'groundx-sdks',
   },
+  'eyelevel.konfig.dev': {
+    owner: 'groundxai',
+    repo: 'groundx-sdks',
+  },
 
   // *.konfigthis.com
   'snaptrade.konfigthis.com': {
@@ -103,7 +115,15 @@ export const domainToRepoMappings: Record<
     owner: 'groundxai',
     repo: 'groundx-sdks',
   },
+  'documentation.eyelevel.ai': {
+    owner: 'groundxai',
+    repo: 'groundx-sdks',
+  },
   'd.groundx.ai': {
+    owner: 'groundxai',
+    repo: 'groundx-sdks',
+  },
+  'd.eyelevel.ai': {
     owner: 'groundxai',
     repo: 'groundx-sdks',
   },
