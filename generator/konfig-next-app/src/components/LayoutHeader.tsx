@@ -103,33 +103,61 @@ export const LayoutHeader = observer(
           )}
         </Group>
         <Group className="flex-none">
+          {cta ? (
+            <>
+              <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+                <Button
+                  variant={
+                    !hasLightAndDarkLogo
+                      ? 'filled'
+                      : theme.colorScheme === 'dark'
+                      ? 'light'
+                      : 'filled'
+                  }
+                  component="a"
+                  size="xs"
+                  className="max-[400px]:hidden"
+                  target="_blank"
+                  color={
+                    !hasLightAndDarkLogo
+                      ? 'dark'
+                      : theme.colorScheme === 'dark'
+                      ? 'brand'
+                      : 'dark'
+                  }
+                  href={cta.url}
+                >
+                  {cta.label}
+                </Button>
+              </MediaQuery>
+              <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+                <Button
+                  variant={
+                    !hasLightAndDarkLogo
+                      ? 'filled'
+                      : theme.colorScheme === 'dark'
+                      ? 'light'
+                      : 'filled'
+                  }
+                  component="a"
+                  target="_blank"
+                  color={
+                    !hasLightAndDarkLogo
+                      ? 'dark'
+                      : theme.colorScheme === 'dark'
+                      ? 'brand'
+                      : 'dark'
+                  }
+                  href={cta.url}
+                >
+                  {cta.label}
+                </Button>
+              </MediaQuery>
+            </>
+          ) : null}
           <div className="sm:hidden">
             <Search />
           </div>
-          {cta ? (
-            <Button
-              variant={
-                !hasLightAndDarkLogo
-                  ? 'filled'
-                  : theme.colorScheme === 'dark'
-                  ? 'light'
-                  : 'filled'
-              }
-              component="a"
-              target="_blank"
-              className="hidden sm:block"
-              color={
-                !hasLightAndDarkLogo
-                  ? 'dark'
-                  : theme.colorScheme === 'dark'
-                  ? 'brand'
-                  : 'dark'
-              }
-              href={cta.url}
-            >
-              {cta.label}
-            </Button>
-          ) : null}
           <ColorSchemeToggle hasLightAndDarkLogo={typeof logo !== 'string'} />
         </Group>
       </Box>
