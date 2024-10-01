@@ -60,6 +60,7 @@ export function OperationParameter({
         <Flex justify="space-between">
           <div className="max-w-[50%]">
             <OperationParameterDocumentation
+              deprecated={param.deprecated}
               name={param.name}
               description={description}
               schema={schemaTypeLabel({ schema: param.schema })}
