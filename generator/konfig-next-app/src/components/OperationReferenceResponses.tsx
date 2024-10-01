@@ -261,6 +261,7 @@ class ResponsesState {
             name: field.name,
             schema: schemaTypeLabel({ schema: field.schema }),
             description: field.schema.description,
+            deprecated: field.schema.deprecated,
             properties,
             path: newPath,
           })
@@ -271,6 +272,7 @@ class ResponsesState {
             schema: schemaTypeLabel({ schema: field.schema }),
             description: field.schema.description,
             path: newPath,
+            deprecated: field.schema.deprecated,
           })
         }
       } else if (field.schema.type === 'array') {
@@ -290,6 +292,7 @@ class ResponsesState {
                 schema: schemaTypeLabel({ schema: field.schema }),
                 description: field.schema.description,
                 path: newPath,
+                deprecated: field.schema.deprecated,
               })
             } else {
               // array of objects with properties
@@ -309,6 +312,7 @@ class ResponsesState {
                 description: field.schema.description,
                 properties,
                 path: newPath,
+                deprecated: field.schema.deprecated,
               })
             }
           } else if (field.schema.items.type === undefined) {
@@ -318,6 +322,7 @@ class ResponsesState {
               schema: schemaTypeLabel({ schema: field.schema }),
               description: field.schema.description,
               path: newPath,
+              deprecated: field.schema.deprecated,
             })
           } else {
             const name = '$item'
@@ -337,6 +342,7 @@ class ResponsesState {
               description: field.schema.description,
               properties,
               path: newPath,
+              deprecated: field.schema.deprecated,
             })
           }
         } else {
@@ -346,6 +352,7 @@ class ResponsesState {
             schema: schemaTypeLabel({ schema: field.schema }),
             description: field.schema.description,
             path: newPath,
+            deprecated: field.schema.deprecated,
           })
         }
       } else {
@@ -355,6 +362,7 @@ class ResponsesState {
           schema: schemaTypeLabel({ schema: field.schema }),
           description: field.schema.description,
           path: path + PATH_DELIMITER + field.name,
+          deprecated: field.schema.deprecated,
         })
       }
     }
@@ -539,6 +547,7 @@ const ResponseFieldsDocumentation = observer(() => {
               name=""
               schema={responsesState?.responseObjectSchemaLabel ?? ''}
               description={responsesState?.responseObjectSchemaDescription}
+              deprecated={false}
             />
           </Spoiler>
           <div className="w-full flex justify-end">
