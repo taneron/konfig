@@ -1,10 +1,18 @@
 # coding: utf-8
 
-{{>partial_header}}
+"""
+    python-one-of-uuid-string-integer-path-parameter API
+
+    A simple API based for testing python-one-of-uuid-string-integer-path-parameter.
+
+    The version of the OpenAPI document: 1.0.0
+    Contact: support@example.com
+    Created by: http://example.com/support
+"""
 
 from collections import defaultdict
-from datetime import date, datetime, timedelta  # noqa: F401{{#if prstv2}}
-import pydantic{{/if}}
+from datetime import date, datetime, timedelta  # noqa: F401
+import pydantic
 import functools
 import decimal
 import io
@@ -17,18 +25,18 @@ import uuid
 from dateutil.parser.isoparser import isoparser, _takes_ascii
 import frozendict
 
-from {{packageName}}.exceptions_base import (
+from python_one_of_uuid_string_integer_path_parameter.exceptions_base import (
     ApiTypeError,
     ApiValueError,
 )
-from {{packageName}}.configuration import (
+from python_one_of_uuid_string_integer_path_parameter.configuration import (
     Configuration,
 )
-from {{packageName}}.exceptions import SchemaValidationError
-from {{packageName}}.exceptions import render_path
-from {{packageName}}.validation_metadata import ValidationMetadata
-from {{packageName}}.exceptions import AnyOfValidationError
-from {{packageName}}.exceptions import MissingRequiredPropertiesError
+from python_one_of_uuid_string_integer_path_parameter.exceptions import SchemaValidationError
+from python_one_of_uuid_string_integer_path_parameter.exceptions import render_path
+from python_one_of_uuid_string_integer_path_parameter.validation_metadata import ValidationMetadata
+from python_one_of_uuid_string_integer_path_parameter.exceptions import AnyOfValidationError
+from python_one_of_uuid_string_integer_path_parameter.exceptions import MissingRequiredPropertiesError
 
 Primitive: typing_extensions.TypeAlias = typing.Union[int, float, bool, str]
 
@@ -1834,9 +1842,9 @@ def cast_to_allowed_types(
     elif isinstance(arg, bytes):
         return bytes(arg)
     elif isinstance(arg, (io.FileIO, io.BufferedReader)):
-        return FileIO(arg){{#if prstv2}}
+        return FileIO(arg)
     elif isinstance(arg, pydantic.BaseModel):
-        return cast_to_allowed_types({ k:v for k, v in dict(arg).items() if v is not None }, from_server, validated_path_to_schemas, path_to_item){{/if}}
+        return cast_to_allowed_types({ k:v for k, v in dict(arg).items() if v is not None }, from_server, validated_path_to_schemas, path_to_item)
     raise ValueError('Invalid type passed in got input={} type={}'.format(arg, type(arg)))
 
 
@@ -1872,39 +1880,15 @@ class ComposedBase(Discriminable):
                 path_to_schemas = oneof_cls._validate_oapg(arg, validation_metadata=validation_metadata)
             except (ApiValueError, ApiTypeError) as ex:
                 if discriminated_cls is not None and oneof_cls is discriminated_cls:
-                {{#if nonCompliantUseDiscriminatorIfCompositionFails}}
-                    """
-                    suppress exception because code was generated with
-                    nonCompliantUseDiscriminatorIfCompositionFails=true
-                    """
-                    pass
-                {{else}}
                     raise ex
-                {{/if}}
                 continue
             oneof_classes.append(oneof_cls)
         if not oneof_classes:
-            {{#if nonCompliantUseDiscriminatorIfCompositionFails}}
-            if discriminated_cls:
-                """
-                return without exception because code was generated with
-                nonCompliantUseDiscriminatorIfCompositionFails=true
-                """
-                return {}
-            {{/if}}
             raise ApiValueError(
                 "Invalid inputs given to generate an instance of {}. None "
                 "of the oneOf schemas matched the input data.".format(cls)
             )
         elif len(oneof_classes) > 1:
-            {{#if nonCompliantUseDiscriminatorIfCompositionFails}}
-            if discriminated_cls:
-                """
-                return without exception because code was generated with
-                nonCompliantUseDiscriminatorIfCompositionFails=true
-                """
-                return {}
-            {{/if}}
             raise ApiValueError(
                 "Invalid inputs given to generate an instance of {}. Multiple "
                 "oneOf schemas {} matched the inputs, but a max of one is allowed.".format(cls, oneof_classes)
