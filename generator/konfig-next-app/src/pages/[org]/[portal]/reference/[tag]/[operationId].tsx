@@ -58,7 +58,13 @@ export const getStaticProps: GetStaticProps<ReferencePageProps> = async (
   if (Array.isArray(tag) || Array.isArray(operationId))
     throw Error('Got unexpected array type for parameters')
 
-  return generatePropsForReferencePage({ owner, tag, repo, operationId })
+  return generatePropsForReferencePage({
+    owner,
+    tag,
+    repo,
+    operationId,
+    domain: 'konfigthis.com',
+  })
 }
 
 const Operation = ({

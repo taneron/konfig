@@ -70,12 +70,14 @@ export async function generatePropsForReferencePage({
   repo,
   operationId,
   omitOwnerAndRepo,
+  domain,
 }: {
   owner: string
   tag: string
   repo: string
   operationId: string
   omitOwnerAndRepo?: boolean
+  domain: string
 }): Promise<GetStaticPropsResult<ReferencePageProps>> {
   const octokit = await createOctokitInstance({ owner, repo })
   const { spec, ...props } = await githubGetReferenceResources({
@@ -114,8 +116,18 @@ export async function generatePropsForReferencePage({
   for (const op of operations) {
     if (op.operation.operationId === operationId) operation = op
   }
-  if (operation === null)
-    throw Error(`Operation with operation ID ${operationId} not found`)
+  console.log('domain: ' + domain)
+  if (operation === null) {
+    console.log('WHAT?!')
+    return {
+      redirect: {
+        statusCode: 303,
+        destination: domain.includes('localhost')
+          ? `http://${domain}`
+          : `https://${domain}`,
+      },
+    }
+  }
 
   // find links group with operation id that matches operation in metadata.operationId and set initiallyOpened to true
   // if not found then set initiallyOpened to false

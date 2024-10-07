@@ -44,6 +44,7 @@ export const getStaticProps: GetStaticProps<ReferencePageProps> = async (
     repo,
     operationId,
     omitOwnerAndRepo: true,
+    domain: ctx.params!.org as string,
   })
 }
 
