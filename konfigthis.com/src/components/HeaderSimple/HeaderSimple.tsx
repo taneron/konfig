@@ -138,7 +138,7 @@ export function HeaderSimple() {
                 href="/sdk"
                 component="a"
               />
-              <NavLink
+              {/* <NavLink
                 className="py-4 font-bold border-t border-solid border-gray-100"
                 label="Book a Demo"
                 classNames={{
@@ -148,7 +148,7 @@ export function HeaderSimple() {
                 href="/schedule-demo"
                 target="_blank"
                 rightSection={<IconCalendarEvent />}
-              />
+              /> */}
             </div>
           )}
         </Transition>
@@ -213,7 +213,7 @@ export function HeaderSimple() {
               >
                 Documentation
               </a>
-              <Button
+              {/* <Button
                 color="dark"
                 component="a"
                 radius="lg"
@@ -222,7 +222,7 @@ export function HeaderSimple() {
                 leftIcon={<IconCalendarEvent size="0.9rem" />}
               >
                 Book a demo
-              </Button>
+              </Button> */}
             </Group>
           </div>
         </MediaQuery>

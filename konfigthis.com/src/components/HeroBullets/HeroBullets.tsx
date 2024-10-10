@@ -171,7 +171,7 @@ export function HeroBullets() {
               "opacity-1": isVisible,
             })}
           >
-            <div className="relative group">
+            {/* <div className="relative group">
               <div
                 className={clsx(
                   classes.control,
@@ -194,7 +194,7 @@ export function HeroBullets() {
               >
                 Book a demo
               </Button>
-            </div>
+            </div> */}
             {isDesktop ? (
               <Button
                 component="a"

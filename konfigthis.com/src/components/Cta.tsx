@@ -75,8 +75,7 @@ export function Cta() {
           <Text fz="sm" c="dimmed">
             Impress your customers with an amazing onboarding experience
           </Text>
-
-          <div className={classes.controls}>
+          {/* <div className={classes.controls}>
             <Button
               className={classes.control}
               size="lg"
@@ -88,7 +87,7 @@ export function Cta() {
             >
               Book a demo
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </Container>
