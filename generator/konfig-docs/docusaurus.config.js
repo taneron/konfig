@@ -182,7 +182,7 @@ async function createConfig() {
             },
             { to: "/sdk", label: "SDKs for Public APIs", position: "right" },
             { to: "/blog", label: "Blog", position: "right" },
-            { to: "/schedule-demo", label: "Schedule Demo", position: "right" },
+            // { to: "/schedule-demo", label: "Schedule Demo", position: "right" },
           ],
         },
         api: {
@@ -208,10 +208,10 @@ async function createConfig() {
                   label: "Blog",
                   to: "/blog",
                 },
-                {
-                  label: "Enterprise",
-                  to: "/enterprise",
-                },
+                // {
+                //   label: "Enterprise",
+                //   to: "/enterprise",
+                // },
               ],
             },
             {
@@ -226,10 +226,10 @@ async function createConfig() {
                   to: "/interactive-tutorial",
                 },
                 { to: "/sdk", label: "SDKs" },
-                {
-                  label: "Schedule Demo",
-                  to: "/schedule-demo",
-                },
+                // {
+                //   label: "Schedule Demo",
+                //   to: "/schedule-demo",
+                // },
                 {
                   label: "openapi-examples",
                   to: "https://github.com/konfig-sdks/openapi-examples",
