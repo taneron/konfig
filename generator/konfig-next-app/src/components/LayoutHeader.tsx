@@ -48,7 +48,6 @@ export const LayoutHeader = observer(
     cta: NonNullable<KonfigYamlCommonType['portal']>['cta'] | null
   }) => {
     const theme = useMantineTheme()
-    const baseUrl = useBaseUrl()
     const hasLightAndDarkLogo = typeof logo !== 'string'
     const color = useHeaderColor({ hasLightAndDarkLogo })
     const { classes } = useLogoStyles()
@@ -84,7 +83,7 @@ export const LayoutHeader = observer(
               }}
               className="h-1/3"
             >
-              <Link style={{ position: 'relative' }} href={baseUrl}>
+              <Link style={{ position: 'relative' }} href={'/'}>
                 <img
                   className={clsx(classes.logo, 'h-full')}
                   alt="logo"
