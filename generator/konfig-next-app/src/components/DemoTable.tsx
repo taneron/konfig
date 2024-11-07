@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import {
   Text,
   createStyles,
@@ -10,31 +10,31 @@ import {
   UnstyledButton,
   TextInput,
   Box,
-} from "@mantine/core";
-import { keys } from "@mantine/utils";
+} from '@mantine/core'
+import { keys } from '@mantine/utils'
 import {
   IconChevronUp,
   IconChevronDown,
   IconSelector,
   IconSearch,
-} from "@tabler/icons-react";
+} from '@tabler/icons-react'
 
 const useStyles = createStyles((theme) => ({
   header: {
-    position: "sticky",
+    position: 'sticky',
     top: 0,
     backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
-    transition: "box-shadow 150ms ease",
+      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    transition: 'box-shadow 150ms ease',
 
-    "&::after": {
+    '&::after': {
       content: '""',
-      position: "absolute",
+      position: 'absolute',
       left: 0,
       right: 0,
       bottom: 0,
       borderBottom: `${rem(1)} solid ${
-        theme.colorScheme === "dark"
+        theme.colorScheme === 'dark'
           ? theme.colors.dark[3]
           : theme.colors.gray[2]
       }`,
@@ -48,16 +48,16 @@ const useStyles = createStyles((theme) => ({
   },
 
   th: {
-    padding: "0 !important",
+    padding: '0 !important',
   },
 
   control: {
-    width: "100%",
+    width: '100%',
     padding: `${theme.spacing.xs} ${theme.spacing.md}`,
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor:
-        theme.colorScheme === "dark"
+        theme.colorScheme === 'dark'
           ? theme.colors.dark[6]
           : theme.colors.gray[0],
     },
@@ -66,22 +66,22 @@ const useStyles = createStyles((theme) => ({
   scrolled: {
     boxShadow: theme.shadows.sm,
   },
-}));
+}))
 
 interface ThProps {
-  children: React.ReactNode;
-  reversed: boolean;
-  sorted: boolean;
-  onSort(): void;
+  children: React.ReactNode
+  reversed: boolean
+  sorted: boolean
+  onSort(): void
 }
 
 function Th({ children, reversed, sorted, onSort }: ThProps) {
-  const { classes } = useStyles();
+  const { classes } = useStyles()
   const Icon = sorted
     ? reversed
       ? IconChevronUp
       : IconChevronDown
-    : IconSelector;
+    : IconSelector
   return (
     <th className={classes.th}>
       <UnstyledButton onClick={onSort} className={classes.control}>
@@ -95,7 +95,7 @@ function Th({ children, reversed, sorted, onSort }: ThProps) {
         </Group>
       </UnstyledButton>
     </th>
-  );
+  )
 }
 
 function filterData(
@@ -103,17 +103,17 @@ function filterData(
   search: string,
   columns: string[]
 ) {
-  const query = search.toLowerCase().trim();
+  const query = search.toLowerCase().trim()
   return data.filter((item) =>
     columns.some((key) => {
-      const cell = item[key];
-      if (typeof cell === "string") return cell.toLowerCase().includes(query);
-      if (typeof cell === "object")
-        return JSON.stringify(cell).toLowerCase().includes(query);
-      if (typeof cell === "number") return cell.toString().includes(query);
-      return false;
+      const cell = item[key]
+      if (typeof cell === 'string') return cell.toLowerCase().includes(query)
+      if (typeof cell === 'object')
+        return JSON.stringify(cell).toLowerCase().includes(query)
+      if (typeof cell === 'number') return cell.toString().includes(query)
+      return false
     })
-  );
+  )
 }
 
 function sortData(
@@ -121,27 +121,27 @@ function sortData(
   payload: { sortBy: string | null; reversed: boolean; search: string },
   columns: string[]
 ) {
-  const { sortBy } = payload;
+  const { sortBy } = payload
 
   if (!sortBy) {
-    return filterData(data, payload.search, columns);
+    return filterData(data, payload.search, columns)
   }
 
   return filterData(
     [...data].sort((a, b) => {
-      const bCell = b[sortBy];
-      const aCell = a[sortBy];
-      if (typeof aCell !== "string") return 1;
-      if (typeof bCell !== "string") return -1;
+      const bCell = b[sortBy]
+      const aCell = a[sortBy]
+      if (typeof aCell !== 'string') return 1
+      if (typeof bCell !== 'string') return -1
       if (payload.reversed) {
-        return bCell.localeCompare(aCell);
+        return bCell.localeCompare(aCell)
       }
 
-      return aCell.localeCompare(bCell);
+      return aCell.localeCompare(bCell)
     }),
     payload.search,
     columns
-  );
+  )
 }
 
 function unquoteString(str: string) {
@@ -149,59 +149,59 @@ function unquoteString(str: string) {
     (str.length >= 2 && str.startsWith("'") && str.endsWith("'")) ||
     (str.startsWith('"') && str.endsWith('"'))
   ) {
-    return str.slice(1, -1);
+    return str.slice(1, -1)
   }
-  return str;
+  return str
 }
 
 interface Props {
-  data: Record<string, unknown>[];
-  columns: string[];
+  data: Record<string, unknown>[]
+  columns: string[]
 }
 
 export function DemoTable({ data, columns }: Props) {
-  const { classes, cx } = useStyles();
-  const [scrolled, setScrolled] = useState(false);
+  const { classes, cx } = useStyles()
+  const [scrolled, setScrolled] = useState(false)
 
-  const [search, setSearch] = useState("");
-  const [sortedData, setSortedData] = useState(data);
+  const [search, setSearch] = useState('')
+  const [sortedData, setSortedData] = useState(data)
 
   // Update the sorted data to new data whenever it is updated
   useEffect(() => {
-    setSearch("");
-    setSortedData(data);
-  }, [data]);
+    setSearch('')
+    setSortedData(data)
+  }, [data])
 
-  const [sortBy, setSortBy] = useState<string | null>(null);
-  const [reverseSortDirection, setReverseSortDirection] = useState(false);
+  const [sortBy, setSortBy] = useState<string | null>(null)
+  const [reverseSortDirection, setReverseSortDirection] = useState(false)
 
   const setSorting = (field: string) => {
-    const reversed = field === sortBy ? !reverseSortDirection : false;
-    setReverseSortDirection(reversed);
-    setSortBy(field);
-    setSortedData(sortData(data, { sortBy: field, reversed, search }, columns));
-  };
+    const reversed = field === sortBy ? !reverseSortDirection : false
+    setReverseSortDirection(reversed)
+    setSortBy(field)
+    setSortedData(sortData(data, { sortBy: field, reversed, search }, columns))
+  }
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.currentTarget;
-    setSearch(value);
+    const { value } = event.currentTarget
+    setSearch(value)
     setSortedData(
       sortData(
         data,
         { sortBy, reversed: reverseSortDirection, search: value },
         columns
       )
-    );
-  };
+    )
+  }
 
   const rows = sortedData.map((row, i) => (
     <tr key={i}>
       {columns.map((column) => {
-        const cell = JSON.stringify(row[column], undefined, 2);
-        return <td key={column}>{unquoteString(cell)}</td>;
+        const cell = JSON.stringify(row[column], undefined, 2)
+        return <td key={column}>{unquoteString(cell)}</td>
       })}
     </tr>
-  ));
+  ))
 
   return (
     <Box>
@@ -213,7 +213,7 @@ export function DemoTable({ data, columns }: Props) {
         onChange={handleSearchChange}
       />
       <ScrollArea
-        mah={300}
+        h={300}
         onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
       >
         <Table miw={700}>
@@ -249,5 +249,5 @@ export function DemoTable({ data, columns }: Props) {
         </Table>
       </ScrollArea>
     </Box>
-  );
+  )
 }
