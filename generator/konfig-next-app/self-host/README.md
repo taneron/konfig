@@ -22,7 +22,7 @@
    Once its complete, you should see the domain show as `Verified` and `Certificate Issued`.
    ![domain done](domain-complete.png)
 1. You need to ensure that the codebase includes a mapping of your domain to the github repo. Go to [generator/konfig-next-app/src/utils/domain-to-repo-mappings.ts](../src/utils/domain-to-repo-mappings.ts) and add your domain as a key and owner/repo as the value. Look at existing entries for examples.
-1. The GitHub App ID also needs to be updated to the ID of the GitHub App you created earlier. Go to [octokit.ts](../src/utils/octokit.ts) and edit `APP_ID` at the top of the file with your app's ID.
-1. Deploy `konfig-demo-portal` off latest commit
+1. The GitHub App ID also needs to be updated to the ID of the GitHub App you created earlier. Go to [octokit.ts](../src/utils/octokit.ts) and edit `APP_ID` at the top of the file with your app's ID. Again, you can use the GitHub edit UI to do this.
+1. Deploy `konfig-demo-portal` off latest commit. If you want, you can also enable auto-deploys if you don't want to manually click deploy anymore: https://render.com/docs/deploys#automatic-git-deploys.
    ![deploy](deploy.png)
 1. Once your services are deployed correctly, which can take 30 minutes or more because its building the entire Konfig monorepo, you should be able to go to your custom domain and the docs should show.
