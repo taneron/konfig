@@ -1,0 +1,89 @@
+#####
+# Documentation
+# Redwood: https://render.com/docs/deploy-redwood
+# YAML (all config values): https://render.com/docs/yaml-spec
+#####
+
+services:
+  - type: redis
+    name: github-api-cache
+    ipAllowList: [] # only allow internal connections
+    plan: free
+
+  - name: konfig-demo-portal
+    type: web
+    env: node
+    buildCommand: ./build-render.sh
+    startCommand: yarn start;
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-next-app
+    plan: standard
+    autoDeploy: false
+    buildFilter:
+      paths:
+      - generator/konfig-dash/**/*
+    domains:
+      - demo.konfigthis.com
+    envVars:
+      - key: GITHUB_API_REDIS_CACHE
+        fromService:
+          name: github-api-cache
+          type: redis
+          property: connectionString
+      - key: PYTHON_RCE_API_HOST_PORT
+        fromService:
+          name: konfig-python-remote-code-executor
+          type: pserv
+          property: hostport
+      - fromGroup: cloudflare
+      - fromGroup: openai
+      - fromGroup: github
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NPM_TOKEN
+        value: DUMMY_VALUE
+      - key: PORT
+        value: 10000
+
+  - type: pserv
+    name: konfig-python-remote-code-executor
+    env: python
+    buildCommand: ./build-render.sh
+    startCommand: ./start.sh
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-python-remote-code-executor
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16
+      - key: PORT
+        value: 8000
+
+envVarGroups:
+  - name: cloudflare
+    envVars:
+      - key: CLOUDFLARE_IMAGES_API_KEY
+        sync: false
+  - name: openai
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+  - name: konfig-changeset-bot
+    envVars:
+      - key: APP_ID
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+      - key: PRIVATE_KEY
+        sync: false
+      - key: WEBHOOK_SECRET
+        sync: false
+  - name: npm
+    envVars:
+      - key: NPM_TOKEN
+        sync: false
+  - name: github
+    envVars:
+      - key: GITHUB_APP_PRIVATE_KEY
+        sync: false
