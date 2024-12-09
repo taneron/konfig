@@ -23,7 +23,8 @@
    ![domain done](domain-complete.png)
 1. You need to ensure that the codebase includes a mapping of your domain to the github repo. Go to [generator/konfig-next-app/src/utils/domain-to-repo-mappings.ts](../src/utils/domain-to-repo-mappings.ts) and add your domain as a key and owner/repo as the value. Look at existing entries for examples.
 1. The GitHub App ID also needs to be updated to the ID of the GitHub App you created earlier. Go to [octokit.ts](../src/utils/octokit.ts) and edit `APP_ID` at the top of the file with your app's ID. Again, you can use the GitHub edit UI to do this.
-1. The Cloudflare Account ID and CDN URL also needs to be updated to be the values from the Cloudflare account you created earlier. Go to [cloudflare-images-from-github.ts](../src/utils/cloudflare-image-from-github.ts) and replace the `account_id` variable and `cdnUrl` function with your own account ID and CDN URL.
+1. The Cloudflare Account ID and CDN URL also needs to be updated to be the values from the Cloudflare account you created earlier. Go to [cloudflare-images-from-github.ts](../src/utils/cloudflare-image-from-github.ts) and replace the `account_id` variable and `cdnUrl` function with your own account ID and CDN URL. For the `cdnUrl` function, copy the URL highlighted in the image below. Paste it to `cdnUrl` function in [cloudflare-images-from-github.ts](../src/utils/cloudflare-image-from-github.ts), replace `<image_id>` with `${id}` and `<variant_name>` with `public`.
+   ![cdn url](./cdn-url.png)
 1. Deploy `konfig-demo-portal` off latest commit. If you want, you can also enable auto-deploys if you don't want to manually click deploy anymore: https://render.com/docs/deploys#automatic-git-deploys.
    ![deploy](deploy.png)
 1. Once your services are deployed correctly, which can take 30 minutes or more because its building the entire Konfig monorepo, you should be able to go to your custom domain and the docs should show.
